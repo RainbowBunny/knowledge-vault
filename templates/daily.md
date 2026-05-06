@@ -1,0 +1,8 @@
+---
+tags:
+  - daily
+---
+
+
+## Note today
+

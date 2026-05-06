@@ -1,0 +1,33 @@
+# --- Personal content (not for public/private repo sync) ---
+daily/
+
+# --- Obsidian local state ---
+# Workspace UI state (open tabs, layout) — noisy across machines
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Plugin caches and per-device data
+.obsidian/cache
+.obsidian/plugins/*/data.json
+
+# Trash (deleted files inside Obsidian)
+.trash/
+.obsidian/.trash/
+
+# --- Operating system junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# --- Editor / temp files ---
+*.swp
+*.swo
+*~
+.vscode/
+*.tmp
+*.bak
+
+# --- One-time setup script (delete after running) ---
+git-setup.ps1

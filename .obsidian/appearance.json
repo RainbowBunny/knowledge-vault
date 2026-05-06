@@ -1,0 +1,7 @@
+{
+  "enabledCssSnippets": [
+    "dataview-tables",
+    "math-blocks",
+    "pseudocode-callout"
+  ]
+}

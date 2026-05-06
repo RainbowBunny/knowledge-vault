@@ -1,0 +1,303 @@
+
+## Basic Definition
+
+> [!definition] Leading Coefficient
+> The **leading coefficient** of polynomial is the coefficient of the highest power of $x$.
+
+> [!definition] Monic Polynomial
+> A nonzero polynomial whose leading coefficient is equal to $1$ is called a **monic polynomial**.
+
+### Degree
+
+> [!definition] Degree
+> The **degree** of a nonzero polynomial is the exponent of the highest power of $x$ that appears.
+
+> [!definition] Polynomial Space
+> $\mathcal P(\mathbb F)$ denotes the vector space of all polynomials with coefficients in $F$ and $\mathcal P_m(\mathbb F)$ is the subspace of $\mathcal P(\mathbb F)$ consisting of the polynomials with coefficients in $\mathbb F$ and degree at most $m$.
+
+> [!definition] Roots
+> A number $\lambda \in F$ is called a **root** of a polynomial $p \in \mathcal P(\mathbb F)$ if $$p(\lambda) = 0.$$
+
+> [!proposition]
+> Suppose $p \in \mathcal P(\mathbb F)$ is a polynomial with degree $m \geq 1$. Let $\lambda \in \mathbb F$. Then $\lambda$ is a root of $p$ if and only if there is a polynomial $q \in \mathcal P(\mathbb F)$ with degree $m - 1$ such that $$p(z) = (z - \lambda) q(z)$$ for all $z \in \mathbb F$.
+
+> [!corollary]
+> Suppose $p \in \mathcal P(\mathbb F)$ is a polynomial with degree $m \geq 0$. Then $p$ has at most $m$ distinct roots in $\mathbb F$.
+
+> [!corollary]
+> Suppose $a_0, \dots, a_m \in F$. If $$a_0 + a_1 z + a_2 z^2 + \dots + a_m z^m = 0$$ for all $z \in \mathbb F$, then $a_0 = \cdots = a_m = 0$.
+
+> [!example]
+> Let $\mathbb F$ be a field and let $a$ and $b$ be nonzero polynomial in $\mathbb F[x]$.
+> 1. $\deg(a \cdot b) = \deg(a) + \deg(b)$.
+> 2. $a$ has a multiplicative inverse in $\mathbb F[x]$ if and only if $a$ is a constant polynomial.
+
+### Complex Coefficients
+
+> [!theorem] Fundamental Theorem of Algebra
+> Every nonconstant polynomial with complex coefficients has a root.
+
+> [!corollary]
+> If $p \in \mathcal P(\mathbb C)$ is a nonconstant polynomial, then $p$ has a unique factorization (except the order of the factors) of the form $$p(z) = c(z - \lambda_1)\dots(z - \lambda_m),$$ where $c, \lambda_1, \dots, \lambda_m \in \mathbb C$.
+
+> [!proposition]
+> Let $f$ be a polynomial with real coefficients, then $$\overline{f(z)} = f(\overline{z})$$ for every complex $z$.
+ 
+### Real Coefficients
+
+> [!proposition]
+> Suppose $p$ is a polynomial with real coefficients. If $\lambda \in \mathbb C$ is a root of $p$, then so is $\overline \lambda$.
+
+> [!proposition]
+> Let $\alpha, \beta \in \mathbb R$. Then there is a polynomial factorization of the form $$x^2 + \alpha x + \beta = (x - \lambda_1) (x - \lambda_2),$$ with $\lambda_1, \lambda_2 \in \mathbb R$, if and only if $\alpha^2 \geq 4 \beta$.
+
+> [!theorem]
+> If $p \in \mathcal P(\mathbb R)$ is a nonconstant polynomial, then $p$ has a unique factorization (except for the order of the factors) of the form $$p(x) = c(x - \lambda_1) \dots (x - \lambda_m) (x^2 + \alpha_1 x + \beta_1) \dots (x^2 + \alpha_M x + \beta_M),$$ where $c, \lambda_1, \dots, \lambda_m \in \mathbb R$ and $(\alpha_1, \beta_1), \dots, (\alpha_M, \beta_M) \in \mathbb R^2$ with $\alpha_j^2 < 4 \beta_j$ for each $j$.
+
+### Reducible
+
+> [!definition] Irreducible
+> A polynomial $p(x)$ is called **irreducible** if 
+> 1. $\deg(p) > 0$, and
+> 2. $p$ can not be written as a product of two polynomials of positive degree.
+
+> [!proposition]
+> Suppose $\mathbb F$ is a field. The following conditions are equivalent:
+> 1. Every polynomial of positive degree in $\mathcal P(\mathbb F)$ is a product of linear factors;
+> 2. Every nonzero polynomial in $\mathcal P(\mathbb F)$ is a product of linear factors: $$p(x) = a \prod_{j = 1}^{\deg p} (x - \lambda_j) \quad (\lambda_j \in \mathbb F, 0 \neq a \in \mathbb F).$$
+> 3. The irreducible polynomials in $\mathcal P(\mathbb F)$ are those of degree one.
+> If these equivalent conditions are satisfied, we say that $\mathbb F$ is algebraically closed.
+
+> [!proposition]
+> Any monic polynomial $p \in \mathcal P(\mathbb F)$ can be written as a product of powers of distinct monic irreducible polynomials $\{q_i | 1 \leq i \leq r\}$: $$p(x) = \prod_{i = 1}^r q_i(x)^{m_i}, \quad \deg p = \sum_{i = 1}^r m_i \deg q_i.$$ Here $m_i$ and $\deg q_i$ are positive integers, so $r \leq \deg p$. This factorization of $p$ is unique up to rearranging the factors. The irreducible $q_i$ that appear are precisely the irreducible factors of $p$.
+
+### The Euclidean Algorithm
+
+> [!proposition] The ring $\mathbb F[x]$ is Euclidean
+> Let $\mathbb F$ be a field and let $a$ and $b$ be polynomial in $\mathbb F[x]$ with $b \neq 0$. Then it is possible to write $$a = b \cdot k + r \quad \text{with} \quad k \text{ and } r \text{ polynomials, and either } r = 0 \text{ or} \deg r < \deg b.$$ We say that $a$ divided by $b$ has quotient $k$ and remainder $r$.
+
+> [!definition] Divide
+> A polynomial $p \in \mathcal P(\mathbb F)$ is said to **divide** a polynomial $q \in \mathcal P(\mathbb F)$ if there exists a polynomial $s \in \mathcal P(\mathbb F)$ such that $q = sp$.
+
+> [!definition] Common Divisor
+> A **common divisor** of two elements $a, b \in \mathbb F[x]$ is an element $d \in \mathbb F[x]$ that divides both $a$ and $b$. We say that $d$ is a **greatest common divisor** of $a$ and $b$ if every common divisor of $a$ and $b$ also divides $d$.
+
+> [!proposition] The extended Euclidean algorithm for $\mathbb F[x]$
+> Let $\mathbb F$ be a field and let $a$ and $b$ be polynomials in $\mathbb F[x]$ with $b \neq 0$. Then the greatest common divisor $d$ of $a$ and $b$ exists, and there are polynomials $u$ and $v$ in $\mathbb F[x]$ such that $$a \cdot u + b \cdot v = d.$$
+
+> [!definition] Resultant
+> Let $a(x)$ and $b(x)$ be polynomials with rational coefficients. If their greatest common divisor is $1$, then the extended Euclidean algorithm for polynomials $A(x)$ and $B(x)$ satisfying $$a(x) A(x) + b(x) B(x) = 1.$$ In general, even if $a(x)$ and $b(x)$ have integer coefficients, the coefficients of $A(x)$ and $B(x)$ will be rational numbers. However, we can multiply the equation by a positive integer to clear the denominator. The smallest positive integer $R$ that can be written in the form $$a(x) A(x) + b(x) B(x) = R \quad \text{with} \; A(x), B(x) \in \mathbb Z[x]$$ is called the **resultant** of $a(x)$ and $b(x)$ and is denoted by $\text{Res}(a(x), b(x))$.
+
+### The Minimal Polynomial
+
+> [!definition] Minimal Polynomial
+> A **minimal polynomial** of an element $\alpha \in \mathbb F_{q^m}$ with respect to $\mathbb F_q$ is a nonzero monic polynomial $f(x)$ of the least degree in $\mathbb F_q[x]$ such that $f(\alpha) = 0$.
+
+> [!theorem]
+> 1. The minimal polynomial of an element of $\mathbb F_{q^m}$ with respect to $\mathbb F_q$ exists and is unique. It is also irreducible over $\mathbb F_q$.
+> 2. If a monic irreducible polynomial $M(x) \in \mathbb F_q[x]$ has $\alpha \in \mathbb F_{q^m}$ as a root, then it is the minimal polynomial of $\alpha$ with respect to $\mathbb F_q$. 
+
+> [!definition] Cyclotomic Coset
+> Let $n$ be co-prime to $q$. The **cyclotomic coset** of $q$ (or **$q$-cyclotomic cosets**) modulo $n$ containing $i$ is defined by $$C_i = \{(i \cdot q^j \pmod n) \in \mathbb Z_n : j = 0, 1, \dots\}.$$
+> A subset ${i_1, \dots, i_t}$ of $\mathbb Z_n$ is called a **complete set of representatives** of cyclotomic cosets of $q$ modulo $n$ if $C_{i_1}, \dots, C_{i_t}$ are distinct and $\cup_{j = 1}^t C_{i_t} = \mathbb Z_n$.
+
+> [!remark]
+> 3. It is easy to verify that two cyclotomic cosets are either equal or disjoint. Hence, the cyclotomic cosets partition $\mathbb Z_n$.
+> 4. If $n = q^m - 1$ for some $m \geq 1$, each cyclotomic coset contains at most $m$ elements, as $q^m \equiv 1 \pmod q^m - 1$.
+> 5. It is easy to see that, in the case of $n = q^m - 1$ for some $m \geq 1$, $|C_i| = m$ if $\gcd(i, q^m - 1) = 1$.
+
+> [!theorem]
+> Let $\alpha$ be a primitive element of $\mathbb F_{q^m}$. Then the minimal polynomial of $\alpha^i$ with respect to $\mathbb F_q$ is $$M^{(i)}(x) := \prod_{j \in C_i} (x - \alpha^j),$$ where $C_i$ is the unique cyclotomic coset of $q$ module $q^m - 1$ containing $i$.
+
+> [!remark]
+> 1. The degree of the minimal polynomial of $\alpha^i$ is equal to the size of the cyclotomic coset containing $i$.
+> 2. $\alpha^i$ and $\alpha^k$ has the same minimal polynomial if and only if $i, k$ are in the same cyclotomic coset.
+
+> [!theorem]
+> Let $n$ be a positive integer with $\gcd(q, n) = 1$. Suppose that $m$ is a positive integer satisfying $n | (q^m - 1)$. Let $\alpha$ be a primitive element of $\mathbb F_{q^m}$ and let $M^{(j)}(x)$ be the minimal polynomial of $\alpha^j$ with respect to $\mathbb F_q$. Let $\{s_1, \dots, s_t\}$ be a complete set of representatives of cyclotomic cosets of $q$ modulo $n$. Then the polynomial $x^n - 1$ has the factorization into monic irreducible polynomials over $\mathbb F_q$:
+> $$x^n - 1 = \prod_{i = 1}^r M^{((q^m - 1)s_i / n)}(x).$$
+
+> [!corollary]
+> Let $n$ be a positive integer with $\gcd(q, n) = 1$. Then the number of monic irreducible factors of $x^n - 1$ over $\mathbb F_q$ is equal to the number of cyclotomic cosets of $q$ modulo $n$.
+
+## Characteristic Polynomial
+
+> [!proposition]
+> Suppose $T \in \mathcal L(V)$, and $0 \neq v_0 \in V$. Define $$v_j = T^j v_0.$$ Let $m$ be the smallest positive integer with the property that $$v_m \in \text{span}(v_0, \dots, v_{m - 1}) = U.$$
+> Then $(v_0, \dots, v_{m - 1})$ is linearly independent, so there is a unique expression $$v_m = -a_0 v_0 - \cdots - a_{m - 1} v_{m - 1}.$$ Define $$p(x) = x^m + a_{m - 1} x^{m - 1} + \cdots + a_0,$$ a monic polynomial of degree $m \geq 1$ in $\mathcal P(\mathbb F)$.
+> 1. The $m$-dimensional subspace $U$ of $V$ is preserved by $T$: $TU \subset U$.
+> 2. The linear transformation $$p(T) = T^m + a_{m - 1} T^{m - 1} + \cdots + a_0 I$$ acts by zero on $U$.
+> 3. If $z$ is a polynomial and $z(T)$ acts by zero on $U$, then $z$ is divisible by $p$.
+> 4. The eigenvalues of $T$ on $U$ are precisely the roots of $p$.
+> 5. If $q$ is an irreducible polynomial and $\text{Null}(q(T))$ has a nonzero intersection with $U$, then $q$ divides $p$.
+
+### Operator on Complex Vector Space
+
+> [!theorem]
+> Let $T \in \mathcal L(V)$ and $\lambda \in \mathbb F$. Then for every basis of $V$ with respect to which $T$ has an upper-triangular matrix, $\lambda$ appears on the diagonal of the matrix of $T$ precisely $\dim \text{null}(T - \lambda I)^{\dim V}$ times.
+
+> [!definition] Multiplicity of an Eigenvalue
+> Suppose $T \in \mathcal L(V)$. The **multiplicity** of an eigenvalue $\lambda$ of $T$ is defined to be the dimension of the subspace of generalized eigenvectors corresponding to $\lambda$.
+
+> [!remark]
+> The multiplicity of an eigenvalue $\lambda$ of $T$ equals $\dim \text{null} (T - \lambda I)^{\dim V}$.
+
+> [!proposition]
+> If $V$ is a complex vector space and $T \in \mathcal L(V)$, then the sum of the multiplicities of all the eigenvalues of $T$ equals $\dim V$. 
+
+> [!definition] Characteristic Polynomial of Operators on Complex Vector Space
+> Suppose $V$ is a complex vector space and $T \in \mathcal L(V)$. Let $\lambda_1, \dots, \lambda_m$ denote the distinct eigenvalues of $T$. Let $d_j$ denote the multiplicity of $\lambda_j$ as an eigenvalue of $T$. The polynomial $$(z - \lambda_1)^{d_1} \dots (z - \lambda_m)^{d_m}$$ is called the **characteristic polynomial** of $T$.
+
+> [!theorem] Cayley-Hamilton Theorem
+> Suppose that $V$ is a complex vector space and $T \in \mathcal L(V)$. Let $q$ denote the characteristic polynomial of $T$. Then $q(T) = 0$.
+
+> [!definition] Characteristic Polynomial of a $2$-by-$2$ matrix
+> The **characteristic polynomial** of a $2$-by-$2$ matrix $\begin{bmatrix}a & c \\ b & d\end{bmatrix}$ is $(x - a)(x - d) - bc$.
+
+> [!proposition]
+> Suppose $V$ is a real vector space with dimension $2$ and $T \in \mathcal L(V)$ has no eigenvalues. Let $p \in \mathcal P(\mathbb R)$ be a monic polynomial with degree $2$. Suppose $A$ is the matrix of $T$ with respect to some basis of $V$.
+> 1. If $p$ equals the characteristic polynomial of $A$, then $p(T) = 0$.
+> 2. If $p$ does not equal the characteristic polynomial of $A$, then $p(T)$ is invertible.
+
+> [!theorem]
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Suppose that with respect to some basis of $V$, the matrix of $T$ is $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix},$$ where each $A_j$ is a $1$-by-$1$ matrix or a $2$-by-$2$ matrix with no eigenvalues.
+> 1. If $\lambda \in \mathbb R$, then precisely $\dim \text{null} (T - \lambda I)^{\dim V}$ of the matrices $A_1, \dots, A_m$ equal the $1$-by-$1$ matrix $[\lambda]$.
+> 2. If $\alpha, \beta \in \mathbb R$ satisfy $\alpha^2 < 4\beta$, then precisely $$\frac{\dim \text{null} (T^2 + \alpha T + \beta)^{\dim V}}{2}$$ of the matrices $A_1, \dots, A_m$ have characteristic polynomial equal to $x^2 + \alpha x + \beta$.
+
+> [!definition] Eigenpair
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. An ordered pair $(\alpha, \beta)$ of real numbers is called an **eigenpair** of $T$ if $\alpha^2 < 4\beta$ and $$T^2 + \alpha T + \beta I$$ is not injective.
+
+> [!definition] Multiplicity of an Eigenpair
+> The **multiplicity** of an eigenpair $(\alpha, \beta)$ of $T$ to be $$\frac{\dim \text{null } (T^2 + \alpha T + \beta I)^{\dim V}}{2}.$$
+
+> [!proposition]
+> If $V$ is a real vector space and $T \in \mathcal L(V)$, then the sum of the multiplicities of all the eigenvalues of $T$ plus the sum of twice the multiplicities of all the eigenpairs of $T$ equals $\dim V$.
+
+> [!definition] Characteristic Polynomial of Operators on Real Vector Spaces
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. With respect to some basis of $V$, $T$ has a block upper-triangular matrix of the form $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix}$$ where each $A_j$ is a $1$-by-$1$ or a $2$-by-$2$ matrix with no eigenvalues. We define the **characteristic polynomial** of $T$ to be the product of the characteristic polynomial of $A_1, \dots, A_m$. Explicitly, for each $j$, define $q_j \in \mathcal P(\mathbb R)$ by $$q_j(x) = \begin{cases}x - \lambda &\text{if } A_j = [\lambda]; \\ (x - a)(x - d) - bc &\text{if } A_j = \begin{bmatrix}a & c \\ b & d\end{bmatrix}. \end{cases}$$ Then the characteristic polynomial of $T$ is $$q_1(x) \dots q_m(x).$$
+
+> [!theorem] Cayley-Hamilton Theorem
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Let $q$ denote the characteristic polynomial of $T$. Then $q(T) = 0$.
+
+> [!theorem]
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Let $\lambda_1, \dots, \lambda_m$ be the distinct eigenvalues of $T$, with $U_1, \dots, U_m$ the corresponding sets of generalized eigenvectors. Let $(\alpha_1, \beta_1), \dots, (\alpha_m, \beta_m)$ be the distinct eigenpairs of $T$ and let $V_j = \text{null}(T^2 + \alpha T + \beta I)^{\dim V}$. Then
+> 1. $V = U_1 \oplus \cdots U_m \oplus V_1 \oplus \cdots \oplus V_m$;
+> 2. Each $U_j$ and each $V_j$ is invariant under $T$;
+> 3. Each $(T - \lambda_j I) |_{U_j}$ and each $(T^2 + \alpha_j T + \beta_j I) |_{V_j}$ is nilpotent. 
+
+### Operator on Real Vector Space
+
+> [!definition] Characteristic Polynomial of a $2$-by-$2$ matrix
+> The **characteristic polynomial** of a $2$-by-$2$ matrix $\begin{bmatrix}a & c \\ b & d\end{bmatrix}$ is $(x - a)(x - d) - bc$.
+
+> [!proposition]
+> Suppose $V$ is a real vector space with dimension $2$ and $T \in \mathcal L(V)$ has no eigenvalues. Let $p \in \mathcal P(\mathbb R)$ be a monic polynomial with degree $2$. Suppose $A$ is the matrix of $T$ with respect to some basis of $V$.
+> 1. If $p$ equals the characteristic polynomial of $A$, then $p(T) = 0$.
+> 2. If $p$ does not equal the characteristic polynomial of $A$, then $p(T)$ is invertible.
+
+> [!theorem]
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Suppose that with respect to some basis of $V$, the matrix of $T$ is $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix},$$ where each $A_j$ is a $1$-by-$1$ matrix or a $2$-by-$2$ matrix with no eigenvalues.
+> 1. If $\lambda \in \mathbb R$, then precisely $\dim \text{null} (T - \lambda I)^{\dim V}$ of the matrices $A_1, \dots, A_m$ equal the $1$-by-$1$ matrix $[\lambda]$.
+> 2. If $\alpha, \beta \in \mathbb R$ satisfy $\alpha^2 < 4\beta$, then precisely $$\frac{\dim \text{null} (T^2 + \alpha T + \beta)^{\dim V}}{2}$$ of the matrices $A_1, \dots, A_m$ have characteristic polynomial equal to $x^2 + \alpha x + \beta$.
+
+> [!definition] Eigenpair
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. An ordered pair $(\alpha, \beta)$ of real numbers is called an **eigenpair** of $T$ if $\alpha^2 < 4\beta$ and $$T^2 + \alpha T + \beta I$$ is not injective.
+
+> [!definition] Multiplicity of an Eigenpair
+> The **multiplicity** of an eigenpair $(\alpha, \beta)$ of $T$ to be $$\frac{\dim \text{null } (T^2 + \alpha T + \beta I)^{\dim V}}{2}.$$
+
+> [!proposition]
+> If $V$ is a real vector space and $T \in \mathcal L(V)$, then the sum of the multiplicities of all the eigenvalues of $T$ plus the sum of twice the multiplicities of all the eigenpairs of $T$ equals $\dim V$.
+
+> [!definition] Characteristic Polynomial of Operators on Real Vector Spaces
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. With respect to some basis of $V$, $T$ has a block upper-triangular matrix of the form $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix}$$ where each $A_j$ is a $1$-by-$1$ or a $2$-by-$2$ matrix with no eigenvalues. We define the **characteristic polynomial** of $T$ to be the product of the characteristic polynomial of $A_1, \dots, A_m$. Explicitly, for each $j$, define $q_j \in \mathcal P(\mathbb R)$ by $$q_j(x) = \begin{cases}x - \lambda &\text{if } A_j = [\lambda]; \\ (x - a)(x - d) - bc &\text{if } A_j = \begin{bmatrix}a & c \\ b & d\end{bmatrix}. \end{cases}$$ Then the characteristic polynomial of $T$ is $$q_1(x) \dots q_m(x).$$
+
+> [!theorem] Cayley-Hamilton Theorem
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Let $q$ denote the characteristic polynomial of $T$. Then $q(T) = 0$.
+
+> [!theorem]
+> Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Let $\lambda_1, \dots, \lambda_m$ be the distinct eigenvalues of $T$, with $U_1, \dots, U_m$ the corresponding sets of generalized eigenvectors. Let $(\alpha_1, \beta_1), \dots, (\alpha_m, \beta_m)$ be the distinct eigenpairs of $T$ and let $V_j = \text{null}(T^2 + \alpha T + \beta I)^{\dim V}$. Then
+> 1. $V = U_1 \oplus \cdots U_m \oplus V_1 \oplus \cdots \oplus V_m$;
+> 2. Each $U_j$ and each $V_j$ is invariant under $T$;
+> 3. Each $(T - \lambda_j I) |_{U_j}$ and each $(T^2 + \alpha_j T + \beta_j I) |_{V_j}$ is nilpotent. 
+
+## Rational Functions
+
+> [!definition] Rational Function
+> A **rational function** is a ratio of polynomials $$f(X) = \frac{a_0 + a_1 X + a_2 X^2 + \cdots + a_n X^n}{b_0 + b_1 X + b_2 X^2 + \cdots + b_n X^n}$$
+> Any polynomial can be factored completely if we allow complex numbers: $$f(X) = \frac{a(X - \alpha_1)^{e_1} (X - \alpha_2)^{e_2} \cdots (X - \alpha_r)^{e_r}}{b(X - \beta_1)^{d_1} (X - \beta_2)^{d_2} \cdots (X - \beta_s)^{d_s}}$$
+> Where $\alpha_1, \cdots, \alpha_r, \beta_1, \cdots, \beta_s$ are distinct numbers.
+
+> [!definition] Zeros, Poles, Multiplicities and Divisor
+> $\alpha_1, \alpha_2, \cdots, \alpha_r$ are called the **zeros** of $f(X)$.
+> $\beta_1, \beta_2, \cdots, \beta_s$ are called the **poles** of $f(X)$.
+> The **exponents** $e_1, \cdots, e_r, d_1, \cdots, d_s$ are the associated **multiplicities**.
+> The **divisor** of $f(X)$ can be define by the formal sum $$\text{div}(f(X)) = e_1 [\alpha_1] + e_2 [\alpha_2] + \cdots + e_r [\alpha_r] - d_1 [\beta_1] - d_2 [\beta_2] - \cdots - d_r [\beta_r].$$
+
+> [!proposition]
+> Let $R(x)$ and $S(x)$ be rational functions:
+> $$\text{div}(R(x) S(x)) = \text{div}(R(x)) + \text{div}(S(x)).$$
+
+## Polynomial Rings
+
+> [!definition] Polynomial Rings
+> If $R$ is any ring, we can form a ring of polynomials whose coefficients are taken from the ring $R$. The ring is denoted by $$R[x] = \{a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n : n \geq 0 \text{ and } a_0, a_1, \cdots, a_n \in R\}.$$
+
+### Convolution Polynomial Rings
+
+> [!definition] Ring of Convolution Polynomial
+> Fix a positive integer $N$. The **ring of convolution polynomials** (of rank $N$) is the quotient ring $$R = \frac{\mathbb Z [x]}{(x^N - 1)}.$$ Similarly, the ring of convolution polynomials (modulo $q$) is the quotient ring $$R_q = \frac{(\mathbb Z / q \mathbb Z)[x]}{(x^N - 1)}$$
+
+> [!proposition]
+> The product of two polynomials $a(x), b(x) \in R$ is given by the formula $$a(x) \star b(x) = c(x) \quad \text{with} \quad c_k = \sum_{i + j \equiv k \pmod N} a_i b_{k - i},$$ where the sum defining $c_k$ is over all $i$ and $j$ between $0$ and $N - 1$ satisfying the condition $i + j \equiv k \pmod N$. The product of two polynomials $a(x), b(x) \in R_q$ is given by the same formula, except that the value of $c_k$ is reduced modulo $q$.
+
+> [!definition] Centered Lift
+> Let $a(x) \in R_q$. The **centered lift** of $a(x)$ to $R$ is the unique polynomial $a'(x) \in R$ satisfying $$a'(x) \mod q = a(x)$$ whose coefficients are chosen in the interval $$-\frac{q}{2} < a_i' \leq \frac{q}{2}.$$
+
+> [!proposition]
+> Let $q$ be prime. Then $a(x) \in R_q$ has a multiplicative inverse if and only if $$\gcd(a(x), x^N - 1) = 1 \quad \text{in} \; (\mathbb Z / q \mathbb Z)[x].$$ Also, the inverse $a(x)^{-1} \in R_q$ can computed using the extended Euclidean algorithm to find polynomials $u(x), v(x) \in (\mathbb Z / q \mathbb Z)[x]$ satisfying $$a(x) u(x) + (x^N - 1) v(x) = 1.$$ Then $a(x)^{-1} = u(x)$ in $R_q$.
+
+> [!definition] Rotation
+> For $f$ is in a ring of convolution polynomials of rank $N$, the polynomial $x^k \star f$ is called a **rotation** of $f$ because the coefficients have been cyclically rotated $k$ positions. 
+
+> [!proposition]
+> Fix a vector $a \in \mathbb R^N$, let $T > 0$, and suppose that $b \in \mathbb R^N$ is a vector whose coefficients are randomly and uniformly chosen in the interval between $-T$ and $T$. Then for most choices of $b$ we expect to have $$||a \star b|| \approx ||a|| \; ||b||$$
+
+### Quotient of Polynomial Rings
+
+> [!proposition] Polynomial Congruence Class
+> Let $\mathbb F$ be field and let $m \in \mathbb F[x]$ be a nonzero polynomial. Then every nonzero congruence class $\overline a \in F[x] / (m)$ has a unique representative $r$ satisfying $$\deg r < \deg m \quad \text{and} \quad a \equiv r \pmod m.$$
+
+> [!corollary] 
+> Let $\mathbb F_p$ be a finite field and let $m \in \mathbb F_p[x]$ be a nonzero polynomial of degree $d \geq 1$. Then the quotient ring $\mathbb F_p[x] / (m)$ contains exactly $p^d$ elements.
+
+>[!proposition] 
+>Let $\mathbb F$ be a field and let $a, m \in \mathbb F[x]$ be polynomials with $m \neq 0$. Then $\overline a$ is a unit in the quotient ring $\mathbb F[x] / (m)$ if and only if $$\gcd(a, m) = 1.$$
+
+> [!corollary] 
+> Let $\mathbb F$ be a field and let $m \in \mathbb F[x]$ be an irreducible polynomial. Then the quotient ring $\mathbb F[x] / (m)$ is a field, i.e., every nonzero element of $\mathbb F[x] / (m)$ has a multiplicative inverse.
+
+> [!corollary] 
+> Let $\mathbb F_p$ be a finite field and let $m \in \mathbb F_p[x]$ be an irreducible polynomial of degree $d \geq 1$. Then $\mathbb F_p[x] / (m)$ is a field with $p^d$ elements.
+
+## Ternary Polynomials
+
+> [!definition] Ternary Polynomials
+> For any positive integers $d_1$ and $d_2$, we let $$ \mathcal{T}(d_1,d_2) = \{\, a(x) \in R : \begin{align}
+& d_1 \text{ coefficients are } 1,\\
+& d_2 \text{ coefficients are } -1,\\
+& \text{others are } 0\end{align}\}.$$ Polynomials in $\mathcal T(d_1, d_2)$ are called **ternary (or trinary) polynomials**.
+
+## Analogies between $\mathbb Z$ and $F[x]$
+
+
+| $\mathbb Z$                                               | $F[x]$                                                                  |
+| --------------------------------------------------------- | ----------------------------------------------------------------------- |
+| The integer ring $\mathbb Z$                              | The polynomial ring $F[x]$                                              |
+| An integer $m$                                            | A polynomial $f(x)$                                                     |
+| A prime number $p$                                        | An irreducible polynomial $p(x)$                                        |
+| $\mathbb Z_m = \{0, 1, \dots, m - 1\}$                    | $F[x]/(f(x)) := \{\sum_{i = 0}^{n - 1} a_i x^i : a_i \in F, n \geq 1\}$ |
+| $a \oplus b := (a + b \pmod m)$                           | $g(x) \oplus h(x) := (g(x) + h(x) \pmod {f(x)})$                        |
+| $a \odot b := (ab \pmod m)$                               | $g(x) \odot h(x) := (g(x)h(x) \pmod {f(x)})$                            |
+| $\mathbb Z_m$ is a ring                                   | $F[x] / (f(x))$ is a ring                                               |
+| $\mathbb Z_m$ is a field $\Leftrightarrow$ $m$ is a prime | $F[x] / (f(x))$ is a field $\Leftrightarrow$ $f(x)$ is irreducible      |
