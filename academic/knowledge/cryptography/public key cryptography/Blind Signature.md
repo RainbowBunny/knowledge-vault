@@ -1,4 +1,9 @@
 
+| Term                    | Reference                                             |
+| ----------------------- | ----------------------------------------------------- |
+| One More Unforgeability | [[#One More Unforgeability\|one more unforgeability]] |
+|                         |                                                       |
+
 > [!question]
 > A new kind of cryptography to an automated payments system with the following properties:
 > 1. Inability of third parties to determine payee, time or amount of payments made by an individual.
@@ -36,6 +41,31 @@
 > 
 > The scheme must satisfy completeness: for any $(\text{BSig.sk}, \text{BSig.vk}) \leftarrow \text{Gen}(1^\lambda), \mu \in \{0, 1\}^*$ and $\sigma$ output by $\mathcal U$ in the joint execution of $\mathcal S(\text{BSig.sk})$ and $\mathcal U(\text{BSig.vk}, \mu)$, it holds that $\text{Vrfy}(\text{BSig.vk}, \mu, \sigma) = 1$ with probability $1 - \lambda^{-\omega(1)}$.
 
+## Security Model
+
+### One More Unforgeability
+
+> [!algorithm] One More Unforgeability
+> The blind signature $BS = (\text{Gen}, \mathcal S, \mathcal U, \text{Vrfy})$ is one more unforgeable if for any polynomial $Q_S$, and any algorithm $\mathcal U^*$ with run-time $2^{o(\lambda)}$, the success probability of $\mathcal U^*$ in the following game is $2^{-\ohm(\lambda)}$:
+> 1. $\text{Gen}(1^\lambda)$ outputs $(\text{BSig.sk}, \text{BSig.vk})$, and algorithm $\mathcal U^*$ is given $\text{BSig.vk}$.
+> 2. Algorithm $\mathcal U^*$ interacts concurrently with $Q_S$ instances $\mathcal S_{BSig.sk}^1, \dots, S_{BSig.sk}^{Q_S}$
+> 3. Algorithm $\mathcal U^*$ outputs $(\mu_1, \sigma_1, \dots, \mu_{Q_S + 1}, \sigma_{Q_S + 1})$.
+> 
+> Algorithm $\mathcal U^*$ succeeds if $\text{Vrfy}(\text{BSig.vk}, \mu_i, \sigma_i) = 1$ for all $i \in [Q_S + 1]$ and the $\mu_i$'s are distinct.
+
+### Honest Signer Blindness
+
+> [!algorithm] Honest Signer Blindness
+> The blind signature $BS = (\text{Gen}, \mathcal S, \mathcal U, \text{Vrfy})$ satisfies honest signer blindness if for any algorithm $\mathcal S^*$ with run-time $2^{o(\lambda)}$, the advantage of $\mathcal S^*$ in the following game is $2^{-\ohm(\lambda)}$:
+> 1. $\text{Gen}(1^\lambda)$ outputs $(\text{BSig.sk}, \text{BSig.vk})$ and gives it to $\mathcal S^*$; algorithm $\mathcal S^*$ outputs two messages $\mu_0, \mu_1$ of its choice.
+> 2. A random bit $b$ is chosen and $\mathcal S^*$ interacts concurrently with $\mathcal U_0 = \mathcal U(\text{BSig.vk}, \mu_b)$ and $\mathcal U_1 = \mathcal U(\text{BSig.vk}, \mu_{\overline{b}})$ possibly maliciously; when $\mathcal U_0$ and $\mathcal U_1$ have completed their executions, the values $\sigma_b, \sigma_{\overline{b}}$ are defined as follows:
+> 	- If either $\mathcal U_0$ or $\mathcal U_1$ aborts, then $(\sigma_b, \sigma_{\overline{b}}) = (\perp, \perp)$.
+> 	- Otherwise, let $\sigma_b$ (resp. $\sigma_{\overline{b}}$) be the output of $\mathcal U_0$ (resp. $\mathcal U_1$).
+> 	Algorithm $\mathcal S^*$ is given $(\sigma_0, \sigma_1)$.
+> 3. Algorithm $\mathcal S^*$ outputs a bit $b'$.
+> 
+> Algorithm $\mathcal S^*$ succeeds if $b' = b$. If $\text{succ}$ denotes the latter event, then the advantage of $\mathcal S^*$ is defined as $|P[\text{succ}] - 1/2|$.
+ 
 ## Construction
 
 ### RSA-based

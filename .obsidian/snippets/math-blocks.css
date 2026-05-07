@@ -5,6 +5,7 @@
 .callout[data-callout="theorem"],
 .callout[data-callout="lemma"],
 .callout[data-callout="corollary"],
+.callout[data-callout="conjecture"],
 .callout[data-callout="proposition"],
 .callout[data-callout="definition"],
 .callout[data-callout="principle"],
@@ -28,6 +29,7 @@
 .callout[data-callout="theorem"] .callout-title,
 .callout[data-callout="lemma"] .callout-title,
 .callout[data-callout="corollary"] .callout-title,
+.callout[data-callout="conjecture"] .callout-title,
 .callout[data-callout="proposition"] .callout-title {
   font-weight: bold;
   font-style: italic;
@@ -68,6 +70,7 @@
 .callout[data-callout="theorem"]     { border-color: #6a5acd; }
 .callout[data-callout="lemma"]       { border-color: #4682b4; }
 .callout[data-callout="corollary"]   { border-color: #20b2aa; }
+.callout[data-callout="conjecture"]  { border-color: #123456 }
 .callout[data-callout="definition"]  { border-color: #2e8b57; }
 .callout[data-callout="example"]     { border-color: #cd853f; }
 .callout[data-callout="algorithm"]   { border-color: #b22222; }

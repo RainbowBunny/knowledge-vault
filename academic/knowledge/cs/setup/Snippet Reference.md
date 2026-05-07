@@ -1,7 +1,6 @@
-Install:
-- Code editor: `VSCode`
-- Chrome extension: `Competitive Companion`, `Carrot`, `Competitive Programming Helper (CPH)`
-- [snippet-generator](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode)
+# Snippet Reference
+
+VS Code snippet prefixes used during contests. Authored with [snippet-generator](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode). Fill in the description column as snippets are added or revised.
 
 ## Data Structure
 
@@ -34,13 +33,6 @@ Install:
 | `mod_integer` |          |
 | `combi`       |          |
 
-## Misc
-
-| Prefix           | Function |
-| ---------------- | -------- |
-| `coord_compress` |          |
-| `prefix_sum_2d`  |          |
-
 ## String
 
 | Prefix            | Description |
@@ -48,3 +40,10 @@ Install:
 | `string_hash`     |             |
 | `prefix_function` |             |
 | `z_function`      |             |
+
+## Misc
+
+| Prefix           | Function |
+| ---------------- | -------- |
+| `coord_compress` |          |
+| `prefix_sum_2d`  |          |
