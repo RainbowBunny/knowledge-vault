@@ -280,6 +280,12 @@
 > [!corollary] 
 > Let $\mathbb F_p$ be a finite field and let $m \in \mathbb F_p[x]$ be an irreducible polynomial of degree $d \geq 1$. Then $\mathbb F_p[x] / (m)$ is a field with $p^d$ elements.
 
+> [!definition] Reciprocal Polynomial
+> Let $h(x) = \sum_{a_i x^i}$ be a polynomial of degree $k (a_k \neq 0)$ over $\mathbb F_q$. Define the **reciprocal polynomial** $h_R(x)$ of $h(x)$ by $$h_R(x) = x^k h(1 / x) = \sum_{i = 0}^k a_{k - i} x^i$$  
+
+> [!remark]
+> If $h(x)$ is a divisor of $x^n - 1$, then so is $h_R(x)$.
+
 ## Ternary Polynomials
 
 > [!definition] Ternary Polynomials

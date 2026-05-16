@@ -103,7 +103,7 @@
 > [!theorem]
 > Let $F$ be a secure PRF defined over $(\mathcal K, \mathcal X, \mathcal Y)$, where $|\mathcal Y|$ is super-poly. Then the deterministic MAC system $\mathcal I$ derived from $F$ is a secure MAC.
 > 
-> In particular, for every $Q$-query [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I$, there exists a $(Q + 1)$-query [[Pseudo Random Functions#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I] \leq \text{PRFadv}[\mathcal B, F] + 1/|\mathcal Y|$$
+> In particular, for every $Q$-query [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I$, there exists a $(Q + 1)$-query [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I] \leq \text{PRFadv}[\mathcal B, F] + 1/|\mathcal Y|$$
 
 ### Construction from PRF, UHF Composition
 
@@ -114,7 +114,7 @@
 > [!theorem] PRF (UHF Composition)
 > Suppose $H$ is a computational UHF and $F$ is a secure PRF. Then $F'$ is a secure PRF.
 > 
-> In particular, suppose $\mathcal A$ is a [[Pseudo Random Functions#PRF Security|secure PRF]] adversary with respect to $F'$ and issues at most $Q$ queries. Then there exist a [[Pseudo Random Functions#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Secure Universal Hash Function|secure UHF]] adversary $\mathcal B_H$, $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + (Q^2/2) \cdot \text{UHFadv}[\mathcal B_H, H].$$
+> In particular, suppose $\mathcal A$ is a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary with respect to $F'$ and issues at most $Q$ queries. Then there exist a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Secure Universal Hash Function|secure UHF]] adversary $\mathcal B_H$, $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + (Q^2/2) \cdot \text{UHFadv}[\mathcal B_H, H].$$
 > More generally, there exists a $Q$-query [[Hash Functions#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal B_H'$, which is an elementary wrapper around $\mathcal A$ such that $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + \text{MUHFadv}[\mathcal B_H', H].$$
 
 ### Carter-Wegman MAC
@@ -147,7 +147,7 @@
 > [!theorem] Carter-Wegman Security
 > Let $F$ be a secure PRF defined over $(\mathcal K_F, \mathcal R, \mathcal T)$ where $|\mathcal R|$ is super-poly. Let $H$ be a computational DUF defined over $(\mathcal K_H, \mathcal M, \mathcal T)$. Then the Carter-Wegman MAC $\mathcal I_{CW}$ derived from $F$ and $H$ is a secure MAC.
 > 
-> In particular, for every [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I_{CW}$, there exist a [[Pseudo Random Functions#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Difference Unpredictability|DUF]] adversary $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I_{CW}] \leq \text{PRFadv}[\mathcal B_F, F] + \text{DUFadv}[\mathcal B_H, H] + \frac{Q^2}{2|\mathcal R|} + \frac{1}{|\mathcal T|}$$
+> In particular, for every [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I_{CW}$, there exist a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Difference Unpredictability|DUF]] adversary $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I_{CW}] \leq \text{PRFadv}[\mathcal B_F, F] + \text{DUFadv}[\mathcal B_H, H] + \frac{Q^2}{2|\mathcal R|} + \frac{1}{|\mathcal T|}$$
 
 ### Construction from Collision Resistant Hash
 
@@ -200,8 +200,8 @@
 > 3. Output $F_2(k_2, t)$
 
 > [!theorem]
-> If $F_1$ and $F_2$ are [[Pseudo Random Functions#PRF Security|secure PRF]], and $|\mathcal Y|$ and the prime $p$ are super-poly, then $\text{PMAC}_0$ is a [[Pseudo Random Functions#PRF Security|secure PRF]] for any poly-bounded $\ell$.
+> If $F_1$ and $F_2$ are [[Pseudorandom Functions#PRF Security|secure PRF]], and $|\mathcal Y|$ and the prime $p$ are super-poly, then $\text{PMAC}_0$ is a [[Pseudorandom Functions#PRF Security|secure PRF]] for any poly-bounded $\ell$.
 > 
-> In particular, for every [[Pseudo Random Functions#PRF Security|secure PRF]] adversary $\mathcal A$ that attacks $\text{PMAC}_0$, and issues at most $Q$ queries, there exist [[Pseudo Random Functions#PRF Security|secure PRF]] adversaries $\mathcal B_1$ and $\mathcal B_2$, which are elementary wrappers around $\mathcal A$, such that $$\text{PRFadv}[\mathcal A, \text{PMAC}_0] \leq \text{PRFadv}[\mathcal B_1, F_1] + \text{PRFadv}[\mathcal B_2, F_2] + \frac{Q^2}{2|\mathcal Y|} + \frac{Q^2 \ell^2}{2p}.$$
+> In particular, for every [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal A$ that attacks $\text{PMAC}_0$, and issues at most $Q$ queries, there exist [[Pseudorandom Functions#PRF Security|secure PRF]] adversaries $\mathcal B_1$ and $\mathcal B_2$, which are elementary wrappers around $\mathcal A$, such that $$\text{PRFadv}[\mathcal A, \text{PMAC}_0] \leq \text{PRFadv}[\mathcal B_1, F_1] + \text{PRFadv}[\mathcal B_2, F_2] + \frac{Q^2}{2|\mathcal Y|} + \frac{Q^2 \ell^2}{2p}.$$
 
 ### HMAC

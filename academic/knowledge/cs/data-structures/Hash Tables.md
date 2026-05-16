@@ -134,3 +134,34 @@
 
 > [!corollary]
 > Suppose that we store $n$ keys in a hash table of size $m = n$ using a hash function $h$ randomly chosen from a universal class of hash functions, and we set the size of each secondary hash table to $m_j = n_j^2$ for $j = 0, 1, \dots, m - 1$. Then, the probability is less than $1/2$ that the storage used for secondary hash tables equal or exceeds $4n$.
+
+## Hash Function Constructions
+
+> [!remark]
+> The methods below produce non-cryptographic hash functions. For collision-resistant cryptographic hash functions, see [[Hash Functions]] under cryptography.
+
+### Division Method
+
+> [!definition] Division Method
+> In the **division method** for creating hash function, we map a key $k$ into one of $m$ slots by taking the remainder of $k$ divided by $m$. That is, the hash function is $$h(k) = k \mod m.$$
+
+### Multiplication Method
+
+> [!definition] Multiplication Method
+> The **multiplication method** for creating hash functions operates in two steps. First, we multiply the key $k$ by a constant $A$ in the range $0 < A < 1$ and extract the fractional part of $kA$. Then, we multiply this value by $m$ and take the floor of the result. In short, the hash function is $$h(k) = \lfloor m (ka \mod 1) \rfloor.$$
+
+## Universal Hashing
+
+> [!theorem]
+> Suppose that a hash function $h$ is chosen randomly from a universal collection of hash functions and has been used to hash $n$ keys into a table $T$ of size $m$, using chaining to resolve collisions. If key $k$ is not in the table, then the expected length $E[n_{h(k)}]$ of the list that key $k$ hashed to is at most the load factor $\alpha = \frac{n}{m}$. If key $k$ is in the table, then the expected length $E[n_{h(k)}]$ of the list containing key $k$ is at most $1 + \alpha$.
+
+> [!corollary]
+> Using universal hashing and collision resolution by chaining in an initially empty table with $m$ slots, it takes expected time $\Theta(n)$ to handle any sequence of $n$ `INSERT`, `SEARCH` and `DELETE` operations containing $O(m)$ `INSERT` operations.
+
+> [!theorem]
+> The class $\mathcal H_{pm} = \{h_{ab}(k) = ((ak + b) \mod p) \mod m\}$ of hash functions is universal.
+
+> [!definition] $\epsilon$ Universal
+> Define a family $\mathcal H$ of hash functions from a finite set $U$ to a finite set $B$ to be $\epsilon$-universal if for all pairs of distinct elements $k$ and $l$ in $U$, $$P\{h(k) = h(l)\} \leq \epsilon,$$ where the probability is over the choice of the hash function $h$ drawn at random from the family $\mathcal H$. Thus, an $\epsilon$-universal family of hash functions must have $$\epsilon \geq \frac{1}{|B|} - \frac{1}{|U|}$$
+
+> [!proposition]

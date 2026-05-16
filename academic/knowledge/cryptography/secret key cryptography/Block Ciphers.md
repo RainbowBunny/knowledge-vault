@@ -112,7 +112,7 @@
 > [!theorem]
 > If $F$ is a secure PRF and $N = |\mathcal X| = 2^n$ is super-poly, then the Luby-Rackoff cipher $\mathcal E = (E, D)$ constructed from $F$ is a secure block cipher.
 > 
-> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudo Random Functions#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
+> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
 
 ## Case Study
 
@@ -137,7 +137,7 @@
 > 6. Output $y$
 
 > [!algorithm] DES Key Expansion Function
-> The DES key expansion function $G$ takes as input the 56-bit key $k$ and outputs 16 keys $k_1, \dots, k_16$, each 48-bits long. Each key $k_i$ consists of 48 bits chosen from the 56-bit key, with each $k_i$ using a different subset of bits from $k$.
+> The DES key expansion function $G$ takes as input the 56-bit key $k$ and outputs 16 keys $k_1, \dots, k_{16}$, each 48-bits long. Each key $k_i$ consists of 48 bits chosen from the 56-bit key, with each $k_i$ using a different subset of bits from $k$.
 
 > [!algorithm] The DES Algorithm
 > The complete DES algorithm consists of 16 iteration of the DES round cipher plus initial and final permutations called IP and FP. These permutation simply rearrange the 64 incoming and outgoing bits. The permutation FP is the inverse of IP. 

@@ -14,8 +14,9 @@ Concrete algorithmic techniques, organized by paradigm.
 - [[greedy/Greedy Algorithms|Greedy Algorithms]] — theory + per-problem files (see [[greedy]] subfolder)
 - [[Randomized Algorithms]] — hiring problem, online maximum, uniform permutations, sampling
 
-## Misc
+## Optimization
 
+- [[Submodular Welfare Problem]] — submodular utility, item assignment, online variant
 - [[Optimization Trick]] — non-adjacent form, sentinels
 
 ## Subfolder: dp/

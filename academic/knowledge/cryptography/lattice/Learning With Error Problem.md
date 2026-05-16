@@ -4,6 +4,10 @@
 > Let $s \in \mathbb Z_q^n$ and $e \in [-B, B]^m$ where $B \ll q / 2$. Given $A \in \mathbb Z_q^{n \times m}$ and $b = As + e \pmod q \in \mathbb Z_q^m$, find $s$.
 > Denote an instance of this problem by $(A, b)$ for $\text{LWE}(m, n, q, B)$.
 
+> [!definition] Learning With Error (LWE) Problem Distribution Version
+> Let $q, n, m, \alpha$ be functions of a parameter $\lambda$. For a secret $s \in \mathbb Z_q^n$, the distribution $A_{q, n, \alpha, s}$ over $\mathbb Z_q^n \times \mathbb Z_q$ is obtained by sampling $a \leftarrow \mathbb Z_q^n$ and an $e \leftarrow \mathcal D_{\mathbb Z, \alpha q}$, and returning $(a, \langle a, s \rangle + e) \in \mathbb Z_q^{n + 1}$. The Learning With Errors problem $\text{LWE}_{q, n, m, \alpha}$ is as follows: For $s \leftarrow \mathbb Z_q^n$, the goal is to distinguish between the distributions: $$D_0(s) = U(\mathbb Z_q^{m \times (n + 1)}) \quad \text{and} \quad D_1(s) = (A_{q, n, \alpha, s})^m.$$
+> We say that a $2^{o(\lambda)}$-time algorithm $\mathcal A$ solves $\text{LWE}_{q, n, m, \alpha}$ if it distinguishes $D_0(s)$ and $D_1(s)$ with $2^{-\omega(\lambda)}$ advantage (over the random coins of $\mathcal A$ and the randomness of the samples), with $2^{-\omega(\lambda)}$ probability over the randomness of $s$.
+
 > [!remark] Choosing LWE parameter $B$
 > 1. If $B = 0$, then $As = b \pmod q$ can be solved efficiently.
 > 2. If $B = (q - 1)/2$, then every $s$ can be the solution. Thus, assume $B < q / 4$.

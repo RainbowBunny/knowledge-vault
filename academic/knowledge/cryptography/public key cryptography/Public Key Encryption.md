@@ -116,3 +116,26 @@
 > 
 > In particular, for every [[#Semantic Security|semantic security]] adversary $\mathcal A$ with respect to $\mathcal E_{EG}$, and makes at most $Q$ queries to the random oracle, there exist a [[Key Exchange#Computational Diffie-Hellman|computational Diffie-Hellman]] adversary $\mathcal B_{cdh}$ with respect to $\mathbb G$, and an [[#Semantic Security|semantic security]] adversary $\mathcal B_s$ with respect to $\mathcal E_s$, where $\mathcal B_{cdh}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that $$\text{SS}^{ro}\text{adv}[\mathcal A, \mathcal E_{EG}] \leq 2Q \cdot \text{CDHadv}[\mathcal B_{cdh}, \mathbb G] + \text{SSadv}[\mathcal B_s, \mathcal E_s].$$
 
+### Lattice-Based Instantiation
+
+> [!algorithm] Lattice-Based Instatiation
+> - $\text{Setup}$
+> 	- $\tau$: $\ell_{\infty}$-norm bound on all short elements in the scheme.
+> 	- $q_{PKE}$: a modulus
+> 	- $p < q_{PKE}$: a positive integer
+> - $\text{KeyGen}()$:
+> 	- Sample $A_1 \in \mathcal R_{128}^{8 \times 8}$ uniform modulo $q_{PKE}$.
+> 	- Sample $S_1, S_2 \leftarrow U(\mathcal S_r^{12 \times 8})$.
+> 	- Compute $A_2 = S_1 \cdot A_1 + S_2$
+> 	- Set $pk = (A_1, A_2)$ and $sk = S_1$
+> - $\text{Enc}(pk = (A_1, A_2), m \in \mathcal R_{128}^{12})$
+> 	- Sample $s, e_1 \leftarrow U(\mathcal S_\tau^8)$, and $e_2 \leftarrow U(\mathcal S_{\tau}^{12})$
+> 	- Compute $c_1 = A_1 \cdot s + e_1$
+> 	- Compute $c_2 = A_2 \cdot s + e_2 + p \cdot m$
+> 	- Return $ct = (c_1, c_2)$.
+> - $\text{Dec}(sk = S_1, ct = (c_1, c_2))$
+> 	- Compute $t = c_2 - S_1 \cdot c_1$
+> 	- Return $(t - t \mod p) / p$.
+
+
+

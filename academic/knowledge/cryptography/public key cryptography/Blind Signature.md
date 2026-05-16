@@ -76,3 +76,69 @@
 > 2. Bob computes $\sigma' \leftarrow (m')^d \in \mathbb Z_n$ and sends $\sigma'$ to Alice.
 > 3. Alice computes the signature $\sigma$ on $m$ as $\sigma \leftarrow \sigma'/r \in \mathbb Z_n$.
 
+### Fischlin's Blind Signature
+
+> [!algorithm] Fischlin's Blind Signature
+> Building blocks:
+> 1. A hash function $H: \{0, 1\}^* \rightarrow \mathbb Z_q^n$ that will be modeled as random oracle in the unforgeability proof.
+> 2. A [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] [[Public Key Encryption|PKE]] scheme $\text{PKE}$ that is perfectly correct.
+> 3. A $\text{NIZKAoK}$ for the statement $$||y|| \leq \beta \land Cy = H(\text{Enc}(\text{PKE.pk}, \mu; r)).$$
+> 
+> Scheme:
+> - **Setup**. $\text{Gen}(1^\lambda)$: Upon input the security parameter $\lambda$, define $n, m, q, \sigma, \beta = \sigma \sqrt{m}$ as functions of $\lambda$ such that $q$ is prime, $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the scheme is both efficient and complete; then do the following:
+> 	-  Run $(\text{PKE.pk}, \text{PKE.KeyGen}(1^\lambda))$ and discard $\text{PKE.sk}$.
+> 	- Compute $(C, T_C) \leftarrow \text{TrapGen}(n, m, q)$.
+> 	- Output $\text{BSig.sk} = T_C, \text{BSig.vk} = (C, \text{PKE.pk})$.
+> - **Signing**: $\langle \mathcal S(\text{BSIG.sk}), \mathcal U(\text{BSIG.vk}, \mu) \rangle$:
+> 	1. **User**: Given the key $\text{BSig.vk}$ and a message $\mu$, user $\mathcal U$ does the following:
+> 		- It samples $\text{PKE.Enc}$ randomness $r$ and computes $ct = \text{PKE.Enc}(\text{PKE.pk}, \mu; r)$.
+> 		- It sends $ct$ to the signer.
+> 	2. **Signer**: Upon receiving $ct$, signer $\mathcal S$ does the following:
+> 		- It computes $H(ct)$ and samples $y \leftarrow \text{SamplePre}(C, T_C, H(ct), \sigma)$; we have that $y$ is short and $Cy = H(ct)$.
+> 		- It sends $y$ to the user.
+> 	3. **User**: Upon receiving $y$, user $\mathcal U$ does the following:
+> 		- It verifies that $||y|| \leq \beta$ and $Cy = H(ct)$ and aborts if this fails.
+> 		- It generates a $\text{NIZKAoK} \pi$ for following statement: Given $\text{BSig.vk} = (C, \text{PKE.pk})$ and $\mu$, there exists $r$ and a vector $y$ such that $$||y|| \leq \beta \land Cy = H(\text{Enc}(\text{PKE.pk}, \mu; r)).$$
+> 		- The signature is $\pi$.
+> - **Verifying**: The verifier accepts if the proof $\pi$ is valid, and rejects if it is not.
+
+> [!theorem]
+> Assume that $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the $\text{NIZKAoK}$ is knowledge sound. Then the blind signature scheme is [[#One More Unforgeability|one more unforgeable]] in the random oracle model.
+
+> [!theorem]
+> Assume that $\text{PKE}$ is $\text{IND-CPA}$ secure and the $\text{NIZKAoK}$ is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
+
+### From One-More-ISIS
+
+> [!algorithm]
+> Building blocks:
+> 1. A hash function $H: \{0, 1\}^* \rightarrow \mathbb Z_q^n$ that will be modeled as random oracle in the unforgeability proof.
+> 2. A NIZK for the statement: $$||x|| \leq \beta / m \land ||y|| \leq \beta Cy - Ax = H(\mu) \land ct = \text{PKE.Enc}(\text{PKE.pk}, x || y ; r).$$
+> 3. A CPA-secure PKE scheme $\text{PKE}$ that is perfectly correct.
+> 
+> Scheme:
+> - **Setup**. $\text{Gen}(1^\lambda)$: Upon input the security parameter $\lambda$, define $n, m, q, \sigma, \beta = \sigma \sqrt{m}$ as functions of $\lambda$ such that $q$ is prime, $\text{one-more-ISIS}_{q, n, m, \sigma, 2\beta}$ is hard and the scheme is both efficient and complete; then do the following:
+> 	- Run $(\text{PKE.pk}, \text{PKE.sk}) \leftarrow \text{PKE.KeyGen}(1^\lambda)$ and discard $\text{PKE.sk}$.
+> 	- Compute $(C, T_C) \leftarrow \text{TrapGen}(n, m, q)$.
+> 	- Sample $A \leftarrow \mathbb Z_q^{n \times m}$.
+> 	- Output $\text{BSig.sk} = T_C, \text{BSig.vk} = (C, A, \text{PKE.pk})$.
+> - **Signing**. $\langle \mathcal S(\text{BSig.sk}), \mathcal U(\text{BSig.vk}, \mu) \rangle$:
+> 	1. **User**: Given the key $\text{BSig.vk}$ and a message $\mu$, user $\mathcal U$ does the following:
+> 		- It samples $x \leftarrow \mathcal D_{\mathbb Z^m, \sigma / m}$.
+> 		- It computes $t = Ax + H(\mu)$.
+> 		- It sends $t$ to the signer.
+> 	2. **Signer**: Upon receiving $t$, signer $\mathcal S$ does the following:
+> 		- It samples a short vector $y \leftarrow \text{SamplePre}(C, T_C, t, \sigma)$; we have $Cy = t$.
+> 		- It sends $y$ to the user.
+> 	3. **User**: Upon receiving $y$, user $\mathcal U$ does the following:
+> 		- It verifies that $||y|| \leq \beta$ and satisfies $Cy = t$.
+> 		- It samples $\text{PKE.Enc}$ randomness $r$ and computes $$ct = \text{PKE.Enc}(\text{PKE.pk}, x || y; r).$$
+> 		- It generates a NIZK $\pi$ for the following statement:  Given $\text{BSig.vk} = (C, A, \text{PKE.pk})$, $ct$ and $\mu$, there exists $r$ and vector $x, y$ such that $$||x|| \leq \beta / m \land ||y|| \leq \beta \land Cy - Ax = H(\mu) \land ct = \text{PKE.Enc}(\text{PKE.pk}, x || y; r).$$
+> 		- The signature is $(\pi, ct)$.
+> - **Verifying**: The verifier accepts if the proof $\pi$ is valid, and rejects if it is not.
+
+> [!theorem]
+> Assume that NIZK is sound. Then if there exists an adversary $\mathcal A$ in the random oracle model that issues $Q_S$ signing queries and any number of hash queries and outputs $Q_S + 1$ signatures with probability $\delta$, then there exists an algorithm $\beta$ that runs in essentially the same time as $\mathcal A$ and requests $Q_S$ preimage queries and wins the $\text{one-more-ISIS}_{q, n, m, \sigma, 2\beta}$ game with probability at least $$\delta - 2^{-\ohm(\lambda)} - (Q_S + 1)(2^{-\ohm(\lambda)} + q^{-n}).$$
+
+> [!theorem]
+> Assume that NIZK is zero-knowledge. Then if there exists a signer $\mathcal S^*$ in the random oracle model that wins the honest signer blindness game for the blind signature scheme with advantage $\delta$, then there exists an adversary $\mathcal B$, with essentially the same runtime as $\mathcal S^*$, that wins the IND-CPA security game for PKE with advantage at least $\delta / 2 - 2^{-\ohm(\lambda)}$.

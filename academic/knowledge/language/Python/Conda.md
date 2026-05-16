@@ -24,3 +24,5 @@ Then, we can activate and deactivate environment.
 ```bash
 conda remove --name <env> --all
 ```
+
+

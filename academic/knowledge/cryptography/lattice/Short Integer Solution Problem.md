@@ -4,6 +4,9 @@
 > Given $A \in \mathbb Z_q^{n \times m}$, find $z \in \mathbb Z^m$ such that $Az = 0 \pmod q$, where $z \neq 0$ and $z \in [-B, B]^m$ (and $B \ll q/2$).
 > Denote an instance of this problem by $A$ for $\text{SIS}(n, m, q, B)$.
 
+> [!definition] Short Integer Solution (SIS)
+> Let $q, n, m, \beta$ be functions of a parameter $\lambda$. An instance of the $\text{SIS}_{q, n, m, \beta}$ problem is a matrix $A \leftarrow \mathbb Z_q^{n \times m}$. A solution to the problem is a nonzero vector $v \in \mathbb Z^m$ such that $||v|| \leq \beta$ and $A \cdot v = 0 \mod q$.
+
 > [!proposition] Existence of an SIS solution
 > For an instance $\text{SIS}(n, m, q, B, A)$:
 > 1. Consider $n \geq m$, then $Az = 0$ has at most one unique solution thus only consider $n < m$.
@@ -16,6 +19,9 @@
 > Given $A \in \mathbb Z_q^{n \times m}$ and $b \in \mathbb Z_q^m$, find $z \in \mathbb Z^m$ such that $Az \equiv b \pmod q$ and $z \in [-B, B]^m$.
 > Denote an instance of this problem by $(A, b)$ for $\text{ISIS}(n, m, q, B)$.
 
+> [!definition] Inhomogeneous Short Integer Solution (ISIS) Problem
+> Let $q, n, m, \beta$ be functions of a parameter $\lambda$. An instance of the $\text{ISIS}_{q, n, m, \beta}$ problem is a matrix $A \leftarrow \mathbb Z_q^{n \times m}$ and a vector $t \leftarrow \mathbb Z_q^n$. A solution to the problem is a vector $v \in \mathbb Z^m$ such that $||v|| \leq \beta$ and $A \cdot v = t \mod q$.
+
 > [!remark]
 > For an instance $\text{ISIS}(n, m, q, B, A, b)$:
 > 1. Also consider $n < m$.
@@ -24,6 +30,19 @@
 > [!proposition]
 > $\text{ISIS}$ and $\text{SIS}$ are equivalent.
 
+### One-More-ISIS Assumption
+
+> [!algorithm] One-More-ISIS Assumption 
+> Let $q, n, m, \sigma, \beta$ be functions of security parameter $\lambda$. The $\text{one-more-ISIS}_{q, n, m, \sigma, \beta}$ assumption is defined using the following experiment.
+> 1. The challenger $\mathcal C$ uniformly samples a matrix $C \in \mathbb Z_q^{n \times m}$ and sends $C$ to adversary $\mathcal A$.
+> 2. The adversary adaptively makes queries of the following types to the challenger, in any order.
+> 	- **Syndrome queries**: The adversary $\mathcal A$ requests $\mathcal C$ for a challenge vector, to which $\mathcal C$ replies with a uniformly sampled vector $t \leftarrow \mathbb Z_q^n$. We denote the set of received vectors by $S$.
+> 	- **Preimage queries**: The adversary $\mathcal A$ queries a vector $t' \in \mathbb Z_q^n$, to which $\mathcal C$ replies with a short vector $y' \leftarrow D_{\mathbb Z^m, \sigma}$ such that $Cy' = t'$. We denote by $\ell$ the total number of preimage queries.
+> 3. In the end, the adversary $\mathcal A$ outputs $\ell + 1$ pairs of the form $\{(y_j, t_j)\}_{j \in [\ell + 1]}$.
+> 4. The adversary wins if $Cy_j = t_j, ||y_j|| \leq \beta$ and $t_j \in S$ for all $j \in [\ell + 1]$.
+> 
+> The $\text{one-more-ISIS}_{q, n, m, \sigma, \beta}$ assumption states that for every adversary $\mathcal A$ running in time $2^{o(\lambda)}$ making at most $\lambda^{O(1)}$ preimage queries and $2^{o(\lambda)}$ syndrome queries, the probability (over the randomness of $\mathcal A$ and $\mathcal C$) that $\mathcal A$ wins is $2^{-\ohm(\lambda)}$.
+ 
 ## Normal Form Inhomogeneous Short Integer Solutions Problem
 
 > [!definition] Normal Form Inhomogeneous Short Integer Solutions (nf-ISIS) Problem 

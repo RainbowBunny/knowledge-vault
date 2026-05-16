@@ -5,6 +5,7 @@
 2. **Advancing state-of-the-art science**: Make concrete, notable contributions to real problems in science, yielding novel results such as resolving conjectures, improving algorithmic bounds, and identifying critical flaws in literature.
 3. **Showcasing the future of scientific discovery**: Illustrate what the future of research looks like in practice. By detailing novel workflows, human-AI collaboration techniques, and interactive problem-solving strategies, highlight the real implications for how science is likely to be conducted.
 
+
 **Technique**:
 - **Agentic Execution Loops**: Moving beyond manual chat interfaces, models can be embedded in automated "neuro-symbolic" pipelines. In these setups, the AI proposes a mathematical solution, writes code to numerically verify it, and automatically ingests execution errors to self-correct and autonomously prune invalid mathematical branches.
 - **Deep Technical Review and Bug Detection**: Beyond constructive tasks, AI models can act as adversarial reviewers. (Detected a fatal flaw in SNARGs from LWE)
@@ -92,4 +93,22 @@ Pipeline:
 - **Optimizing Context**: Performance is often optimized by proving clear, self-contained definitions, particularly when using highly specialized notation that may deviate from standard literature.
 - **Leverage Literature**: We found that incorporating relevant papers directly into the context significantly enhanced the model's ability to construct correct proofs for specialized domains.
 - **Context De-Identification**: The model sometimes avoids non-trivial machinery, treating such proofs as non-elementary, or it may do so because the prompt steers it toward conservatism to avoid hallucinations, causing it to abandon an otherwise viable approach. Separately, on occasion, when shown the paper as context in the prompt, it recognizes the statement to prove as a conjecture in the paper and refuses to attempt it on the grounds that it is an open problem. One way to bypass both issues is via context de-identification (remove the paper and provide only the problem statement and definitions), after which the model typically engages.
+
+
+
+## Algorithms and Bounds
+
+
+
+System Performance Research Process:
+- **Problem Formulation**
+- **Evaluation Framework**
+- **Solution**
+- **Evaluation**
+- **Paper Write-Up**
+
+Solution Generator -> Evaluator -> Storage -> Solution Selector -> Prompt Generator
+    |                                                                                                                   |
+    a------------------------------------------------------------------------------v
+
 
