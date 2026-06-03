@@ -9,7 +9,7 @@
 > 	3. $P$ computes $\alpha_z \leftarrow \alpha_t + \alpha c \in \mathbb Z_q$, and sends $\alpha_z$ to $V$;
 > 	4. $V$ checks if $g^{\alpha_z} = u_t \cdot u^c$; if so $V$ outputs `accept`; otherwise, $V$ outputs `reject`.
 
-> [!definition]
+> [!definition] Conversation
 > An interaction between $P(\alpha)$ and $V(u)$ generates a **conversation** $(u_t, c, \alpha_z) \in \mathbb G \times \mathcal C \times \mathbb Z_q$. We call such a conversation an **accepting conversation for** $u$ if $V$'s check passes, i.e., if $g^{\alpha_z} = u_t \cdot u^c$. The set $\mathcal C$ is called the **challenge space**.
 
 > [!theorem]

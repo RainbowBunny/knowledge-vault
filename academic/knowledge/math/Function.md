@@ -94,7 +94,7 @@
 
 ## Special Type
 
-### Monotonic Functions
+### Monotonic Function
 
 > [!definition] Increasing, Decreasing
 > A function $f$ is said to be **increasing** on a set $S$ if $f(x) \leq f(y)$ for every pair of points $x$ and $y$ in $S$ with $x < y$. If the strict inequality $f(x) < f(y)$ holds for all $x < y$ in $S$, the function is said to be **strictly increasing** on $S$. Similarly, $f$ is called **decreasing** on $S$ if $f(x) \geq f(y)$ for all $x < y$ in $S$. If $f(x) > f(y)$ for all $x < y$ in $S$, then $f$ is called **strictly decreasing** on $S$.

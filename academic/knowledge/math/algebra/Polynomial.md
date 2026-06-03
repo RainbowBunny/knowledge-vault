@@ -120,6 +120,19 @@
 > [!corollary]
 > Let $n$ be a positive integer with $\gcd(q, n) = 1$. Then the number of monic irreducible factors of $x^n - 1$ over $\mathbb F_q$ is equal to the number of cyclotomic cosets of $q$ modulo $n$.
 
+## Polynomial Interpolation
+
+> [!theorem] Polynomial Interpolation
+> A polynomial of degree at most $t - 1$ is uniquely determined by $t$ points on the polynomial.
+
+> [!lemma] Linearity of Interpolation
+> Let $q$ be a prime, let $J \subseteq \mathbb Z_q$ be a set of size $t$, and let $j^* \in \mathbb Z_q$. Then there is a collection of values $\{\lambda_j\}_{j \in J}$, with each $\lambda_j \in \mathbb Z_q$, such that the following holds:
+> - For every polynomial $\omega \in \mathbb Z_q[x]$ of degree at most $t - 1$, we have $$\omega(j^*) = \sum_{j \in J} \lambda_j \omega(j).$$
+> Moreover, the values $\lambda_j$ for $j \in J$ are efficiently computable given $J$ and $j^*$.
+
+> [!corollary] Interpolation in the Exponent
+> Let $\mathbb G$ be a group of prime order $q$. Let $J \subseteq \mathbb Z_q$ be a set of size $t$, and let $j^* \in \mathbb Z_q$. Given $J, j^*$, as well as a collection of group elements of the form $\{h^{\omega(j)}\}_{j \in J}$, where $h \in \mathbb G$ and $\omega \in \mathbb Z_q[x]$ is a polynomial of degree at most $t - 1$, we can efficiently compute the group element $h^{\omega(j^*)}$.
+
 ## Characteristic Polynomial
 
 > [!proposition]

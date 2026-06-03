@@ -31,6 +31,7 @@
 - $\mathcal A$
 - $\mathbb A$
 - $\mathscr A$
+- $\ell$, $\kappa$
 
 ## Operators
 
@@ -46,7 +47,7 @@
 - Geometry: $\perp$, $\top$
 - Comparator: $\ll$, $\gg$, $\leq$, $\geq$
 - Set: $\cap$, $\bigcap$, $\cup$, $\bigcup$, $\subset$, $\supset$, $\emptyset$, $\varnothing$ 
-- $\deg$, $\Pr$, $\hom$, $\arg$, $\star$, $\oplus$, $\ominus$
+- $\deg$, $\Pr$, $\hom$, $\arg$, $\star$, $\oplus$, $\ominus$, $\pm$
 - $\underbrace{a}_{b}$,, 
 - Integral: $\int, \iint, \oint$
 - Fraction: $\frac{a}{b}$, 

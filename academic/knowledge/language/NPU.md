@@ -42,13 +42,16 @@
 `Vh`: Vector Half
 `R`: Rotate amount after getting the result
 
-|                   |                        |
-| ----------------- | ---------------------- |
-| `Q6_Vh_vadd_VhVh` |                        |
-| `Q6_Vh_vsub_VhVh` |                        |
-| `Q6_Vh_vmax_VhVh` |                        |
-| `Q6_Vw_vasl_VwR`  | Arithmetic shift left  |
-| `Q6_Vw_vlsr_VwVw` | Logical shift right    |
-| `Q6_V_vror_VR`    | Rotate                 |
-| `Q6_W_vdeal_VVR`  | Concatenate and deal   |
-| `Q6_Vh_vdeal_Vh`  | Deal by odd even index |
+|                   |                        |               |
+| ----------------- | ---------------------- | ------------- |
+| `Q6_Vh_vadd_VhVh` |                        | `VADD`        |
+| `Q6_Vh_vsub_VhVh` |                        | `VSUB`        |
+| `Q6_Vh_vmax_VhVh` |                        | `VMAX`        |
+| `Q6_Vw_vasl_VwR`  | Arithmetic shift left  | `VSHL`        |
+| `Q6_Vw_vlsr_VwVw` | Logical shift right    | `VSHR`        |
+| `Q6_V_vror_VR`    | Rotate                 | `VROR`        |
+| `Q6_W_vdeal_VVR`  | Concatenate and deal   | `VDEAL2`      |
+| `Q6_Vh_vdeal_Vh`  | Deal by odd even index | `VDEALH`      |
+|                   |                        | `VBFLY`       |
+|                   |                        | `VREDUCE_MAX` |
+|                   |                        |               |

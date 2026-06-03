@@ -2,22 +2,9 @@
 > [!question]
 > Suppose Alice and Bob share a secret key $k$. Alice wants to transmit a message $m$ to Bob over a network while maintaining the secrecy of $m$ in the presence of an eavesdropping adversary.
 
-| Term                                                      | Reference                                                                   |                    |
-| --------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------ |
-| Attack Game 2.1 (Semantic Security)                       | [[#Semantic Security\|semantic security]]                                   | $\text{SSadv}$     |
-| Attack Game 2.2 (Message Recovery)                        | [[#Message Recovery\|message recovery]]                                     | $\text{MRadv}$     |
-| Attack Game 2.3 (Parity Prediction)                       | [[#Parity Prediction\|parity prediction]]                                   | $\text{Parityadv}$ |
-| Attack Game 2.4 (Semantic Security: Bit-guessing Version) | [[#Semantic Security Bit-guessing Version\|bit guessing semantic security]] | $\text{SSadv}^*$   |
-| Attack Game 3.3 (Distinguishing $P_0$ from $P_1$)         | [[#Indistinguishability]]                                                   | $\text{Distadv}$   |
-| Attack Game 5.1 (Multi-key Semantic Security)             | [[#Multi-key Semantic Security\|multi-key semantic security]]               | $\text{MSSadv}$    |
-| Attack Game 5.2 (CPA Security)                            | [[#Chosen Plaintext Attack Security\|CPA security]]                         | $\text{CPAadv}$    |
-| Attack Game 5.3 (Nonce-based CPA Security)                | [[#Nonce-based CPA Security\|nonce-based CPA security]]                     | $\text{nCPAadv}$   |
-| Attack Game 8.3 (Guessing Advantage)                      | [[#Key Derivation Problem\|guessing advantage]]                             | $\text{Guessadv}$  |
-| Attack Game 9.1 (Ciphertext Integrity)                    | [[#Ciphertext Integrity\|ciphertext integrity]]                             | $\text{CIadv}$     |
-| Attack Game 9.2 (Chosen Ciphertext Attack)                | [[#Chosen Ciphertext Attack Security\|CCA security]]                        | $\text{CCAadv}$    |
-| One-time secure against chosen ciphertext attack          |                                                                             | $1CCAadv$          |
 
-## Shannon Cipher and Perfect Security
+
+## Shannon Cipher
 
 > [!algorithm] Shannon Cipher
 > A **Shannon cipher** is a pair $\mathcal E = (E, D)$ of functions.
@@ -29,19 +16,7 @@
 > 
 > Also, we shall say that $\mathcal E$ is **defined over** $(\mathcal K, \mathcal M, \mathcal C)$.
 
-> [!algorithm] One-time Pad
-> A **one-time pad** is a Shannon cipher $\mathcal E = (E, D)$, where the keys, messages, and ciphertexts are bit strings of the same length; that is, $\mathcal E$ is defined over $(\mathcal K, \mathcal M, \mathcal C)$, where $$\mathcal K = \mathcal M = \mathcal C = \{0, 1\}^L,$$ for some fixed parameter $L$. For a key $k \in \{0, 1\}^L$ and a message $m \in \{0, 1\}^L$ the encryption function is defined as follows: $$E(k, m) = k \oplus m$$ and for a key $k \in \{0, 1\}^L$ and a ciphertext $c \in \{0, 1\}^L$, the decryption function is defined as follows: $$D(k, c) = k \oplus c.$$
-
-> [!algorithm] Variable Length One-time Pad
-> A **variable length one-time pad** is a Shannon cipher $\mathcal E = (E, D)$, where the keys are bit strings of some fixed length $L$, while messages and ciphertexts are variable length bit strings, of length at most $L$. Thus, $\mathcal E$ is defined over $(\mathcal K, \mathcal M, \mathcal C)$, where $$\mathcal K = \{0, 1\}^L \quad \text{and} \quad \mathcal M = \mathcal C = \{0, 1\}^{\leq L}.$$ for some parameter $L$. For a key $k \in \mathcal K$ and a message $m \in \mathcal M$ of length $\ell$, the encryption function is defined as follows: $$E(k, m) = k[0 \dots \ell - 1] \oplus m,$$ and for a key $k \in \mathcal K$ and a ciphertext $c \in \mathcal C$ of length $\ell$, the decryption function is defined as follows: $$D(k, c) = k[0 \dots \ell - 1] \oplus c.$$
-
-> [!algorithm] Substitution Cipher
-> A **substitution cipher** is a Shannon cipher $\mathcal E = (E, D)$. Let $\Sigma$ be a finite alphabet of symbols. The message space $\mathcal M$ and the ciphertext space $\mathcal C$ are both sequences of symbols from $\Sigma$ of some fixed length $L$: $$\mathcal M = \mathcal C = \Sigma^L.$$ The key space $\mathcal K$ consists of all permutations on $\Sigma$; that is, each $k \mathcal K$ is a one-to-one function from $\Sigma$ onto itself.
-> 
-> Encryption of a message $m \in \Sigma^L$ under a key $k \in \mathcal K$ is defined as: $$E(k, m) = (k(m[0]), \dots, k(m[L - 1])).$$ Decryption of a ciphertext $c \in \Sigma^L$ under a key $k \in \mathcal K$ is defined as: $$D(k, c) = (k^{-1}(c[0]), \dots, k(c[L - 1])).$$
-
-> [!algorithm] Additive One-time Pad
-> Replace the encryption and decryption of one-time pad by $E(k, m) = m + k \mod n$ and $D(k, c) = c - k \mod n$.
+### Perfect Security
 
 > [!definition] Perfect Security
 > Let $\mathcal E = (E, D)$ be a Shannon cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$. Consider a probabilistic experiment in which the random variable $K$ is uniformly distributed over $\mathcal K$. If for all $m_0, m_1 \in \mathcal K$. If for all $m_0, m_1 \in \mathcal M$, and all $c \in \mathcal C$, we have $$P[E(K, m_0) = c] = P[E(K, m_1) = c],$$ then we say that $\mathcal E$ is a **perfect secure** Shannon cipher.
@@ -53,9 +28,6 @@
 > 3. If the random variable $K$ is uniformly distributed over $\mathcal K$, then each of the random variables $E(K, m)$, for $m \in \mathcal M$, has the same distribution.
 
 > [!theorem]
-> The one-time pad is a perfect secure Shannon cipher.
-
-> [!theorem]
 > Let $\mathcal E = (E, D)$ be a Shannon cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$. Consider a probabilistic experiment in which $K$ is a random variable uniformly distributed over $\mathcal K$. Then $\mathcal E$ is perfectly secure if and only if for every predicate $\phi$ on $\mathcal C$, for all $m_0, m_1 \in \mathcal M$, we have $$P[\phi(E(k, m_0))] = P[\phi(E(k, m_1))].$$
 
 > [!theorem]
@@ -63,11 +35,88 @@
 > - $K$ is uniformly distributed over $\mathcal K$,
 > - $M$ is distributed over $\mathcal M$, and
 > - $K$ and $M$ are independent.
-> Define the random variable $c = E(K, M)$. Then we have:
+> 
+> Define the random variable $C = E(K, M)$. Then we have:
 > - If $\mathcal E$ is perfectly secure, then $C$ and $M$ are independent;
 > - Conversely, if $C$ and $M$ are independent, and each message in $\mathcal M$ occurs with nonzero probability, then $\mathcal E$ is perfectly secure.
 
 > [!theorem] Shannon's theorem
 > Let $\mathcal E = (E, D)$ be a Shannon cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$. If $\mathcal E$ is perfect secure, then $|\mathcal K| \geq |\mathcal M|$.
+
+> [!theorem] Generalize Shannon's Theorem
+> Let $\mathcal E$ be a cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$. Suppose that [[Notions of Security#Semantic Security|semantic security]] advantage $\text{SSadv}[\mathcal A, \mathcal E] \leq \epsilon$ for all adversaries $\mathcal A$, even including **computationally unbounded** ones. Then, $|\mathcal K| \geq (1 - \epsilon) |\mathcal M|$.
+
+### Encryption Chain
+
+> [!algorithm] Encryption Chain
+> ### Building Block
+> Let $\mathcal E = (E, D)$ be a cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$ where $\mathcal K = \mathcal M$.
+> 
+> ---
+> ### Algorithm
+> We construction a cipher $\mathcal E' = (E', D')$.
+> - Encryption: $E'((k_1, k_2), m) = (E(k_1, k_2), E(k_2, m)) \in \mathcal C^2$.
+
+> [!theorem]
+> $\mathcal E$ is perfectly secure then so is $\mathcal E'$.
+
+> [!remark]
+> The important of this construction is that adding $E(k_1, k_2)$ does not reduce the security of the scheme, as we know $E(k_2, m)$ is already secure.
+
+## One-time Pad
+
+> [!algorithm] One-time Pad
+> ### Message Space
+> A **one-time pad** is a Shannon cipher $\mathcal E = (E, D)$, where the keys, messages, and ciphertexts are bit strings of the same length; that is, $\mathcal E$ is defined over $(\mathcal K, \mathcal M, \mathcal C)$, where $$\mathcal K = \mathcal M = \mathcal C = \{0, 1\}^L,$$ for some fixed parameter $L$. 
+> 
+> ---
+> ### Algorithms
+> - Encryption: For a key $k \in \{0, 1\}^L$ and a message $m \in \{0, 1\}^L$ the encryption function is defined as follows: $$E(k, m) = k \oplus m$$ 
+> - Decryption: For a key $k \in \{0, 1\}^L$ and a ciphertext $c \in \{0, 1\}^L$, the decryption function is defined as follows: $$D(k, c) = k \oplus c$$
+
+> [!theorem]
+> The one-time pad is a perfect secure Shannon cipher.
+
+### Variable Length Variant
+
+> [!algorithm] Variable Length One-time Pad
+> ### Message Space
+> A **variable length one-time pad** is a Shannon cipher $\mathcal E = (E, D)$, where the keys are bit strings of some fixed length $L$, while messages and ciphertexts are variable length bit strings, of length at most $L$. Thus, $\mathcal E$ is defined over $(\mathcal K, \mathcal M, \mathcal C)$, where $$\mathcal K = \{0, 1\}^L \quad \text{and} \quad \mathcal M = \mathcal C = \{0, 1\}^{\leq L}.$$ for some parameter $L$.
+> 
+> ---
+> ### Algorithms
+> - Encryption: For a key $k \in \mathcal K$ and a message $m \in \mathcal M$ of length $\ell$, the encryption function is defined as follows: $$E(k, m) = k[0 \dots \ell - 1] \oplus m,$$  
+> - Decryption: For a key $k \in \mathcal K$ and a ciphertext $c \in \mathcal C$ of length $\ell$, the decryption function is defined as follows: $$D(k, c) = k[0 \dots \ell - 1] \oplus c.$$
+
+### Additive Variant
+
+> [!algorithm] Additive One-time Pad
+> ### Message Space
+> $\mathcal K = \mathcal M = \mathcal C = \{0, \dots, p - 1\}$.
+> 
+> ---
+> ### Algorithms
+> Replace the encryption and decryption of one-time pad by $E(k, m) = m + k \mod n$ and $D(k, c) = c - k \mod n$.
+
+### Multiplicative One-time Pad
+
+> [!algorithm] Multiplicative One-time Pad
+> ### Message Space
+> $\mathcal K = \mathcal M = \mathcal C = \{1, \dots, p - 1\}$.
+> 
+> ---
+> ### Algorithms
+> Replace the encryption and decryption of one-time pad by $E(k, m) = k \cdot m \mod p$ and $D(k, c) = k^{-1} \cdot c \mod p$.
+
+## Substitution Cipher
+
+> [!algorithm] Substitution Cipher
+> ### Message Space
+> A **substitution cipher** is a Shannon cipher $\mathcal E = (E, D)$. Let $\Sigma$ be a finite alphabet of symbols. The message space $\mathcal M$ and the ciphertext space $\mathcal C$ are both sequences of symbols from $\Sigma$ of some fixed length $L$: $$\mathcal M = \mathcal C = \Sigma^L.$$ The key space $\mathcal K$ consists of all permutations on $\Sigma$; that is, each $k \mathcal K$ is a one-to-one function from $\Sigma$ onto itself.
+> 
+> ---
+> ### Algorithms
+> - Encryption: Encryption of a message $m \in \Sigma^L$ under a key $k \in \mathcal K$ is defined as: $$E(k, m) = (k(m[0]), \dots, k(m[L - 1])).$$ 
+> - Decryption: Decryption of a ciphertext $c \in \Sigma^L$ under a key $k \in \mathcal K$ is defined as: $$D(k, c) = (k^{-1}(c[0]), \dots, k(c[L - 1])).$$
 
 

@@ -57,15 +57,21 @@ cryptography/
 │   └── key encapsulation method/          (Diffie-Hellman, Kyber)
 ├── protocols/
 │   ├── Protocols MOC.md
-│   ├── Zero-knowledge Proof.md
-│   └── identification/                    (NEW subfolder — split from Identification Protocol.md)
-│       ├── Identification MOC.md
-│       ├── Identification Protocol.md
-│       ├── Password Protocols.md
-│       ├── Security of Identification.md
-│       ├── Schnorr Identification.md
-│       ├── Sigma Protocols.md
-│       └── ID and Signatures from Sigma.md
+│   ├── identification/                    (subfolder — 6 files + MOC)
+│   │   ├── Identification MOC.md
+│   │   ├── Identification Protocol.md
+│   │   ├── Password Protocols.md
+│   │   ├── Security of Identification.md
+│   │   ├── Schnorr Identification.md
+│   │   ├── Sigma Protocols.md
+│   │   └── ID and Signatures from Sigma.md
+│   └── zk/                                (NEW subfolder — 5 files + MOC)
+│       ├── Zero-knowledge MOC.md
+│       ├── Zero-knowledge Proof.md
+│       ├── Interactive Zero Knowledge.md
+│       ├── Non-Interactive Zero Knowledge.md
+│       ├── Argument of Knowledge.md
+│       └── Fiat-Shamir Transform.md
 ├── attack/
 │   ├── Attack MOC.md
 │   ├── Attack List.md, CRIME.md, Password Cracking.md, Random Crack.md

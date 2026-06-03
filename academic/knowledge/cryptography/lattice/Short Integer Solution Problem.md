@@ -4,7 +4,7 @@
 > Given $A \in \mathbb Z_q^{n \times m}$, find $z \in \mathbb Z^m$ such that $Az = 0 \pmod q$, where $z \neq 0$ and $z \in [-B, B]^m$ (and $B \ll q/2$).
 > Denote an instance of this problem by $A$ for $\text{SIS}(n, m, q, B)$.
 
-> [!definition] Short Integer Solution (SIS)
+> [!definition] $\ell_2$-SIS Problem
 > Let $q, n, m, \beta$ be functions of a parameter $\lambda$. An instance of the $\text{SIS}_{q, n, m, \beta}$ problem is a matrix $A \leftarrow \mathbb Z_q^{n \times m}$. A solution to the problem is a nonzero vector $v \in \mathbb Z^m$ such that $||v|| \leq \beta$ and $A \cdot v = 0 \mod q$.
 
 > [!proposition] Existence of an SIS solution
@@ -12,6 +12,32 @@
 > 1. Consider $n \geq m$, then $Az = 0$ has at most one unique solution thus only consider $n < m$.
 > 2. If $(B + 1)^m > q^n$ then by pigeonhole principle there must exist $z_1, z_2 \in [-B/2, B/2]^m$ such that $z_1 \neq z_2$ and $Az_1 \equiv Az_2 \pmod q$, thus $z = z_1 - z_2$ is a solution to the problem. Thus, we assume $m > (n \log q) / \log(B + 1)$
 > 3. The SIS solution is not unique.
+
+### Distribution Variant
+
+> [!definition] SIS Distribution
+> Choose a random matrix $A \leftarrow \mathbb Z_q^{n \times m}$ and a vector $s \leftarrow \{-d, \dots, 0, \dots, d\}^m$ and output $(A, As)$.
+
+### Search Variant
+
+> [!definition] SIS Search Problem
+> Given a pair $(A, t)$ from the $\text{SIS}_{q, n, m, d}$ distribution, find a $s \in \{-d, \dots, 0, \dots, d\}^m$ such that $As = t$.
+
+### Decision Variant
+
+> [!definition] SIS Decision Problem
+> Given a pair $(A, t)$ decide, with non-negligible advantage, whether it came from the $\text{SIS}_{q, n, m, d}$ distribution or whether it was generated uniformly at random from $\mathbb Z_q^{n \times m} \times \mathbb Z_q^n$.
+
+### Relation between Variants
+
+> [!theorem]
+> If $d$ is polynomial in $n$, then there is a polynomial-time reduction from the $\text{SIS}_{q, n, m, d}$ search problem to the $\text{SIS}_{q, n, m, d}$ decision problem.
+
+> [!lemma]
+> For any non-negative integer $\alpha$ such that $\gcd(2 \alpha + 1, q) = 1$, there is a polynomial-time reduction from the $\text{SIS}_{q, n, m, d}$ decision problem to the $\text{SIS}_{q, n, m, (2 \alpha + 1)d + \alpha}$ decision problem.
+
+> [!lemma]
+> If $m = 2n$ and $4d \beta \sqrt{m} \leq q$, then there is a polynomial-time reduction from solving the $\text{SIS}_{q, n, m, d}$ decision problem to the $\ell_2 \text{-SIS}_{q, n, m, \beta}$ problem.
 
 ## Inhomogeneous Short Integer Solutions Problem
 

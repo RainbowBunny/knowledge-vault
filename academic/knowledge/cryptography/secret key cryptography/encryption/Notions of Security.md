@@ -1,3 +1,18 @@
+| Term                                                      | Reference                                                                   |                    |
+| --------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------ |
+| Attack Game 2.1 (Semantic Security)                       | [[#Semantic Security\|semantic security]]                                   | $\text{SSadv}$     |
+| Attack Game 2.2 (Message Recovery)                        | [[#Message Recovery\|message recovery]]                                     | $\text{MRadv}$     |
+| Attack Game 2.3 (Parity Prediction)                       | [[#Parity Prediction\|parity prediction]]                                   | $\text{Parityadv}$ |
+| Attack Game 2.4 (Semantic Security: Bit-guessing Version) | [[#Semantic Security Bit-guessing Version\|bit guessing semantic security]] | $\text{SSadv}^*$   |
+| Attack Game 3.3 (Distinguishing $P_0$ from $P_1$)         | [[#Indistinguishability]]                                                   | $\text{Distadv}$   |
+| Attack Game 5.1 (Multi-key Semantic Security)             | [[#Multi-key Semantic Security\|multi-key semantic security]]               | $\text{MSSadv}$    |
+| Attack Game 5.2 (CPA Security)                            | [[#Chosen Plaintext Attack Security\|CPA security]]                         | $\text{CPAadv}$    |
+| Attack Game 5.3 (Nonce-based CPA Security)                | [[#Nonce-based CPA Security\|nonce-based CPA security]]                     | $\text{nCPAadv}$   |
+| Attack Game 8.3 (Guessing Advantage)                      | [[#Key Derivation Problem\|guessing advantage]]                             | $\text{Guessadv}$  |
+| Attack Game 9.1 (Ciphertext Integrity)                    | [[#Ciphertext Integrity\|ciphertext integrity]]                             | $\text{CIadv}$     |
+| Attack Game 9.2 (Chosen Ciphertext Attack)                | [[#Chosen Ciphertext Attack Security\|CCA security]]                        | $\text{CCAadv}$    |
+| One-time secure against chosen ciphertext attack          |                                                                             | $1CCAadv$          |
+
 ## Notions of Security
 
 ### Semantic Security

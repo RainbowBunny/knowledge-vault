@@ -34,7 +34,7 @@
 > A **blind signature scheme** lets one party, Alice, obtain a signature on a message $m$ from Bob, so that Bob learns nothing about $m$.
 
 > [!definition] Blind Signature (Mathematical Detail)
-> A blind signature scheme $BS$ consists of PPT algorithms $\text{Gen}, \text{Vrfy}$ along with interactive PPT algorithms $\mathcal S, \mathcal U$ such that for any $\lambda$:
+> A blind signature scheme $\text{BS}$ consists of PPT algorithms $\text{Gen}, \text{Vrfy}$ along with interactive PPT algorithms $\mathcal S, \mathcal U$ such that for any $\lambda$:
 > - $\text{Gen}(1^\lambda)$ generates a key pair $(\text{BSig.sk}, \text{BSig.vk})$.
 > - The joint execution of $\mathcal S(\text{BSig.sk})$ and $\mathcal U(\text{BSig.vk}, \mu)$ where $\mu \in \{0, 1\}^*$, generates an output $\sigma$ for the user and no output for the signer; this is denoted as $(\perp, \sigma) \leftarrow \langle \mathcal S(\text{BSig.sk}), \mathcal U(\text{BSig.vk}, \mu) \rangle$.
 > - Algorithm $\text{Vrfy}(\text{BSig.vk}, \mu, \sigma)$ outputs a bit $b$.
@@ -46,7 +46,7 @@
 ### One More Unforgeability
 
 > [!algorithm] One More Unforgeability
-> The blind signature $BS = (\text{Gen}, \mathcal S, \mathcal U, \text{Vrfy})$ is one more unforgeable if for any polynomial $Q_S$, and any algorithm $\mathcal U^*$ with run-time $2^{o(\lambda)}$, the success probability of $\mathcal U^*$ in the following game is $2^{-\ohm(\lambda)}$:
+> The blind signature $\text{BS} = (\text{Gen}, \mathcal S, \mathcal U, \text{Vrfy})$ is one more unforgeable if for any polynomial $Q_S$, and any algorithm $\mathcal U^*$ with run-time $2^{o(\lambda)}$, the success probability of $\mathcal U^*$ in the following game is $2^{-\ohm(\lambda)}$:
 > 1. $\text{Gen}(1^\lambda)$ outputs $(\text{BSig.sk}, \text{BSig.vk})$, and algorithm $\mathcal U^*$ is given $\text{BSig.vk}$.
 > 2. Algorithm $\mathcal U^*$ interacts concurrently with $Q_S$ instances $\mathcal S_{BSig.sk}^1, \dots, S_{BSig.sk}^{Q_S}$
 > 3. Algorithm $\mathcal U^*$ outputs $(\mu_1, \sigma_1, \dots, \mu_{Q_S + 1}, \sigma_{Q_S + 1})$.
@@ -71,8 +71,8 @@
 ### RSA-based
 
 > [!algorithm] RSA-based Blind Signature
-> Let $(n, d) \xrightarrow{R} \text{RSAGen}(\ell, e)$ and set $(n, e)$ as Bob's RSA public key and $(n, d)$ as his corresponding private key. As usual, let $H: \mathcal M \rightarrow \mathbb Z_n$ be a hash function. Alice wants Bob to sign a message $m \in \mathcal M$. They engage in the following three-message protocol:
-> 1. Alice chooses $r \xrightarrow{R} \mathbb Z_n$, sets $m' \leftarrow H(m) \cdot r^e \in \mathbb Z_n$, and sends $m'$ to Bob,
+> Let $(n, d) \xleftarrow{R} \text{RSAGen}(\ell, e)$ and set $(n, e)$ as Bob's RSA public key and $(n, d)$ as his corresponding private key. As usual, let $H: \mathcal M \rightarrow \mathbb Z_n$ be a hash function. Alice wants Bob to sign a message $m \in \mathcal M$. They engage in the following three-message protocol:
+> 1. Alice chooses $r \xleftarrow{R} \mathbb Z_n$, sets $m' \leftarrow H(m) \cdot r^e \in \mathbb Z_n$, and sends $m'$ to Bob,
 > 2. Bob computes $\sigma' \leftarrow (m')^d \in \mathbb Z_n$ and sends $\sigma'$ to Alice.
 > 3. Alice computes the signature $\sigma$ on $m$ as $\sigma \leftarrow \sigma'/r \in \mathbb Z_n$.
 
@@ -106,11 +106,11 @@
 > Assume that $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the $\text{NIZKAoK}$ is knowledge sound. Then the blind signature scheme is [[#One More Unforgeability|one more unforgeable]] in the random oracle model.
 
 > [!theorem]
-> Assume that $\text{PKE}$ is $\text{IND-CPA}$ secure and the $\text{NIZKAoK}$ is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
+> Assume that [[Public Key Encryption|PKE]] is [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the [[zER]] is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
 
 ### From One-More-ISIS
 
-> [!algorithm]
+> [!algorithm] Round-Optimal Lattice Based
 > Building blocks:
 > 1. A hash function $H: \{0, 1\}^* \rightarrow \mathbb Z_q^n$ that will be modeled as random oracle in the unforgeability proof.
 > 2. A NIZK for the statement: $$||x|| \leq \beta / m \land ||y|| \leq \beta Cy - Ax = H(\mu) \land ct = \text{PKE.Enc}(\text{PKE.pk}, x || y ; r).$$

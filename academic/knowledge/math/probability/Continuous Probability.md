@@ -75,8 +75,8 @@
 ### Normal (Gaussian) Distribution
 
 > [!definition] Standard Normal Distribution
-> A continuous random variable $Z$ is said to be a **standard normal (standard Gaussian)** random variable, shown as $Z \sim N(0, 1)$, if its PDF is given by $$f_Z(z) = \frac{1}{\sqrt{2 \pi}} \exp \{-\frac{z^2}{2}\}, \qquad \text{for all } z \in \mathbb R.$$
-> Also, we have the CDF $$F_Z(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^z \exp \{-\frac{u^2}{2}\} du.$$
+> A continuous random variable $Z$ is said to be a **standard normal (standard Gaussian)** random variable, shown as $Z \sim N(0, 1)$, if its PDF is given by $$f_Z(z) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}, \qquad \text{for all } z \in \mathbb R.$$
+> Also, we have the CDF $$F_Z(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^z e^{-\frac{u^2}{2}} du.$$
 
 > [!proposition] Properties of Standard Normal
 > If $Z \sim N(0, 1)$
@@ -87,7 +87,7 @@
 > - Median $m = \mu$
 
 > [!definition] The $\Phi$ Function
-> The CDF of the standard normal distribution is denoted by the $\Phi$ function: $$\Phi(x) = P(Z \leq x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x \exp\{-\frac{u^2}{2}\} du.$$
+> The CDF of the standard normal distribution is denoted by the $\Phi$ function: $$\Phi(x) = P(Z \leq x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{u^2}{2}} du.$$
 
 > [!proposition] Properties of the $\Phi$ function
 > 1. $\lim_{x \rightarrow \infty} \Phi(x) = 1, \lim_{x \rightarrow -\infty} = 0;$
@@ -104,7 +104,7 @@
 
 > [!proposition] 
 > If $X$ is a normal random variable with mean $\mu$ and variance $\sigma^2$, i.e, $X \sim N(\mu, \sigma^2)$, then 
-> $$f_X(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \{-\frac{(x - \mu)^2}{2 \sigma^2}\}$$
+> $$f_X(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$
 > $$F_X(x) = P(X \leq x) = \Phi(\frac{x - \mu}{\sigma})$$ 
 > $$P(a < X \leq b) = \Phi(\frac{b - \mu}{\sigma}) - \Phi(\frac{a - \mu}{\sigma})$$
 
@@ -113,6 +113,52 @@
 
 > [!theorem]
 > If $X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are independent, then $$X + Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2).$$
+
+### High Dimension Continuous Normal Distribution
+
+> [!definition] Continuous Normal Distribution
+> The continuous Normal distribution over $\mathbb R^m$ centered at $v$ with standard deviation $\sigma$ is defined by the function $$\rho^m_{v, \sigma}(x) = (\frac{1}{\sigma \sqrt{2 \pi}})^m e^{\frac{-||x - v||^2}{2 \sigma^2}}$$
+
+> [!definition] Discrete Normal Distribution
+> The discrete Normal distribution over $\mathbb Z^m$ centered at some $v \in \mathbb Z^m$ with standard deviation $\sigma$ is defined as $D^m_{v, \sigma}(x) = \rho^m_{v, \sigma}(x) / \rho^m_\sigma(\mathbb Z^m)$.
+
+> [!lemma]
+> For any vector $v \in \mathbb R^m$ and any $\sigma, r > 0$, $$P[|\langle z, v \rangle| > r; z \leftarrow D^m_\sigma] \leq 2e^{-\frac{r^2}{2||v||^2 \sigma^2}}.$$
+
+> [!lemma]
+> 1. For any $k > 0, P[|z| > k \sigma; z \leftarrow D^1_\sigma] \leq 2e^{-\frac{k^2}{2}}$,
+> 2. For any $z \in \mathbb Z^m$, and $\sigma \geq 3 / \sqrt{2 \pi}, D^m_\sigma(z) \leq 2^{-m}$.
+> 3. For any $k > 1, P[||z|| > k \sigma \sqrt{m}; z \leftarrow D^m_\sigma] < k^m e^{\frac{m}{2}(1 - k^2)}$.
+
+> [!lemma]
+> For any $v \in \mathbb Z^m$, if $\sigma = \omega(||v|| \sqrt{\log m})$, then $$P[D^m_\sigma(z) / D^m_{v, \sigma}(z) = O(1); z \leftarrow D^m_\sigma] = 1 - 2^{-\omega(\log m)},$$ and more specifically, for any $v \in \mathbb Z^m$, if $\sigma = \alpha ||v||$ for any positive $\sigma$, then $$P[D^m_\sigma (z) / D^m_{v, \sigma}(z) < e^{12 / \alpha + 1 / (2 \alpha^2)}; z \leftarrow D^m_\sigma] > 1 - 2^{-100}.$$
+
+> [!theorem]
+> Let $V$ be a subset of $\mathbb Z^m$ in which all elements have norms less than $T, \sigma$ be some element in $\mathbb R$ such that $\sigma = \omega(T \sqrt{\log m})$, and $h: V \rightarrow \mathbb R$ be a probability distribution. Then there exists a constant $M = O(1)$ such that the distribution of the following algorithm $\mathcal A$:
+> 1. $v \leftarrow h$
+> 2. $z \leftarrow D^m_{v, \sigma}$
+> 3. Output $(z, v)$ with probability $\min(\frac{D^m_\sigma(z)}{MD^m_{v, \sigma}}, 1)$
+> 
+> is within statistical distance $\frac{2^{-\omega(\log m)}}{M}$ of the distribution of the following algorithm $\mathcal F$:
+> 1. $v \leftarrow h$
+> 2. $z \leftarrow D^m_\sigma$
+> 3. Output $(z, v)$ with probability $1/M$
+> 
+> Moreover, the probability that $\mathcal A$ outputs something is at least $\frac{1 - 2^{\omega(\log m)}}{M}$.
+> More concretely, if $\sigma = \alpha T$ for any positive $\alpha$, then $M = e^{12 / \alpha + 1 / (2 \alpha^2)}$, the output of algorithm $\mathcal A$ is within statistical distance $\frac{2^{-100}}{M}$ of the output of $\mathcal F$, and the probability that $\mathcal A$ outputs something is at least $\frac{1 - 2^{-100}}{M}$.
+
+> [!lemma]
+> Let $V$ be an arbitrary set, and $h: V \rightarrow \mathbb R$ and $f: \mathbb Z^m \rightarrow \mathbb R$ be probability distributions. If $g_v : \mathbb Z^m \rightarrow \mathbb R$ is a family of probability distributions indexed by all $v \in V$ with the property that $$\exists M \in \mathbb R \text{ such that } \forall v, P[M g_v(z) \geq f(z); z \leftarrow f] \geq 1 - \epsilon$$ then the distribution of the output of the following algorithm $\mathcal A$:
+> 1. $v \leftarrow h$
+> 2. $z \leftarrow g_v$
+> 3. Output $(z, v)$ with probability $\min(\frac{f(z)}{M g_v(z)}, 1)$
+> 
+> is within statistical distance $\epsilon / M$ of the distribution of the following algorithm $\mathcal F$:
+> 1. $v \leftarrow h$
+> 2. $z \leftarrow f$
+> 3. Output $(z, v)$ with probability $1 / M$.
+> 
+> Moreover, the probability that $\mathcal A$ outputs something is at least $(1 - \epsilon) / M$.
 
 ### Bivariate Normal Distribution
 

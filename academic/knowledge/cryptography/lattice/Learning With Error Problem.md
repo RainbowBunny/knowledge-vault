@@ -25,7 +25,7 @@
 > Corollary: If we believe that $\text{SIVP}_\gamma$ is hard in the worst case, then we must believe that LWE is also hard in the average case.
 > Problem This is a highly asymptotic statement.
 
-## Decisional Learning With Error Problem
+### Decisional Version
 
 > [!definition] Decisional Learning With Error (DLWE) Problem
 > Let $A \in \mathbb Z_q^{m \times n}, s \in \mathbb Z_q^n, e \in [-B, B]^m$ where $B \ll q/2$, and $b = As + e$. 
@@ -50,7 +50,7 @@
 > [!remark]
 > We don't need $m \gg n$ for unique solutions.
 
-## Decisional Short-Secret Learning With Error Problem
+### Decisional Version
 
 > [!definition] Decisional Short-Secret Learning With Error (DLWE) Problem
 > Let $A \in \mathbb Z_q^{m \times n}, s \in [-B, B]^n, e \in [-B, B]^m$ where $B \ll q/2$, and $b = As + e$. 
@@ -61,7 +61,7 @@
 
 ## Module Learning With Error
 
-> [!definition]
+> [!definition] Module Learning With Error
 > Module LWE (MLWE) ($k, l, q, n, \eta$) so $R_q = \mathbb Z_q [x] / (x^n + 1)$
 Let $A \in_R R^{k \times l}_q, S \in_R R_q^l, e \in_R S_\eta^k$ and $t = As + e \in R^k_q$. Given $(A, t)$, determine $s$.
 
@@ -70,7 +70,12 @@ Let $A \in_R R^{k \times l}_q, S \in_R R_q^l, e \in_R S_\eta^k$ and $t = As + e 
 > 2. Also, MLWE is a special "structured" version of LWE.
 > 3. No one knows any method to solve MLWE that is faster than the best algorithm known for solving LWE.
 
-## Decision Module Learning With Error
+### MLWE Assumption
+
+> [!algorithm] MLWE Adversary
+> For integers $m, k$, and a probability distribution $D: R_q \rightarrow [0, 1]$, we say that the advantage of algorithm $A$ in solving the decisional $\text{MLWE}_{m, k, D}$
+
+### Decision Module Learning With Error
 
 > [!definition]
 > DMLWE$(k, l, q, n, \eta)$.
@@ -79,10 +84,8 @@ Let $A \in_R R^{k \times l}_q, S \in_R R_q^l, e \in_R S_\eta^k$ and $t = As + e 
 
 ## LWE Lattice
 
-$L_A: \{y \in \mathbb Z^m: L y = Az \pmod q \text{ for some } z \in \mathbb Z^n\} \subseteq \mathbb Z^m$.
-
 > [!theorem]
-> $L_A$ is a full rank integer lattice of volume $q^{m - n}$
+> $L_A: \{y \in \mathbb Z^m: L y = Az \pmod q \text{ for some } z \in \mathbb Z^n\} \subseteq \mathbb Z^m$ is a full rank integer lattice of volume $q^{m - n}$.
 
 ## Bounded Distance Decoding Problem
 

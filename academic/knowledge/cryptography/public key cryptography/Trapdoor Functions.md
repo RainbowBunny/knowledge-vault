@@ -39,6 +39,18 @@
 > [!definition] One Way Function
 > We say that a trapdoor function scheme $\mathcal T$ is **one way** if for all efficient adversaries $\mathcal A$, the quantity $\text{OWadv}[\mathcal A, \mathcal T]$ is neglible.
 
+### One-way on $d$ iterates
+
+> [!algorithm] One-way on $d$ iterates
+> For a given function $f: \mathcal X \rightarrow \mathcal X$ and a given adversary $\mathcal A$, the attack game runs as follows:
+> - The adversary chooses $j \in \{1, \dots, d\}$ and sends $j$ to the challenger.
+> - The challenger computes $x \xleftarrow{R} \mathcal X$ and $y \xleftarrow f^{(i)}(x)$, and sends $y$ to $\mathcal A$.
+> - The adversary outputs $x \in \mathcal X$.
+> We say $\mathcal A$ wins the game if $f(x') = y$. We define the adversary's advantage $\text{iOWadv}[\mathcal A, f, d]$ to be the probability that it wins.
+
+> [!definition] One-way on $d$ iterates
+> For an integer $d > 0$, we say that $f: \mathcal X \rightarrow \mathcal X$ is **one-way on $d$ iterates** if $\text{iOWadv}[\mathcal A, f, d]$ is negligible for all efficient adversaries $\mathcal A$.
+
 ## Construction
 
 ### A Trapdoor Permutation Scheme Based on RSA

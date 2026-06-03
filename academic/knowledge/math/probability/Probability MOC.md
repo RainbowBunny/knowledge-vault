@@ -20,4 +20,4 @@
 
 ## Examples
 
-- [[Examples]] — birthday paradox, coupon collector, streaks, geometric variance
+- [[Probability Examples]] — birthday paradox, coupon collector, streaks, geometric variance

@@ -32,7 +32,9 @@
 > 3. Algorithm $S$ is an efficient probabilistic algorithm that on input $\lambda, \Lambda, sk, m,$ where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda))$ for some $pk,$ and $m \in \mathcal M_{\lambda, \Lambda},$ always outputs an element of $\Sigma_{\lambda, \Lambda}$.
 > 4. Algorithm $V$ is an efficient deterministic algorithm that on input $\lambda, \Lambda, pk, m, \sigma,$ where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda))$ for some $sk, m \in \mathcal M_{\lambda, \Lambda},$ and $\sigma \in \Sigma_{\lambda, \Lambda},$ and outputs either `accept` or `reject`.
 
-## Secure Signatures
+## Security Model
+
+### Unforgeability
 
 > [!algorithm] Signature Security
 > For a given signature scheme $\mathcal S = (G, S, V)$, defined over $(\mathcal M, \Sigma),$ and a given adversary $\mathcal A$, the attack game runs as follows:
@@ -49,17 +51,23 @@
 > [!definition] Existentially Unforgeable under a Chosen Message Attack.
 > We say that a signature scheme $\mathcal S$ is secure if for all efficient adversaries $\mathcal A$, the quantity $\text{SIGadv}[\mathcal A, \mathcal S]$ is negligible.
 
+> [!definition] $q$-time signature
+> We say that a signature system $\mathcal S$ is a **secure $q$-time signature** if for all efficient signature adversaries $\mathcal A$ that issue at most $q$ signature queries, the value $\text{SIGadv}[\mathcal A, \mathcal S]$ is negligible. When $q = 1$ we say that $\mathcal S$ is a **secure one-time signature**.
+
 > [!question] Security Against Multi-key Attacks
 > In real systems there are many users, and each one of them can have a signature key pair $(pk_i, sk_i)$ for $i = 1, \dots, n$. Can a chosen message attack on $pk_1$ help the adversary forge signatures for $pk_2$?
 
 > [!algorithm] Strongly Secure Signature Scheme
-> For a given signature scheme $\mathcal S = (G, S, V),$ and a given adversary $\mathcal A$, the game is identical to [[#Secure Signatures|signature security]], except that the second bullet in the winning condition is changed to:
+> For a given signature scheme $\mathcal S = (G, S, V),$ and a given adversary $\mathcal A$, the game is identical to [[#Unforgeability|signature security]], except that the second bullet in the winning condition is changed to:
 > - $(m, \sigma)$ is new, namely $(m, \sigma) \notin \{(m_1, \sigma_1), (m_2, \sigma_2), \dots\}$
 > 
 > We define $\mathcal A$'s advantage with respect to $\mathcal S$, denoted $\text{stSIGadv}[\mathcal A, \mathcal S],$ as the probability that $\mathcal A$ wins the game.
 
 > [!definition] Strongly Secure
 > We say that a signature scheme $\mathcal S$ is **strongly secure** if for all efficient adversaries $\mathcal A$, the quantity $\text{stSIGadv}[\mathcal A, \mathcal S]$ is negligible.
+
+> [!definition] Strongly Secure $q$-time Signature
+> We say that a signature system $\mathcal S$ is a **strongly secure $q$-time signature** if for all efficient signature adversaries $\mathcal A$ that issue at most $q$ signature queries, the value $\text{stSIGadv}[\mathcal A, \mathcal S]$ is negligible. When $q = 1$ we say that $\mathcal S$ is a **strongly secure one-time signature**.
 
 ## Extending The Message Space
 
@@ -92,11 +100,131 @@
 ## Signatures from Trapdoor Permutations
 
 
-## Blind Signature Schemes
+## Construction
 
-> [!algorithm] Blind Signature Schemes
+### Based on SIS
+
+[Lattice Signatures Without Trapdoors](https://eprint.iacr.org/2011/537)
+> [!algorithm] SIS Signature Scheme
+> ### Building Block
+> - Random Oracle: $H : \{0, 1\}^* \rightarrow \{v : v \in \{-1, 0, 1\}, ||v||_1 \leq K\}$
 > 
-> Let $(n, d) \xleftarrow{R} \text{RSAGen}(\ell, e)$ and set $(n, e)$ as Bob's
+> ---
+> ### Algorithms
+> - $(pk = (A, AS), sk = (S)) \leftarrow G()$:
+> 1. Signing Key: $S \leftarrow \{-d, \dots, 0, \dots, d\}^{m \times k}$
+> 2. Verification Key: $A \leftarrow \mathbb Z_q^{n \times m}, T \leftarrow AS \in \mathbb Z_q^{n \times k}$
+> - $S(\mu, A, S)$:
+> 1. $y \leftarrow D_\sigma^m$
+> 2. $c \leftarrow H(Ay, \mu)$
+> 3. $z \leftarrow Sc + y$
+> 4. Output $(z, c)$ with probability $\min(\frac{D^m_\sigma(z)}{MD^m_{Sc, \sigma}(z)}, 1)$
+> - $V(\mu, z, c, A, T)$
+> 1. Accept iff $||z|| \leq \eta \sigma \sqrt{m}$ and $c = H(Az - Tc, \mu)$.
+
+> [!theorem]
+> If there is a polynomial-time forger, who makes at most $s$ queries to the signing oracle and $h$ queries to the random oracle $H$, who breaks the signature above with probability $\delta$, then there is a polynomial-time algorithm who can solve the $\ell_2\text{-SIS}_{q, n, m, \beta}$ problem for $\beta = (2 \eta \sigma + 2 dk) \sqrt{m} = \tilde{O}(dn)$ with probability $\approx \frac{\delta^2}{2(h + s)}$. Moreover, the signing produces a signature with probability $\approx 1/M$ and the verifying algorithm accepts a signature produced by an honest signer with probability at least $1 - 2^{-m}$.
+
+### Basic Lamport Signatures
+
+> [!algorithm] One-bit Lamport Signatures
+> ### Building Block
+> - One-way function $f$ defined over $(\mathcal X, \mathcal Y)$.
+> 
+> ---
+> ### Algorithms
+> We denote the system $\mathcal S_{1bit} = (G, S, V)$
+> - $(pk = (f(x_0), f(x_1)) = (y_0, y_1), sk = (x_0, x_1)) \leftarrow G()$, with $x_0$ and $x_1$ are two random values.
+> - $x_m \leftarrow S(sk, m \in \{0, 1\})$
+> - $V(pk, m, \sigma)$: Accept if $f(\sigma) = y_m$.
+
+> [!theorem]
+> Let $f$ be a one-way function over $(\mathcal X, \mathcal Y)$. Then $\mathcal S_{1bit}$ is a secure one-time signature for message in $\{0, 1\}$.
+
+> [!remark]
+> $\text{SIGadv}[\mathcal A, \mathcal S_{1bit}] \leq 2 \cdot \text{OWadv}[\mathcal B, f]$.
+
+> [!algorithm] Basic Lamport Signatures
+> ### Building Block
+> - One-way function $f$ defined over $(\mathcal X, \mathcal Y)$.
+> 
+> ---
+> ### Algorithms
+> We denote the system $\mathcal S_L = (G, S, V)$
+> - $(pk \in \mathcal Y^{2v}, sk \in \mathcal X^{2v}) \leftarrow G()$:
+> 	1. Choose $2v$ random values: $\begin{pmatrix}x_{1, 0}, & \dots, & x_{v, 0} \\ x_{1, 1}, & \dots, & x_{v, 1}\end{pmatrix} \xleftarrow{R} \mathcal X^{2v}$
+> 	2. For $i = 1, \dots, v$ and $j = 0, 1$ do: $y_{i, j} \leftarrow f(x_{i, j})$
+> 	3. Output: $sk = \begin{pmatrix}x_{1, 0}, & \dots, & x_{v, 0} \\ x_{1, 1}, & \dots, & x_{v, 1}\end{pmatrix} \in \mathcal X^{2v}$, and $pk = \begin{pmatrix}y_{1, 0}, & \dots, & y_{v, 0} \\ y_{1, 1}, & \dots, & y_{v, 1}\end{pmatrix} \in \mathcal Y^{2v}$
+> - Algorithm $S(sk, m)$, where $m = m_1 \dots m_v \in \{0, 1\}^v$, outputs the signature: $$\sigma = (x_{1, m_1}, x_{2, m_2}, \dots, x_{v, m_v}) \in \mathcal Y^v$$
+> - Algorithm $V(pk, m, \sigma)$ where $m \in \{0, 1\}^v$ and $\sigma = (\sigma_1, \dots, \sigma_v) \in \mathcal X^v$ outputs $$\begin{cases}\text{accept} &\text{if } f(\sigma_i) = y_{i, m_i} \forall i = 1, \dots, v \\ \text{reject} &\text{otherwise}\end{cases}$$
+
+> [!algorithm] Randomized Lamport
+> ### Building Block
+> - $H_{etcr}$ is an enhanced TCR function defined over $(\mathcal R, \mathcal M, \{0, 1\}^v)$.
+> - Basic Lamport scheme $\mathcal S_L = (G, S, V)$.
+> 
+> ---
+> ### Algorithms
+> - $S'(sk, M)$: Given $m \in \mathcal M$ as input, do: $$r \xleftarrow{R} \mathcal R, m \leftarrow H_{etcr}, \sigma' \leftarrow S(sk, m), \text{output } \sigma = (r, \sigma').$$
+> - $V'(pk, M, (r, \sigma'))$: Given $m \in \mathcal M$ and $(r, \sigma')$ as input, do: $$m \leftarrow H_{etcr}(r, M), \text{output } V(pk, m, \sigma')$$
+ 
+### General Lamport Framework
+
+> [!algorithm] General Lamport Framework
+> ### Building Block
+> - One-way function $f$ defined over $(\mathcal X, \mathcal Y)$.
+> - [[Pseudorandom Functions#PRF Security|Secure PRF]] $F$.
+> - Function $P$
+> 
+> ---
+> ### Algorithms
+> The generalized Lamport system $\mathcal S_P = (G, S, V)$ works as follows:
+> - $(pk, sk) = G()$:
+> 	1. $k \xleftarrow{R} \mathcal K$
+> 	2. For $i = 1, \dots, n: x_i \leftarrow F(k, i) \in \mathcal X; y_i \leftarrow f(x_i) \in \mathcal Y$.
+> 	3. Output ($pk = (y_1, \dots, y_n)$, $sk = (k)$)
+> - $\sigma \leftarrow S(sk, m)$:
+> 	1. $s \leftarrow P(m) \subseteq \{1, \dots, n\}$
+> 	2. Let $s = \{s_1, \dots, s_\ell\}$
+> 	3. For $j = 1, \dots, \ell: \sigma_j \leftarrow F(k, s_j)$
+> 	4. Output $\sigma \leftarrow (\sigma_1, \dots, \sigma_\ell)$
+> - $V(pk, m, \sigma)$:
+> 	1. Let $P(m) = \{s_1, \dots, s_\ell\}$
+> 	2. Let $\sigma = \{\sigma_1, \dots, \sigma_u\}$
+> 	3. If $\ell = u$ and $f(\sigma_i) = y_{s_i}$ for all $i = 1, \dots, \ell$ then output $\text{accept}$, else $\text{reject}$.
+
+> [!theorem]
+> Suppose $f$ is a one-way hash over $(\mathcal X, \mathcal Y)$ and $F$ is a [[Pseudorandom Functions#PRF Security|secure PRF]] defined over $(\mathcal K, \{1, \dots, n\}, \mathcal X)$. Let $P$ be a containment free function from $\mathcal M$ to subsets of $\{1, \dots, n\}$. Then $\mathcal S_P$ is a secure one-time signature for messages in $\mathcal M$.
+> In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_P$ that issues at most one signature query. Then there exist an efficient adversary $\mathcal B_f$ attacking the one-wayness of $f$, and a PRF adversary $\mathcal B_F$, where $\mathcal B_f$ and $\mathcal B_F$ are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_P] \leq n \cdot \text{OWadv}[\mathcal B_f, f] + \text{PRFadv}[\mathcal B_F, F]$$
+
+### Winternitz Signatues
+
+> [!algorithm] Winternitz Scheme
+> ### Building Block
+> 
+> ---
+> ### Algorithms
+> - $(pk, sk) \leftarrow G()$
+> 	1. $k \xleftarrow{R} \mathcal S$
+> 	2. $(x_1, \dots, x_n) \leftarrow G_{prg}(k)$
+> 	3. For $i = 1, \dots, n: y_i \leftarrow f^{(d)}(x_i)$
+> 	4. Output: $pk = H(y_1, \dots, y_n), sk = (k)$.
+> - $\sigma \leftarrow S(sk, m)$
+> 	1. $(x_1, \dots, x_n) \leftarrow G_{prg}(k)$
+> 	2. $s \leftarrow P(m) \in I_d^n$
+> 	3. Let $s = (s_1, \dots, s_n)$
+> 	4. For $i = 1, \dots, n$: $\sigma_i \leftarrow f^{(s_i)}(x_i)$
+> 	5. Output: $\sigma \leftarrow (\sigma_1, \dots, \sigma_n)$.
+> - $V(pk, m, \sigma)$
+> 	1. Let $P(m) = (s_1, \dots, s_n)$
+> 	2. Let $\sigma = (\sigma_1, \dots, \sigma_n)$
+> 	3. For $i = 1, \dots, n$: $\hat{y}_i \leftarrow f^{(d - s_i)}(\sigma_i)$
+> 	4. $\hat{y} \leftarrow (\hat{y}_1, \dots, \hat{y}_n)$
+> 	5. If $H(\hat{y}) = pk$ output $\text{accept}$, otherwise output $\text{reject}$.
+
+> [!theorem]
+> Let $f$ be a [[Trapdoor Functions#One-way on $d$ iterates|one-way function on d iterates]] defined over $(\mathcal X, \mathcal X)$. Let $G_{prg}$ be a [[Pseudorandom Generators#Secure PRG|secure PRG]] over $(\mathcal S, \mathcal X^n)$, let $H$ be [[Hash Functions#Collision Resistance|collision resistant]] over $(\mathcal X^n, \mathcal T)$, and let $P: \mathcal M \rightarrow I_n^d$ be [[Cryptographically Special Function#Domination Free Function|dominaiton free]]. Then the Winternitz scheme $\mathcal S_{win}$ is a secure one-time signature for messages in $\mathcal M$.
+> In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_{win}$ that issues at most one signature query. Then there exist efficient adversaries $\mathcal B_f, \mathcal B_G, \mathcal B_H$, where all three are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_{win}] \leq nd \cdot \text{iOWadv}[\mathcal B_f, f, d] + \text{PRGadv}[\mathcal B_G, G_{prg}] + \text{CRadv}[\mathcal B_H, H]$$
 
 ## Concrete Signature Schemes
 

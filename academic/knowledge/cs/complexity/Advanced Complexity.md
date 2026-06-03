@@ -2,7 +2,7 @@
 
 > [!definition] Oracle
 >  An **oracle** for a language $A$ is a device that is capable of reporting whether any string $w$ is a member of $A$. An **oracle Turing machine** $M^A$ is a modified Turing machine that has the additional capability of querying an oracle for $A$. Whenever $M^A$ writes a string on a special **oracle tape**, it is informed whether that string is a member of $A$ in a single computation step.
-Let $P^A$ be the class of languages decidable with a polynomial time oracle Turing machine that uses oracle $A$. Define the class $NP^A$ similarly.
+>  Let $P^A$ be the class of languages decidable with a polynomial time oracle Turing machine that uses oracle $A$. Define the class $NP^A$ similarly.
 
 ## Circuit Complexity
 

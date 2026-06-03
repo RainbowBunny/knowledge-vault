@@ -84,6 +84,13 @@ $$u = u_0 + \frac{b \cdot k}{\gcd(a, b)} \text{ and } v = v_0 - \frac{a \cdot k}
 > [!definition] Ring of Integers
 >  We write $$\mathbb Z / m \mathbb Z = \{0, 1, \dots, m - 1\}$$and call $\mathbb Z / m\mathbb Z$ the **ring of integers modulo** $m$. Whenever we perform an addition or multiplication in $\mathbb Z / m \mathbb Z$, we divide the result by $m$ and take the remainder in order to obtain an element in $\mathbb Z / m \mathbb Z$.
 
+### Modular Reduction
+
+> [!definition] Modular Reduction
+> For an even (resp. odd) positive integer $\alpha$, we define $r' = r \mod^{\pm} \alpha$ to be the unique element $r'$ in the range $-\frac{\alpha}{2} < r' \leq \frac{\alpha}{2}$ (resp. $-\frac{\alpha - 1}{2} \leq r' \leq \frac{\alpha - 1}{2}$) such that $r' \equiv r \mod \alpha$. We will sometimes refer to this as a **centered** reduction modulo $q$.
+
+### Modular Exponentiation
+
 > [!algorithm] Fast Powering Algorithm
 > **Input:** Integers $g, A, N$  
 > **Output:** $g^A \bmod N$
@@ -124,10 +131,10 @@ $$u = u_0 + \frac{b \cdot k}{\gcd(a, b)} \text{ and } v = v_0 - \frac{a \cdot k}
 >
 > ---
 >
-> 1. Initialize:
+> 4. Initialize:
 >    $$a \gets g,\qquad b \gets 1.$$
 >
-> 2. While $A > 0$, do:
+> 5. While $A > 0$, do:
 >
 >    2.1. If $A \equiv 1 \pmod 2$, set
 >    $$b \gets b \cdot a \pmod N.$$
@@ -137,7 +144,7 @@ $$u = u_0 + \frac{b \cdot k}{\gcd(a, b)} \text{ and } v = v_0 - \frac{a \cdot k}
 >    and
 >    $$A \gets \left\lfloor \frac{A}{2} \right\rfloor.$$
 >
-> 3. Return $b$.
+> 6. Return $b$.
 
 ## Euler Totient Function
 

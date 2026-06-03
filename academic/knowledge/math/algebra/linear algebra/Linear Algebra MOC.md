@@ -7,4 +7,4 @@
 - [[Operators]] — self-adjoint, normal, isometric, polar / singular value decomposition, complex spectral theorem
 - [[Trace, Determinant, and Volume]] — characteristic polynomial, trace, determinant, volume interpretation
 - [[Vector Spaces Over Finite Fields]] — vector spaces over $\mathbb F_q$
-- [[Examples]] — worked examples
+- [[academic/knowledge/math/algebra/linear algebra/Examples]] — worked examples
