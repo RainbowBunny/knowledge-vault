@@ -1,16 +1,36 @@
 # Cryptography MOC
 
-Top-level index for `academic/knowledge/cryptography/`. The folder is organized by the role each primitive plays: foundational primitives, then symmetric (secret-key) constructions, then asymmetric (public-key) constructions, then interactive protocols and the underlying hard-problem families they rely on.
+Initiative-based index for `academic/knowledge/cryptography/`. Each first-level folder is an application area (a thing you'd want to *do* with crypto), not a primitive role. Hard problems and concrete attacks have their own peer folders.
 
-## Sub-MOCs
+## Foundations & Primitives
 
-- [[Foundations MOC]] — security model, PRFs, PRGs, hash functions
-- [[Secret Key MOC]] — encryption (subfolder), block / stream ciphers, classical ciphers, MAC, AE
-- [[Public Key MOC]] — PKE, signatures, key exchange, KEMs, elliptic-curve crypto, individual cryptosystems
-- [[Protocols MOC]] — identification protocols (subfolder), ZK proofs
-- [[Attack MOC]] — attack catalog and DLP (subfolder), collision algorithms
-- [[Lattice MOC]] — LLL, LWE, SIS
-- [[Coding Theory MOC]] — error-correcting codes (under `coding theory/`)
+- [[Foundations MOC]] — security model, PRF, PRG, hash functions, cryptographic special functions
+- [[Symmetric Encryption MOC]] — block / stream / classical ciphers, encryption-security definitions and constructions
+- [[Message Authentication MOC]] — MACs, message integrity, authenticated encryption, authenticated data structures
+
+## Public-Key Initiatives
+
+- [[Public-Key Encryption MOC]] — PKE definitions, trapdoor functions, individual cryptosystems (RSA, ElGamal, …)
+- [[Digital Signatures MOC]] — DSA, Schnorr-style signatures, blind signatures, Dilithium
+- [[Key Exchange MOC]] — Diffie-Hellman, authenticated key exchange, Kyber KEM
+
+## Interactive Protocols
+
+- [[Identification MOC]] — interactive identification protocols, Σ-protocols
+- [[Zero-knowledge MOC]] — interactive / non-interactive ZK, argument of knowledge, Fiat-Shamir
+- [[Threshold MOC]] — distributed trust: oblivious transfer, threshold cryptography
+- [[MPC MOC]] — secure multi-party computation
+- [[Homomorphic Encryption MOC]] — computing on ciphertexts (stub)
+
+## Algebra-Heavy Constructions
+
+- [[Elliptic-Curve Cryptography MOC]] — ECC, hyperelliptic curve cryptography
+- [[Post-Quantum Cryptography MOC]] — lattice-based and code-based constructions (umbrella)
+
+## Assumptions & Attacks
+
+- [[Hard Problems MOC]] — discrete log family, factoring (and links to lattice/coding problems)
+- [[Cryptanalysis MOC]] — concrete attacks: CRIME, password cracking, collision algorithms
 
 ## Folder Layout
 
@@ -18,82 +38,24 @@ Top-level index for `academic/knowledge/cryptography/`. The folder is organized 
 cryptography/
 ├── Cryptography MOC.md
 ├── foundations/
-│   ├── Foundations MOC.md
-│   ├── Security Model.md
-│   ├── Pseudorandom Functions.md
-│   ├── Pseudorandom Generators.md
-│   └── Hash Functions.md
-├── secret key cryptography/
-│   ├── Secret Key MOC.md
-│   ├── Symmetric Ciphers.md
-│   ├── Vigenère cipher.md
-│   ├── Block Ciphers.md
-│   ├── Stream Ciphers.md
-│   ├── encryption/                  (NEW subfolder — split from Encryption.md)
-│   │   ├── Encryption MOC.md
-│   │   ├── Encryption.md
-│   │   ├── Computational Cipher.md
-│   │   ├── Notions of Security.md
-│   │   ├── Ideal Cipher Model and Random Oracles.md
-│   │   ├── CPA Secure Cipher Construction.md
-│   │   ├── Nonce-based CPA Secure Cipher.md
-│   │   └── Examples.md
-│   ├── Authenticated Encryption.md
-│   ├── Authenticated Data Structures.md
-│   └── Message Integrity.md
-├── public key cryptography/
-│   ├── Public Key MOC.md
-│   ├── Public Key Cryptography.md
-│   ├── Public Key Encryption.md
-│   ├── Trapdoor Functions.md
-│   ├── Key Exchange.md
-│   ├── Digital Signature.md
-│   ├── Digital Signature Algorithm.md
-│   ├── Blind Signature.md
-│   ├── Oblivious Transfer.md
-│   ├── Elliptic Curve Cryptography.md     (moved from elliptic curve/)
-│   ├── Hyperelliptic Curve Cryptography.md (moved from elliptic curve/)
-│   ├── public key encryption/             (10 cryptosystems)
-│   └── key encapsulation method/          (Diffie-Hellman, Kyber)
-├── protocols/
-│   ├── Protocols MOC.md
-│   ├── identification/                    (subfolder — 6 files + MOC)
-│   │   ├── Identification MOC.md
-│   │   ├── Identification Protocol.md
-│   │   ├── Password Protocols.md
-│   │   ├── Security of Identification.md
-│   │   ├── Schnorr Identification.md
-│   │   ├── Sigma Protocols.md
-│   │   └── ID and Signatures from Sigma.md
-│   └── zk/                                (NEW subfolder — 5 files + MOC)
-│       ├── Zero-knowledge MOC.md
-│       ├── Zero-knowledge Proof.md
-│       ├── Interactive Zero Knowledge.md
-│       ├── Non-Interactive Zero Knowledge.md
-│       ├── Argument of Knowledge.md
-│       └── Fiat-Shamir Transform.md
-├── attack/
-│   ├── Attack MOC.md
-│   ├── Attack List.md, CRIME.md, Password Cracking.md, Random Crack.md
-│   ├── Collision Algorithms.md
-│   └── dlp/                               (NEW subfolder — split from Discrete Logarithm Problem.md)
-│       ├── DLP MOC.md
-│       ├── Discrete Logarithm Problem.md
-│       ├── Baby-Step Giant-Step.md
-│       ├── Pohlig-Hellman.md
-│       ├── Index Calculus.md
-│       ├── DLP Collision Algorithm.md
-│       ├── Elliptic Curve DLP.md
-│       └── Hyperelliptic Curve DLP.md
-├── lattice/
-│   ├── Lattice MOC.md
-│   └── LLL, LWE, SIS
-└── coding theory/
-    ├── Coding Theory MOC.md
-    ├── Coding Theory.md
-    ├── Code Distance.md
-    ├── Linear Code.md
-    ├── Coding Theory Bounds.md
-    ├── Subfield Codes.md
-    └── Cyclic Codes.md
+├── symmetric encryption/
+│   ├── classical/
+│   └── encryption/
+├── message authentication/
+├── public-key encryption/
+│   └── schemes/
+├── digital signatures/
+├── key exchange/
+├── identification protocols/
+├── zero-knowledge/
+├── threshold cryptography/
+├── secure computation/
+├── homomorphic encryption/
+├── elliptic-curve cryptography/
+├── post-quantum cryptography/
+│   ├── lattice-based/
+│   └── code-based/
+├── hard problems/
+│   └── dlp/
+└── cryptanalysis/
 ```
