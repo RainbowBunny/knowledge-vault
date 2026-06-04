@@ -1,5 +1,5 @@
 /* ================================
-   Base Math Callout Wrapper
+   Base Math / Crypto Callout Wrapper
    ================================ */
 
 .callout[data-callout="theorem"],
@@ -14,7 +14,12 @@
 .callout[data-callout="question"],
 .callout[data-callout="remark"],
 .callout[data-callout="axiom"],
-.callout[data-callout="proof"] {
+.callout[data-callout="proof"],
+.callout[data-callout="security"],
+.callout[data-callout="construction"],
+.callout[data-callout="scheme"],
+.callout[data-callout="attack"],
+.callout[data-callout="intuition"] {
   border-left-width: 4px;
   border-radius: 6px;
   padding: 0.8em 1em;
@@ -23,7 +28,7 @@
 }
 
 /* ================================
-   Titles only
+   Titles
    ================================ */
 
 .callout[data-callout="theorem"] .callout-title,
@@ -39,7 +44,12 @@
 .callout[data-callout="example"] .callout-title,
 .callout[data-callout="algorithm"] .callout-title,
 .callout[data-callout="question"] .callout-title,
-.callout[data-callout="remark"] .callout-title {
+.callout[data-callout="remark"] .callout-title,
+.callout[data-callout="security"] .callout-title,
+.callout[data-callout="construction"] .callout-title,
+.callout[data-callout="scheme"] .callout-title,
+.callout[data-callout="attack"] .callout-title,
+.callout[data-callout="intuition"] .callout-title {
   font-weight: bold;
 }
 
@@ -55,11 +65,17 @@
 
 
 /* ================================
-   Hide callout icons
+   Hide callout icons (everywhere except question/remark/intuition)
    ================================ */
 
 .callout[data-callout] .callout-icon {
   display: none;
+}
+
+.callout[data-callout="question"] .callout-icon,
+.callout[data-callout="remark"] .callout-icon,
+.callout[data-callout="intuition"] .callout-icon {
+  display: inline-flex;
 }
 
 
@@ -67,19 +83,27 @@
    Border colors
    ================================ */
 
-.callout[data-callout="theorem"]     { border-color: #6a5acd; }
-.callout[data-callout="lemma"]       { border-color: #4682b4; }
-.callout[data-callout="corollary"]   { border-color: #20b2aa; }
-.callout[data-callout="conjecture"]  { border-color: #123456 }
-.callout[data-callout="definition"]  { border-color: #2e8b57; }
-.callout[data-callout="example"]     { border-color: #cd853f; }
-.callout[data-callout="algorithm"]   { border-color: #b22222; }
-.callout[data-callout="proof"]       { border-color: #555;    }
-.callout[data-callout="proposition"] { border-color: #8a2be2; }
-.callout[data-callout="question"]    { border-color: #d97706; }
-.callout[data-callout="principle"]   { border-color: #444;    }
-.callout[data-callout="remark"]      { border-color: #888;    }
-.callout[data-callout="axiom"]       { border-color: #222;    }
+.callout[data-callout="theorem"]      { border-color: #6a5acd; }
+.callout[data-callout="lemma"]        { border-color: #4682b4; }
+.callout[data-callout="corollary"]    { border-color: #20b2aa; }
+.callout[data-callout="conjecture"]   { border-color: #123456; }
+.callout[data-callout="definition"]   { border-color: #2e8b57; }
+.callout[data-callout="example"]      { border-color: #cd853f; }
+.callout[data-callout="algorithm"]    { border-color: #b22222; }
+.callout[data-callout="proof"]        { border-color: #555;    }
+.callout[data-callout="proposition"]  { border-color: #8a2be2; }
+.callout[data-callout="question"]     { border-color: #d97706; }
+.callout[data-callout="principle"]    { border-color: #444;    }
+.callout[data-callout="remark"]       { border-color: #888;    }
+.callout[data-callout="axiom"]        { border-color: #222;    }
+
+/* New crypto-flavoured callouts */
+.callout[data-callout="security"]     { border-color: #c2185b; }   /* magenta — security claims */
+.callout[data-callout="construction"] { border-color: #00838f; }   /* teal — "build X from Y" */
+.callout[data-callout="scheme"]       { border-color: #2e7d32; }   /* deep green — full scheme spec */
+.callout[data-callout="attack"]       { border-color: #d32f2f; }   /* red — attacks / breaks */
+.callout[data-callout="intuition"]    { border-color: #f9a825; }   /* amber — informal picture */
+
 
 /* ================================
    QED marker (Proof only)
@@ -90,11 +114,4 @@
   float: right;
   margin-top: 0.5em;
   font-weight: bold;
-}
-
-/* Hide icons except question and remark */
-
-.callout[data-callout]:not([data-callout="question"]):not([data-callout="remark"])
-  .callout-icon {
-  display: none;
 }

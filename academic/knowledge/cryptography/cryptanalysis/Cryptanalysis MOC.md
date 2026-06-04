@@ -1,6 +1,6 @@
 # Cryptanalysis MOC
 
-Concrete attacks — practical breaks against deployed protocols, password schemes, and RNGs. Attacks on the underlying *hard problems* (e.g. DLP solvers) live under [[Hard Problems MOC]] instead.
+Concrete attacks — practical breaks against deployed protocols, password schemes, and RNGs. Attacks on the underlying *hard problems* (e.g. DLP solvers) live under [[Assumptions MOC]] instead.
 
 - [[Attack List]] — running index of attacks
 - [[CRIME]] — compression-side-channel attack on TLS
@@ -10,4 +10,4 @@ Concrete attacks — practical breaks against deployed protocols, password schem
 
 ## Related
 
-- [[Hard Problems MOC]] — algorithms attacking DLP / factoring / lattice / coding problems.
+- [[Assumptions MOC]] — algorithms attacking DLP / factoring / lattice / coding problems.

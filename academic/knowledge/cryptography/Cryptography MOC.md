@@ -12,7 +12,7 @@ Initiative-based index for `academic/knowledge/cryptography/`. Each first-level 
 
 - [[Public-Key Encryption MOC]] — PKE definitions, trapdoor functions, individual cryptosystems (RSA, ElGamal, …)
 - [[Digital Signatures MOC]] — DSA, Schnorr-style signatures, blind signatures, Dilithium
-- [[Key Exchange MOC]] — Diffie-Hellman, authenticated key exchange, Kyber KEM
+- [[Key Establishment MOC]] — interactive key exchange (DH, AKE) and KEMs (Kyber)
 
 ## Interactive Protocols
 
@@ -29,7 +29,7 @@ Initiative-based index for `academic/knowledge/cryptography/`. Each first-level 
 
 ## Assumptions & Attacks
 
-- [[Hard Problems MOC]] — discrete log family, factoring (and links to lattice/coding problems)
+- [[Assumptions MOC]] — security assumptions: hardness assumptions (DLP, LWE/SIS, …) and idealized models (ROM, ICM, GGM)
 - [[Cryptanalysis MOC]] — concrete attacks: CRIME, password cracking, collision algorithms
 
 ## Folder Layout
@@ -45,7 +45,9 @@ cryptography/
 ├── public-key encryption/
 │   └── schemes/
 ├── digital signatures/
-├── key exchange/
+├── key establishment/
+│   ├── key exchange/
+│   └── kem/
 ├── identification protocols/
 ├── zero-knowledge/
 ├── threshold cryptography/
@@ -55,7 +57,9 @@ cryptography/
 ├── post-quantum cryptography/
 │   ├── lattice-based/
 │   └── code-based/
-├── hard problems/
-│   └── dlp/
+├── assumptions/
+│   ├── dlp/
+│   ├── lattice-based/
+│   └── idealized models/
 └── cryptanalysis/
 ```

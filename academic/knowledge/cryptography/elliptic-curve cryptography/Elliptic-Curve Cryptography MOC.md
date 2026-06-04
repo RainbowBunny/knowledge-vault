@@ -7,6 +7,6 @@ Algebraic-curve constructions used as group choices for DLP-based crypto and as 
 
 ## Related
 
-- [[Hard Problems MOC]] — [[Elliptic Curve DLP]] and [[Hyperelliptic Curve DLP]]
-- [[Key Exchange MOC]] — ECDH lives there
+- [[Assumptions MOC]] — [[Elliptic Curve DLP]] and [[Hyperelliptic Curve DLP]]
+- [[Key Establishment MOC]] — ECDH lives there
 - [[Digital Signatures MOC]] — ECDSA lives there

@@ -6,8 +6,7 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 
 - [[Lattice]] — definitions, bases, trapdoors
 - [[LLL Lattice Reduction Algorithm]]
-- [[Learning With Error Problem]] — LWE / Ring-LWE
-- [[Short Integer Solution Problem]] — SIS
+- For the underlying hardness assumptions ([[Learning With Error Problem|LWE]], [[Short Integer Solution Problem|SIS]]), see [[Assumptions MOC|assumptions]].
 
 ## Code-Based (`code-based/`)
 
@@ -20,7 +19,7 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 
 ## Concrete PQ Schemes Living Elsewhere
 
-- [[Kyber KEM]] (under [[Key Exchange MOC|key exchange]]) — lattice KEM
+- [[Kyber KEM]] (under [[Key Establishment MOC|key establishment]]) — lattice KEM
 - [[Dilithium]] (under [[Digital Signatures MOC|digital signatures]]) — lattice signature
 - [[NTRU Public Key Cryptosystem]] / [[GGH Public Key Cryptosystem]] / [[Lindner-Peikert Public Key Encryption]] (under [[Public-Key Encryption MOC|PKE schemes]])
 
@@ -32,4 +31,4 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 
 ## Related
 
-- [[Hard Problems MOC]] — these problems are also assumptions; the algorithmic side lives there.
+- [[Assumptions MOC]] — the hardness assumptions (LWE / SIS / syndrome decoding) live there; this folder is for the math and the schemes built on top.

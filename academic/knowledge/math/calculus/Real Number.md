@@ -85,7 +85,7 @@
 > [!theorem]
 > The set $\textbf{P}$ of positive integers $1, 2, 3, \dots$ is unbounded above.
 
-> [!Theorem]
+> [!theorem]
 > For every real number $x$ there exists a positive integer $n$ such that $n > x$.
 
 > [!theorem] Archimedean Property

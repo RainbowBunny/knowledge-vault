@@ -24,4 +24,4 @@ Asymmetric confidentiality — encrypt with a public key, decrypt with a private
 ## Related
 
 - For signatures, see [[Digital Signatures MOC]].
-- For key establishment / KEM, see [[Key Exchange MOC]].
+- For key establishment / KEM, see [[Key Establishment MOC]].

@@ -24,7 +24,7 @@ For complement, invert the type of all states.
 
 ## Nondeterministic Finite Automaton
 
-> [!Definition] Nondeterministic Finite Automaton
+> [!definition] Nondeterministic Finite Automaton
  >A Nondeterministic Finite Automaton is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
 > 1. $Q$ is a finite set called the **states**,
 > 2. $\Sigma$ is the input **alphabet**,
@@ -45,7 +45,7 @@ For complement, invert the type of all states.
 
 ## Generalized Nondeterministic Finite Automaton 
 
-> [!Definition] Generalized Nondeterministic Finite Automaton
+> [!definition] Generalized Nondeterministic Finite Automaton
 > A Generalized Nondeterministic Finite Automaton is a 5-tuple $(Q, \Sigma, \delta, q_{start}, q_{accept})$, where:
 > 1. $Q$ is a finite set called the **states**,
 > 2. $\Sigma$ is the input **alphabet**,
