@@ -1,19 +1,33 @@
 # Symmetric Encryption MOC
 
-Confidentiality with a shared key. Definitions and constructions live in `encryption/`; primitive families (block, stream) and classical / historical ciphers are at the top level.
+Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encryption MOC]]: one canonical primitive note, primitive families, classical & modern schemes.
+
+## Primitive
+
+- [[Symmetric Key Encryption]] — the canonical note: syntax (Shannon / computational), correctness, γ-uniformity, all security notions (perfect security, semantic security, message recovery, parity prediction, multi-key SS, indistinguishability, CPA, nonce-CPA, ciphertext integrity, CCA), and CPA / nonce-CPA constructions.
 
 ## Cipher Families
 
-- [[Symmetric Ciphers]] — abstract definition, perfect secrecy
 - [[Block Ciphers]] — DES, AES, modes of operation
-- [[Stream Ciphers]] — synchronous / self-synchronizing stream ciphers
-- [[Vigenère cipher]] (classical)
-- [[Other Encoding]] — Enigma, Rot47, classical scratch
+- [[Stream Ciphers]] — synchronous and self-synchronizing stream ciphers
 
-## Encryption Theory (`encryption/`)
+## Classical Schemes (`classical/`)
 
-- [[Encryption MOC]]
+- [[One-time Pad]] — perfect-security exemplar
+- [[Substitution Cipher]]
+- [[Multiplicative Encryption]]
+- [[Affine Cipher]]
+- [[Hill Cipher]]
+- [[Vigenère cipher]]
+- [[Other Encoding]] — Enigma, Rot47
+
+## Modern Schemes (`schemes/`)
+
+*Empty for now. Future: AES, ChaCha20, DES / 3DES, Salsa20.*
 
 ## Related
 
-- For integrity / authenticity, see [[Message Authentication MOC]].
+- [[Message Authentication MOC]] — MACs and authenticated encryption built on top of symmetric ciphers
+- [[Public-Key Encryption MOC]] — the asymmetric counterpart, same canonical-primitive-file pattern
+- [[Assumptions MOC]] → idealized models — ideal cipher / random oracle models used in CPA security proofs
+- [[Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem

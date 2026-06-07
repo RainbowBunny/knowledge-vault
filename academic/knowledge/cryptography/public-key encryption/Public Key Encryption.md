@@ -3,15 +3,13 @@
 | ------------------------------------ | --------------------------------------------------- | --------------- |
 | Attack Game 11.1 (Semantic Security) | [[#Semantic Security\|semantic security]]           | $\text{SSadv}$  |
 | Attack Game 11.2 (CPA Security)      | [[#Chosen Plaintext Attack Security\|CPA security]] | $\text{CPAadv}$ |
-## Basic Definition
+## Syntax
 
-> [!definition] Public-key Encryption Scheme
-> A **public-key encryption scheme** $\mathcal E = (G, E, D)$ is a triple of efficient algorithms: a **key generation algorithm** $G$, an **encryption algorithm** $E$, a **decryption algorithm** $D$.
-> - $G$ is a probabilistic algorithm that is invoked as $(pk, sk) \xleftarrow{R} G()$, where $pk$ is called a **public key** and $sk$ is called a **secret key**.
-> - $E$ is a probabilistic algorithm that is invoked as $c \xleftarrow{R} E(pk, m)$, where $pk$ is a public key (as output by $G$), $m$ is a message, and $c$ is a ciphertext.
-> - $D$ is a deterministic algorithm that is invoked as $m \leftarrow D(sk, c)$, where $sk$ is a secret key (as output by $G$), $c$ is a ciphertext, and $m$ is either a message, or a special `reject` value (distinct from all messages).
-> - As usual, we require that decryption undoes encryption; specifically, for all possible outputs $(pk, sk)$ of $G$, and all messages $m$, we have $$P[D(sk, E(pk, m)) = m] = 1$$
-> - Messages are assumed to lie in some finite **message space** $\mathcal M$, and ciphertexts in some finite **ciphertext space** $\mathcal C$. We say that $\mathcal E = (G, E, D)$ is defined over $(\mathcal M, \mathcal C)$.
+> [!definition] Public Key Encryption Scheme
+> A **public-key encryption scheme** $\text{PKE} = (\text{KeyGen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
+> - $(pk, sk) \leftarrow \text{KeyGen}()$: The key-generation algorithm $\text{KeyGen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
+> - $c \leftarrow \text{Enc}(pk, m)$ (Deterministic) or $c \leftarrow \text{Enc}(pk, m; r)$ (Probabilistic): The encryption algorithm takes a public key $pk$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
+> - $m \leftarrow \text{Dec}(sk, c)$: The deterministic decryption algorithm takes a secret key $sk$ and a ciphertext $c$, and outputs either a message $m \in \mathcal M$ or a special symbol $\perp$ to indicate **rejection**. 
 
 > [!algorithm] Public-key Encryption Scheme (Mathematical Detail)
 > A **public-key encryption scheme** consists of three algorithms, $G$, $E$, and $D$, along with two families of spaces with system parameterization $P$: $$M = \{\mathcal M_{\lambda, \Lambda}\}_{\lambda, \Lambda} \quad \text{and} \quad C = \{\mathcal C_{\lambda, \Lambda}\}_{\lambda, \Lambda},$$
@@ -23,41 +21,105 @@
 > 5. Algorithm $D$ is an efficiently deterministic algorithm that on input $\lambda, \Lambda, sk, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda))$ for some $pk$, and $c \in \mathcal C_{\lambda, \Lambda}$, outputs either an element of $\mathcal M_{\lambda, \Lambda}$, or a special symbol $\text{reject} \notin \mathcal M_{\lambda, \Lambda}$.
 > 6. For all $\lambda, \Lambda, pk, sk, m, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda)), k \in \mathcal K_{\lambda, \Lambda}, m \in \mathcal M_{\lambda, \Lambda}$ and $c \in \text{Supp}(E(\lambda, \Lambda; pk, m))$, we have $D(\lambda, \Lambda; sk, c) = m$.
 
-### Semantic Security
+## Property
 
-> [!algorithm] Semantic Security
-> For a given public-key encryption scheme $\mathcal E = (G, E, D)$, defined over $(\mathcal M, \mathcal C)$, for a given adversary $\mathcal A$, we define two experiments.
-> **Experiment $b (b = 0, 1)$**:
-> - The challenger computes $(pk, sk) \xleftarrow{R} G()$, and sends $pk$ to the adversary.
-> - The adversary computes $m_0, m_1 \in \mathcal M$, of the same length, and sends them to the challenger.
-> - The challenger computes $c \xleftarrow{R} E(pk, m_b)$, and sends $c$ to the adversary.
-> - The adversary outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> If $W_b$ is the event that $\mathcal A$ outputs 1 in Experiment $b$, we define $\mathcal A$'s **advantage** with respect to $\mathcal E$ as $$\text{SSadv}[\mathcal A, \mathcal E] = |P[W_0] - P[W_1]|.$$
+### Injectivity
 
-> [!definition] Semantic Security
-> A public-key encryption scheme $\mathcal E$ is **semantically secure** if for all efficient adversaries $\mathcal A$, the value $\text{SSadv}[\mathcal A, \mathcal E]$ is negligible.
+> [!definition] PKE Injectivity
+> A public-key encryption scheme $\text{PKE}$ is *injective* if for all key pairs $(pk, sk) \leftarrow \text{Gen}()$, it holds that $\text{Enc}(pk, m; r) = \text{Enc}(pk, m'; r') \Rightarrow (m, r) = (m', r')$ for all $m, m' \in \mathcal M$ and $r, r' \in \mathcal R$.
 
-### Chosen Plaintext Attack Security
+### Correctness
 
-> [!algorithm] CPA Security
-> For a given public-key encryption scheme $\mathcal E = (G, E, D)$, defined over $(\mathcal M, \mathcal C)$, and for a given adversary $\mathcal A$, we define two experiments.
-> **Experiment $b (b = 0, 1)$**:
-> - The challenger computes $(pk, sk) \xleftarrow{R} G()$, and sends $pk$ to the adversary.
-> - The adversary submits a sequence of queries to the challenger.
-> For $i = 1, 2, \dots$, the $i$-th query is a pair of messages, $m_{i0}, m_{i1} \in \mathcal M$, of the same length.
-> The challenger computes $c_i \xleftarrow{R} E(pk, m_{ib})$, and sends $c_i$ to the adversary.
-> - The adversary outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> If $W_b$ is the event that $\mathcal A$ outputs 1 in Experiment $b$, then we define $\mathcal A$'s **advantage** with respect to $\mathcal E$ as $$\text{CPAadv}[\mathcal A, \mathcal E] = |P[W_0] - P[W_1]|.$$
+> [!definition] PKE $(1-\delta)$-Correctness
+> A public-key encryption scheme $\text{PKE}$ is $(1-\delta)$-correct if $$E[\max_{m \in \mathcal M} \Pr[\text{Dec}(sk, \text{Enc}(pk, m)) = m]] \geq 1 - \delta$$
 
-> [!definition] CPA Security
-> A public-key encryption scheme $\mathcal E$ is called **semantically secure against chosen plaintext attack**, or simply **CPA secure**, if for all efficient adversaries $\mathcal A$, the value $\text{CPAadv}[\mathcal A, \mathcal E]$ is negligible.
+> [!remark]
+> For some literature, this definition comes from the decryption failure rate and thus we have the following correctness definition. So in writing please use the above definition instead.
 
- > [!theorem]
+### Min-Entropy
+
+> [!definition] Min-Entropy
+> Given $(pk, sk) \in \mathcal K, m \in \mathcal M$, we define the **min-entropy** of $\text{Enc}(pk, m)$ by $$\gamma(pk, m) = -\log \max_{c \in \mathcal C} \Pr[c = \text{Enc}(pk, m; r) \; | \; r \in \mathcal R].$$
+> We say that a $\text{PKE}$ is $\gamma$**-spread** if: $$\forall (pk, sk) \in \mathcal K, m \in \mathcal M, c \in \mathcal C: \gamma(pk, m) \geq \gamma$$
+
+> [!corollary]
+> For every ciphertext $c \in \mathcal C$, we have $$\Pr[c = \text{Enc}(pk, m; r) \; | \; r \leftarrow \mathcal R] \leq 2^{-\gamma}$$
+
+### Rigidity
+
+> [!definition] Rigidity
+> We say that a $\text{PKE}$ is **rigid** if for all key pairs $(pk, sk) \leftarrow Gen()$, and all ciphertexts $c$, it holds that either $\text{Dec}(sk, c) = \perp$ or $\text{Enc}(pk, \text{Dec}(sk, c)) = c$.
+
+## Security
+
+### Indistinguishability under Chosen-Ciphertext Attacks
+
+> [!definition] IND-CCA Advantage
+> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the IND-CCA advantage:
+> $$\text{Adv}_\text{PKE}^{\text{cca}}(\mathcal A) = 
+> \left|\; \Pr\!\left[ b = b' \;\middle |\; 
+> \begin{array}{l}
+> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}(pk); \\
+> b \leftarrow \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
+> b' \leftarrow \mathcal A_\text{guess}(s, c^*)
+> \end{array} \right] 
+> \;- \frac{1}{2}
+> \right|.$$
+> Where:
+> 1. Both phases adversary $\mathcal A_\text{find}$ and $\mathcal A_\text{guess}$ have access to the decryption oracle $\text{Dec}(\cdot) = \text{Dec}(sk, \cdot)$.
+> 2. The first phase adversary $\mathcal A_\text{find}$'s output should have $|m_0| = |m_1|$.
+> 3. The second phase adversary $\mathcal A_\text{guess}$ is not allowed to query $\text{Dec}(\cdot)$ with the challenge ciphertext $c^*$.
+
+> [!definition] $(t,\varepsilon)$-IND-CCA security of a PKE 
+> A PKE scheme is **$(t, \varepsilon)$-IND-CCA secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{cca}}(\mathcal A) \leq \varepsilon$$
+
+### Indistinguishability under Chosen-Plaintext Attacks
+
+> [!definition] IND-CPA Advantage
+> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the IND-CPA advantage:
+> $$\text{Adv}_\text{PKE}^{\text{cpa}}(\mathcal A) = 
+> \left|\; \Pr\!\left[ b = b' \;\middle | \; 
+> \begin{array}{l}
+> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}(pk); \\
+> b \leftarrow \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
+> b' \leftarrow \mathcal A_\text{guess}(s, c^*)
+> \end{array} \right] 
+> \;- \frac{1}{2}
+> \right|.$$
+> Where:
+> 1. The first phase adversary $\mathcal A_\text{find}$'s output should have $|m_0| = |m_1|$.
+> 2. The second phase adversary $\mathcal A_\text{guess}$ is not allowed to query $\text{Dec}(\cdot)$ with the challenge ciphertext $c^*$.
+
+> [!definition] $(t,\varepsilon)$-IND-CPA security of a PKE 
+> A PKE scheme is **$(t, \varepsilon)$-IND-CPA secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{cpa}}(\mathcal A) \leq \varepsilon$$
+
+ > [!security]
  > If a public-key encryption scheme $\mathcal E$ is semantically secure, then it is also CPA secure.
  > 
  > In particular, for every [[#Chosen Plaintext Attack Security|CPA security]] adversary $\mathcal A$ with respect to $\mathcal E$, and which makes at most $Q$ queries to its challenger, there exists an [[#Semantic Security|semantic security]] adversary $\mathcal B$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{CPAadv}[\mathcal A, \mathcal E] = Q \cdot \text{SSadv}[\mathcal B, \mathcal E].$$
+
+### One-way Encryption
+
+> [!definition] OWE Advantage
+> For any adversary $\mathcal A$, we define the OWE advantage:
+> $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) = 
+> \; \Pr\!\left[ \mathcal A(pk, c) = \text{Dec}(sk, c) \; \middle | \; 
+> \begin{array}{l}
+> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> m \leftarrow \mathcal M; \\
+> c \leftarrow \text{Enc}(pk, m)
+> \end{array} \right]$$
+
+> [!definition] $(t,\varepsilon)$-OWE security of a PKE 
+> A PKE scheme is **$(t, \varepsilon)$-OWE secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) \leq \varepsilon$$
+
+### One-Wayness under Chosen Plaintext Attacks
+
+> [!definition] OWE-CPA Advantage
+> For any adversary $\mathcal A$, we define the OWE-CPA advantage:
+> $$\text{Adv}_\text{PKE}^{\text{owe-cpa}}$$
 
 ## Construction
 

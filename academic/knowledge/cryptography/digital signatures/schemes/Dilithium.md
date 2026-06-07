@@ -1,8 +1,11 @@
 
 Link: https://eprint.iacr.org/2017/633
+## Scheme
 
-
-> [!algorithm] Dilithium Signature
+> [!scheme] Dilithium Signature
+> Reference Name: $\text{Dilithium}$
+> 
+> ---
 > ### Parameters
 > - $q$: Modulus.
 > - $d$: Rounding precision.
@@ -57,7 +60,7 @@ Link: https://eprint.iacr.org/2017/633
 > 	5. $(t_1, t_0) = \text{Power2Round}_q(t, d)$
 > 	6. $tr \in \{0, 1\}^{384} = \text{CRH}(\rho || t_1)$
 > 	7. Return $(pk = (\rho, t_1), sk = (\rho, K, tr, s_1, s_2, t_0))$
-> - $\sigma \leftarrow \text{Sign}(sk, M)$:
+> - $\sigma \leftarrow \text{Sign}(sk = (\rho, K, tr, s_1, s_2, t_0), M)$:
 > 	1. $A \in R_q^{k \times \ell} = \text{ExpandA}(\rho)$
 > 	2. $\mu \in \{0, 1\}^{384} = \text{CRH}(tr || M)$
 > 	3. $\kappa = 0, (z, h) = \perp$
@@ -75,7 +78,7 @@ Link: https://eprint.iacr.org/2017/633
 > 				2. If $||c t_0||_\infty \geq \gamma_2$ or the number of 1's in $h$ is greater than $\omega$, then $(z, h) = \perp$.
 > 		8. $\kappa = \kappa + 1$
 > 	5. Return $\sigma = (z, h, c)$.
-> - $\text{Verify}(pk, M, \sigma = (z, h, c))$:
+> - $\text{Verify}(pk = (\rho, t_1), M, \sigma = (z, h, c))$:
 > 	1. $A \in R_q^{k \times \ell} = \text{ExpandA}(\rho)$
 > 	2. $\mu \in \{0, 1\}^{384} = \text{CRH}(\text{CRH}(\rho || t_1) || M)$
 > 	3. $w_1' = \text{UseHint}_q(h, Az - c t_1 \cdot 2^d, 2 \gamma_2)$

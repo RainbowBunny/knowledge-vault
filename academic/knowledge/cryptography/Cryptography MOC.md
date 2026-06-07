@@ -40,7 +40,7 @@ cryptography/
 ├── foundations/
 ├── symmetric encryption/
 │   ├── classical/
-│   └── encryption/
+│   └── schemes/
 ├── message authentication/
 ├── public-key encryption/
 │   └── schemes/
