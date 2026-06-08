@@ -55,7 +55,8 @@ Link: https://eprint.iacr.org/2017/634.pdf
 > 1. Choose uniformly-random $y \leftarrow R^k$.
 > 2. Return $(y-\text{Decompress}_q(\text{Compress}_q(y, d), d)) \mod^{\pm} q$.
 > 
-> Denote $$\delta = \Pr[||e^T r + e_2 + c_v - s^T e_1 + c_t^T r - s^T c_u||_\infty \geq \lceil q / 4 \rfloor]$$
+> Denote 
+> $$\delta = \Pr[||e^T r + e_2 + c_v - s^T e_1 + c_t^T r - s^T c_u||_\infty \geq \lceil q / 4 \rfloor]$$
 > Then, $\text{Kyber.PKE}$ is $(1 - \delta)$-correct.
 
 ## Security
@@ -63,5 +64,6 @@ Link: https://eprint.iacr.org/2017/634.pdf
 ### Indistinguishability under Chosen-Plaintext Attacks
 
 > [!security]
-> For any [[Public Key Encryption#Indistinguishability under Chosen-Plaintext Attacks|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Assumption|MLWE adversary]] $\mathcal B$ such that: $$\text{Adv}_{Kyber.PKE}^{\text{cpa}}(\mathcal A) \leq 2 \cdot \text{Adv}_{k + 1, k, \eta}^{\text{mlwe}}(\mathcal B).$$
+> For any [[Public Key Encryption#Indistinguishability under Chosen-Plaintext Attacks|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Assumption|MLWE adversary]] $\mathcal B$ such that: 
+> $$\text{Adv}_{Kyber.PKE}^{\text{cpa}}(\mathcal A) \leq 2 \cdot \text{Adv}_{k + 1, k, \eta}^{\text{mlwe}}(\mathcal B).$$
 
