@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 
 | Term                                 | Reference                                           |                 |
 | ------------------------------------ | --------------------------------------------------- | --------------- |
@@ -52,53 +55,87 @@
 
 ## Security
 
-### Indistinguishability under Chosen-Ciphertext Attacks
+### Indistinguishability
 
-> [!definition] IND-CCA Advantage
-> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the IND-CCA advantage:
-> $$\text{Adv}_\text{PKE}^{\text{cca}}(\mathcal A) = 
+> [!definition] Indistinguishability Advantage
+> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the indistinguiability advantage:
+> $$\text{Adv}_\text{PKE}^{\text{ind-atk}}(\mathcal A) = 
 > \left|\; \Pr\!\left[ b = b' \;\middle |\; 
 > \begin{array}{l}
 > (pk, sk) \leftarrow \text{KeyGen}(); \\
-> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}(pk); \\
+> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
 > b \leftarrow \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
-> b' \leftarrow \mathcal A_\text{guess}(s, c^*)
+> b' \leftarrow \mathcal A_\text{guess}^{\mathcal O_\text{guess}}(s, c^*)
 > \end{array} \right] 
 > \;- \frac{1}{2}
 > \right|.$$
 > Where:
-> 1. Both phases adversary $\mathcal A_\text{find}$ and $\mathcal A_\text{guess}$ have access to the decryption oracle $\text{Dec}(\cdot) = \text{Dec}(sk, \cdot)$.
-> 2. The first phase adversary $\mathcal A_\text{find}$'s output should have $|m_0| = |m_1|$.
-> 3. The second phase adversary $\mathcal A_\text{guess}$ is not allowed to query $\text{Dec}(\cdot)$ with the challenge ciphertext $c^*$.
-
-> [!definition] $(t,\varepsilon)$-IND-CCA security of a PKE 
-> A PKE scheme is **$(t, \varepsilon)$-IND-CCA secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{cca}}(\mathcal A) \leq \varepsilon$$
-
-### Indistinguishability under Chosen-Plaintext Attacks
-
-> [!definition] IND-CPA Advantage
-> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the IND-CPA advantage:
-> $$\text{Adv}_\text{PKE}^{\text{cpa}}(\mathcal A) = 
-> \left|\; \Pr\!\left[ b = b' \;\middle | \; 
-> \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
-> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}(pk); \\
-> b \leftarrow \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
-> b' \leftarrow \mathcal A_\text{guess}(s, c^*)
-> \end{array} \right] 
-> \;- \frac{1}{2}
-> \right|.$$
-> Where:
+> 1. Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \varepsilon$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
+> 2. Lunch Time Attack: $\text{atk} = \text{lta}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
+> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(sk, \cdot)$
+> 
+> Also:
 > 1. The first phase adversary $\mathcal A_\text{find}$'s output should have $|m_0| = |m_1|$.
-> 2. The second phase adversary $\mathcal A_\text{guess}$ is not allowed to query $\text{Dec}(\cdot)$ with the challenge ciphertext $c^*$.
+> 2. In the adaptive chosen ciphertext attack setting, the second phase adversary $\mathcal A_2$ is not allowed to query $c^*$ to the oracle.
 
-> [!definition] $(t,\varepsilon)$-IND-CPA security of a PKE 
-> A PKE scheme is **$(t, \varepsilon)$-IND-CPA secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{cpa}}(\mathcal A) \leq \varepsilon$$
+> [!definition] $(t,\varepsilon)$-IND-ATK security of a PKE 
+> A PKE scheme is **$(t, \varepsilon)$-IND-ATK secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{ind-atk}}(\mathcal A) \leq \varepsilon$$
+
+> [!remark]
+> 1. ATK here is a placeholder for the attacker.
+> 2. Lunch time attack means that only one phase (before lunch) for oracle.
 
  > [!security]
  > If a public-key encryption scheme $\mathcal E$ is semantically secure, then it is also CPA secure.
  > 
  > In particular, for every [[#Chosen Plaintext Attack Security|CPA security]] adversary $\mathcal A$ with respect to $\mathcal E$, and which makes at most $Q$ queries to its challenger, there exists an [[#Semantic Security|semantic security]] adversary $\mathcal B$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{CPAadv}[\mathcal A, \mathcal E] = Q \cdot \text{SSadv}[\mathcal B, \mathcal E].$$
+
+### Non-Malleability
+
+> [!definition] Non-Malleability Advantage
+> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{maul})$, we define the non-malleability advantage:
+> $$\text{Adv}_\text{PKE}^{\text{nm-atk}}(\mathcal A) = 
+>  
+> \left|\; \Pr\!\left[
+> \begin{array}{l}
+> c \notin (c_1, \dots, c_n) \; \\ 
+> \perp \; \notin (m_1, \dots, m_n) \\ 
+> R(m, (m_1, \dots, m_n))
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
+> m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
+> (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
+> (m_1, \dots, m_n) \leftarrow \text{Dec}(sk, (y_1, \dots, y_n)))
+> \end{array} \right] 
+> \;- 
+> \Pr\!\left[
+> \begin{array}{l}
+> c \notin (c_1, \dots, c_n) \; \\ 
+> \perp \; \notin (m_1, \dots, m_n) \\ 
+> R(\tilde m, (m_1, \dots, m_n))
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
+> m, \tilde m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
+> (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
+> (m_1, \dots, m_n) \leftarrow \text{Dec}(sk, (y_1, \dots, y_n)))
+> \end{array} \right] 
+> \right|.$$
+> Where:
+> 1. Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \varepsilon$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
+> 2. Lunch Time Attack: $\text{atk} = \text{lta}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
+> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(sk, \cdot)$
+> 
+> Also:
+> 1. $R$ is a predicate.
+
+> [!definition] $(t,\varepsilon)$-NM-ATK security of a PKE 
+> A PKE scheme is **$(t, \varepsilon)$-NM-ATK secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: $$\text{Adv}_{\text{PKE}}^{\text{nm-atk}}(\mathcal A) \leq \varepsilon$$
 
 ### One-way Encryption
 

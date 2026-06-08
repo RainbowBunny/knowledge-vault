@@ -1,3 +1,8 @@
+---
+dg-home: true
+dg-publish: true
+---
+
 # Tag System
 
 Probability: $\Pr$

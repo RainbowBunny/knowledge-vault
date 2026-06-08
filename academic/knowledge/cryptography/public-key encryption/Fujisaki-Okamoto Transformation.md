@@ -1,4 +1,6 @@
-
+---
+dg-publish: true
+---
 Link: https://courses.grainger.illinois.edu/cs598dk/fa2019/Files/fujisaki_okamoto.pdf
 ## Syntax
 
