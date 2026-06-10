@@ -1,11 +1,6 @@
 ---
 dg-publish: true
 ---
-
-| Term                                 | Reference                                           |                 |
-| ------------------------------------ | --------------------------------------------------- | --------------- |
-| Attack Game 11.1 (Semantic Security) | [[#Semantic Security\|semantic security]]           | $\text{SSadv}$  |
-| Attack Game 11.2 (CPA Security)      | [[#Chosen Plaintext Attack Security\|CPA security]] | $\text{CPAadv}$ |
 ## Syntax
 
 > [!definition] Public Key Encryption Scheme
@@ -55,21 +50,21 @@ dg-publish: true
 
 ### Rigidity
 
-> [!definition] Rigidity
+> [!definition] PKE Rigidity
 > We say that a $\text{PKE}$ is **rigid** if for all key pairs $(pk, sk) \leftarrow Gen()$, and all ciphertexts $c$, it holds that either $\text{Dec}(sk, c) = \perp$ or $\text{Enc}(pk, \text{Dec}(sk, c)) = c$.
 
 ## Security
 
 ### Indistinguishability
 
-> [!definition] Indistinguishability Advantage
+> [!definition] PKE Indistinguishability Advantage
 > For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the indistinguiability advantage:
 > $$\text{Adv}_\text{PKE}^{\text{ind-atk}}(\mathcal A) = 
 > \left|\; \Pr\!\left[ b = b' \;\middle |\; 
 > \begin{array}{l}
 > (pk, sk) \leftarrow \text{KeyGen}(); \\
 > (m_0, m_1, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
-> b \leftarrow \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
+> b \xleftarrow{\$} \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
 > b' \leftarrow \mathcal A_\text{guess}^{\mathcal O_\text{guess}}(s, c^*)
 > \end{array} \right] 
 > \;- \frac{1}{2}
@@ -99,7 +94,7 @@ dg-publish: true
 
 ### Non-Malleability
 
-> [!definition] Non-Malleability Advantage
+> [!definition] PKE Non-Malleability Advantage
 > For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{maul})$, we define the non-malleability advantage:
 > $$\text{Adv}_\text{PKE}^{\text{nm-atk}}(\mathcal A) = 
 >  
@@ -147,7 +142,7 @@ dg-publish: true
 
 ### One-way Encryption
 
-> [!definition] OWE Advantage
+> [!definition] PKE OWE Advantage
 > For any adversary $\mathcal A$, we define the OWE advantage:
 > $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) = 
 > \; \Pr\!\left[ \mathcal A(pk, c) = \text{Dec}(sk, c) \; \middle | \; 
@@ -163,7 +158,7 @@ dg-publish: true
 
 ### One-Wayness under Chosen Plaintext Attacks
 
-> [!definition] OWE-CPA Advantage
+> [!definition] PKE OWE-CPA Advantage
 > For any adversary $\mathcal A$, we define the OWE-CPA advantage:
 > $$\text{Adv}_\text{PKE}^{\text{owe-cpa}}$$
 

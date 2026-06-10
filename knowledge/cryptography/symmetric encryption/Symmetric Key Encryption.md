@@ -1,11 +1,9 @@
+---
+dg-publish: true
+---
+
 | Term                                                      | Reference                                   |                    |
 | --------------------------------------------------------- | ------------------------------------------- | ------------------ |
-| Shannon Cipher                                            | [[#Syntax]]                                 |                    |
-| Computational Cipher (Mathematical Detail)                | [[#Syntax]]                                 |                    |
-| Correctness                                               | [[#Correctness]]                            |                    |
-| $\gamma$-Uniformity                                       | [[#Uniformity]]                             |                    |
-| Perfect Security                                          | [[#Perfect Security]]                       |                    |
-| Shannon's Theorem                                         | [[#Perfect Security]]                       |                    |
 | Attack Game 2.1 (Semantic Security)                       | [[#Semantic Security]]                      | $\text{SSadv}$     |
 | Attack Game 2.2 (Message Recovery)                        | [[#Message Recovery]]                       | $\text{MRadv}$     |
 | Attack Game 2.3 (Parity Prediction)                       | [[#Parity Prediction]]                      | $\text{Parityadv}$ |
@@ -22,6 +20,7 @@
 
 > [!definition] Symmetric Key Encryption Scheme
 > A **symmetric key encryption scheme** $\text{SKE} = (\text{Enc}, \text{Dec})$ is a pair of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$ and a key space $\mathcal K$.
+> - $k \leftarrow \text{KeyGen}$: The key generation randomized algorithm that outputs a key $k \in \mathcal K$. 
 > - $c \leftarrow \text{Enc}(k, m)$: The encryption algorithm takes a key $k \in \mathcal K$ and a message $m$ to produce a ciphertext $c$.
 > - $m \leftarrow \text{Dec}(k, c)$: The decryption algorithm takes a key $k \in \mathcal K$ and a ciphertext $c$ to produce a message $m$.
 
