@@ -1,0 +1,105 @@
+# Time Complexity
+
+The canonical resource bound: how many steps does a Turing machine take?
+
+## Time Complexity
+
+> [!definition] Deterministic Time Complexity
+> Let $M$ be a deterministic Turing machine that halts on all inputs. The **running time** or **time complexity** of $M$ is the function $f: \mathcal N \rightarrow \mathcal N$, where $f(n)$ is the maximum number of steps that $M$ uses on any input of length $n$. If $f(n)$ is the running time of $M$, we say that $M$ runs in time $f(n)$ and that $M$ is an $f(n)$-time Turing machine. Customarily, we use $n$ to represent the length of the input.
+
+> [!definition] Nondeterministic Time Complexity
+> Let $N$ be a nondeterministic Turing machine that is a decider. The **running time** of $N$ is the function $f: \mathcal N \rightarrow \mathcal N$, where $f(n)$ is the maximum number of steps that $N$ uses on any branch of its computation on any input of length $n$.
+
+> [!definition] Time Complexity Class
+> Let $t: \mathcal N \rightarrow \mathcal R^{+}$ be a function:
+> $$\text{TIME}(t(n)) = \{L \mid L \text{ is a language decided by an } O(t(n))\text{-time deterministic Turing machine}\}.$$
+> $$\text{NTIME}(t(n)) = \{L \mid L \text{ is a language decided by an } O(t(n))\text{-time nondeterministic Turing machine}\}.$$
+
+## Class P
+
+> [!definition] Class P
+> $\text{P}$ is the class of languages that are decidable in polynomial time on a deterministic single-tape Turing machine: $$\text{P} = \bigcup_{k} \text{TIME}(n^k).$$
+
+> [!remark] Role of Class P
+> 1. $\text{P}$ is invariant for all models of computation that are polynomial-equivalent to the deterministic single-tape Turing machine.
+> 2. $\text{P}$ roughly corresponds to the class of problems that are realistically solvable on a computer.
+
+> [!theorem]
+> If $A \leq_\text{P} B$ and $B \in \text{P}$, then $A \in \text{P}$.
+
+> [!example] Members of P
+> - $\text{PATH} = \{\langle G, s, t \rangle \mid G \text{ is a directed graph with a directed path from } s \text{ to } t\}$
+> - $\text{CONNECTED} = \{\langle G \rangle \mid G \text{ is a connected undirected graph}\}$
+> - $\text{TRIANGLE} = \{\langle G \rangle \mid G \text{ contains a triangle}\}$
+> - [[Number Theory#Divisibility and greatest common divisors|RELPRIME]]
+> - Every context-free language
+
+## Class NP
+
+> [!definition] Verifier
+> A **verifier** for a language $A$ is an algorithm $V$, where $$A = \{w \mid V \text{ accepts } \langle w, c \rangle \text{ for some string } c\}.$$
+> We measure the time of a verifier only in terms of the length of $w$, so a **polynomial-time verifier** runs in polynomial time in the length of $w$. A language $A$ is **polynomial verifiable** if it has a polynomial-time verifier.
+
+> [!definition] Certificate
+> To test membership in $A$, the verifier uses additional information $c$ called a **certificate** or **proof**.
+
+> [!definition] Class NP
+> $\text{NP}$ is the class of languages that have polynomial-time verifiers.
+
+> [!definition] Witness
+> A **witness** in computer science is proof that you solved the problem correctly.
+
+> [!theorem]
+> A language is in $\text{NP}$ if and only if it is decided by some nondeterministic polynomial-time Turing machine: $$\text{NP} = \bigcup_k \text{NTIME}(n^k).$$
+
+> [!example] Member of NP
+> - [[Number Theory#Prime Numbers, Unique Factorization, and Finite Fields|COMPOSITES]]
+
+> [!question]
+> Does $\text{coNP} = \text{NP}$? Does $\text{P} = \text{NP}$? See [[P vs NP]].
+
+## Class NP-Complete
+
+> [!definition] Class NP-Complete
+> A language $B$ is **NP-complete** if it satisfies two conditions:
+> 1. $B$ is in $\text{NP}$, and
+> 2. every $A$ in $\text{NP}$ is polynomial-time reducible to $B$.
+>
+> If $B$ merely satisfies condition 2, we say that it is **NP-hard**.
+
+> [!theorem]
+> If $B$ is NP-complete and $B \in \text{P}$, then $\text{P} = \text{NP}$.
+
+> [!theorem] Cook-Levin Theorem
+> [[Satisfiability Problem|SAT]] is NP-complete.
+
+> [!example] Members of NP-Complete
+> - $\text{CLIQUE} = \{\langle G, k \rangle \mid G \text{ is an undirected graph with a } k\text{-clique}\}$
+> - $\text{VERTEX-COVER} = \{\langle G, k \rangle \mid G \text{ is an undirected graph with a } k\text{-node vertex cover}\}$
+> - $\text{HAMPATH} = \{\langle G, s, t \rangle \mid G \text{ is a directed graph with a Hamiltonian path from } s \text{ to } t\}$
+> - $\text{UHAMPATH} = \{\langle G, s, t \rangle \mid G \text{ is an undirected graph with a Hamiltonian path from } s \text{ to } t\}$
+> - [[Subset-Sum Problem|SUBSET-SUM]]
+
+## Class EXPTIME
+
+> [!proposition] Observation
+> $$\text{NP} \subseteq \text{EXPTIME} = \bigcup_k \text{TIME}(2^{n^k}).$$
+
+The strict separation $\text{P} \subset \text{EXPTIME}$ follows from the [[Hierarchy Theorems#Time Hierarchy|time hierarchy theorem]].
+
+## Sub-Exponential
+
+> [!definition] Sub-Exponential
+> A function $f(x)$ is **sub-exponential** if:
+> 1. $f(x) = \Omega((\ln x)^\alpha)$ for some $\alpha > 0$.
+> 2. $f(x) = \mathcal O(x^\beta)$ for every $\beta > 0$.
+
+Sub-exponential functions sit strictly between polynomial and exponential. Used in cryptography (e.g., $L_n[1/3, c]$ notation for the [[Index Calculus|index-calculus]] running time).
+
+## Related
+
+- [[Space Complexity]] — the other canonical resource bound
+- [[Reductions]] — how NP-completeness is defined
+- [[Hierarchy Theorems]] — why P $\subset$ EXPTIME
+- [[Randomized Complexity]] — what changes with random coins
+- [[P vs NP]] — the famous open problem

@@ -1,6 +1,6 @@
 # Computer Science MOC
 
-Top-level index for `academic/knowledge/cs/`. This domain merges what was previously in `cp/`, `algorithm/`, and `computation theory/`. Cryptographic algorithms (DLP, LLL, LWE, SIS, Pollard's ρ) live in [[Cryptography MOC|cryptography/]].
+Top-level index for `knowledge/cs/`. This domain merges what was previously in `cp/`, `algorithm/`, and `computation theory/`. Cryptographic algorithms (DLP, LLL, LWE, SIS, Pollard's ρ) live in [[Cryptography MOC|cryptography/]]. **Complexity theory has been promoted to its own top-level domain at [[Complexity MOC|knowledge/complexity/]]** — it's no longer nested under `cs/`.
 
 Each section below points to a sub-MOC that lists the files in that folder.
 
@@ -9,8 +9,9 @@ Each section below points to a sub-MOC that lists the files in that folder.
 - [[knowledge/cs/foundations/Foundations MOC]] — what algorithms are, asymptotic analysis, recurrences, formal languages
 - [[Algorithms MOC]] — sorting, searching, DP (`dp/`), greedy (`greedy/`), randomized
 - [[Data Structures MOC]] — heaps, BSTs, hashing, lists, disjoint sets, amortized analysis
-- [[Complexity MOC]] — complexity classes, intractability, advanced topics, probabilistic
 - [[Problems MOC]] — Max subarray, Subset-Sum, SAT, AI search
+
+For complexity theory (P, NP, BPP, IP, hierarchy theorems, …) see the standalone [[Complexity MOC|`complexity/` domain]].
 - [[Setup MOC]] — competitive-programming tooling and snippets
 
 ## Single-file folders
@@ -71,14 +72,6 @@ cs/
 │   └── Amortized Analysis.md
 ├── computability/
 │   └── Computability Theory.md
-├── complexity/
-│   ├── Complexity MOC.md
-│   ├── Complexity Class.md
-│   ├── Complexity Theory.md
-│   ├── Intractable.md
-│   ├── Advanced Complexity.md
-│   ├── Complexity Notes.md
-│   └── Probabilistic Algorithms.md
 ├── math/
 │   └── Math.md
 ├── graph/
