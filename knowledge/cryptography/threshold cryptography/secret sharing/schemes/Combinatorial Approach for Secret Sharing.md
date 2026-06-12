@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Scheme
 
 > [!scheme] Combinatorial Approach for Secret Sharing
