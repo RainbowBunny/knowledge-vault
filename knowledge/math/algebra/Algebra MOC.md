@@ -18,3 +18,6 @@
 
 - [[Elliptic Curve MOC|elliptic curve/]] — split into Elliptic Curves, over Finite Fields, Generalized, Koblitz, Bilinear Pairings, Weil Pairing over Prime Power Fields
 - [[Lattices]] — lattice theory
+
+## References
+[^1]: Thomas W. Judson, *Abstract Algebra: Theory and Applications* (2025). [PDF Link](https://twjudson.github.io/aata-files/aata-20250801.pdf)

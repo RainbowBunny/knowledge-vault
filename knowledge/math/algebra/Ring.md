@@ -46,7 +46,24 @@
 > [!remark]
 > Let $R$ be a ring with property that the only way that a product $a \cdot b$ can be $0$ is if $a = 0$ or $b = 0$. Suppose further that $R$ has only finitely many elements. Then, $R$ is a field.
 
-### Ideal
+## Ring Homomorphism and Ideal
+
+> [!definition] Ring Homomorphism/Isomorphism
+> Suppose $R, S$ are rings, then a __ring homomorphism__ is a map $\phi: R \rightarrow S$ satisfying:
+> $$ \begin{aligned}
+\phi(a + b) &= \phi(a) + \phi(b) \\
+\phi(ab) &= \phi(a)\phi(b)
+\end{aligned}$$
+>for all $a, b \in R$. In case the map $\phi$ is bijection, we have __isomorphism__ of rings
+
+> [!preposition]
+> Let $\phi : R \rightarrow S$ be a ring homomorphism.
+> - If $R$ is a commutative ring, then $\phi(R)$ is a commutative ring.
+> - $\phi(0) = 0$.
+> - Let $1_R$ and $1_S$ be the identities for $R$ and $S$, respectively. If $\phi$ is onto, then $\phi(1_R) = 1_S$.
+> - If $R$ is a field and $\phi(R) \neq \{0\}$, then $\phi(R)$ is a field.
+
+
 
 > [!definition] Ideal
 > Let $R$ be a ring. A nonempty subset $I$ of $R$ is called an **ideal** if
@@ -69,4 +86,6 @@
 
 > [!definition] Ideal Generator Polynomial
 > The unique monic polynomial of the least degree of a nonzero ideal $I$ of $\mathbb F_q[x] / (x^n - 1)$ is called the **generator polynomial** of $I$.
+
+
 

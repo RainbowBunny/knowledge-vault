@@ -36,6 +36,24 @@
 |                                     | If $a \neq 0$ and $b \neq 0$, then $(ab)^{-1} = a^{-1} b^{-1}$                                                                                                                                                                                                |
 |                                     | $-(a/b) = (-a/b) = a/(-b)$ if $b \neq 0$                                                                                                                                                                                                                      |
 |                                     | $(a/b) - (c/d) = (ad-bc)/(bd)$ if $b \neq 0$ and $d \neq 0$                                                                                                                                                                                                   |
+## Integral Domain
+
+>[!definition]
+> Let $R$ is a commutative ring and $r$ is a nonzero element in $R$, then $r$ is said to be zero divisor if there exists another nonzero element $s \in R$ s.t $r\cdot s=0$
+
+> [!definition]
+> A commutative ring with identity is a said to be __integral domain__ if it has no zero divisors.
+
+> [!theorem]
+> Every finite integral domain is a field
+
+## Characteristic 
+
+> [!definition] 
+> The characteristic of a ring $R$ is the least positive integer $n$ s.t $nr = 0$ for all $r \in R$
+
+> [!theorem]
+> The characteristic of an integral domain is either prime or zero
 
 ## Finite Fields
 
@@ -55,7 +73,13 @@
 > If $p \equiv 3 \pmod 4$, then the field with $p^2$ elements looks like $$\mathbb F_{p^2} = \{a + bi : a, b \in \mathbb F_p\},$$ where $i$ satisfies $i^2 = -1$.
 
 > [!definition] Characteristic of the field
-> Let $\mathbb F$ be a finite field with $1$ and $0$ are the multiplicative and additive identity, there exists a prime $p$ such that $p \cdot 1 = 0$. This prime is called the **characteristic of the field** $\mathbb F$. Additionally, $\mathbb F$ is a finite-dimensional vector space over the field $\mathbb F_p$ of $p$ elements. Thus, $\mathbb F$ has $p^d$ elements for some $d \geq 1$.
+> Based on the previous definition of characteristic [[Field#Characteristic]], one can derive the characteristic for finite field $\mathbb{F}_p$ is $p$
+
+
+
+
+
+
 
 > [!lemma]
 > For every element $\beta$ of a finite field $F$ with $q$ elements, we have $\beta^q = \beta$.
