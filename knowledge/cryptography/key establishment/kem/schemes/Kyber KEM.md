@@ -17,7 +17,7 @@ Link: https://eprint.iacr.org/2017/634.pdf
 > - $(pk, sk) \leftarrow \text{KeyGen}()$:
 > 	1. $((t, \rho), s) \leftarrow \text{Kyber.PKE.KeyGen}()$
 > 	2. $z \xleftarrow{R} \{0, 1\}^{256}$
-> 	3. Return $(pk = (t, rho), sk = (s, z, t, \rho))$
+> 	3. Return $(pk = (t, \rho), sk = (s, z, t, \rho))$
 > - $(c, K) \leftarrow \text{Encaps}(pk = (t, \rho))$:
 > 	1. $m \leftarrow \{0, 1\}^{256}$
 > 	2. $(\hat K, r) \leftarrow G(H(pk), m)$
@@ -32,6 +32,7 @@ Link: https://eprint.iacr.org/2017/634.pdf
 > 	4. Branch
 > 		1. If $(u', v') = (u, v)$ then $K \leftarrow H(\hat K', H(c))$
 > 		2. Else $K \leftarrow H(z, H(c))$
+> 	5. Return $K$
 
 ## Property
 

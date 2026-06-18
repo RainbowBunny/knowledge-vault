@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 ---
-Link: https://eprint.iacr.org/2017/634.pdf
+	Link: https://eprint.iacr.org/2017/634.pdf
 ## Scheme
 
 > [!scheme] Kyber PKE
