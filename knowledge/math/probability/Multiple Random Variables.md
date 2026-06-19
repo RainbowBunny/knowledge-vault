@@ -34,3 +34,36 @@
 
 > [!proposition]
 > If $X_1, X_2, \dots, X_n$ are $n$ independent random variable, then $$\phi_{X_1 + X_2 + \cdots + X_n}(s) = \phi_{X_1}(s) \phi_{X_2}(s) \cdots \phi_{X_n}(s).$$
+
+## Multivariate normal distribution
+
+> [!theorem]
+> $\mathbf{X} \sim \mathcal{N}_k(\boldsymbol{\mu}, \boldsymbol{\Sigma}) \iff \exists \boldsymbol{\mu} \in \mathbb{R}^k, \boldsymbol{A} \in \mathbb{R}^{k \times \ell} \text{ s.t } \mathbf{X} = \boldsymbol{A}\mathbf{Z} + \boldsymbol{\mu} \text{ and } \forall n = 1, \dots, \ell: Z_n \sim \mathcal{N}(0,1), \text{i.i.d.}$
+> Here the covariance matrix is $\boldsymbol{\Sigma} = \boldsymbol{A}\boldsymbol{A}^\top$
+
+> [!proposition]
+> $\mathcal{N}_k(\boldsymbol{\mu_1}, \boldsymbol{\Sigma_1}) + \mathcal{N}_k(\boldsymbol{\mu_2}, \boldsymbol{\Sigma_2}) = \mathcal{N}_k(\boldsymbol{\mu_1}+\boldsymbol{\mu_2}, \boldsymbol{\Sigma_1} + \boldsymbol{\Sigma_2})$ (immediate from theorem)
+
+> [!definition] Density function (Non-degenerate case)
+> When the covariance matrix $\mathbf{\Sigma}$ is positive definite, we have:
+> $$f_{\mathbf{X}}(x_1, \dots, x_k) = \frac{\exp\left( -\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^\text{T} \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)}{\sqrt{(2\pi)^k |\boldsymbol{\Sigma}|}}$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

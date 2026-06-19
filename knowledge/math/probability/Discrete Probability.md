@@ -192,6 +192,19 @@
 > For cryptography usage, $r$ is often chosen to be $\mathcal{w}(\sqrt{\log \lambda})$, where $\lambda$ is security parameter. In such case, the theorem yields:
 > $$ \Pr \left[ \|\mathbf{X}\| > s\sqrt{n} \cdot\mathcal{w}(\sqrt{\log \lambda}) \right] \le \mathsf{negl}(\lambda)$$
 
+## The Rényi divergence
+
+>[!definition] The Rényi divergence
+>Let $P$ and $Q$ are two discrete probability distributions such that $\mathsf{Supp}(P) \subseteq \mathsf{Supp}(Q)$ ( $\text{Supp}(P) = \{x | P(x) \neq 0 \}$) and $a \in (1, +\infty)$, we have the Rényi divergence of order $a$:
+>$$R_a(P\|Q)=\left(\sum_{x \in \mathsf{Supp}(P)}\dfrac{P(x)^a}{Q(x)^{a-1}}\right)^{\dfrac{1}{a - 1}}$$
+> For the cases $a = 2$ and $a = +\infty$ respectively, we have
+>- $R_1(P \| Q) = \exp \left( \sum_{x \in \text{Supp}(P)} P(x) \log \frac{P(x)}{Q(x)} \right)$
+>- $R_\infty(P \| Q) = \max_{x \in \text{Supp}(P)} \frac{P(x)}{Q(x)}$
+
+> [!Lemma]
+
+
+
 
 
 
