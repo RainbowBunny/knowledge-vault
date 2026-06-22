@@ -17,7 +17,7 @@
 
 ### Indistinguishability under Chosen-Ciphertext Attacks
 
-> [!security] IND-CCA
+> [!definition] IND-CCA Advantage of KEM
 > For any adversary $A$, the following advantage is negligible: 
 > $$\text{Adv}_\text{KEM}^{\text{cca}}(A) = 
 > \left|\; \Pr\!\left[ b = b' \;:\; 

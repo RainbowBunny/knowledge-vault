@@ -4,7 +4,7 @@ Proving the truth of a statement without revealing anything beyond its truth.
 
 ## Entry Point
 
-- [[Zero-knowledge Proof]] — overview, square-modulo-N example, term reference, languages of true statements
+- [[Proof System]] — overview, square-modulo-N example, term reference, languages of true statements
 
 ## Interactive Setting
 

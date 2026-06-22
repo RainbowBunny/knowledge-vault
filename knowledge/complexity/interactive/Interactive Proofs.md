@@ -49,5 +49,5 @@ A striking equality: interaction plus randomness is *exactly* as powerful as pol
 - [[Oracle Machines]] — relativization
 - [[Polynomial Hierarchy]] — MA, AM sit inside PH
 - [[Randomized Complexity]] — IP uses randomized verification
-- [[Zero-knowledge Proof|Zero-knowledge IP]] — the cryptographic specialization (in `cryptography/zero-knowledge/`)
+- [[Proof System|Zero-knowledge IP]] — the cryptographic specialization (in `cryptography/zero-knowledge/`)
 - [[Space Complexity]] — IP = PSPACE

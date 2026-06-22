@@ -1,6 +1,46 @@
-# Zero-knowledge Proof
+---
+dg-publish: true
+---
+## Syntax
 
-Entry point for the ZK notes. See [[Zero-knowledge MOC]] for the full index.
+> [!definition] Proof System
+> A proof system is a protocol consists of two parties $(P, V)$ and a pair of algorithms $(\text{Execute}, \text{Verify})$ that works with a [[NP Relation]] $R$ and its language 
+> $$L_R = \{x \; | \; \exists w : R(x, w) = 1\}$$
+> - $\tau \leftarrow \text{Execute}_{P, V}(x, w; r_P, r_V)$: The prover have a [[witness]] of a **public statement** $x$, this function returns the transcript of the conversation of two parties in which the prover is trying to convince the verifier that $w$ is the witness of $x$ as the verifier $V$ is only guarantee to have $x$.
+> - $\{\text{accept}, \text{reject}\} \leftarrow \text{Verify}(x, \tau; r_V)$: Given the public statement $x$ and transcript of the conversation $\tau$, the verifier $V$ can tell whether the claim of prover $P$ is correct.
+
+## Property
+
+### Completeness
+
+> [!definition] Proof System's Completeness
+> An honest prover $P$ with a valid witness $w$ for statement $x$ should convince the verifier $V$:
+> $$\Pr[\text{Verify}(x, \text{Execute}_{P, V}(x, w)) = \text{accept}] \geq 1 - \varepsilon_c \; \forall (x, w) \in R$$
+
+### Soundness
+
+> [!definition] Proof System's Soundness
+> For every cheating prover $P^*$ for statement $x$, we have
+> $$\Pr[\text{Verify}(x, \text{Execute}_{P^*, V}(x)) = \text{reject}] \leq \varepsilon_s$$
+
+> [!remark]
+> Soundness means you should not be able to prove false statements.
+
+### Knowledge Soundness
+
+> [!definition] Proof System's Knowledge Soundness
+> 
+
+> [!remark]
+> Knowledge Soundness means if you prove a statement, you must actually know a witness
+
+## Security
+
+### Zero Knowledge
+
+> [!definition] Zero Knowledge Proof System
+> A proof system is zero knowledge if there exist a [[simulator]] $\text{Sim}$ and let $\text{View}_V$ be a random variable from the space of available information that given to $V$ and we should have its distribution similar to the simulating distribution:
+> $$\text{View}_V(x, r_V, \text{Execute}_{P, V}(x, w)) \sim \text{Sim}(x)$$
 
 ## Overview
 
