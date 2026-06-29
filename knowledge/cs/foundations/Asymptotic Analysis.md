@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Asymptotic Analysis
 
 > [!definition] Worst-case Analysis
