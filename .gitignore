@@ -1,5 +1,6 @@
 # --- Personal content (not for public/private repo sync) ---
 daily/
+personal/
 
 # --- Obsidian local state ---
 # Workspace UI state (open tabs, layout) — noisy across machines
