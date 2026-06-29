@@ -147,4 +147,6 @@
 > If $X$ and $X'$ are i.i.d. with entropy $H(X)$, $$P(X = X') \geq 2^{-H(X)},$$ with equality if and only if $X$ has a uniform distribution.
 
 > [!corollary]
-> Let $X, X'$ be independent with $X \sim p(x), X' \sim r(x), x, x' \in \mathcal X$. Then $$\begin{align}P(X = X') &\geq 2^{-H(p) - D(p || r)} \\ P(X = X') &\geq 2^{-H(r) - D(r || p)}\end{align}$$ 
+> Let $X, X'$ be independent with $X \sim p(x), X' \sim r(x), x, x' \in \mathcal X$. Then $$\begin{align}P(X = X') &\geq 2^{-H(p) - D(p || r)} \\ P(X = X') &\geq 2^{-H(r) - D(r || p)}\end{align}$$
+
+> [!definition]
