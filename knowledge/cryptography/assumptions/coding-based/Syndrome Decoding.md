@@ -46,8 +46,11 @@
 > - $\omega$: Norm over $\mathcal R$
 > ---
 > ### Input
-> - $(H, y^{\perp}) \in \mathbb F^{(n - k) \times n} \times \mathbb F^{(n - k)} \xleftarrow{\$} \text{SD}(n, k, w)$
+> - $(H, y^\top) \xleftarrow{\$} \mathbb F^{(n - k) \times n} \times \mathbb F^{(n - k)}$
 > ---
 > ### Output
-> 
-
+> - Decide whether $(H, y^\top)\xleftarrow{\$} \text{SD}(n, k, w)$
+	
+> [!definition] Decision SD Problem  
+The **Decision SD problem** DSD(n, k, w) is to distinguish the distributions DSD(n,k,w)\mathcal D_{\text{SD}}(n,k,w) DSD​(n,k,w) and Dunif(n,k)\mathcal D_{\text{unif}}(n,k) Dunif​(n,k). For an algorithm A\mathcal A A, define  
+> $$\text{Adv}^{\text{dsd}}_{n,k,w}(\mathcal A) = \Big|\Pr_{z \leftarrow \mathcal D_{\text{SD}}}[\mathcal A(z) = 1] - \Pr_{z \leftarrow \mathcal D_{\text{unif}}}[\mathcal A(z) = 1]\Big|$$
