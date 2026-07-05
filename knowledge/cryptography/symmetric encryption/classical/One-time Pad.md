@@ -35,5 +35,5 @@
 
 ## Related
 
-- The OTP is the canonical proof witness for [[Symmetric Key Encryption#Perfect Security|perfect security]] and the optimality of [[Symmetric Key Encryption#Shannon's Theorem|Shannon's bound]] $|\mathcal K| \geq |\mathcal M|$.
+- The OTP is the canonical proof witness for [[Symmetric Key Encryption#Perfect Security|perfect security]] and the optimality of [[Symmetric Key Encryption#Perfect Security|Shannon's bound]] $|\mathcal K| \geq |\mathcal M|$.
 - For practical encryption use [[Symmetric Key Encryption#Construction|modern CPA-secure constructions]] (counter mode, CBC), not OTP.

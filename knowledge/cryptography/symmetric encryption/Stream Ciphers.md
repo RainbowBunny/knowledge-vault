@@ -8,7 +8,7 @@
 > [!theorem]
 > If $G$ is a secure PRG, then the stream cipher $\mathcal E$ constructed from $G$ is a semantically secure cipher.
 > 
-> In particular, for every [[Encryption#Semantic Security|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[#Pseudo-Random Generators|secure PRG]] adversary $\mathcal B$ that attacks $G$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSAdv}[\mathcal A, \mathcal E] = 2 \cdot \text{PRGadv}[\mathcal B, \mathcal E].$$
+> In particular, for every [[Symmetric Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[#Pseudo-Random Generators|secure PRG]] adversary $\mathcal B$ that attacks $G$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSAdv}[\mathcal A, \mathcal E] = 2 \cdot \text{PRGadv}[\mathcal B, \mathcal E].$$
 
 ### Construction from Block Cipher
 

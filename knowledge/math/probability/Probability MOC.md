@@ -10,6 +10,7 @@
 ## Theory
 
 - [[Convergence]] — in distribution / probability / mean / almost-surely; SLLN
+- [[Statistical Distance]] — total variation distance, event characterization, data-processing inequality
 - [[Other Summaries]] — median, memoryless, transformations, Markov / Chebyshev / Chernoff, WLLN, CLT
 
 ## Distributions

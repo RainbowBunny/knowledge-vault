@@ -54,3 +54,14 @@
 > [!theorem]
 > For a BSC with crossover probability $p < 1/2$, the maximum likelihood decoding rule is the same as the nearest neighbour decoding rule.
 
+## Systematic Codes
+
+> [!definition] Systematic Codes
+> A systematic code produces a codeword of the form $c = (m, p)$, or the message $m$ is embedded directly and $p$ is the parity check of $m$.
+
+## Quasi-Cyclic Codes
+
+> [!definition] Quasi-Cyclic Codes
+> We would like cyclic code as we won't need to store a large generator matrix when the code length is large.
+> Quasi means that contains of multiple cyclic group.
+
