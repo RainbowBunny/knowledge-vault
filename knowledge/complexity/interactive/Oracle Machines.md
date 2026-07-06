@@ -11,6 +11,11 @@ A Turing machine with privileged access to an "oracle" that decides membership i
 > [!definition] Relativized Classes
 > $\text{P}^A$ is the class of languages decidable by a polynomial-time oracle Turing machine that uses oracle $A$. The class $\text{NP}^A$ is defined similarly using a nondeterministic oracle TM.
 
+Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foundation of Cryptography Volume I Basic Tools]]
+
+> [!definition] Oracle Machines
+> A (deterministic/probabilistic) **oracle machine** is a (deterministic/probabilistic) Turing machine with an additional tape, called the **oracle tape**, and two special states, called **oracle invocation** and **oracle appeared**. The computation of the deterministic oracle machine $M$ on input $x$ and with access to the oracle $f: \{0, 1\}^* \rightarrow \{0, 1\}^*$ is defined by the successive-configuration relation. For configurations with states different from oracle invocation, the next configuration is defined as usual. Else, let $\gamma$ be the configuration of machine when the state is oracle invocation and the value on the oracle invocation is $q$, then the next configuration remains $\gamma$ and $f(q)$ will be on oracle appeared. Usually, we write this as $M^f(x)$.
+
 ## Relativization
 
 The phenomenon studied: *do relations between complexity classes change when both sides use the same oracle?*

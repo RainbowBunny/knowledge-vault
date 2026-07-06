@@ -137,3 +137,11 @@ Keep these in leaf notes with dates, never in the skeleton: concrete parameter r
 Frontmatter fields on every definitional/theorem note: `object-kind`, `advantage-family`, `resources`, `model`, `setting` (uniform? quantum?), `status` + `as-of` date where applicable.
 
 **The one-paragraph justification for why this won't need to change:** Layers 0–3 and 5–6 have been structurally fixed since roughly 1995; everything that has happened since — pairings, lattice crypto, the entire post-quantum program, FHE, iO — arrived as _new entries in existing slots_ (new habitats in Layer 4, new leaves in Layer 3's map, new toggles in Layer 5, new patterns in Layer 6's periphery), never as a change to the slot structure itself. The only plausible future events that would force a restructuring are field-level earthquakes: a proof or disproof of P ≠ NP, a practical break of a whole habitat (large-scale quantum computers killing Layer 4's first two rows — which the taxonomy already anticipates), or meta-complexity maturing into a replacement foundation for Layer 0 (in which case OWF ⟺ average-case time-bounded Kolmogorov hardness becomes the new ground floor — and even that slots in as a _deepening_ of Layer 0, not a demolition).
+
+
+
+Cryptography work can be three cases:
+1. Plausibility Results: Connect two notions or providing a generic way of solving a class of problems.
+2. Introduction of paradigms and techniques that may be applicable in practice: Introduce new model, tool, or technique.
+3. Presentation of schemes that are suitable for practical applications.
+
