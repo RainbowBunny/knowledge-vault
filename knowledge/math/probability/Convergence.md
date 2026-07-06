@@ -37,9 +37,8 @@
 > Consider the sequence $X_1, X_2, X_3, \dots$. For any $\epsilon > 0$, define the set of events $$A_m = \{|X_n - X| < \epsilon, \forall n \geq m\}.$$
 > Then $X_n \xrightarrow{a.s.} X$ if and only if for any $\epsilon > 0$, we have $$\lim_{m \rightarrow \infty} P(A_m) = 1.$$
 
-> [!theorem] The Strong Law of Large Number
-> Let $X_1, X_2, \dots, X_n$ be i.i.d. random variables with a finite expected value $E[X_i] = \mu < \infty$. Let also $$M_n = \frac{X_1 + X_2 + \dots + X_n}{n}.$$
-> Then $M_n \xrightarrow{a.s.} \mu$.
+> [!remark]
+> The Strong Law of Large Numbers ($M_n \xrightarrow{a.s.} \mu$) and the other limit theorems (WLLN, CLT) live in [[Limit Theorems]].
 
 > [!theorem]
 > Let $X_1, X_2, X_3, \dots$ be a sequence of random variables. Let also $h: \mathbb R \mapsto \mathbb R$ be a continuous function. Then, the following statements are true:

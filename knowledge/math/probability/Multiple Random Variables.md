@@ -1,69 +1,99 @@
 ## Multiple Random Variables
 
+### Joint Cumulative Distribution Function
+
+> [!definition] Joint Cumulative Distribution Function
+> The **joint cumulative distribution function** of two random variables $X$ and $Y$ is defined as $$F_{XY}(x, y) = P(X \leq x, Y \leq y).$$ 
+
+> [!definition] Marginal Cumulative Distribution Function
+> - $F_X(x) = F_{XY}(x, \infty) = \lim_{y \rightarrow \infty} F_{XY}(x, y) \quad \forall x$
+> - $F_Y(y) = F_{XY}(\infty, y) = \lim_{x \rightarrow \infty} F_{XY}(x, y) \quad \forall y$
+
+> [!remark]
+> - $F_{XY}(\infty, \infty) = 1$
+> - $F_{XY}(-\infty, y) = 0, \quad \forall y$
+> - $F_{XY}(x, -\infty) = 0, \quad \forall x$
+
+> [!lemma]
+> For two random variables $X$ and $Y$, and real numbers $x_1 \leq x_2, y_1 \leq y_2$, we have $$P(x_1 < X \leq x_2, y_1 < Y \leq y_2) = F_{XY}(x_2, y_2) - F_{XY}(x_1, y_2) - F_{XY}(x_2, y_1) + F_{XY}(x_1, y_1).$$
+
+> [!remark]
+> If $X$ and $Y$ are independent, then $F_{XY}(x, y) = F_X(x) F_Y(y)$.
+
+> [!proposition]
+> - $F_{XY}(x, y) = \int_{-\infty}^y \int_{-\infty}^x f_{XY}(u, v) du dv$
+> - $f_{XY}(x, y) = \frac{\partial^2}{\partial x \partial y} F_{XY}(x, y)$
+
+### Conditioning by Another Random Variable
+
+> [!definition] Conditioning by Another Random Variable
+> For two jointly continuous random variables $X$ and $Y$, we can define the following conditional concepts:
+> 1. The conditional PDF of $X$ given $Y = y$: $$f_{X | Y}(x | y) = \frac{f_{XY}(x, y)}{f_Y(y)}$$
+> 2. The conditional probability that $X \in A$ given $Y = y$: $$P(X \in A | Y = y) = \int_A f_{X | Y}(x | y) dx$$
+> 3. The conditional CDF of $X$ given $Y = y$: $$F_{X | Y}(x | y) = P(X \leq x | Y = y) = \int_{-\infty}^x f_{X | Y}(x | y) dx$$
+
+> [!proposition]
+> For two jointly continuous random variables $X$ and $Y$, we have:
+> 1. Expected value of $X$ given $Y = y$: $$E[X | Y = y] = \int_{-\infty}^\infty x f_{X | Y}(x | y) dx$$
+> 2. Conditional LOTUS: $$E[g(x) | Y = y] = \int_{-\infty}^\infty g(x) f_{X | Y}(x | y) dx$$
+> 3. Conditional variance of $X$ given $Y = y$: $$\text{Var}(X | Y = y) = E[X^2 | Y = y] - (E[X | Y = y])^2$$
+
+### Independence
+
+> [!proposition]
+> Two continuous random variables $X$ and $Y$ are independent if $$f_{XY}(x, y) = f_X(x) f_Y(y), \quad \forall x, y.$$ Equivalently, $X$ and $Y$ are independent if $$F_{XY}(x, y) = F_X(x) F_Y(y), \quad \forall x, y.$$ If $X$ and $Y$ are independent, we have $$\begin{align}&E[XY] = E[X] E[Y],\\ &E[g(X)h(y)] = E[g(X)] E[h(y)]\end{align}$$
+
 > [!definition] Independent and Identically Distributed
 > Random variables $X_1, X_2, \dots, X_n$ are said to be **independent and identically distributed (i.i.d.)** if they are **independent**, and they have the same **marginal distributions**: $$F_{X_1}(x) = F_{X_2}(x) = \dots = F_{X_n}(x), \forall x \in \mathbb R.$$
+
+### Covariance and Correlation
+
+> [!definition] Covariance
+> Consider two random variables $X$ and $Y$. The **covariance** between $X$ and $Y$ is defined as $$\text{Cov}(X, Y) = E[(X - EX)(Y - EY)] = E[XY] - (EX)(EY).$$
+
+> [!lemma] Properties of Covariance
+> 1. $\text{Cov}(X, X) = \text{Var}(X)$;
+> 2. If $X$ and $Y$ are independent then $\text{Cov}(X, Y) = 0$.
+> 3. $\text{Cov}(X, Y) = \text{Cov}(Y, X)$;
+> 4. $\text{Cov}(aX, Y) = a \text{Cov}(X, Y)$;
+> 5. $\text{Cov}(X + c, Y) = \text{Cov}(X, Y)$;
+> 6. $\text{Cov}(X + Y, Z) = \text{Cov}(X, Z) + \text{Cov}(Y, Z)$;
+> 7. More generally, $$\text{Cov}(\sum_{i = 1}^m a_i X_i, \sum_{j = 1}^n b_j Y_j) = \sum_{i = 1}^m \sum_{j = 1}^n a_i b_j \text{Cov}(X_i, Y_j).$$
+
+> [!definition] Correlation Coefficient
+> The **correlation coefficient** (for linear relationship), denoted by $\rho_{XY}$ or $\rho(X, Y)$, is obtained by normalizing the covariance: $$\rho_{XY} = \rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}} = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$$
+
+> [!lemma] Properties of the Correlation Coefficient
+> 1. $-1 \leq \rho(X, Y) \leq 1$;
+> 2. if $\rho(X, Y) = 1$, then $Y = aX + b$, where $a > 0$;
+> 3. if $\rho(X, Y) = -1$, then $Y = aX + b$, where $a < 0$;
+> 4. $\rho(aX + b, cY + d) = \rho(X, Y)$ for $a, c > 0$.
+
+> [!definition]
+> Consider two random variables $X$ and $Y$:
+> - If $\rho(X, Y) = 0$, we say that $X$ and $Y$ are **uncorrelated**.
+> - If $\rho(X, Y) > 0$, we say that $X$ and $Y$ are **positively correlated**.
+> - If $\rho(X, Y) < 0$, we say that $X$ and $Y$ are **negatively correlated**.
+
+> [!corollary]
+> If $X$ and $Y$ are uncorrelated, then $$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y).$$
+> More generally, if $X_1, X_2, \dots, X_n$ are pairwise uncorrelated, i.e., $\rho(X_i, X_j) = 0$ when $i \neq j$, then $$\text{Var}(X_1 + X_2 + \dots + X_n) = \text{Var}(X_1) + \text{Var}(X_2) + \dots + \text{Var}(X_n).$$
 
 > [!proposition] Variance of Sum
 > 1. $$\text{Var}(\sum_{i = 1}^n X_i) = \sum_{i = 1}^n \text{Var}(X_i) + 2 \sum_{i < j} \text{Cov}(X_i, X_j)$$
 > 2. If $X_1, X_2, \dots, X_n$ are independent, $\text{Var}(\sum_{i = 1}^n X_i) = \sum_{i = 1}^n \text{Var}(X_i)$.
 
-### Moment Generating Function
+### Transformations of Two Random Variables
 
-> [!definition] Moment
-> The **$n$-moment** of a random variable $X$ is defined to be $E[X^n]$. The **$n$-th central moment** of $X$ is defined to be $E[(X - EX)^n]$.
+> [!theorem] Method of Transformations (Jacobian)
+> Let $X$ and $Y$ be two jointly continuous random variables. Let $(Z, W) = g(X, Y) = (g_1(X, Y), g_2(X, Y))$, where $g: \mathbb R^2 \mapsto \mathbb R^2$ is a continuous one-to-one (invertible) function with continuous partial derivatives. Let $h = g^{-1}$, i.e., $(X, Y) = h(Z, W) = (h_1(Z, W), h_2(Z, W))$. Then $Z$ and $W$ are jointly continuous and their joint PDF, $f_{ZW}(z, w)$, for $(z, w) \in R_{ZW}$ is given by $$f_{ZW}(z, w) = f_{XY}(h_1(x, y), h_2(z, w)) |J|,$$ where $J$ is the Jacobian of $h$ defined by $$J = \det \begin{bmatrix} \frac{\partial h_1}{\partial z} & \frac{\partial h_1}{\partial w} \\ \frac{\partial h_2}{\partial z} & \frac{\partial h_2}{\partial w} \end{bmatrix} = \frac{\partial h_1}{\partial z} \frac{\partial h_2}{\partial w} - \frac{\partial h_1}{\partial w} \frac{\partial h_2}{\partial z}$$ 
 
-> [!definition] Moment Generating Function
-> The moment generating function (MGF) of a random variable $X$ is a function $M_X(s)$ defined as $$M_X(s) = E[e^{sX}].$$
-> We say that MGF of $X$ exists, if there exists a positive constant $a$ such that $M_X(s)$ is finite for all $s \in [-a, a]$. 
-> 
+> [!corollary] Sum of Two Random Variables (Convolution)
+> If $X$ and $Y$ are two jointly continuous random variables and $Z = X + Y$, then $$f_Z(z) = \int_{-\infty}^{\infty} f_{XY}(w, z - w) dw = \int_{\infty}^{\infty} f_{XY} (z - w, w) dw.$$
+> If $X$ and $Y$ are also independent, then $$f_Z(z) = f_X(z) * f_Y(z) = \int_{-\infty}^{\infty} f_X(w) f_Y(z - w) dw = \int_{-\infty}^{\infty} f_X(z - w) f_Y(w) dw.$$
 
-> [!remark]
-> We can obtain all moments of $X^k$ from its MGF:
-> $$\begin{align}&M_X(s) = \sum_{k = 0}^\infty E[X^k] \frac{s^k}{k!} \\ &E[X^k] = \frac{d^k}{ds^k} M_X(s) |_{s = 0} \end{align}$$
+## Related
 
-> [!theorem]
-> Consider two random variables $X$ and $Y$. Suppose that there exists a positive constant $c$ such that MGFs of $X$ and $Y$ are finite and identical for all values of $s$ in $[-c, c]$. Then, $$F_X(t) = F_Y(t), \forall t \in \mathbb R.$$
-
-> [!proposition]
-> If $X_1, X_2, \dots, X_n$ are $n$ independent random variable, then $$M_{X_1 + X_2 + \cdots + X_n}(s) = M_{X_1}(s) M_{X_2}(s) \cdots M_{X_n}(s).$$
-
-### Characteristic Functions
-
-> [!definition] Characteristic Function
-> For a random variable $X$, the characteristic function is defined as $$\phi_X(\omega) = E[e^{j \omega X}]$$ 
-
-> [!proposition]
-> If $X_1, X_2, \dots, X_n$ are $n$ independent random variable, then $$\phi_{X_1 + X_2 + \cdots + X_n}(s) = \phi_{X_1}(s) \phi_{X_2}(s) \cdots \phi_{X_n}(s).$$
-
-## Multivariate normal distribution
-
-> [!theorem]
-> $\mathbf{X} \sim \mathcal{N}_k(\boldsymbol{\mu}, \boldsymbol{\Sigma}) \iff \exists \boldsymbol{\mu} \in \mathbb{R}^k, \boldsymbol{A} \in \mathbb{R}^{k \times \ell} \text{ s.t } \mathbf{X} = \boldsymbol{A}\mathbf{Z} + \boldsymbol{\mu} \text{ and } \forall n = 1, \dots, \ell: Z_n \sim \mathcal{N}(0,1), \text{i.i.d.}$
-> Here the covariance matrix is $\boldsymbol{\Sigma} = \boldsymbol{A}\boldsymbol{A}^\top$
-
-> [!proposition]
-> $\mathcal{N}_k(\boldsymbol{\mu_1}, \boldsymbol{\Sigma_1}) + \mathcal{N}_k(\boldsymbol{\mu_2}, \boldsymbol{\Sigma_2}) = \mathcal{N}_k(\boldsymbol{\mu_1}+\boldsymbol{\mu_2}, \boldsymbol{\Sigma_1} + \boldsymbol{\Sigma_2})$ (immediate from theorem)
-
-> [!definition] Density function (Non-degenerate case)
-> When the covariance matrix $\mathbf{\Sigma}$ is positive definite, we have:
-> $$f_{\mathbf{X}}(x_1, \dots, x_k) = \frac{\exp\left( -\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^\text{T} \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)}{\sqrt{(2\pi)^k |\boldsymbol{\Sigma}|}}$$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Multivariate distributions (multivariate / bivariate normal): [[Random Vectors]]
+- Moment generating and characteristic functions: [[Expectation]]
+- Sums of i.i.d. variables in the limit: [[Limit Theorems]]

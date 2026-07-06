@@ -44,7 +44,7 @@
 > Idea: Let $B_1 = A_1, B_{i + 1} = A_{i + 1} - A_i$
 
 > [!theorem] Difference Lemma
-> Let $Z, W_0, W_1$ be events defined over some probability space. Suppose that $W_0 \land \overline{Z}$. Suppose that $W_0 \land \overline{Z}$ occurs if and only if $W_1 \land \overline{Z}$ occurs. Then we have $$|P[W_0] - P[W_1]| \leq P[Z].$$
+> Let $Z, W_0, W_1$ be events defined over some probability space. Suppose that $W_0 \land \overline{Z}$ occurs if and only if $W_1 \land \overline{Z}$ occurs. Then we have $$|P[W_0] - P[W_1]| \leq P[Z].$$
 
 ### Conditional Probability
 

@@ -72,6 +72,9 @@
 > [!proposition]
 > Let $X \sim \text{Exponential}(\lambda)$, and $Y = aX$, where $a$ is a positive real number. Then $$Y \sim \text{Exponential}(\frac{\lambda}{a}).$$
 
+> [!proposition] Memoryless
+> If $X$ is exponential with parameter $\lambda > 0$, then $X$ is a **memoryless** random variable, that is $$P(X > x + a | X > a) = P(X > x), \quad \text{for } a, x \geq 0.$$
+
 ### Normal (Gaussian) Distribution
 
 > [!definition] Standard Normal Distribution
@@ -114,79 +117,8 @@
 > [!theorem]
 > If $X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are independent, then $$X + Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2).$$
 
-### High Dimension Continuous Normal Distribution
-
-> [!definition] Continuous Normal Distribution
-> The continuous Normal distribution over $\mathbb R^m$ centered at $v$ with standard deviation $\sigma$ is defined by the function $$\rho^m_{v, \sigma}(x) = (\frac{1}{\sigma \sqrt{2 \pi}})^m e^{\frac{-||x - v||^2}{2 \sigma^2}}$$
-
-> [!definition] Discrete Normal Distribution
-> The discrete Normal distribution over $\mathbb Z^m$ centered at some $v \in \mathbb Z^m$ with standard deviation $\sigma$ is defined as $D^m_{v, \sigma}(x) = \rho^m_{v, \sigma}(x) / \rho^m_\sigma(\mathbb Z^m)$.
-
-> [!lemma]
-> For any vector $v \in \mathbb R^m$ and any $\sigma, r > 0$, $$P[|\langle z, v \rangle| > r; z \leftarrow D^m_\sigma] \leq 2e^{-\frac{r^2}{2||v||^2 \sigma^2}}.$$
-
-> [!lemma]
-> 1. For any $k > 0, P[|z| > k \sigma; z \leftarrow D^1_\sigma] \leq 2e^{-\frac{k^2}{2}}$,
-> 2. For any $z \in \mathbb Z^m$, and $\sigma \geq 3 / \sqrt{2 \pi}, D^m_\sigma(z) \leq 2^{-m}$.
-> 3. For any $k > 1, P[||z|| > k \sigma \sqrt{m}; z \leftarrow D^m_\sigma] < k^m e^{\frac{m}{2}(1 - k^2)}$.
-
-> [!lemma]
-> For any $v \in \mathbb Z^m$, if $\sigma = \omega(||v|| \sqrt{\log m})$, then $$P[D^m_\sigma(z) / D^m_{v, \sigma}(z) = O(1); z \leftarrow D^m_\sigma] = 1 - 2^{-\omega(\log m)},$$ and more specifically, for any $v \in \mathbb Z^m$, if $\sigma = \alpha ||v||$ for any positive $\sigma$, then $$P[D^m_\sigma (z) / D^m_{v, \sigma}(z) < e^{12 / \alpha + 1 / (2 \alpha^2)}; z \leftarrow D^m_\sigma] > 1 - 2^{-100}.$$
-
-> [!theorem]
-> Let $V$ be a subset of $\mathbb Z^m$ in which all elements have norms less than $T, \sigma$ be some element in $\mathbb R$ such that $\sigma = \omega(T \sqrt{\log m})$, and $h: V \rightarrow \mathbb R$ be a probability distribution. Then there exists a constant $M = O(1)$ such that the distribution of the following algorithm $\mathcal A$:
-> 1. $v \leftarrow h$
-> 2. $z \leftarrow D^m_{v, \sigma}$
-> 3. Output $(z, v)$ with probability $\min(\frac{D^m_\sigma(z)}{MD^m_{v, \sigma}}, 1)$
-> 
-> is within statistical distance $\frac{2^{-\omega(\log m)}}{M}$ of the distribution of the following algorithm $\mathcal F$:
-> 1. $v \leftarrow h$
-> 2. $z \leftarrow D^m_\sigma$
-> 3. Output $(z, v)$ with probability $1/M$
-> 
-> Moreover, the probability that $\mathcal A$ outputs something is at least $\frac{1 - 2^{\omega(\log m)}}{M}$.
-> More concretely, if $\sigma = \alpha T$ for any positive $\alpha$, then $M = e^{12 / \alpha + 1 / (2 \alpha^2)}$, the output of algorithm $\mathcal A$ is within statistical distance $\frac{2^{-100}}{M}$ of the output of $\mathcal F$, and the probability that $\mathcal A$ outputs something is at least $\frac{1 - 2^{-100}}{M}$.
-
-> [!lemma]
-> Let $V$ be an arbitrary set, and $h: V \rightarrow \mathbb R$ and $f: \mathbb Z^m \rightarrow \mathbb R$ be probability distributions. If $g_v : \mathbb Z^m \rightarrow \mathbb R$ is a family of probability distributions indexed by all $v \in V$ with the property that $$\exists M \in \mathbb R \text{ such that } \forall v, P[M g_v(z) \geq f(z); z \leftarrow f] \geq 1 - \epsilon$$ then the distribution of the output of the following algorithm $\mathcal A$:
-> 1. $v \leftarrow h$
-> 2. $z \leftarrow g_v$
-> 3. Output $(z, v)$ with probability $\min(\frac{f(z)}{M g_v(z)}, 1)$
-> 
-> is within statistical distance $\epsilon / M$ of the distribution of the following algorithm $\mathcal F$:
-> 1. $v \leftarrow h$
-> 2. $z \leftarrow f$
-> 3. Output $(z, v)$ with probability $1 / M$.
-> 
-> Moreover, the probability that $\mathcal A$ outputs something is at least $(1 - \epsilon) / M$.
-
-### Bivariate Normal Distribution
-
-> [!definition] Bivariate Normal
-> Two random variables $X$ and $Y$ are said to be **bivariate normal**, or **jointly normal**, if $aX + bY$ has a normal distribution for all $a, b \in \mathbb R$.
-
 > [!remark]
-> - If $X$ and $Y$ are bivariate normal, then letting $a = 1, b = 0$, we conclude that $X$ must be normal. Similarly, we have $Y$ must be normal.
-> - If $X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are independent, then they are jointly normal.
-> - If $X \sim N(\mu_X, \sigma_X^2)$ and $Y \sim N(\mu_Y, \sigma_Y^2)$ are jointly normal, then $X + Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\rho(X, Y) \sigma_X \sigma_Y)$.
-
-> [!definition] Standard Bivariate Normal Distribution 
-> Two random variables $X$ and $Y$ are said to have the **standard bivariate normal distribution with correlation coefficient** $\rho$ if their joint PDF is given by $$f_{XY}(x, y) = \frac{1}{2\pi \sqrt{1 - p^2}} \exp\{-\frac{1}{2(1 - \rho^2)} [x^2 - 2\rho xy + y^2]\},$$ where $\rho \in (-1, 1)$. If $\rho = 0$, then we just say $X$ and $Y$ have the standard bivariate normal distribution. 
-
-> [!definition] Bivariate Normal Distribution
-> Two random variables $X$ and $Y$ are said to have a **bivariate normal distribution** with parameters $\mu_X, \sigma_X^2, \mu_Y, \sigma_Y^2,$ and $\rho$, if their joint PDF is given by $$f_{XY} = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\{-\frac{1}{2(1 - \rho^2)} [(\frac{x - \mu_X}{\sigma_X})^2 + (\frac{y - \mu_Y}{\sigma_Y})^2 - 2\rho \frac{(x - \mu_X)(y - \mu_Y)}{\sigma_X \sigma_Y}]\}$$ where $\mu_X, \mu_Y \in \mathbb R, \sigma_X, \sigma_Y > 0$ and $\rho \in (-1, 1)$ are all constants.
-
-> [!theorem]
-> Let $X$ and $Y$ be two bivariate normal random variables. Then there exist independent standard normal random variables $Z_1$ and $Z_2$ such that $$\begin{cases} X &= \sigma_X Z_1 + \mu_X \\ Y &= \sigma_Y(\rho Z_1 + \sqrt{1 - \rho^2} Z_2) + \mu_Y\end{cases}$$
-
-> [!theorem]
-> Suppose $X$ and $Y$ are jointly normal random variables with parameters $\mu_X, \sigma_X^2, \mu_Y, \sigma_Y^2$, and $\rho$. Then, given $X = x$, $Y$ is normally distributed with $$\begin{align}&E[Y | X = x] = \mu_Y + \rho \sigma_Y \frac{x - \mu_X}{\sigma_X}, \\ &\text{Var}(Y | X = x) = (1 - \rho^2) \sigma_Y^2\end{align}$$
-
-> [!theorem]
-> If $X$ and $Y$ are bivariate normal and uncorrelated, then they are independent.
-
-> [!example]
-> Let $X$ and $Y$ be jointly (bivariate) normal, with $\text{Var}(X) = \text{Var}(Y)$. Then $X + Y$ and $X - Y$ are independent.
+> Bivariate and multivariate normal distributions live in [[Random Vectors]]. High-dimensional Gaussians over $\mathbb Z^m$ (discrete Gaussian, tail bounds, rejection sampling) live in [[Lattice Helper]].
 
 ### Log-normal Distribution
 

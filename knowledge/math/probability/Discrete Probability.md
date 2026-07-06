@@ -57,13 +57,6 @@
 > [!lemma]
 > Given a sample space $S$ and an event $A$ in the sample space $S$, let $X_A = I\{A\}$. Then $E[X_A] = P\{A\}$
 
-### Continuity Correction for Discrete Random Variables
-
-> [!theorem] Continuity Correction for Discrete Random Variables
-> Let $X_1, X_2, \dots, X_n$ be independent discrete random variables and let $$Y = X_1 + X_2 + \dots + X_n.$$
-> Suppose that we are interested in finding $P(A) = P(l \leq Y \leq u)$ using the CLT, where $l$ and $u$ are integers. Since $Y$ is an integer-valued random variables, we can write $$P(A) = P(l - \frac{1}{2} \leq Y \leq u + \frac{1}{2}).$$
-> It turns out that the above expression sometimes provides a better approximation for $P(A)$ when applying the CLT. This is called the continuity correction and it is particular useful when $X_i$'s are Bernoulli (i.e., $Y$ is binomial).
-
 ## Independence
 
 > [!definition] Independent Random Variables (Discrete, Two Variables)
@@ -77,26 +70,8 @@
 > Two discrete random variables $X$ and $Y$ are independent if $$P_{XY}(x, y) = P_X(x) P_Y(y), \quad \forall x, y.$$
 > Equivalent, $X$ and $Y$ are independent if $$F_{XY}(x, y) = F_X(x) F_Y(y), \quad \forall x, y.$$
 
-## Some useful bounds
-
-> [!theorem] Markov's inequality
-> Let $X \in \mathbb{R}^+$ be a random variable. Then for every $\alpha > 0$, we have:
-> $$\Pr[X \ge \alpha] \leq \dfrac{E[X]}{\alpha}$$
-
-
-> [!theorem] Chebyshev's inequality
-> Let $X \in \mathbb{R}$ be a random variable with $\mu := E[X]$ and $\nu := Var[X]$. Then for every $\alpha > 0$, we have:
-> $$\Pr[|X - \mu| \ge \alpha] \le \dfrac{\nu}{\alpha^2}$$
-
-> [!theorem] Chernoff bound
-> Let $\{X_i\}_{i \in I}$ be a finite, non-empty, and mutually independent family of random variables, such that each $X_i$ is $1$ with probability $p$ and $0$ with probability $q := 1 - p$. Assume that $0 < p < 1$. Also, let $n := |I|$ and $\overline{X}$ be the sample mean of $\{X_i\}_{i \in I}$. Then for every $\varepsilon > 0$, we have:
-> - $\Pr[\overline{X} - p \ge \epsilon] \le \exp(-n\epsilon^2/2q)$
-> - $\Pr[\overline{X} - p \le -\epsilon] \le \exp(-n\epsilon^2/2p)$
-> - $\Pr[|\overline{X} - p \ge \epsilon|] \le 2\exp(-n\epsilon^2/2)$
-
-
-
-
+> [!remark]
+> Markov, Chebyshev, and Chernoff bounds live in [[Probability Inequalities]].
 
 ## Discrete Special Distribution
 
@@ -177,31 +152,8 @@
 > [!proposition] Poisson to Exponential
 > Suppose the number of customers arriving at a store obeys a Poisson distribution with an average of $\lambda$ customers per unit time. That is, if $Y$ is the number of customers arriving in an interval of length $t$, then $Y \sim \text{Poisson}(\lambda t)$. Suppose that the store opens at time $t = 0$. Let $X$ be the arrival time of the first customer. Then $X \sim \text{Exponential}(\lambda)$.
 
-### Discrete Gaussian 
-
-> [!definition] Discrete Gaussian
-> For a full-rank lattice $\Lambda \subset \mathbb{R}^n, s > 0$ and $\mathbf{z} \in \mathbb{R}^n$, the mass function of discrete Gaussian distribution $D_{\Lambda + \mathbf{z},s}$ is defined as:
-> $$\Pr_{X \sim D_{\Lambda + \mathbf{z}, s}}[X = \mathbf{x}] = \dfrac{\rho_s(\mathbf{x})}{\rho_s(\Lambda + \mathbf{z})}$$
-> where $\rho_s(\mathbf{x}) := \exp(-\pi\|\mathbf{x}/s\|^2)$ for $s> 0$
-
-> [!theorem] Strong tail bound
-> For $\mathcal{L} \subset \mathbb{R}^n$ a full-rank lattice, $r \ge 1, s > 0$ and $\mathbf{X} \sim D_{\mathcal{L}+\mathbf{t},s}$, we have
-> $$ \Pr \left[ \|\mathbf{X}\| > rs\sqrt{\frac{n}{2\pi}} \right] \le \frac{\rho_s(\mathcal{L})}{\rho_s(\mathcal{L} + \mathbf{t})} r^n e^{-\frac{n}{2}(r^2 - 1)} \le \frac{\rho_s(\mathcal{L})}{\rho_s(\mathcal{L} + \mathbf{t})} e^{-\frac{n}{2}(r - 1)^2}$$
-
 > [!remark]
-> For cryptography usage, $r$ is often chosen to be $\mathcal{w}(\sqrt{\log \lambda})$, where $\lambda$ is security parameter. In such case, the theorem yields:
-> $$ \Pr \left[ \|\mathbf{X}\| > s\sqrt{n} \cdot\mathcal{w}(\sqrt{\log \lambda}) \right] \le \mathsf{negl}(\lambda)$$
-
-## The Rényi divergence
-
->[!definition] The Rényi divergence
->Let $P$ and $Q$ are two discrete probability distributions such that $\mathsf{Supp}(P) \subseteq \mathsf{Supp}(Q)$ ( $\text{Supp}(P) = \{x | P(x) \neq 0 \}$) and $a \in (1, +\infty)$, we have the Rényi divergence of order $a$:
->$$R_a(P\|Q)=\left(\sum_{x \in \mathsf{Supp}(P)}\dfrac{P(x)^a}{Q(x)^{a-1}}\right)^{\dfrac{1}{a - 1}}$$
-> For the cases $a = 2$ and $a = +\infty$ respectively, we have
->- $R_1(P \| Q) = \exp \left( \sum_{x \in \text{Supp}(P)} P(x) \log \frac{P(x)}{Q(x)} \right)$
->- $R_\infty(P \| Q) = \max_{x \in \text{Supp}(P)} \frac{P(x)}{Q(x)}$
-
-> [!Lemma]
+> Cryptography-oriented discrete distributions — the lattice discrete Gaussian (with tail bounds) and the Rényi divergence — live in [[Lattice Helper]].
 
 
 
