@@ -19,6 +19,9 @@ The canonical resource bound: how many steps does a Turing machine take?
 
 > [!definition] Class P
 > $\text{P}$ is the class of languages that are decidable in polynomial time on a deterministic single-tape Turing machine: $$\text{P} = \bigcup_{k} \text{TIME}(n^k).$$
+> Unfolded (machine form): $L \in \text{P}$ iff there exist a deterministic Turing machine $M$ and a polynomial $p(\cdot)$ such that
+> - On input a string $x$, machine $M$ halts after at most $p(|x|)$ steps, and
+> - $M(x) = 1$ if and only if $x \in L$.
 
 > [!remark] Role of Class P
 > 1. $\text{P}$ is invariant for all models of computation that are polynomial-equivalent to the deterministic single-tape Turing machine.
@@ -41,19 +44,19 @@ The canonical resource bound: how many steps does a Turing machine take?
 > We measure the time of a verifier only in terms of the length of $w$, so a **polynomial-time verifier** runs in polynomial time in the length of $w$. A language $A$ is **polynomial verifiable** if it has a polynomial-time verifier.
 
 > [!definition] Certificate
-> To test membership in $A$, the verifier uses additional information $c$ called a **certificate** or **proof**.
+> To test membership in $A$, the verifier uses additional information $c$ called a **certificate**, **witness**, or **proof** — a string whose existence proves $w \in A$ and which the verifier can check in polynomial time.
 
 > [!definition] Class NP
 > $\text{NP}$ is the class of languages that have polynomial-time verifiers.
-
-> [!definition] Witness
-> A **witness** in computer science is proof that you solved the problem correctly.
 
 > [!theorem]
 > A language is in $\text{NP}$ if and only if it is decided by some nondeterministic polynomial-time Turing machine: $$\text{NP} = \bigcup_k \text{NTIME}(n^k).$$
 
 > [!example] Member of NP
 > - [[Number Theory#Prime Numbers, Unique Factorization, and Finite Fields|COMPOSITES]]
+
+> [!definition] Class coNP
+> $\text{coNP} = \{L \mid \overline{L} \in \text{NP}\}$ — languages whose *non*-membership has polynomial-time-verifiable certificates (see [[Complexity Class#Complexity Class|complement classes]]). E.g. $\text{TAUTOLOGY} = \{\langle \phi \rangle \mid \phi \text{ is true under every assignment}\}$.
 
 > [!question]
 > Does $\text{coNP} = \text{NP}$? Does $\text{P} = \text{NP}$? See [[P vs NP]].

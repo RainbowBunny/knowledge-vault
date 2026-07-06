@@ -26,7 +26,11 @@ What changes when the Turing machine has access to fair coin flips? Randomized c
 ## Class BPP
 
 > [!definition] Class BPP
-> $\text{BPP}$ is the class of languages decided by probabilistic polynomial-time Turing machines with an error probability of $\frac{1}{3}$.
+> $\text{BPP}$ is the class of languages decided by probabilistic polynomial-time Turing machines with an error probability of $\frac{1}{3}$. Unfolded (language form): $L \in \text{BPP}$ iff there is a PPT machine $M$ such that
+> 1. $w \in L$ implies $\Pr[M \text{ accepts } w] \geq \frac{2}{3}$, and
+> 2. $w \notin L$ implies $\Pr[M \text{ accepts } w] \leq \frac{1}{3}$.
+>
+> By the amplification lemma below, the constant $\frac{1}{3}$ can be replaced by any $\epsilon \in (0, \frac 1 2)$ or even $2^{-p(n)}$ without changing the class.
 
 > [!lemma] Amplification
 > Let $\epsilon$ be a fixed constant strictly between $0$ and $\frac{1}{2}$. Then for any polynomial $p(n)$, a probabilistic polynomial-time Turing machine $M_1$ that operates with error probability $\epsilon$ has an equivalent probabilistic polynomial-time Turing machine $M_2$ that operates with an error probability of $2^{-p(n)}$.
@@ -37,7 +41,9 @@ What changes when the Turing machine has access to fair coin flips? Randomized c
 ## Class RP
 
 > [!definition] Class RP
-> $\text{RP}$ is the class of languages decided by probabilistic polynomial-time Turing machines where inputs in the language are accepted with probability at least $\frac{1}{2}$, and inputs not in the language are rejected with probability $1$.
+> $\text{RP}$ is the class of languages decided by probabilistic polynomial-time Turing machines where inputs in the language are accepted with probability at least $\frac{1}{2}$, and inputs not in the language are rejected with probability $1$. Unfolded (language form): $L \in \text{RP}$ iff there is a PPT machine $M$ such that
+> 1. $w \in L$ implies $\Pr[M \text{ accepts } w] \geq \frac{1}{2}$, and
+> 2. $w \notin L$ implies $\Pr[M \text{ accepts } w] = 0$.
 
 RP is one-sided: false negatives possible (up to probability $\frac{1}{2}$), false positives impossible.
 

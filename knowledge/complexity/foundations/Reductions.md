@@ -36,4 +36,4 @@ A reduction is only useful if the reduction itself is *easier* than the target c
 - [[Complexity Class]] — the abstract notion that reductions structure
 - [[Time Complexity#Class NP-Complete|NP-completeness]] — defined via poly-time reductions
 - [[Space Complexity#Class NL-completeness|NL-completeness]] — defined via log-space reductions
-- [[Cook-Levin Theorem]] — the founding NP-completeness reduction
+- [[Time Complexity#Class NP-Complete|Cook-Levin theorem]] — the founding NP-completeness reduction

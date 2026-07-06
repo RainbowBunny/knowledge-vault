@@ -6,7 +6,7 @@ The structure mirrors `cryptography/`: foundations + initiative folders + a `con
 
 ## Foundations
 
-- [[Complexity Class]] — abstract notion of a complexity class, efficient algorithms, the class-inclusion lattice
+- [[Complexity Class]] — the language formulation (decision problems as languages, encodings, co-classes), efficient algorithms, the class-inclusion lattice
 - [[Reductions]] — poly-time and log-space mapping reductions
 - [[Hierarchy Theorems]] — time / space hierarchy meta-theorems, EXPSPACE-Complete
 
@@ -71,7 +71,7 @@ complexity/
 
 - **From `cryptography/foundations/Security Model.md`** to [[Randomized Complexity]] — "PPT adversary" is a complexity-theoretic concept defined there.
 - **From `cryptography/assumptions/`** to [[Conjectures MOC]] — hardness assumptions in cryptography play the same structural role as complexity-theoretic conjectures.
-- **From `cs/computability/`** to [[Time Complexity]] / [[Space Complexity]] — Turing machines, decidability are prerequisites.
+- **From `cs/foundations/`** ([[Languages]], [[Computability Theory]]) to [[Complexity Class]] — strings, languages, Turing machines, decidability are prerequisites.
 - **To `math/`** for diagonalization techniques used in [[Hierarchy Theorems]].
 
 ## Callout Conventions

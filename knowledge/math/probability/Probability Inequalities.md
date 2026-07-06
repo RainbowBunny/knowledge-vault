@@ -14,6 +14,10 @@
 
 > [!theorem] Markov's Inequality
 > If $X$ is any nonnegative random variable, then for every $a > 0$: $$P(X \geq a) \leq \frac{E[X]}{a}.$$
+> Equivalently, $\Pr[X \geq r \cdot E(X)] \leq \frac{1}{r}$.
+
+> [!remark]
+> Markov tell us how to bound extreme value knowing the average.
 
 > [!theorem] Chebyshev's Inequality
 > If $X$ is any random variable, then for any $b > 0$ we have $$P(|X - E[X]| \geq b) \leq \frac{\text{Var}(X)}{b^2}.$$
@@ -30,6 +34,10 @@
 > - $\Pr[\overline{X} - p \ge \epsilon] \le \exp(-n\epsilon^2/2q)$
 > - $\Pr[\overline{X} - p \le -\epsilon] \le \exp(-n\epsilon^2/2p)$
 > - $\Pr[|\overline{X} - p \ge \epsilon|] \le 2\exp(-n\epsilon^2/2)$
+
+> [!theorem] Hoefding Inequality
+> Let $X_1, X_2, \dots, X_n$ be $n$ independent random variables with the same probability distribution, each ranging over the (real) interval $[a, b]$, and let $\mu$ denote the expected value of each of these variables. Then, for every $\epsilon > 0$, 
+> $$\Pr[|\frac{\sum_{i = 1}^n X_i}{n} - \mu| > \epsilon] < 2 \cdot e^{-\frac{2 \epsilon^2}{(b - a^2)} n}$$
 
 ## Expectation Inequalities
 
