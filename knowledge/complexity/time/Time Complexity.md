@@ -37,6 +37,19 @@ The canonical resource bound: how many steps does a Turing machine take?
 > - [[Number Theory#Divisibility and greatest common divisors|RELPRIME]]
 > - Every context-free language
 
+## Class Non-Uniform Polynomial
+
+Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foundation of Cryptography Volume I Basic Tools]]
+
+> [!definition] P/poly
+> The complexity class non-uniform polynomial time (denoted $\text{P/poly}$) is the class of languages $L$ that can be recognized by a non-uniform sequence of polynomial time "machines". Namely, $L \in \text{P/poly}$ if there exists an infinite sequence of machines $M_1, M_2, \dots$ satisfying the following:
+> 1. There exists a polynomial $p(\cdot)$ such that for every $n$, the description of machine $M_n$ has length bounded above by $p(n)$.
+> 2. There exists a polynomial $q(\cdot)$ such that for every $n$, the running time of machine $M_n$ on each input of length $n$ is bounded above by $q(n)$.
+> 3. For every $n$ and every $x \in \{0, 1\}^n$, machine $M_n$ will accept $x$ if and only if $x \in L$.
+
+> [!theorem]
+> $\text{BPP} \subseteq \text{P/poly}$
+
 ## Class NP
 
 > [!definition] Verifier
@@ -48,6 +61,7 @@ The canonical resource bound: how many steps does a Turing machine take?
 
 > [!definition] Class NP
 > $\text{NP}$ is the class of languages that have polynomial-time verifiers.
+> Unfolded (machine form): $L \in \text{NP}$ if there exists a Boolean relation $R_L \subseteq \{0, 1\}^* \times \{0, 1\}^*$ and a polynomial $p(\cdot)$ such that $R_L$ can be recognized in (deterministic) polynomial time, and $x \in L$ if and only if there exists a $y$ such that $|w| \leq p(|x|)$ and $(x, w) \in R_L$. Such $w$ is called a **witness for membership** of $x \in L$.
 
 > [!theorem]
 > A language is in $\text{NP}$ if and only if it is decided by some nondeterministic polynomial-time Turing machine: $$\text{NP} = \bigcup_k \text{NTIME}(n^k).$$

@@ -15,6 +15,8 @@ What changes when the Turing machine has access to fair coin flips? Randomized c
 
 ## Probabilistic Polynomial Time (PPT)
 
+Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foundation of Cryptography Volume I Basic Tools]]
+
 > [!definition] Probabilistic Polynomial Time (PPT)
 > A **PPT Turing machine** is a probabilistic Turing machine $M$ for which there exists a polynomial $p$ such that, for every input $w$ of length $n$, every branch of $M$'s computation on $w$ halts within $p(n)$ steps.
 >
@@ -25,8 +27,11 @@ What changes when the Turing machine has access to fair coin flips? Randomized c
 
 ## Class BPP
 
+Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foundation of Cryptography Volume I Basic Tools]]
+
 > [!definition] Class BPP
-> $\text{BPP}$ is the class of languages decided by probabilistic polynomial-time Turing machines with an error probability of $\frac{1}{3}$. Unfolded (language form): $L \in \text{BPP}$ iff there is a PPT machine $M$ such that
+> $\text{BPP}$ is the class of languages decided by probabilistic polynomial-time Turing machines with an error probability of $\frac{1}{3}$. 
+> Unfolded (language form): $L \in \text{BPP}$ iff there is a PPT machine $M$ such that
 > 1. $w \in L$ implies $\Pr[M \text{ accepts } w] \geq \frac{2}{3}$, and
 > 2. $w \notin L$ implies $\Pr[M \text{ accepts } w] \leq \frac{1}{3}$.
 >
