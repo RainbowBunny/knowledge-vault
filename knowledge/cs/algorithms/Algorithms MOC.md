@@ -14,9 +14,9 @@ Concrete algorithmic techniques, organized by paradigm.
 - [[Greedy Algorithms|Greedy Algorithms]] — theory + per-problem files (see [[greedy]] subfolder)
 - [[Randomized Algorithms]] — hiring problem, online maximum, uniform permutations, sampling
 
-## Optimization
+## Numeric & Tricks
 
-- [[Submodular Welfare Problem]] — submodular utility, item assignment, online variant
+- [[Numeric Algorithms]] — matrix multiplication & Strassen, complex-number multiplication, Horner's rule, Monge arrays, binary addition
 - [[Optimization Trick]] — non-adjacent form, sentinels
 
 ## Subfolder: dp/
@@ -31,10 +31,9 @@ Concrete algorithmic techniques, organized by paradigm.
 
 ## Subfolder: greedy/
 
-- [[Greedy Algorithms|Greedy Algorithms]] — theory: greedy-choice property
+- [[Greedy Algorithms|Greedy Algorithms]] — theory: greedy-choice property; off-line caching (Bélády)
 - [[Activity Selection]] — base + multiple lecture hall + weighted variants
 - [[Huffman Codes]]
 - [[Matroids]] — matroid theory, weighted matroids, generic GREEDY
 - [[Task Scheduling]] — unit-time with deadlines; minimize average completion time
 - [[Acyclic Subgraphs]]
-- [[Off-line Caching]]

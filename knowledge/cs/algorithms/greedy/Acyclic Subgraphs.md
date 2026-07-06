@@ -1,8 +1,6 @@
 ## Acyclic Subgraphs
 
-> [!definition] Incidence Matrix
-> The **incidence matrix** for an undirected graph $G = (V, E)$ is a $|V| \times |E|$ matrix $M$ such that $M_{ve} = 1$ if edge $e$ is incident on vertex $v$, and $M_{ve} = 0$ otherwise. 
-> The **incidence matrix** for an directed graph $G = (V, E)$ with no self-loops is a $|V| \times |E|$ matrix $M$ such that $M_{ve} = -1$ if edge $e$ leaves vertex $v$, $M_{ve} = 1$ if edge $e$ enters vertex $v$, and $M_{ve} = 0$ otherwise.
+The incidence matrix is defined in [[Graph#Incidence Matrix]] (for undirected graphs, replace $-1$ by $1$: $M_{ve} = 1$ iff $e$ is incident on $v$).
 
 > [!proposition]
 > Consider the incidence matrix for an undirected graph $G = (V, E)$. A set of columns of $M$ is linearly independent over $\mathbb F_2$ if and only if the corresponding set of edges is acyclic.

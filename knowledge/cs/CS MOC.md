@@ -6,21 +6,17 @@ Each section below points to a sub-MOC that lists the files in that folder.
 
 ## Sub-MOCs
 
-- [[knowledge/cs/foundations/Foundations MOC]] — what algorithms are, asymptotic analysis, recurrences, formal languages
-- [[Algorithms MOC]] — sorting, searching, DP (`dp/`), greedy (`greedy/`), randomized
+- [[knowledge/cs/foundations/Foundations MOC]] — what algorithms are, asymptotic analysis, recurrences, formal languages, computability
+- [[Algorithms MOC]] — sorting, searching, DP (`dp/`), greedy (`greedy/`), randomized, numeric
 - [[Data Structures MOC]] — heaps, BSTs, hashing, lists, disjoint sets, amortized analysis
-- [[Problems MOC]] — Max subarray, Subset-Sum, SAT, AI search
+- [[Problems MOC]] — Max subarray, Subset-Sum, SAT, submodular welfare, AI search
+- [[Setup MOC]] — competitive-programming tooling and snippets
 
 For complexity theory (P, NP, BPP, IP, hierarchy theorems, …) see the standalone [[Complexity MOC|`complexity/` domain]].
-- [[Setup MOC]] — competitive-programming tooling and snippets
 
 ## Single-file folders
 
-These folders contain only one file each, so they don't have a sub-MOC:
-
-- [[Computability Theory]] — Turing machines, decidability, undecidability, reducibility, recursion theorem
-- [[Math]] — matrix multiplication & Strassen, complex numbers, Horner's rule, Monge arrays, binary addition
-- [[Graph]] — representations, traversal, shortest paths, MST, flows (stub)
+- [[Graph]] — representations, BFS/DFS theory, shortest paths by BFS; trees/connectivity/flows still to write
 
 ## Folder Layout
 
@@ -32,13 +28,15 @@ cs/
 │   ├── Algorithm.md
 │   ├── Asymptotic Analysis.md
 │   ├── Solving Recurrences.md
-│   └── Languages.md
+│   ├── Languages.md
+│   └── Computability Theory.md
 ├── algorithms/
 │   ├── Algorithms MOC.md
 │   ├── Sorting.md
 │   ├── Order Statistics.md
 │   ├── Searching.md
 │   ├── Randomized Algorithms.md
+│   ├── Numeric Algorithms.md
 │   ├── Optimization Trick.md
 │   ├── dp/
 │   │   ├── Dynamic Programming.md
@@ -49,13 +47,12 @@ cs/
 │   │   ├── Subsequence.md
 │   │   └── Graph DP.md
 │   └── greedy/
-│       ├── Greedy Algorithms.md
+│       ├── Greedy Algorithms.md   (incl. off-line caching)
 │       ├── Activity Selection.md
 │       ├── Huffman Codes.md
 │       ├── Matroids.md
 │       ├── Task Scheduling.md
-│       ├── Acyclic Subgraphs.md
-│       └── Off-line Caching.md
+│       └── Acyclic Subgraphs.md
 ├── data-structures/
 │   ├── Data Structures MOC.md
 │   ├── Heap.md
@@ -63,17 +60,12 @@ cs/
 │   ├── Priority Queues.md
 │   ├── Stacks and Queues.md
 │   ├── Linked Lists.md
-│   ├── Dynamic Table.md
 │   ├── Hash Tables.md
 │   ├── Binary Search Tree.md
 │   ├── Red-Black Trees.md
 │   ├── Disjoint Sets.md
 │   ├── Memory.md
-│   └── Amortized Analysis.md
-├── computability/
-│   └── Computability Theory.md
-├── math/
-│   └── Math.md
+│   └── Amortized Analysis.md   (incl. dynamic table)
 ├── graph/
 │   └── Graph.md
 ├── problems/
@@ -81,6 +73,7 @@ cs/
 │   ├── Maximum Subarray Problem.md
 │   ├── Subset-Sum Problem.md
 │   ├── Satisfiability Problem.md
+│   ├── Submodular Welfare Problem.md
 │   └── Search Problem.md
 └── setup/
     ├── Setup MOC.md

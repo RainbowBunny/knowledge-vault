@@ -1,6 +1,7 @@
 > [!info]
-> Stub file. Notes on graph algorithms will live here. Related material currently lives in:
-> - [[Dynamic Programming#Graph]] — Optimal BST, Longest Path in DAG, Bitonic TSP
+> Representations and traversal are written; trees/DAGs, connectivity, and flows (sections at the bottom) are still outlines. Related material:
+> - [[Graph DP]] — Optimal BST, Longest Path in DAG, Bitonic TSP
+> - [[Acyclic Subgraphs]] — incidence-matrix columns vs. acyclicity (matroid view)
 > - [[CP Setup]] / [[Snippet Reference]] — competitive snippet prefixes for graph algorithms
 
 ## Basic Definition

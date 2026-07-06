@@ -1,5 +1,8 @@
 # Data Structures MOC
 
+> [!definition] Data Structures
+> A **data structure** is a way to store and organize data in order to facilitate access and modifications. No single data structure works well for all purposes, so it is important to know the strengths and limitations of several of them.
+
 ## Heaps and Priority Queues
 
 - [[Heap]] — binary heap, $d$-ary heap, mergeable heaps, Young tableaus
@@ -19,7 +22,6 @@
 
 - [[Stacks and Queues]] — stack, queue, dequeue
 - [[Linked Lists]] — doubly linked, singly linked
-- [[Dynamic Table]] — amortized expansion / contraction
 
 ## Sets
 
@@ -28,4 +30,4 @@
 ## Memory & Analysis
 
 - [[Memory]] — object allocation (pointer / array)
-- [[Amortized Analysis]] — aggregate, accounting, potential
+- [[Amortized Analysis]] — aggregate, accounting, potential; dynamic table (amortized expansion / contraction)

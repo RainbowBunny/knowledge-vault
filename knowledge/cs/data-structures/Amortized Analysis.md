@@ -15,3 +15,12 @@
 
 > [!definition] Potential Method
 > Assign potential score for each state of the structures, and thus we can calculate the amortized cost by analyzing the different potential score of two states and the actual cost of the action. Thus, if we have the potential score always increases then.
+
+## Application: Dynamic Table
+
+> [!definition] Dynamic Table
+> We do not always know in advance how many objects will we need, so the idea is that we will change the allocation based on the **load factor** $\alpha (T)$ of table defined by dividing the number of items stored with the size of the table.
+> One idea is that if $\alpha (T) = 1$ then we expand the memory allocation by two-fold, and when load factor is too low ($\alpha (T) \leq \frac{1}{4}$), we halve our memory allocation.
+
+> [!remark]
+> The doubling/halving strategy gives $O(1)$ amortized cost per insertion/deletion — the classic showcase for all three methods above.

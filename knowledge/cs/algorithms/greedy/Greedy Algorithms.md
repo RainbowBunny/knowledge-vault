@@ -11,3 +11,8 @@
 
 > [!definition] Greedy-Choice Property
 > We can assemble a globally optimal solution by making locally optimal (greedy) choices. In other words, when we are considering which choice to make, we make the choice that looks best in the current problem, without considering results from subproblems.
+
+## Off-line Caching
+
+> [!definition] Off-line Caching
+> In the **off-line caching** problem the entire request sequence is known in advance. Bélády's **farthest-in-future** (MIN) policy — on a miss, evict the block whose next use is farthest in the future — is provably optimal, and is a greedy choice that can be shown safe by an exchange argument.

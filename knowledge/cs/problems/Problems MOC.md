@@ -10,6 +10,7 @@ Specific problems studied in CS, with formulations and solution approaches.
 
 - [[Subset-Sum Problem]] — formulation, lattice approach, super-increasing sequence, collision algorithm, one-way function
 - [[Satisfiability Problem]] — SAT, 3SAT, TQBF
+- [[Submodular Welfare Problem]] — submodular utility, item assignment, online variant
 
 ## Search (AI)
 

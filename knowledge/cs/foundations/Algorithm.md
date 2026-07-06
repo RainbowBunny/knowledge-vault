@@ -34,11 +34,12 @@
 
 ### Worst-case and average-case analysis
 
+See [[Asymptotic Analysis]] for worst-case / average-case analysis and the $O / \Omega / \Theta$ notation.
 
 ## Designing algorithms
 
 > [!definition] Incremental Approach
-> Incremental?
+> The **incremental approach** builds the solution one element at a time: having handled the first $i$ elements, it extends the solution to element $i + 1$ (e.g. insertion sort inserting $A[i+1]$ into the sorted prefix $A[1..i]$).
 
 ### The divide-and-conquer approach
 
@@ -47,4 +48,7 @@
 > - **Divide** the problem into a number of subproblems that are smaller instances of the same problem.
 > - **Conquer** the subproblems by solving them recursively. If the subproblem sizes are small enough, however, just solve the subproblems in a straightforward manner.
 > - **Combine** the solutions to the subproblems into the solution for the original problem.
+
+> [!remark]
+> Worked divide-and-conquer examples: merge sort in [[Sorting]], [[Order Statistics]], [[Maximum Subarray Problem]], Strassen in [[Numeric Algorithms]]. Running times of the recursions are analyzed in [[Solving Recurrences]]. The other design paradigms have their own notes: [[Dynamic Programming]] and [[Greedy Algorithms]].
 
