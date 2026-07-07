@@ -27,6 +27,8 @@ Replace the deterministic verifier of NP with a probabilistic, interactive one. 
 
 ## Class IP
 
+[[Book Reference#Introduction to the Theory of Computation|Introduction to the Theory of Computation]]
+
 > [!definition] Class IP
 > Language $A$ is in $\text{IP}$ if some polynomial-time computable function $V$ exists such that for some (arbitrary) function $P$ and for every (arbitrary) function $\tilde P$ and for every string $w$:
 > 1. $w \in A$ implies $\Pr[V \leftrightarrow P \text{ accepts } w] \geq \frac{2}{3}$ (completeness), and

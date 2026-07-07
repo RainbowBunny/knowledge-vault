@@ -14,7 +14,7 @@
 > Sampling experiment: $\text{SD}(n, k, w)$
 > 1. $H \xleftarrow{\$} \mathbb F^{(n - k) \times n}$
 > 2. $x \xleftarrow{\$} \mathbb F^n$ with $\omega(x) = w$
-> 3. Output $(H, \sigma(x) = Hx^{\perp})$
+> 3. Output $(H, \sigma(x) = Hx^{\top})$
 
 ## Problem
 

@@ -10,12 +10,15 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 
 ## Code-Based (`code-based/`)
 
-- [[Coding Theory]] — fundamentals
-- [[Linear Code]]
-- [[Code Distance]]
+- [[Coding Theory]] — fundamentals: channels, decoding rules
+- [[Code Distance]] — distance, error detection / correction
+- [[Linear Code]] — generator / parity-check matrices, syndrome decoding
+- [[Code Properties]] — composable structural properties: systematic, cyclic / quasi-cyclic, duality axes
+- [[Cyclic Codes]] — generator polynomial theory, BCH, Reed–Solomon
+- [[Reed-Muller Codes]] — the RM family
+- [[Subfield Codes]] — concatenated / subfield / trace constructions
 - [[Coding Theory Bounds]]
-- [[Subfield Codes]]
-- [[Cyclic Codes]]
+- [[Hamming Quasi-Cyclic]] (`schemes/`) — NIST's backup KEM, composing systematic + quasi-cyclic
 
 ## Concrete PQ Schemes Living Elsewhere
 

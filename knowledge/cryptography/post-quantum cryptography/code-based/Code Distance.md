@@ -6,6 +6,9 @@
 > [!definition] Parameters of the Code 
 > A code of length $n$, size $M$ and distance $d$ referred to as an $(n, M, d)$-code. The numbers $n, M$ and $d$ are called the **parameters** of the code.
 
+> [!remark] Generalized metric
+> The distance $d(\cdot, \cdot)$ above is the Hamming distance. In code-based cryptography the definition is often stated for a code over a ring $\mathcal R$ with an arbitrary norm $\omega$: $$d = \min_{u, v \in C,\, u \neq v} \omega(u - v),$$ recovering the Hamming case with $\omega = \text{wt}$. An $[n, k, d]$-code can correct arbitrary patterns of up to $\lfloor (d-1)/2 \rfloor$ errors (theorem below).
+
 > [!definition] $u$-error-detecting
 > Let $u$ be a positive integer. A code $C$ is **$u$-error-detecting** if, whenever a codeword incurs at least one but at most $u$ errors, the resulting word is not a code word. A code $C$ is **exactly $u$-error-detecting** if it is $u$-error detecting but not $(u + 1)$-error-detecting.
 
