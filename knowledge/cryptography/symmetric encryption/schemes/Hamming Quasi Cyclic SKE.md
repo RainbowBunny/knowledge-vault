@@ -44,6 +44,6 @@
 > 	2. Generates $r = (r_1, r_2) \xleftarrow{\$} S_{w_r}^n(\mathbb F_2) \times  S_{w_r}^n(\mathbb F_2)$
 > 	3. $u = r_1 + h \cdot r_2$
 > 	4. $v = mG + s \cdot r_2 + e$
-> 	5. Return $(u, v)$
+> 	5. Returns $(u, v)$
 > - $m \leftarrow \text{Dec}(k, c)$:
-> 	1. Return $m' \leftarrow \mathcal C.\text{Decode}(v - u \cdot y)$
+> 	1. Returns $m' \leftarrow \mathcal C.\text{Decode}(v - u \cdot y)$
