@@ -1,0 +1,4 @@
+## Syntax
+
+### Binary Golay Codes
+

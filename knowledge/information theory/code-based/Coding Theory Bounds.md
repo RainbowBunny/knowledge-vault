@@ -3,10 +3,13 @@
 ### The Main Coding Theory Problem
 
 > [!definition] Relative Minimum Distance
-> For a $q$-ary code $C$ with parameters $(n, M, d)$, the **relative minimum distance** of $C$ is defined to be $\delta(C) = (d - 1) / n$
+> For a $q$-ary code $\mathcal C$ with parameters $(n, M, d)$, the **relative minimum distance** of $\mathcal C$ is defined to be $\delta(\mathcal C) = (d - 1) / n$
 
 > [!definition] Optimal code
-> For a given code alphabet $A$ of size $q$ (with $q > 1$) and given values of $n$ and $d$, let $A_q(n, d)$ denote the largest possible size $M$ for which there exists an $(n, M, d)$-code over $A$. Thus, $$A_q(n, d) = \max \{M : \text{there exists an } (n, M, d)\text{-code over } A\}.$$ Any $(n, M, d)$-code $C$ that has the maximum size, that is, for which $M = A_q(n, d)$, is called an **optimal code**.
+> For a given code alphabet $A$ of size $q$ (with $q > 1$) and given values of $n$ and $d$, let $A_q(n, d)$ denote the largest possible size $M$ for which there exists an $(n, M, d)$-code over $A$. Thus, $$A_q(n, d) = \max \{M : \text{there exists an } (n, M, d)\text{-code over } A\}.$$ Any $(n, M, d)$-code $\mathcal C$ that has the maximum size, that is, for which $M = A_q(n, d)$, is called an **optimal code**.
+
+> [!definition] Optimal Weighted Code
+> Define $A_q(n, d, w)$ to be the maximum number of codewords in a constant weight $(n, M)$ code over $\mathbb F_q$ of length $n$ and minimum distance at least $d$ whose codewords have weight $w$. Obviously, $A_q(n, d, w) \leq A_q(n, d)$.
 
 > [!definition] Main Coding Theory Problem
 > The problem of determining the values of $A_q(n, d)$ is sometimes known as the **main coding theory problem**.
@@ -20,18 +23,15 @@
 > 2. $B_q(n, 1) = A_q(n, 1) = q^n$;
 > 3. $B_q(n, n) = A_q(n, n) = q$.
 
-> [!definition] Extended Code
-> For any code $C$ over $\mathbb F_q$, the **extended code** of $C$, denoted by $\overline{C}$, is defined to be $$\overline{C} = \{(c_1, \dots, c_n, - \sum_{i = 1}^n c_i) : (c_1, \dots, c_n) \in C\}.$$ When $q = 2$, the extra coordinate is called the **parity-check** coordinate.
-
 > [!theorem]
-> If $C$ is an $(n, M, d)$-code over $\mathbb F_q$, then $\overline{C}$ is an $(n + 1, M, d')$-code over $\mathbb F_q$, with $d \leq d' \leq d + 1$. If $C$ is linear, then so is $\overline{C}$. Moreover, when $C$ is linear, $$\begin{pmatrix}H & 0 \\ \textbf{1} & 1\end{pmatrix}$$ is a parity-check matrix of $\overline{C}$ if $H$ is a parity-check matrix of $C$.
+> If $\mathcal C$ is an $(n, M, d)$-code over $\mathbb F_q$, then [[New Codes from Old#Extending Codes|Extended Code]] $\widehat{\mathcal C}$ is an $(n + 1, M, d')$-code over $\mathbb F_q$, with $d \leq d' \leq d + 1$. If $C$ is linear, then so is $\overline{\mathcal C}$. Moreover, when $\mathcal C$ is linear, $$\begin{pmatrix}H & 0 \\ \textbf{1} & 1\end{pmatrix}$$ is a parity-check matrix of $\widehat{\mathcal C}$ if $H$ is a parity-check matrix of $\mathcal C$.
 
 > [!theorem]
 > Suppose $d$ is odd.
 > 1. Then a binary $(n, M, d)$-code exists if and only if a binary $(n + 1, M, d + 1)$-code exists. Therefore, if $d$ is odd, $A_2(n + 1, d + 1) = A_2(n, d)$.
 > 2. Similarly, a binary $[n, k, d]$-linear code exists if and only if a binary $[n + 1, k, d + 1]$-linear code exists, so $B_2(n + 1, d + 1) = B_2(n, d)$.
 
-### Lower Bounds
+### Sphere-Covering Lower Bounds
 
 > [!definition] Sphere
 > Let $A$ be an alphabet of size $q$, where $q > 1$. For any vector $u \in A^n$ and any integer $r \geq 0$, the **sphere** of radius $r$ and center $u$, denoted $S_A(u, r)$, is the set $\{v \in A^n : d(u, v) \leq r\}$.
@@ -50,6 +50,50 @@
 
 > [!corollary]
 > For a prime power $q > 1$ and integers $n, d$ such that $2 \leq d \leq n$, we have $$B_q(n, d) \geq q^{n - \lceil \log_q (V_q^{n - 1}(d - 2) + 1) \rceil} \geq \frac{q^{n - 1}}{V_q^{n - 1}(d - 2)}$$
+
+### Plotkin Upper Bound
+
+> [!theorem] Plotkin Bound
+> Let $\mathcal C$ be an $(n, M, d)$ code over $\mathbb F_q$ such that $rn < d$ where $r = 1 - q^{-1}$. Then,
+> $$M \leq \left\lfloor \frac{d}{d - rn} \right\rfloor$$
+> In particular,
+> $$A_q(n, d) \leq \left\lfloor \frac{d}{d - rn} \right\rfloor,$$
+> provided $rn < d$. In the binary case,
+> $$A_2(n, d) \leq 2 \left\lfloor \frac{d}{2d - n} \right\rfloor$$
+> if $n < 2d$.
+
+> [!corollary]
+> The following bounds hold:
+> 1. If $d$ is even, $A_2(2d, d) \leq 4d$.
+> 2. If $d$ is odd, $A_2(2d, d) \leq 2d + 2$.
+> 3. If $d$ is odd, $A_2(2d + 1, d) \leq 4d + 4$.
+
+### Johnson Upper Bounds
+
+> [!theorem]
+> If $\mathcal C$ is a constant weight $(n, M, d)$ code with codewords of weight $w$ and if $M > 1$, then $d \leq 2w$.
+
+> [!theorem]
+> 1. $A_q(n, d, w) = 1$ if $d > 2w$.
+> 2. $A_q(n, 2w, w) \leq \lfloor (n(q - 1) / w) \rfloor$.
+> 3. $A_2(n, 2w, w) = \lfloor n / w \rfloor$.
+> 4. $A_2(n, 2e - 1, w) = A_2(n, 2e, w)$.
+
+> [!theorem] Restricted Johnson Bound for $A_q(n, d, w)$
+> $$A_q(n, d, w) \leq \left\lfloor \frac{nd(q - 1)}{qw^2 - 2(q - 1)nw + nd(q - 1)} \right\rfloor$$
+> provided $qw^2 - 2(q - 1)nw + nd(q - 1) > 0$, and
+> $$A_2(n, d, w) \leq \left\lfloor \frac{nd}{2w^2 - 2nw + nd} \right\rfloor$$
+> provided $2w^2 - 2nw + nd > 0$.
+
+> [!theorem] Unrestricted Johnson Bound for $A_q(n, d, w)$
+> 1. If $2w < d$, then $A_q(n, d, w) = 1$.
+> 2. If $2w \geq d$ and $d \in \{2e - 1, 2e\}$, then, setting $q^* = q - 1$,
+> $$A_q(n, d, w) \leq \left \lfloor \frac{nq^*}{w} \left \lfloor \frac{(n - 1)q^*}{w - 1} \left \lfloor \cdots \left \lfloor \frac{(n - w + e) q^*}{e} \right \rfloor \dots \right \rfloor \right \rfloor \right \rfloor$$
+> 3. If $w < e$, then $A_2(n, 2e - 1, w) = A_2(n, 2e, w) = 1$.
+> 4. If $w \geq e$, then 
+> $$A_2(n, 2e - 1, w) = A_2(n, 2e, w) \leq \left \lfloor \frac{n}{w} \left \lfloor \frac{n - 1}{w - 1} \left \lfloor \cdots \left \lfloor \frac{n - w + e}{e} \right \rfloor \dots \right \rfloor \right \rfloor \right \rfloor$$
+
+> [!theorem] Johnson Bound for $A_q(n, d)$
 
 ### Hamming Bound and Perfect Codes
 

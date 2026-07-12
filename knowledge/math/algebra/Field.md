@@ -75,14 +75,8 @@
 > [!definition] Characteristic of the field
 > Based on the previous definition of characteristic [[Field#Characteristic]], one can derive the characteristic for finite field $\mathbb{F}_p$ is $p$
 
-
-
-
-
-
-
 > [!lemma]
-> For every element $\beta$ of a finite field $F$ with $q$ elements, we have $\beta^q = \beta$.
+> For every element $\beta$ of a finite field $\mathbb F$ with $q$ elements, we have $\beta^q = \beta$.
 
 > [!corollary]
 > Let $F$ be a subfield of $E$ with $|F| = q$. Then an elements $\beta$ of $E$ lies in $F$ if and only if $\beta^q = \beta$.

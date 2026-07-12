@@ -5,7 +5,7 @@
 > - $k$: Dimension of the subspace.
 > - $w$: Weight of the codeword.
 > - $\mathbb F$: Field
-> - $\omega$: Norm over $\mathcal R$
+> - $\omega$: Norm over $\mathcal R$ (Hamming weight)
 
 ## Distribution
 
@@ -21,6 +21,9 @@
 ### Search Variant
 
 > [!definition] Search Syndrome Decoding Problem Advantage
+> Reference Name: $\text{SSD}(n, k, w)$
+> 
+> ---
 > For any adversary $\mathcal A_\text{search}$, we define the following advantage:
 > $$\text{Adv}^\text{search}_\text{SD}(\mathcal A) = \Pr\!\left[ 
 > \begin{array}{l}
@@ -33,14 +36,13 @@
 > x \leftarrow \mathcal A_\text{search}(H, y^T)
 > \end{array} \right] 
 > $$
-> ---
-> Reference Name: 
-> - $\text{SD}(n, k, w)$: Hamming metric.
-> - $\text{RSD}(n, k, w)$: Rank metric.
 
 ### Decision Variant
 
 > [!definition] Decision Syndrome Decoding Problem Advantage
+> Reference Name: $\text{DSD}(n, k, w)$
+> 
+> ---
 > For any adversary $\mathcal A_\text{decide}$, we define the following advantage:
 > $$\text{Adv}^\text{decide}_\text{SD}(\mathcal A_\text{decide}) = 
 > \left|\; \Pr\!\left[
@@ -64,10 +66,7 @@
 > \end{array} \right] 
 > \right|.
 > $$
-> --- 
-> Reference Name:
-> - $\text{DSD}(n, k, w)$: Decision for Hamming metric.
-> - $\text{DRSD}(n, k, w)$: Decision for Rank metric.
+
 
 ## Claim
 

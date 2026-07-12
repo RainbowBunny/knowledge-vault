@@ -1,4 +1,3 @@
-
 ## Soundness
 
 > [!algorithm] Soundness

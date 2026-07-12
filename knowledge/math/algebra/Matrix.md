@@ -239,7 +239,9 @@
 > [!proposition]
 > Suppose $T \in \mathcal L(V)$ and $A$ is the matrix of $T$ with respect to some basis of $V$. Then the eigenvalues of $T$ are the same as the eigenvalues of $A$.
 
-## Upper-Triangular Matrices
+## Special Matrix
+
+### Upper-Triangular Matrices
 
 > [!theorem]
 > Every operator on a finite-dimensional, nonzero, complex vector space has an eigenvalue.
@@ -265,7 +267,7 @@
 > [!proposition]
 > Suppose $T \in \mathcal L(V)$ has an upper-triangular matrix with respect to some basis of $V$. Then the eigenvalues of $T$ consist precisely of the entries on the diagonal of that upper-triangular matrix.
 
-## Diagonal Matrices
+### Diagonal Matrices
 
 > [!definition] Diagonal Matrix
 > A **diagonal matrix** is a square matrix that is $0$ everywhere except possibly along the diagonal.
@@ -273,7 +275,7 @@
 > [!proposition]
 > If $T \in \mathcal L(V)$ has $\dim V$ distinct eigenvalues, then $T$ has a diagonal matrix with respect to some basis of $V$.
 
-## Block Upper-Triangular Matrices
+### Block Upper-Triangular Matrices
 
 > [!definition] Block Upper-Triangular Matrix
 > A **block upper-triangular matrix** is a square matrix of the form $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix},$$ where $A_1, \dots, A_m$ are square matrices lying along the diagonal.
@@ -281,7 +283,13 @@
 > [!theorem]
 > Suppose $V$ is a real vector space and $T \in \mathcal L(V)$. Then there is a basis of $V$ with respect to which $T$ has a block upper-triangular matrix $$\begin{bmatrix}A_1 & & * \\ & \ddots & \\ 0 & & A_m\end{bmatrix}.$$ where each $A_j$ is a $1$-by-$1$ matrix or a $2$-by-$2$ matrix with no eigenvalues.
 
-## Circulant Matrix
+### Circulant Matrix
 
 > [!definition] Circulant Matrix
 > A square matrix where each row is a cyclic shift to the right of the previous row.
+
+### Monomial Matrix
+
+> [!definition] Monomial Matrix
+> A monomial matrix is a square matrix with exactly one nonzero entry in each row and column. A monomial matrix $M$ can be written either in the form $DP$ or the form $PD_1$, where $D$ and $D_1$ are diagonal matrices and $P$ is a permutation matrix.
+

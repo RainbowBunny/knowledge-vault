@@ -1,6 +1,9 @@
 
 ## Basic Definition
 
+> [!remark]
+> We begin with defining a $s$ function that measure our "surprise" of event $A$ based on their probability $P(A)$. And we find it should be $-\log P(A)$.
+
 > [!definition] Entropy
 > The **entropy** $H(X)$ of a discrete random variable $X$ is defined by $$H(X) = -\sum_{x \in \mathcal X} p(x) \log p(x).$$
 
@@ -27,7 +30,7 @@
 ### Conditional Entropy
 
 > [!definition] Conditional Entropy
-> If $(X, Y) \sim p(x, y)$, the **conditional entropy** $H(Y | X)$ is defined as $$\begin{align}H(Y | X) &= \sum_{x \in \mathcal X} p(x) H(Y | X = x)\\&= -\sum_{x \in \mathcal X} p(x) \sum_{y \in \mathcal Y} p(y | x) \log p(y | x)\\&= -\sum_{x \in \mathcal X} \sum_{y \in \mathcal Y} p(x, y) \log p(y | x)\\ &= -E_p[\log p(Y | X)]\end{align}$$
+> If $(X, Y) \sim p(x, y)$, the **conditional entropy** $H(Y | X)$ is defined as $$\begin{align}H(Y | X) &= \sum_{x \in \mathcal X} p(x) H(Y | X = x)\\&= -\sum_{x \in \mathcal X} p(x) \sum_{y \in \mathcal Y} p(y | x) \log p(y | x)\\&= -\sum_{x \in \mathcal X} \sum_{y \in \mathcal Y} p(x, y) \log p(y | x)\\ &= -E_p[\log p(Y | X)] \\ &= \sum_{x} p(x) H(Y | X = X)\end{align}$$
 
 > [!theorem] Chain Rule
 > $$H(X, Y) = H(X) + H(Y | X)$$
@@ -37,8 +40,11 @@
 
 ### Relative Entropy
 
-> [!definition] Relative Entropy
+> [!definition] Relative Entropy (Divergence)
 > The **relative entropy** or **Kullback-Leibler distance** between two probability mass function $p(x)$ and $q(x)$ is defined as $$\begin{align}D(p || q) &= \sum_{x \in \mathcal X} p(x) \log \frac{p(x)}{q(x)}\\ &= E_p[\log \frac{p(X)}{q(X)}]\end{align}.$$
+
+> [!remark]
+> Also assume that $X \sim p$, we have $D(p||q) = -E[\log q(x)] - H(X)$ 
 
 > [!theorem] Chain Rule for Relative Entropy
 > $$D(p(x, y) || q(x, y)) = D(p(x) || q(x)) + D(p(y | x) || q(y | x)).$$

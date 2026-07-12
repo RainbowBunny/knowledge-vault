@@ -10,7 +10,6 @@
 > 
 > ---
 > ### Algorithms
-> ---
 > - $k \leftarrow \text{KeyGen}()$:
 > 	1. Samples the generator matrix $G \in \mathbb F_2^{k \times n}$ of $\mathcal C$
 > 	2. Returns $(x, y) \leftarrow S_w^n(\mathbb F_2)$
@@ -32,7 +31,6 @@
 > 
 > ---
 > ### Algorithms
-> ---
 > - $k \leftarrow \text{KeyGen}()$:
 > 	1. Samples $h \xleftarrow{\$} \mathbb F_2^n$,
 > 	2. Samples the generator matrix $G \in \mathbb F_2^{k \times n}$ of $\mathcal C$,

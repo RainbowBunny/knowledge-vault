@@ -42,6 +42,9 @@
 > 2. The fastest algorithm known for solving SVP has running time $2^{0.292n + o(n)}$.
 > 3. The fastest quantum algorithm known for solving SVP has running time $2^{0.2563n + o(n)}$.
 
+> [!definition] Smoothing Parameter
+> For an $n$-dimensional lattice $\Gamma \subseteq \mathbb Z^n$ and a positive real $\epsilon > 0$, the smoothing parameter $\eta_\epsilon(\Gamma)$ is the smallest real $r > 0$, such that $\rho_{1 / r}(\Gamma^* \backslash \{0\}) \leq \epsilon$
+
 ## Short Vectors in Lattices
 
 > [!definition] The Shortest Vector Problem ($\text{SVP}$)

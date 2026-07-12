@@ -1,4 +1,6 @@
-## Reed-Muller Codes
+## Syntax
+
+### First Order
 
 > [!definition] First Order Reed-Muller codes
 > The **(first order) Reed-Muller codes** $\mathcal R(1, m)$ are binary codes defined, for all integers $m \geq 1$, recursively as follows:
@@ -15,7 +17,7 @@
 > [!proposition]
 > The dual code $\mathcal R(1, m)^{\perp}$ is (equivalent to) the extended binary Hamming code $\overline{\text{Ham}(m, 2)}$.
 
-## Higher Order
+### Higher Order
 
 > [!definition] $r$-th order Reed-Muller codes
 > 1. The zeroth order Reed-Muller codes $\mathcal R(0, m)$, for $m \geq 0$, are defined to be the repetitions codes $\{0, 1\}$ of length $2^m$.

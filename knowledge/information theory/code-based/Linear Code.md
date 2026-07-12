@@ -3,6 +3,9 @@
 > [!definition] Linear Code
 > A **linear code** $C$ of length $n$ over $\mathbb F_q$ is a subspace of $\mathbb F_q^n$.
 
+> [!remark]
+> A linear code $C$ of length $n$ and dimension $k$ over $\mathbb F_q$ is often called a $q$-ary $[n, k]$-code or, if $q$ is clear from the context, an $[n, k]$-code. It is also an $(n, q^k)$-linear code. If the distance $d$ of $C$ is known, it is also sometimes referred to as an $[n, k, d]$-linear code.
+
 > [!definition] Dual Code, Dimension
 > Let $C$ be a linear code over $\mathbb F_q$.
 > 1. The **dual code** of $C$ is $C^{\perp}$, the orthogonal complement of the subspace $C$ of $\mathbb F_q^n$.
@@ -13,9 +16,6 @@
 > 1. $|C| = q^{\dim(C)}$, i.e., $\dim(C) = \log_q |C|$;
 > 2. $C^{\perp}$ is a linear code and $\dim(C) + \dim(C)^{\perp} = n$;
 > 3. $(C^\perp)^\perp = C$.
-
-> [!remark]
-> A linear code $C$ of length $n$ and dimension $k$ over $\mathbb F_q$ is often called a $q$-ary $[n, k]$-code or, if $q$ is clear from the context, an $[n, k]$-code. It is also an $(n, q^k)$-linear code. If the distance $d$ of $C$ is known, it is also sometimes referred to as an $[n, k, d]$-linear code.
 
 > [!definition] Self-orthogonal, Self-dual
 > Let $C$ be a linear code.
@@ -60,14 +60,24 @@
 ### Generator Matrix and Parity-Check Matrix
 
 > [!definition] Generator Matrix
-> A **generator matrix** for a linear code $C$ is a matrix $G$ whose rows form a basis for $C$.
+> A **generator matrix** for an $[n, k]$ code $\mathcal C$ is a $k \times n$ matrix $G$ whose rows form a basis for $\mathcal C$.
+
+> [!remark]
+> $\mathcal C = \{mG \; | \; m \in \mathbb F_q^n\}$
 
 > [!definition] Parity-Check Matrix
-> A **parity-check matrix** $H$ for a linear code $C$ is a generator matrix for the dual code $C^{\perp}$.
+> As the linear code is a subspace of a vector space, it is the kernel of some linear transformation. In particular, there is an $(n - k) \times n$ matrix $H$, called a **parity-check matrix** for the $[n, k]$ code $\mathcal C$, defined by
+> $$\mathcal C = \{x \in \mathbb F_q^n \; | \; Hx^T = 0\}$$ 
+
+> [!definition] Parity-Check Matrix
+> A **parity-check matrix** $H$ for a linear code $\mathcal C$ is a generator matrix for the dual code $\mathcal C^{\perp}$.
 
 > [!definition] Standard Form
 > 1. A generator matrix of the form $(I_k, X)$ is said to be in **standard form**.
 > 2. A parity-check matrix in the form $(Y, I_{n - k})$ is said to be in **standard form**.
+
+> [!remark]
+> As for an $[n, k]$ code $\mathcal C$, we can choose a subset of $k$ independent columns of its generator matrix $G$ to form an **information set** for $\mathcal C$. The remaining $r = n - k$ coordinates are termed a **redundancy set** of $\mathcal C$. And thus, the name standard form is coined. 
 
 > [!lemma]
 > Let $C$ be an $[n, k]$-linear code over $\mathbb F_q$, with generator matrix $G$. Then, $v \in \mathbb F_q^n$ belongs to $C^{\perp}$ if and only if $v$ is orthogonal to every row of $G$; i.e., $v \in C^\perp \Leftrightarrow vG^T = 0$. In particular, given an $(n - k) \times n$ matrix $H$, then $H$ is a parity check matrix for $C$ if and only if the rows of $H$ are linearly independent and $HG^T = O$.
@@ -77,7 +87,7 @@
 > 1. $C$ has distance $\geq d$ if and only if any $d - 1$ **columns** of $H$ are linearly independence; and
 > 2. $C$ has distance $\leq d$ if and only if $H$ has $d$ **columns** that are linearly dependent.
 
-### Equivalence of linear codes
+### Equivalence of Linear Codes
 
 > [!definition] Equivalent
 > Two $(n, M)$-codes over $\mathbb F_q$ are **equivalent** if one can be obtained from the other by a combination of operations of the following types:
@@ -85,7 +95,15 @@
 > 2. Multiplication of the symbols appearing in a fixed position by a nonzero scalar.
 
 > [!theorem]
-> Any linear code $C$ is equivalent to a linear code $C'$ with a generator matrix in standard from.
+> Any linear code $\mathcal C$ is equivalent to a linear code $\mathcal C'$ with a generator matrix in standard from.
+
+> [!theorem]
+> Let $\mathcal C$ be a linear code.
+> 1. $\mathcal C$ is permutation equivalent to a code which has generator matrix in standard form.
+> 2. If $\mathcal I$ and $\mathcal R$ are information and redundancy positions, respectively, for $\mathcal C$, then $\mathcal R$ and $\mathcal I$ are information and redundancy positions, respectively, for the dual code $\mathcal C^\perp$.
+
+> [!theorem]
+> Let $\mathcal S$ be the set of all codes over $\mathbb F_q$ of length $n$. Let $\mathcal C_1, \mathcal C_2 \in \mathcal S$. Define $\mathcal C_1 \sim \mathcal C_2$ to mean that there exists an $n \times n$ permutation matrix $P$ such that $\mathcal C_1 P = \mathcal C_2$. Then, $\sim$ is an equivalence relation on $\mathcal S$.
 
 ### Encoding with a Linear Code
 

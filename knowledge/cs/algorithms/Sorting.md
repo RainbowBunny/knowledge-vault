@@ -1,3 +1,7 @@
+---
+dg-publish: true
+---
+
 ## Sorting Problem
 
 > [!definition] Sorting Problem

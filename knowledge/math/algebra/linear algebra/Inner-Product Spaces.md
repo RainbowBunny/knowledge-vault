@@ -179,3 +179,7 @@
 > [!remark]
 > Let $\lambda$ is an eigenvalue of $T$ then $\overline{\lambda}$ is an eigenvalue of $T^*$.
 
+## Example
+
+### Hermitian Inner Product
+
