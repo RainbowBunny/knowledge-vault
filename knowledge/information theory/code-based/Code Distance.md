@@ -38,5 +38,12 @@
 > [!theorem]
 > If $x, y \in \mathbb F_q^n$, then $d(x, y) = \text{wt}(x - y)$. If $\mathcal C$ is a [[Linear Code]], the minimum distance is the same as the minimum weight of the nonzero codewords of $\mathcal C$.
 
+## Rank Metric
+
+> [!definition] Rank Metric
+> Let $x = (x_1, \dots, x_n) \in \mathbb F_{q^m}^n$ and $(\gamma_1, \dots, \gamma_m) \in \mathbb F_{q^m}^n$ be a basis of $\mathbb F_{q^m}$ viewed as an $m$-dimensional vector space over $\mathbb F_q$. Each coordinate $x_j$ is associated to a vector of $\mathbb F_q^m$ in this basis by $x_j = \sum_{i = 1}^m m_{i j} \gamma_i$. The $m \times n$ matrix associated to $x$ is given by $M(x) = (m_{ij})_{1 \leq i \leq m, 1 \leq j \leq n}$.
+> The rank weight $||x||$ is defined as
+> $$||x|| = \text{rank } M(x)$$
+
 ## Weight of a Code
 

@@ -38,14 +38,14 @@
 |                                     | $(a/b) - (c/d) = (ad-bc)/(bd)$ if $b \neq 0$ and $d \neq 0$                                                                                                                                                                                                   |
 ## Integral Domain
 
->[!definition]
+>[!definition] Zero Divisor
 > Let $R$ is a commutative ring and $r$ is a nonzero element in $R$, then $r$ is said to be zero divisor if there exists another nonzero element $s \in R$ s.t $r\cdot s=0$
 
-> [!definition]
+> [!definition] Integral Domain
 > A commutative ring with identity is a said to be __integral domain__ if it has no zero divisors.
 
 > [!theorem]
-> Every finite integral domain is a field
+> Every finite integral domain is a field.
 
 ## Characteristic 
 
@@ -90,6 +90,11 @@
 > [!lemma]
 > 1. The order $\text{ord}(\alpha)$ divides $q - 1$ for every $\alpha \in \mathbb F_q^*$.
 > 2. For two nonzero elements $\alpha, \beta \in \mathbb F_q^*$, if $\gcd(\text{ord}(\alpha), \text{ord}(\beta)) = 1$, then $\text{ord}(\alpha \beta) = \text{ord}(\alpha) \times \text{ord}(\beta)$.
+
+### Extension FIeld
+
+> [!definition] Trace Function
+> $\text{Tr}(x) = \sum_{l = 0}^{m - 1} x^{q^l}, x \in \mathbb F_{q^m}$.
 
 ## Complex Field
 

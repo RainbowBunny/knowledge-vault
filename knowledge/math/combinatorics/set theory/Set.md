@@ -1,47 +1,55 @@
-
-## Basic
+## Basic Definition
 
 > [!definition] Set
 > A **set** is a collection of things (elements).
 
-> [!definition] Belongs Notation
-> We use the special notation $$x \in S$$ to mean that "$x$ is an element of $S$" or "$x$ belongs to $S$".
+### Famous Sets
+
+| Notation    | Meaning                     |
+| ----------- | --------------------------- |
+| $\emptyset$ | Empty set                   |
+| $\mathbb N$ | Set of **natural numbers**  |
+| $\mathbb Z$ | Set of **integers**         |
+| $\mathbb Q$ | Set of **rational numbers** |
+| $\mathbb R$ | Set of **real numbers**     |
+| $\mathbb C$ | Set of **complex numbers**  |
+
+## Representation
 
 > [!definition] Roster Notation 
 > The method of listing the members of a set within braces is sometimes referred to as the **roster notation**
 
-> [!definition] Set Equality
-> Two sets $A$ and $B$ are said to be equal (or identical) if they consist of exactly the same elements, in which case we write $A = B$. If one of the sets contains an element not in the other, we say the sets are unequal and we write $A \neq B$.
+> [!definition] List Comprehension
+> We often express element of a set $A$ as elements $s$ of some larger (and already known) set $S$, satisfying some property $P$.
+> $$A = \{s \in S \;|\; s \text{ satisfies } P\}$$
 
-> [!definition] Subset
-> A set $A$ is said to be a **subset** of a set $B$, and we write $$A \subseteq B,$$ whenever every element of $A$ also belongs to $B$. We also say that $A$ is contained in $B$ or that $B$ contains $A$. The relation $\subseteq$ is referred to as set inclusion. 
+## Operation
 
-> [!definition] Proper Subset
-> If $A \subseteq B$ but $A \neq B$, then we say that $A$ is a **proper subset** of $B$; we indicate this by writing $A \subset B$.
+### Inclusion of Sets
 
-> [!definition] Empty Set
-> The set with no elements, i.e., $\emptyset = \{\}$ is the **null set**, **void set** or the **empty set**. For any set $A, \emptyset \subset A$.
+| Symbol                | Operation          |
+| --------------------- | ------------------ |
+| $\in$                 | Belongs to         |
+| $\subset, \subsetneq$ | Proper Subset      |
+| $\subseteq$           | Subset             |
+| $=$                   | Equal              |
+| $\lvert s \rvert$     | Number of Elements |
+| $2^S$                 | Power Set          |
+### Operation between Sets
 
-> [!definition] Universal Set
-> In our applications of set theory, we have a fixed set $S$ given in advance, and we are concerned only with subsets of this given set. This set is referred as the **universal set**.
-
-## Set Operations
-
-> [!definition] Union
-> The **union** of two sets, denoted by $A \cup B$, is a set containing all elements that are in $A$ **or** in $B$ (possibly both).
-
-> [!definition] Intersection
-> The **intersection** of two sets $A$ and $B$, denoted by $A \cap B$, consists of all elements that are both in $A$ **and** $B$.
-
-> [!definition] Complement
-> The **complement** of a set $A$, denoted by $A^c$ or $\overline A$, is the set of all elements that are in the universal set $S$ but are not in $A$.
-
-> [!definition] Difference
-> The **difference (subtraction)** is defined as follows. The set $A - B$ consists of elements that are in $A$ but not in $B$.
+| Symbol      | Operation         |
+| ----------- | ----------------- |
+| $\cup$      | Union             |
+| $\cap$      | Intersection      |
+| $\setminus$ | Difference        |
+| $\amalg$    | Disjoint Union    |
+| $\times$    | Cartesian Product |
 
 > [!definition] Disjoint
-> Two sets $A$ and $B$ are **mutually exclusive** or **disjoint** if they do not have any shared elements; i.e., their intersection is the empty set, $A \cap B = \emptyset$. More generally, several sets are called disjoint if they are pairwise disjoint, i.e., no two of them
- >share a common elements 
+> Two sets $S$ and $T$ are **disjoint** if $S \cap T = \emptyset$, that is, if no element is 'simultaneously' in both of them.
+
+> [!definition] Complement
+> The **complement** of a subset $T$ in a set $S$ is the difference set $S \setminus T$ consisting of all elements of $S$ which are **not** in $T$.
 
 > [!definition] Partition
 > A collection of nonempty sets $A_1, A_2, \cdots$ is a **partition** of a set $A$ if they are disjoint and their union is $A$.
@@ -65,32 +73,32 @@
 |                  | $A - (B \cup C) = (A - B) - C$                                                                                                                                                                                                               |
 | De Morgan's Law  | For any sets $A_1, A_2, ..., A_n$, we have:<br>$(A_1 \cup A_2 \cup A_3 \cup \cdots A_n)^c = A_1^c \cap A_2^c \cap A_3^c \cdots \cap A_n^c$; <br>$(A_1 \cap A_2 \cap A_3 \cap \cdots A_n)^c = A_1^c \cup A_2^c \cup A_3^c \cdots \cup A_n^c$. |
 
+## Relations on Sets
 
-> [!definition] Cartesian Product
-> A **Cartesian product** of two sets $A$ and $B$, written as $A \times B$, is the set containing **ordered** pairs from $A$ and $B$. That is, if $C = A \times B$, then each element of $C$ is of the form $(x, y)$, where $x \in A$ and $y \in B$: $$A \times B = \{(x, y) | x \in A \text{ and } y \in B\}.$$ 
+> [!definition] Relation
+> A **relation** on a set $S$ is simply a subset $R$ of the product $S \times S$. If $(a, b) \in R$, we say that $a$ and $b$ are 'related by $R$' and write
+> $$a \; R \; b$$
 
-## Cardinality
+### Equivalence
 
-> [!definition] Cardinality
-> Consider a set $A$. If $A$ has only a finite number of elements, its cardinality is simply the number of elements in $A$.
+> [!definition] Equivalence Relation
+> An **equivalence relation** on a set $S$ is any relation $\sim$ satisfying these three properties:
+> - (Reflexivity) $(\forall a \in S) \; a \sim a$.
+> - (Symmetry) $(\forall a \in S) \; (\forall b \in S) \; a \sim b \Longrightarrow b \sim a$.
+> - (Transitivity) $(\forall a \in S) \; (\forall b \in S) \; (\forall c \in S), \; (a \sim b \land b \sim c) \Longrightarrow a \sim c$
 
-> [!definition] Countable Set
-> Set $A$ is called countable if one of the following is true
-> 1. If it is a finite set, $|A| < \infty$; or
-> 2. it can be put in one-to-one correspondence with natural numbers $\mathbb N$, in which case the set is said to be countably infinite.
+### Quotient
 
-> [!definition] Uncountable Set
-> A set is called uncountable if it is not countable.
+> [!definition] Equivalence Class
+> For every element $a \in S$, the **equivalence class** of $a$ (w.r.t. $\sim$) is the subset of $S$ defined by
+> $$[a]_\sim = \{b \in S \; | \; b \sim a\}$$
 
-> [!theorem]
-> Any subset of a countable set is countable.
-> Any superset of an uncountable set is uncountable.
-> If $A_1, A_2, \cdots$ is a list of countable sets, then the set $\bigcup_i A_i = A_1 \cup A_2 \cup A_3 \cdots$ is also countable.
-> If $A$ and $B$ are countable, then $A \times B$ is also countable.
+> [!definition] Quotient Relation
+> The **quotient** of the set $S$ with respect to the equivalence relation $\sim$ is the set
+> $$S \setminus_\sim = \mathcal P_\sim$$
+> of equivalence classes of elements of $S$ with respect to $\sim$.
 
-> [!example]
-> The set of all subsets of $\mathbb N$, $A = \{B : B \subset \mathbb N\}$ has a one-to-one correspondence to $[0, 1]$ so the set is uncountable.
-> 
+## Russell's Paradox
 
-
-
+> [!proposition] Russell's Paradox
+> Let $R = \{x \;|\; x \notin x\}$. Then $R \in R \Longleftrightarrow R \notin R$.
