@@ -1,4 +1,4 @@
-## Basic
+## Basic Definition
 
 > [!definition] Set Equality
 > Two sets $A$ and $B$ are said to be equal (or identical) if they consist of exactly the same elements, in which case we write $A = B$. If one of the sets contains an element not in the other, we say the sets are unequal and we write $A \neq B$.

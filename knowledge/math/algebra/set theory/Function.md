@@ -20,13 +20,6 @@
 > [!definition] Odd, Even Function
 > Let $f$ be a function whose domain contains $-x$ whenever it contains $x$. We say that $f$ is an **even** function if $f(-x) = f(x)$ and an **odd** function if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.
 
-## Property of function
-
-> [!definition] Injective
-> A function $f: A \rightarrow B$ is **injective** if for every $a_1, a_2$ that $f(a_1) = f_(a_2)$, we have $a_1 = a_2$.
-
-> [!definition] Surjective
-> A function $f: A \rightarrow$ is **surjective** if $\text{Range } f = B$.
 
 ## Basic Function
 

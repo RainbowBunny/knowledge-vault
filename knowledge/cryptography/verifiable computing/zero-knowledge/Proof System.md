@@ -26,6 +26,13 @@ dg-publish: true
 > [!remark]
 > Soundness means you should not be able to prove false statements.
 
+## Security
+
+### Knowledge
+
+> [!remark]
+> Knowledge means true statement might only be proven if the prover know a witness.
+
 ### Knowledge Soundness
 
 > [!definition] Proof System's Knowledge Soundness
@@ -34,7 +41,6 @@ dg-publish: true
 > [!remark]
 > Knowledge Soundness means if you prove a statement, you must actually know a witness
 
-## Security
 
 ### Zero Knowledge
 

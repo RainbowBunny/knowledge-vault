@@ -56,15 +56,16 @@
 - Matrix: $\cdots$, $\vdots$, $\ddots$
 - $\bigg /, \Biggm /$
 - Root: $\sqrt[n]{x}$
+- $\forall, \exists, \exists!$
 
 ## Arrow
 
-- $\rightarrow$, $\Rightarrow$, $\xrightarrow{Gauss}$, $\mapsto$
-- $\leftarrow$, $\Leftarrow$
+- $\rightarrow$, $\Rightarrow$, $\xrightarrow{Gauss}$, $\mapsto$, $\hookrightarrow$, $\twoheadrightarrow$
+- $\leftarrow$, $\Leftarrow$, $\hookleftarrow$, $\twoheadleftarrow$
 - $\uparrow$, $\Uparrow$, 
 - $\downarrow$, $\Downarrow$
 - $\updownarrow$, $\Updownarrow$
-- $\leftrightarrow$ ,$\longleftrightarrow$, $\Leftrightarrow$, $\Longleftrightarrow$ 
+- $\leftrightarrow$ ,$\longleftrightarrow$, $\Leftrightarrow$, $\Longleftrightarrow$
 - $\rightleftharpoons$
 - $\nearrow$
 - $\searrow$

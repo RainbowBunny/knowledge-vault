@@ -3,7 +3,7 @@
 ## Foundations
 
 - [[Algebra Structure]] — overview of algebraic structures
-- [[Group]] — group theory
+- [[Groups]] — group theory
 - [[Ring]] — rings
 - [[Field]] — fields and finite fields
 
