@@ -53,7 +53,7 @@ Standard: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf (FIPS 202, 20
 ### Indifferentiability from Random Oracle
 
 > [!property] Sponge Indifferentiability
-> If $\text{Keccak-}f[b]$ is modeled as a random permutation, then the sponge construction $\text{Keccak}[r, c]$ is **indifferentiable** from a [[Ideal Cipher Model and Random Oracles|random oracle]] up to roughly $2^{c/2}$ queries (Bertoni-Daemen-Peeters-Van Assche 2008).
+> If $\text{Keccak-}f[b]$ is modeled as a random permutation, then the sponge construction $\text{Keccak}[r, c]$ is **indifferentiable** from a [[Ideal Cipher Model|random oracle]] up to roughly $2^{c/2}$ queries (Bertoni-Daemen-Peeters-Van Assche 2008).
 >
 > Indifferentiability is the right composition notion for random oracles: any protocol secure with a random oracle remains secure when the random oracle is replaced by $\text{Keccak}[r, c]$, with security loss bounded by the indifferentiability bound $\approx q^2 / 2^c$.
 

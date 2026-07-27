@@ -21,20 +21,6 @@
 
 ### Collision Resistance
 
-> [!algorithm] Collision Resistance
-> For a given hash function $H$ defined over $(\mathcal M, \mathcal T)$ and adversary $\mathcal A$, the adversary takes no input and outputs two messages $m_0$ and $m_1$ in $\mathcal M$.
-> We say that $\mathcal A$ wins the game if the pair $m_0, m_1$ is a collision for $H$, namely $m_0 \neq m_1$ and $H(m_0) = H(m_1)$. We define $\mathcal A$'s advantage with respect to $H$, denoted $\text{CRadv}[\mathcal A, H]$, as the probability that $\mathcal A$ wins the game. Adversary $\mathcal A$ is called a **collision finder**.
-
-> [!definition] Collision Resistant
-> We say that a hash function $H$ over $(\mathcal M, \mathcal T)$ is **collision resistant** if for all efficient adversaries $\mathcal A$, the quantity $\text{CRadv}[\mathcal A, H]$ is negligible.
-
-## Compression Function
-
-### Simple Inefficient Compression Function
-
-> [!algorithm] Inefficient Compression Function
-> Let $p$ be a large prime such that $q = (p - 1) / 2$ is also prime. Let $x$ and $y$ be suitably chosen integers in the range $[1, q]$. Consider the following simple compression function that takes as input two integers in $[1, q]$ and outputs an integer in $[1, q]$: $$H(a, b) = abs(x^a y^b \mod p), \quad \text{where} \quad \text{abs}(z) = \begin{cases}z&\text{if } z \leq q, \\ p - z &\text{if }z > q.\end{cases}$$
-
 ## Universal Hash Functions (UHFs)
 
 > [!definition] Keyed Hash Functions

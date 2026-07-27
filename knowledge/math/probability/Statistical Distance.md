@@ -19,5 +19,5 @@ dg-publish: true
 
 ## Application
 
-- [[Computational Indistinguishability]] — for every adversary $\mathcal A$: $\text{Distadv}[\mathcal A, P_0, P_1] \leq \Delta[P_0, P_1]$; negligible $\Delta$ gives **statistical indistinguishability**, which implies computational indistinguishability.
+- [[Indistinguishability]] — for every adversary $\mathcal A$: $\text{Distadv}[\mathcal A, P_0, P_1] \leq \Delta[P_0, P_1]$; negligible $\Delta$ gives **statistical indistinguishability**, which implies computational indistinguishability.
 - [[Key Derivation Problem]] — bounding guessing advantage after key derivation.

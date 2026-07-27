@@ -119,7 +119,7 @@ dg-publish: true
 > $$\text{Adv}_{\text{SKE}}^{\text{ncpa}}(\mathcal A) \leq \varepsilon$$
 
 > [!remark]
-> Integrity notions — ciphertext integrity (CI) and AE security — live in [[Authenticated Encryption]]. The distribution-distinguishing toolkit ($\text{Distadv}$, statistical distance, data-processing inequality) lives in [[Computational Indistinguishability]] and [[Statistical Distance]]. The guessing-advantage game lives in [[Key Derivation Problem]].
+> Integrity notions — ciphertext integrity (CI) and AE security — live in [[Authenticated Encryption]]. The distribution-distinguishing toolkit ($\text{Distadv}$, statistical distance, data-processing inequality) lives in [[Indistinguishability]] and [[Statistical Distance]]. The guessing-advantage game lives in [[Key Derivation Problem]].
 
 ## Construction
 

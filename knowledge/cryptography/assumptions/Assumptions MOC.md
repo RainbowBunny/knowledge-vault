@@ -33,7 +33,7 @@ Algorithms that *attack* the hardness assumptions live alongside the assumption 
 
 ## Idealized Models (`idealized models/`)
 
-- [[Ideal Cipher Model and Random Oracles]] — ICM (ideal block / permutation), ROM
+- [[Ideal Cipher Model]] — ICM (ideal block / permutation), ROM
 - Stubs: Generic Group Model (GGM), Algebraic Group Model (AGM), Common Reference String (CRS)
 
 ## Related

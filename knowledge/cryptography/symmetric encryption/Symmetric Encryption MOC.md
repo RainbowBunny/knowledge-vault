@@ -15,7 +15,7 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 | Attack Game 2.2 (Message Recovery)                        | [[Symmetric Key Encryption#Indistinguishability]]                 | $\text{MRadv}$     |
 | Attack Game 2.3 (Parity Prediction)                       | [[Symmetric Key Encryption#Indistinguishability]]                 | $\text{Parityadv}$ |
 | Attack Game 2.4 (Semantic Security: Bit-guessing Version) | [[Symmetric Key Encryption#Indistinguishability]]                 | $\text{SSadv}^*$   |
-| Attack Game 3.3 (Distinguishing $P_0$ from $P_1$)         | [[Computational Indistinguishability]]                            | $\text{Distadv}$   |
+| Attack Game 3.3 (Distinguishing $P_0$ from $P_1$)         | [[Indistinguishability]]                            | $\text{Distadv}$   |
 | Attack Game 5.1 (Multi-key Semantic Security)             | [[Symmetric Key Encryption#Multi-key Semantic Security]]          | $\text{MSSadv}$    |
 | Attack Game 5.2 (CPA Security)                            | [[Symmetric Key Encryption#Indistinguishability]] (atk = cpa)     | $\text{CPAadv}$    |
 | Attack Game 5.3 (Nonce-based CPA Security)                | [[Symmetric Key Encryption#Nonce-based CPA Security]]             | $\text{nCPAadv}$   |
@@ -47,6 +47,6 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 - [[Message Authentication MOC]] — MACs and authenticated encryption built on top of symmetric ciphers
 - [[Public-Key Encryption MOC]] — the asymmetric counterpart, same canonical-primitive-file pattern
 - [[Assumptions MOC]] → idealized models — ideal cipher / random oracle models used in CPA security proofs
-- [[Computational Indistinguishability]] and [[Statistical Distance]] — the distribution-distinguishing toolkit extracted from the primitive note
+- [[Indistinguishability]] and [[Statistical Distance]] — the distribution-distinguishing toolkit extracted from the primitive note
 - [[Key Derivation Problem]] — guessing advantage (Attack Game 8.3), now under key establishment
 - [[knowledge/cs/foundations/Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem

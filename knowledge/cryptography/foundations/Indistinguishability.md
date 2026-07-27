@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 ---
-## Definition
+## Basic Definition
 
 > [!algorithm] Distinguishing $P_0$ from $P_1$
 > For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A$, define two experiments. For $b = 0, 1$:
@@ -11,8 +11,17 @@ dg-publish: true
 >
 > Let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. Define $$\text{Distadv}[\mathcal A, P_0, P_1] = |P[W_0] - P[W_1]|.$$
 
+### Perfect
+
+> [!definition] Perfect Indistinguishability
+> $P_0$ and $P_1$ are perfect indistinguishability if their distribution is the same.
+
+### Computational
+
 > [!definition] Computational Indistinguishability
 > $P_0$ and $P_1$ are **computationally indistinguishable** if $\text{Distadv}[\mathcal A, P_0, P_1]$ is negligible for all efficient adversaries.
+
+### Statistical
 
 > [!definition] Statistical Indistinguishability
 > $P_0$ and $P_1$ are **statistically indistinguishable** if the [[Statistical Distance]] $\Delta[P_0, P_1]$ is negligible.

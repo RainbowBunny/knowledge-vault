@@ -1,25 +1,31 @@
-## Sigma Protocols
+## Syntax
 
-> [!definition] Effective Relation
-> An **effective relation** is a binary relation $\mathcal R \subset \mathcal X \times \mathcal Y$, where $\mathcal X, \mathcal Y$ and $\mathcal R$ are efficiently recognizable finite sets. Elements of $\mathcal Y$ are called **statements**. If $(x, y) \in \mathcal R$, then $x$ is called a **witness for** $y$.
-
-> [!algorithm] Sigma Protocol
-> Let $\mathcal R \subseteq \mathcal X \times \mathcal Y$ be an effective relation. A **Sigma protocol** for $\mathcal R$ is a pair $(P, V)$.
-> - $P$ is an interactive protocol algorithm called the **prover**, which takes as input a witness-statement pair $(x, y) \in \mathcal R$.
-> - $V$ is an interactive protocol algorithm called the **verifier**, which takes as input a statement $y \in \mathcal Y$, and which outputs `accept` or `reject`.
-> - $P$ and $V$ are structured so that an interaction between them always works as follows:
-> 	- To start the protocol, $P$ computes a message $t$, called the **commitment**, and sends $t$ to $V$;
-> 	- Upon receiving $P$'s commitment $t$, $V$ chooses a **challenge** $c$ at random from a finite **challenge space** $\mathcal C$, and sends $c$ to $P$;
-> 	- Upon receiving $V$'s challenge $c$, $P$ computes a **response** $z$, and sends $z$ to $V$;
-> 	- Upon receiving $P$'s response $z$, $V$ outputs either `accept` or `reject`, which must be computed strictly as a function of the statement $y$ and the **conversation** $(t, c, z)$. In particular, $V$ does not make any random choices other than the selection of the challenge - all other computations are completely deterministic.
+> [!definition] $\Sigma$-Protocol
+> Let $\mathcal R \subseteq \mathcal X \times \mathcal W$ be an [[Effective Relation#Basic Definition|Effective Relation]]. A **Sigma protocol** for $\mathcal R$ is a pair $(\mathcal P, \mathcal V)$.
+> - $\mathcal P$ is an interactive protocol algorithm called the **prover**, which takes as input a statement-witness pair $(x, w) \in \mathcal R$.
+> - $\mathcal V$ is an interactive protocol algorithm called the **verifier**, which takes as input a statement $x \in \mathcal X$, and which outputs `accept` or `reject`.
+> - $\mathcal P$ and $\mathcal V$ are structured so that an interaction between them always works as follows:
+> 	- **Commit Phase**: To start the protocol, $\mathcal P$ computes a message $t$, called the **commitment**, and sends $t$ to $\mathcal V$;
+> 	- **Challenge Phase**: Upon receiving $\mathcal P$'s commitment $t$, $\mathcal V$ chooses a **challenge** $c$ at random from a finite **challenge space** $\mathcal C$, and sends $c$ to $P$;
+> 	- **Response Phase**: Upon receiving $\mathcal V$'s challenge $c$, $\mathcal P$ computes a **response** $z$, and sends $z$ to $\mathcal V$;
+> - Upon receiving $\mathcal P$'s response $z$, $\mathcal V$ outputs either `accept` or `reject`, which must be computed strictly as a function of the statement $x$ and the **conversation** $(t, c, z)$. In particular, $V$ does not make any random choices other than the selection of the challenge - all other computations are completely deterministic.
 > 
-> We require that for all $(x, y) \in \mathcal R$, when $P(x, y)$ and $V(y)$ interact with each other, $V(y)$ always outputs `accept`.
+> We require that for all $(x, w) \in \mathcal R$, when $P(x, w)$ and $V(x)$ interact with each other, $V(x)$ always outputs `accept`.
 
 > [!definition] Accepting Conversation
 > We require that the verifier computes its output as a function of the statement $y$ and its conversation $(t, c, z)$ with the prover. If the output is `accept` we call the conversation $(t, c, z)$ an **accepting conversation for** $y$.
 
 > [!example] Schnorr's Sigma Protocol
 > It should be clear that for Schnorr's identification protocol $(G, P, V)$, the pair $(P, V)$ is an example of a Sigma protocol for the relation $\mathcal R \subseteq \mathcal X \times \mathcal Y$, where $$\mathcal X = \mathbb Z_q, \mathcal Y, \mathbb G, \text{and } \mathcal R = \{(\alpha, u) \in \mathbb Z_q \times \mathbb G: g^{\alpha} = u\}.$$ The challenge space $\mathcal C$ is a subset of $\mathbb Z_q$. We call $(P, V)$ **Schnorr's Sigma protocol**.
+
+## Property
+
+### Completeness
+
+
+
+## Security
+
 
 ### Special Soundness
 

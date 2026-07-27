@@ -27,4 +27,4 @@
 ## Related
 
 - [[Lattice Helper]] — crypto-side Gaussians: discrete Gaussian over lattices, tail bounds, rejection sampling, Rényi divergence
-- [[Computational Indistinguishability]] — the crypto counterpart of statistical distance
+- [[Indistinguishability]] — the crypto counterpart of statistical distance
