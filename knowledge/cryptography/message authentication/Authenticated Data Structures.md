@@ -6,19 +6,21 @@
 ## Basic Definition
 
 > [!definition] Authenticated Data Structures
-> An **authenticated data structure scheme** $\mathcal D = (H, P, V)$ defined over $(\mathcal X^n, \mathcal Y)$ is a tuple of three efficient deterministic algorithms:
+> An **authenticated data structure scheme** $\mathcal D = (H, \mathcal P, \mathcal V)$ defined over $(\mathcal X^n, \mathcal Y)$ is a tuple of three efficient deterministic algorithms:
 > - $H$ is an algorithm that is invoked as $y \leftarrow H(T)$, where $T = (x_1, \dots, x_n) \in \mathcal X^n$ and $y \in \mathcal Y$.
-> - $P$ is an algorithm that is invoked as $\pi \leftarrow P(i, x, T)$, where $x \in \mathcal X$ and $1 \leq i \leq n$. The algorithm outputs a proof $\pi$ that $x = x_i$, where $T = (x_1, \dots, x_n)$.
-> - $V$ is an algorithm that is invoked as $V(i, x, y, \pi)$ and outputs $\text{accept}$ or $\text{reject}$.
-> - We require that for all $T = (x_1, \dots, x_n) \in \mathcal X^n$, and all $1 \leq i \leq n$, we have that $$V(i, x_i, H(T), P(i, x_i, T)) = \text{accept}$$
+> - $\mathcal P$ is an algorithm that is invoked as $\pi \leftarrow \mathcal P(i, x, T)$, where $x \in \mathcal X$ and $1 \leq i \leq n$. The algorithm outputs a proof $\pi$ that $x = x_i$, where $T = (x_1, \dots, x_n)$.
+> - $\mathcal V$ is an algorithm that is invoked as $\mathcal V(i, x, y, \pi)$ and outputs $\text{accept}$ or $\text{reject}$.
+> - We require that for all $T = (x_1, \dots, x_n) \in \mathcal X^n$, and all $1 \leq i \leq n$, we have that $$\mathcal V(i, x_i, H(T), \mathcal P(i, x_i, T)) = \text{accept}$$
 
-### Authenticated Data Structures Security
+## Security
+
+### Authenticated Data Structures
 
 > [!algorithm] Authenticated Data Structures Security
-> For an authenticated data structure scheme $\mathcal D = (H, P, V)$ defined over $(\mathcal X^n, \mathcal Y)$, and a given adversary $\mathcal A$, the attack game runs as follows:
+> For an authenticated data structure scheme $\mathcal D = (H, \mathcal P, \mathcal V)$ defined over $(\mathcal X^n, \mathcal Y)$, and a given adversary $\mathcal A$, the attack game runs as follows:
 > - The adversary $\mathcal A$ outputs a $y \in \mathcal Y$, a position $i \in \{1, \dots, n\}$, and two pairs $(x, \pi)$ and $(x', \pi')$ where $x, x' \in \mathcal X$.
 > 
-> We say that $\mathcal A$ wins the game if $x \neq x'$ and $V(i, x, y, \pi) = V(i, x', y, \pi') = \text{accept}$. Define $\mathcal A$'s advantage with respect to $\mathcal D$, denoted $\text{ADSadv}[\mathcal A, \mathcal D]$, as the probability that $\mathcal A$ wins the game.
+> We say that $\mathcal A$ wins the game if $x \neq x'$ and $\mathcal V(i, x, y, \pi) = \mathcal V(i, x', y, \pi') = \text{accept}$. Define $\mathcal A$'s advantage with respect to $\mathcal D$, denoted $\text{ADSadv}[\mathcal A, \mathcal D]$, as the probability that $\mathcal A$ wins the game.
 
 > [!definition] Secure Authenticated Data Structures
 > We say that an authenticated data structure scheme $\mathcal D$ is secure if for all efficient adversaries $\mathcal A$, the value $\text{ADSadv}[\mathcal A, \mathcal D]$ is negligible.

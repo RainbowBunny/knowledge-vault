@@ -9,12 +9,6 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 > 3. (**Associate Law**) 
 > $$(\forall g, h, k \in G): (g \star h) \star k = g \star (h \star k)$$
 
-> [!definition] Abelian Group
-If, in addition, composition satisfies the **Commutative Law** then the group is called a **commutative group** or an **abelian group**.
-
-> [!definition] Finite Group
-> If $G$ has finitely many elements, we say that $G$ is a **finite group**.
-
 ### Commutative Groups
 
 > [!definition] Commutative Operation
@@ -31,7 +25,7 @@ If, in addition, composition satisfies the **Commutative Law** then the group is
 > [!example]
 > Suppose that $g^2 = e$ for all elements $g$ of a group $G$; then $G$ is commutative.
 
-### Order of a group
+### Order
 
 > [!definition] Order of a Group
 > The **order of** $G$ is the number of elements in $G$; it is denoted by $|G|$ or $\# G$. We write $|G| = \inf$ if $G$ is infinite.
@@ -54,7 +48,8 @@ If, in addition, composition satisfies the **Commutative Law** then the group is
 > [!proposition]
 > If $gh = hg$, then $|gh|$ divides $\text{lcm}(|g|, |h|)$.
 
-### Group Homomorphism
+
+
 
 
 ## Property

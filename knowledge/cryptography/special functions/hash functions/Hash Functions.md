@@ -19,8 +19,6 @@
 > 1. $M$, and $T$ are efficiently recognizable.
 > 2. Algorithm $H$ is an efficient deterministic algorithm that on input $\lambda, \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda))$, and $m \in \mathcal M_{\lambda, \Lambda}$, outputs an element of $\mathcal T_{\lambda, \Lambda}$.
 
-### Collision Resistance
-
 ## Universal Hash Functions (UHFs)
 
 > [!definition] Keyed Hash Functions

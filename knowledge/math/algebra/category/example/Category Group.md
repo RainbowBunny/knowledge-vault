@@ -12,5 +12,7 @@
 > [!proposition]
 > Trivial groups are both [[Universal Properties#Initial Objects|Initial]] and [[Universal Properties#Final Objects|Final]] in $\text{Grp}$.
 
+### Product
+
 > [!proposition]
 > With operation defined component-wise, $G \times H$ is a [[Universal Properties#Products|Product]] in $\text{Grp}$.

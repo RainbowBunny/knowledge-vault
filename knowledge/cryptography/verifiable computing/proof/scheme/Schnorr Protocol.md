@@ -31,7 +31,7 @@ a \leftarrow g^r & \xrightarrow{a} & \\[6pt]
 
 ## Security
 
-### Knowledge Soundness
+### Knowledge (Special) Soundness
 
 > [!security] Knowledge Soundness
 > 

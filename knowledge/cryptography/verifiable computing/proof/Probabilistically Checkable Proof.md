@@ -1,3 +1,4 @@
+Reference: https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
 ## Basic Definition
 
 > [!definition] Restricted PCP Verifier

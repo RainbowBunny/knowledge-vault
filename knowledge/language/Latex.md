@@ -57,6 +57,7 @@
 - $\bigg /, \Biggm /$
 - Root: $\sqrt[n]{x}$
 - $\forall, \exists, \exists!$
+- $\circ$, 
 
 ## Arrow
 
