@@ -21,7 +21,7 @@ Algorithms that *attack* the hardness assumptions live alongside the assumption 
 
 ### Lattice (`lattice-based/`)
 
-- [[Learning With Error Problem]] — LWE / Ring-LWE
+- [[Learning With Error]] — LWE / Ring-LWE
 - [[Short Integer Solution Problem]] — SIS
 
 ### Stubs (planned)

@@ -4,7 +4,7 @@ Key generation:
 - Alice: 
 	1. Selects $A \in_R \mathbb Z^{n \times n}_q$, $S \in_R [-B, B]^n$, $e \in_R [-B, B]^n$.
 	2. Public key is $(A, b)$, Private key: $s$ (and $e$ but it is not important).
-Note: Finding $s$ from $(A, b)$ is [[Learning With Error Problem#Short-Secret Learning With Error Problem|ss-LWE]].
+Note: Finding $s$ from $(A, b)$ is [[Learning With Error#Short-Secret Learning With Error Problem|ss-LWE]].
 Encryption:
 - Bob encrypts $m \in \{0, 1\}$ for Alice:
 	1. Select $r \in_R [-B, B]^n, z \in_R [-B, B]^n, z' \in_R [-B, B]$

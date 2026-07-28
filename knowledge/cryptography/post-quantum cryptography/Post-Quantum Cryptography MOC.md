@@ -6,7 +6,7 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 
 - [[knowledge/cryptography/post-quantum cryptography/lattice-based/Lattice]] — definitions, bases, trapdoors
 - [[LLL Lattice Reduction Algorithm]]
-- For the underlying hardness assumptions ([[Learning With Error Problem|LWE]], [[Short Integer Solution Problem|SIS]]), see [[Assumptions MOC|assumptions]].
+- For the underlying hardness assumptions ([[Learning With Error|LWE]], [[Short Integer Solution Problem|SIS]]), see [[Assumptions MOC|assumptions]].
 
 ## Code-Based (`code-based/`)
 

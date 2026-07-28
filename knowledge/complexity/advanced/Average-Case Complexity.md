@@ -11,7 +11,7 @@ Stub. Topics to cover:
 
 ## Cross-Reference to Cryptography
 
-Cryptographic hardness assumptions like [[Learning With Error Problem|LWE]] and [[Discrete Logarithm Problem|DLP]] are *average-case* hardness assumptions (the problem is hard for a random instance, not just some worst-case instance). The lattice reductions (Regev, Langlois-Stehlé) prove average-case M-LWE hardness from *worst-case* lattice problems — a major win.
+Cryptographic hardness assumptions like [[Learning With Error|LWE]] and [[Discrete Logarithm Problem|DLP]] are *average-case* hardness assumptions (the problem is hard for a random instance, not just some worst-case instance). The lattice reductions (Regev, Langlois-Stehlé) prove average-case M-LWE hardness from *worst-case* lattice problems — a major win.
 
 ## Related
 

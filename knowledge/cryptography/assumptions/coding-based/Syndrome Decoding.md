@@ -25,7 +25,7 @@
 > 
 > ---
 > For any adversary $\mathcal A_\text{search}$, we define the following advantage:
-> $$\text{Adv}^\text{search}_\text{SD}(\mathcal A) = \Pr\!\left[ 
+> $$\text{Adv}^\text{search}_\text{SD}(\mathcal A_\text{search}) = \Pr\!\left[ 
 > \begin{array}{l}
 > Hx^T = y^T \\
 > \omega(x) = w
