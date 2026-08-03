@@ -22,8 +22,15 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 > [!definition] Completeness Error
 > An interactive proof system $(\mathcal P, \mathcal V)$ is said to have **completeness error** $\delta_c$ if:
 > - For every $x \in \{0, 1\}^n$,
-> $$\Pr_r[\text{out}(\mathcal V, x, r, \mathcal P) = \text{accept}] \geq 1 - \delta_c$$
-
+> $$\text{Adv}_{\mathcal V}^\text{com}(\mathcal P) = 
+> \; \Pr\!\left[
+> \begin{array}{l}
+> \text{out}(\mathcal V, x, r, \mathcal P) = \text{accept}
+> \end{array}
+> \; \middle | \; 
+> \begin{array}{l}
+> x \xleftarrow{\$} \{0, 1\}^n
+> \end{array} \right] \geq 1 - \delta_c$$
 
 > [!remark]
 > The completeness condition requires that there be a convincing proof for what is the value of $f$ on input $x$.
@@ -36,9 +43,18 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 ### Soundness
 
 > [!definition] Soundness Error
-> An interactive proof system $(\mathcal V, \mathcal P)$ is said to have **soundness error** $\delta_s$ if:
-> - For every $x \in \{0, 1\}^n$ and every deterministic prover strategy $\mathcal P'$, if $\mathcal P'$ sends a value $y \neq f(x)$ at the start of the protocol, then
-> $$\Pr_r[\text{out}(\mathcal V, x, r, \mathcal P') = \text{accept}] \leq \delta_s$$
+> An interactive proof system $(\mathcal V, \mathcal P)$ is said to have **soundness error** $\delta_s$ if for every deterministic prover strategy $\mathcal P'$:
+> $$\text{Adv}_{\mathcal V}^\text{snd}(\mathcal P') = 
+> \; \Pr\!\left[
+> \begin{array}{l}
+> y \neq f(x) \\
+> \text{out}(\mathcal V, x, r, \mathcal P') = \text{accept}
+> \end{array}
+> \; \middle | \; 
+> \begin{array}{l}
+> x \xleftarrow{\$} \{0, 1\}^n \\
+> y \leftarrow \mathcal P'()
+> \end{array} \right] \leq \delta_s$$
 
 > [!remark]
 > The soundness condition requires that false statement of the form "$f(x) = y$" for any $y \neq f(x)$ lack a convincing proof.
@@ -54,6 +70,9 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 
 > [!remark]
 > To prove this knowledge soundness, we need to construct a [[Knowledge Extractor]].
+
+> [!remark] Of Knowledge
+> Proof of Knowledge or Argument of Knowledge mean that the system satisfies knowledge soundness.
 
 ### Zero Knowledge
 

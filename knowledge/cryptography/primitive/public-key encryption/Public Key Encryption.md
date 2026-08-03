@@ -97,7 +97,6 @@ dg-publish: true
 > [!definition] PKE Non-Malleability Advantage
 > For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{maul})$, we define the non-malleability advantage:
 > $$\text{Adv}_\text{PKE}^{\text{nm-atk}}(\mathcal A) = 
->  
 > \left|\; \Pr\!\left[
 > \begin{array}{l}
 > c \notin (c_1, \dots, c_n) \; \\ 

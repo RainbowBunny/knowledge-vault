@@ -17,33 +17,6 @@
 > 2. $K$ and $Y$ are efficiently sampleable.
 > 3. Algorithm $F$ is a deterministic algorithm that on input $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), k \in \mathcal K_{\lambda, \Lambda}$, and $x \in \mathcal X_{\lambda, \Lambda}$, runs in time bounded by a polynomial in $\lambda$, and outputs an element of $\mathcal Y_{\lambda, \Lambda}$.
 
-### PRF Security
-
-> [!algorithm] PRF
-> For a given PRF $F$, defined over $(\mathcal K, \mathcal X, \mathcal Y)$, and for a given adversary $\mathcal A$, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define:
-> **Experiment $b$:**
-> - The challenger selects $f \in \text{Func}[\mathcal X, \mathcal Y]$ as follows:
-> 	- If $b = 0: k \xleftarrow{R} \mathcal K, f \leftarrow F(k, \cdot)$;
-> 	- If $b = 1: f \xleftarrow{R} \text{Func}[\mathcal X, \mathcal Y]$.
-> - The adversary submits a sequence of queries to the challenger.
-> 	For $i = 1, 2, \dots$, the $i$-th query is an input data block $x_i \in \mathcal X$.
-> 	The challenger computes $y_i \leftarrow f(x_i) \in \mathcal Y$, and gives $y_i$ to the adversary.
-> - The adversary computes and outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> For $b = 0, 1$, let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. We define $\mathcal A$'s **advantage** with respect to $F$ as $$\text{PRFadv}[\mathcal A, F] = |P[W_0] - P[W_1]|.$$ Finally, we say that $\mathcal A$ is a **$Q$-query PRF adversary** if $\mathcal A$ issues at most $Q$ queries.
-
-> [!definition] Secure PRF
-> A PRF $F$ is **secure** if for all efficient adversaries $\mathcal A$, the value $\text{PRFadv}[\mathcal A, F]$ is negligible.
-
-> [!remark] Bit-guessing Version
-> Instead of having two separate experiments, the challenger chooses $b \in \{0, 1\}$ at random, and then runs Experiment $b$ against the adversary $\mathcal A$. In this game, we measure $\mathcal A$'s **bit-guessing advantage** $\text{PRFadv}^*[\mathcal A, F]$ as $|P[\hat{b} = b] - 1/2|$. Thus, we have $$\text{PRFadv}[\mathcal A, F] = 2 \cdot \text{PRFadv}^*[\mathcal A, F].$$
-
-> [!remark] Weakly Secure PRFs
-> Let $F$ be a PRF defined over $(\mathcal K, \mathcal X, \mathcal Y)$. We modify the way in which an adversary $\mathcal A$ interacts with the challenger: whenever the adversary queries the function, the challenger chooses a random $x \in \mathcal X$ and sends both $x$ and $f(x)$ to the adversary. In other words, the adversary sees evaluations of the function $f$ at **random** points in $\mathcal X$ and needs to decide whether the function is truly random or pseudorandom. We define the adversary's advantage in this game, denoted $\text{wPRFadv}[\mathcal A, F]$ (like $\text{PRFadv}$).
-
-> [!definition] Weakly Secure PRF
-> A PRF $F$ is **weakly secure** if for all efficient adversaries $\mathcal A$, the value $\text{wPRFadv}[\mathcal A, F]$ is negligible.
-
 ### Permutation vs. Function
 
 > [!algorithm] Permutation vs. Function
@@ -60,11 +33,6 @@
 
 > [!theorem]
 > Let $\mathcal X$ be a finite set of size $N$. Let $\mathcal A$ be an adversary that makes at most $Q$ queries to its challenger. Then $$\text{PFadv}[\mathcal A, \mathcal X] \leq Q^2 / 2N.$$
-
-### Extendable PRF
-
-> [!definition] Extendable PRF
-> Let PF be a PRF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$. We say that PF is an **extendable PRF** if for all $k \in \mathcal K, x, y \in \mathcal X^{\leq \ell - 1}$, and $x \in \mathcal X$ we have: $$\text{if } PF(k, x) = PF(k, y) \text{ then } PF(k, x || a) = PF(k, y || a).$$
 
 ### PRF in the Random Oracle Model
 
@@ -175,7 +143,7 @@
 > [!theorem]
 > Let $F$ be a secure PRF defined over $(\mathcal K, \mathcal X, \mathcal X)$ where $\mathcal X = \{0, 1\}^n$ and $|\mathcal X| = 2^n$ is super-poly. Then for any poly-bounded value $\ell$, we have that $F_{CBC}$ is a prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal X)$.
 > 
-> In particular, for every [[Pseudorandom Functions#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal A$ that attacks $F_{CBC}$, and issues at most $Q$ queries, there exists a [[#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRF}^{pf}\text{adv}[\mathcal A, F_{CBC}] \leq \text{PRFadv}[\mathcal B, F] + \frac{(Q \ell)^2}{2 |\mathcal X|}.$$
+> In particular, for every [[Pseudorandom Functionsss#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal A$ that attacks $F_{CBC}$, and issues at most $Q$ queries, there exists a [[#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRF}^{pf}\text{adv}[\mathcal A, F_{CBC}] \leq \text{PRFadv}[\mathcal B, F] + \frac{(Q \ell)^2}{2 |\mathcal X|}.$$
 
 ### Cascade Construction
 
@@ -192,7 +160,7 @@
 > [!theorem]
 > Let $F$ be a secure PRF defined over $(\mathcal K, \mathcal X, \mathcal K)$. Then for any poly-bounded value $\ell$, the cascade $F^*$ of $F$ is a prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal K)$.
 > 
-> In particular, for every [[Pseudorandom Functions#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal A$ that attacks $F^*$, and issues at most $Q$ queries, there exists a [[#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRF}^{pf}\text{adv}[\mathcal A, F^*] \leq Q \ell \cdot \text{PRFadv}[\mathcal B, F].$$
+> In particular, for every [[Pseudorandom Functionsss#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal A$ that attacks $F^*$, and issues at most $Q$ queries, there exists a [[#PRF Security|secure PRF]] adversary $\mathcal B$ that attacks $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRF}^{pf}\text{adv}[\mathcal A, F^*] \leq Q \ell \cdot \text{PRFadv}[\mathcal B, F].$$
 
 ## From Prefix-free Secure PRF to Fully Secure PRF
 

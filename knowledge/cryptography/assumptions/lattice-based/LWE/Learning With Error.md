@@ -17,9 +17,9 @@
 > 4. Output $(A, b = As + e)$
 
 > [!remark] Choosing LWE parameter $B$
-> 5. If $B = 0$, then $As = b \pmod q$ can be solved efficiently.
-> 6. If $B = (q - 1)/2$, then every $s$ can be the solution. Thus, assume $B < q / 4$.
-> 7. **Arora-Ge**: If $B < \mathcal O(\sqrt{n})$, then LWE can be solved in [[Complexity Theory#Sub-exponential|sub-exponential]] time for sufficiently large $m \gg n$.
+> 1. If $B = 0$, then $As = b \pmod q$ can be solved efficiently.
+> 2. If $B = (q - 1)/2$, then every $s$ can be the solution. Thus, assume $B < q / 4$.
+> 3. **Arora-Ge**: If $B < \mathcal O(\sqrt{n})$, then LWE can be solved in [[Complexity Theory#Sub-exponential|sub-exponential]] time for sufficiently large $m \gg n$.
 
 > [!remark]
 > For $m \gg n$, one expects there is a unique LWE solution $(s, e)$.
@@ -41,7 +41,7 @@
 > $$\text{Adv}_\text{LWE}^\text{search}(\mathcal A_\text{search}) = 
 > \Pr\!\left[ 
 > \begin{array}{l}
-> As - b \in \chi^n
+> As - b \in \chi^m
 > \end{array} 
 > \;\middle |\; 
 > \begin{array}{l}

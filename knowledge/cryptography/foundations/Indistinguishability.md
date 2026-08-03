@@ -3,13 +3,30 @@ dg-publish: true
 ---
 ## Basic Definition
 
-> [!algorithm] Distinguishing $P_0$ from $P_1$
-> For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A$, define two experiments. For $b = 0, 1$:
-> **Experiment $b$:**
-> - The challenger samples $x \xleftarrow{R} P_b$ and sends $x$ to the adversary.
-> - The adversary outputs $\hat{b} \in \{0, 1\}$.
->
-> Let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. Define $$\text{Distadv}[\mathcal A, P_0, P_1] = |P[W_0] - P[W_1]|.$$
+> [!algorithm] $q$-Sample Distinguishing Advantage
+> For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A = (\mathcal A_\text{guess})$, we define the $q$-sample distinguishing advantage:
+> $$\text{Adv}^{q\text{-Dist}}_{P_0, P_1}(\mathcal A) = 
+> \left|\; \Pr\!\left[
+> \begin{array}{l}
+> b = 1
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> x_1, x_2, \dots, x_q \xleftarrow{\$} P_0 \\
+> b \leftarrow \mathcal A_\text{guess}(x_1, x_2, \dots, x_q)
+> \end{array} \right] 
+> \;- 
+> \Pr\!\left[
+> \begin{array}{l}
+> b = 1
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> x_1, x_2, \dots, x_q \xleftarrow{\$} P_1 \\
+> b \leftarrow \mathcal A_\text{guess}(x_1, x_2, \dots, x_q)
+> \end{array} \right] 
+> \right|.
+> $$
 
 ### Perfect
 
@@ -19,7 +36,7 @@ dg-publish: true
 ### Computational
 
 > [!definition] Computational Indistinguishability
-> $P_0$ and $P_1$ are **computationally indistinguishable** if $\text{Distadv}[\mathcal A, P_0, P_1]$ is negligible for all efficient adversaries.
+> $P_0$ and $P_1$ are **computationally indistinguishable** if $\text{Adv}_{P_0, P_1}^{q\text{-Dist}}(\mathcal A)$ is negligible for all efficient adversaries.
 
 ### Statistical
 
@@ -29,7 +46,7 @@ dg-publish: true
 ## Property
 
 > [!theorem]
-> For every adversary $\mathcal A$ (even computationally unbounded): $\text{Distadv}[\mathcal A, P_0, P_1] \leq \Delta[P_0, P_1]$.
+> For every adversary $\mathcal A$ (even computationally unbounded): $\text{Adv}^{q\text{-Dist}}_{P_0, P_1}[\mathcal A] \leq q \cdot \Delta[P_0, P_1]$.
 
 > [!corollary]
 > Statistical indistinguishability implies computational indistinguishability. The converse fails: e.g. the output of a secure PRG is computationally, but not statistically, indistinguishable from uniform.

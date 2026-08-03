@@ -45,15 +45,6 @@
 | $\amalg$    | Disjoint Union    |
 | $\times$    | Cartesian Product |
 
-> [!definition] Disjoint
-> Two sets $S$ and $T$ are **disjoint** if $S \cap T = \emptyset$, that is, if no element is 'simultaneously' in both of them.
-
-> [!definition] Complement
-> The **complement** of a subset $T$ in a set $S$ is the difference set $S \setminus T$ consisting of all elements of $S$ which are **not** in $T$.
-
-> [!definition] Partition
-> A collection of nonempty sets $A_1, A_2, \cdots$ is a **partition** of a set $A$ if they are disjoint and their union is $A$.
-
 | Property         | Description                                                                                                                                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Commutative Law  | $A \cup B = B \cup A$, $A \cap B = B \cap A$                                                                                                                                                                                                 |
@@ -72,6 +63,21 @@
 |                  | $A - (B - C) = (A - B) \cup C$                                                                                                                                                                                                               |
 |                  | $A - (B \cup C) = (A - B) - C$                                                                                                                                                                                                               |
 | De Morgan's Law  | For any sets $A_1, A_2, ..., A_n$, we have:<br>$(A_1 \cup A_2 \cup A_3 \cup \cdots A_n)^c = A_1^c \cap A_2^c \cap A_3^c \cdots \cap A_n^c$; <br>$(A_1 \cap A_2 \cap A_3 \cap \cdots A_n)^c = A_1^c \cup A_2^c \cup A_3^c \cdots \cup A_n^c$. |
+
+### Disjoint
+
+> [!definition] Disjoint
+> Two sets $S$ and $T$ are **disjoint** if $S \cap T = \emptyset$, that is, if no element is 'simultaneously' in both of them.
+
+### Complement
+
+> [!definition] Complement
+> The **complement** of a subset $T$ in a set $S$ is the difference set $S \setminus T$ consisting of all elements of $S$ which are **not** in $T$.
+
+### Partition
+
+> [!definition] Partition
+> A collection of nonempty sets $A_1, A_2, \cdots$ is a **partition** of a set $A$ if they are disjoint and their union is $A$.
 
 ## Relations on Sets
 

@@ -23,6 +23,14 @@
 > - Witness are naturally large.
 > - Efficient transformations from computer programs to circuit satisfiability often produce circuits with very large witnesses.
 
+> [!remark] Succinct in Verification
+> Argument systems that achieve verifier time that is better than the time to decide the relation are considered *succinct in verification*, which is sublinear in the verification time.
+> 
+> This is extreme important in the case that the language has no witness.
+
+> [!remark] Sublinear
+> Sublinear means less that linear, but ideally poly-logarithmic.
+
 ## Security
 
 ### Knowledge Soundness

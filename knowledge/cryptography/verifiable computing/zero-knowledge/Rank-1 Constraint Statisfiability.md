@@ -14,7 +14,7 @@
 > - $N_g$: Number of constraints (gates).
 
 > [!remark] Boolean and Arithmetic Circuit Satisfiability
-> The language of R1CS capture Boolean and arithmetic circuit satisfiability as special cases.
+> The language of R1CS capture [[Boolean Circuit#Basic Definition|Boolean]] and [[Arithmetic Circuit#Basic Definition|Arithmetic Circuit]] circuit satisfiability as special cases.
 > - Boolean circuit satisfiability instance for a Boolean circuit $C: \{0, 1\}^n \times \{0, 1\}^h \rightarrow \{0, 1\}$ with $\alpha$ wires and $\beta$ bilinear gates yields an R1CS instance with $N_w = \alpha$ variables and $N_g = \beta + h + 1$ constraints.
 > - An arithmetic circuit $C: \mathbb F^n \times \mathbb F^h \rightarrow \mathbb F^\ell$ with $\alpha$ wires and $\beta$ bilinear gates corresponds to a R1CS instance with $N_w = \alpha$ variables and $N_g = \beta + \ell$ constraints.
 

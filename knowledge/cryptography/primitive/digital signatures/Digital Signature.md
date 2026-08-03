@@ -180,7 +180,7 @@
 > [!algorithm] General Lamport Framework
 > ### Building Block
 > - One-way function $f$ defined over $(\mathcal X, \mathcal Y)$.
-> - [[Pseudorandom Functions#PRF Security|Secure PRF]] $F$.
+> - [[Pseudorandom Functionsss#PRF Security|Secure PRF]] $F$.
 > - Function $P$
 > 
 > ---
@@ -201,7 +201,7 @@
 > 	3. If $\ell = u$ and $f(\sigma_i) = y_{s_i}$ for all $i = 1, \dots, \ell$ then output $\text{accept}$, else $\text{reject}$.
 
 > [!theorem]
-> Suppose $f$ is a one-way hash over $(\mathcal X, \mathcal Y)$ and $F$ is a [[Pseudorandom Functions#PRF Security|secure PRF]] defined over $(\mathcal K, \{1, \dots, n\}, \mathcal X)$. Let $P$ be a containment free function from $\mathcal M$ to subsets of $\{1, \dots, n\}$. Then $\mathcal S_P$ is a secure one-time signature for messages in $\mathcal M$.
+> Suppose $f$ is a one-way hash over $(\mathcal X, \mathcal Y)$ and $F$ is a [[Pseudorandom Functionsss#PRF Security|secure PRF]] defined over $(\mathcal K, \{1, \dots, n\}, \mathcal X)$. Let $P$ be a containment free function from $\mathcal M$ to subsets of $\{1, \dots, n\}$. Then $\mathcal S_P$ is a secure one-time signature for messages in $\mathcal M$.
 > In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_P$ that issues at most one signature query. Then there exist an efficient adversary $\mathcal B_f$ attacking the one-wayness of $f$, and a PRF adversary $\mathcal B_F$, where $\mathcal B_f$ and $\mathcal B_F$ are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_P] \leq n \cdot \text{OWadv}[\mathcal B_f, f] + \text{PRFadv}[\mathcal B_F, F]$$
 
 ### Winternitz Signatues

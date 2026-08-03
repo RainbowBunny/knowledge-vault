@@ -96,7 +96,7 @@
 > [!theorem]
 > If $F$ is a secure PRF, then the PRG $G$ described above is a secure PRG.
 > 
-> In particular, for every [[#Secure PRG|secure PRG]] adversary $\mathcal A$ with respect to $G$, there is a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRGadv}[\mathcal A, G] = \text{PRFadv}[\mathcal B, F].$$
+> In particular, for every [[#Secure PRG|secure PRG]] adversary $\mathcal A$ with respect to $G$, there is a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{PRGadv}[\mathcal A, G] = \text{PRFadv}[\mathcal B, F].$$
 
 ## Case Study
 

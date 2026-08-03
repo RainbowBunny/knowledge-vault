@@ -112,7 +112,7 @@
 > [!theorem]
 > If $F$ is a secure PRF and $N = |\mathcal X| = 2^n$ is super-poly, then the Luby-Rackoff cipher $\mathcal E = (E, D)$ constructed from $F$ is a secure block cipher.
 > 
-> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Functions#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
+> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
 
 ## Case Study
 
