@@ -52,7 +52,7 @@ Link: https://eprint.iacr.org/2017/633
 > 
 > ---
 > ### Algorithms
-> - $(pk, sk) \leftarrow \text{KeyGen}()$:
+> - $(pk, sk) \leftarrow \text{Gen}()$:
 > 	1. $\rho \leftarrow \{0, 1\}^{256}, K \leftarrow \{0, 1\}^{256}$
 > 	2. $(s_1, s_2) \leftarrow S_\eta^\ell \times S_\eta^k$
 > 	3. $A \in R_q^{k \times \ell} = \text{ExpandA}(\rho)$

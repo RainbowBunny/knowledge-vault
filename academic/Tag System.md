@@ -3,7 +3,6 @@ dg-home: true
 dg-publish: true
 ---
 
-# Tag System
 
 Probability: Use $\Pr$ notation.
 When you use equation by double $ instead of single $, then you need the new line.

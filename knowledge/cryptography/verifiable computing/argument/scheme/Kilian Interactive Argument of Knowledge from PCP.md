@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Scheme
 
 > [!scheme] Kilian Interactive Argument of Knowledge from PCP

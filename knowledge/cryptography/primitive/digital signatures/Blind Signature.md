@@ -86,7 +86,7 @@
 > 
 > Scheme:
 > - **Setup**. $\text{Gen}(1^\lambda)$: Upon input the security parameter $\lambda$, define $n, m, q, \sigma, \beta = \sigma \sqrt{m}$ as functions of $\lambda$ such that $q$ is prime, $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the scheme is both efficient and complete; then do the following:
-> 	-  Run $(\text{PKE.pk}, \text{PKE.KeyGen}(1^\lambda))$ and discard $\text{PKE.sk}$.
+> 	-  Run $(\text{PKE.pk}, \text{PKE.Gen}(1^\lambda))$ and discard $\text{PKE.sk}$.
 > 	- Compute $(C, T_C) \leftarrow \text{TrapGen}(n, m, q)$.
 > 	- Output $\text{BSig.sk} = T_C, \text{BSig.vk} = (C, \text{PKE.pk})$.
 > - **Signing**: $\langle \mathcal S(\text{BSIG.sk}), \mathcal U(\text{BSIG.vk}, \mu) \rangle$:
@@ -118,7 +118,7 @@
 > 
 > Scheme:
 > - **Setup**. $\text{Gen}(1^\lambda)$: Upon input the security parameter $\lambda$, define $n, m, q, \sigma, \beta = \sigma \sqrt{m}$ as functions of $\lambda$ such that $q$ is prime, $\text{one-more-ISIS}_{q, n, m, \sigma, 2\beta}$ is hard and the scheme is both efficient and complete; then do the following:
-> 	- Run $(\text{PKE.pk}, \text{PKE.sk}) \leftarrow \text{PKE.KeyGen}(1^\lambda)$ and discard $\text{PKE.sk}$.
+> 	- Run $(\text{PKE.pk}, \text{PKE.sk}) \leftarrow \text{PKE.Gen}(1^\lambda)$ and discard $\text{PKE.sk}$.
 > 	- Compute $(C, T_C) \leftarrow \text{TrapGen}(n, m, q)$.
 > 	- Sample $A \leftarrow \mathbb Z_q^{n \times m}$.
 > 	- Output $\text{BSig.sk} = T_C, \text{BSig.vk} = (C, A, \text{PKE.pk})$.

@@ -1,7 +1,10 @@
+---
+dg-publish: true
+---
 Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 ## Syntax
 
-> [!definition] Multi-prover Interactive Proofs
+> [!definition] Multi-Prover Interactive Proofs
 > A $k$-prover [[Interactive Proof Systems#Syntax|Interactive Proof Protocol]] for a [[Languages|Language]] $\mathcal L \subseteq \{0, 1\}^*$ involves $k + 1$ parties:
 > - The $k + 1$ parties include a probabilistic polynomial time verifier and $k$ provers.
 > - The verifier exchanges a sequence of messages with each prover; each prover's message is a function of the input and the messages from $\mathcal V$ that it has seen so far.

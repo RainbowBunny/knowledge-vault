@@ -16,10 +16,6 @@
 > 3. $e \leftarrow \chi^m$
 > 4. Output $(A, b = As + e)$
 
-> [!definition] Short-Secret Learning With Error (ss-LWE) Problem
-> Let $s \in [-B, B]^n$ and $e \in [-B, B]^m$ where . Given $A \in \mathbb Z_q^{m \times n}$ and $b = As + e \pmod q$. Find $s$.
-> Denote an instance of this problem by $(A, b)$ for $\text{ss-LWE}(m, n, q, B)$.
-
 > [!remark]
 > - We should choose $B \ll q/2$.
 > - We don't need $m \gg n$ for unique solutions.
@@ -32,16 +28,16 @@
 > Reference Name: $\text{Sss-LWE}(n, m, q, \chi)$
 > 
 > ---
-> For any adversary $\mathcal A_\text{search}$, we define the following advantage:
-> $$\text{Adv}_\text{ss-LWE}^\text{search}(\mathcal A_\text{search}) = 
+> For any adversary $\mathcal A = (\mathcal A_\text{search})$, we define the following advantage:
+> $$\text{Adv}_\text{ss-LWE}^\text{search}(\mathcal A) = 
 > \Pr\!\left[ 
 > \begin{array}{l}
 > s \in \chi^n \\
-> As - b \in \chi^m
+> b - As \in \chi^m
 > \end{array} 
 > \;\middle |\; 
 > \begin{array}{l}
-> (A, b) \xleftarrow{\$} \text{ss-LWE}(n, m, q, \chi) \\
+> (A, b) \leftarrow \text{ss-LWE}(n, m, q, \chi) \\
 > s \leftarrow \mathcal A_\text{search}(A, b)
 > \end{array} \right] 
 > $$
@@ -57,15 +53,15 @@
 > Reference Name: $\text{Dss-LWE}(n, m, q, \chi)$
 > 
 > ---
-> For any adversary $\mathcal A_\text{decide}$, we define the following advantage:
-> $$\text{Adv}^\text{decide}_\text{ss-LWE}(\mathcal A_\text{decide}) = 
+> For any adversary $\mathcal A = (\mathcal A_\text{decide})$, we define the following advantage:
+> $$\text{Adv}^\text{decide}_\text{ss-LWE}(\mathcal A) = 
 > \left|\; \Pr\!\left[
 > \begin{array}{l}
 > b' = 1
 > \end{array}
 > \;\middle |\; 
 > \begin{array}{l}
-> (A, b) \xleftarrow{\$} \text{ss-LWE}(n, m, q, \chi) \\
+> (A, b) \leftarrow \text{ss-LWE}(n, m, q, \chi) \\
 > b' \leftarrow \mathcal A_\text{decide}(A, b)
 > \end{array} \right] 
 > \;- 

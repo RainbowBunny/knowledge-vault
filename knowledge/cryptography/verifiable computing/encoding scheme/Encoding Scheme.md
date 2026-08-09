@@ -1,8 +1,11 @@
+---
+dg-publish: true
+---
 ## Syntax
 
 > [!definition] Encoding Scheme
 > An encoding scheme $\text{Enc}$ over a field $\mathbb F$ is composed of the following algorithms:
-> - $(pk, sk) \leftarrow \text{KeyGen}()$: Key generation algorithm that takes as input some security parameter and outputs some secret state $sk$ together with some public information $pk$.
+> - $(pk, sk) \leftarrow \text{Gen}()$: Key generation algorithm that takes as input some security parameter and outputs some secret state $sk$ together with some public information $pk$.
 > - $z \leftarrow \text{Enc}(s)$: Encoding algorithm mapping a field element $s$ to some encoding value. Depending on the algorithm, $\text{Enc}$ will require $\text{pk}$ or $\text{sk}$.
 
 ## Property

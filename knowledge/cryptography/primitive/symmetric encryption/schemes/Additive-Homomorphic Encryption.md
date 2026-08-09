@@ -9,7 +9,7 @@
 > 
 > ---
 > ### Algorithms
-> - $k \leftarrow \text{KeyGen}()$:
+> - $k \leftarrow \text{Gen}()$:
 > 	1. Samples $f = (f_1, \dots, f_w) \xleftarrow{\$} \mathcal S_w^w(\mathbb F_{q^m})$ (Secret Support).
 > 	2. Extends $f$ into a basis $b = (f_1, \dots, f_w, g_1, \dots, g_{m - w}) \in \mathcal S_m^m(\mathbb F_{q^m})$.
 > 	3. Defines $g = (g_1, \dots, g_{m - w})$.

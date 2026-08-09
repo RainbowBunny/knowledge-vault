@@ -15,7 +15,7 @@
 > Sampling Experiment: $s\text{-IRSD}(n, w)$
 > 1. $H \xleftarrow{\$} \mathbb F_{q^m}^{(sn - n) \times sn}$: Parity check matrix $H$ of an $s$-ideal code $\mathcal C$.
 > 2. $x = (x_1, \dots, x_s) \xleftarrow{\$} \mathbb F_{q^m}^{sn}$ with $\omega(x) = w$
-> 3. Output $(H, Hx^\top)$
+> 3. Output $(H, Hx^T)$
 
 ## Problem
 
@@ -40,9 +40,7 @@
 
 ### Decision Variant
 
-> [!definition] Parity-Restricted Uniform Distribution
-> For a bit $b$, let $\mathbb F_{q^m, b}^{\,sn - n} = \{\, y \in \mathbb F_{q^m}^{\,sn-n} : \textstyle\sum_i y_i = b \,\}$ denote the vectors of parity $b$, and let $\mathcal U_b$ sample $H$ as in $s\text{-IRSD}(n, w)$ and $y \xleftarrow{\$} \mathbb F_{q^m, b}^{\,sn-n}$, outputting $(H, y^\top)$.
-> **Note:** $H$ is sampled identically in both worlds — only $y$ differs. The planted syndrome's parity is *publicly computable* from $(H, w)$ (over $\mathbb F_2$, each block of $y = xH^\top$ has parity determined by $w$ and the row-sums of $H$'s circulant blocks), and $b$ is set to exactly that value.
+> [!definition] 
 
 > [!definition] Decision Ideal Rank Syndrome Decoding Problem Advantage
 > Reference Name: $\text{DIRSD}(n, k, w)$

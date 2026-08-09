@@ -2,9 +2,9 @@
 ## Non-Interactive Proof System
 
 > [!definition] Non-interactive Proof System
-> Let $\mathcal R \subseteq \mathcal X \times \mathcal Y$ be an effective relation. A **non-interactive proof system for $\mathcal R$** is a pair of algorithms $(\text{GenPrf}, \text{VrfyPrf})$, where:
-> - $\text{GenPrf}$ is an efficient probabilistic algorithm that is invoked as $\pi \xleftarrow{R} \text{GenPrf}(x, y)$, where $(x, y) \in \mathcal R$, and $\pi$ belongs to some **proof space** $\mathcal P \mathcal S$;
-> - $\text{VrfyPrf}$ is an efficient deterministic algorithm that is invoked as $\text{VrfyPrf}(y, \pi)$, where $y \in \mathcal Y$ and $\pi \in \mathcal P \mathcal S$; the output of $\text{VrfyPrf}$ is either $\text{accept}$ or $\text{reject}$. If $\text{VrfyPrf}(y, \pi) = \text{accept}$, we say $\pi$ **is a valid proof for** $y$.
+> Let $\mathcal R \subseteq \mathcal X \times \mathcal Y$ be an effective relation. A **non-interactive proof system for $\mathcal R$** is a pair of algorithms $(\text{Prove}, \text{Verify})$, where:
+> - $\text{Porve}$ is an efficient probabilistic algorithm that is invoked as $\pi \xleftarrow{R} \text{GenPrf}(x, y)$, where $(x, y) \in \mathcal R$, and $\pi$ belongs to some **proof space** $\mathcal P \mathcal S$;
+> - $\text{Verify}$ is an efficient deterministic algorithm that is invoked as $\text{VrfyPrf}(y, \pi)$, where $y \in \mathcal Y$ and $\pi \in \mathcal P \mathcal S$; the output of $\text{VrfyPrf}$ is either $\text{accept}$ or $\text{reject}$. If $\text{VrfyPrf}(y, \pi) = \text{accept}$, we say $\pi$ **is a valid proof for** $y$.
 > 
 > We require that for all $(x, y) \in \mathcal R$, the output of $\text{GenPrf}(x, y)$ is always a valid proof for $y$.
 

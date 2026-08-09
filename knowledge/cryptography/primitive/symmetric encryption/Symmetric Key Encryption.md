@@ -4,8 +4,8 @@ dg-publish: true
 ## Syntax
 
 > [!definition] Symmetric Key Encryption Scheme
-> A **symmetric-key encryption scheme** $\text{SKE} = (\text{KeyGen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
-> - $k \leftarrow \text{KeyGen}()$: The key-generation algorithm $\text{KeyGen}$ returns a key $k \in \mathcal K$ (often simply $k \xleftarrow{\$} \mathcal K$).
+> A **symmetric-key encryption scheme** $\text{SKE} = (\text{Gen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
+> - $k \leftarrow \text{Gen}()$: The key-generation algorithm $\text{Gen}$ returns a key $k \in \mathcal K$ (often simply $k \xleftarrow{\$} \mathcal K$).
 > - $c \leftarrow \text{Enc}(k, m)$ (Deterministic) or $c \leftarrow \text{Enc}(k, m; r)$ (Probabilistic): The encryption algorithm takes a key $k \in \mathcal K$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
 > - $m \leftarrow \text{Dec}(k, c)$: The deterministic decryption algorithm takes a key $k \in \mathcal K$ and a ciphertext $c$, and outputs either a message $m \in \mathcal M$ or a special symbol $\perp$ to indicate **rejection**.
 
@@ -63,7 +63,7 @@ dg-publish: true
 > $$\text{Adv}_\text{SKE}^{\text{ind-atk}}(\mathcal A) =
 > \left|\; \Pr\!\left[ b = b' \;\middle |\;
 > \begin{array}{l}
-> k \leftarrow \text{KeyGen}(); \\
+> k \leftarrow \text{Gen}(); \\
 > (m_0, m_1, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(); \\
 > b \xleftarrow{\$} \{0, 1\}; c^* \leftarrow \text{Enc}(k, m_b); \\
 > b' \leftarrow \mathcal A_\text{guess}^{\mathcal O_\text{guess}}(s, c^*)
@@ -98,7 +98,7 @@ dg-publish: true
 ### Multi-key Semantic Security
 
 > [!definition] SKE Multi-key Semantic Security Advantage
-> For any adversary $\mathcal A$ and $b = 0, 1$, in Experiment $b$ the adversary submits queries $(m_{i0}, m_{i1}) \in \mathcal M^2$ of the same length ($i = 1, 2, \dots$); the challenger computes $k_i \leftarrow \text{KeyGen}(), c_i \leftarrow \text{Enc}(k_i, m_{ib})$ and returns $c_i$; finally the adversary outputs $\hat b \in \{0, 1\}$. Letting $W_b$ denote the event that $\hat b = 1$ in Experiment $b$, define:
+> For any adversary $\mathcal A$ and $b = 0, 1$, in Experiment $b$ the adversary submits queries $(m_{i0}, m_{i1}) \in \mathcal M^2$ of the same length ($i = 1, 2, \dots$); the challenger computes $k_i \leftarrow \text{Gen}(), c_i \leftarrow \text{Enc}(k_i, m_{ib})$ and returns $c_i$; finally the adversary outputs $\hat b \in \{0, 1\}$. Letting $W_b$ denote the event that $\hat b = 1$ in Experiment $b$, define:
 > $$\text{Adv}_\text{SKE}^{\text{mss}}(\mathcal A) = |\Pr[W_0] - \Pr[W_1]|.$$
 
 > [!definition] $(t,\varepsilon)$-Multi-key Semantic Security of a SKE
@@ -111,7 +111,7 @@ dg-publish: true
 ### Nonce-based CPA Security
 
 > [!definition] SKE nCPA Advantage
-> For a nonce-based cipher $\mathcal E$ defined over $(\mathcal K, \mathcal M, \mathcal C, \mathcal N)$, any adversary $\mathcal A$ and $b = 0, 1$, in Experiment $b$ the challenger selects $k \leftarrow \text{KeyGen}()$; the adversary submits queries $(m_{i0}, m_{i1}, n_i)$ with $|m_{i0}| = |m_{i1}|$ and $n_i \in \mathcal N \setminus \{n_1, \dots, n_{i-1}\}$; the challenger returns $c_i \leftarrow E(k, m_{ib}, n_i)$; finally the adversary outputs $\hat b \in \{0, 1\}$. Letting $W_b$ denote the event that $\hat b = 1$ in Experiment $b$, define:
+> For a nonce-based cipher $\mathcal E$ defined over $(\mathcal K, \mathcal M, \mathcal C, \mathcal N)$, any adversary $\mathcal A$ and $b = 0, 1$, in Experiment $b$ the challenger selects $k \leftarrow \text{Gen}()$; the adversary submits queries $(m_{i0}, m_{i1}, n_i)$ with $|m_{i0}| = |m_{i1}|$ and $n_i \in \mathcal N \setminus \{n_1, \dots, n_{i-1}\}$; the challenger returns $c_i \leftarrow E(k, m_{ib}, n_i)$; finally the adversary outputs $\hat b \in \{0, 1\}$. Letting $W_b$ denote the event that $\hat b = 1$ in Experiment $b$, define:
 > $$\text{Adv}_\text{SKE}^{\text{ncpa}}(\mathcal A) = |\Pr[W_0] - \Pr[W_1]|.$$
 
 > [!definition] $(t,\varepsilon)$-nCPA security of a SKE

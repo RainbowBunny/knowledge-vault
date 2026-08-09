@@ -41,11 +41,11 @@
 > $$\text{Adv}_\text{LWE}^\text{search}(\mathcal A_\text{search}) = 
 > \Pr\!\left[ 
 > \begin{array}{l}
-> As - b \in \chi^m
+> (b - As \bmod q) \in \chi^m
 > \end{array} 
 > \;\middle |\; 
 > \begin{array}{l}
-> (A, b) \xleftarrow{\$} \text{LWE}(n, m, q, \chi) \\
+> (A, b) \leftarrow \text{LWE}(n, m, q, \chi) \\
 > s \leftarrow \mathcal A_\text{search}(A, b)
 > \end{array} \right] 
 > $$
@@ -64,7 +64,7 @@
 > \end{array}
 > \;\middle |\; 
 > \begin{array}{l}
-> (A, b) \xleftarrow{\$} \text{LWE}(n, m, q, \chi) \\
+> (A, b) \leftarrow \text{LWE}(n, m, q, \chi) \\
 > b' \leftarrow \mathcal A_\text{decide}(A, b)
 > \end{array} \right] 
 > \;- 

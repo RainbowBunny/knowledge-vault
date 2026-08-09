@@ -58,10 +58,10 @@
 > ---
 > ### Algorithms
 > - $\text{Setup}(1^\lambda)$
-> - $(sk_S, vk_S) \leftarrow \text{KeyGen}_S(pp)$: Signer key generation
+> - $(sk_S, vk_S) \leftarrow \text{Gen}_S(pp)$: Signer key generation
 > 	1. $(A, T_A) \leftarrow \text{TrapGen}(1^\lambda, k, \ell, q)$
 > 	2. Sample $t \leftarrow R_q^k$, and output $sk = T_A, vk = (A, t)$.
-> - $(sk_R, pk_R) \leftarrow \text{KeyGen}_R(vk_S)$: Receiver key generation
+> - $(sk_R, pk_R) \leftarrow \text{Gen}_R(vk_S)$: Receiver key generation
 > 	1. Sample $s_R \leftarrow \chi_s^\ell$ and $e_R \leftarrow \chi_e^k$.
 > 	2. Compute $pk_R = As_R + e_R \pmod q$ and $sk_R = (s_R, e_R)$
 > - $(\text{psig}, \text{nonce}) \leftarrow \text{Issue}(sk_S, vk_S, pk_R)$:

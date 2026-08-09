@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Scheme
 
 > [!scheme] Pairing-based Encoding Scheme
@@ -12,7 +15,7 @@
 > 
 > ---
 > ### Algorithms
-> - $(pk, sk) \leftarrow \text{KeyGen}()$:
+> - $(pk, sk) \leftarrow \text{Gen}()$:
 > 	1. Return $(pk = (p, \mathbb G, \mathbb G_T, e), sk = \perp)$
 > - $z \leftarrow \text{Enc}(a)$:
 > 	1. Return $z \leftarrow g^a$.

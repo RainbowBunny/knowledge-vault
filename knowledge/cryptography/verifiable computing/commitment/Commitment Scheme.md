@@ -1,9 +1,16 @@
+---
+dg-publish: true
+---
 ## Syntax
 
 > [!definition] Commitment Scheme
 > A **commitment scheme** for a finite message space $\mathcal M$, is a pair of efficient algorithms $\mathcal C = (\text{Com}, \text{Verify})$ where:
 > - Algorithm $\text{Com}$ is invoked as $(c, o) \xleftarrow{\$} \text{Com}(m)$, where $m \in \mathcal M$ is the message to be committed, $c$ is the commitment string, and $o$ is an opening string.
 > - Algorithm $\text{Verify}$ is a deterministic algorithm invoked as $\text{Verify}(m, c, o)$ and output $\text{accept}$ or $\text{reject}$.
+
+> [!definition] Commitment Phases
+> - Commit Phase: Sender runs $(c, o) \xleftarrow{\$} \text{Com}(m)$ and sends $c$.
+> - Reveal Phase: Sender sends $(m, o)$; receiver runs $\text{Verify}(m, c, o)$.
 
 ## Property
 

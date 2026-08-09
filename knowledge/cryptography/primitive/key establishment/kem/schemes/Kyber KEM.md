@@ -10,12 +10,12 @@ Link: https://eprint.iacr.org/2017/634.pdf
 > ### Building Block
 > - $G: \{0, 1\}^* \rightarrow \{0, 1\}^{2 \times 256}$: Secure hash function.
 > - $H: \{0, 1\}^* \rightarrow \{0, 1\}^{256}$: Secure hash function.
-> - $\text{Kyber.PKE} = (\text{KeyGen}, \text{Enc}, \text{Dec})$: A [[Kyber PKE#Scheme|Kyber PKE]] scheme.
+> - $\text{Kyber.PKE} = (\text{Gen}, \text{Enc}, \text{Dec})$: A [[Kyber PKE#Scheme|Kyber PKE]] scheme.
 > 
 > ---
 > ### Algorithms
-> - $(pk, sk) \leftarrow \text{KeyGen}()$:
-> 	1. $((t, \rho), s) \leftarrow \text{Kyber.PKE.KeyGen}()$
+> - $(pk, sk) \leftarrow \text{Gen}()$:
+> 	1. $((t, \rho), s) \leftarrow \text{Kyber.PKE.Gen}()$
 > 	2. $z \xleftarrow{R} \{0, 1\}^{256}$
 > 	3. Return $(pk = (t, \rho), sk = (s, z, t, \rho))$
 > - $(c, K) \leftarrow \text{Encaps}(pk = (t, \rho))$:

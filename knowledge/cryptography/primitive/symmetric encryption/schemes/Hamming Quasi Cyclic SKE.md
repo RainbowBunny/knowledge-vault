@@ -10,7 +10,7 @@
 > 
 > ---
 > ### Algorithms
-> - $k \leftarrow \text{KeyGen}()$:
+> - $k \leftarrow \text{Gen}()$:
 > 	1. Samples the generator matrix $G \in \mathbb F_2^{k \times n}$ of $\mathcal C$
 > 	2. Returns $(x, y) \leftarrow S_w^n(\mathbb F_2)$
 > - $c \leftarrow \text{Enc}(k, m)$:
@@ -31,7 +31,7 @@
 > 
 > ---
 > ### Algorithms
-> - $k \leftarrow \text{KeyGen}()$:
+> - $k \leftarrow \text{Gen}()$:
 > 	1. Samples $h \xleftarrow{\$} \mathbb F_2^n$,
 > 	2. Samples the generator matrix $G \in \mathbb F_2^{k \times n}$ of $\mathcal C$,
 > 	3. $(x, y) \xleftarrow{\$} S_w^n(\mathbb F_2) \times S_w^n(\mathbb F_2)$, $\cdot$ is polynomial multiplication mod $X^n - 1$

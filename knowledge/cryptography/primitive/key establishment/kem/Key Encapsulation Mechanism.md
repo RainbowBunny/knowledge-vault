@@ -1,8 +1,8 @@
 ## Syntax
 
 > [!definition] Key Encapsulation Mechanism Scheme
-> A **key encapsulation scheme** $\text{KEM} = (\text{KeyGen}, \text{Encaps}, \text{Decaps})$ is a triple of efficient algorithms with a ciphertext space $\mathcal C$, a key space $\mathcal K$ and a random space $\mathcal R$.
-> - $(pk, sk) \leftarrow \text{KeyGen}()$: The key-generation algorithm $\text{KeyGen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$.
+> A **key encapsulation scheme** $\text{KEM} = (\text{Gen}, \text{Encaps}, \text{Decaps})$ is a triple of efficient algorithms with a ciphertext space $\mathcal C$, a key space $\mathcal K$ and a random space $\mathcal R$.
+> - $(pk, sk) \leftarrow \text{Gen}()$: The key-generation algorithm $\text{Gen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$.
 > - $(c, K) \leftarrow \text{Encaps}(pk; r)$: The encapsulation algorithm $\text{Encaps}$ takes a public key $pk$ and a random $r \in \mathcal R$ to produce a ciphertext $c \in \mathcal C$ and a key $K \in \mathcal K$.
 > - $K \leftarrow \text{Decaps}(sk, c)$: The deterministic decapsulation algorithm $\text{Decaps}$ takes a secret key $sk$ and a ciphertext $c$, and outputs either a key $K \in \mathcal K$ or a special symbol $\perp$ to indicate **rejection**.
 
@@ -11,7 +11,7 @@
 ### Correctness
 
 > [!definition] KEM $(1 - \delta)$-Correctness
-> A key encapsulation scheme $\text{KEM}$ is $(1 - \delta)$-correct if $$\Pr[\text{Decaps}(sk, c) = K \; | \; (c, K) \leftarrow \text{Encaps}(pk)] \geq 1 - \delta$$ where the probability is taken over $(pk, sk) \leftarrow \text{KeyGen}$ and the random coins of $\text{Encaps}$.
+> A key encapsulation scheme $\text{KEM}$ is $(1 - \delta)$-correct if $$\Pr[\text{Decaps}(sk, c) = K \; | \; (c, K) \leftarrow \text{Encaps}(pk)] \geq 1 - \delta$$ where the probability is taken over $(pk, sk) \leftarrow \text{Gen}$ and the random coins of $\text{Encaps}$.
 
 ## Security
 
@@ -22,7 +22,7 @@
 > $$\text{Adv}_\text{KEM}^{\text{cca}}(A) = 
 > \left|\; \Pr\!\left[ b = b' \;:\; 
 > \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (pk, sk) \leftarrow \text{Gen}(); \\
 > b \leftarrow \{0, 1\}; \\
 > (c^*, K_0^*) \leftarrow \text{EncCaps}(pk); \\
 > K_1^* \in \mathcal K; \\

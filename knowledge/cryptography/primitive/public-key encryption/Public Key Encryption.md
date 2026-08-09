@@ -4,8 +4,8 @@ dg-publish: true
 ## Syntax
 
 > [!definition] Public Key Encryption Scheme
-> A **public-key encryption scheme** $\text{PKE} = (\text{KeyGen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
-> - $(pk, sk) \leftarrow \text{KeyGen}()$: The key-generation algorithm $\text{KeyGen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
+> A **public-key encryption scheme** $\text{PKE} = (\text{Gen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
+> - $(pk, sk) \leftarrow \text{Gen}()$: The key-generation algorithm $\text{Gen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
 > - $c \leftarrow \text{Enc}(pk, m)$ (Deterministic) or $c \leftarrow \text{Enc}(pk, m; r)$ (Probabilistic): The encryption algorithm takes a public key $pk$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
 > - $m \leftarrow \text{Dec}(sk, c)$: The deterministic decryption algorithm takes a secret key $sk$ and a ciphertext $c$, and outputs either a message $m \in \mathcal M$ or a special symbol $\perp$ to indicate **rejection**. 
 
@@ -62,7 +62,7 @@ dg-publish: true
 > $$\text{Adv}_\text{PKE}^{\text{ind-atk}}(\mathcal A) = 
 > \left|\; \Pr\!\left[ b = b' \;\middle |\; 
 > \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (pk, sk) \leftarrow \text{Gen}(); \\
 > (m_0, m_1, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
 > b \xleftarrow{\$} \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
 > b' \leftarrow \mathcal A_\text{guess}^{\mathcal O_\text{guess}}(s, c^*)
@@ -105,7 +105,7 @@ dg-publish: true
 > \end{array}
 > \;\middle |\; 
 > \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (pk, sk) \leftarrow \text{Gen}(); \\
 > (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
 > m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
 > (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
@@ -120,7 +120,7 @@ dg-publish: true
 > \end{array}
 > \;\middle |\; 
 > \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (pk, sk) \leftarrow \text{Gen}(); \\
 > (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
 > m, \tilde m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
 > (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
@@ -146,7 +146,7 @@ dg-publish: true
 > $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) = 
 > \; \Pr\!\left[ \mathcal A(pk, c) = \text{Dec}(sk, c) \; \middle | \; 
 > \begin{array}{l}
-> (pk, sk) \leftarrow \text{KeyGen}(); \\
+> (pk, sk) \leftarrow \text{Gen}(); \\
 > m \leftarrow \mathcal M; \\
 > c \leftarrow \text{Enc}(pk, m)
 > \end{array} \right]$$
@@ -235,7 +235,7 @@ dg-publish: true
 > 	- $\tau$: $\ell_{\infty}$-norm bound on all short elements in the scheme.
 > 	- $q_{PKE}$: a modulus
 > 	- $p < q_{PKE}$: a positive integer
-> - $\text{KeyGen}()$:
+> - $\text{Gen}()$:
 > 	- Sample $A_1 \in \mathcal R_{128}^{8 \times 8}$ uniform modulo $q_{PKE}$.
 > 	- Sample $S_1, S_2 \leftarrow U(\mathcal S_r^{12 \times 8})$.
 > 	- Compute $A_2 = S_1 \cdot A_1 + S_2$

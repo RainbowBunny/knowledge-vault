@@ -11,15 +11,15 @@ Link: https://courses.grainger.illinois.edu/cs598dk/fa2019/Files/fujisaki_okamot
 > 
 > ---
 > ### Building Block
-> - $\text{PKE} = (\text{KeyGen}, \text{Enc}, \text{Dec})$: A [[Public Key Encryption]] scheme.
+> - $\text{PKE} = (\text{Gen}, \text{Enc}, \text{Dec})$: A [[Public Key Encryption]] scheme.
 > - $\text{SKE} = (\text{Enc}, \text{Dec})$: A [[Symmetric Key Encryption]] scheme.
 > - $G: \mathcal M_\text{PKE} \rightarrow \mathcal K_\text{SKE}$
 > - $H: \mathcal M_\text{PKE} \times \mathcal M_\text{SKE} \rightarrow \mathcal R_\text{PKE}$
 > 
 > ---
 > ### Algorithms
-> - $(pk, sk) \leftarrow \text{KeyGen}()$:
-> 	1. Return $\text{PKE}.\text{KeyGen}()$
+> - $(pk, sk) \leftarrow \text{Gen}()$:
+> 	1. Return $\text{PKE}.\text{Gen}()$
 > - $c \leftarrow \text{Enc}(pk, m)$:
 > 	1. $\sigma \xleftarrow{R} \mathcal M_\text{PKE}$
 > 	2. $r_1 \leftarrow H(\sigma, m)$

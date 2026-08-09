@@ -26,7 +26,7 @@ Link: https://eprint.iacr.org/2017/634.pdf
 > 
 > ---
 > ### Algorithms
-> - $(pk, sk) \leftarrow \text{KeyGen}()$:
+> - $(pk, sk) \leftarrow \text{Gen}()$:
 > 	1. $\rho, \sigma \leftarrow \{0, 1\}^{256}$
 > 	2. $A \sim R_q^{k \times k} = \text{Sam}(\rho)$
 > 	3. $(s, e) \sim \beta_\eta^k \times \beta_\eta^k = \text{Sam}(\sigma)$

@@ -1,40 +1,84 @@
+Reference: https://eprint.iacr.org/2022/1690.pdf
+
 ## Parameters
 
 > [!definition] Parameters
 > - $d$: Degree of polynomial, NTT friendly.
 > - $k$: Module rank.
+> - $m$: Number of equations.
 > - $q$: Modulus.
 > - $\chi_s$: Secret distribution.
 > - $\chi_e$: Error distribution.
-> - $m$: Number of samples.
+> - $R = \mathbb Z[X]/(X^d + 1), R_q = R / qR$: Polynomials ring.
 
 ## Distribution
 
 > [!definition] Module Learning With Error Distribution
 > ### Distribution
-> Sampling Experiment: $\text{MLWE}(d, k, q, \chi_s, \chi_e, m)$
+> Sampling Experiment: $\text{MLWE}(d, k, m, q, \chi_s, \chi_e)$
+> 1. $A \xleftarrow{\$} R_q^{m \times k}$
+> 2. $s \leftarrow \chi_s^k$
+> 3. $e \leftarrow \chi_e^m$
+> 4. $b = As + e \bmod q$
+> 5. Output $(A, b)$
 
-## Module Learning With Error
+## Problem
 
-> [!definition] Module Learning With Error
-> Module LWE (MLWE) ($k, l, q, n, \eta$) so $R_q = \mathbb Z_q [x] / (x^n + 1)$
-Let $A \in_R R^{k \times l}_q, S \in_R R_q^l, e \in_R S_\eta^k$ and $t = As + e \in R^k_q$. Given $(A, t)$, determine $s$.
+### Search Variant
+
+> [!definition] Search Module Learning With Error Problem Advantage
+> Reference Name: $\text{SMLWE}(d, k, m, q, \chi_s, \chi_e)$
+> 
+> ---
+> For any adversary $\mathcal A = (\mathcal A_\text{search})$, we define the following advantage:
+> $$\text{Adv}_\text{MLWE}^\text{search}(\mathcal A) = 
+> \Pr\!\left[ 
+> \begin{array}{l}
+> s \in \chi_s^k \\
+> (b - As \bmod q) \in \chi_e^m
+> \end{array} 
+> \;\middle |\; 
+> \begin{array}{l}
+> (A, b) \leftarrow \text{MLWE}(d, k, m, q, \chi_s, \chi_e) \\
+> s \leftarrow \mathcal A_\text{search}(A, b)
+> \end{array} \right] 
+> $$
 
 > [!remark]
-> 1. MLWE generalizes LWE (set $n = 1$, get LWE)
+> 1. MLWE generalizes LWE (set $d = 1$, get LWE)
 > 2. Also, MLWE is a special "structured" version of LWE.
 > 3. No one knows any method to solve MLWE that is faster than the best algorithm known for solving LWE.
 
-### MLWE Assumption
-
-> [!algorithm] MLWE Adversary
-> For integers $m, k$, and a probability distribution $D: R_q \rightarrow [0, 1]$, we say that the advantage of algorithm $A$ in solving the decisional $\text{MLWE}_{m, k, D}$
 
 ### Decision Module Learning With Error
 
-> [!definition]
-> DMLWE$(k, l, q, n, \eta)$.
-
+> [!definition] Decision Learning With Error Problem Advantage
+> Reference Name: $\text{DMLWE}(d, k, m, q, \chi_s, \chi_e)$
+> 
+> ---
+> For any adversary $\mathcal A = (\mathcal A_\text{decide})$, we define the following advantage:
+> $$\text{Adv}^\text{decide}_\text{MLWE}(\mathcal A) = 
+> \left|\; \Pr\!\left[
+> \begin{array}{l}
+> b' = 1
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> (A, b) \leftarrow \text{MLWE}(d, k, m, q, \chi_s, \chi_e) \\
+> b' \leftarrow \mathcal A_\text{decide}(A, b)
+> \end{array} \right] 
+> \;- 
+> \Pr\!\left[
+> \begin{array}{l}
+> b' = 1
+> \end{array}
+> \;\middle |\; 
+> \begin{array}{l}
+> (A, b) \xleftarrow{\$} R_q^{m \times k} \times R_q^{m} \\
+> b' \leftarrow \mathcal A_\text{decide}(A, b)
+> \end{array} \right] 
+> \right|.
+> $$
 
 ## Assumption
 

@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Syntax
 
 > [!definition] Argument System

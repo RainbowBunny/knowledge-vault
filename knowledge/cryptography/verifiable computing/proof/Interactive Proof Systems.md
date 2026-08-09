@@ -65,6 +65,10 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 
 ### Knowledge Soundness
 
+> [!definition] Knowledge Soundness
+> An interactive prove $\Pi = (\mathcal P, \mathcal V)$ is knowledge sound for an [[Effective Relation]] $R$ if there exists an efficient [[Knowledge Extractor]] $\mathcal E$, such that for all $(x, w) \in R$ and all provers $\mathcal P'$, we have
+> $$\text{Adv}_{\mathcal V}^{\text{knw-snd}}(\mathcal P') = \text{Adv}_{\mathcal V}^{\text{com}}(\mathcal P') - \Pr[(x, w') \in R \;|\; w' \leftarrow \mathcal E^{\mathcal P'}(x)]$$
+
 > [!remark]
 > Knowledge soundness condition requires that not only a witness exists but also the prover need to know one witness $w$.
 

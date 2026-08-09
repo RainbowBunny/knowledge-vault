@@ -20,7 +20,7 @@ Link: https://eprint.iacr.org/2023/1798.pdf
 > 
 > ---
 > ### Algorithms
-> - $sk \leftarrow \text{KeyGen}()$
+> - $sk \leftarrow \text{Gen}()$
 > 	1. Generates secret noise room $f = (f_1, \dots, f_w)$ of $\mathbb F_{q^m}$.
 > 	2. Generates the message space $g = (g_1, \dots, g_{m - w})$ of $\mathbb F_{q^m}$ such that $(f_1, \dots, f_w, g_1, \dots, g_{m - w})$ is a basis of $\mathbb F_{q^m}$.
 > 	3. $D = (g_1^*, \dots, g_{m - w}^*)$ where $(f_1^*, \dots, g_{m - w}^*)$ is the dual basis (Calculate by $(\text{Mat}(b)^{-1})^T$).
@@ -31,6 +31,6 @@ Link: https://eprint.iacr.org/2023/1798.pdf
 > 	2. Sample uniform random noise inside $F^n$: $e = f R_2$.
 > 	3. Sets $v = s \cdot u + e + \hat{m}$ with $\hat{m} = g^{(1)} \star m \in \mathbb F_{q^m}^n$.
 > 	4. Returns $(u, v)$.
-> - $m \leftarrow \text{Decrypt}(k, c)$:
+> - $m \leftarrow \text{Decrypt}(k, c \in \mathbb F_{q^m}^n \times \mathbb F_{q^m}^n)$:
 > 	1. Returns $d^T \text{Mat}(v - s \cdot u)$ with $d = D^{(1)}$.
 

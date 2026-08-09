@@ -11,8 +11,6 @@
 
 ## Set Operations
 
-
-
 > [!definition] Cartesian Product
 > A **Cartesian product** of two sets $A$ and $B$, written as $A \times B$, is the set containing **ordered** pairs from $A$ and $B$. That is, if $C = A \times B$, then each element of $C$ is of the form $(x, y)$, where $x \in A$ and $y \in B$: $$A \times B = \{(x, y) | x \in A \text{ and } y \in B\}.$$ 
 
