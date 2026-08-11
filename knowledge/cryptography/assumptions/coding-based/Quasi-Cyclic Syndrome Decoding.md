@@ -42,8 +42,8 @@
 > **Note:** $H$ is sampled identically in both worlds — only $y$ differs. The planted syndrome's parity is *publicly computable* from $(H, w)$ (over $\mathbb F_2$, each block of $y = xH^\top$ has parity determined by $w$ and the row-sums of $H$'s circulant blocks), and $b$ is set to exactly that value.
 
 > [!definition] Decision s-QCSD Advantage
-> For any adversary $\mathcal A_{\text{decide}}$, we define the following advantage:
-> $$\mathrm{Adv}^{\text{decide}}_{s\text{-QCSD}}(\mathcal A) =
+> For any adversary $\mathcal A = (\mathcal A_{\mathsf{decide}})$, we define the following advantage:
+> $$\mathsf{Adv}^{\mathsf{decide}}_{s-\mathsf{QCSD}}(\mathcal A) =
 > \left|\;
 > \Pr\!\left[\, b' = 1 \;\middle|\;
 > \begin{array}{l}

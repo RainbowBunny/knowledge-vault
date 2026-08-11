@@ -43,8 +43,8 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 ### Soundness
 
 > [!definition] Soundness Error
-> An interactive proof system $(\mathcal V, \mathcal P)$ is said to have **soundness error** $\varepsilon_{\mathrm{snd}}$ if for every deterministic prover strategy $\mathcal P'$:
-> $$\text{Adv}_{\mathcal V}^\mathrm{snd}(\mathcal P') = 
+> An interactive proof system $(\mathcal V, \mathcal P)$ is said to have **soundness error** $\varepsilon_{\mathsf{snd}}$ if for every deterministic prover strategy $\mathcal P'$:
+> $$\text{Adv}_{\mathcal V}^\mathsf{snd}(\mathcal P') = 
 > \; \Pr\!\left[
 > \begin{array}{l}
 > y \neq f(x) \\
@@ -54,7 +54,7 @@ Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 > \begin{array}{l}
 > x \xleftarrow{\$} \{0, 1\}^n \\
 > y \leftarrow \mathcal P'()
-> \end{array} \right] \leq \varepsilon_{\mathrm{snd}}$$
+> \end{array} \right] \leq \varepsilon_{\mathsf{snd}}$$
 
 > [!remark]
 > The soundness condition requires that false statement of the form "$f(x) = y$" for any $y \neq f(x)$ lack a convincing proof.

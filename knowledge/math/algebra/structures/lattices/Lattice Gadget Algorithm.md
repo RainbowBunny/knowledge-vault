@@ -1,6 +1,6 @@
 ## Basic Definition
 
-> [!algorithm] The $g^{-1}_{\mathrm{rand}}$ Algorithm
+> [!algorithm] The $g^{-1}_{\mathsf{rand}}$ Algorithm
 > ### Parameters
 > - $d$: Degree of polynomial, NTT friendly.
 > - $\beta \geq 2 \in \mathbb Z$: Decomposition base.
@@ -13,7 +13,7 @@
 > 
 > ---
 > ### Algorithms
-> Efficiently Computable Function $g_{\mathrm{rand}}^{-1}(\mathbf{a}): R_q^\rho \rightarrow R^{1 \times L}$
+> Efficiently Computable Function $g_{\mathsf{rand}}^{-1}(\mathbf{a}): R_q^\rho \rightarrow R^{1 \times L}$
 > 1. $g^T = (1, \beta, \dots, \beta^{m_q - 1}) \in R_q^{1 \times m_q}$.
 > 2. $G = I_\rho \otimes g \in R_q^{L \times \rho}$ (Kronecker Product)
 > 3. Generates $\mathbf{c} \in R^L$ is a fixed vector satisfying $\mathbf{c}^T G = \mathbf{a} \bmod q$.

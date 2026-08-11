@@ -14,7 +14,7 @@ Even though \gets and \leftarrow is equivalence, pref use \leftarrow
 | Type                                   | Style                |
 | -------------------------------------- | -------------------- |
 | Variable                               | \mathrm              |
-| Algorithms                             | \mathsf              |
+| Algorithms, Adv, Property              | \mathsf              |
 | Scalar                                 | Lowercase            |
 | Vector                                 | \mathbf, \boldsymbol |
 | Matrix                                 | Uppercase            |
@@ -50,6 +50,18 @@ a \leftarrow g^r & \xrightarrow{\quad a \quad} & \\[6pt]
 | ------------------- | --- |
 | Knowledge Soundness | ks  |
 
+ $$\text{Adv}_\text{MLWE}^\text{search}(\mathcal A) = 
+ \Pr\!\left[ 
+ \begin{array}{l}
+ s \in \chi_s^k \\
+ (b - As \bmod q) \in \chi_e^m
+ \end{array} 
+ \;\middle |\; 
+ \begin{array}{l}
+ (A, b) \leftarrow \text{MLWE}(d, k, m, q, \chi_s, \chi_e) \\
+ s \leftarrow \mathcal A_\text{search}(A, b)
+ \end{array} \right] 
+ $$
 
 
 ### Mathematical content
