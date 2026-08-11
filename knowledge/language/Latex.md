@@ -47,7 +47,7 @@
 - Geometry: $\perp$, $\top$
 - Comparator: $\ll$, $\gg$, $\leq$, $\geq$
 - Set: $\cap$, $\bigcap$, $\cup$, $\bigcup$, $\subset$, $\supset$, $\emptyset$, $\varnothing$ 
-- $\deg$, $\Pr$, $\hom$, $\arg$, $\star$, $\oplus$, $\ominus$, $\pm$
+- $\deg$, $\Pr$, $\hom$, $\arg$, $\star$, $\oplus$, $\ominus$, $\otimes$, $\pm$
 - $\underbrace{a}_{b}$,, 
 - Integral: $\int, \iint, \oint$
 - Fraction: $\frac{a}{b}$, 

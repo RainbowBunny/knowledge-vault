@@ -75,16 +75,6 @@
 
 ## Discrete Special Distribution
 
-### Bernoulli Distribution
-
-> [!definition] Bernoulli Distribution
-> A random variable $X$ is said to be a **Bernoulli** random variables with **parameter** $p$, shown as $X \sim \text{Bernoulli}(p)$, if its PMF is given by $$P_X(x) = \begin{cases}p &\text{for } x = 1 \\ 1 - p &\text{for } x = 0 \\ 0 &\text{otherwise}\end{cases}$$ where $0 < p < 1$.
-
-> [!proposition] Properties of Bernoulli
->  Let $X \sim \text{Bernoulli}(p)$.
->  - $EX = p$.
->  - $\text{Var}(X) = p(1 - p)$.
-
 ### Geometric Distribution
 
 > [!definition] Geometric Distribution
