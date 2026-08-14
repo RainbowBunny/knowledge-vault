@@ -13,7 +13,8 @@ dg-publish: true
 
 ### Completeness
 
-- See interactive proof system [[Interactive Proof Systems#Completeness|Completeness]].
+> [!definition] Completeness
+> See interactive proof system [[Interactive Proof Systems#Completeness|Completeness]].
 
 ### Succinct
 

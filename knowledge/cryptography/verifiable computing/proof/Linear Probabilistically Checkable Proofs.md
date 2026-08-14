@@ -1,4 +1,8 @@
-
+---
+dg-publish: true
+---
+Reference:
+- https://eprint.iacr.org/2022/1690.pdf
 
 ## Syntax
 
@@ -21,22 +25,25 @@
 > \pi \leftarrow \mathsf{Prove}(\mathcal{CS}, \mathbf{x}, \mathbf{w})
 > \end{array} \right] = 1$$
 
+> [!definition] Completeness
+> 
+
 ## Security
 
 ### Soundness
 
 > [!definition] Soundness
-> For any adversary $\mathcal A = (\mathcal A^\mathrm{find})$, we define the soundness advantage:
-> $$\mathsf{Adv}_\mathsf{LPCP}^\mathsf{snd}(\mathcal A) =  
+> For any adversary $\mathcal{A} = (\mathcal{A}^\mathrm{find})$, we define the soundness advantage:
+> $$\mathsf{Adv}_\mathsf{LPCP}^\mathsf{snd}(\mathcal{A}) =  
   \Pr\!\left[ 
   \begin{array}{l}
-  \mathbf{x} \notin \mathcal L_\mathcal{CS} \\
-  \mathsf{Verify}(st, \mathbf{x}, Q^T \boldsymbol{\pi}^*) = 1
+  \mathbf{x} \notin \mathcal{L}_\mathcal{CS} \\
+  \mathsf{Verify}(st, \mathbf{x}, \mathbf{Q}^T \boldsymbol{\pi}^*) = 1
   \end{array} 
   \;\middle |\; 
   \begin{array}{l}
-  (\mathbf{x}, \pi^*) \leftarrow \mathcal A(\mathcal{CS}) \\
-  (st, Q) \leftarrow \mathsf{Query}(\mathcal{CS})
+  (\mathbf{x}, \boldsymbol{\pi}^*) \leftarrow \mathcal A(\mathcal{CS}) \\
+  (st, \mathbf{Q}) \leftarrow \mathsf{Query}(\mathcal{CS})
   \end{array} \right] 
  $$
 

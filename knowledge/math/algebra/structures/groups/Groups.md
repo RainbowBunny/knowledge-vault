@@ -9,22 +9,6 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 > 3. (**Associate Law**) 
 > $$(\forall g, h, k \in G): (g \star h) \star k = g \star (h \star k)$$
 
-### Commutative Groups
-
-> [!definition] Commutative Operation
-> We say that the operation $\star$ is 'commutative' if
-> $$(\forall g, h \in G): \quad g \star h = h \star g$$
-
-> [!definition] Commutative Groups
-> If two elements $g, h$ 'commute' if $gh = hg$. Thus, in a commutative group any two elements commute.
-
-> [!remark]
-> Alternatively, we call them abelian groups. The **operation** in an abelian group $A$ is, denoted by $+$ and is called 'addition'; the **identity** is then called $0_A$; and the **inverse** of an element $a \in A$ is denoted $-a$. The 'power' notation is of course replaced by 'multiple': $0a = 0$, and for a positive integer $n$
-> $$na = \underbrace{a + \dots + a}_{n \text{ times}}, \quad (-n)a = \underbrace{(-a) + \dots + (-a)}_{n \text{ times}}.$$
-
-> [!example]
-> Suppose that $g^2 = e$ for all elements $g$ of a group $G$; then $G$ is commutative.
-
 ### Order
 
 > [!definition] Order of a Group

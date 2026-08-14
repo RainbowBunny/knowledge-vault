@@ -4,8 +4,8 @@ dg-publish: true
 ## Basic Definition
 
 > [!algorithm] $q$-Sample Distinguishing Advantage
-> For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A = (\mathcal A_\text{guess})$, we define the $q$-sample distinguishing advantage:
-> $$\text{Adv}^{q\text{-Dist}}_{P_0, P_1}(\mathcal A) = 
+> For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A = (\mathcal A_\mathsf{guess})$, we define the $q$-sample distinguishing advantage:
+> $$\mathsf{Adv}^{q\mbox{-}\mathsf{Dist}}_{P_0, P_1}(\mathcal A) = 
 > \left|\; \Pr\!\left[
 > \begin{array}{l}
 > b = 1
@@ -13,7 +13,7 @@ dg-publish: true
 > \;\middle |\; 
 > \begin{array}{l}
 > x_1, x_2, \dots, x_q \xleftarrow{\$} P_0 \\
-> b \leftarrow \mathcal A_\text{guess}(x_1, x_2, \dots, x_q)
+> b \leftarrow \mathcal A_\mathsf{guess}(x_1, x_2, \dots, x_q)
 > \end{array} \right] 
 > \;- 
 > \Pr\!\left[
@@ -23,7 +23,7 @@ dg-publish: true
 > \;\middle |\; 
 > \begin{array}{l}
 > x_1, x_2, \dots, x_q \xleftarrow{\$} P_1 \\
-> b \leftarrow \mathcal A_\text{guess}(x_1, x_2, \dots, x_q)
+> b \leftarrow \mathcal A_\mathsf{guess}(x_1, x_2, \dots, x_q)
 > \end{array} \right] 
 > \right|.
 > $$
@@ -36,7 +36,7 @@ dg-publish: true
 ### Computational
 
 > [!definition] Computational Indistinguishability
-> $P_0$ and $P_1$ are **computationally indistinguishable** if $\text{Adv}_{P_0, P_1}^{q\text{-Dist}}(\mathcal A)$ is negligible for all efficient adversaries.
+> $P_0$ and $P_1$ are **computationally indistinguishable** if $\mathsf{Adv}_{P_0, P_1}^{q\mbox{-}\mathsf{Dist}}(\mathcal A)$ is negligible for all efficient adversaries.
 
 ### Statistical
 

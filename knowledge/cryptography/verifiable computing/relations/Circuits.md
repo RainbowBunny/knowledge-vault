@@ -13,3 +13,4 @@
 > - A **multiplication gate** takes two inputs, $x, y \in \mathbb Z_q$ and produces a single output $z = x \cdot y \in \mathbb Z_q$.
 > - A **constant addition gate** takes one input $x \in \mathbb Z_q$ and produces a single output $z = x + c \in \mathbb Z_q$.
 > - A **scalar multiplication gate** takes one input $x \in \mathbb Z_q$ and produces a single output $z = cx \in \mathbb Z_q$, where $c \in \mathbb Z_q$ is a constant associated with the gate.
+
