@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 
 > [!principle] Basic Counting Principle
 > If two experiments are performed, one of which has $n$ possible outcomes and the other of which has $m$ possible outcomes, then there are $nm$ possible outcomes of performing both experiments.

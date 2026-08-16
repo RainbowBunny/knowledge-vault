@@ -39,7 +39,7 @@ m^* \leftarrow \mathsf{Decrypt}(\mathbf{sk}, \mathbf{C}^*)
 > [!definition] Circuit Privacy
 > For any adversary $\mathcal A = (\mathcal{A}_\mathsf{choose}, \mathcal{A}_\mathsf{eval}, \mathcal{A}_\mathsf{guess})$ and simulator $\mathcal S$, we define the circuit privacy advantage:
 > $$\mathsf{Adv}_{\Pi_\mathsf{Enc}}^\mathsf{CP}(\mathcal A) = 
-> \left|\; \Pr\!\left[
+\left|\; \Pr\!\left[
 \begin{array}{l}
 b = 1
 \end{array}
