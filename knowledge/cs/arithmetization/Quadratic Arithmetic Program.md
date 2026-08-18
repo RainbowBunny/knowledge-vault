@@ -1,0 +1,17 @@
+Reference: https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
+
+## Basic Definition
+
+> [!definition] Quadratic Arithmetic Program
+> A Quadratic Arithmetic Program $\mathbf{Q} = (\mathbf{A}, \mathbf{B}, \mathbf{C}, t)$ over the field $\mathbb F$ for an arithmetic function $f$ takes as input $n$ elements of $\mathbb{F}$ and outputs $n'$ elements, for a total of $N = n + n'$ I/O elements includes:
+> - Three sets of $m + 1$ polynomials $\mathbf{A} = \{A_i(x)\}, \mathbf{B} = \{B_i(x)\}, \mathbf{C} = \{C_i(x)\}, i \in \{0, 1, \dots, m\}$
+> - A target polynomial $t(x)$. 
+> 
+> Such that a tuple $(w_1, \dots, w_n) \in \mathbb F^N$ is a valid assignment of $f$'s inputs and outputs, if and only if there exist coefficients $(w_{n + 1}, \dots, w_N)$ (we write $\mathbf{w} = (1, w_1, \dots, w_n)$) such that $t(x)$ divides $p(x)$, where:
+> $$p(x) = \langle \mathbf{A}, \mathbf{w} \rangle \cdot \langle \mathbf{B}, \mathbf{w} \rangle - \langle \mathbf{C}, \mathbf{w} \rangle$$
+
+## Construction
+
+### QAP for R1CS
+
+

@@ -1,0 +1,22 @@
+## Basic Definition
+
+> [!remark]
+> Completeness means a true statement can be proven.
+
+### Non-Interactive Proof Systems Variant
+
+> [!definition] Completeness of Non-Interactive Proof System
+> Given a [[Non-Interactive Proof Systems]] $\Pi_\mathsf{NIPS}$. For any [[Adversary]] $\mathcal{A} = (\mathcal{A}_\mathsf{find})$, we define the completeness advantage (sometimes refer as completeness error $\varepsilon_c$):
+>  $$\mathsf{Adv}_\mathsf{NIPS}^\mathsf{com}(\mathcal{A}) = 
+\Pr\!\left[ 
+\begin{array}{l}
+(x, w) \in \mathcal{R} \\
+\mathsf{Verify}(\sigma, x, \pi) = 1
+\end{array} 
+\;\middle |\; 
+\begin{array}{l}
+(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{r}) \\
+(x, w) \leftarrow \mathcal{A}_\mathsf{find}(\mathrm{crs}, \mathrm{st}) \\
+\pi \leftarrow \mathsf{Prove}(\mathrm{crs}, x, w)
+\end{array} \right]$$
+

@@ -3,10 +3,10 @@ Reference: https://eprint.iacr.org/2016/260.pdf
 ## Basic Definition
 
 > [!definition] Bilinear Groups
-> Bilinear groups is a tuple $(p, \mathbb G_1, \mathbb G_2, \mathbb G_T, e, g, h)$ with the following properties:
+> Bilinear groups $\mathcal{BG}$ is a tuple $(p, \mathbb G_1, \mathbb G_2, \mathbb G_T, e, g_1, g_2)$ with the following properties:
 > - $\mathbb G_1, \mathbb G_2, \mathbb G_T$ are groups of prime order $p$.
 > - The pairing $e: \mathbb G_1 \times \mathbb G_2 \rightarrow \mathbb G_T$ is a [[Bilinear]] map.
-> - $g$ is a generator for $\mathbb G_1$, $h$ is a generator for $\mathbb G_2$, and $e(g, h)$ is a generator for $\mathbb G_T$.
+> - $g_1$ is a generator for $\mathbb G_1$, $g_2$ is a generator for $\mathbb G_2$, and $e(g_1, g_2)$ is a generator for $\mathbb G_T$.
 
 > [!definition] Generic Group Operations 
 > There are efficient algorithms for:

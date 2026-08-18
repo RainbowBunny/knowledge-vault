@@ -4,7 +4,7 @@ Reference:
 ## Syntax
 
 > [!definition] Linear-Only Vector Encryption
-> Let $\mathbb F$ be a finite field. A secret-key additively-homomorphic vector encryption scheme over a vector space $\mathbb F^\ell$ consists of a tuple of algorithms $\Pi_\mathsf{Enc} = (\mathsf{Setup}, \mathsf{Encrypt}, \mathsf{Add}, \mathsf{Decrypt})$ which are defined as follows:
+> Let $\mathbb F$ be a finite field. A secret-key additively-homomorphic vector encryption scheme over a vector space $\mathbb F^\ell$ consists of a tuple of algorithms $\Pi_\mathsf{Enc} = (\mathsf{Setup}, \mathsf{Enc}, \mathsf{Add}, \mathsf{Dec})$ which are defined as follows:
 > - $(\mathrm{pp}, \mathrm{sk}) \leftarrow \mathsf{Setup}(1^\lambda, 1^\ell)$: On input the security parameter $\lambda$ and the plaintext dimension $\ell$, the setup algorithm outputs public parameter $\mathrm{pp}$ and a secret key $\mathrm{sk}$.
 > - $\mathbf{C} \leftarrow \mathsf{Enc}(\mathrm{sk}, \mathbf{v})$: On input the secret key $\mathrm{sk}$ and a vector $\mathbf{v} \in \mathbb F^\ell$, the encryption algorithm output ciphertext $\mathbf{C}$.
 > - $\mathbf{C}^* \leftarrow \mathsf{Add}(\mathrm{pp}, \{\mathbf{C}_i\}_{i \in [m]}, \{y_i\}_{i \in [m]})$: On input the public parameters, a collection of ciphertexts $\{\mathbf{C}_i\}_{i \in [m]}$ and scalars $\{y_i\} \in \mathbb F, i \in [m]$, the addition algorithm outputs a new ciphertext $\mathbf{c}^*$.
@@ -24,9 +24,9 @@ Reference:
 \begin{array}{l}
 (\mathrm{pp}, \mathrm{sk}) \leftarrow \mathsf{Setup}(1^\lambda, 1^\ell) \\
 \{\mathbf{v}_i\}_{i \in [m]}, \{y_i\}_{i \in [m]} \leftarrow \mathcal{A}_\mathsf{find}(\mathrm{pp}, \mathrm{sk}) \\
-\{\mathbf{C}_i\}_{i \in [m]} \leftarrow \{\mathsf{Encrypt}(\mathrm{sk}, \mathbf{v}_i)\}_{i \in [m]} \\
+\{\mathbf{C}_i\}_{i \in [m]} \leftarrow \{\mathsf{Enc}(\mathrm{sk}, \mathbf{v}_i)\}_{i \in [m]} \\
 \mathbf{C}^* \leftarrow \mathsf{Add}(\mathrm{pp}, \{\mathbf{C}_i\}_{i \in [m]}, \{y_i\}_{i \in [m]}) \\
-m^* \leftarrow \mathsf{Decrypt}(\mathbf{sk}, \mathbf{C}^*)
+m^* \leftarrow \mathsf{Dec}(\mathbf{sk}, \mathbf{C}^*)
 \end{array} \right]$$
 
 > [!remark]
