@@ -18,25 +18,25 @@ Reference:
 > 
 > ---
 > ### Algorithms
-> - $(\mathrm{st}, \mathbf{Q}) \leftarrow \mathsf{Query}(\mathcal{CS}) \in \mathbb{F}^{3n+4} \times \mathbb{F}^{(4 + N_g + N_w - n) \times 4}$:
+> - $(\mathrm{st}, \mathbf{Q}) \leftarrow \mathsf{Query}(\mathcal{CS}) \in \mathbb{F}^{3n+4} \times \mathbb{F}^{(4 + N_g + |\mathbf{w}|) \times 4}$:
 > 	1. Samples $\tau \leftarrow \mathcal U(\mathbb{F} \backslash S) \in \mathbb{F}$.
 > 	2. Defines $\mathbf{A} = (A_1(\tau), \dots, A_n(\tau)) \in \mathbb{F}^n$.
 > 	3. Defines $\mathbf{B} = (B_1(\tau), \dots, B_n(\tau)) \in \mathbb{F}^n$.
 > 	4. Defines $\mathbf{C} = (C_1(\tau), \dots, C_n(\tau)) \in \mathbb{F}^n$.
 > 	5. Defines $\mathrm{st} = (A_0(\tau), B_0(\tau), C_0(\tau), \mathbf{A}, \mathbf{B}, \mathbf{C}, Z_S(\tau)) \in \mathbb{F}^{3n + 4}$.
-> 	6. Defines $\mathbf{Q} = \begin{bmatrix}Z_S(\tau) & 0 & 0 & A_{n + 1}(\tau) & \dots & A_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & Z_S(\tau) & 0 & B_{n + 1}(\tau) & \dots & B_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & 0 & Z_S(\tau) & C_{n + 1}(\tau) & \dots & C_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & 0 & \dots & 0 & 1 & \tau & \dots & \tau^{N_g}\end{bmatrix}^T \in \mathbb F^{(4 + N_g + N_w - n) \times 4}$
+> 	6. Defines $\mathbf{Q} = \begin{bmatrix}Z_S(\tau) & 0 & 0 & A_{n + 1}(\tau) & \dots & A_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & Z_S(\tau) & 0 & B_{n + 1}(\tau) & \dots & B_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & 0 & Z_S(\tau) & C_{n + 1}(\tau) & \dots & C_{N_w}(\tau) & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & 0 & \dots & 0 & 1 & \tau & \dots & \tau^{N_g}\end{bmatrix}^T \in \mathbb F^{(4 + N_g + |\mathbf{w}|) \times 4}$
 > 	7. Returns $(\mathrm{st}, \mathbf{Q})$
-> - $\boldsymbol{\pi} \leftarrow \mathsf{Prove}(\mathcal{CS}, \mathbf{x} \in \mathbb{F}^n, \mathbf{w} \in \mathbb{F}^{N_w}) \in \mathbb{F}^{4 + N_g + N_w - n}$:
+> - $\boldsymbol{\pi} \leftarrow \mathsf{Prove}(\mathcal{CS}, \mathbf{x} \in \mathbb{F}^n, \mathbf{w} \in \mathbb{F}^{N_v - n}) \in \mathbb{F}^{4 + N_g + N_w - n}$:
 > 	1. Samples $\delta_1, \delta_2, \delta_3 \leftarrow \mathcal U(\mathbb F)$.
-> 	2. Constructs $A(z) = \delta_1 Z_s(z) + A_0(z) + \sum_{i = 1}^{N_w} w_i A_i(z)$.
-> 	3. Constructs $B(z) = \delta_2 Z_s(z) + B_0(z) + \sum_{i = 1}^{N_w} w_i B_i(z)$.
-> 	4. Constructs $C(z) = \delta_3 Z_s(z) + C_0(z) + \sum_{i = 1}^{N_w} w_i C_i(z)$.
-> 	5. Calculates $H(z) = (A(z) B(z) - C(z)) / Z_S(z)$.
-> 	6. Defines $\mathbf{h} = (h_0, \dots, h_{N_g}) \in \mathbb F^{N_g + 1}$ be the coefficients of $H$.
-> 	7. Parses $\mathbf{w}^T = [\mathbf{x}^T | \bar{\mathbf{w}}^T]$.
-> 	8. Returns $\boldsymbol{\pi} = (\delta_1, \delta_2, \delta_3, \bar{\mathbf{w}}, \mathbf{h}) \in \mathbb{F}^{4 + N_g + N_w - n}$.
-> - $\{0, 1\} \leftarrow \mathsf{Verify}(\mathrm{st} \in \mathbb{F}^{3n+4}, \mathbf{x} \in \mathbb{F}^n, \mathbf{a} = \in \mathbb{F}^4)$:
-> 	1. Parses $\mathrm{st} = (a_0, b_0, c_0, \mathbf{A}, \mathbf{B}, \mathbf{c}, z)$.
+> 	2. Calculates $\mathbf{z} = (1 || \mathbf{x} || \mathbf{w})$ be the extended witness.
+> 	3. Constructs $A(z) = \delta_1 Z_s(z) + \sum_{i = 0}^{N_v} \mathbf{z}^{(i)} A_i(z)$.
+> 	4. Constructs $B(z) = \delta_2 Z_s(z) + \sum_{i = 0}^{N_v} \mathbf{z}^{(i)} B_i(z)$.
+> 	5. Constructs $C(z) = \delta_3 Z_s(z) + \sum_{i = 0}^{N_v} \mathbf{z}^{(i)} C_i(z)$.
+> 	6. Calculates $H(z) = (A(z) B(z) - C(z)) / Z_S(z)$.
+> 	7. Defines $\mathbf{h} = (h_0, \dots, h_{N_g}) \in \mathbb F^{N_g + 1}$ be the coefficients of $H$.
+> 	8. Returns $\boldsymbol{\pi} = (\delta_1, \delta_2, \delta_3, \mathbf{w}, \mathbf{h}) \in \mathbb{F}^{4 + N_g + |\mathbf{w}|}$.
+> - $\{0, 1\} \leftarrow \mathsf{Verify}(\mathrm{st} \in \mathbb{F}^{3n+4}, \mathbf{x} \in \mathbb{F}^n, \mathbf{a} \in \mathbb{F}^4)$:
+> 	1. Parses $\mathrm{st} = (a_0, b_0, c_0, \mathbf{A}, \mathbf{B}, \mathbf{C}, z)$.
 > 	2. Computes $a_1' = \mathbf{a}^{(1)} + a_0 + \mathbf{x}^T \mathbf{A}$.
 > 	3. Computes $a_2' = \mathbf{a}^{(2)} + b_0 + \mathbf{x}^T \mathbf{B}$.
 > 	4. Computes $a_3' = \mathbf{a}^{(3)} + c_0 + \mathbf{x}^T \mathbf{C}$.

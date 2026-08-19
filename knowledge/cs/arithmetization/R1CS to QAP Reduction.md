@@ -8,4 +8,4 @@
 > 3. Generates $B_i(x)$ is the [[Lagrange Interpolation]] of $\{(\alpha_j, \mathbf{b}_{j, i})\}_{i \in [N_g]}$.
 > 4. Generates $C_i(x)$ is the [[Lagrange Interpolation]] of $\{(\alpha_j, \mathbf{c}_{j, i})\}_{i \in [N_g]}$.
 > 5. Generates $Z_S(x)$ is the [[Vanishing Polynomial]] on $S$.
-> 6. Returns $(\mathbf{A} = \{A_i(x)\}_{i \in [N_g]}, \mathbf{B} = \{B_i(x)\}_{i \in [m]}, \mathbf{C(x)} = \{C_i\}_{i \in [m]}, Z_S(x))$.
+> 6. Returns $(\mathbf{A} = \{A_i(x)\}_{i \in [N_g]}, \mathbf{B} = \{B_i(x)\}_{i \in [N_g]}, \mathbf{C(x)} = \{C_i\}_{i \in [N_g]}, Z_S(x))$.

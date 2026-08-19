@@ -7,8 +7,8 @@ Reference: https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
 > - Three sets of $m + 1$ polynomials $\mathbf{A} = \{A_i(x)\}, \mathbf{B} = \{B_i(x)\}, \mathbf{C} = \{C_i(x)\}, i \in \{0, 1, \dots, m\}$
 > - A target polynomial $t(x)$. 
 > 
-> Such that a tuple $(w_1, \dots, w_n) \in \mathbb F^N$ is a valid assignment of $f$'s inputs and outputs, if and only if there exist coefficients $(w_{n + 1}, \dots, w_N)$ (we write $\mathbf{w} = (1, w_1, \dots, w_n)$) such that $t(x)$ divides $p(x)$, where:
-> $$p(x) = \langle \mathbf{A}, \mathbf{w} \rangle \cdot \langle \mathbf{B}, \mathbf{w} \rangle - \langle \mathbf{C}, \mathbf{w} \rangle$$
+> Such that a tuple $(x_1, \dots, x_n) \in \mathbb F^N$ is a valid assignment of $f$'s inputs and outputs, if and only if there exist coefficients $(w_{n + 1}, \dots, w_N)$ (we write $\mathbf{z} = (1, x_1, \dots, x_n, w_{n + 1}, \dots, w_N)$) such that $t(x)$ divides $p(x)$, where:
+> $$p(x) = \langle \mathbf{A}, \mathbf{z} \rangle \cdot \langle \mathbf{B}, \mathbf{z} \rangle - \langle \mathbf{C}, \mathbf{z} \rangle$$
 
 ## Construction
 

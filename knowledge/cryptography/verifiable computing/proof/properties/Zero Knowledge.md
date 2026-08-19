@@ -1,4 +1,3 @@
-
 ## Basic Definition
 
 ### Non-Interactive Proof System

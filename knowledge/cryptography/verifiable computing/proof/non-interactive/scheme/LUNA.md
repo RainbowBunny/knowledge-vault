@@ -19,7 +19,7 @@ Reference:
 > 
 > ---
 > ### Building Blocks
-> - $\mathcal{CS} = (n, N_g, N_w, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Statisfiability|R1CS]] over $\mathbb F$.
+> - $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Statisfiability|R1CS]] over $\mathbb F$.
 > - $\Pi_\mathsf{LPCP} = (\mathsf{Query}, \mathsf{Prove}, \mathsf{Verify})$: A [[Linear Probabilistically Checkable Proofs|LPCP]] for $\mathcal{CS}$ over $\mathbb F$.
 > 	- $k$: Number of query.
 > 	- $m$: Query length.
@@ -34,7 +34,7 @@ Reference:
 > 	2. Runs $\mathrm{sk} \leftarrow \mathsf{HGSW}.\mathsf{Setup}(1^\lambda)$.
 > 	3. Computes $\mathbf{C}_i \leftarrow \mathsf{HGSW}.\mathsf{Enc}(i, \mathrm{sk}, \mathbf{q_i})$ for $i \in [m]$.
 > 	4. Returns $(\mathrm{crs} = (\mathcal{CS}, \{\mathbf{C}_i\}_{i \in [m]}), \mathrm{st} = (\mathrm{st}_\mathsf{LPCP}, \mathrm{sk}.\mathbf{S}))$
-> - $\boldsymbol{\pi} \leftarrow \mathsf{Prove}(\mathrm{crs}, \mathbf{x} \in \mathbb{F}^n, \mathbf{w} \in \mathbb{F}^{N_w})$: Returns a $\mathsf{HGSW}$ ciphertext.
+> - $\boldsymbol{\pi} \leftarrow \mathsf{Prove}(\mathrm{crs}, \mathbf{x} \in \mathbb{F}^n, \mathbf{w} \in \mathbb{F}^{N_v - n})$: Returns a $\mathsf{HGSW}$ ciphertext.
 > 	1. Runs $\boldsymbol{\pi}_\mathsf{LPCP} \leftarrow \Pi_\mathsf{LPCP}.\mathsf{Prove}(\mathcal{CS}, \mathbf{x}, \mathbf{w})$.
 > 	2. Computes $\mathbf{c}^* \leftarrow \mathsf{HGSW}.\mathsf{Add}(\{\mathbf{C}_i\}_{i \in [m]}, \{\boldsymbol{\pi}_\mathsf{LPCP}^{(i)}\}_{i \in [m]})$.
 > 	3. Returns $\boldsymbol{\pi} = \mathbf{c}^*$.
@@ -44,3 +44,4 @@ Reference:
 > 		1. Returns $0$.
 > 	3. Else
 > 		1. Returns $\Pi_\mathsf{LPCP}.\mathsf{Verify}(\mathrm{st}_\mathsf{LPCP})$.
+
