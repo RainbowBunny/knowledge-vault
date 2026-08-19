@@ -5,7 +5,7 @@ Reference: https://eprint.iacr.org/2016/260.pdf
 > [!definition] Bilinear Groups
 > Bilinear groups $\mathcal{BG}$ is a tuple $(p, \mathbb G_1, \mathbb G_2, \mathbb G_T, e, g_1, g_2)$ with the following properties:
 > - $\mathbb G_1, \mathbb G_2, \mathbb G_T$ are groups of prime order $p$.
-> - The pairing $e: \mathbb G_1 \times \mathbb G_2 \rightarrow \mathbb G_T$ is a [[Bilinear]] map.
+> - The pairing $e: \mathbb G_1 \times \mathbb G_2 \rightarrow \mathbb G_T$ is a [[Bilinearity|Bilinear]] map.
 > - $g_1$ is a generator for $\mathbb G_1$, $g_2$ is a generator for $\mathbb G_2$, and $e(g_1, g_2)$ is a generator for $\mathbb G_T$.
 
 > [!definition] Generic Group Operations 

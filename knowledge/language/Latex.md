@@ -46,7 +46,7 @@
 - Number Theory: $\min$, $\max$, $\gcd$, $\mid$, $\nmid$, $\equiv$, $\not\equiv$, $=$, $\approx$, $\sim$, $\lfloor$, $\rfloor$, $\cong$, $\mod m$, $\pmod m$
 - Geometry: $\perp$, $\top$
 - Comparator: $\ll$, $\gg$, $\leq$, $\geq$
-- Set: $\cap$, $\bigcap$, $\cup$, $\bigcup$, $\subset$, $\supset$, $\emptyset$, $\varnothing$ 
+- Set: $\cap$, $\bigcap$, $\cup$, $\bigcup$, $\subset$, $\supset$, $\emptyset$, $\varnothing$, $\sqcup$
 - $\deg$, $\Pr$, $\hom$, $\arg$, $\star$, $\oplus$, $\ominus$, $\otimes$, $\pm$
 - $\underbrace{a}_{b}$,, 
 - Integral: $\int, \iint, \oint$
