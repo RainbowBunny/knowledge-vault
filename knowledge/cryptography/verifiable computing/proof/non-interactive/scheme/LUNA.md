@@ -19,7 +19,7 @@ Reference:
 > 
 > ---
 > ### Building Blocks
-> - $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Statisfiability|R1CS]] over $\mathbb F$.
+> - $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Satisfiability|R1CS]] over $\mathbb F$.
 > - $\Pi_\mathsf{LPCP} = (\mathsf{Query}, \mathsf{Prove}, \mathsf{Verify})$: A [[Linear Probabilistically Checkable Proofs|LPCP]] for $\mathcal{CS}$ over $\mathbb F$.
 > 	- $k$: Number of query.
 > 	- $m$: Query length.

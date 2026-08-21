@@ -4,11 +4,12 @@
 
 > [!definition] Symmetric (Relation)
 > ### Scope
-> A binary operation $\sim: S \times S \rightarrow S$.
+> A relation $\sim, \subseteq O \times O$.
 > 
 > ---
 > ### Property
-> An operation $\sim$ is symmetric iff $\forall x, y \in S: x \sim y \Longrightarrow y \sim x$.
+> A relation $\sim$ is symmetric iff 
+> $$\forall x, y \in O: x \sim y \Longrightarrow y \sim x$$
 
 ### Form
 
@@ -18,6 +19,7 @@
 > 
 > ---
 > ### Property
-> A map $f$ is called symmetric iff $\forall x, y \in M: f(x, y) = f(y, x)$.
+> A map $f$ is called symmetric iff 
+> $$\forall x, y \in M: f(x, y) = f(y, x)$$
 
 

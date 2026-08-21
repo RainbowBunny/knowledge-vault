@@ -22,6 +22,7 @@ Even though \gets and \leftarrow is equivalence, pref use \leftarrow
 Use \mbox for -
 
 Need to refactor!!! Don't be lazy
+Also should include Map of Content (MOC)
 Communication:
 
 $$\begin{array}{lcl} 

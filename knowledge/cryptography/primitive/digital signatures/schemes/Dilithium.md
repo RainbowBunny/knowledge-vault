@@ -1,5 +1,8 @@
-
-Link: https://eprint.iacr.org/2017/633
+---
+dg-publish: true
+---
+Reference: 
+- https://eprint.iacr.org/2017/633
 ## Scheme
 
 > [!scheme] Dilithium Signature
@@ -46,8 +49,8 @@ Link: https://eprint.iacr.org/2017/633
 > 	5. Return $r_1$
 > - $\{0, 1\}^{384} \leftarrow \text{CRH}(m)$: [[Hash Functions#Collision Resistance|Collision Resistance Hash Function]] 
 > - $(r_1, r_0) \leftarrow \text{Power2Round}_q(r, d)$: Break up an element $r = r_1 \cdot 2^d + r_0$
-> 	1. $r = r \mod q$
-> 	2. $r_0 = r \mod^{\pm} 2^d$
+> 	1. $r = r \bmod q$
+> 	2. $r_0 = r \bmod^{\pm} 2^d$
 > 	3. Return $((r - r_0) / 2^d, r_0)$
 > 
 > ---
@@ -77,12 +80,15 @@ Link: https://eprint.iacr.org/2017/633
 > 				1. $h = \text{MakeHint}_q(-c t_0, w - c s_2 + c t_0, 2 \gamma_2)$
 > 				2. If $||c t_0||_\infty \geq \gamma_2$ or the number of 1's in $h$ is greater than $\omega$, then $(z, h) = \perp$.
 > 		8. $\kappa = \kappa + 1$
-> 	5. Return $\sigma = (z, h, c)$.
+> 	5. Returns $\sigma = (z, h, c)$.
 > - $\text{Verify}(pk = (\rho, t_1), M, \sigma = (z, h, c))$:
 > 	1. $A \in R_q^{k \times \ell} = \text{ExpandA}(\rho)$
 > 	2. $\mu \in \{0, 1\}^{384} = \text{CRH}(\text{CRH}(\rho || t_1) || M)$
 > 	3. $w_1' = \text{UseHint}_q(h, Az - c t_1 \cdot 2^d, 2 \gamma_2)$
-> 	4. Return $[[||z||_\infty < \gamma_1 - \beta]]$ and $[[c = H(\mu || w_1')]]$ and $[[\text{Number of 1's in } h \text{ is} \leq \omega]]$.
+> 	4. Returns and of three check.
+> 		1. $||z||_\infty < \gamma_1 - \beta$  
+> 		2. $c = H(\mu || w_1')$  
+> 		3. $\text{Number of 1's in } h \text{ is} \leq \omega$.
 
 > [!lemma]
 > Suppose that $q$ and $\alpha$ are positive integers satisfying $q > 2 \alpha, q \equiv 1 \pmod \alpha$ and $\alpha$ even. Let $r$ and $z$ be vectors of elements in $R_q$ where $||z||_{\infty} \leq \alpha / 2$, and let $h, h'$ be vectors of bits. Then the $\text{HighBits}_q, \text{MakeHint}_q$, and $\text{UseHint}_q$ algorithms satisfy the following properties:

@@ -1,13 +1,7 @@
 ## Basic Definition
 
 >[!definition] Group
-A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star$, for combining two elements $a, b \in G$ to obtain an element $a \star b \in G$. The composition operation $\star$ is required to have the following three properties: 
-> 1. (**Identity Law**) 
-> $$(\exists e_G \in G) (\forall g \in G): g \star e_G = g = e_G \star g$$ 
-> 2. (**Inverse Law**) 
-> $$(\forall g \in G) (\exists h \in G): g \star h = e_G = h \star g$$
-> 3. (**Associate Law**) 
-> $$(\forall g, h, k \in G): (g \star h) \star k = g \star (h \star k)$$
+A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star: G \times G \rightarrow G$ satisfying [[Associativity]], [[Identity Element]], [[Inverse Element]].
 
 ### Order
 
@@ -19,11 +13,6 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 
 >[!proposition]
 >Let $G$ be a finite group. Then every element of $G$ has finite order. Further, if $g \in G$ has order $n$ and if $g^k = e$, then $n \mid k$.
-
-> [!theorem] Lagrange's Theorem
-> Let $G$ be a finite group and let $g \in G$. Then the order of $g$ divides the order of $G$.
-> More precisely, let $n = |G|$ be the order of $G$ and let $n$ be the order of $g$. Then
-> $$a^k = e \qquad \text{and} \qquad n \mid k$$
 
 > [!proposition]
 > Let $g \in G$ be an element of finite order. Then $g^m$ has finite order $\forall m \geq 0$, and in fact

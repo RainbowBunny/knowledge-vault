@@ -6,14 +6,6 @@ date: 2025-12-02T22:31
 ---
 ## Property
 
-| Property         | Description                                                                                               |
-| ---------------- | --------------------------------------------------------------------------------------------------------- |
-| Identity Law     | $\exists e \in O, \forall a \in O$: $ea = ae = a$                                                         |
-| Inverse Law      | $\forall a \in O, \exists! a^{-1} \in O$: $a a^{-1} = a^{-1} a = e$                                       |
-| Associative Law  | $\forall a, b, c \in O: (a b) c = a (b c)$                                                                |
-| Commutative Law  | $\forall a, b \in O: ab = ba$                                                                             |
-| Distributive Law | $\forall a, b, c \in O: a(b + c) = ab + ac$                                                               |
-| Alternative      | $x (x y) = (x x) y$ left alternative<br>$(y x) x = y (x x)$ right alternative<br>$(xy)x = x(yx)$ flexible |
 - [[Ring]]
 - [[Field]]
 

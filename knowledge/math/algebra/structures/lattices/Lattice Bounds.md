@@ -1,19 +1,3 @@
-## Short Vectors in Lattices
-
-> [!definition] Approximate Shortest Vector Problem ($\text{apprSVP}$)
-> Let $\psi(n)$ be a function of $n$. In a lattice $L$ of dimension $n$, find a nonzero vector that is no more than $\psi(n)$ times longer than a shortest nonzero vector. In other words, if $\textbf{v}_{\text{shortest}}$ is a shortest nonzero vector in $L$, find a nonzero vector $\textbf{v} \in L$ satisfying $$||\textbf{v}|| \leq \psi(n)||\textbf{v}_{\text{shortest}}||.$$ Each choice of function $\psi(n)$ gives a different $\text{apprSVP}$. As specific examples, one might ask for an algorithm that finds a nonzero $\textbf{v} \in L$ satisfying $$||\textbf{v}|| \leq 3 \sqrt{n} ||\textbf{v}_{\text{shortest}}|| \quad \text{or} \quad ||\textbf{v}|| \leq 2^{n / 2} ||\textbf{v}_{\text{shortest}}||.$$ 
-
-> [!remark]
-> 1. If $\gamma_1 \geq \gamma_2$ then $\text{SVP}_{\gamma_1} \leq \text{SVP}_{\gamma_2}$.
-> 2. $\text{SVP}_\gamma$ is NP-hard for constant $\gamma$.
-> 3. If $\gamma > 2^{\frac{n \log \log n}{\log n}}$, then $\text{SVP}_\gamma$, then $\text{SVP}_\gamma$ can be efficiently solved (using LLL-BKZ).
-
-> [!definition] The Shortest Independent Vector Problem
-> Given $L \subseteq \mathbb R^n$, find $n$ linearly independent lattice vectors, each of length $\leq \lambda_n(L)$.
-
-> [!definition] Approximate Shortest Independent Vector Problem (Approx-SIVP)
-> Given $L \subset \mathbb R^n$ and $\gamma \geq 1$, find $n$ linear independent lattice vectors of length $\leq \gamma \lambda_n(L)$.
-
 ## Hermite's Theorem
 
 > [!theorem] Hermite's Theorem
@@ -56,50 +40,3 @@
 
 
 ## Pick's Theorem
-
-## Babai's Algorithm
-
-> [!algorithm] Babai’s Closest Vertex Algorithm
-> **Input:**  
-> - A lattice $L \subset \mathbb{R}^n$ with basis $(v_1, v_2, \ldots, v_n)$  
-> - A target vector $w \in \mathbb{R}^n$
->
-> **Output:**  
-> A lattice vector $v \in L$ approximating the closest lattice vector to $w$
->
-> ---
->
-> 1. Express the target vector in the basis:
->    $$w = t_1 v_1 + t_2 v_2 + \cdots + t_n v_n,$$
->    where $t_1, t_2, \ldots, t_n \in \mathbb{R}$.
->
-> 2. For each $i = 1, 2, \ldots, n$, set:
->    $$a_i \gets \lfloor t_i \rceil,$$
->    where $\lfloor \cdot \rceil$ denotes rounding to the nearest integer.
->
-> 3. Return the lattice vector:
->    $$v \gets a_1 v_1 + a_2 v_2 + \cdots + a_n v_n.$$
-
-### LLL-Based Approximate CVP Algorithm
-
-> [!algorithm] LLL-Based Approximate CVP Algorithm
-> **Input:**  
-> - A lattice $L \subset \mathbb{R}^n$ given by a basis $(v_1, v_2, \ldots, v_n)$  
-> - A target vector $w \in \mathbb{R}^n$
->
-> **Output:**  
-> A lattice vector $v \in L$ such that
-> $$\|w - v\| \le C^n \cdot \min_{u \in L} \|w - u\|,$$
-> for some absolute constant $C > 1$
->
-> ---
->
-> 1. Apply the LLL lattice reduction algorithm to the basis
->    $$(v_1, v_2, \ldots, v_n)$$
->    to obtain an LLL-reduced basis.
->
-> 2. Using the LLL-reduced basis, apply Babai’s closest vertex algorithm
->    to compute a lattice vector $v \in L$ close to the target vector $w$.
->
-> 3. Return the lattice vector $v$.
-

@@ -15,5 +15,5 @@
 | NARK                           | ✓            | computational | ✓         | —        | —   |
 | SNARG                          | ✓            | computational | —         | ✓        | —   |
 | SNARK                          | ✓            | computational | ✓         | ✓        | —   |
-| zkSNARG                        | ✓            | computational | —         | ✓        | ✓   |
-| zk-SNARG                       | ✓            | computational | ✓         | ✓        | ✓   |
+| zk-SNARG                       | ✓            | computational | —         | ✓        | ✓   |
+| zk-SNARK                       | ✓            | computational | ✓         | ✓        | ✓   |

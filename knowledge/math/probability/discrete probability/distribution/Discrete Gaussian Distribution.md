@@ -12,6 +12,9 @@ Reference: https://eprint.iacr.org/2022/1690.pdf
 > $$\mathcal D_{\Lambda + \mathbf{c}, r}(\mathbf{x}) = \frac{\rho_r(\mathbf{x})}{\rho_r(\Lambda + \mathbf{c})} \forall x \in \Lambda + \mathbf{c}$$
 > where $\rho$ is the [[Unnormalized Gaussian Function]].
 
+> [!remark]
+> $r = \sqrt{2 \pi} \cdot \sigma$
+
 ## Property
 
 ### Tail Bound

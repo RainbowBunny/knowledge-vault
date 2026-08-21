@@ -49,4 +49,4 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 - [[Assumptions MOC]] → idealized models — ideal cipher / random oracle models used in CPA security proofs
 - [[Indistinguishability]] and [[Statistical Distance]] — the distribution-distinguishing toolkit extracted from the primitive note
 - [[Key Derivation Problem]] — guessing advantage (Attack Game 8.3), now under key establishment
-- [[knowledge/cs/foundations/Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem
+- [[CS Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem

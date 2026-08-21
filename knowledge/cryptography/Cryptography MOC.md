@@ -4,7 +4,7 @@ Initiative-based index for `academic/knowledge/cryptography/`. Each first-level 
 
 ## Foundations & Primitives
 
-- [[knowledge/cryptography/foundations/Foundations MOC]] — security model, PRF, PRG, hash functions, cryptographic special functions
+- [[Cryptography Foundations MOC]] — security model, PRF, PRG, hash functions, cryptographic special functions
 - [[Symmetric Encryption MOC]] — block / stream / classical ciphers, encryption-security definitions and constructions
 - [[Message Authentication MOC]] — MACs, message integrity, authenticated encryption, authenticated data structures
 

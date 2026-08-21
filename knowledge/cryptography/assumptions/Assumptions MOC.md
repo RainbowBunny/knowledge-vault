@@ -40,4 +40,4 @@ Algorithms that *attack* the hardness assumptions live alongside the assumption 
 
 - [[Post-Quantum Cryptography MOC]] — schemes built *on* lattice / coding assumptions; the math (lattices, codes) lives there too
 - [[Cryptanalysis MOC]] — concrete attacks on deployed protocols (CRIME, …), as opposed to attacks on the underlying assumptions
-- [[knowledge/cs/foundations/Foundations MOC]] — security definitions and games (these are *what* we prove, not *what* we assume)
+- [[CS Foundations MOC]] — security definitions and games (these are *what* we prove, not *what* we assume)

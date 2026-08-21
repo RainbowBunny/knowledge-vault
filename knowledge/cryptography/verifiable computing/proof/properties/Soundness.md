@@ -25,7 +25,7 @@
 \Pr\!\left[ 
 \begin{array}{l}
 \mathbf{x} \notin \mathcal{L}_\mathcal{R} \\
-\mathsf{Verify}(st, \mathbf{x}, \mathbf{Q}^T \boldsymbol{\pi}^*) = 1
+\mathsf{Verify}(st, \mathbf{x}, \boldsymbol{\pi}) = 1
 \end{array} 
 \;\middle |\; 
 \begin{array}{l}

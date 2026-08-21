@@ -1,24 +1,7 @@
 ## Definition
 
 > [!definition] Ring
-> A **ring** is a set $R$ that has two operations, which we denote by $+$ and $\star$, satisfying the following properties:
-> **Properties of $+$:**
-> - **Identity Law**
-> - **Inverse Law**
-> - **Associative Law**
-> - **Commutative Law**
-> 
-> Briefly, $R$ with operation $+$ is a commutative group with (additive) identity element $0$.
-> 
-> **Properties of $\star$:**
-> - **Identity Law**
-> - **Associative Law**
-> - **Commutative Law** (Commutative Ring)
-> 
-> Briefly, $R$ with operation $\star$ is almost a commutative group with (multiplicative) identity element $1$, except that elements are not required to have multiplicative inverses.
-> 
-> **Properties Linking $+$ and $\star$:**
-> - **Distributive Law**
+> A **ring** is a set $R$ that has two operations, which we denote by $+: R \rightarrow R$ and $*: \rightarrow R$ where $R$ is an [[Abelian Groups]] under $+$ and a [[Monoid]] under $*$. Also, $+$ and $*$ satisfies [[Distributivity]].
 
 ### Quotient rings
 

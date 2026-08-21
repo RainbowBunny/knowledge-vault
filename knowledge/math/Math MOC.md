@@ -17,3 +17,4 @@ Top-level index for `academic/knowledge/math/`.
 - [[Function]] — generic function definitions and properties
 - [[Proofs]] — proof techniques
 - [[Useful Formula]] — handy formulas
+

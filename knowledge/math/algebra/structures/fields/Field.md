@@ -3,14 +3,8 @@
 > [!definition] Field
 > A **field** is a commutative [[Ring]] $(F, +, \cdot)$ with multiplicative identity $1 \ne 0$ such that every nonzero element $a \in F$ has a multiplicative inverse, i.e., there exists $a^{-1} \in F$ with $a a^{-1} = 1$.
 
-> [!axiom] The Field Axioms
-> A field $F$ is a set of real number $\mathbb R$ along with two operations called **addition** and **multiplication** denoted by $+$ and $\cdot$. These operations need to satisfy these axiom
-> 1. **Commutative Laws** for $+$ and $\cdot$.
-> 2. **Associative Laws** for $+$ and $\cdot$.
-> 3. **Distributive Laws**
-> 4. **Existence of Identity Elements** for $+: 0$ and $\cdot: 1$.
-> 5. **Existence of Negatives**: **Inverse Law** for $+$
-> 6. **Existence of Reciprocals**: **Inverse Law** for $\cdot$ with nonzero element.
+> [!definition] Field
+> A field is a [[Commutative Ring]] in which every nonzero term have an [[Inverse Element]] for both $+$ and $\star$.
 
 | Property                            | Description                                                                                                                                                                                                                                                   |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

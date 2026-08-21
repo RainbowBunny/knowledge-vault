@@ -2,7 +2,7 @@
 
 > [!scheme] QAP for R1CS
 > ### Algorithm
-> Given a [[Rank-1 Constraint Statisfiability|R1CS]] $\mathcal{CS} = (n, N_g, N_w, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$, returns a corresponding [[Quadratic Arithmetic Program]] over the same finite field $\mathbb F$.
+> Given a [[Rank-1 Constraint Satisfiability|R1CS]] $\mathcal{CS} = (n, N_g, N_w, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$, returns a corresponding [[Quadratic Arithmetic Program]] over the same finite field $\mathbb F$.
 > 1. Generates $S = \{\alpha_1, \dots, \alpha_{N_g}\} \subset \mathbb F$ (Public interpolation point).
 > 2. Generates $A_i(x)$ is the [[Lagrange Interpolation]] of $\{(\alpha_j, \mathbf{a}_{j, i})\}_{i \in [N_g]}$.
 > 3. Generates $B_i(x)$ is the [[Lagrange Interpolation]] of $\{(\alpha_j, \mathbf{b}_{j, i})\}_{i \in [N_g]}$.

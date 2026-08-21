@@ -13,7 +13,7 @@ Reference:
 > 
 > ---
 > ### Building Blocks
-> - $\mathcal{CS} = (n, N_g, N_w, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Statisfiability|R1CS]] over $\mathbb F$.
+> - $\mathcal{CS} = (n, N_g, N_w, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$: [[Rank-1 Constraint Satisfiability|R1CS]] over $\mathbb F$.
 > - $\mathbf{Q} = (\{A_i(x)\}_{i \in [N_g]}, \{B_i(x)\}_{i \in [N_g]}, \{C_i(x)\}_{i \in [N_g]}, Z_S(x))$: [[R1CS to QAP Reduction]] of $\mathcal{CS}$
 > 	- $S = \{\alpha_1, \dots, \alpha_{N_g}\} \subset \mathbb F$: Public interpolation point.
 > 

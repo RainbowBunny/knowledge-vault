@@ -7,7 +7,7 @@ Reference:
 ## Basic Definition
 
 > [!definition] Split-R1CS
-> Given a [[Rank-1 Constraint Statisfiability|R1CS]] $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$ over $\mathbb F$, with extended witness $\mathbf{z} = (z_0, \dots, z_{N_v}), z_0 = 1$. A **split** of $\mathcal{CS}$ is a partition of the variable indices
+> Given a [[Rank-1 Constraint Satisfiability|R1CS]] $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$ over $\mathbb F$, with extended witness $\mathbf{z} = (z_0, \dots, z_{N_v}), z_0 = 1$. A **split** of $\mathcal{CS}$ is a partition of the variable indices
 > $$\{0, 1, \dots, N_v\} = \mathcal{Z}_{I} \sqcup \mathcal{Z}_{II}, \quad 0 \in \mathcal{Z}_{I},$$
 > writing $v_1 = |\mathcal{Z}_I| - 1, v_2 = |\mathcal{Z}_{II}|$, and $\mathbf{z} = (\mathbf{z}_{I}, \mathbf{z}_{II})$ for the corresponding subvectors.
 
