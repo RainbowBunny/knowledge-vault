@@ -1,6 +1,6 @@
 ## Basic Definition
 
-> [!definition] Functions
+> [!definition] Function
 > A function is the subset of $A \times B$:
 > $$\Gamma_f = \{(a, b) \in A \times B \; | \; b = f(a)\} \subseteq A \times B$$
 > That satisfies:
@@ -80,7 +80,7 @@
 > $$A \stackrel{\sim}{=} B,$$
 > and we say that $A$ and $B$ are 'isomorphic' sets.
 
-### Inverse
+### Inversion
 
 > [!definition] Inverse
 > If $f: A \rightarrow B$ is a bijection, then we can define an inverse function:
@@ -116,4 +116,26 @@
 
 > [!proposition]
 > A function is surjective if and only if it is a epimorphism.
+
+## Definition
+
+> [!definition] Function
+> A function $f$ is a set of ordered pairs $(x, y)$ no two of which have the same first member.
+
+> [!definition] Domain
+> For a function $f$, the set of all elements $x$ that occur as the first members of pairs $(x, y)$ in $f$ is called the **domain** of $f$.
+
+> [!definition] Co-domain
+> For a function $f$, the set of all possible elements $y$ is called the **co-domain** of $f$.
+
+> [!definition] Range
+> The **range** of a function is the set containing all the possible values of $f(x)$.
+
+> [!theorem]
+> Two function $f$ and $g$ are equal if and only if
+> 1. $f$ and $g$ have the same domain, and
+> 2. $f(x) = g(x)$ for every $x$ in the domain of $f$.
+
+> [!definition] Odd, Even Function
+> Let $f$ be a function whose domain contains $-x$ whenever it contains $x$. We say that $f$ is an **even** function if $f(-x) = f(x)$ and an **odd** function if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.
 

@@ -2,7 +2,7 @@
 
 > [!definition] Reflexivity
 > ### Scope
-> A relation $\sim, \subseteq O \times O$.
+> A relation $\sim \; \subseteq O \times O$.
 > 
 > ---
 > ### Property

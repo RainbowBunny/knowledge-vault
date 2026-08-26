@@ -1,4 +1,6 @@
-> [!definition] idempotence
+## Basic Definition
+
+> [!definition] Idempotence
 > ### Scope
 > A binary operation $\star: O \times O \rightarrow O$.
 > 

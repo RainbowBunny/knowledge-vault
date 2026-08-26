@@ -44,6 +44,12 @@
 > [!theorem] Cauchy-Schwarz Inequality
 > For any two random variables $X$ and $Y$, we have $$E[XY] \leq \sqrt{E[X^2] E[Y^2]},$$ where equality holds if and only if $X = \alpha Y$, for some constant $\alpha \in \mathbb R$.
 
+## Jensen's Inequality
+
+> [!theorem] Jensen's Inequality
+> If $f$ is a convex function and $X$ is a random variable, $$E[f(X)] \geq f(E[X]).$$
+> Moreover, if $f$ is strictly convex, the equality implies that $X = E[X]$ with probability $1$ ($X$ is a constant).
+
 ## Application
 
 - [[Limit Theorems]] — Chebyshev proves the WLLN.

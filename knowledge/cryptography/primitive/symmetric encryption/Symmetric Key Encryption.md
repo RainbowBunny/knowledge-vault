@@ -206,8 +206,8 @@ See [[One-time Pad]]. The one-time pad is the canonical example of [[#Perfect Se
 
 ### Classical schemes
 
-See [[symmetric encryption/classical/|classical/]] for the historical schemes: [[Substitution Cipher]], [[Multiplicative Encryption]], [[Affine Cipher]], [[Hill Cipher]], [[Vigenère cipher]], and others. These illustrate the development of the field but are insecure by modern standards.
+See  for the historical schemes: [[Substitution Cipher]], [[Multiplicative Encryption]], [[Affine Cipher]], [[Hill Cipher]], [[Vigenère cipher]], and others. These illustrate the development of the field but are insecure by modern standards.
 
 ### Modern schemes
 
-See [[symmetric encryption/schemes/|schemes/]] for deployed modern ciphers (AES, ChaCha20, DES, …).
+See  for deployed modern ciphers (AES, ChaCha20, DES, …).

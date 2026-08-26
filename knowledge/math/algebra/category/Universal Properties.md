@@ -35,15 +35,21 @@
 ### Products
 
 > [!example] Products
-> Let $A, B$ be sets, and consider the product $A \times B$, with the two [[Function between Sets#Natural Projection|Natural Projection]] $\pi_A, \pi_B$. Then for every set $Z$ and morphisms $f_A \in \text{Hom}_{\mathcal C}(Z, A), f_B \in \text{Hom}_{\mathcal C}(Z, B)$, there exists a unique morphism $\sigma: Z \rightarrow A \times B$:
+> Let $A, B$ be sets, and consider the product $A \times B$, with the two [[Function between Sets#Natural Projection|Natural Projection]] $\pi_A, \pi_B$. Then for every set $Z$ and morphisms $f_A \in \mathsf{Hom}_{\mathcal C}(Z, A), f_B \in \mathsf{Hom}_{\mathcal{C}}(Z, B)$, there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathcal{C}}(Z, A \times B)$:
 > $$\sigma(z) = (f_A(z), f_B(z)).$$
-> such that $\pi_A \sigma = f_A$ and $\pi_B \sigma = f_B$. This morphism is denoted $f_A \times f_B$.
+> 
 
+
+$$\begin{CD}
+@. Z @.\\
+@. @VV{\sigma}V @.\\
+A @<{\pi_A}<< A\times B @>{\pi_B}>> B
+\end{CD}$$
 ### Coproducts
 
 > [!example] Coproducts
 > Let $A, B$ be objects of a category $\mathcal C$. A coproduct $A \amalg B$ of $A$ and $B$ will be an object of $\mathcal C$, endowed with two morphisms $i_A: A \rightarrow A \amalg B, i_B: B \rightarrow A \amalg B$ and satisfying the following property:
-> For all objects $Z$ and morphisms $f_A \in \text{Hom}_{\mathcal C}(Z, A), f_B \in \text{Hom}_{\mathcal C}(Z, B)$, there exists a unique morphism $\sigma : A \amalg B \rightarrow Z$ such that $\sigma i_A = f_A, \sigma i_B = f_B$.
+> For all objects $Z$ and morphisms $f_A \in \text{Hom}_{\mathcal C}(A, Z), f_B \in \text{Hom}_{\mathcal C}(B, Z)$, there exists a unique morphism $\sigma : A \amalg B \rightarrow Z$ such that $\sigma i_A = f_A, \sigma i_B = f_B$.
 
 > [!proposition]
 > The disjoint union is a coproduct in $\text{Set}$:

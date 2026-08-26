@@ -6,7 +6,7 @@
 ### Isomorphisms
 
 > [!definition] Isomorphisms
-> - See [[Morphisms#Isomorphisms|Isomorphisms]].
+> - See [[Morphism#Isomorphisms|Isomorphisms]].
 
 > [!proposition]
 > Let $\phi: G \rightarrow H$ be a group homomorphism. Then $\phi$ is an isomorphism of groups if and only if it is a bijection.
@@ -22,7 +22,7 @@
 ### Monomorphisms
 
 > [!definition] Monomorphisms
-> - See [[Morphisms#Monomorphisms|Monomorphisms]].
+> - See [[Morphism#Monomorphisms|Monomorphisms]].
 
 > [!proposition]
 > The following are equivalent:

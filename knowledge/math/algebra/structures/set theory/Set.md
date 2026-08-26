@@ -23,6 +23,11 @@
 > We often express element of a set $A$ as elements $s$ of some larger (and already known) set $S$, satisfying some property $P$.
 > $$A = \{s \in S \;|\; s \text{ satisfies } P\}$$
 
+### Universal Set
+
+> [!definition] Universal Set
+> In our applications of set theory, we have a fixed set $S$ given in advance, and we are concerned only with subsets of this given set. This set is referred as the **universal set**.
+
 ## Operation
 
 ### Inclusion of Sets
@@ -79,32 +84,4 @@
 > [!definition] Partition
 > A collection of nonempty sets $A_1, A_2, \cdots$ is a **partition** of a set $A$ if they are disjoint and their union is $A$.
 
-## Relations on Sets
 
-> [!definition] Relation
-> A **relation** on a set $S$ is simply a subset $R$ of the product $S \times S$. If $(a, b) \in R$, we say that $a$ and $b$ are 'related by $R$' and write
-> $$a \; R \; b$$
-
-### Equivalence
-
-> [!definition] Equivalence Relation
-> An **equivalence relation** on a set $S$ is any relation $\sim$ satisfying these three properties:
-> - (Reflexivity) $(\forall a \in S) \; a \sim a$.
-> - (Symmetry) $(\forall a \in S) \; (\forall b \in S) \; a \sim b \Longrightarrow b \sim a$.
-> - (Transitivity) $(\forall a \in S) \; (\forall b \in S) \; (\forall c \in S), \; (a \sim b \land b \sim c) \Longrightarrow a \sim c$
-
-### Quotient
-
-> [!definition] Equivalence Class
-> For every element $a \in S$, the **equivalence class** of $a$ (w.r.t. $\sim$) is the subset of $S$ defined by
-> $$[a]_\sim = \{b \in S \; | \; b \sim a\}$$
-
-> [!definition] Quotient Relation
-> The **quotient** of the set $S$ with respect to the equivalence relation $\sim$ is the set
-> $$S \setminus_\sim = \mathcal P_\sim$$
-> of equivalence classes of elements of $S$ with respect to $\sim$.
-
-## Russell's Paradox
-
-> [!proposition] Russell's Paradox
-> Let $R = \{x \;|\; x \notin x\}$. Then $R \in R \Longleftrightarrow R \notin R$.

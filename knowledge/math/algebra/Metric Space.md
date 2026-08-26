@@ -11,5 +11,5 @@
 > $$d(x, y) = \mathcal N(x - y)$$
 
 > [!definition] Metric Space
-> An additive group $\mathcal X$ equipped with the norm function $\mathcal N: \mathcal X \leftarrow \mathbb R$ is called a metric space.
+> An additive group $\mathcal X$ equipped with the norm function $\mathcal N: \mathcal X \rightarrow \mathbb R$ is called a metric space.
 

@@ -1,10 +1,10 @@
 ## Syntax
 
-> [!definition] Category $\text{Grp}$
-> Category $\text{Grp}$ consists of
-> - $\text{Obj}(\text{Grp})$ is the class of all [[Groups]].
+> [!definition] Category $\mathsf{Grp}$
+> Category $\mathsf{Grp}$ consists of
+> - $\mathsf{Obj}(\mathsf{Grp})$ is the class of all [[Group]].
 > - For $G, H$ groups, we define
-> $$\text{Hom}_\text{Grp}(G, H)$$
+> $$\mathsf{Hom}_\mathsf{Grp}(G, H)$$
 > to be the set of group homomorphism $G \rightarrow H$.
 
 ## Property

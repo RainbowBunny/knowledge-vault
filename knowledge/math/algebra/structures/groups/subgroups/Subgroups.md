@@ -1,7 +1,7 @@
 ## Basic Definition
 
 > [!definition] Subgroup
-> Let $(G, \cdot)$ be a group, and let $(H, \circ)$ be another group, whose underlying set $H$ is a subset of $G$. $(H, \circ)$ is a subgroup of $G$ if the inclusion function $i: H \hookrightarrow G$ is a group homomorphism.
+> A subgroup is a subset $H$ of a [[Group]] $(G, \star)$ that is also a group. 
 
 > [!proposition]
 > A nonempty subset $H$ of a group $G$ is a subgroup if and only if
@@ -14,6 +14,9 @@
 
 > [!lemma]
 > Let $\phi: G \rightarrow G'$ be a group homomorphism, and let $H'$ be a subgroup of $G'$. Then $\phi^{-1}(H')$ is a subgroup of $G$.
+
+> [!theorem] Lagrange's Theorem
+> Let $H$ be a subgroup of a finite group $G$. Then $|H|$ divides $|G|$.
 
 ### Kernel
 

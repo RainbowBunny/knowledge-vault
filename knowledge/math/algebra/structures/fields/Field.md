@@ -1,10 +1,7 @@
-## Definition
+## Basic Definition
 
 > [!definition] Field
-> A **field** is a commutative [[Ring]] $(F, +, \cdot)$ with multiplicative identity $1 \ne 0$ such that every nonzero element $a \in F$ has a multiplicative inverse, i.e., there exists $a^{-1} \in F$ with $a a^{-1} = 1$.
-
-> [!definition] Field
-> A field is a [[Commutative Ring]] in which every nonzero term have an [[Inverse Element]] for both $+$ and $\star$.
+> A field is a [[Commutative Ring]] with $1 \neq 0$ in which every nonzero element has a multiplicative [[Inverse Element|inverse]].
 
 | Property                            | Description                                                                                                                                                                                                                                                   |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

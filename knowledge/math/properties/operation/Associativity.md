@@ -1,8 +1,11 @@
+Reference: 
+- https://en.wikipedia.org/wiki/Semigroupoid
+
 ## Basic Definition
 
-> [!definition] Commutativity
+> [!definition] Associativity
 > ### Scope
-> A binary operation $*: O \times O \rightarrow O$.
+> A [[Binary Operation]] $*$.
 > 
 > ---
 > ### Property

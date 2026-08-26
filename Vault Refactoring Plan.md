@@ -1,458 +1,285 @@
-# Vault Refactoring Plan — revised
+# Vault Refactoring Plan
 
-*Scouted 2026-08-20 against `knowledge/` (483 notes) and the full vault (709 notes). Every claim below was checked against the files, not inferred from the previous plan.*
+**Status legend** — `Open` · `Partial` · `Parked` (deliberately deferred) · `?` (needs a decision)
+
+*Living document. Completed tasks are removed, not struck through — git holds the history, Appendix B keeps the IDs.*
+
+*Last review: 2026-08-26, fifth pass.*
+
+> **Housekeeping.** This file lives in the vault, so its wikilinks join your graph. Notes that **exist** are real links; notes that do not exist yet, and examples of broken links, are in `code`.
+
+## Progress
+
+| | 1st | 2nd | 3rd | now |
+| --- | --- | --- | --- | --- |
+| Notes in `knowledge/` | 501 | 505 | 505 | **518** |
+| Orphans | 163 | 73 | 64 | **86** ¹ |
+| Orphans in `math/` + `cryptography/` + `information theory/` | ~90 | 14 | 11 | **23** ¹ |
+| Broken targets inside `knowledge/` | 16 | 13 | 13 | **6** ² |
+
+¹ *Thirteen new notes landed this pass (quantum, physics, coding, assumptions) and none are linked from a hub yet. Of the 23, only ~8 predate this pass.*
+² *Excluding `Fleeting MOC`, `Book Reference` and `PPT`, whose targets live outside `knowledge/` and resolve fine vault-wide. See the note on `PPT` in 9.9.*
+
+---
+
+# Review — fifth pass (2026-08-26)
+
+## The two new operation notes
+
+[[Binary Operation]], [[Many-Sorted Operation]] and [[Binary Operation Examples]] created in `set theory/operation/`, alongside the new `function/` folder — the object layer now mirrors `relation/`. Three fixes:
+
+| # | fix |
+| --- | --- |
+| G1 | `Binary Operation.md` starts with a stray comma: `,Reference:` |
+| G2 | **The many-sorted section is now duplicated** — it survives as `### Many-Sorted Operation` inside [[Binary Operation]] *and* as the standalone [[Many-Sorted Operation]]. Delete the inline section; replace with one line: *"The general form is a [[Many-Sorted Operation]]; this note is the one-sort, arity-2 case."* Also reword the `## Variant` intro, which still says "many-sorted subsumes the other two" about a section that should no longer be there |
+| G3 | [[Many-Sorted Operation]] predates the size discussion: add the remark that sorts are *labels* (the carrier of sort $(A,B)$ is $\mathsf{Hom}(A,B)$, objects only index), and that a [[Category]] is literally a many-sorted algebra **only when small** — for locally small categories it is an analogy. Swap the References to Birkhoff–Lipson 1970 (the founding paper) + the category article |
+
+## Convention decided: signature-and-structure, in three tiers
+
+The vault's architecture — objects in `set theory/`, axioms in `properties/`, structures composed by linking — is the **signature + structure** pattern of universal algebra and model theory. It is adopted vault-wide, with the honesty clause that it holds at three strengths:
+
+| tier | Scope line is… | domains | composition behaves like |
+| --- | --- | --- | --- |
+| 1 | a first-order signature | algebra, orders, graphs, linear codes, automata / data types | equational or first-order logic — clean |
+| 2 | a higher-order gadget (set of subsets, sup over subsets) | topology, analysis, probability, category size | the template still works; expect **Condition** clauses, not equations |
+| 3 | a tuple of typed algorithms (`## Syntax`) | crypto schemes and proof systems | properties are games quantifying over adversaries; implications between them are theorems |
+
+Practical rule: **`## Syntax` in a crypto note and `### Scope` in a math note are the same slot.** Tier 2 is why [[Field]] kept going wrong in review ("nonzero" is a condition, not an equation) and why the order table needed its own treatment — the friction was mathematical, not organisational.
+
+### How multiple formal systems coexist (decided)
+
+The systems do not conflict, because **the vault's medium is not a formal system**. Notes are written in informal-rigorous prose + the Scope/Condition/Property template, the way mathematics itself is written — formalizable in principle, committed to no foundation. Five rules:
+
+1. **One medium.** The S/C/P template + composition-by-links is the representation. Never rewrite the vault "in" FOL or type theory.
+2. **Formal systems are content.** FOL, equational logic, type theory live as *notes* in `math/logic/` (task 10.8), studied like [[Group]] — created only when a consumer exists.
+3. **Tiers are metadata on properties, not foundations.** "Equational / first-order / second-order / game" is a one-line classification of each axiom; it predicts behavior (clean composition, Condition clauses, adversary quantifiers) without choosing a system.
+4. **Translations are first-class notes.** When one concept has two representations, state it once in its home system and write the *bridge* as its own note. The vault already does this: [[R1CS to QAP Reduction]], [[Fiat-Shamir Transform]] (interactive → non-interactive), `Poset as Category` (4.6, order → category), the lattice poset ↔ algebra equivalence (2.14), Curry–Howard when `math/logic/` exists. Never duplicate the concept in both.
+5. **Conflicts are boundary remarks.** Every real conflict met so far got a one-line remark at the exact boundary: class-vs-set (Category smallness), conditional-vs-equational ([[Field]]), symbolic-vs-computational (crypto uses games). Keep resolving locally; no global policy needed.
+
+### North star (recorded)
+
+*Extracted to [[North Star]] at the vault root — now the digital garden home page (`dg-home` moved there from [[Tag System]], which keeps `dg-publish`). It carries the vision, the skeleton, the when-lost workflow, and the known tensions.*
+
+The vault is a **connected reference**: when something new is learned, backlinks + MOCs surface everything already known about its objects, and the new piece enters as leaf notes plus bridge notes. Precedents for exactly this design point exist and are healthy at scale: **nLab** (concept-centric wiki; *Idea → Definition → Properties → Examples → Related concepts → References* per entry) and the **Stacks Project** (self-contained natural-language reference, navigation by hyperlinks and tags rather than chapter order). The vault is nLab's shape + Stacks' self-containment + crypto's game style, minus machine checking.
+
+What replaces Lean's compiler is a **precision skeleton** — prose is free everywhere *except* five load-bearing places, each with a session receipt of what happens otherwise:
+
+1. **Scope lines type-check** — every symbol declared with its type, links target the declared kind *(the totally-typed category composition; the circular norm Scope)*
+2. **Quantifiers bound, order explicit** *(the free $e$ in Identity Element)*
+3. **Definition ≠ theorem** — never state a consequence inside a definition callout *(the $\exists!$ in Inverse Element)*
+4. **Side conditions in the Condition slot** *(Field's "nonzero")*
+5. **Dependencies are links** — a concept a definition uses but cannot link is a *detected gap*, not a footnote *(this is how `Module`, `Homomorphism`, and `partial function` were found)*
+
+**Intuition convention:** an optional `## Intuition` section (nLab's *Idea*) at the top of a note, always separate from the definition callouts, so sharing-friendly prose never contaminates the precision skeleton. A custom `[!intuition]` callout can reuse the existing CSS-snippet mechanism.
+
+
+
+# Open work
 
 ---
 
-## Part I — Corrections to the plan you wrote
+## Phase 1 — operation axioms
 
-Five items are wrong or already done. Two of them would destroy content or waste an evening.
-
-### C1. `lkdsjjfowjfdowoiwoif.md` is not junk — do not delete it
-
-It is **6,086 bytes of real lattice content**: apprSVP, the Shortest Independent Vector Problem, Hermite's Theorem (both forms), the Hadamard ratio, Minkowski's Theorem, the ball-volume formula, the Gaussian heuristic, Babai's Closest Vertex algorithm, and the LLL-based approximate-CVP algorithm. Only the filename is garbage.
-
-It is also the only place in the vault where those results live — `Lattices.md` (5,849 B) does not repeat them.
-
-**Do instead:** rename to `Short Vectors in Lattices.md`, then split along the seam already present in its headings:
-
-| new note | absorbs |
-| --- | --- |
-| `Lattice Problems.md` | apprSVP, SIVP, Approx-SIVP, the `SVP_γ` hardness remarks |
-| `Lattice Bounds.md` | Hermite, Hadamard ratio, Minkowski, ball volume, Gaussian heuristic |
-| `Babai's Algorithm.md` | Babai closest-vertex, LLL-based approximate CVP |
-
-It also carries three empty headings — `## Blichfeldt's Theorem`, `## Pick's Theorem`, and an empty `## Property` — which are placeholders, not content. Keep them as a TODO list or drop them, but decide consciously.
-
-Note the overlap you will inherit: `Lattice Problems.md` will restate what `cryptography/assumptions/lattice-based/SVP/{Shortest Vector Problem, Closest Vector Problem, Shortest Basis Problem}.md` already say. Those three are orphans (no inbound links). Resolve the direction once: **math states the problem, crypto states the hardness assumption.**
-
-### C2. Most of Phase 5 is already done
-
-Checked line by line against the notes:
-
-| plan item | actual state |
-| --- | --- |
-| "add the linear oracle remark to `Linear Probabilistically Checkable Proofs.md`" | **done** — the `[!definition] Linear Oracle` callout ends with "the verifier $\mathcal V$ only has access to this response, not the proof string $\boldsymbol\pi$" |
-| "add the non-adaptivity remark to LPCP" | **done** — LPCP has non-adaptive *and* adaptive soundness, and non-adaptive *and* adaptive knowledge soundness, as four separate games |
-| "…and to `Non-Interactive Linear Proofs.md`" | **done** — "Every proof — honest or adversarial — is of this form: the prover chooses only the coefficient matrix, never the field elements" |
-| "`Non-interactive ARGument.md` and `ARgument of Knowledge.md` still duplicate the three algorithm bullets" | **false** — both are already three-line compositional notes. NARG = NIPS + Completeness + computational Soundness; NARK = NARG with Soundness strengthened to Knowledge Soundness. No `Setup/Prove/Verify` bullets in either. |
-| "Missing leaves: SNARG, SNARK, zkSNARK, zkSNARG" | **already exist**, as `###` sections inside those two notes, each defined by composition and reachable via `[[#SNARG]]`-style links |
-| "adaptive/non-adaptive in `Soundness.md`" | **done** — both games are there |
-| "`Split Prover.md` needs split correctness + split ZK in game form" | **done** — both are written as advantage games |
-| "the leakage parameterization in `Zero Knowledge.md`" | **partly** — the leakage variant exists, but in `Linear Probabilistically Checkable Proofs.md` (`hvzk-D`), not in `Zero Knowledge.md` |
-
-What is genuinely left in Phase 5 is different, and smaller, than what you wrote. See Phase 8.
-
-**The judgement call this raises:** SNARG/SNARK/zkSNARK already work as headings. Promoting them to standalone notes buys you a graph node and a place to hang scheme links (`Groth16` → SNARK); it costs you four notes that will each be two lines long. My read: promote **SNARK only**, because that is the one with schemes attached and the one other notes will want to link to. Leave SNARG/zk-SNARG/zk-SNARK as headings until something needs to link to them.
-
-### C3. Phase 1 undercounts the duplication — there are four sites, not two
-
-| note | how the axioms appear |
-| --- | --- |
-| `structures/groups/Groups.md` | Identity / Inverse / Associative spelled out as three numbered bold items inside the definition callout |
-| `Ring.md` | eight bold axiom names as bullets, no definitions, no links |
-| `Field.md` | a six-item `[!axiom] The Field Axioms` callout naming Commutative / Associative / Distributive / Identity / Inverse again |
-| `structures/Algebra Structure.md` | a six-row markdown table: Identity Law, Inverse Law, Associative Law, Commutative Law, Distributive Law, Alternative — **with the formal statements**, which the other three lack |
-
-`Algebra Structure.md` is the one that already does the job properly. Phase 1 is really *"extract that table into six notes and point the other three at them"* — which makes it cheaper than you budgeted, because the content already exists in written form.
-
-A fifth site is `set theory/Set.md`, which restates Commutative / Associative / Distributive laws for $\cup$ and $\cap$. That one is legitimately separate (it is an instance, not a restatement), but it should link to the new notes once they exist.
-
-### C4. Groupoids — the duplicate is an empty stub, and the survivor is in the wrong folder
-
-- `set theory/Groupoids.md` — contains exactly `## Basic Definition` and nothing else. Delete.
-- `groups/Groupoids.md` — 126 B, the real one: *"A [[Category]] in which every morphism is an isomorphism."*
-
-But that definition is stated in terms of `Category`, not in terms of groups. It belongs in `algebra/category/`, not `algebra/structures/groups/`. Move it there in Phase 4, where you are already touching the category folder.
-
-### C5. Abelian Groups has the same stub/content inversion, and you did not catch it
-
-- `groups/special groups/Abelian Groups.md` — 21 bytes. `## Basic Definition`, empty. **The better name.**
-- `groups/Commutative Groups.md` — 679 B, the real content: the definition (already correctly written as *"a [[Groups]] whose operation is [[Commutativity|Commutative]]"* — exactly the composed style Phase 1 is aiming for), the additive-notation remark, and the $g^2 = e \Rightarrow$ abelian example.
-
-Merge into `special groups/Abelian Groups.md` and delete `Commutative Groups.md`. Everything else in the vault — `Ring.md`, the closure table, standard usage — says "abelian".
-
----
-## Part II — What the scout turned up that the plan does not cover
-
-### N1. The entire `groups/` subtree is unreachable — 9 orphans
-
-Zero inbound links, from anywhere in the vault:
-
-```
-Subgroups          Normal Subgroups   Cosets          Quotient Groups
-Symmetric Groups   Free Groups        Bilinear Groups Abelian Groups
-Example of Subgroups
-```
-
-`Groups.md` links to none of them. Instead it carries an inline `## Subgroup` section holding *Additive Subgroup*, *Discrete Additive Subgroup*, and Lagrange's Theorem — while `subgroups/Subgroups.md` sits beside it, unread.
-
-This is the same failure mode as Phase 1 (a hub note restating rather than composing), but it costs you more: nine notes you have written and cannot find.
-
-**Also, a real error in `Groups.md`:** Lagrange's Theorem appears twice with two different statements. The version under `### Order` reads *"let $n = |G|$ be the order of $G$ and let $n$ be the order of $g$"* — the same symbol bound twice — and then asserts $a^k = e$ for an $a$ that was never introduced. The version under `## Subgroup` ($|H|$ divides $|G|$) is correct. Keep the second, fix or delete the first.
-
-### N2. `Set.md` duplicates `Relations.md` and `Equivalence Relations.md` wholesale
-
-`Set.md` has a `## Relations on Sets` section defining Relation, Equivalence Relation, Equivalence Class, and Quotient — the same four things that `relations/Relations.md` and `relations/Equivalence Relations.md` define. And `Set.md` itself is an orphan.
-
-Worse, `Equivalence Relations.md` is already the *good* version — it is three links to Reflexivity / Symmetric / Transitivity, exactly the Phase 1 style. `Set.md` restates it longhand right next to it.
-
-Separately, `Set.md` and `Set Theory.md` are two notes with no clear division: Cartesian product is defined in `Set Theory.md` and listed as an operation in `Set.md`; the empty set appears in both. Decide the split explicitly — my suggestion: `Set.md` = objects, notation, operations, algebra of sets; `Set Theory.md` = cardinality, countability, and the foundational material (Russell's paradox should move there from `Set.md`).
-
-### N3. `Function.md` is the largest misfiling in `math/` — 12 KB in the wrong folder
-
-It lives at `math/algebra/structures/set theory/Function.md`. Its contents, in order:
-
-| section | actually belongs in |
-| --- | --- |
-| Function, domain, co-domain, range, equality, odd/even | stays (or merges with `Function between Sets.md`) |
-| Natural logarithm, its properties, $\log_b$, the $P_n$ / error-term theorems | `math/calculus/` |
-| Complex Logarithm, `Log z` | `math/algebra/Field.md`'s complex material (see N4) |
-| Exponential function $E(x)$ | `math/calculus/` |
-| Logarithmic integral $\mathrm{Li}(X)$ | `math/number theory/Prime.md` — it exists for the PNT |
-| Monotonic / strictly monotonic / piecewise monotonic | `math/calculus/` |
-| Convex / concave, derivative test | `math/calculus/Inequality.md` |
-| **Jensen's Inequality** (stated twice, once probabilistically) | `math/probability/Probability Inequalities.md` |
-| Composition, Inverse | duplicates `Function between Sets.md` — merge |
-| Root, isolated root | `math/calculus/` |
-| Lipschitz-1 | `math/calculus/` |
-| Lambda function (Carmichael) | `math/number theory/` |
-| Gamma function + Stirling | `math/calculus/` or a new `math/analysis/Special Functions.md` |
-| Bessel functions, Bessel's equation | `math/calculus/Differential Equations.md` |
-| Unit step, Dirac delta | `math/calculus/` (used by `Fourier Analysis.md`, also an orphan) |
-| Von Mangoldt $\Lambda$ | `math/number theory/Prime.md` |
-
-Note the collateral damage this is already causing: `Math MOC.md` lists `[[Function]]` as a *top-level* math note, but it is buried four levels deep inside `algebra/structures/set theory/`. And `Gamma` is referenced from the lattice ball-volume formula in C1, from a folder that has no reason to reach into set theory.
-
-### N4. `Field.md` carries a complex-analysis note inside it
-
-`Field.md` is 14.5 KB, and roughly the back half is Complex Numbers, Complex Exponentials, Complex-valued Functions (derivative, integral), the $y'' + ay' + by = 0$ characteristic-equation theorem, and DeMoivre. That is not field theory; $\mathbb C$ is one example of a field.
-
-Split out `math/algebra/Complex Numbers.md` (the field structure: definition, conjugate, modulus, polar form, $e^{i\theta}$) and move the calculus of complex-valued functions to `math/calculus/`. What stays in `Field.md`: axioms → integral domain → characteristic → finite fields → extension fields.
-
-The arithmetic-identity table in `Field.md` (Cancellation, Possibility of Subtraction, ~20 rows of $-(a+b) = -a-b$ etc.) is derivable-consequences, not axioms. Consider a `## Consequences` collapse or a separate `Field Arithmetic.md`, so the axioms are not buried under it.
-
-### N5. `Cryptography MOC.md` is stale — it describes a vault you no longer have
-
-Its folder-layout code block lists `zero-knowledge/`, `homomorphic encryption/`, `assumptions/dlp/`, and `post-quantum cryptography/code-based/`. **None of those directories exist.**
-
-It omits, entirely: `verifiable computing/` (where nearly all your current work is), the `primitive/` wrapper level, `special functions/`, `pseudorandom/`, `identification protocols/`, `relations/`.
-
-Consequences visible in the link graph: `[[Zero-knowledge MOC]]` is broken and linked 4 times; `[[Homomorphic Encryption MOC]]` is broken.
-
-This is your crypto entry point and it points at a tree from before the refactor. It should be rewritten in the same pass that adds the Verifiable Computing MOC — not later.
-
-### N6. `Algebra MOC.md` has no entry for four of its own subfolders
-
-It covers Foundations, Linear Structures, Geometric/Number-Theoretic. It does **not** mention:
-
-- `category/` — 3 notes + 2 examples
-- `properties/` — 5 notes, the folder Phase 1 and 2 are about to triple
-- `structures/set theory/` — 8 notes
-- the `structures/groups/` subtree — 9 notes (see N1)
-
-So the two closure tables Phase 1–2 produce would land in a MOC that does not currently reach the notes they summarise. The MOC needs a structure pass, not a table insertion.
-
-### N7. Copy-paste bleed from the LPCP note into the shared property notes
-
-Two of these are wrong, not just untidy:
-
-- **`properties/Soundness.md`, Adaptive Soundness** — the game verifies `Verify(st, x, Q^T π*)`. $\mathbf Q$ is the LPCP *query matrix*; a `Non-Interactive Proof Systems` has no query matrix. Should be `Verify(st, x, π*)`.
-- **`properties/Zero Knowledge.md`** — declares $\mathcal S = (\mathcal S_\mathsf{setup}, \mathcal S_\mathsf{prove})$, then the ideal-world game invokes `S_query(R)` and binds $\widetilde{\mathbf Q}$, which is never used. Both lines are LPCP leftovers.
-- **`Non-Interactive Proof Systems.md`, the relation table** — the last row is labelled `zk-SNARG` but has Knowledge ✓, so it is `zk-SNARK`. And the first cell links `[[Non-Interactive Proof|NIP]]`, which is a broken target — the note is `Non-Interactive Proof Systems`.
-
-That table is otherwise the single best artefact in the crypto side of the vault. It is the model for the two closure tables Phase 1–2 produce. Worth fixing precisely because so much else will point at it.
-
-### N8. 25 broken wikilinks vault-wide
-
-Real missing notes — decide create-or-unlink for each:
-
-```
-4  [[Complexity Theory]]           4  [[Zero-knowledge MOC]]
-3  [[Non-Interactive Zero Knowledge]]  2  [[Knowledge Extractor]]
-2  [[Extendable Output Function]]  1  [[Proof System]]
-1  [[Interactive Zero Knowledge]]  1  [[Homomorphic Encryption MOC]]
-1  [[Integer Factorization]]       1  [[Non-Abelian Group]]
-1  [[Pseudorandom Number Generators]]
-1  [[Foundational Math for Zero Knowledge Proofs]]
-```
-
-Accidental links — these are typos, not intent:
-
-```
-[[a]] ×3, [[b]], [[c]], [[dp]], [[greedy]], [[osint]], [[zER]]
-[[Non-Interactive Proof\]]                    (malformed alias)
-[[symmetric encryption/classical/]]           (folder link, not a note)
-[[symmetric encryption/schemes/]]
-[[\text{HighBits}(r) \neq \text{HighBits}(r + z)]]   in Dilithium.md
-[[\text{Number of 1's in } h \text{ is} \leq \omega]] in Dilithium.md
-[[c = H(\mu]]                                 in Dilithium.md
-```
-
-The three in `Dilithium.md` are `[[ ]]` used where `$$ $$` was meant — display math that turned into links.
-
-### N9. `Foundations MOC` exists three times — this breaks Obsidian's shortest-path linking
-
-```
-complexity/foundations/Foundations MOC.md
-cryptography/foundations/Foundations MOC.md
-cs/foundations/Foundations MOC.md
-```
-
-This is why `Cryptography MOC.md` had to write out the full path `[[knowledge/cryptography/foundations/Foundations MOC]]` — an ugly link that will break the moment you move a folder. Rename to `Complexity Foundations MOC`, `Cryptography Foundations MOC`, `CS Foundations MOC`.
-
-(`CTF Challenges` exists 11 times, once per security subfolder. Same hazard, but there it is probably deliberate — leave it unless you start linking to them.)
-
-### N10. Frontmatter is in an unresolved half-state
-
-Of 709 notes: 44 have `parent:`, and **all 44 are legacy fleeting notes** in `language/`, `security/`, and one stray in `math/algebra/structures/Algebra Structure.md`. 41 carry the `🪴weedy` tag. A scattered handful carry `dg-publish: true` for the digitalgarden plugin — including several verifiable-computing notes, apparently ad hoc.
-
-Nothing in `knowledge/` uses frontmatter systematically. Your `templates/default.md` still writes `parent: "[[Fleeting MOC]]"` into every new note.
-
-This is a decision, not a cleanup: either **(a)** adopt a minimal schema in `knowledge/` — `parent`, `status`, `dg-publish` — so MOC sections can be Dataview-generated instead of hand-maintained (you already have the dataview plugin and a `dataview-tables.css` snippet), or **(b)** drop `parent:` from the template and commit to MOCs plus links as the only structure. Both are fine. Doing half of each, which is the current state, means the graph and the folders disagree.
-
-Given how much MOC hand-maintenance the phases below imply, **(a) is worth pricing.** A `parent:` field would make N6 self-maintaining.
-
-### N11. Root-level debris
-
-- `Untitled.md` — empty. Delete.
-- `Characteristic.md` — a Vietnamese fleeting note about MLWE / rank-metric ciphertext malleability ($(u, v) = (u, su + e + \hat m)$). Nothing to do with field characteristic, despite sitting one search away from `Field.md#Characteristic`. Move to `daily/` or file it under `cryptography/assumptions/lattice-based/` with a real title.
-- `Fleeting MOC.md` — a one-line dummy. Fine as long as the template keeps pointing at it; delete it if you choose N10(b).
-
-### N12. Orphan clusters map exactly onto missing hub notes
-
-157 of 470 `knowledge/` notes have zero inbound links. They are not evenly spread — they cluster in folders with no MOC:
-
-| folder | orphans | has MOC? |
+| # | task | Status |
 | --- | --- | --- |
-| `cryptography/verifiable computing/**` | 20 | **no** |
-| `math/algebra/structures/groups/**` | 9 | no |
-| `cryptography/assumptions/{lattice,coding}-based/**` | 9 | parent only |
-| `cryptography/special functions/**` | 6 | no |
-| `complexity/complexity class/**` | 5 | no |
-| `information theory/` (incl. `Entropy`, `Information Theory` itself) | 3 + 6 in `code-based/` | **no MOC at all** |
-| `cryptography/threshold cryptography/secret sharing/**` | 4 | parent only |
-| `math/algebra/category/example/` | 2 | no |
-| `cs/arithmetization/` | 2 (QSP, SSP) | no |
-
-`information theory/` having no MOC is notable given your stated goal of extending the vault beyond crypto — it is 20 notes with no entry point, and `Entropy.md` is unreachable.
-
-### N13. `cs/arithmetization/` is on the wrong side of a seam
-
-`Quadratic Arithmetic Program`, `Quadratic Span Program`, `Square Span Program`, `R1CS to QAP Reduction` live in `cs/`. `Rank-1 Constraint Statisfiability` and `Split-R1CS` live in `cryptography/verifiable computing/relations/`. `QAP-based Linear PCP` reaches across the two.
-
-Nothing else in `cs/` uses QAP. Arithmetization exists *for* proof systems. **Move `cs/arithmetization/` to `verifiable computing/relations/arithmetization/`** and let `R1CS to QAP Reduction.md` sit next to the R1CS note it reduces from. This is also what makes the Verifiable Computing MOC complete rather than a half-index.
-
----
-## Part III — The revised plan
-
-Ten phases. Phases 0–3 are the spine; everything after is independently orderable.
-
-Do all renames and moves **inside Obsidian** so backlinks follow. Commit to git between phases — you have a repo, use it as the undo button.
+| 1.6 | [[Algebra Structure]]: restore the property table as an **axiom index** of links. `## Property` is currently empty and Frobenius sits under it (F6) | Open |
+| 1.10 | Strip the legacy `parent: "[[Fleeting MOC]]"` / 🪴weedy frontmatter from [[Algebra Structure]] | Open |
+| 1.11 | [[Distributivity]]: "$\oplus, \otimes$ **is** distributive" → "are" | Open |
+| 1.12 | Resolve the two readings of [[Closure]] (F4): [[Binary Operation]] now carries the closure-is-in-the-type remark — remaining: reword [[Magma]] / [[Semigroup]] / [[Monoid]] to cite a [[Binary Operation]] and drop their [[Closure]] links | Partial |
+| 1.13 | [[Semigroup]], [[Monoid]], [[Group]]: keep **one** definition each, the incremental one; fix "that the binary operation that satisfies" (F3) | Open |
+| 1.14 | **[[Group]]: "a [[Semigroup]] with [[Inverse Element]]" → "a [[Monoid]] with…"** (F2) | Open |
+| 1.15 | [[Magma]]: "a set $\{g_1, g_2 \dots\}$" → "a set $S$" | Open |
 
 ---
 
-### Phase 0 — hygiene and safety · ~30 min
+## Phase 2 — relation axioms
 
-| #    | task                                                                                                                                                                                    | note                                 | Status                          |
-| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------- |
-| 0.1  | **Rename** `structures/lattices/lkdsjjfowjfdowoiwoif.md` → `Short Vectors in Lattices.md`                                                                                               | **do not delete** — see C1           | Done                            |
-| 0.2  | Delete `set theory/Groupoids.md` (empty stub); keep `groups/Groupoids.md`                                                                                                               | C4                                   | Done                            |
-| 0.3  | Merge `groups/Commutative Groups.md` into `special groups/Abelian Groups.md`; delete the former                                                                                         | C5                                   | Done                            |
-| 0.4  | Fix the callout title in `properties/Transitivity.md` — it says "Reflexivity"                                                                                                           | verified                             | Done                            |
-| 0.5  | Fix scope in `Reflexivity` / `Symmetric` / `Transitivity`: a relation is $\sim\, \subseteq S \times S$, not $\sim: S \times S \to S$                                                    | verified — all three are wrong       | Done                            |
-| 0.6  | Rename `Rank-1 Constraint Statisfiability.md` → `Rank-1 Constraint Satisfiability.md`; normalise casing in `Non-interactive ARGument.md` and `Non-interactive ARgument of Knowledge.md` | 5 inbound links follow automatically | I want unnormalise for clarity? |
-| 0.7  | Rename the three `Foundations MOC.md` to `Complexity/Cryptography/CS Foundations MOC.md`                                                                                                | N9                                   | Done                            |
-| 0.8  | Delete `Untitled.md`; move `Characteristic.md` out of the vault root                                                                                                                    | N11                                  | Done                            |
-| 0.9  | Fix the three `[[…]]`-as-display-math accidents in `Dilithium.md`                                                                                                                       | N8                                   | Done                            |
-| 0.10 | Sweep the accidental links: `[[a]]`, `[[b]]`, `[[c]]`, `[[dp]]`, `[[greedy]]`, `[[osint]]`, `[[zER]]`, the two folder-links, the malformed `[[Non-Interactive Proof\]]`                 | N8                                   | Reserved                        |
-| 0.11 | Fix `Verify(st, x, Q^T π*)` → `Verify(st, x, π*)` in `Soundness.md`; delete the stray `S_query` line in `Zero Knowledge.md`; relabel `zk-SNARG` → `zk-SNARK` in the NIPS table          | N7 — these are wrong, not untidy     | Done                            |
-| 0.12 | Fix or delete the garbled first Lagrange's Theorem in `Groups.md`                                                                                                                       | N1                                   | Done                            |
-
-The remaining 12 broken links (`[[Complexity Theory]]`, `[[Zero-knowledge MOC]]`, …) are **create-or-unlink decisions**, not hygiene. Park them until Phase 8.
+| # | task | Status |
+| --- | --- | --- |
+| 2.10 | **Fix the clone-and-edit slips** (F1): [[Partial Order]] body says "preorder"; [[Total Order]] callout says "Partial Order"; [[Abelian Group]] says "Abelian Groups"; [[Field]] callout says "Fields"; [[Equivalence Relation]] and [[Quotient Relation]] have plural titles | Open |
+| 2.11 | [[Total Order]]: mark reflexivity as implied by [[Totality]], or drop it (F5) | Open |
+| 2.12 | [[Quotient Relation]]: `S / _\sim` → `S/{\sim}` | Open |
+| 2.13 | Consider `properties/compatibility/` — `Translation Invariance`, `Order Compatibility`. Needed the moment you write `Ordered Field`, which [[Positive Definiteness]] and [[Triangle Inequality]] already presuppose | ? |
+| 2.14 | Consider `Lattice (Order Theory).md` — the one natural consumer [[Idempotence]] has, and the place the operation and relation families provably coincide | ? |
 
 ---
 
-### Phase 1 — operation axioms · the highest-leverage step
+## Phase 3 — the `groups/` subtree
 
-Create in `properties/`, using your existing **Scope / Condition / Property** template:
+[[Groups MOC]] makes the subtree findable. These make it readable.
 
-`Closure` · `Associativity` · `Identity Element` · `Inverse Element` · `Distributivity` · `Idempotence` (Done)
-
-Source the formal statements from the table already in `structures/Algebra Structure.md` — do not rewrite them from scratch.
-
-Then rewrite the four restatement sites:
-
-| note                   | becomes                                                                                                                                                           |               |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `Groups.md`            | *"a set with a binary operation satisfying [[Associativity]], [[Identity Element]], [[Inverse Element]]"*                                                         | Done          |
-| `Ring.md`              | *"an [[Abelian Groups\|abelian group]] under $+$, a monoid under $\star$, plus [[Distributivity]]"*                                                               | Done          |
-| `Field.md`             | *"a commutative [[Ring]] in which every nonzero element has an [[Inverse Element\|inverse]]"* — then delete the six-item `[!axiom]` block, which is now redundant | Done          |
-| `Algebra Structure.md` | keep the table, but make each row's name a link; it becomes the axiom index rather than a fourth definition                                                       | Need checking |
-
-**A caution on `Closure`.** In the modern formulation closure is not an axiom — it is built into "binary operation $S \times S \to S$", which is exactly how your own `Commutativity.md` already writes its Scope. Write `Closure.md` as *"a condition that is automatic once the operation is typed $S \times S \to S$; stated separately only when checking that a subset is a substructure"* — and then it earns its keep, because that is precisely how `Subgroups.md` will use it.
-
-Add to `Algebra MOC.md`:
-
-|               | closure | assoc | ident | inv | comm |
-| ------------- | :-----: | :---: | :---: | :-: | :--: |
-| magma         |    ✓    |       |       |     |      |
-| semigroup     |    ✓    |   ✓   |       |     |      |
-| monoid        |    ✓    |   ✓   |   ✓   |     |      |
-| group         |    ✓    |   ✓   |   ✓   |  ✓  |      |
-| abelian group |    ✓    |   ✓   |   ✓   |  ✓  |  ✓   |
+| # | task | Status |
+| --- | --- | --- |
+| 3.2 | Give [[Group]] a `## Structure` section: [[Subgroups]], [[Normal Subgroups]], [[Cosets]], [[Quotient Group]] | Open |
+| 3.3 | Give it `## Special Groups`: [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Free Groups]], [[Bilinear Group]] | Open |
+| 3.4 | Move the $\mathrm{GL}_n$ material out of [[Group]]'s `## Example` into [[Example of Subgroups]] or a new `General Linear Group.md` | Open |
+| 3.6 | Have [[Subgroups]] state its criterion via [[Closure]] and [[Inverse Element]] — **the one place [[Closure]]'s subset reading is exactly right** | Open |
+| 3.7 | Fill [[Subgroups]]'s empty `### Image` and `## Property` headings, or delete them | Open |
+| 3.8 | Fill the stubs [[Free Groups]] and [[Cosets]] | Open |
 
 ---
 
-### Phase 2 — relation axioms, and promoting `properties/`
+## Phase 4 — category folder
 
-There are still some small naming and wording issue in the properties part I believe.
-**2.1 — Move `math/algebra/properties/` → `math/properties/`.**
+| # | task | Status |
+| --- | --- | --- |
+| 4.1 | [[Opposite Category]] exists but does not state the duality principle — the reason it has its own note | Partial |
+| 4.4 | Add mono + epi $\not\Rightarrow$ iso, with $\mathbb Z \to \mathbb Q$ in $\mathsf{Ring}$; cross-link [[Function between Sets]], which proves that in $\mathsf{Set}$ it *does* | Open |
+| 4.6 | `example/Poset as Category.md` — **unblocked**, [[Preorder]] has content now. A preorder is a thin category: one morphism $a \to b$ iff $a \leq b$ | Open |
+| 4.8 | Link [[Category]] → [[Category Set]], [[Category Group]] | Open |
+| 4.9 | Fill or delete [[Category]]'s empty `## Property` heading | Open |
+| 4.11 | **Add the partial-composition remark to [[Category]]** — composition types as $\mathsf{Hom}(A,B) \times \mathsf{Hom}(B,C) \to \mathsf{Hom}(A,C)$, not $M \times M \to M$, and there is one identity per object. As written, the links to [[Associativity]] and [[Identity Element]] claim more than those notes support. This is also what [[Groupoids]] is about, and why a monoid is a one-object category | Open |
+| 4.12 | [[Morphism]]: headings and callout titles still plural ("Isomorphisms", "Epimorphisms") under a singular note name | Open |
+| 4.13 | [[Groupoids]] → `Groupoid.md`, for the singular convention | Open |
+| 4.14 | [[Universal Properties]]: the Products example says "Let $A, B$ be **sets**" then uses $\mathsf{Hom}_{\mathcal C}$ — state it for a general category | Open |
 
-Relation axioms are order theory, norm axioms are analysis, and `information theory/code-based/Code Distance.md` needs the metric axioms too. The folder outgrows `algebra/` the moment Phase 2 lands. Do the move *before* adding notes to it, so fewer backlinks have to follow.
-
-**2.2 — Add** `Antisymmetry` and `Totality`.
-
-**2.3 — Split into** `properties/operation/` and `properties/relation/`. `Bilinearity.md` stays put for now; it moves in Phase 5.
-
-**2.4 — Rewrite `Equivalence Relations.md`** — actually, it is already three links. Instead, point `Set.md`'s duplicate section at it (see Phase 6) and add the equivalence-class / quotient material that `Set.md` currently monopolises.
-(Maybe I should move Relation from set to properties?)
-**2.5 — Second table for the MOC:**
-which MOC is this
-
-|               | reflexive | symmetric | antisymmetric | transitive | total |
-| ------------- | :-------: | :-------: | :-----------: | :--------: | :---: |
-| preorder      |     ✓     |           |               |     ✓      |       |
-| partial order |     ✓     |           |       ✓       |     ✓      |       |
-| total order   |     ✓     |           |       ✓       |     ✓      |   ✓   |
-| equivalence   |     ✓     |     ✓     |               |     ✓      |       |
-
-This table is what gives your two category examples a name — see Phase 4.
-
----
-
-### Phase 3 — wire up the `groups/` subtree · **new, and I would do it third**
-
-Nine notes you wrote and cannot reach (N1). Cheaper than Phase 1 and it makes Phase 1's payoff visible.
-
-| #   | task                                                                                                                                                                                                                   |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3.1 | Replace `Groups.md`'s inline `## Subgroup` section with a link to `[[Subgroups]]`; move *Additive Subgroup* and *Discrete Additive Subgroup* into `Subgroups.md` (they are used by `Lattices.md`, not by group theory) |
-| 3.2 | Give `Groups.md` a `## Structure` section linking `Subgroups`, `Normal Subgroups`, `Cosets`, `Quotient Groups`                                                                                                         |
-| 3.3 | Give it a `## Special Groups` section linking `Abelian Groups`, `Cyclic Groups`, `Symmetric Groups`, `Free Groups`, `Bilinear Groups`                                                                                  |
-| 3.4 | Move the `GL_n` / `GL_2(\mathbb Z_n)` material out of `Groups.md`'s `## Example` into `example/Example of Subgroups.md` or a new `example/General Linear Group.md`                                                     |
-| 3.5 | Add `Groups MOC.md`, or fold the above into `Algebra MOC.md` — decide once whether `groups/` is big enough to deserve its own hub (I think yes, at 14 notes)                                                           |
-| 3.6 | Have `Subgroups.md` state its criterion using `[[Closure]]` and `[[Inverse Element]]` — this is where Phase 1 pays off concretely                                                                                      |
+> **Commutative diagrams — `\begin{CD}` confirmed working, no plugin.** Drop these into [[Universal Properties]]:
+>
+> Product:
+> ```
+> $$\begin{CD}
+> @. Z @.\\
+> @. @VV{\sigma}V @.\\
+> A @<{\pi_A}<< A\times B @>{\pi_B}>> B
+> \end{CD}$$
+> ```
+> Coproduct — the same square with every arrow reversed, which is the duality principle from 4.1 made visible:
+> ```
+> $$\begin{CD}
+> A @>{i_A}>> A\amalg B @<{i_B}<< B\\
+> @. @VV{\sigma}V @.\\
+> @. Z @.
+> \end{CD}$$
+> ```
+> `\begin{CD}` only draws horizontal and vertical arrows on a grid, so the diagonal $f_A, f_B$ have to be labelled in prose. If that becomes limiting, `obsidian-tikzjax` gives real `tikz-cd`.
 
 ---
 
-### Phase 4 — category folder
+## Phase 5 — map and norm axioms
 
-| # | task |
-| --- | --- |
-| 4.1 | Promote `Opposite Category` out of `Category.md` into its own note; state the duality principle once, there |
-| 4.2 | Move `groups/Groupoids.md` → `category/Groupoids.md` (C4) and expand it: composition in a category is **partial**, which is the property groupoids are about |
-| 4.3 | In `Morphisms.md`: mark endo/auto as **variants** (constrain $A = B$), mono/epi/iso as **properties** |
-| 4.4 | Add the remark that mono + epi $\not\Rightarrow$ iso, with $\mathbb Z \to \mathbb Q$ in $\mathsf{Ring}$ — and cross-link `Function between Sets.md`, which already proves that in $\mathsf{Set}$ it *does* (injective ⟺ mono, surjective ⟺ epi). The contrast is the point |
-| 4.5 | Fix the coproduct definition in `Universal Properties.md` — the arrows are reversed. It should read $f_A \in \mathrm{Hom}(A, Z)$, not $\mathrm{Hom}(Z, A)$ |
-| 4.6 | Move the two poset examples (`Equivalence Category`, `Small Category`) out of `Category.md` into `example/Poset as Category.md` — they are one construction, and Phase 2 now gives you the word for it: a **preorder** viewed as a category |
-| 4.7 | Cross-link `Category.md`'s axioms 3 and 4 to `[[Associativity]]` and `[[Identity Element]]` |
-| 4.8 | Link `Category.md` → `example/Category Set.md`, `example/Category Group.md` (both orphans) |
-| 4.9 | Fill or delete `Category.md`'s empty `## Property` heading |
+| # | task | Status |
+| --- | --- | --- |
+| 5.4 | Rewire [[Metric Space]], [[Inner-Product Spaces]], `structures/lattices/*` to the norm notes — **now unblocked**, the Scope is fixed | Open |
+| 5.4b | [[Metric Space]] conflates two things: "an additive group equipped with a norm" is a **normed group**. Every normed group induces a metric space, not conversely — and [[Code Distance]] will link here, where Hamming distance is a metric with no vector-space norm underneath | Open |
+| 5.5 | Rewire [[Code Distance]] and [[Rank Metric Codes]] | Open |
+| 5.7b | Add `### Condition` to [[Homogeneity]] ($V$ has scalar multiplication) and [[Triangle Inequality]] ($V$ has addition) (F7) | Open |
+| 5.8 | Add `Homomorphism` to `properties/map/`. [[Ring]] and [[Group Homomorphisms]] each define their own inline | Open |
 
 ---
 
-### Phase 5 — map and norm axioms
+## Phase 6 — set theory
 
-`properties/map/` — `Linearity`, `Multilinearity`, `Homomorphism`. Currently assumed with no shared source by `Linear Maps.md`, `Bilinear Pairings.md`, `Kronecker Product.md`, `Group Homomorphisms.md`, and `Ring.md` (which defines ring homomorphism inline). `Bilinearity.md` moves here.
-
-`Group Homomorphisms.md` is worth reading first — it already links `[[Morphisms#Isomorphisms]]` and `[[Morphisms#Monomorphisms]]` rather than restating them. That is the target pattern; copy it.
-
-`properties/norm/` — `Triangle Inequality`, `Homogeneity`, `Positive-definiteness`. Source them from `Metric Space.md`, which already states all three correctly (and has a typo: *"the norm function $\mathcal N: \mathcal X \leftarrow \mathbb R$"* — arrow is backwards).
-
-Consumers to rewire: `Metric Space.md`, `Inner-Product Spaces.md`, everything in `structures/lattices/`, and — the reason this folder leaves `algebra/` — `information theory/code-based/Code Distance.md` and `rank-metric/Rank Metric Codes.md`.
+| # | task | Status |
+| --- | --- | --- |
+| 6.3b | Split `Set Operations.md` out of [[Set]] — 7 KB, most of it one ~20-row table. Tell me when it exists and I will add it to [[Algebra MOC]] | Open |
+| 6.4 | Merge the duplicated Composition / Inverse material; keep [[Function between Sets]]'s version | Open |
+| 6.5 | Link the operation-laws table to [[Commutativity]] / [[Associativity]] / [[Distributivity]] as *instances*. Lands better after 6.3b | Open |
 
 ---
 
-### Phase 6 — set theory consolidation · new
+## Phase 7 — the `Function.md` split
 
-| # | task |
-| --- | --- |
-| 6.1 | Delete `Set.md`'s `## Relations on Sets` section; link to `[[Relations]]` and `[[Equivalence Relations]]` instead |
-| 6.2 | Move equivalence class / quotient from `Set.md` into `Equivalence Relations.md` |
-| 6.3 | Draw the `Set.md` / `Set Theory.md` line: **`Set.md`** = objects, notation, operations, algebra of sets; **`Set Theory.md`** = cardinality, countability, foundations. Russell's paradox moves to the latter |
-| 6.4 | Merge the overlapping Composition / Inverse material in `Function.md` and `Function between Sets.md` — keep it in `Function between Sets.md`, which does it better |
-| 6.5 | Link `Set.md`'s operation-laws table to the Phase 1 notes (Commutativity, Associativity, Distributivity) as *instances* |
-
----
-
-### Phase 7 — split `Function.md` · new, and the biggest single cleanup in `math/`
-
-Work the table in **N4** row by row. Suggested order, easiest first:
-
-1. Jensen's Inequality → `Probability Inequalities.md` (it is stated twice in `Function.md`, once in probabilistic form — pick that one)
-2. Von Mangoldt, Lambda, $\mathrm{Li}(X)$ → `number theory/Prime.md`
-3. Convexity / concavity → `calculus/Inequality.md`
-4. Log / exp / monotonicity / roots / Lipschitz → `calculus/`
-5. Gamma, Bessel, Dirac delta, unit step → `calculus/Differential Equations.md` and `calculus/Fourier Analysis.md` (both under-linked; `Fourier Analysis.md` is an orphan)
-6. Complex Logarithm → the new `Complex Numbers.md` from Phase 7b
-
-What is left of `Function.md` is ~1 KB of general function vocabulary. Merge it into `Function between Sets.md` and delete it — then fix `Math MOC.md`, which currently lists `[[Function]]` as a top-level math note (N3).
-
-**7b — split `Field.md`** (N4): extract `math/algebra/Complex Numbers.md`; move complex-valued calculus to `calculus/`; consider a `Field Arithmetic.md` for the 20-row consequences table so the axioms are not buried.
+| # | task | Status |
+| --- | --- | --- |
+| 7.2b | [[Prime]] still has a dead `[[Function#…]]` link, orphaned when `Function.md` was deleted | Open |
+| 7.3 | [[Inequality]] — convex / concave, derivative test, **and the analytic Jensen**; [[Probability Inequalities]] keeps the expectation form and links back | Open |
+| 7.7b | [[Function between Sets]] absorbed the remainder; you flagged it for a pass of its own | Open |
+| 7b | Split [[Field]] (14.5 KB): extract `structures/fields/Complex Numbers.md`, move complex-valued calculus to `calculus/`, consider `Field Arithmetic.md` for the consequences table. The complex logarithm is parked in [[Calculus Functions]] and moves here | Open |
 
 ---
 
-### Phase 8 — finish the crypto side · smaller than you thought, plus one thing you missed
+## Phase 8 — the crypto side
 
-Given C2, what actually remains:
-
-| # | task |
-| --- | --- |
-| 8.1 | **Write `Verifiable Computing MOC.md`.** 20 orphans hang off this folder — `commitment/` (5), `encoding scheme/` (2), `proof/scheme/` (3), `proof/oracle/` (3), plus `Circuits`, `Split-R1CS`, `Split Prover`, `Groth16`, `LUNA`, `Private Information Retrieval`, `Argument Systems`, `Multi-Prover Interactive Proofs`. Include the lattice table |
-| 8.2 | **Rewrite `Cryptography MOC.md`** (N5). Its folder diagram describes a tree that no longer exists and omits `verifiable computing/` entirely. This is the crypto entry point — it should not survive the refactor unchanged |
-| 8.3 | Move `cs/arithmetization/` → `verifiable computing/relations/arithmetization/` (N13); link `QSP` and `SSP`, both orphans |
-| 8.4 | Promote **SNARK** to its own note (see C2); hang `Groth16` and `LUNA` off it. Leave SNARG / zk-SNARG / zk-SNARK as headings |
-| 8.5 | Add the leakage parameterisation to `Zero Knowledge.md` — the LPCP note has `hvzk-D` locally; the shared property note does not |
-| 8.6 | Add a `reusable` variant to `Knowledge Soundness.md`. Note the existing remark there already explains why there is no *adaptive* variant (the extractor sees the prover's randomness) — good, keep it, and put the reusable variant beside it |
-| 8.7 | Explain "input-independent" in the LPCP definition — the phrase carries weight and is unglossed |
-| 8.8 | Work the 12 genuine broken links (N8): `[[Complexity Theory]]` ×4 probably wants to point at `Complexity MOC`; `[[Zero-knowledge MOC]]` ×4 needs a decision now that `zero-knowledge/` does not exist as a folder; `[[Knowledge Extractor]]` ×2 is a real missing note worth writing |
+| # | task | Status |
+| --- | --- | --- |
+| 8.4 | Promote **SNARK** to its own note; hang [[Groth16]] and [[LUNA]] off it. Capitals mark the acronym letters: `Succinct Non-interactive ARgument of Knowledge` | Open |
+| 8.5 | Leakage parameterisation in [[Zero Knowledge]] — LPCP has `hvzk-D` locally, the shared note does not | Open |
+| 8.6 | `reusable` variant in [[Knowledge Soundness]] | Open |
+| 8.7 | Gloss "input-independent" in [[Linear Probabilistically Checkable Proofs]] | Open |
+| 8.8 | Fill the lattice-construction table in [[Verifiable Computing MOC]] | Open |
+| 8.9 | `Elementary Wrapper` still links a dead `Zero-knowledge MOC` → [[Verifiable Computing MOC]] | Open |
+| 0.6c | Acronym-legend line in [[Non-interactive ARGument]] and [[Non-interactive ARgument of Knowledge]] | Open |
 
 ---
 
-### Phase 9 — cross-domain hubs · optional, do when the orphan count annoys you
+## Phase 9 — hubs, hygiene, decisions
 
-| # | task |
-| --- | --- |
-| 9.1 | `Information Theory MOC.md` — 20 notes, no entry point, and `Entropy.md` is unreachable. The cheapest large win outside crypto |
-| 9.2 | `Special Functions MOC.md` under `cryptography/special functions/` — 6 orphans |
-| 9.3 | Link `Complexity MOC` → `Class P`, `Class NP`, `Class NP-hard`, `Class NP-complete`, `Class coNP` — all five orphaned |
-| 9.4 | Decide N10 (frontmatter). If you go with `parent:`, most of Phases 3/8/9's hand-maintained MOC lists become Dataview queries and stop rotting |
-
----
-
-## Order, and why
-
-**0 → 1 → 3 → 2.** Phase 0 first, always — the renames must land before anything links to the new names.
-
-I have moved **Phase 3 (groups wiring) ahead of Phase 2**, against your ordering. Reason: Phase 3 is the cheapest phase in the plan, it recovers nine notes from invisibility, and it gives Phase 1 something to *do* — `Subgroups.md` restating its criterion via `[[Closure]]` and `[[Inverse Element]]` is the first place a reader sees why the axiom notes exist. Phase 2's payoff (the order table) is real but arrives later.
-
-**4 depends on 1–3.** The category axioms link to Phase 1's notes; the poset examples need Phase 2's vocabulary; `Groupoids` moves in from the folder Phase 3 touches.
-
-**5, 6, 7, 8, 9 are mutually independent.** Phase 8 is independent of all the algebra work — do it whenever the crypto side is what you are actually reading.
-
-**If you only do one thing:** still Phase 1 — but note it is *cheaper* than you budgeted, because `Algebra Structure.md` already contains the six formal statements. It is an extract-and-link job, not a write-from-scratch job. Six short notes, and it converts four restatement sites into composed definitions.
-
-**If you only do one thing after that:** Phase 8.2. A stale entry-point MOC quietly undoes the legibility that every other phase is buying.
+| # | task | Status |
+| --- | --- | --- |
+| 9.5 | Frontmatter — **decided: drop it.** Remove `parent:` from `templates/default.md`, strip it from the 43 notes carrying it, delete `Fleeting MOC.md` | Open |
+| 9.6 | Sub-MOC top-ups. Pre-existing orphans: [[Assumptions MOC]] — [[Closest Vector Problem]], [[Shortest Basis Problem]], [[Normal Form Short Integer Solution]], [[Short Secret Learning With Error]], [[Ideal Rank Syndrome Decoding]]; [[Linear Algebra MOC]] — [[Dual Bases]]; [[Calculus MOC]] — [[Fourier Analysis]]; [[Probability MOC]] — [[Bernoulli Distribution]]; [[Threshold MOC]] — [[Combinatorial Approach for Secret Sharing]], [[Simple n-out-of-n Scheme]] | Open |
+| 9.6b | **New notes not yet linked from any hub**: [[Assumption Taxonomy]], [[Privacy Amplification]], [[Alekhnovich Encryption Scheme]], [[Identical Partly Secret Sharing]], [[Reed-Solomon]], [[Ambiguous Coding]], [[Digital Signature]], [[Additive-Homomorphic Encryption]], [[Lyubashevsky-Peikert-Regev Public Key Encryption]], plus `complexity/quantum/` and the new `physics/` folder. Say the word and I will fold them into the MOCs | Open |
+| 9.7 | Merge or delete `Pseudorandom Functionsss.md`. [[Universal Hash Functions]] is empty; [[Special Functions]] has empty `### Prefix-Free` / `### Unpredictability` | Open |
+| 9.8b | **The singular rename is half done in `groups/`.** Renamed: [[Group]], [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Quotient Group]], [[Bilinear Group]]. Still plural: [[Free Groups]], [[Cosets]], [[Subgroups]], [[Normal Subgroups]], [[Group Homomorphisms]], and the folders `special groups/`, `subgroups/`. Some are legitimately plural (a note *about* cosets), so decide the rule: **singular when the note defines one object, plural when it surveys a family** | ? |
+| 9.9 | **`PPT.md` lives in `daily/Temp/`** and is cited 7× from `knowledge/cryptography/`. Move it to `cryptography/foundations/` — `daily/` is gitignored, so those links break for anyone cloning the repo, and for you if the file is ever swept | Open — **new** |
+| 9.12 | **Lint script** in `scripts/` (they already run Dataview JS): compare each `[!definition]` callout title against its filename, and list broken wikilinks. The clone-and-edit bug recurred three times under review — this automates the catch | Open |
+| 9.13 | Decide the garden's **dependency-closure publishing** rule: [[North Star]]'s MOC links and any published composed definition need their targets published too, or they render broken to visitors. Candidates to `dg-publish`: the nine MOCs and `properties/` | ? |
+| 9.11 | Adopt the `## Intuition` section convention (nLab *Idea*); optionally add an `[!intuition]` callout via a CSS snippet beside `pseudocode-callout.css`. Backfill only when touching a note anyway | Open |
+| 9.10 | `physics/` has no MOC and no entry from [[Math MOC]]. Four notes so far; decide whether it is a domain or belongs under a quantum-computing heading | ? |
+| 0.10 | Remaining accidental links: `a` ×3, `b`, `c` in [[Secure Multi-party Computation]]; `osint` in one CTF note | Parked |
 
 ---
 
-## What is already good, and worth protecting
+## Phase 10 — reclassification (folder audit)
 
-Naming this explicitly because the phases above are all criticism:
+Ordered by leverage. The seam rules being applied: *the mathematical object lives in its home discipline; the hardness assumption lives in `cryptography/assumptions/`; a scheme lives under the primitive it instantiates.*
 
-- **The relation table in `Non-Interactive Proof Systems.md`** is the best artefact in the vault. NIP / NARG / NARK / SNARG / SNARK / zkSNARK as a matrix over Completeness × Soundness × Knowledge × Succinct × ZK — the composition is legible at a glance. Both closure tables in Phases 1–2 are the same move applied to algebra. Keep doing this.
-- **`Equivalence Relations.md`** is already three links and nothing else. That is the target shape for every definition in the vault.
-- **`Group Homomorphisms.md`** links `[[Morphisms#Isomorphisms]]` instead of restating. So does `Commutative Groups.md`. The pattern is already in your hands — Phase 1 is generalising something you have done twice, not introducing something new.
-- **The Scope / Condition / Property callout template** in `properties/` is a genuinely good local convention. All 12 new axiom notes should use it unchanged.
-- **`Split-R1CS.md`** deriving the split form by citing `[[Bilinearity]]` is exactly the cross-domain link the algebra refactor is meant to make routine.
+| # | task | Status |
+| --- | --- | --- |
+| 10.1 | **Promote `algebra/structures/set theory/` → `math/set theory/`.** The objects every Scope line points at — [[Set]], [[Relation]], [[Function between Sets]], [[Binary Operation]] — are the raw material of *every* domain, not of algebra; and [[Preorder]] / [[Partial Order]] are order theory, not algebra. Same argument that promoted `properties/`, same fix. Do it in Obsidian; I update the MOC prose after | Open |
+| 10.2 | `math/algebra/` root strays: [[Matrix]], [[Vector Algebra]], [[Kronecker Product]] → `linear algebra/`; [[Metric Space]] is analysis, not algebra — park it in `calculus/` until an `analysis/` folder exists | Open |
+| 10.3 | **The AHE near-duplicate pair**: `information theory/…/rank-metric/schemes/Additively-Homomorphic Encryption` (1.7 KB, eprint 2023/1798) vs `cryptography/…/symmetric encryption/schemes/Additive-Homomorphic Encryption` (0.8 KB). Same name modulo one letter, different folders — the Groupoids hazard again. An encryption scheme is cryptography; codes stay in information theory, schemes built *from* them do not. Merge or rename so the two are distinguishable | Open |
+| 10.4 | `post-quantum cryptography/lattice-based/Lattice.md` (815 B): its `## Basic Definition` is **empty** and the content is one trapdoor lemma. Rename `Lattice Trapdoors.md`, link [[Lattices]] for the object | Open |
+| 10.5 | **Lattice problems are stated in three places**: math [[Lattice Problem]] (apprSVP, SIVP), crypto `SVP/` ([[Shortest Vector Problem]], [[Closest Vector Problem]], [[Shortest Basis Problem]]), and the DLP precedent puts problems in `cs/problems/`. Pick the seam once: problem statement in math/cs, *assumption* (hardness, parameters) in crypto — then make the crypto SVP notes link math for the statement | ? |
+| 10.6 | [[Unnormalized Gaussian Function]] sits in `set theory/function/` — it is lattice-smoothing material, not a structural function. Move beside [[Discrete Gaussian Distribution]] or into `lattices/` | Open |
+| 10.7 | `Reviewing Paper.md` sits at the `knowledge/` root → `academic/` | Open |
+| 10.8 | `math/theory/` is empty — **decided: becomes `math/logic/`** when a first consumer exists (candidates: `Formal System`, `First-Order Logic`, `Equational Logic` — the last already has two consumers: the operation axioms and the varieties remark). Formal systems enter as *content*, per the coexistence rules above | Open |
+| 10.9 | `physics/` (4 quantum-optics notes: [[Calcite Crystal]], [[Pockels Cell]], [[Photo-Multiplier]], [[Polarizing Filter]]) is a fine new domain but unanchored — no MOC, no inbound links. Presumably QKD context: link from `complexity/quantum/` or a future QKD note; I can write `Physics MOC` on request | Open |
+| 10.10 | `language/` root mixes languages with tools ([[Git]], [[Docker]], [[Latex]]) and hardware ([[Verilog]], [[NPU]], [[Hexagon]]) | Parked |
+
+**Verified sound, no move needed:** `set theory/operation|relation|function/` (new object layer — right shape); `structures/` one-folder-per-family; `properties/` four families; `verifiable computing/` post-8.3; `complexity/` vs `cs/` split; `category/` under algebra is conventional, not wrong.
+
+## Order from here
+
+**G1–G3 while the notes are fresh, then 1.12–1.15 and 2.10–2.12** — about twenty minutes total, and F2 and F4 are wrong claims sitting in the base of the structure hierarchy.
+
+**Then 4.11**, the partial-composition remark. It is one paragraph and it closes the only place where the axiom library's typing is quietly violated.
+
+**Then 3.2, 3.3, 3.6** — the outbound links from [[Group]] into the subtree and the axiom library. Still the payoff Phase 1 was built for, and still the part a MOC cannot do.
+
+**Then 5.4** — unblocked now.
+
+**9.6b whenever you want it** — thirteen new notes are sitting unlinked; the MOCs are mine to update, so this is a one-line ask.
+
+---
+
+## Appendix A — broken links
+
+Inside `knowledge/`: `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Complex Hilbert Space` · `Zyalov Bound` (→ **Zyablov**) · `Function#…` in [[Prime]] · `Zero-knowledge MOC` in `Elementary Wrapper` · the `a`/`b`/`c` accidents.
+
+Resolving outside `knowledge/` but worth knowing: `PPT` ×7 → `daily/Temp/` (task 9.9) · `Book Reference` ×5 → `academic/` · `Fleeting MOC` ×43 → vault root (task 9.5 deletes these).
+
+## Appendix B — completed
+
+**Phase 0** — 0.1–0.5 · 0.6a · 0.7–0.9 · 0.11 · 0.12 · 0.13. *(0.6b withdrawn: the `ARGument` casing marks the acronym.)*
+**Phase 1** — 1.1–1.5 · 1.7 · 1.9.
+**Phase 2** — 2.1–2.9.
+**Phase 3** — 3.1 · 3.5.
+**Phase 4** — 4.2 · 4.3 · 4.5 · 4.7 · 4.10 *(`\begin{CD}` works — plain MathJax, no plugin)*.
+**Phase 5** — 5.1 · 5.2 · 5.3 · 5.6 · 5.7 *(E1 circular Scope fixed)*.
+**Phase 6** — 6.1 · 6.2 · 6.3.
+**Phase 7** — 7.1 · 7.2 · 7.4 · 7.5 · 7.6 · 7.7.
+**Phase 8** — 8.1 · 8.2 · 8.3.
+**Phase 9** — 9.1–9.4 · 9.8 *(singular rename done, all backlinks followed)*.
+
+**Findings closed:** C1–C5 · D1–D13 · E1 · E3–E9 · N5 · N6 · N9 · N11 · N13.
+
+---
+
+## What is worth protecting
+
+- **The relation table in [[Non-Interactive Proof Systems]]** — composition as a matrix. Mirrored now by the closure table in [[Algebra MOC]] and the order table in [[Math Properties MOC]].
+- **[[Equivalence Relation]]**, **[[Commutative Ring]]**, **[[Preorder]]** — definitions that are nothing but links.
+- **[[Group Homomorphisms]]** — links [[Morphism]] instead of restating it.
+- **The Scope / Condition / Property template.** Sixteen notes now use it, and the four drifts have all been in the callout title, never the content.
+- **[[Split-R1CS]]** citing [[Bilinearity]] — the cross-domain link this refactor exists to make routine.

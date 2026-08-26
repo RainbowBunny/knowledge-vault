@@ -46,3 +46,7 @@
 
 ## Adaptive Oblivious Transfer
 
+## Quantum Oblivious Evaluation Function
+
+### Oblivious Identification
+

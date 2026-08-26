@@ -10,8 +10,8 @@ Concrete algorithmic techniques, organized by paradigm.
 
 ## Paradigms
 
-- [[Dynamic Programming|Dynamic Programming]] — elements + classic problems (see [[dp]] subfolder)
-- [[Greedy Algorithms|Greedy Algorithms]] — theory + per-problem files (see [[greedy]] subfolder)
+- [[Dynamic Programming|Dynamic Programming]] — elements + classic problems
+- [[Greedy Algorithms|Greedy Algorithms]] — theory + per-problem files
 - [[Randomized Algorithms]] — hiring problem, online maximum, uniform permutations, sampling
 
 ## Numeric & Tricks

@@ -106,7 +106,7 @@
 > Assume that $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the $\text{NIZKAoK}$ is knowledge sound. Then the blind signature scheme is [[#One More Unforgeability|one more unforgeable]] in the random oracle model.
 
 > [!theorem]
-> Assume that [[Public Key Encryption|PKE]] is [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the [[zER]] is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
+> Assume that [[Public Key Encryption|PKE]] is [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the (?) is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
 
 ### From One-More-ISIS
 

@@ -3,6 +3,9 @@
 >[!definition] Group
 A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star: G \times G \rightarrow G$ satisfying [[Associativity]], [[Identity Element]], [[Inverse Element]].
 
+> [!definition] Group (Alternative)
+> Alternatively, a group is a [[Monoid]] with [[Inverse Element]].
+
 ### Order
 
 > [!definition] Order of a Group
@@ -20,10 +23,6 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 
 > [!proposition]
 > If $gh = hg$, then $|gh|$ divides $\text{lcm}(|g|, |h|)$.
-
-
-
-
 
 ## Property
 
@@ -46,17 +45,10 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 > Let $G$ be a group. Then $\forall a, g, h \in G$
 > $$ga = ha \Longrightarrow g = h, \quad ag = ah \Longrightarrow g = h$$
 
-## Subgroup
 
-> [!definition] Additive Subgroup
-> A subset $L$ of $\mathbb R^m$ is an **additive subgroup** if it is closed under addition and subtraction.
 
-> [!definition] Discrete Additive Subgroup
-> An additive subgroup is called a **discrete additive subgroup** if there is a positive constant $\epsilon > 0$ with the following property: for every $\textbf{v} \in L$, $$L \cap \{\textbf{w} \in \mathbb R^m: ||\textbf{v} - \textbf{w}|| < \epsilon\} = \{\textbf{v}\}.$$
 
-> [!theorem] Lagrange's Theorem
-> Let $H$ be a subgroup of a finite group $G$. Then $|H|$ divides $|G|$.
- 
+
 ## Example
 
 > [!example]

@@ -6,5 +6,5 @@
 > 
 > ---
 > ### Property
-> An operation $*$ is closure in $A$ iff 
+> An operation $\star$ is closed in $A$ iff 
 > $$\forall x, y \in A: x \star y \in A$$

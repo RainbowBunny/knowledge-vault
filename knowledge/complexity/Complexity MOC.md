@@ -19,6 +19,17 @@ The structure mirrors `cryptography/`: foundations + initiative folders + a `con
 - [[Interactive Proofs]] — IP class, verifier/prover, IP = PSPACE; [[Oracle Machines]], [[Polynomial Hierarchy]]
 - [[Quantum Complexity MOC|Quantum Complexity]] — BQP, QMA (stub)
 
+## Classes
+
+`complexity class/` — the named classes themselves, as leaves under the resource bounds above.
+
+- [[Class P]] — decidable in polynomial time
+- [[Class NP]] — polynomial-time *verifiable*; see [[Circuit Satisfaction]] for the canonical complete problem
+- [[Class NP-complete]] · [[Class NP-hard]] — the hardness frontier, via [[Reductions]]
+- [[Class coNP]] — complements of NP languages
+
+`circuit/` also holds [[Boolean Circuit]], [[Arithmetic Circuit]] and [[Arithmetic Circuit Satisfiability Problem]], which `cryptography/verifiable computing/` arithmetizes — see [[Verifiable Computing MOC]].
+
 ## Open Problems
 
 - [[Conjectures MOC]] — P vs NP, ETH/SETH, Derandomization, Unique Games

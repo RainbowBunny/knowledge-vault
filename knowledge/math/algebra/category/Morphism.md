@@ -1,9 +1,9 @@
 ## Basic Definition
 
-### Endomorphism
+> [!definition] Morphism
+> A morphism is a map between objects in an abstract [[Category]].
 
-> [!definition] Endomorphism
-> A morphism of an object $A$ of a category $\mathcal C$ to itself is called an **endomorphism**; $\text{Hom}_{\mathcal C}(A)$ is denoted $\text{End}_{\mathcal C}(A)$.
+## Property
 
 ### Isomorphisms
 
@@ -23,17 +23,6 @@
 > [!corollary]
 > Isomorphism is an equivalence relation. If two objects $A, B$ are isomorphic, one writes $A \cong B$.
 
-### Automorphism
-
-> [!definition] Automorphism
-> An **automorphism** of an object $A$ of a category $\mathcal C$ is an isomorphism from $A$ to itself. The set of automorphisms of $A$ is denoted $\text{Aut}_{\mathcal C}(A)$; it is a subset of $\text{End}_{\mathcal C}(A)$.
-
-> [!proposition]
-> - The composition of two elements $f, g \in \text{Aut}_{\mathcal C}(A)$ is an element $gf \in \text{Aut}_{\mathcal C}(A)$.
-> - Composition is associative.
-> - $\text{Aut}_{\mathcal C}(A)$ contains the element $1_A$, which is an identity for composition.
-> - Every element $f \in \text{Aut}_{\mathcal C}(A)$ has an inverse $f^{-1} \in \text{Aut}_{\mathcal C}(A)$.
-
 ### Monomorphisms
 
 > [!definition] Monomorphism
@@ -47,3 +36,22 @@
 > Let $\mathcal C$ be a category. A morphism $f \in \text{Hom}_{\mathcal C}(A, B)$ is an **epimorphism** if the following holds:
 > - For all object $Z$ of $\mathcal C$ and all morphisms $\beta', \beta'' \in \text{Hom}_{\mathcal C}(B, Z)$:
 > $$\beta' \circ f = \beta'' \circ f \Longrightarrow \beta' = \beta''.$$
+
+## Variant
+
+### Endomorphism
+
+> [!definition] Endomorphism
+> A morphism of an object $A$ of a category $\mathcal C$ to itself is called an **endomorphism**; $\text{Hom}_{\mathcal C}(A)$ is denoted $\text{End}_{\mathcal C}(A)$.
+
+
+### Automorphism
+
+> [!definition] Automorphism
+> An **automorphism** of an object $A$ of a category $\mathcal C$ is an isomorphism from $A$ to itself. The set of automorphisms of $A$ is denoted $\text{Aut}_{\mathcal C}(A)$; it is a subset of $\text{End}_{\mathcal C}(A)$.
+
+> [!proposition]
+> - The composition of two elements $f, g \in \text{Aut}_{\mathcal C}(A)$ is an element $gf \in \text{Aut}_{\mathcal C}(A)$.
+> - Composition is associative.
+> - $\text{Aut}_{\mathcal C}(A)$ contains the element $1_A$, which is an identity for composition.
+> - Every element $f \in \text{Aut}_{\mathcal C}(A)$ has an inverse $f^{-1} \in \text{Aut}_{\mathcal C}(A)$.

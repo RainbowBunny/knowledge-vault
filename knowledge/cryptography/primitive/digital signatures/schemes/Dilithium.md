@@ -40,13 +40,13 @@ Reference:
 > 	- $r_1 \leftarrow \text{HighBits}_q(r, \alpha)$.
 > 	- $r_0 \leftarrow \text{LowBits}_q(r, \alpha)$.
 > - $h = \{0, 1\} \leftarrow \text{MakeHint}_q(z, r, \alpha)$: Whether adding a small correction $z$ changes the high bits:
-> 	1. Return $h = [[\text{HighBits}(r) \neq \text{HighBits}(r + z)]]$.
+> 	1. Returns $h = (\text{HighBits}(r) \neq \text{HighBits}(r + z))$.
 > - $\text{UseHint}_q(h, r, \alpha)$:
 > 	1. $m = (q - 1) / \alpha$
 > 	2. $(r_1, r_0) = \text{Decompose}_q(r, \alpha)$
 > 	3. If $h = 1$ and $r_0 > 0$ return $(r_1 + 1) \mod m$
 > 	4. If $h = 1$ and $r_0 \leq 0$ return $(r_1 - 1) \mod m$
-> 	5. Return $r_1$
+> 	5. Returns $r_1$
 > - $\{0, 1\}^{384} \leftarrow \text{CRH}(m)$: [[Hash Functions#Collision Resistance|Collision Resistance Hash Function]] 
 > - $(r_1, r_0) \leftarrow \text{Power2Round}_q(r, d)$: Break up an element $r = r_1 \cdot 2^d + r_0$
 > 	1. $r = r \bmod q$

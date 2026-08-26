@@ -8,12 +8,12 @@
 
 ## Relation
 
-|                                | Completeness | Soundness     | Knowledge | Succinct | ZK  |
-| ------------------------------ | ------------ | ------------- | --------- | -------- | --- |
-| [[Non-Interactive Proof\|NIP]] | ✓            | statistical   | —         | —        | —   |
-| NARG                           | ✓            | computational | —         | —        | —   |
-| NARK                           | ✓            | computational | ✓         | —        | —   |
-| SNARG                          | ✓            | computational | —         | ✓        | —   |
-| SNARK                          | ✓            | computational | ✓         | ✓        | —   |
-| zk-SNARG                       | ✓            | computational | —         | ✓        | ✓   |
-| zk-SNARK                       | ✓            | computational | ✓         | ✓        | ✓   |
+|                                        | Completeness | Soundness     | Knowledge | Succinct | ZK  |
+| -------------------------------------- | ------------ | ------------- | --------- | -------- | --- |
+| [[Non-Interactive Proof Systems\|NIP]] | ✓            | statistical   | —         | —        | —   |
+| NARG                                   | ✓            | computational | —         | —        | —   |
+| NARK                                   | ✓            | computational | ✓         | —        | —   |
+| SNARG                                  | ✓            | computational | —         | ✓        | —   |
+| SNARK                                  | ✓            | computational | ✓         | ✓        | —   |
+| zk-SNARG                               | ✓            | computational | —         | ✓        | ✓   |
+| zk-SNARK                               | ✓            | computational | ✓         | ✓        | ✓   |
