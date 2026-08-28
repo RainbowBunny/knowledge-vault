@@ -28,7 +28,7 @@
 ### Collision Resistant
 
 > [!definition] Collision Resistant Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{find})$, we define the collision resistant advantage for function $f$:
+> For all [[daily/Temp/PPT]] algorithms $\mathcal A = (\mathcal A^\text{find})$, we define the collision resistant advantage for function $f$:
 > $$\text{Adv}_\text{f}^\text{CR}(\mathcal A) = 
 > \; \Pr\!\left[
 > \begin{array}{l}
@@ -49,7 +49,7 @@
 ### Pseudorandom
 
 > [!definition] Pseudorandom Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{find}, \mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
+> For all [[daily/Temp/PPT]] algorithms $\mathcal A = (\mathcal A^\text{find}, \mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
 > $$\text{Adv}_{\mathcal F}^{Q\text{-Pr}}(\mathcal A) = 
 > \left|\; \Pr\!\left[
 > \begin{array}{l}
@@ -77,7 +77,7 @@
 > \right|.$$
 
 > [!definition] Weakly Pseudorandom Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
+> For all [[daily/Temp/PPT]] algorithms $\mathcal A = (\mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
 > $$\text{Adv}_{\mathcal F}^{Q\text{-wPr}}(\mathcal A) = 
 > \left|\; \Pr\!\left[
 > \begin{array}{l}

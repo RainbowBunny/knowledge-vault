@@ -7,7 +7,7 @@
 > - $\mathsf{Verify}$ runs in time $p(\lambda + |\mathbf{x}| + \log|i|)$.
 > - Proof size $|\pi| \leq p(\lambda + \log|i|)$.
 > 
-> Also, $\mathsf{Prove}$ should be a [[PPT]] bounded by $\mathrm{poly}(\lambda + |i| + |\mathbf{w}|)$.
+> Also, $\mathsf{Prove}$ should be a [[daily/Temp/PPT]] bounded by $\mathrm{poly}(\lambda + |i| + |\mathbf{w}|)$.
 
 > [!definition] Preprocessing Succint
 > Also, $\mathsf{Setup}$ runs in $\mathrm{poly}(\lambda + |i|)$.

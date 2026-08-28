@@ -18,7 +18,7 @@
 | Broken targets inside `knowledge/` | 16 | 13 | 13 | **6** ² |
 
 ¹ *Thirteen new notes landed this pass (quantum, physics, coding, assumptions) and none are linked from a hub yet. Of the 23, only ~8 predate this pass.*
-² *Excluding `Fleeting MOC`, `Book Reference` and `PPT`, whose targets live outside `knowledge/` and resolve fine vault-wide. See the note on `PPT` in 9.9.*
+² *Excluding `Fleeting MOC`, `Book Reference` and `PPT`, whose targets live outside `knowledge/` and resolve fine vault-wide. See task 11.3 for `PPT`.*
 
 ---
 
@@ -211,7 +211,6 @@ What replaces Lean's compiler is a **precision skeleton** — prose is free ever
 | 9.6b | **New notes not yet linked from any hub**: [[Assumption Taxonomy]], [[Privacy Amplification]], [[Alekhnovich Encryption Scheme]], [[Identical Partly Secret Sharing]], [[Reed-Solomon]], [[Ambiguous Coding]], [[Digital Signature]], [[Additive-Homomorphic Encryption]], [[Lyubashevsky-Peikert-Regev Public Key Encryption]], plus `complexity/quantum/` and the new `physics/` folder. Say the word and I will fold them into the MOCs | Open |
 | 9.7 | Merge or delete `Pseudorandom Functionsss.md`. [[Universal Hash Functions]] is empty; [[Special Functions]] has empty `### Prefix-Free` / `### Unpredictability` | Open |
 | 9.8b | **The singular rename is half done in `groups/`.** Renamed: [[Group]], [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Quotient Group]], [[Bilinear Group]]. Still plural: [[Free Groups]], [[Cosets]], [[Subgroups]], [[Normal Subgroups]], [[Group Homomorphisms]], and the folders `special groups/`, `subgroups/`. Some are legitimately plural (a note *about* cosets), so decide the rule: **singular when the note defines one object, plural when it surveys a family** | ? |
-| 9.9 | **`PPT.md` lives in `daily/Temp/`** and is cited 7× from `knowledge/cryptography/`. Move it to `cryptography/foundations/` — `daily/` is gitignored, so those links break for anyone cloning the repo, and for you if the file is ever swept | Open — **new** |
 | 9.12 | **Lint script** in `scripts/` (they already run Dataview JS): compare each `[!definition]` callout title against its filename, and list broken wikilinks. The clone-and-edit bug recurred three times under review — this automates the catch | Open |
 | 9.13 | Decide the garden's **dependency-closure publishing** rule: [[North Star]]'s MOC links and any published composed definition need their targets published too, or they render broken to visitors. Candidates to `dg-publish`: the nine MOCs and `properties/` | ? |
 | 9.11 | Adopt the `## Intuition` section convention (nLab *Idea*); optionally add an `[!intuition]` callout via a CSS snippet beside `pseudocode-callout.css`. Backfill only when touching a note anyway | Open |
@@ -239,9 +238,29 @@ Ordered by leverage. The seam rules being applied: *the mathematical object live
 
 **Verified sound, no move needed:** `set theory/operation|relation|function/` (new object layer — right shape); `structures/` one-folder-per-family; `properties/` four families; `verifiable computing/` post-8.3; `complexity/` vs `cs/` split; `category/` under algebra is conventional, not wrong.
 
+## Phase 11 — security foundations unification
+
+The Adversary / Indistinguishability / Statistical Distance triangle, unified game-first. Drafts delivered as *Security Foundations Drafts.md* (chat card, 2026-08-28); provenance: Bellare–Rogaway 2004/331, Shoup 2004/332, Boneh–Shoup (already the house notation).
+
+**The finding that forced this phase:** `Security Model.md` contains only a BRKE (ratcheted key exchange) definition — no security-model content at all — while the trichotomy (perfect / statistical / computational) is stated twice, in [[Adversary]] and [[Indistinguishability]], with neither authoritative.
+
+| # | task | Status |
+| --- | --- | --- |
+| 11.1 | Create `foundations/Security Game.md` — challenger/adversary experiment; **search** vs **distinguishing** shapes; **the strength table** (perfect / statistical / computational = adversary class × bound). The crypto analogue of [[Binary Operation]]: the object all of `proof/properties/` instantiates | Open |
+| 11.2 | Create `foundations/Negligible Function.md` — used everywhere, defined nowhere; closure properties are what make game hops compose | Open |
+| 11.3 | Move `daily/Temp/PPT.md` → `foundations/PPT.md` **in Obsidian** (7 links follow) and fill it — supersedes 9.9 | Open |
+| 11.4 | Append the **Optimal Distinguisher (game form)** corollary to [[Statistical Distance]] — $\Delta = \max_{\mathcal A} \mathsf{Adv}^{1\text{-}\mathsf{Dist}}$ over unbounded adversaries; one line from the existing Event Characterization | Open |
+| 11.5 | [[Indistinguishability]]: retag the game `[!algorithm]` → `[!definition]`; restate perfect and statistical variants game-first (statistical = negligible advantage for *all* adversaries, $= \Delta$ negligible by 11.4) | Open |
+| 11.6 | [[Adversary]]: fix "the different between"; delete its perfect/statistical/computational subsections (they move to 11.1's table); content becomes the adversary *classes* — unbounded, [[daily/Temp/PPT]], oracle access | Open |
+| 11.7 | [[Security Model]]: move the BRKE block to `key establishment/key exchange/Bidirectional Ratcheted Key Exchange.md`; rewrite as the umbrella — notion = syntax + game + class + bound | Open |
+| 11.8 | Payoff pass: [[Argument Systems]] = "[[Interactive Proof Systems]] with computational [[Soundness]]"; [[Perfect Security]] links the perfect row; ties into 8.5 (ZK variants name their rows) | Open |
+| 11.9 | After 11.1–11.7 land: I rewrite [[Cryptography Foundations MOC]] around the game/notion spine | Open — mine |
+
+---
+
 ## Order from here
 
-**G1–G3 while the notes are fresh, then 1.12–1.15 and 2.10–2.12** — about twenty minutes total, and F2 and F4 are wrong claims sitting in the base of the structure hierarchy.
+**G1–G3 while the notes are fresh, then 1.12–1.15 and 2.10–2.12**. **Phase 11 is the current front** — it is self-contained, crypto-side, and 11.1's table is the same visible-payoff move as the closure table — about twenty minutes total, and F2 and F4 are wrong claims sitting in the base of the structure hierarchy.
 
 **Then 4.11**, the partial-composition remark. It is one paragraph and it closes the only place where the axiom library's typing is quietly violated.
 
@@ -257,7 +276,7 @@ Ordered by leverage. The seam rules being applied: *the mathematical object live
 
 Inside `knowledge/`: `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Complex Hilbert Space` · `Zyalov Bound` (→ **Zyablov**) · `Function#…` in [[Prime]] · `Zero-knowledge MOC` in `Elementary Wrapper` · the `a`/`b`/`c` accidents.
 
-Resolving outside `knowledge/` but worth knowing: `PPT` ×7 → `daily/Temp/` (task 9.9) · `Book Reference` ×5 → `academic/` · `Fleeting MOC` ×43 → vault root (task 9.5 deletes these).
+Resolving outside `knowledge/` but worth knowing: `PPT` ×7 → `daily/Temp/` (task 11.3) · `Book Reference` ×5 → `academic/` · `Fleeting MOC` ×43 → vault root (task 9.5 deletes these).
 
 ## Appendix B — completed
 
