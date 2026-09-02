@@ -30,12 +30,12 @@
 > "The quotient $A / \sim$ is universal with respect to the property of mapping $A$ to a set in such a way that equivalent elements have the same image."
 
 > [!proposition]
-> Denoting by $\pi$ the [[Function between Sets#Canonical Projection|Canonical Projection]], the pair $(\pi, A/\sim)$ is an initial object of this category.
+> Denoting by $\pi$ the [[Function#Canonical Projection|Canonical Projection]], the pair $(\pi, A/\sim)$ is an initial object of this category.
 
 ### Products
 
 > [!example] Products
-> Let $A, B$ be sets, and consider the product $A \times B$, with the two [[Function between Sets#Natural Projection|Natural Projection]] $\pi_A, \pi_B$. Then for every set $Z$ and morphisms $f_A \in \mathsf{Hom}_{\mathcal C}(Z, A), f_B \in \mathsf{Hom}_{\mathcal{C}}(Z, B)$, there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathcal{C}}(Z, A \times B)$:
+> Let $A, B$ be sets, and consider the product $A \times B$, with the two [[Function#Natural Projection|Natural Projection]] $\pi_A, \pi_B$. Then for every set $Z$ and morphisms $f_A \in \mathsf{Hom}_{\mathcal C}(Z, A), f_B \in \mathsf{Hom}_{\mathcal{C}}(Z, B)$, there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathcal{C}}(Z, A \times B)$:
 > $$\sigma(z) = (f_A(z), f_B(z)).$$
 > 
 

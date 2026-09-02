@@ -12,7 +12,7 @@ Index for `math/algebra/`. Organised by **what kind of thing** a note defines: a
 
 | folder | notes |
 | --- | --- |
-| `set theory/` | [[Set]], [[Set Foundation]], [[Function between Sets]], `relations/`, `functions/` — see [Set theory](#set-theory) |
+| `set theory/` | [[Set]], [[Set Foundation]], [[Function]], `relations/`, `functions/` — see [Set theory](#set-theory) |
 | **[[Groups MOC\|`groups/`]]** | [[Group]] and its 13-note subtree |
 | `rings/` | [[Ring]], [[Commutative Ring]] |
 | `fields/` | [[Field]] — axioms, integral domains, characteristic, finite fields |
@@ -40,7 +40,7 @@ Outside the hierarchy: [[Algebra Structure]] — quaternions, octonions, the Fro
 
 - [[Set]] — objects, notation, operations, the algebra of $\cup$ / $\cap$
 - [[Set Foundation]] — cardinality, countability, Russell's paradox
-- [[Function between Sets]] — image, restriction, composition, injective / surjective / bijective, and the proof that in $\mathsf{Set}$ injective ⟺ mono and surjective ⟺ epi
+- [[Function]] — image, restriction, composition, injective / surjective / bijective, and the proof that in $\mathsf{Set}$ injective ⟺ mono and surjective ⟺ epi
 - `relations/` — [[Relation]], [[Equivalence Relation]], [[Quotient Relation]], [[Preorder]], [[Partial Order]], [[Total Order]]
 - `functions/` — [[Identity Function]], [[Unnormalized Gaussian Function]]
 

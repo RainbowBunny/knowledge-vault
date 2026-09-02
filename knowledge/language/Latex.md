@@ -35,6 +35,7 @@
 
 ## Operators
 
+- For table, use $\lvert$, $\rvert$
 - Cos: $\cos$, $\cosh$, $\sec$, $\arccos$
 - Sin: $\sin$, $\sinh$, $\csc$, $\arcsin$
 - Cot: $\cot$, $\coth$,
@@ -67,7 +68,7 @@
 - $\uparrow$, $\Uparrow$, 
 - $\downarrow$, $\Downarrow$
 - $\updownarrow$, $\Updownarrow$
-- $\leftrightarrow$ ,$\longleftrightarrow$, $\Leftrightarrow$, $\Longleftrightarrow$
+- $\leftrightarrow$ ,$\longleftrightarrow$, $\Leftrightarrow$, $\Longleftrightarrow$ ($\iff$)
 - $\rightleftharpoons$
 - $\nearrow$
 - $\searrow$

@@ -17,7 +17,7 @@ Every piece of knowledge is one of four kinds:
 
 | kind | what it is | lives in | examples |
 | --- | --- | --- | --- |
-| **Object** | the raw typed things | `math/set theory/` | [[Relation]], [[Binary Operation]], [[Function between Sets]] |
+| **Object** | the raw typed things | `math/set theory/` | [[Relation]], [[Binary Operation]], [[Function]] |
 | **Property** | one axiom, stated once, in the Scope / Condition / Property shape | `math/properties/`, `proof/properties/` | [[Associativity]], [[Soundness]] |
 | **Structure / scheme** | object + chosen properties, **composed by links** | `structures/`, `primitive/`, `proof/` | [[Group]], [[Non-interactive ARGument]] |
 | **Bridge** | a translation between two representations | wherever its ends are | [[R1CS to QAP Reduction]], [[Fiat-Shamir Transform]] |
@@ -36,6 +36,16 @@ Prose is free everywhere **except five places**. These get checked; everything e
 4. **Side conditions in the Condition slot** — "nonzero" is a condition, not an equation.
 5. **Dependencies are links** — a concept a definition uses but cannot link is a *detected gap*: create the note.
 
+## Two views
+
+A concept with two equivalent characterizations is stated **once**, in one primary form.
+
+- **Same domain** — the other forms follow as an `## Equivalent Characterizations` theorem in the same note. Model: [[Perfect Security]].
+- **Different domains** — each side keeps its own idiom, and one carries a bridge remark naming the equivalence. Never the whole concept twice. Model: [[Statistical Distance]] → [[Indistinguishability]].
+- **Not equivalent** — the surviving direction and the separating example *are* the content. Model: statistical vs computational [[Indistinguishability]].
+
+Cryptography is dense in these, because a security notion can be phrased as what an adversary cannot do, or as what information is not there — and most foundational results are the theorem that the two coincide.
+
 ## Intuition
 
 Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — always outside the definition callouts, so the friendly voice never contaminates the skeleton.
@@ -44,7 +54,8 @@ Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — 
 
 1. Enter through a hub: [[Math MOC]] · [[Cryptography MOC]] · [[Complexity MOC]] · [[CS MOC]] · [[Information Theory MOC]] · [[Security MOC]].
 2. Learning something new: name its **objects** → search each → backlinks show everything already known → file what is missing as leaf notes → add one line to the right MOC → if it translates between representations, write the **bridge**.
-3. Notation lives in [[Tag System]]; live work in [[Vault Refactoring Plan]].
+3. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].
+4. Before committing: `python scripts/vault-lint.py`. Broken links and duplicate names are always real; the other four checks are smells.
 
 ## Known tensions
 
