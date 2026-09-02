@@ -2,7 +2,7 @@
 
 > [!definition] Alternativity
 > ### Scope
-> A [[Binary Operation]] $\star$.
+> A [[Binary Operation]] $\star: O \times O \rightarrow O$.
 > 
 > ---
 > ### Property

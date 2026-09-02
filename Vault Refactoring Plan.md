@@ -59,28 +59,18 @@ Six checks: broken links, duplicate names, callout-title mismatch, empty notes, 
 
 ---
 
-# Now — clear Checkpoint A
+# Now — clear Checkpoint A, finish Batch B
 
-Two blocking, one wrong theorem. Full detail and paste-ready text in the checkpoint report; ~15 minutes.
+Three floor items plus the last of Batch B. Paste-ready text in the checkpoint report and [[Foundation Layer]]; ~25 minutes.
 
 | # | task |
 | --- | --- |
 | **A5** | **Link the Cartesian product.** [[Set Operation]] has zero inbound links — the definition is restored but unreachable, so rule 5 is still violated. Add links from [[Set]], [[Relation]], [[Binary Operation]], [[Function]] |
 | **A6** | **Define union, intersection, difference, disjoint union.** They exist only as rows in a symbol table, yet the whole law table is written in them. Same bug as the missing product, one layer up |
 | **A7** | **Fix the false law.** $A - (B - C) = (A - B) \cup C$ fails 296 of 512 triples over subsets of $\{1,2,3\}$. Correct: $(A - B) \cup (A \cap C)$ |
+| **B3** | Last of Batch B: **G1** stray `,Reference:` at the top of [[Binary Operation]] · **G2** its `### Many-Sorted Operation` section is still inline, now duplicating [[Many-Sorted Operation]] — delete it, leave a one-line pointer · **G3** [[Many-Sorted Operation]] still lacks the sorts-are-labels remark, the small / locally-small caveat, and the Birkhoff–Lipson reference |
 
 Riding along whenever you next touch these notes: Famous Sets belongs in [[Set]] not [[Set Operation]]; Disjoint should move the other way (it uses $\cap$); the law table sits under `## Notation` but is a `## Property`; "are **equals**" → "are equal"; $P(S)$ → $\mathcal P(S)$; [[Set Foundation]]'s `## Basic Definition` is an empty heading.
-
-# Then — Batch B, join the spine
-
-| # | task |
-| --- | --- |
-| B1 | Rewrite [[Relation]] — heterogeneous $R \subseteq A \times B$ first, homogeneous as the specialisation, converse, composition, left-total / functional, and the specialisation table. This is what lets *a function is a relation* be stated |
-| B2 | Restructure [[Function]] — six edits: place it on the spine, delete the duplicate trailing `## Definition`, add the partial-function variant, move injective/surjective out, fix the missing $B$ and "right"→"write", link [[Relation]] for composition |
-| B3 | **G1** stray `,Reference:` in [[Binary Operation]] · **G2** delete its duplicated `### Many-Sorted Operation` section, now that [[Many-Sorted Operation]] exists · **G3** add sorts-are-labels + the small/locally-small caveat + Birkhoff–Lipson reference |
-| B4 | Odd / even functions → [[Calculus Functions]] |
-
-Drafts for all four are in [[Foundation Layer]] §3.3–3.4.
 
 ---
 
@@ -88,13 +78,13 @@ Drafts for all four are in [[Foundation Layer]] §3.3–3.4.
 
 ## Foundation — Batches C, D, E
 
-Specification and 11 drafts in [[Foundation Layer]].
+Specification and drafts in [[Foundation Layer]]; its Status block tracks the batches.
 
 | # | task | est |
 | --- | --- | --- |
-| **C** | Eleven axiom notes: `Cancellativity`, `Absorption` (operation); `Homomorphism`, `Injectivity`, `Surjectivity`, `Bijectivity`, `Monotonicity`, `Involution` (map); `Non-negativity`, `Identity of Indiscernibles`, `Distance Symmetry` (new `metric/`) + a `### Metric Form` in [[Triangle Inequality]] | 2 h |
+| **C** | **9 of 11 done.** Remaining: `Homomorphism` in `map/`; and the **metric family** — merge `norm/` into `properties/metric/`, add `Distance Symmetry`, add the metric/norm form sections, and delete [[Positive Definiteness]]'s derivable first bullet. `Non-negativity` is **withdrawn** — it is a theorem. See [[Foundation Layer]] §3.11 | 45 min |
 | **D** | **The payoff — rewire consumers.** Absorbs 1.12–1.15, 5.4, 5.4b, 5.5, 6.5: the Magma→Group chain drops its [[Closure]] links and [[Group]]'s Semigroup bug; [[Group]]/[[Field]] cancellation → `Cancellativity`; [[Group Homomorphisms]]/[[Ring]]/[[Linear Maps]]/[[Subgroups]] → `Homomorphism`; [[Metric Space]] split normed-group vs metric; [[Code Distance]], [[Rank Metric Codes]], [[Statistical Distance]] → metric axioms; [[Set Operation]] laws → the five axioms; [[Calculus Functions]] → `Monotonicity`; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]] | 2–3 h |
-| **E** | [[Totality]] → `Connexity` (three live senses of "total" after B1) · the clone-and-edit slips (2.10) · [[Algebra Structure]] axiom index + frontmatter (1.6, 1.10) · [[Distributivity]] "is"→"are" (1.11) | 45 min |
+| **E** | [[Totality]] → `Connexity` (three live senses of "total" after B1) · the clone-and-edit slips (2.10) · [[Algebra Structure]] axiom index + frontmatter (1.6, 1.10) | 45 min |
 
 ## Algebra structures
 
@@ -104,8 +94,8 @@ Specification and 11 drafts in [[Foundation Layer]].
 | 3.3 | Give it `## Special Groups`: [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Free Groups]], [[Bilinear Group]] |
 | 3.4 | Move the $\mathrm{GL}_n$ material out of [[Group]]'s `## Example` into [[Example of Subgroups]] or a new `General Linear Group` |
 | 3.6 | [[Subgroups]] states its criterion via [[Closure]] and [[Inverse Element]] — the one place [[Closure]]'s subset reading is exactly right |
-| 3.7 | [[Subgroups]]' empty `### Image` and `## Property` headings |
-| 3.8 | Stubs: [[Free Groups]], [[Cosets]] |
+| 3.7 | [[Subgroups]]' `## Property` heading is still empty (`### Image` now has content) |
+| 3.8 | Stubs: [[Free Groups]] (0 bytes), [[Cosets]] (21 bytes) |
 | 9.8b | The singular rename is half done in `groups/`. Renamed: [[Group]], [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Quotient Group]], [[Bilinear Group]]. Still plural: [[Free Groups]], [[Cosets]], [[Subgroups]], [[Normal Subgroups]], [[Group Homomorphisms]], and the folders. Rule to settle: **singular when the note defines one object, plural when it surveys a family** |
 | 7b | Split [[Field]] (14.5 KB): extract `Complex Numbers`, complex-valued calculus → `calculus/`, consider `Field Arithmetic` for the consequences table |
 
@@ -146,9 +136,9 @@ Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for pr
 
 | # | task |
 | --- | --- |
-| 7.2b | [[Prime]] has a dead `[[Function#…]]` link, orphaned when `Function.md` was deleted |
+| 7.2b | [[Prime]] links `[[Function#Logarithmic Integral|Logarithmic Integral]]` — but $\mathrm{Li}(X)$ now lives **in [[Prime]] itself**, at its own `### Logarithmic Integral` heading. The note name resolves again after the rename, so the linter is silent, but the anchor points at a heading that no longer exists. Change it to a local reference. *(Broken **headings** are invisible to the linter — only broken notes are caught.)* |
 | 7.3 | [[Inequality]] — convex / concave, derivative test, **and the analytic Jensen**; [[Probability Inequalities]] keeps the expectation form and links back |
-| 6.4 | Merge the duplicated Composition / Inverse material; keep [[Function]]' version *(folds into B2)* |
+| 6.4 | [[Function]] still has both a `### Composition` and a `### Inverse` — check whether these are the two survivors or a leftover duplicate pair from the `Function.md` absorption |
 
 ## Hubs, hygiene, moves
 
@@ -185,28 +175,26 @@ Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for pr
 
 # Appendix A — audit snapshot
 
-`python scripts/vault-lint.py`, 2026-08-28 · 539 notes in `knowledge/`, 769 in the vault.
+`python scripts/vault-lint.py`, 2026-08-29 · 546 notes in `knowledge/`.
 
 ```
-broken=14  dupe=1  title=28  empty=37  hollow=114  orphan=89
+broken=13  dupe=0  title=26  empty=38  hollow=115  orphan=94
 ```
 
-**broken (14)** — all genuine, none new. `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Complex Hilbert Space` · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Zyalov Bound` (→ **Zyablov**) · `Zero-knowledge MOC` (task 8.9) · `Function` (task 7.2b) · the `a`/`b`/`c` accidents (0.10).
+**broken (13)** — all genuine, none new. `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Complex Hilbert Space` · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Zyalov Bound` (→ **Zyablov**) · `Zero-knowledge MOC` (task 8.9) · the `a`/`b`/`c` accidents (0.10). The dead `Function` link in [[Prime]] is gone — resolved by the `Function between Sets` → [[Function]] rename.
 
-**dupe (1)** — `csaw qual` in `competition/`, harmless.
+**dupe (0)** — clear.
 
-**orphan (89)** — `language/` 50 (no MOC, task 10.10) · `cryptography/` 17 · `math/` **7** · `computer/` 4 · `physics/` 4 · `ai/`, `complexity/`, `information theory/` 2 each · root 1. The math number is the one that matters and it is now small.
+**orphan (94)** — `language/` ~50 (no MOC, task 10.10) · `cryptography/` ~17 · `math/` single digits · the rest scattered. Rising because new notes arrive faster than hubs absorb them, not decay.
 
-**title / empty / hollow** are *smells*, not errors — a single-definition note whose title names a sub-concept is often correct. Real hits in the current list: [[Security Model]] (its only definition is BRKE — task 11.7) and the 37 empty notes, which are a genuine inventory of stubs.
+**title / empty / hollow** are *smells*, not errors. Real hits: [[Security Model]] (its only definition is BRKE — task 11.7) and the 38 empty notes, a genuine stub inventory.
 
-Trend: orphans **163 → 73 → 64 → 89**. The rise is new notes arriving faster than hubs absorb them, not decay — `math/` fell to 7 across the same window.
-
----
+Trend — orphans 163 → 73 → 64 → 89 → 94; broken 25 → 19 → 14 → 13; duplicate names 1 → 0.
 
 # Appendix B — completed
 
 **Phase 0** 0.1–0.5 · 0.6a · 0.7–0.9 · 0.11 · 0.12 · 0.13 *(0.6b withdrawn — the `ARGument` casing marks the acronym)*
-**Phase 1** 1.1–1.5 · 1.7 · 1.9
+**Phase 1** 1.1–1.5 · 1.7 · 1.9 · 1.11
 **Phase 2** 2.1–2.9
 **Phase 3** 3.1 · 3.5
 **Phase 4** 4.2 · 4.3 · 4.5 · 4.7 · 4.10 *(`\begin{CD}` works — plain MathJax)*
@@ -217,7 +205,7 @@ Trend: orphans **163 → 73 → 64 → 89**. The rise is new notes arriving fast
 **Phase 9** 9.1–9.4 · 9.8 · 9.12 *(`scripts/vault-lint.py`)*
 **Phase 10** 10.1 · 10.2
 **Phase 11** 11.1 · 11.2 · 11.3 · 11.4 · 11.6
-**Phase 12** Batch 0 · A1–A4
+**Phase 12** Batch 0 · A1–A4 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`)
 
 **Findings closed:** C1–C5 · D1–D13 · E1 · E3–E9 · F2–F7 · N5 · N6 · N9 · N11 · N13
 

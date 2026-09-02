@@ -2,7 +2,7 @@
 
 > [!definition] Closure
 > ### Scope
-> A binary operation $\star: O \times O \rightarrow O$ and a subset $A \subseteq O$
+> A [[Binary Operation]] $\star: O \times O \rightarrow O$ and a subset $A \subseteq O$
 > 
 > ---
 > ### Property

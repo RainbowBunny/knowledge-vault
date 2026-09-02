@@ -1,6 +1,6 @@
 ## Basic Definition
 
-> [!definition] Surjective
+> [!definition] Surjection
 > ### Scope
 > A [[Function]] $f: A \rightarrow B$
 > 

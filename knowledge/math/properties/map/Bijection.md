@@ -1,6 +1,6 @@
 ## Basic Definition
 
-> [!definition] Bijective
+> [!definition] Bijection
 > ### Scope
 > A [[Function]] $f: A \rightarrow B$
 > 

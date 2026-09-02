@@ -1,8 +1,8 @@
 ## Basic Definition
 
-> [!definition] Identity Axiom
+> [!definition] Identity Element
 > ### Scope
-> A binary operation $*: O \times O \rightarrow O$.
+> A [[Binary Operation]] $*: O \times O \rightarrow O$.
 > 
 > ---
 > ### Property

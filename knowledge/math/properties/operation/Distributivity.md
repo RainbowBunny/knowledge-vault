@@ -2,7 +2,7 @@
 
 > [!definition] Distributivity
 > ### Scope
-> Two binary operations $\oplus: O \times O \rightarrow O, \otimes: O \times O \rightarrow O$.
+> Two [[Binary Operation]] $\oplus: O \times O \rightarrow O, \otimes: O \times O \rightarrow O$.
 > 
 > ---
 > ### Property

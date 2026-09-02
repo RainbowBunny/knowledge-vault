@@ -2,7 +2,7 @@
 
 > [!definition] Idempotence
 > ### Scope
-> A binary operation $\star: O \times O \rightarrow O$.
+> A [[Binary Operation]] $\star: O \times O \rightarrow O$.
 > 
 > ---
 > ### Property

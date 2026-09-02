@@ -4,6 +4,20 @@
 
 > **Link convention in this file.** `Set Operation`, `Homomorphism`, `Injectivity` and `Surjectivity` appear in `code` because they do not exist yet — they become real links as Batch A and C land. Inside the fenced drafts they are already written as wikilinks, ready to paste.
 
+## Status · 2026-08-29
+
+| batch | state |
+| --- | --- |
+| **0** moves | done — `math/set theory/`, 10.2 relocations, `properties/metric/` created |
+| **A** restore the floor | **A1–A4 done · A5, A6, A7 still open** — the Cartesian product is defined but [[Set Operation]] still has **zero inbound links**; union / intersection / difference / disjoint union are still undefined; the false law $A-(B-C) = (A-B) \cup C$ is still in the table |
+| **B** join the spine | done — [[Relation]] rewritten heterogeneous-first (with left/right-total, better than the draft), `Function between Sets` → **[[Function]]** restructured with a partial-function variant |
+| **C** axiom notes | **9 of 11 done** — `Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity` created. **Missing: `Homomorphism`** (the biggest gap) and the whole **`metric/` family** — see the revised §3.11 |
+| **D** rewire | open |
+| **E** hygiene | open |
+
+Batches B and C ran ahead of A. The floor items are three edits and about fifteen minutes; they block nothing else technically, but every Scope line in `properties/` still points at a product that no note links.
+
+
 
 ---
 
@@ -42,12 +56,12 @@ Two consequences worth stating in the vault, because both are currently invisibl
 
 Each axiom family attaches at exactly one node of the spine. This is what justifies the four subfolders — they are not a taxonomy of convenience, they are indexed by *what the axioms constrain*.
 
-| family                        | attaches to                                              | Scope line reads                        | structures produced                                      |
-| ----------------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------- |
-| `properties/operation/`       | binary operation $\star: S \times S \to S$               | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]]             |
-| `properties/relation/`        | homogeneous relation $R \subseteq S \times S$            | "A [[Relation]] $R$ on $S$"             | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
-| `properties/map/`             | function $f: A \to B$                                    | "A [[Function]] $f: A \to B$"           | homomorphism, linear map, monotone map                   |
-| `properties/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$"       | normed space, [[Metric Space]]                           |
+| family | attaches to | Scope line reads | structures produced |
+| --- | --- | --- | --- |
+| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]] |
+| `properties/relation/` | homogeneous relation $R \subseteq S \times S$ | "A [[Relation]] $R$ on $S$" | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
+| `properties/map/` | function $f: A \to B$ | "A [[Function]] $f: A \to B$" | homomorphism, linear map, monotone map |
+| `properties/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$" | normed space, [[Metric Space]] |
 
 There is a pleasing regularity here that the vault can state once and reuse: **each object family has its own notion of structure-preserving map.** Algebra has homomorphisms, orders have monotone maps, metric spaces have isometries (and, loosened, continuous maps), categories have functors. That is one row per family, and it is the row `properties/map/` is currently missing.
 
@@ -55,7 +69,7 @@ There is a pleasing regularity here that the vault can state once and reuse: **e
 
 # Part II · Audit
 
-## F1 · Cartesian Product no longer exists — **critical**
+## F1 · Cartesian Product no longer exists — **half-resolved**: defined in [[Set Operation]], still linked from nowhere
 
 `Set.md` lists $\times$ in a symbol table and never defines it. `Set Foundation.md` does not have it. Nothing in `knowledge/` defines it.
 
@@ -69,13 +83,13 @@ This is the most load-bearing definition in the vault. Every Scope line — $R \
 
 **Also lost in the same split:** `Set Equality` and `Empty Set`. Same commit, same recovery.
 
-## F2 · `Relation.md` is homogeneous-only
+## F2 · `Relation.md` is homogeneous-only — **resolved**
 
 > "A **relation** on a set $S$ is a subset $R$ of the product $S \times S$."
 
 Correct as far as it goes, but it makes `Relation` unable to serve as the parent of `Function`, and it means "relation from $A$ to $B$" has no home. Fix: define the heterogeneous case first, homogeneous as the specialisation $A = B$.
 
-## F3 · `Function between Sets.md` has two definition blocks
+## F3 · `Function.md` has two definition blocks
 
 The note opens with `## Basic Definition` (the graph $\Gamma_f$ formulation, good) and *ends* with a second `## Definition` absorbed from the old `Function.md` in task 7.7, redefining Function, Domain, Co-domain, Range, plus odd/even functions.
 
@@ -90,11 +104,11 @@ Three separate problems:
 - "We often **right** $f$" → write.
 - `### Inversion` heading over an `[!definition] Inverse` callout.
 
-## F5 · Injective / surjective / bijective are properties filed as object content
+## F5 · Injective / surjective / bijective filed as object content — **resolved**, moved to `properties/map/` as `Injection`, `Surjection`, `Bijection`
 
-They sit in `Function between Sets.md`'s `## Property` section. By the vault's own rule they belong in `properties/map/` — their Scope is "a map $f: A \to B$", identical in shape to [[Linearity]].
+They sit in `Function.md`'s `## Property` section. By the vault's own rule they belong in `properties/map/` — their Scope is "a map $f: A \to B$", identical in shape to [[Linearity]].
 
-The precedent is already set on the algebra side: [[Inverse Element]] states the axiom, [[Group]] holds the *theorems* about it (uniqueness, cancellation). Apply the same split here — `properties/map/Injectivity.md` states the axiom; `Function between Sets.md` keeps the theorems (injective ⟺ monomorphism, left-inverse ⟺ injective, canonical decomposition).
+The precedent is already set on the algebra side: [[Inverse Element]] states the axiom, [[Group]] holds the *theorems* about it (uniqueness, cancellation). Apply the same split here — `properties/map/Injectivity.md` states the axiom; `Function.md` keeps the theorems (injective ⟺ monomorphism, left-inverse ⟺ injective, canonical decomposition).
 
 ## F6 · `Set Foundation.md` opens with two blank lines and no `## Basic Definition`
 
@@ -110,13 +124,67 @@ Detailed in Part IV. The short version: **cancellativity** (3 consumers, current
 
 ## F0 — Primitives
 
+### 3.1 `Set.md` — three restorations **[Standard]**
 
+Add to `## Basic Definition`, after the Set callout (recovered from `f9c2c34`):
+
+```markdown
+> [!definition] Set Equality
+> Two sets $A$ and $B$ are **equal**, written $A = B$, if they consist of exactly the same elements. If one contains an element the other does not, they are unequal, written $A \neq B$.
+
+> [!definition] Empty Set
+> The set with no elements, $\emptyset = \{\}$, is the **empty set** (also null set, void set). For any set $A$, $\emptyset \subseteq A$.
+```
+
+Move `### Universal Set` out of `## Representation` — it is not a notation, it is a convention about a fixed ambient set — and place it just before `## Operation`, where `complement` needs it.
+
+Then, per 6.3b, cut everything from `## Operation` onward into the new note below, leaving `Set.md` as: what a set is, equality, empty set, famous sets, roster/comprehension, universal set, and a link out.
+
+---
 
 ### 3.2 `Set Operation.md` — NEW **[Standard]**
 
 Carries the ~20-row laws table out of `Set.md` (task 6.3b) *and* restores the Cartesian product.
 
 ```markdown
+## Basic Definition
+
+### Inclusion
+
+| Symbol | Meaning |
+| --- | --- |
+| $\in$ | belongs to |
+| $\subseteq$ | subset |
+| $\subset, \subsetneq$ | proper subset |
+| $\lvert S \rvert$ | number of elements |
+| $2^S$, $\mathcal P(S)$ | power set |
+
+> [!definition] Power Set
+> The **power set** of $S$, written $\mathcal P(S)$ or $2^S$, is the set of all subsets of $S$.
+
+### Operations
+
+| Symbol | Operation |
+| --- | --- |
+| $\cup$ | union |
+| $\cap$ | intersection |
+| $\setminus$ | difference |
+| $\amalg$ | disjoint union |
+| $\times$ | Cartesian product |
+
+> [!definition] Cartesian Product
+> The **Cartesian product** of sets $A$ and $B$, written $A \times B$, is the set of **ordered** pairs
+> $$A \times B = \{(x, y) \mid x \in A \text{ and } y \in B\}.$$
+> The $n$-fold product $A_1 \times \cdots \times A_n$ consists of $n$-tuples; $A^n$ abbreviates the $n$-fold product of $A$ with itself.
+
+> [!remark] Why this definition carries the vault
+> Every Scope line in `properties/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
+
+> [!definition] Disjoint
+> $S$ and $T$ are **disjoint** if $S \cap T = \emptyset$.
+
+> [!definition] Complement
+> The **complement** of $T$ in $S$ is $S \setminus T$ — the elements of $S$ not in $T$. Written $T^c$ when the universal set is understood.
 
 > [!definition] Partition
 > A collection of nonempty sets $A_1, A_2, \dots$ is a **partition** of $A$ if they are pairwise disjoint and their union is $A$.
@@ -147,26 +215,78 @@ Reference:
 
 A relation is just a set of pairs that "count as related" — nothing more. Everything else in the layer is a relation with conditions bolted on: an order is a relation that is reflexive and transitive; a function is a relation where each input has exactly one output.
 
+## Basic Definition
 
+> [!definition] Relation
+> A **(binary) relation** from a set $A$ to a set $B$ is a subset
+> $$R \subseteq A \times B.$$
+> When $(a, b) \in R$ we say $a$ and $b$ are **related by $R$** and write $a \; R \; b$.
 
+> [!definition] Homogeneous Relation
+> A relation on a single set $S$ is the case $A = B = S$, i.e. $R \subseteq S \times S$. These are the relations the [[Math Properties MOC|relation axioms]] apply to — [[Reflexivity]], [[Symmetry]], [[Antisymmetry]], [[Transitivity]], [[Totality]] all compare two elements of the *same* set.
+
+### Associated Sets
+
+> [!definition] Domain, Range
+> $$\mathsf{dom}(R) = \{a \in A \mid \exists b: a \; R \; b\}, \qquad \mathsf{ran}(R) = \{b \in B \mid \exists a: a \; R \; b\}.$$
+
+## Variant
+
+### Converse
+
+> [!definition] Converse Relation
+> $R^{-1} \subseteq B \times A$ is defined by $b \; R^{-1} a \iff a \; R \; b$.
+
+### Composition
+
+> [!definition] Composition of Relations
+> For $R \subseteq A \times B$ and $S \subseteq B \times C$:
+> $$S \circ R = \{(a, c) \mid \exists b \in B: a \; R \; b \text{ and } b \; S \; c\} \subseteq A \times C.$$
+> Composition of [[Function|functions]] is this operation restricted to functional relations. It is [[Associativity|associative]], and the identity relation $\{(a,a)\}$ is its [[Identity Element|identity]] — so relations on $S$ form a [[Monoid]] under $\circ$.
+
+## Property — toward functions
+
+> [!definition] Left-Total, Functional
+> $R \subseteq A \times B$ is
+> - **left-total** if every $a \in A$ is related to at least one $b$;
+> - **functional** (right-unique, single-valued) if each $a$ is related to at most one $b$.
 
 > [!remark] Function = left-total + functional
-> A [[Function between Sets|function]] $A \to B$ is exactly a relation that is both. Dropping left-totality gives a **partial function**; dropping functionality gives a multivalued relation.
+> A [[Function|function]] $A \to B$ is exactly a relation that is both. Dropping left-totality gives a **partial function**; dropping functionality gives a multivalued relation.
 > 
 > Beware the word *total*: **left-total** here (defined on all of $A$) is unrelated to [[Totality]] on a homogeneous relation ($\forall x, y:\ xRy \lor yRx$), and unrelated again to a *total* function. This vault has all three senses live — the reason [[Totality]] should be renamed **Connexity**.
 
+## Specialisation
+
+| add | get |
+| --- | --- |
+| [[Reflexivity]] + [[Transitivity]] | [[Preorder]] |
+| + [[Antisymmetry]] | [[Partial Order]] |
+| + [[Totality]] | [[Total Order]] |
+| [[Reflexivity]] + [[Symmetry]] + [[Transitivity]] | [[Equivalence Relation]] |
+| left-total + functional | [[Function]] |
 ```
 
 That final table is the spine, stated at the node where it branches — and it makes `Relation.md` the hub of the object layer rather than a one-line stub.
 
 ---
 
-### 3.4 `Function between Sets.md` — RESTRUCTURE **[Standard]**
+### 3.4 `Function.md` — RESTRUCTURE **[Standard]**
 
 Keep the graph definition, the image / restriction / composition / projections / canonical-decomposition material, and the mono/epi theorems. Six edits:
 
-
-1. **Add the partial function variant** — this closes the dependency [[Binary Operation#Partial Operation]] currently dangles on:
+1. **Open by placing it on the spine.** Add under the existing definition:
+   ```markdown
+   > [!remark]
+   > Equivalently: a function is a [[Relation]] $\Gamma_f \subseteq A \times B$ that is left-total and functional. The condition $(\forall a)(\exists! b)$ above says exactly that.
+   ```
+2. **Delete the trailing `## Definition` block**, redistributing it:
+   - *Domain / Co-domain* → keep, fold into `## Basic Definition`.
+   - *Range* → delete; it duplicates **Image** (or keep as a one-line synonym remark).
+   - *Function equality theorem* → keep, move up beside the definition.
+   - *Odd / Even function* → **move to [[Calculus Functions]]** (needs additive inverse; not a set-theoretic notion).
+   - *"a set of ordered pairs no two of which have the same first member"* → repurpose as the **partial function** definition, below.
+3. **Add the partial function variant** — this closes the dependency [[Binary Operation#Partial Operation]] currently dangles on:
    ```markdown
    ### Partial Function
 
@@ -175,8 +295,9 @@ Keep the graph definition, the image / restriction / composition / projections /
    > 
    > Division on $\mathbb R$ is the standard example; see [[Binary Operation#Partial Operation]].
    ```
-2. (F5). What stays here is the theorems: left-inverse ⟺ injective, right-inverse ⟺ surjective, bijection ⟺ two-sided inverse, injective ⟺ monomorphism, surjective ⟺ epimorphism.
-3. **Add the composition remark** pointing at [[Relation#Composition]], so the two composition definitions are one concept stated once.
+4. **Move injective / surjective / bijective out** to `properties/map/` (F5). What stays here is the theorems: left-inverse ⟺ injective, right-inverse ⟺ surjective, bijection ⟺ two-sided inverse, injective ⟺ monomorphism, surjective ⟺ epimorphism.
+5. **Fix F4**: the missing $B$ in the surjective definition, "right" → "write", `### Inversion` → `### Inverse`.
+6. **Add the composition remark** pointing at [[Relation#Composition]], so the two composition definitions are one concept stated once.
 
 ---
 
@@ -241,7 +362,7 @@ A map that respects structure: do the operation then map, or map then do the ope
 
 > [!definition] Homomorphism
 > ### Scope
-> A [[Function between Sets|map]] $\varphi: A \rightarrow B$.
+> A [[Function|map]] $\varphi: A \rightarrow B$.
 > 
 > ---
 > ### Condition
@@ -268,7 +389,7 @@ Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 ```markdown
 > [!definition] Injectivity
 > ### Scope
-> A [[Function between Sets|map]] $f: A \rightarrow B$.
+> A [[Function|map]] $f: A \rightarrow B$.
 > 
 > ---
 > ### Property
@@ -280,7 +401,7 @@ Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 ```markdown
 > [!definition] Surjectivity
 > ### Scope
-> A [[Function between Sets|map]] $f: A \rightarrow B$.
+> A [[Function|map]] $f: A \rightarrow B$.
 > 
 > ---
 > ### Property
@@ -300,7 +421,7 @@ Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 
 > [!definition] Monotonicity
 > ### Scope
-> A [[Function between Sets|map]] $f: A \rightarrow B$.
+> A [[Function|map]] $f: A \rightarrow B$.
 > 
 > ---
 > ### Condition
@@ -325,7 +446,7 @@ Consumers: [[Calculus Functions]]' increasing / decreasing / strictly monotone d
 ```markdown
 > [!definition] Involution
 > ### Scope
-> A [[Function between Sets|map]] $f: A \rightarrow A$.
+> A [[Function|map]] $f: A \rightarrow A$.
 > 
 > ---
 > ### Property
@@ -337,52 +458,84 @@ Consumers: complex conjugation and $-(-a) = a$ in [[Field]]; matrix transpose in
 
 ---
 
-### 3.11 `properties/metric/` — NEW FAMILY **[Standard]** — 4 consumers, one of them crypto
+### 3.11 `properties/metric/` — the family, **revised 2026-08-29** **[Standard]**
 
-Three notes, all with Scope *"A function $d: X \times X \rightarrow \mathbb R$ on a set $X$"*:
+> [!warning] Correction to the earlier draft
+> This section previously proposed a **Non-negativity** axiom and kept `norm/` and `metric/` as separate folders. Both were wrong. See the reasoning below.
+
+**Merge `norm/` into `metric/`. Four notes, not six.**
+
+Two axioms turn out to be the same axiom in two scopes, and one proposed axiom is a theorem:
+
+| axiom | norm scope $N: V \to \mathbb R$ | metric scope $d: X \times X \to \mathbb R$ |
+| --- | --- | --- |
+| **Positive Definiteness** | $\lVert x \rVert = 0 \iff x = 0$ | $d(x,y) = 0 \iff x = y$ |
+| **Triangle Inequality** | $\lVert x + y \rVert \leq \lVert x \rVert + \lVert y \rVert$ | $d(x,z) \leq d(x,y) + d(y,z)$ |
+| **Distance Symmetry** | — *(automatic, see below)* | $d(x,y) = d(y,x)$ |
+| **Homogeneity** | $\lVert \alpha x \rVert = \lvert \alpha \rvert \lVert x \rVert$ | — |
+
+Under the induced metric $d(x,y) = \lVert x - y \rVert$, positive definiteness **is** identity of indiscernibles. So the two families share two of their axioms outright, and each contributes one of its own.
+
+> [!danger] Non-negativity is a theorem, not an axiom — drop it
+> **Metric:** identity of indiscernibles gives $d(x,x) = 0$; then triangle with $z = x$ plus symmetry gives
+> $$0 = d(x,x) \leq d(x,y) + d(y,x) = 2\,d(x,y) \implies d(x,y) \geq 0.$$
+> **Norm:** homogeneity at $\alpha = 0$ gives $\lVert 0 \rVert = 0$, and $\lVert -x \rVert = \lvert -1 \rvert \lVert x \rVert = \lVert x \rVert$; then
+> $$0 = \lVert x + (-x) \rVert \leq \lVert x \rVert + \lVert -x \rVert = 2 \lVert x \rVert \implies \lVert x \rVert \geq 0.$$
+> Writing it as an axiom violates precision rule 3 — *consequences never live inside definition callouts*. It belongs as a `[!proposition]` in [[Metric Space]].
+>
+> **This also means the existing [[Positive Definiteness]] note is wrong as written**: its first bullet, $\lVert x \rVert \geq 0$, is derivable and should go. Keep only the separation property.
+
+> [!remark] Homogeneity buys symmetry
+> A norm needs no symmetry axiom because it comes free: $d(y,x) = \lVert y - x \rVert = \lVert -(x-y) \rVert = \lVert x - y \rVert = d(x,y)$, using homogeneity at $\alpha = -1$. That is why the metric family has an axiom the norm family does not.
+
+### The four notes
+
+Folder: `properties/metric/`. Scope lines carry the precision; the folder name is navigation.
 
 ```markdown
-> [!definition] Non-negativity
-> $d$ is non-negative iff $\forall x, y \in X: d(x, y) \geq 0$.
+> [!definition] Positive Definiteness
+> ### Scope
+> A function $d: X \times X \rightarrow \mathbb R$ on a set $X$.
+> 
+> ---
+> ### Property
+> $d$ separates points iff
+> $$\forall x, y \in X: \quad d(x, y) = 0 \iff x = y$$
+
+### Norm Form
+
+> [!definition] Positive Definiteness (norm)
+> ### Scope
+> A function $N = \lVert \cdot \rVert : V \rightarrow \mathbb R$.
+> 
+> ---
+> ### Property
+> $$\forall x \in V: \quad \lVert x \rVert = 0 \iff x = 0$$
+> The case $d(x,y) = \lVert x - y \rVert$ of the metric form above.
 ```
-```markdown
-> [!definition] Identity of Indiscernibles
-> $d$ separates points iff $\forall x, y \in X: d(x, y) = 0 \iff x = y$.
-```
+
 ```markdown
 > [!definition] Distance Symmetry
-> $d$ is symmetric iff $\forall x, y \in X: d(x, y) = d(y, x)$.
-> 
-> Distinct from relation [[Symmetry]] and from [[Map Symmetry]]: same word, third scope.
-```
-
-Plus a `### Metric Form` section appended to the existing [[Triangle Inequality]]:
-
-```markdown
-### Metric Form
-
-> [!definition] Triangle Inequality (metric)
 > ### Scope
 > A function $d: X \times X \rightarrow \mathbb R$.
 > 
 > ---
 > ### Property
-> $$\forall x, y, z \in X: \quad d(x, z) \leq d(x, y) + d(y, z)$$
+> $$\forall x, y \in X: \quad d(x, y) = d(y, x)$$
 > 
 > ### Remark
-> The norm form above is the special case $d(x, y) = \lVert x - y \rVert$ on an additive group — every norm induces a metric, not conversely.
+> Distinct from relation [[Symmetry]] and from [[Map Symmetry]] — same word, third scope. Automatic for a metric induced by a norm, by [[Homogeneity]] at $\alpha = -1$.
 ```
 
-Consumers, and why this family is worth a folder:
+`Triangle Inequality` keeps its existing norm statement and gains a `### Metric Form`; `Homogeneity` moves across unchanged.
 
-| consumer | why it needs metric, not norm |
-| --- | --- |
-| [[Metric Space]] | fixes 5.4b — "additive group + norm" is a *normed group*; the metric axioms are the general notion |
-| [[Code Distance]] | Hamming distance is a metric on $\Sigma^n$ with no vector-space norm underneath |
-| [[Rank Metric Codes]] | same, rank-weight |
-| [[Statistical Distance]] | **total variation distance is a metric on distributions** — the axioms are already implicit in your Δ theorems |
+### Why one folder, and why `metric`
 
-> **One judgment call.** Splitting [[Symmetry]] / [[Map Symmetry]] set the precedent *"different scope → different note"*, which argues for a fourth note rather than a `### Metric Form` section inside [[Triangle Inequality]]. I recommend the section anyway: the two forms are the same inequality and one implies the other, whereas relation-symmetry and form-symmetry are unrelated statements that merely share a word. Flagging it because it is a real inconsistency, decided deliberately.
+- **Two folders for four notes is thin**, and two of the four would have to appear in both.
+- **The tree stays at four families** — operation, relation, map, metric — matching the four attachment points on the spine. Norm and metric attach at the same one: a map into $\mathbb R$.
+- **`metric` is the better name.** It is the weaker setting (needs only a set, not a vector space), it is the terminal end of the chain *inner product → norm → metric*, and more consumers are metrics-without-norms — [[Code Distance]] (Hamming), [[Rank Metric Codes]], [[Statistical Distance]] (total variation) — than the reverse, of which there are none, since every norm induces a metric.
+- **The move is free.** Obsidian resolves wikilinks by basename, so relocating the three existing notes from `norm/` to `metric/` breaks nothing.
+
 
 ---
 
@@ -435,19 +588,20 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | ~~Continuity~~ | defer (Tier 2) | analysis — when `analysis/` exists |
 | ~~Isometry, Lipschitz~~ | after `metric/` | [[Calculus Functions]] has a Lipschitz-1 section already |
 
-## `properties/norm/` and the new `properties/metric/`
+## `properties/metric/` — the merged family *(revised, see §3.11)*
 
-| axiom | family | status | consumers |
-| --- | --- | --- | --- |
-| [[Triangle Inequality]] | norm + **metric section** | exists, extend | [[Metric Space]], [[Lattices]], [[Code Distance]] |
-| [[Homogeneity]] | norm | exists | [[Metric Space]], [[Inner-Product Spaces]] |
-| [[Positive Definiteness]] | norm | exists | same |
-| **Non-negativity** | metric | **add** | [[Metric Space]], [[Code Distance]] |
-| **Identity of Indiscernibles** | metric | **add** | same |
-| **Distance Symmetry** | metric | **add** | [[Code Distance]], [[Statistical Distance]] |
-| ~~Ultrametric, inner-product axioms~~ | defer | [[Inner-Product Spaces]] is composable from `map/` + `norm/` already — rewire rather than add |
+Scope: a function $d: X \times X \to \mathbb R$, or $N: V \to \mathbb R$ for the norm forms.
 
-**Totals:** 20 axiom notes exist; **11 to add or move**; 12 explicitly deferred with reasons. After this, every structure note in `math/` composes from the library with no inline restatement.
+| axiom | status | consumers |
+| --- | --- | --- |
+| [[Triangle Inequality]] | exists in `norm/` — **move, add `### Metric Form`** | [[Metric Space]], [[Lattices]], [[Code Distance]] |
+| [[Homogeneity]] | exists in `norm/` — **move** | [[Metric Space]], [[Inner-Product Spaces]] |
+| [[Positive Definiteness]] | exists in `norm/` — **move, and delete its derivable first bullet** | same; doubles as metric identity-of-indiscernibles |
+| **Distance Symmetry** | **add** | [[Code Distance]], [[Statistical Distance]] |
+| ~~Non-negativity~~ | **withdrawn** — derivable from the other three; a `[!proposition]` in [[Metric Space]], not an axiom | — |
+| ~~Ultrametric, inner-product axioms~~ | defer | [[Inner-Product Spaces]] composes from `map/` + `metric/` already |
+
+**Totals as of 2026-08-29:** 27 axiom notes exist; **2 to add** (`Homomorphism`, `Distance Symmetry`), **3 to move** (`norm/` → `metric/`), **1 to fix** ([[Positive Definiteness]]); 13 explicitly deferred with reasons. After this, every structure note in `math/` composes from the library with no inline restatement.
 
 ---
 
@@ -466,31 +620,31 @@ Batch 0 (moves) ─► A (restore) ─► B (spine) ─► C (axioms) ─► D (
 
 Doing the folder moves *first* means every note created later lands in its final home. Obsidian carries the backlinks.
 
-| #   | task                                                                                                                                                                  |      |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 0a  | **10.1** — `algebra/structures/set theory/` → `math/set theory/`. It holds the objects every Scope line points at; they are not algebra                               | Done |
-| 0b  | **10.2** — [[Matrix]], [[Vector Algebra]], [[Kronecker Product]] → `linear algebra/`; [[Metric Space]] → `calculus/` (it is analysis, and Batch D rewrites it anyway) | Done |
-| 0c  | Create empty `math/properties/metric/`                                                                                                                                | Done |
+| # | task |
+| --- | --- |
+| 0a | **10.1** — `algebra/structures/set theory/` → `math/set theory/`. It holds the objects every Scope line points at; they are not algebra |
+| 0b | **10.2** — [[Matrix]], [[Vector Algebra]], [[Kronecker Product]] → `linear algebra/`; [[Metric Space]] → `calculus/` (it is analysis, and Batch D rewrites it anyway) |
+| 0c | Create empty `math/properties/metric/` |
 
 ## Batch A · Restore the floor · ~30 min · **blocks everything**
 
-| #   | task                                                                                                                                    |      |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| A1  | Recover **Cartesian Product**, **Set Equality**, **Empty Set** from `git show f9c2c34:"…/Set Theory.md"`                                | Done |
-| A2  | Create `Set Operation` (**6.3b**) — the laws table out of [[Set]], plus Cartesian Product, power set, complement, partition (draft 3.2) |      |
-| A3  | [[Set]] keeps: definition, equality, empty set, famous sets, notation, universal set. Move Universal Set out of `## Representation`     |      |
-| A4  | [[Set Foundation]]: strip the two leading blank lines, add `## Basic Definition`                                                        |      |
+| # | task |
+| --- | --- |
+| A1 | Recover **Cartesian Product**, **Set Equality**, **Empty Set** from `git show f9c2c34:"…/Set Theory.md"` |
+| A2 | Create `Set Operation` (**6.3b**) — the laws table out of [[Set]], plus Cartesian Product, power set, complement, partition (draft 3.2) |
+| A3 | [[Set]] keeps: definition, equality, empty set, famous sets, notation, universal set. Move Universal Set out of `## Representation` |
+| A4 | [[Set Foundation]]: strip the two leading blank lines, add `## Basic Definition` |
 
 **Checkpoint:** no Scope line in the vault refers to an undefined product.
 
 ## Batch B · Join the spine · ~1.5–2 h
 
-| #   | task                                                                                                                                                                                                |     |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| B1  | Rewrite [[Relation]] — heterogeneous first, homogeneous as specialisation, converse, composition, left-total/functional, the specialisation table (draft 3.3)                                       |     |
-| B2  | Restructure [[Function]] — six edits incl. the partial-function variant and deleting the duplicate `## Definition` (draft 3.4)                                                         |     |
-| B3  | **G1** stray comma; **G2** delete the duplicated many-sorted section from [[Binary Operation]]; **G3** sorts-are-labels + smallness caveat + Birkhoff–Lipson reference in [[Many-Sorted Operation]] |     |
-| B4  | Move odd/even functions → [[Calculus Functions]]                                                                                                                                                    |     |
+| # | task |
+| --- | --- |
+| B1 | Rewrite [[Relation]] — heterogeneous first, homogeneous as specialisation, converse, composition, left-total/functional, the specialisation table (draft 3.3) |
+| B2 | Restructure [[Function]] — six edits incl. the partial-function variant and deleting the duplicate `## Definition` (draft 3.4) |
+| B3 | **G1** stray comma; **G2** delete the duplicated many-sorted section from [[Binary Operation]]; **G3** sorts-are-labels + smallness caveat + Birkhoff–Lipson reference in [[Many-Sorted Operation]] |
+| B4 | Move odd/even functions → [[Calculus Functions]] |
 
 **Checkpoint:** `Set → Relation → Function → Binary Operation` is one linked chain.
 
@@ -502,7 +656,7 @@ Doing the folder moves *first* means every note created later lands in its final
 | C2 | `map/` — **Homomorphism** (draft 3.7) — the biggest single gap |
 | C3 | `map/` — move **Injectivity**, **Surjectivity** out of [[Function]]; **Bijectivity** as the composed one-liner (draft 3.8) |
 | C4 | `map/` — **Monotonicity**, **Involution** (drafts 3.9, 3.10) |
-| C5 | `metric/` — **Non-negativity**, **Identity of Indiscernibles**, **Distance Symmetry**, + `### Metric Form` in [[Triangle Inequality]] (draft 3.11) |
+| C5 | `metric/` — move [[Triangle Inequality]], [[Homogeneity]], [[Positive Definiteness]] in from `norm/`; add **Distance Symmetry**; add `### Metric Form` and `### Norm Form` sections; delete the derivable bullet in [[Positive Definiteness]]; delete the empty `norm/` folder (revised draft 3.11) |
 
 **Checkpoint:** every axiom a math note assumes exists as a note.
 
@@ -522,12 +676,12 @@ This is where the previous three batches turn into read value. Each row deletes 
 
 ## Batch E · Naming and hygiene · ~45 min
 
-| # | task |
-| --- | --- |
-| E1 | Rename [[Totality]] → **Connexity**, with the synonyms remark. Three live senses of "total" after B1 make this near-mandatory |
-| E2 | **2.10** — the clone-and-edit slips: [[Partial Order]] body says "preorder"; [[Total Order]] title says "Partial Order"; [[Abelian Group]] "Abelian Groups"; [[Field]] callout "Fields"; plural titles in [[Equivalence Relation]], [[Quotient Relation]] |
-| E3 | **9.12** — the lint script: callout title vs filename, plus broken links. Run it as the Batch-E checkpoint |
-| E4 | **1.6 / 1.10** — [[Algebra Structure]]: restore the axiom index, strip the legacy frontmatter |
+| #   | task                                                                                                                                                                                                                                                      |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E1  | Rename [[Totality]] → **Connexity**, with the synonyms remark. Three live senses of "total" after B1 make this near-mandatory                                                                                                                             |
+| E2  | **2.10** — the clone-and-edit slips: [[Partial Order]] body says "preorder"; [[Total Order]] title says "Partial Order"; [[Abelian Group]] "Abelian Groups"; [[Field]] callout "Fields"; plural titles in [[Equivalence Relation]], [[Quotient Relation]] |
+| E3  | **9.12** — the lint script: callout title vs filename, plus broken links. Run it as the Batch-E checkpoint                                                                                                                                                |
+| E4  | **1.6 / 1.10** — [[Algebra Structure]]: restore the axiom index, strip the legacy frontmatter                                                                                                                                                             |
 
 ## Mine, after yours
 

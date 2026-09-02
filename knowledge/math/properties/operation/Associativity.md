@@ -5,7 +5,7 @@ Reference:
 
 > [!definition] Associativity
 > ### Scope
-> A [[Binary Operation]] $*$.
+> A [[Binary Operation]] $*: O \times O \rightarrow O$.
 > 
 > ---
 > ### Property
