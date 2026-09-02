@@ -30,15 +30,6 @@ Each variant relaxes one clause of the definition above. They are not siblings �
 > 
 > The two coincide when the operator domain is commutative, which is why scalar multiplication over a [[Field]] is written one way only. Over a non-commutative ring they are genuinely different — this is the left/right module distinction.
 
-### Many-Sorted Operation
-
-> [!definition] Many-Sorted Operation
-> Relaxes *one carrier set*. Given a family $(S_i)_{i \in I}$, an operation of **arity** $(i_1, \dots, i_n) \rightarrow j$ is a map
-> $$S_{i_1} \times \cdots \times S_{i_n} \rightarrow S_j$$
-> 
-> An external operation is the two-sorted binary case: $I = \{R, S\}$, arity $(R, S) \rightarrow S$.
-> 
-> Composition in a [[Category]] is the case $I = \mathsf{Obj} \times \mathsf{Obj}$ with arity $(B, C), (A, B) \rightarrow (A, C)$. Definedness there is decided by the sorts rather than being a genuine partiality, so every composite the axioms mention exists — the caveat under *Partial Operation* is not needed. An identity is required per sort: some $1_A \in \mathsf{Hom}(A, A)$ for each object, not a single $e$.
 
 ## Property
 

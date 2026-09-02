@@ -10,7 +10,7 @@ Reference:
 > $$a \; R \; b.$$
 
 > [!definition] Homogeneous Relation
-> A relation on a single set $S$ is the case $A = B = S$, i.e. $R \subseteq S \times S$. These are the relations the [[Math Properties MOC|Relation Axioms]] apply to — [[Reflexivity]], [[Symmetry]], [[Antisymmetry]], [[Transitivity]], [[Totality]] all compare two elements of the *same* set.
+> A relation on a single set $S$ is the case $A = B = S$, i.e. $R \subseteq S \times S$. These are the relations the [[Math Properties MOC|Relation Axioms]] apply to — [[Reflexivity]], [[Symmetry]], [[Antisymmetry]], [[Transitivity]], [[Connexity]] all compare two elements of the *same* set.
 
 ### Associated Sets
 
@@ -59,6 +59,6 @@ Reference:
 | --- | --- |
 | [[Reflexivity]] + [[Transitivity]] | [[Preorder]] |
 | + [[Antisymmetry]] | [[Partial Order]] |
-| + [[Totality]] | [[Total Order]] |
+| + [[Connexity]] | [[Total Order]] |
 | [[Reflexivity]] + [[Symmetry]] + [[Transitivity]] | [[Equivalence Relation]] |
 | left-total + functional | [[Function]] |

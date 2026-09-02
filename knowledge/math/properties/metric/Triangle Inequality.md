@@ -2,9 +2,9 @@
 
 > [!definition] Triangle Inequality
 > ### Scope 
-> A function $|| \cdot ||: V \rightarrow \mathbb{R}$.
+> A function $d: X \times X \rightarrow \mathbb{R}$.
 > 
 > ---
 > ### Property
-> A function $|| \cdot ||$ satisfies the triangle inequality iff
-> $$\forall x, y \in V: ||x + y|| \leq ||x|| + ||y||$$
+> A function $d$ satisfies the triangle inequality iff
+> $$\forall x, y, z \in X: d(x, z) \leq d(x, y) + d(y, z)$$

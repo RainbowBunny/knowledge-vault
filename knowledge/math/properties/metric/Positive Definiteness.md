@@ -2,11 +2,11 @@
 
 > [!definition] Positive Definiteness
 > ### Scope 
-> A function $|| \cdot ||: V \rightarrow \mathbb{R}$.
+> A function $d: X \times X \rightarrow \mathbb{R}$.
 > 
 > ---
 > ### Property
-> A function $|| \cdot ||$ is positive definite iff
-> - $||x|| \geq 0$.
-> - $||x|| = 0 \Longleftrightarrow x = 0$.
+> A function $d$ is positive definite iff
+> - $\forall x, y \in X: d(x, y) \geq 0$.
+> - $\forall x \in X: d(x, x) \iff x = 0$.
 

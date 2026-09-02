@@ -63,7 +63,7 @@ Scope: a relation $R \subseteq O \times O$.
 - [[Symmetry]]
 - [[Antisymmetry]]
 - [[Transitivity]]
-- [[Totality]]
+- [[Connexity]]
 
 |  | reflexive | symmetric | antisymmetric | transitive | total |
 | --- | :-: | :-: | :-: | :-: | :-: |
@@ -73,7 +73,7 @@ Scope: a relation $R \subseteq O \times O$.
 | [[Equivalence Relation\|equivalence]] | ✓ | ✓ |  | ✓ |  |
 
 > [!remark] The parenthesised tick
-> [[Totality]] as stated — $\forall x, y: (x \, R \, y) \lor (y \, R \, x)$ — **implies** [[Reflexivity]]: take $y = x$. So a total order needs only totality, antisymmetry and transitivity; reflexivity comes free. The tick is kept for readability against the rows above, but it is derived, not assumed.
+> [[Connexity]] as stated — $\forall x, y: (x \, R \, y) \lor (y \, R \, x)$ — **implies** [[Reflexivity]]: take $y = x$. So a total order needs only totality, antisymmetry and transitivity; reflexivity comes free. The tick is kept for readability against the rows above, but it is derived, not assumed.
 
 The structures live with the objects, in `set theory/relation/`: [[Relation]], [[Preorder]], [[Partial Order]], [[Total Order]], [[Equivalence Relation]], [[Quotient Relation]].
 

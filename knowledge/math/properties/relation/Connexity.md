@@ -1,6 +1,6 @@
 ## Basic Definition
 
-> [!definition] Totality
+> [!definition] Connexity (Totality)
 > ### Scope
 > A relation $R \subseteq O \times O$.
 > 

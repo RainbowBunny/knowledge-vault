@@ -6,14 +6,14 @@
 
 ## Status · 2026-08-29
 
-| batch | state |
-| --- | --- |
-| **0** moves | done — `math/set theory/`, 10.2 relocations, `properties/metric/` created |
+| batch                   | state                                                                                                                                                                                                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **0** moves             | done — `math/set theory/`, 10.2 relocations, `properties/metric/` created                                                                                                                                                                                              |
 | **A** restore the floor | **A1–A4 done · A5, A6, A7 still open** — the Cartesian product is defined but [[Set Operation]] still has **zero inbound links**; union / intersection / difference / disjoint union are still undefined; the false law $A-(B-C) = (A-B) \cup C$ is still in the table |
-| **B** join the spine | done — [[Relation]] rewritten heterogeneous-first (with left/right-total, better than the draft), `Function between Sets` → **[[Function]]** restructured with a partial-function variant |
-| **C** axiom notes | **9 of 11 done** — `Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity` created. **Missing: `Homomorphism`** (the biggest gap) and the whole **`metric/` family** — see the revised §3.11 |
-| **D** rewire | open |
-| **E** hygiene | open |
+| **B** join the spine    | done — [[Relation]] rewritten heterogeneous-first (with left/right-total, better than the draft), `Function between Sets` → **[[Function]]** restructured with a partial-function variant                                                                              |
+| **C** axiom notes       | **9 of 11 done** — `Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity` created. **Missing: `Homomorphism`** (the biggest gap) and the whole **`metric/` family** — see the revised §3.11                              |
+| **D** rewire            | open                                                                                                                                                                                                                                                                   |
+| **E** hygiene           | open                                                                                                                                                                                                                                                                   |
 
 Batches B and C ran ahead of A. The floor items are three edits and about fifteen minutes; they block nothing else technically, but every Scope line in `properties/` still points at a product that no note links.
 
@@ -568,7 +568,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | [[Symmetry]] | exists | [[Equivalence Relation]] |
 | [[Antisymmetry]] | exists | [[Partial Order]] |
 | [[Transitivity]] | exists | [[Preorder]], [[Equivalence Relation]] |
-| [[Totality]] | exists — **rename `Connexity`** | [[Total Order]]; the word now collides three ways (see 3.3) |
+| [[Connexity]] | exists — **rename `Connexity`** | [[Total Order]]; the word now collides three ways (see 3.3) |
 | ~~Irreflexivity, Asymmetry, Trichotomy~~ | defer | strict orders — no note wants them yet |
 | ~~Well-foundedness~~ | optional | [[Proofs]]' induction principle is the one candidate |
 
@@ -678,7 +678,7 @@ This is where the previous three batches turn into read value. Each row deletes 
 
 | #   | task                                                                                                                                                                                                                                                      |
 | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| E1  | Rename [[Totality]] → **Connexity**, with the synonyms remark. Three live senses of "total" after B1 make this near-mandatory                                                                                                                             |
+| E1  | Rename [[Connexity]] → **Connexity**, with the synonyms remark. Three live senses of "total" after B1 make this near-mandatory                                                                                                                             |
 | E2  | **2.10** — the clone-and-edit slips: [[Partial Order]] body says "preorder"; [[Total Order]] title says "Partial Order"; [[Abelian Group]] "Abelian Groups"; [[Field]] callout "Fields"; plural titles in [[Equivalence Relation]], [[Quotient Relation]] |
 | E3  | **9.12** — the lint script: callout title vs filename, plus broken links. Run it as the Batch-E checkpoint                                                                                                                                                |
 | E4  | **1.6 / 1.10** — [[Algebra Structure]]: restore the axiom index, strip the legacy frontmatter                                                                                                                                                             |
