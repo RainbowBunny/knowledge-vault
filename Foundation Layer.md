@@ -58,7 +58,7 @@ Each axiom family attaches at exactly one node of the spine. This is what justif
 
 | family | attaches to | Scope line reads | structures produced |
 | --- | --- | --- | --- |
-| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]] |
+| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[knowledge/math/algebra/structures/rings/Ring]] → [[Field]] |
 | `properties/relation/` | homogeneous relation $R \subseteq S \times S$ | "A [[Relation]] $R$ on $S$" | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
 | `properties/map/` | function $f: A \to B$ | "A [[Function]] $f: A \to B$" | homomorphism, linear map, monotone map |
 | `properties/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$" | normed space, [[Metric Space]] |
@@ -378,7 +378,7 @@ A map that respects structure: do the operation then map, or map then do the ope
 > Without a shared signature, "preserves the structure" has no referent. This is the one place the vault's [[First-Order Logic|signature]] framing is not just organisational but load-bearing.
 ```
 
-Instances to rewire: [[Group Homomorphisms]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroups]], whose definition *is* "the inclusion is a group homomorphism".
+Instances to rewire: [[Group Homomorphisms]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[knowledge/math/algebra/structures/rings/Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroups]], whose definition *is* "the inclusion is a group homomorphism".
 
 ---
 
@@ -545,20 +545,20 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 
 ## `properties/operation/` — Scope: a binary operation $\star: O \times O \to O$
 
-| axiom | status | consumers |
-| --- | --- | --- |
-| [[Closure]] | exists (subset reading) | [[Subgroups]] (3.6) — and *only* subgroups, once 1.12 lands |
-| [[Associativity]] | exists | [[Semigroup]] onward; [[Category]]; [[Relation]] composition |
-| [[Commutativity]] | exists | [[Abelian Group]], [[Commutative Ring]], `Set Operation` |
-| [[Identity Element]] | exists | [[Monoid]] onward; [[Category]] |
-| [[Inverse Element]] | exists | [[Group]] onward; [[Field]] |
-| [[Distributivity]] | exists | [[Ring]]; `Set Operation` |
-| [[Idempotence]] | exists — **currently orphaned** | `Set Operation`; lattices via `Absorption` |
-| [[Alternativity]] | exists | octonions in [[Algebra Structure]] |
-| **Cancellativity** | **add** | [[Group]] (thm), [[Field]] (2 rows + integral domain) |
-| **Absorption** | **add** | `Set Operation`; lattice (2.14) |
-| ~~Annihilator / zero element~~ | defer | a *theorem* in rings ($0 \cdot a = 0$), not an axiom |
-| ~~Nilpotency, anti-commutativity~~ | defer | no consumer — needs Lie algebras or cross products |
+| axiom                              | status                          | consumers                                                    |
+| ---------------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| [[Closure]]                        | exists (subset reading)         | [[Subgroups]] (3.6) — and *only* subgroups, once 1.12 lands  |
+| [[Associativity]]                  | exists                          | [[Semigroup]] onward; [[Category]]; [[Relation]] composition |
+| [[Commutativity]]                  | exists                          | [[Abelian Group]], [[Commutative Ring]], `Set Operation`     |
+| [[Identity Element]]               | exists                          | [[Monoid]] onward; [[Category]]                              |
+| [[Inverse Element]]                | exists                          | [[Group]] onward; [[Field]]                                  |
+| [[Distributivity]]                 | exists                          | [[Ring]]; `Set Operation`                                    |
+| [[Idempotence]]                    | exists — **currently orphaned** | `Set Operation`; lattices via `Absorption`                   |
+| [[Alternativity]]                  | exists                          | octonions in [[Algebra Structure]]                           |
+| **Cancellativity**                 | **add**                         | [[Group]] (thm), [[Field]] (2 rows + integral domain)        |
+| **Absorption**                     | **add**                         | `Set Operation`; lattice (2.14)                              |
+| ~~Annihilator / zero element~~     | defer                           | a *theorem* in rings ($0 \cdot a = 0$), not an axiom         |
+| ~~Nilpotency, anti-commutativity~~ | defer                           | no consumer — needs Lie algebras or cross products           |
 
 ## `properties/relation/` — Scope: a homogeneous relation $R \subseteq S \times S$
 
@@ -580,7 +580,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | [[Bilinearity]] | exists | [[Bilinear Pairings]], [[Split-R1CS]] |
 | [[Multilinearity]] | exists | [[Bilinear Pairings]] |
 | [[Map Symmetry]] | exists | [[Inner-Product Spaces]] |
-| **Homomorphism** | **add** | [[Group Homomorphisms]], [[Ring]], [[Linear Maps]], [[Subgroups]] |
+| **Homomorphism** | **add** | [[Group Homomorphisms]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]], [[Subgroups]] |
 | **Injectivity** | **move in** | [[Function]], [[Group Homomorphisms]], [[Morphism]] |
 | **Surjectivity** | **move in** | same |
 | **Monotonicity** | **add** | [[Calculus Functions]]; order theory; functors |
@@ -664,15 +664,15 @@ Doing the folder moves *first* means every note created later lands in its final
 
 This is where the previous three batches turn into read value. Each row deletes a restatement.
 
-| # | task |
-| --- | --- |
-| D1 | **1.12–1.15** — [[Magma]] / [[Semigroup]] / [[Monoid]]: one definition each, cite a [[Binary Operation]], drop the [[Closure]] links; [[Group]]'s second definition Semigroup → **Monoid** |
-| D2 | [[Group]]'s Cancellation proposition → link **Cancellativity**; [[Field]]'s two cancellation rows likewise, and recompose *integral domain* as "commutative ring whose nonzero elements are cancellative" |
-| D3 | [[Group Homomorphisms]], [[Ring]], [[Linear Maps]], [[Subgroups]] → link **Homomorphism**; [[Linearity]] gains "the module-signature case of `Homomorphism`" |
-| D4 | **5.4 / 5.4b** — rewrite [[Metric Space]]: separate *normed group* from *metric space*, compose both from the axiom notes |
-| D5 | **5.5** — [[Code Distance]], [[Rank Metric Codes]] → metric axioms; [[Statistical Distance]] → the same, since total variation *is* a metric |
-| D6 | **6.5** — `Set Operation`' laws table → [[Commutativity]] / [[Associativity]] / [[Distributivity]] / [[Idempotence]] / **Absorption** as instances |
-| D7 | [[Calculus Functions]]' monotonic section → **Monotonicity**; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]] |
+| #   | task                                                                                                                                                                                                      |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D1  | **1.12–1.15** — [[Magma]] / [[Semigroup]] / [[Monoid]]: one definition each, cite a [[Binary Operation]], drop the [[Closure]] links; [[Group]]'s second definition Semigroup → **Monoid**                |
+| D2  | [[Group]]'s Cancellation proposition → link **Cancellativity**; [[Field]]'s two cancellation rows likewise, and recompose *integral domain* as "commutative ring whose nonzero elements are cancellative" |
+| D3  | [[Group Homomorphisms]], [[Ring]], [[Linear Maps]], [[Subgroups]] → link **Homomorphism**; [[Linearity]] gains "the module-signature case of `Homomorphism`"                                              |
+| D4  | **5.4 / 5.4b** — rewrite [[Metric Space]]: separate *normed group* from *metric space*, compose both from the axiom notes                                                                                 |
+| D5  | **5.5** — [[Code Distance]], [[Rank Metric Codes]] → metric axioms; [[Statistical Distance]] → the same, since total variation *is* a metric                                                              |
+| D6  | **6.5** — `Set Operation`' laws table → [[Commutativity]] / [[Associativity]] / [[Distributivity]] / [[Idempotence]] / **Absorption** as instances                                                        |
+| D7  | [[Calculus Functions]]' monotonic section → **Monotonicity**; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]]                                                     |
 
 ## Batch E · Naming and hygiene · ~45 min
 

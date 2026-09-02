@@ -6,5 +6,5 @@
 > 
 > ---
 > ### Property
-> A relation $R$ is total iff 
+> A relation $R$ is connex iff 
 > $$\forall x, y \in O: (x \;R\; y) \lor (y \;R\; x)$$

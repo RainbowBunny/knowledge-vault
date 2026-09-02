@@ -10,27 +10,27 @@ Index for `math/algebra/`. Organised by **what kind of thing** a note defines: a
 
 `structures/` — one folder per family.
 
-| folder | notes |
-| --- | --- |
-| `set theory/` | [[Set]], [[Set Foundation]], [[Function]], `relations/`, `functions/` — see [Set theory](#set-theory) |
-| **[[Groups MOC\|`groups/`]]** | [[Group]] and its 13-note subtree |
-| `rings/` | [[Ring]], [[Commutative Ring]] |
-| `fields/` | [[Field]] — axioms, integral domains, characteristic, finite fields |
-| `polynomial/` | [[Polynomial]], [[Multivariate Polynomial]], [[Vanishing Polynomial]], [[Lagrange Interpolation]] |
-| `lattices/` | see [Lattices](#lattices) |
-| `elliptic curve/` | [[Elliptic Curve MOC]] |
+| folder                        | notes                                                                                                 |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `set theory/`                 | [[Set]], [[Set Foundation]], [[Function]], `relations/`, `functions/` — see [Set theory](#set-theory) |
+| **[[Groups MOC\|`groups/`]]** | [[Group]] and its 13-note subtree                                                                     |
+| `rings/`                      | [[Ring]], [[Commutative Ring]]                                                                        |
+| `fields/`                     | [[Field]] — axioms, integral domains, characteristic, finite fields                                   |
+| `polynomial/`                 | [[Polynomial]], [[Multivariate Polynomial]], [[Vanishing Polynomial]], [[Lagrange Interpolation]]     |
+| `lattices/`                   | see [Lattices](#lattices)                                                                             |
+| `elliptic curve/`             | [[Elliptic Curve MOC]]                                                                                |
 
 ### The closure hierarchy
 
 Each row adds one axiom to the row above.
 
-|  | [[Closure\|closure]] | [[Associativity\|assoc]] | [[Identity Element\|ident]] | [[Inverse Element\|inv]] | [[Commutativity\|comm]] |
-| --- | :-: | :-: | :-: | :-: | :-: |
-| [[Magma\|magma]] | ✓ |  |  |  |  |
-| [[Semigroup\|semigroup]] | ✓ | ✓ |  |  |  |
-| [[Monoid\|monoid]] | ✓ | ✓ | ✓ |  |  |
-| [[Group\|group]] | ✓ | ✓ | ✓ | ✓ |  |
-| [[Abelian Group\|abelian group]] | ✓ | ✓ | ✓ | ✓ | ✓ |
+|                                  | [[Closure\|closure]] | [[Associativity\|assoc]] | [[Identity Element\|ident]] | [[Inverse Element\|inv]] | [[Commutativity\|comm]] |
+| -------------------------------- | :------------------: | :----------------------: | :-------------------------: | :----------------------: | :---------------------: |
+| [[Magma\|magma]]                 |          ✓           |                          |                             |                          |                         |
+| [[Semigroup\|semigroup]]         |          ✓           |            ✓             |                             |                          |                         |
+| [[Monoid\|monoid]]               |          ✓           |            ✓             |              ✓              |                          |                         |
+| [[Group\|group]]                 |          ✓           |            ✓             |              ✓              |            ✓             |                         |
+| [[Abelian Group\|abelian group]] |          ✓           |            ✓             |              ✓              |            ✓             |            ✓            |
 
 Two operations: a [[Ring]] is an [[Abelian Group|abelian group]] under $+$, a [[Monoid|monoid]] under $\star$, plus [[Distributivity]]. A [[Commutative Ring]] adds [[Commutativity]] for $\star$. A [[Field|field]] adds multiplicative [[Inverse Element|inverses]] for every nonzero element.
 

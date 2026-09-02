@@ -6,5 +6,5 @@
 > 
 > ---
 > ### Property
-> A function $d$ is symmetry iff
+> A function $d$ is symmetric iff
 > - $\forall x, y \in X: d(x, y) = d(y, x)$.

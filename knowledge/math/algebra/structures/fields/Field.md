@@ -1,7 +1,10 @@
 ## Basic Definition
 
 > [!definition] Field
-> A field is a [[Commutative Ring]] with $1 \neq 0$ in which every nonzero element has a multiplicative [[Inverse Element|inverse]].
+> A field is a [[Commutative Ring]] with $1 \neq 0$ in which every nonzero element has a multiplicative [[Inverse Element|inverse]] (or being a [[knowledge/math/algebra/structures/rings/Ring#Unit|Unit]]).
+
+> [!proposition]
+> Every field is an [[Integral Domain]].
 
 | Property                            | Description                                                                                                                                                                                                                                                   |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,16 +30,6 @@
 |                                     | If $a \neq 0$ and $b \neq 0$, then $(ab)^{-1} = a^{-1} b^{-1}$                                                                                                                                                                                                |
 |                                     | $-(a/b) = (-a/b) = a/(-b)$ if $b \neq 0$                                                                                                                                                                                                                      |
 |                                     | $(a/b) - (c/d) = (ad-bc)/(bd)$ if $b \neq 0$ and $d \neq 0$                                                                                                                                                                                                   |
-## Integral Domain
-
->[!definition] Zero Divisor
-> Let $R$ is a commutative ring and $r$ is a nonzero element in $R$, then $r$ is said to be zero divisor if there exists another nonzero element $s \in R$ s.t $r\cdot s=0$
-
-> [!definition] Integral Domain
-> A commutative ring with identity is a said to be __integral domain__ if it has no zero divisors.
-
-> [!theorem]
-> Every finite integral domain is a field.
 
 ## Characteristic 
 

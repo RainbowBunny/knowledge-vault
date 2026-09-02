@@ -19,7 +19,7 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 - [[Code Distance]] — Hamming distance, minimum distance, error detection and correction. Generalises to an arbitrary norm $\omega$ — see the [[Math Properties MOC|norm axioms]]
 - [[Code Properties]]
 - [[Coding Theory Bounds]] — Singleton, Hamming, Gilbert-Varshamov
-- [[Cyclic Codes]] — the ideal-theoretic view; see [[Ring]] on $\mathbb F_q[x]/(x^n - 1)$
+- [[Cyclic Codes]] — the ideal-theoretic view; see [[knowledge/math/algebra/structures/rings/Ring]] on $\mathbb F_q[x]/(x^n - 1)$
 - [[New Codes from Old]] — puncturing, shortening, extending
 - [[Subfield Codes]]
 
@@ -44,7 +44,7 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 | [[Assumptions MOC]] | [[Syndrome Decoding]], [[Rank Syndrome Decoding]], [[Quasi-Cyclic Syndrome Decoding]], [[Rank Support Learning Problem]] are the hardness side of these codes |
 | [[Symmetric Encryption MOC]] | [[Perfect Security]] and the [[One-time Pad]] are entropy arguments; [[Hamming Quasi Cyclic SKE]] is code-based |
 | [[Probability MOC]] | [[Random Variables]], [[Expectation]], [[Statistical Distance]] |
-| [[Algebra MOC]] | [[Field]] — every code here is over $\mathbb F_q$; [[Ring]] for cyclic codes; [[Matrix]] for generator matrices |
+| [[Algebra MOC]] | [[Field]] — every code here is over $\mathbb F_q$; [[knowledge/math/algebra/structures/rings/Ring]] for cyclic codes; [[Matrix]] for generator matrices |
 | [[Math Properties MOC]] | the norm axioms that [[Code Distance]] generalises over |
 | [[Complexity MOC]] | decoding is NP-hard — see [[Class NP-hard]] |
 

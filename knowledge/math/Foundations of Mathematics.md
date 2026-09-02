@@ -22,4 +22,4 @@ What everything else silently stands on — and the honest note is short, becaus
 ## Axiom of Choice — noted, not needed
 
 > [!remark]
-> AC is equivalent to Zorn's lemma, which gives maximal ideals in every [[Ring]] and bases in every [[Vector Spaces|vector space]]. Everything cryptographic in this vault is finite or countable, where AC is silent. Flag it if a note ever invokes Zorn; otherwise it stays here.
+> AC is equivalent to Zorn's lemma, which gives maximal ideals in every [[knowledge/math/algebra/structures/rings/Ring]] and bases in every [[Vector Spaces|vector space]]. Everything cryptographic in this vault is finite or countable, where AC is silent. Flag it if a note ever invokes Zorn; otherwise it stays here.

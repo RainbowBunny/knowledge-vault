@@ -13,7 +13,7 @@
 
 > [!theorem]
 > Let $\pi$ be the linear map defined by $$\pi: \mathbb F_q^n \rightarrow \mathbb F_q[x] / (x^n - 1), (a_0, a_1, \dots, a_{n - 1}) \mapsto a_0 + a_1 x + \dots + a_{n - 1}x^{n - 1}.$$
-> Then a nonempty subset $C$ of $\mathbb F_q^n$ is a cyclic code if and only if $\pi(C)$ is an [[Ring#Ideal|ideal]] of $\mathbb F_q[x] / (x^n - 1)$.
+> Then a nonempty subset $C$ of $\mathbb F_q^n$ is a cyclic code if and only if $\pi(C)$ is an [[knowledge/math/algebra/structures/rings/Ring#Ideal|ideal]] of $\mathbb F_q[x] / (x^n - 1)$.
 
 > [!remark]
 > As $\pi(C)$ is an ideal, there exist a generator polynomial.

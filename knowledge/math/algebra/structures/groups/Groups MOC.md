@@ -40,7 +40,7 @@ A **group** is a set with one operation satisfying [[Associativity]], [[Identity
 
 | from | uses |
 | --- | --- |
-| [[Ring]] | an [[Abelian Group\|abelian group]] under $+$ |
+| [[knowledge/math/algebra/structures/rings/Ring]] | an [[Abelian Group\|abelian group]] under $+$ |
 | [[Lattices]] | a [[Discrete Additive Subgroup]] of $\mathbb R^n$ |
 | [[Category Group]] | $\mathsf{Grp}$ — objects are groups, morphisms are [[Group Homomorphisms]] |
 | [[Elliptic Curve]] | the group law on points |

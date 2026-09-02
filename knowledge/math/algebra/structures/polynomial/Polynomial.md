@@ -1,5 +1,21 @@
-
 ## Basic Definition
+
+> [!definition] Polynomial
+> Let $R$ be a [[knowledge/math/algebra/structures/rings/Ring]]. A **polynomial** $f(x)$ in the **indeterminate** $x$ and with **coefficients** in $R$ is a **finite** linear combination of non-negative 'powers' of $x$ with coefficients in $R$:
+> $$f(x) = \sum_{i \geq 0} a_i x^i = a_0 + a_1 x + a_2 x^2 + \cdots,$$
+> where $a_i$ are elements of $R$ (the coefficients) and we require $a_i = 0$ for $i \gg 0$.
+
+### Degree
+
+> [!definition] Degree
+> The **degree** of a nonzero polynomial $f(x) = \sum_{i \geq 0} a_i x^i$ is the largest integer $d$ for which $a_d \neq 0$. We denoted as $\deg f = d$.
+
+> [!definition] Constants
+> Polynomial of degree $0$ (together with $0$) are called **constants**.
+
+> [!remark]
+> It is sometimes convenient to assign to the polynomial $0$ the degree $-\infty$.
+
 
 > [!definition] Leading Coefficient
 > The **leading coefficient** of polynomial is the coefficient of the highest power of $x$.
@@ -7,10 +23,6 @@
 > [!definition] Monic Polynomial
 > A nonzero polynomial whose leading coefficient is equal to $1$ is called a **monic polynomial**.
 
-### Degree
-
-> [!definition] Degree
-> The **degree** of a nonzero polynomial is the exponent of the highest power of $x$ that appears.
 
 > [!definition] Polynomial Space
 > $\mathcal P(\mathbb F)$ denotes the vector space of all polynomials with coefficients in $F$ and $\mathcal P_m(\mathbb F)$ is the subspace of $\mathcal P(\mathbb F)$ consisting of the polynomials with coefficients in $\mathbb F$ and degree at most $m$.

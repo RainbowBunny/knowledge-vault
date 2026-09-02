@@ -4,7 +4,7 @@ Index for `math/properties/` — the axiom library.
 
 Every note here states **one** property, in one place, in the same shape. Structures elsewhere in the vault are then defined by *linking* to these rather than restating them: a [[Group|group]] is a set with an operation satisfying [[Associativity]] + [[Identity Element]] + [[Inverse Element]], and nothing about associativity is written twice.
 
-The library is deliberately **not** under `algebra/` — relation axioms are order theory, norm axioms are analysis, and `information theory/code-based/` needs the metric axioms too.
+The library is deliberately **not** under `algebra/` — relation axioms are order theory, metric axioms are analysis, and `information theory/code-based/` needs the metric axioms too.
 
 ## The pattern
 
@@ -14,7 +14,8 @@ Every structure in the vault has the same three parts: a **carrier**, some **add
 | --- | --- | --- | --- | --- |
 | [[Magma]] → [[Group]] | $S$ | $\star$ | function $S \times S \to S$ | `operation/` |
 | [[Preorder]] → [[Total Order]] | $S$ | $\leq$ | subset $\subseteq S \times S$ | `relation/` |
-| [[Vector Spaces\|vector space]] → normed space | $V$ | $\lVert \cdot \rVert$ | function $V \to \mathbb R$ | `norm/` |
+| set → metric space | $X$ | $d$ | function $X \times X \to \mathbb R$ | `metric/` |
+| [[Vector Spaces\|vector space]] → normed space | $V$ | $\lVert \cdot \rVert$ | function $V \to \mathbb R$ | `metric/`, norm forms |
 | homomorphism, pairing | $A, B$ | $f$ | function $A \to B$ | `map/` |
 | [[Category]] | $\mathsf{Obj}$ | $\mathsf{Hom}, \circ$ | **partial** function | `operation/`, read per composable triple |
 
@@ -88,22 +89,36 @@ Scope: a map between structured sets.
 - [[Bilinearity]] — linear in each argument separately
 - [[Multilinearity]] — the $k$-argument generalisation
 - [[Map Symmetry]] — $f(x, y) = f(y, x)$; the *form* sense, distinct from relation [[Symmetry]]
+- [[Homomorphism]] — preserves every operation of a shared signature; the general case that [[Linearity]] specialises
+- [[Monotonicity]] — preserves order; the [[Preorder|order]] family's structure-preserving map
+- [[Injection]] · [[Surjection]] · [[Bijection]] — the cardinality properties
+- [[Involution]] — $f \circ f = \mathrm{id}$
 
-Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphisms]], [[Split-R1CS]].
+Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphisms]], [[Split-R1CS]], [[Function]], [[Subgroups]].
 
-*Still to add: `Homomorphism` — the structure-preserving map in general. [[Ring]] and [[Group Homomorphisms]] both define their own version inline.*
+> [!remark] One structure-preserving map per family
+> Algebra has [[Homomorphism|homomorphisms]], orders have [[Monotonicity|monotone maps]], categories have functors. A [[Morphism|morphism]] is *not* one of these: it is an arrow in an abstract [[Category]] and need not be a function at all. The two coincide only in a **concrete** category — which is what licenses [[Group Homomorphisms]] to import [[Morphism#Isomorphisms|iso]].
 
-## Norm axioms
+## Metric axioms
 
-Scope: a function $N: V \to \mathbb R$ on a vector space or additive group $V$.
+Scope: a function $d: X \times X \to \mathbb R$ on a set $X$ — or, for the norm forms, $N = \lVert \cdot \rVert : V \to \mathbb R$.
 
-- [[Triangle Inequality]]
-- [[Homogeneity]]
-- [[Positive Definiteness]]
+| axiom | metric form | norm form |
+| --- | --- | --- |
+| [[Positive Definiteness]] | $d(x,y) = 0 \iff x = y$ | $\lVert x \rVert = 0 \iff x = 0$ |
+| [[Triangle Inequality]] | $d(x,z) \leq d(x,y) + d(y,z)$ | $\lVert x + y \rVert \leq \lVert x \rVert + \lVert y \rVert$ |
+| [[Distance Symmetry]] | $d(x,y) = d(y,x)$ | — *automatic* |
+| [[Homogeneity]] | — | $\lVert \alpha x \rVert = \lvert \alpha \rvert \lVert x \rVert$ |
 
-A function satisfying all three is a **norm**; [[Metric Space]] composes them into the distance $d(x, y) = \lVert x - y \rVert$.
+A function satisfying the first three is a **metric**; one satisfying positive definiteness, the triangle inequality and homogeneity is a **norm**, and $d(x,y) = \lVert x - y \rVert$ makes every normed space a [[Metric Space|metric space]].
 
-Consumers: [[Metric Space]], [[Inner-Product Spaces]], [[Lattices]] and everything under `structures/lattices/`, and — the reason this library is not under `algebra/` — [[Code Distance]] and [[Rank Metric Codes]], which already generalise to "an arbitrary norm $\omega$".
+> [!remark] Homogeneity buys symmetry
+> A norm needs no symmetry axiom: $d(y,x) = \lVert y - x \rVert = \lVert -(x-y) \rVert = \lVert x - y \rVert = d(x,y)$, by [[Homogeneity]] at $\alpha = -1$. That is the one axiom the metric family has and the norm family does not.
+
+> [!remark] Non-negativity is a theorem
+> $d(x,y) \geq 0$ is **not** an axiom — it follows from the other three: $0 = d(x,x) \leq d(x,y) + d(y,x) = 2\,d(x,y)$. It belongs in [[Metric Space]] as a proposition, never inside a definition callout.
+
+Consumers: [[Metric Space]], [[Inner-Product Spaces]], [[Lattices]] and everything under `structures/lattices/`, and — the reason this library is not under `algebra/` — [[Code Distance]], [[Rank Metric Codes]], and [[Statistical Distance]], since total variation distance is itself a metric.
 
 ## Related
 

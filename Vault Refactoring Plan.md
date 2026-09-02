@@ -61,14 +61,13 @@ Six checks: broken links, duplicate names, callout-title mismatch, empty notes, 
 
 # Now — clear Checkpoint A, finish Batch B
 
-Three floor items plus the last of Batch B. Paste-ready text in the checkpoint report and [[Foundation Layer]]; ~25 minutes.
+Two floor items plus the last of Batch B — unchanged for three passes. Paste-ready text in the checkpoint report and [[Foundation Layer]]; ~15 minutes.
 
 | # | task |
 | --- | --- |
 | **A5** | **Link the Cartesian product.** [[Set Operation]] has zero inbound links — the definition is restored but unreachable, so rule 5 is still violated. Add links from [[Set]], [[Relation]], [[Binary Operation]], [[Function]] |
 | **A6** | **Define union, intersection, difference, disjoint union.** They exist only as rows in a symbol table, yet the whole law table is written in them. Same bug as the missing product, one layer up |
-| **A7** | **Fix the false law.** $A - (B - C) = (A - B) \cup C$ fails 296 of 512 triples over subsets of $\{1,2,3\}$. Correct: $(A - B) \cup (A \cap C)$ |
-| **B3** | Last of Batch B: **G1** stray `,Reference:` at the top of [[Binary Operation]] · **G2** its `### Many-Sorted Operation` section is still inline, now duplicating [[Many-Sorted Operation]] — delete it, leave a one-line pointer · **G3** [[Many-Sorted Operation]] still lacks the sorts-are-labels remark, the small / locally-small caveat, and the Birkhoff–Lipson reference |
+| **B3** | Last of Batch B: **G1** stray `,Reference:` at the top of [[Binary Operation]] · **G3** [[Many-Sorted Operation]] still lacks the sorts-are-labels remark, the small / locally-small caveat, and the Birkhoff–Lipson reference |
 
 Riding along whenever you next touch these notes: Famous Sets belongs in [[Set]] not [[Set Operation]]; Disjoint should move the other way (it uses $\cap$); the law table sits under `## Notation` but is a `## Property`; "are **equals**" → "are equal"; $P(S)$ → $\mathcal P(S)$; [[Set Foundation]]'s `## Basic Definition` is an empty heading.
 
@@ -82,8 +81,8 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 
 | #     | task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | est    |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| **C** | **`norm/` → `metric/` merge landed.** Remaining: create `Homomorphism` in `map/` (drafts + the [[Morphism]] bridge in *homomorphism-and-morphism.md*, 2026-09-02); create `Distance Symmetry`; **delete [[Positive Definiteness]]'s derivable first bullet** $\lVert x \rVert \geq 0$ — still there; fill the empty `map/Monotonicity.md`; delete the stray `metric/Untitled.md`; add the `### Metric Form` / `### Norm Form` sections                                                                                                                                                                          | 45 min |
-| **D** | **The payoff — rewire consumers.** Absorbs 1.12–1.15, 5.4, 5.4b, 5.5, 6.5: the Magma→Group chain drops its [[Closure]] links and [[Group]]'s Semigroup bug; [[Group]]/[[Field]] cancellation → `Cancellativity`; [[Group Homomorphisms]]/[[Ring]]/[[Linear Maps]]/[[Subgroups]] → `Homomorphism`; [[Metric Space]] split normed-group vs metric; [[Code Distance]], [[Rank Metric Codes]], [[Statistical Distance]] → metric axioms; [[Set Operation]] laws → the five axioms; [[Calculus Functions]] → `Monotonicity`; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]] | 2–3 h  |
+| **C** | **[[Homomorphism]] and [[Distance Symmetry]] created; `norm/` → `metric/` complete.** Remaining, all from the review of 2026-09-02: **R1** [[Positive Definiteness]] does not type-check — `d(x,x) ⟺ x = 0` is not a proposition and presumes a zero the Scope has not got · **R2** the norm forms of [[Positive Definiteness]] and [[Triangle Inequality]] vanished in the merge, so *"a norm is…"* is no longer composable — add `### Norm Form` to each · **R3–R6** [[Distance Symmetry]] "is symmetry" → "is symmetric"; [[Monotonicity]] still 0 bytes; [[Connexity]]'s body still says "total"; small wording in [[Homomorphism]] | 30 min |
+| **D** | **The payoff — rewire consumers.** Absorbs 1.12–1.15, 5.4, 5.4b, 5.5, 6.5: the Magma→Group chain drops its [[Closure]] links and [[Group]]'s Semigroup bug; [[Group]]/[[Field]] cancellation → `Cancellativity`; [[Group Homomorphisms]]/[[knowledge/math/algebra/structures/rings/Ring]]/[[Linear Maps]]/[[Subgroups]] → `Homomorphism`; [[Metric Space]] split normed-group vs metric; [[Code Distance]], [[Rank Metric Codes]], [[Statistical Distance]] → metric axioms; [[Set Operation]] laws → the five axioms; [[Calculus Functions]] → `Monotonicity`; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]] | 2–3 h  |
 | **E** | [[Connexity]] → `Connexity` (three live senses of "total" after B1) · the clone-and-edit slips (2.10) · [[Algebra Structure]] axiom index + frontmatter (1.6, 1.10)                                                                                                                                                                                                                                                                                                                                                                                                                                             | 45 min |
 
 ## Algebra structures
@@ -176,10 +175,10 @@ Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for pr
 
 # Appendix A — audit snapshot
 
-`python scripts/vault-lint.py`, 2026-08-29 · 546 notes in `knowledge/`.
+`python scripts/vault-lint.py`, 2026-09-02 · 548 notes in `knowledge/`.
 
 ```
-broken=13  dupe=0  title=26  empty=38  hollow=115  orphan=94
+broken=13  dupe=0  title=26  empty=38  hollow=115  orphan=95
 ```
 
 **broken (13)** — all genuine, none new. `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Complex Hilbert Space` · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Zyalov Bound` (→ **Zyablov**) · `Zero-knowledge MOC` (task 8.9) · the `a`/`b`/`c` accidents (0.10). The dead `Function` link in [[Prime]] is gone — resolved by the `Function between Sets` → [[Function]] rename.
@@ -206,7 +205,7 @@ Trend — orphans 163 → 73 → 64 → 89 → 94; broken 25 → 19 → 14 → 1
 **Phase 9** 9.1–9.4 · 9.8 · 9.12 *(`scripts/vault-lint.py`)*
 **Phase 10** 10.1 · 10.2
 **Phase 11** 11.1 · 11.2 · 11.3 · 11.4 · 11.6
-**Phase 12** Batch 0 · A1–A4 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`)
+**Phase 12** Batch 0 · A1–A4 · A7 *(false set law)* · G2 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`, `Homomorphism`, `Distance Symmetry`, the `norm/` → `metric/` merge) · **E1** [[Connexity]] rename
 
 **Findings closed:** C1–C5 · D1–D13 · E1 · E3–E9 · F2–F7 · N5 · N6 · N9 · N11 · N13
 

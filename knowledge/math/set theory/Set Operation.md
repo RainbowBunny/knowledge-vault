@@ -10,20 +10,41 @@
 > [!remark] Why this definition carries the vault
 > Every Scope line in `properties/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
 
-### Power Set
+### Union
 
-> [!definition] Power Set
-> The **power set** of $S$, written $P(S)$ or $2^S$, is the set of all subsets of $S$.
+> [!definition] Union
+> The **union** of two sets $S$ and $T$ denoted $S \cup T$ is the set consisting of all elements in either $S$ or $T$. 
+
+### Intersection
+
+> [!definition] Intersection
+> The **intersection** of two sets $S$ and $T$ denoted $S \cap T$ is the set consisting of all elements that in both $S$ and $T$.
+
+### Difference
+
+> [!definition] Difference
+> The **difference** of set $S$ and set $T$ denoted $S \setminus T$ (or $S - T$) is the set consisting of all elements of $S$ which are **not** in $T$.
 
 ### Complement
 
 > [!definition] Complement
-> The **complement** of a subset $T$ in a set $S$ is the difference set $S \setminus T$ consisting of all elements of $S$ which are **not** in $T$.
+> The **complement** of a subset $T$ of a universal set $S$ is the difference set $S \setminus T$.
+
+### Disjoint Union
+
+> [!definition] Disjoint Union
+> The **disjoint union** of set $S$ and set $T$ denoted as $S \; \Pi \; T$ is the set consisting of all elements that only in $S$ or only in $T$.
 
 ### Partition
 
 > [!definition] Partition
 > A collection of nonempty sets $A_1, A_2, \cdots$ is a **partition** of a set $A$ if they are disjoint and their union is $A$.
+
+### Power Set
+
+> [!definition] Power Set
+> The **power set** of $S$, written $P(S)$ or $2^S$, is the set of all subsets of $S$.
+
 
 ## Notation
 
