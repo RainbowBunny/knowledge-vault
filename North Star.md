@@ -27,6 +27,44 @@ A definition *links* its axioms and never restates them. `## Syntax` in a crypto
 
 Formal systems (first-order logic, equational logic, type theory, security games) are **content, not the medium**: the vault is written in informal-rigorous prose, states each concept once in its home system, and writes bridges where representations meet. Conflicts between systems are resolved by one remark at the boundary where they bite.
 
+## Class and instance
+
+The crypto side's `## Syntax` / `## Scheme` split is one case of a pattern that runs through the whole vault, and Lean's vocabulary names all of it:
+
+| Lean | vault | example |
+| --- | --- | --- |
+| `class` with data | a **structure** note — carriers, operations, axioms | [[Ring]], [[Public-Key Encryption]], [[Metric Space]] |
+| `class … : Prop` — a **mixin**, one axiom, no data | a note in `properties/` | [[Associativity]], [[Cancellativity]], [[Soundness]] |
+| `extends` | **`Extends:`** — this interface *is* that one, plus a condition | [[Group]] over [[Monoid]]; [[Argument Systems]] over [[Interactive Proof Systems]] |
+| `instance` | **`Instantiates:`** — a concrete witness | [[Polynomial Ring]] : [[Ring]]; [[Kyber PKE]] : [[Public-Key Encryption]] |
+| a `def` on structures | a **Transform** note | [[Fiat-Shamir Transform]], [[Fujisaki-Okamoto Transformation]] |
+| `theorem` | `## Property` / `## Security` | correctness, an IND-CPA reduction |
+| `variable` / arguments | the `Setting` block, or the `### Scope` line | $R_q$; a group $\mathbb G$ of prime order |
+| `Iff` | a **Bridge** | [[R1CS to QAP Reduction]] |
+
+The strongest part is the middle row, because it is not an analogy: `properties/` **is** the mixin folder. Mathlib defines `IsDomain` as a `Prop` mixin extending `IsCancelMulZero` and `Nontrivial` — which is exactly *a nonzero ring whose nonzero elements are cancellative*, the composed definition of [[Integral Domain]] this vault already wants. Independent convergence is the best evidence the shape is right. **[Standard]**
+
+It also says when to stop: **a mixin declares no carriers.** If a note in `properties/` starts introducing a set or an operation of its own, it has become a class and belongs in `structures/`.
+
+### Carried by four fields, not by rewriting
+
+The semantics live in four optional header lines, not in renamed headings:
+
+```
+Extends:      [[Monoid]] + [[Inverse Element]]
+Instantiates: [[Public-Key Encryption]]
+Requires:     [[Extendable Output Function]]
+Reference:    <source>
+```
+
+`Extends` is inheritance, `Instantiates` is a witness, `Requires` is a `Building Blocks` dependency. All three are wikilinks, so the class graph, the instance graph and the dependency graph become queryable and lintable. `## Definition`, `## Syntax` and `## Scheme` stay exactly as they are.
+
+### Where the analogy does not reach
+
+- **Most of the vault is not a structure.** About 200 of 557 notes are — `math/properties/`, `math/algebra/structures/`, `math/set theory/`, `cryptography/primitive/`, `verifiable computing/`. The other ~350 are *problems* (SVP, discrete log), *algorithms* (LLL, the `cs/` notes), *theorems*, hubs, language references and narrative. A problem is not a class; do not give it an `Instantiates:` line to be consistent.
+- **There is no instance resolver here.** Lean spends real machinery on diamonds — [[Field]] inherits [[Ring]] by two routes and the compiler reconciles them. In prose those are just two links, and the shared ancestor is invisible. Copying `extends` without a resolver means noticing diamonds is *your* job.
+- **Skip the bundled/unbundled question entirely.** It is an artefact of Lean's elaborator, not a fact about mathematics.
+
 ## The precision skeleton
 
 Prose is free everywhere **except five places**. These get checked; everything else is voice:

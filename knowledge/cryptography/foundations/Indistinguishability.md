@@ -28,20 +28,16 @@ dg-publish: true
 > \right|.
 > $$
 
-### Perfect
+> [!definition] Algorithms Distribution
+> Consider a probabilistic algorithm $U$. We write $U_x$ as the probability distribution of $U$'s output, on input $x$. 
 
-> [!definition] Perfect Indistinguishability
-> $P_0$ and $P_1$ are perfect indistinguishability if their distribution is the same.
-
-### Computational
-
-> [!definition] Computational Indistinguishability
-> $P_0$ and $P_1$ are **computationally indistinguishable** if $\mathsf{Adv}_{P_0, P_1}^{q\mbox{-}\mathsf{Dist}}(\mathcal A)$ is negligible for all efficient adversaries.
-
-### Statistical
-
-> [!definition] Statistical Indistinguishability
-> $P_0$ and $P_1$ are **statistically indistinguishable** if the [[Statistical Distance]] $\Delta[P_0, P_1]$ is negligible.
+> [!definition] Indistinguishability
+> Given two probabilistic algorithms (or families of distributions) $U, V$, we say that
+> - $U, V$ are perfectly indistinguishable, written $U \sim^p V$, if $U_x = V_x$ for every $x$.
+> - $U, V$ are statistically indistinguishable, written $U \sim^s V$, if the [[Statistical Distance]] $\Delta[U_x, V_x]$ is [[Negligible Function]] in the length of $x$.
+> - $U, V$ are computationally indistinguishable, written $U \sim^c V$ iff for any [[PPT]] $D(U)$ that takes input $(x, U(x))$ we have $D(U) \sim^s D(V)$.
+> 
+> Sometimes, we do not want to consider how $U, V$ behave on arbitrary input $x$, but only when $x$ is in some language $L$. We then say, e.g. $U \sim^c V$ on input $x \in L.$
 
 ## Property
 

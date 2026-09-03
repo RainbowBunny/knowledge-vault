@@ -113,6 +113,21 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 
 Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for products and coproducts are in the conversation of 2026-08-24.
 
+## Class / instance rollout — Batch X
+
+The correspondence table is in [[North Star]] § *Class and instance*. The rule that keeps this cheap: **the semantics go in four header fields, not in renamed headings.** `## Definition`, `## Syntax` and `## Scheme` do not move.
+
+| # | task | est |
+| --- | --- | --- |
+| **X1** | *(mine, on your word)* **Pilot on 12 notes** — add the fields to one of each shape and nothing else: [[Ring]], [[Group]], [[Field]] (`Extends:`) · [[Polynomial Ring]], [[Kyber PKE]], [[Shamir Secret Sharing]] (`Instantiates:`) · [[Associativity]], [[Cancellativity]] (mixins, no field needed — confirming they need none is the point) · [[Fujisaki-Okamoto Transformation]], [[Fiat-Shamir Transform]] (`Transforms:`) · [[Argument Systems]], [[Puncturable Pseudorandom Function]] (`Extends:` across the crypto side). You judge, then it rolls out lazily | 30 min |
+| **X2** | **Backfill `Instantiates:`** across `schemes/` (~40 notes) and `structures/…/examples/` (~15). One line each, added as you touch a note. This is the field that pays first: [[Public-Key Encryption]] currently cannot list its own instances | lazy |
+| **X3** | **Backfill `Extends:`** on the algebra spine and the crypto refinements. Watch for **diamonds** — [[Field]] reaches [[Ring]] two ways and nothing here will tell you. Where a diamond exists, say so in a `[!remark]`; that is the substitute for an instance resolver | lazy |
+| **X4** | *(mine)* **Lint the fields**: every `Instantiates:` target has a `## Syntax` or `## Definition`; every `Requires:` bullet is a wikilink; flag a note in `properties/` whose definition introduces a carrier (it has stopped being a mixin) | 45 min |
+
+**Scope, stated so it does not creep.** About **200 of 557** notes are structures. The other ~350 are problems ([[Closest Vector Problem]], [[Discrete Logarithm Problem]]), algorithms ([[LLL Lattice Reduction Algorithm]] and most of `cs/`), theorems, the 48 MOCs, `language/`, `security/`. **A problem is not a class.** Do not add a field to be consistent.
+
+**Why fields and not a rewrite.** The `Basic Definition` → `Definition` pass touched 139 files and made the vault no more correct, only better named — which was the right trade there because it was one word. "Rewrite everything in class syntax" is the same trade at 200× the size, and the value is not in the words. It is in the three graphs the fields make queryable: *what extends what*, *what instantiates what*, *what depends on what*. Those you cannot get from a heading rename at any price, and you can get them from four lines added lazily.
+
 ## Cryptography — scheme form and party views
 
 Specification, templates and the full audit in [[Cryptography Layer]]; its Status block tracks the batches. Findings are **V1–V12**, batches **K1–K6**.

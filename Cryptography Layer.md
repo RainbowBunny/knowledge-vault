@@ -23,15 +23,15 @@ Counts from a full walk of `knowledge/cryptography/` (40 notes carrying a `[!sch
 
 You never wrote this rule, but you have followed it without a single exception:
 
-| | `## Syntax` | `## Scheme` |
-| --- | --- | --- |
-| **declares** | the tuple of algorithms and the spaces they range over | concrete code for **one** instance of that tuple |
-| **callout** | `[!definition]` | `[!scheme]` |
-| **who quantifies over it** | other notes — *"for every PKE scheme…"* | nobody; it is a leaf |
-| **proof obligation** | none — it is a stipulation | correctness, **and** a security reduction |
-| **lives in** | the primitive folder | `schemes/` or `scheme/` under it |
-| **math analogue** | the **signature** — the `### Scope` line | a **model** — `rings/examples/` |
-| **Lean analogue** | `class` | `instance` |
+|                            | `## Syntax`                                            | `## Scheme`                                      |
+| -------------------------- | ------------------------------------------------------ | ------------------------------------------------ |
+| **declares**               | the tuple of algorithms and the spaces they range over | concrete code for **one** instance of that tuple |
+| **callout**                | `[!definition]`                                        | `[!scheme]`                                      |
+| **who quantifies over it** | other notes — *"for every PKE scheme…"*                | nobody; it is a leaf                             |
+| **proof obligation**       | none — it is a stipulation                             | correctness, **and** a security reduction        |
+| **lives in**               | the primitive folder                                   | `schemes/` or `scheme/` under it                 |
+| **math analogue**          | the **signature** — the `### Scope` line               | a **model** — `rings/examples/`                  |
+| **Lean analogue**          | `class`                                                | `instance`                                       |
 
 **[Vault-local]**, but principled. The reason to keep two words rather than collapsing both to `## Definition` (which is what the math side does) is that they carry *different obligations*. A `## Syntax` block hands other notes names to bind — the moment you write it, `## Security` sections elsewhere can say "for all $\text{PKE}$". A `## Scheme` block hands you code, and code owes you a correctness statement and a reduction. One glance at the heading tells a reader whether they are looking at an interface or an implementation.
 
