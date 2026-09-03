@@ -10,8 +10,48 @@
 
 
 
+## One-wayness CPA (OW-CPA)
+
+> [!definition] OW-CPA
+> The adversary is given 
+> $$pk, c^* = \mathsf{ENC}(pk, m^*)$$
+> Security:
+> $$\Pr[\mathcal{A}(pk,c^*) = m^*] < \mathsf{negl}(\lambda)$$
+
+## One-wayness PCA
+
+> [!definition] OW-PCA
+> Same as OW-CPA with an additional additional oracle answer:
+> $$\mathsf{Pco}(c,m)=
+\begin{cases}
+1, & \text{if } \mathsf{Dec}(sk,c)=m,\\
+0, & \text{otherwise}.
+\end{cases}$$
+> Security:
+> $$\Pr[\mathcal{A}(pk,c^*) = m^*] < \mathsf{negl}(\lambda)$$
 
 
+
+
+## IND-CPA Expriment
+
+> [!definition] $\mathbf{G}^\mathsf{IND-CPA}_{\mathcal{A},\mathsf{P}}$
+> 1: $(pk,sk) \leftarrow \mathsf{Gen}$
+> 2: $b \leftarrow^\$ \{0,1\}$
+> 3: $(m_0^*,m_1^*) \leftarrow \mathcal{A}(pk)$
+> 4: $c := \mathsf{Enc}_{pk}(m_b^*)$
+> 5: $b'\leftarrow \mathcal{A}(pk, c^*)$
+> 6: __return__ $b'=b$
+
+## IND-CCA Kem Expriment
+
+> [!definition] $\mathbf{G}^{\mathsf{IND\text{-}CCA}}_{\mathcal{A},\mathsf{KEM}}$
+>
+> | $\mathbf{G}^{\mathsf{IND\text{-}CCA}}_{\mathcal{A},\mathsf{KEM}}$ | $\mathsf{oDeca}(c)$ |
+> |---|---|
+> | 1: $(pk,sk) \leftarrow \mathsf{Gen}$ <br> 2: $b \leftarrow^\$ \{0,1\}$ <br> 3: $(k_0,c^*) \leftarrow \mathsf{Enca}(pk)$ <br> 4: $k_1 \leftarrow^\$ \mathcal{K}$ <br> 5: $b' \leftarrow \mathcal{A}^{\mathsf{oDeca}}(pk,c^*,k_b)$ <br> 6: **return** $b'=b$ | 1: **if** $c=c^*$ <br> 2: $\quad$ **return** $\bot$ <br> 3: **else return** $\mathsf{Deca}(sk,c)$ |
+
+ 
 
 
 
