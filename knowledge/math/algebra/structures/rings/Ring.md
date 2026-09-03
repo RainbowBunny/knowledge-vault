@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Ring
 > A **ring** is a set $R$ that has two operations, which we denote by $+: R \times R \rightarrow R$ and $*: R \times R \rightarrow R$ where $R$ is an [[Abelian Group]] under $+$ and a [[Monoid]] under $*$. Also, $+$ and $*$ satisfies [[Distributivity]].

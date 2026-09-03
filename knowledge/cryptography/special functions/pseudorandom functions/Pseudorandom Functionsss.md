@@ -6,7 +6,7 @@
 | Prefix Free PRF                                  | [[#Secure Prefix-free PRF\|secure prefix-free PRF]]          | $\text{PRF}^{pf}\text{adv}$ |
 | Attack Game 8.4 (PRF in the Random Oracle Model) | [[#PRF in the Random Oracle Model\|random oracle model PRF]] | $\text{PRF}^{ro}\text{adv}$ |
 
-## Basic Definition
+## Definition
 
 > [!definition] Pseudo-Random Function
 > A **pseudo-random function (PRF)** $F$ is a deterministic algorithm that has two inputs: a key $k$ and an **input data block** $x$; its output $y = F(k, x)$ is called an **output data block**. As usual, there are associated, finite spaces: the key space $\mathcal K$, in which $k$ lies, the input space $\mathcal X$, in which $x$ lies, and the output space $\mathcal Y$, in which $y$ lies. We say that $F$ is **defined over** $(\mathcal K, \mathcal X, \mathcal Y)$.

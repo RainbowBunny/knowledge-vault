@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Odd, Even Function
 > Let $f$ be a function whose domain contains $-x$ whenever it contains $x$. We say that $f$ is an **even** function if $f(-x) = f(x)$ and an **odd** function if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.

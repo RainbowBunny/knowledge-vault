@@ -1,5 +1,5 @@
 Reference: https://people.csail.mit.edu/vinodv/CS294/lecture3.pdf
-## Basic Definition
+## Definition
 
 > [!definition] Lattice Duality
 > For a rank-$n$ lattice $\mathcal L$, its dual denoted $\mathcal L^*$ is defined as

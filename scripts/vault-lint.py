@@ -70,6 +70,8 @@ def main():
     base = defaultdict(list)
     for p in every:
         base[os.path.splitext(os.path.basename(p))[0]].append(p)
+    # normalised path index, so full-path links are checked as paths, not basenames
+    pathset = set(os.path.normpath(p).replace(os.sep, '/') for p in every)
 
     files = list(walk(scope))
     fileset = set(files)
@@ -86,7 +88,13 @@ def main():
             if not t:
                 continue
             b = os.path.basename(t)
-            if b in base:
+            if '/' in t:
+                # Obsidian resolves a link containing a slash as a path, not a basename
+                cand = os.path.normpath(t).replace(os.sep, '/')
+                hit = (cand + '.md') in pathset or cand in pathset
+            else:
+                hit = b in base
+            if hit:
                 inbound[b] += 1
             else:
                 broken[t].append(p)

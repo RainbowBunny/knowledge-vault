@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!lemma] Schwartz-Zippel Lemma
 > Let $p$ be a prime and let $f \in \mathbb{Z}_p[x_1, \dots, x_n]$ be a [[Multivariate Polynomial]] of total degree $d$, not identically zero. Then,

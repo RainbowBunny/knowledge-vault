@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Set
 > A **set** is a collection of things (elements).

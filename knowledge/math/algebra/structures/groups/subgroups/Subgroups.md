@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Subgroup
 > A subgroup is a subset $H$ of a [[Group]] $(G, \star)$ that is also a group. 

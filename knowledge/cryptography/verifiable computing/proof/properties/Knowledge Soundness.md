@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!remark]
 > Knowledge Soundness means to proof a statement, you need to know the witness.

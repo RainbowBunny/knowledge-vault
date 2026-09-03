@@ -13,16 +13,17 @@ One connected reference for everything I learn. When something new arrives, the 
 
 ## The method — signature and structure
 
-Every piece of knowledge is one of four kinds:
+Every piece of knowledge is one of five kinds:
 
 | kind | what it is | lives in | examples |
 | --- | --- | --- | --- |
 | **Object** | the raw typed things | `math/set theory/` | [[Relation]], [[Binary Operation]], [[Function]] |
 | **Property** | one axiom, stated once, in the Scope / Condition / Property shape | `math/properties/`, `proof/properties/` | [[Associativity]], [[Soundness]] |
 | **Structure / scheme** | object + chosen properties, **composed by links** | `structures/`, `primitive/`, `proof/` | [[Group]], [[Non-interactive ARGument]] |
-| **Bridge** | a translation between two representations | wherever its ends are | [[R1CS to QAP Reduction]], [[Fiat-Shamir Transform]] |
+| **Bridge** | a *translation* — two representations of the same thing, stated as an equivalence | wherever its ends are | [[R1CS to QAP Reduction]], [[Statistical Distance]] ↔ [[Indistinguishability]] |
+| **Transform** | a *construction* — give it an $X$, it builds a $Y$. One direction, and it costs a loss factor | filed under the **output** | [[Fiat-Shamir Transform]], [[Fujisaki-Okamoto Transformation]] |
 
-A definition *links* its axioms and never restates them. `## Syntax` in a crypto note and `### Scope` in a math note are the same slot. A property becomes an axiom only when a definition requires it — which is why the folder is `properties/`, not `axioms/`.
+A definition *links* its axioms and never restates them. `## Syntax` in a crypto note and `### Scope` in a math note are the same slot. Bridge and Transform are told apart by the **loss factor**: an equivalence is a bridge, a multiplicative constant in the theorem is a transform. A transform's inputs sit in its `Building Blocks` block, universally quantified, and each one must reappear in `## Security` as a hypothesis. A property becomes an axiom only when a definition requires it — which is why the folder is `properties/`, not `axioms/`.
 
 Formal systems (first-order logic, equational logic, type theory, security games) are **content, not the medium**: the vault is written in informal-rigorous prose, states each concept once in its home system, and writes bridges where representations meet. Conflicts between systems are resolved by one remark at the boundary where they bite.
 
@@ -36,6 +37,14 @@ Prose is free everywhere **except five places**. These get checked; everything e
 4. **Side conditions in the Condition slot** — "nonzero" is a condition, not an equation.
 5. **Dependencies are links** — a concept a definition uses but cannot link is a *detected gap*: create the note.
 
+## Note sections
+
+`## Definition` holds what you must **stipulate** — the defining callout plus the derived vocabulary that only exists once the object does. `## Property` holds what you can **prove**. Then `## Variant`, `## Example`, `## Related`, with an optional `## Intuition` on top.
+
+On the crypto side the defining slot splits in two, because the two halves carry different obligations. `## Syntax` declares an **interface** — the tuple of algorithms and the spaces they range over, in a `[!definition]`; other notes then quantify over it. `## Scheme` gives an **instance** — concrete code, in a `[!scheme]` — and owes a `## Property`/`### Correctness` plus a `## Security` section whose callout links **up** to the interface's game and **down** to an assumption. Interface is to instance as `class` is to `instance`. Inside the `[!scheme]` callout the **setting** is declared before the algorithms, in slots chosen so each points somewhere different: **Parameters** (knobs, pointing nowhere) · **Setting** (down into `math/`) · **Spaces** (up into the primitive) · **Distribution** · **Building Block** (sideways into another crypto note) · **Parties**. That block is the crypto form of the math side's `### Scope` line — same job, same rule: no algorithm may mention a symbol the setting has not declared. Model: [[Kyber PKE]] against [[Public-Key Encryption]]. Spelled out in [[Cryptography Layer]].
+
+A derived concept graduates to its own note **when a note other than its parent needs to link it** — never as a heading anchor. Heading anchors are invisible to `vault-lint`, break silently on rename, and record the backlink against the wrong concept.
+
 ## Two views
 
 A concept with two equivalent characterizations is stated **once**, in one primary form.
@@ -46,6 +55,8 @@ A concept with two equivalent characterizations is stated **once**, in one prima
 
 Cryptography is dense in these, because a security notion can be phrased as what an adversary cannot do, or as what information is not there — and most foundational results are the theorem that the two coincide.
 
+In multi-party and interactive notes the bridge has a standard form: the **view** of a party, $\mathsf{View}_i = (x_i, r_i, m_i^{(1)}, \dots, m_i^{(\rho)})$, written as a `[!remark]` under `## Syntax`. It is what turns “no party learns anything” into “this tuple is simulatable from strictly less”, and it is the same remark for MPC privacy, zero knowledge and garbling obliviousness. Model: [[Multi-Party Computation]]. Write one only when the security notion actually quantifies over the view — never above a bare soundness section.
+
 ## Intuition
 
 Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — always outside the definition callouts, so the friendly voice never contaminates the skeleton.
@@ -54,7 +65,7 @@ Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — 
 
 1. Enter through a hub: [[Math MOC]] · [[Cryptography MOC]] · [[Complexity MOC]] · [[CS MOC]] · [[Information Theory MOC]] · [[Security MOC]].
 2. Learning something new: name its **objects** → search each → backlinks show everything already known → file what is missing as leaf notes → add one line to the right MOC → if it translates between representations, write the **bridge**.
-3. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].
+3. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]] and its crypto counterpart in [[Cryptography Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].
 4. Before committing: `python scripts/vault-lint.py`. Broken links and duplicate names are always real; the other four checks are smells.
 
 ## Known tensions

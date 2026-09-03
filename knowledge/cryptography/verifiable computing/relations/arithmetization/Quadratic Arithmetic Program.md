@@ -1,6 +1,6 @@
 Reference: https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
 
-## Basic Definition
+## Definition
 
 > [!definition] Quadratic Arithmetic Program
 > A Quadratic Arithmetic Program $\mathbf{Q} = (\mathbf{A}, \mathbf{B}, \mathbf{C}, t)$ over the field $\mathbb F$ for an arithmetic function $f$ takes as input $n$ elements of $\mathbb{F}$ and outputs $n'$ elements, for a total of $N = n + n'$ I/O elements includes:

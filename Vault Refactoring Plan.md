@@ -39,7 +39,7 @@ Anything conversational still works. The triggers exist so you never have to exp
 | --- | --- |
 | Everything in `knowledge/` | **you** — content is yours |
 | MOCs | **me** — say the word and I write or update them |
-| [[North Star]], [[Foundation Layer]], this plan | **me** |
+| [[North Star]], [[Foundation Layer]], [[Cryptography Layer]], this plan | **me** |
 | `scripts/vault-lint.py` | **me** |
 
 ## Before you commit
@@ -61,15 +61,14 @@ Six checks: broken links, duplicate names, callout-title mismatch, empty notes, 
 
 # Now — clear Checkpoint A, finish Batch B
 
-Two floor items plus the last of Batch B — unchanged for three passes. Paste-ready text in the checkpoint report and [[Foundation Layer]]; ~15 minutes.
+One floor item plus the last of Batch B — unchanged for three passes. Paste-ready text in the checkpoint report and [[Foundation Layer]]; ~15 minutes.
 
 | # | task |
 | --- | --- |
 | **A5** | **Link the Cartesian product.** [[Set Operation]] has zero inbound links — the definition is restored but unreachable, so rule 5 is still violated. Add links from [[Set]], [[Relation]], [[Binary Operation]], [[Function]] |
-| **A6** | **Define union, intersection, difference, disjoint union.** They exist only as rows in a symbol table, yet the whole law table is written in them. Same bug as the missing product, one layer up |
 | **B3** | Last of Batch B: **G1** stray `,Reference:` at the top of [[Binary Operation]] · **G3** [[Many-Sorted Operation]] still lacks the sorts-are-labels remark, the small / locally-small caveat, and the Birkhoff–Lipson reference |
 
-Riding along whenever you next touch these notes: Famous Sets belongs in [[Set]] not [[Set Operation]]; Disjoint should move the other way (it uses $\cap$); the law table sits under `## Notation` but is a `## Property`; "are **equals**" → "are equal"; $P(S)$ → $\mathcal P(S)$; [[Set Foundation]]'s `## Basic Definition` is an empty heading.
+Riding along whenever you next touch these notes: Famous Sets belongs in [[Set]] not [[Set Operation]]; Disjoint should move the other way (it uses $\cap$); the law table sits under `## Notation` but is a `## Property`; "are **equals**" → "are equal"; $P(S)$ → $\mathcal P(S)$; [[Set Foundation]]'s `## Definition` is an empty heading.
 
 ---
 
@@ -81,7 +80,7 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 
 | #     | task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | est    |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| **C** | **[[Homomorphism]] and [[Distance Symmetry]] created; `norm/` → `metric/` complete.** Remaining, all from the review of 2026-09-02: **R1** [[Positive Definiteness]] does not type-check — `d(x,x) ⟺ x = 0` is not a proposition and presumes a zero the Scope has not got · **R2** the norm forms of [[Positive Definiteness]] and [[Triangle Inequality]] vanished in the merge, so *"a norm is…"* is no longer composable — add `### Norm Form` to each · **R3–R6** [[Distance Symmetry]] "is symmetry" → "is symmetric"; [[Monotonicity]] still 0 bytes; [[Connexity]]'s body still says "total"; small wording in [[Homomorphism]] | 30 min |
+| **C** | **R1 persists (third pass):** [[Positive Definiteness]] still says `d(x,x) = 0 ⟺ x = 0` — presumes a zero the Scope has not got, and quantifies over the wrong pair, so it never states that distinct points cannot be at distance 0. Should be `∀x,y: d(x,y) = 0 ⟺ x = y`; the `≥ 0` bullet is still the derivable one. Then **R2** the missing `### Norm Form` sections, and [[Monotonicity]] (0 bytes, fourth pass) | 20 min |
 | **D** | **The payoff — rewire consumers.** Absorbs 1.12–1.15, 5.4, 5.4b, 5.5, 6.5: the Magma→Group chain drops its [[Closure]] links and [[Group]]'s Semigroup bug; [[Group]]/[[Field]] cancellation → `Cancellativity`; [[Group Homomorphisms]]/[[knowledge/math/algebra/structures/rings/Ring]]/[[Linear Maps]]/[[Subgroups]] → `Homomorphism`; [[Metric Space]] split normed-group vs metric; [[Code Distance]], [[Rank Metric Codes]], [[Statistical Distance]] → metric axioms; [[Set Operation]] laws → the five axioms; [[Calculus Functions]] → `Monotonicity`; [[Inner-Product Spaces]] → [[Map Symmetry]] + [[Linearity]] + [[Positive Definiteness]] | 2–3 h  |
 | **E** | [[Connexity]] → `Connexity` (three live senses of "total" after B1) · the clone-and-edit slips (2.10) · [[Algebra Structure]] axiom index + frontmatter (1.6, 1.10)                                                                                                                                                                                                                                                                                                                                                                                                                                             | 45 min |
 
@@ -114,7 +113,24 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 
 Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for products and coproducts are in the conversation of 2026-08-24.
 
-## Cryptography
+## Cryptography — scheme form and party views
+
+Specification, templates and the full audit in [[Cryptography Layer]]; its Status block tracks the batches. Findings are **V1–V12**, batches **K1–K6**.
+
+**V11 settled 2026-09-03:** slots are real `###` headings under `## Scheme`, one `[!scheme]` callout each — [[Kyber PKE]] is the model, worked through in §2.5. Consequence: `[!scheme]` no longer counts schemes; the `## Scheme` heading does.
+
+| # | task | est |
+| --- | --- | --- |
+| **K2b** | **Split the setting slots (V12).** Inside `[!scheme]`, `Parameters` is doing three jobs at once. Proposed slots, each pointing somewhere different: **Parameters** (nowhere — knobs) · **Setting** (down into `math/`: $R_q$, the group, the pairing) · **Spaces** (up into the primitive) · **Distribution** (down into `math/probability/`) · **Building Block** (sideways into another crypto note) · **Parties** (into the view remark) · **Statement** (into `relations/`) · **Algorithms**. You already split it twice under local names — `Ring and Modulus`/`Dimensions`/`Messages` in [[Module HGSW]], `Plaintext Space`/`Key Space` in the textbook notes. Start with [[Kyber PKE]]: $\text{Compress}_q$ and $\text{Decompress}_q$ are `Setting`, not `Building Block` | 20 min + lazy |
+| **K2** | *(mine, on your word)* Mechanical: **V12** naming — `Algorithm` → `Algorithms` (4 notes), and `Building Block` ↔ `Building Blocks` once you pick one (vault leans singular 26–4, your new [[Kyber PKE]] uses plural) · **V1** rename `## Encryption Scheme`/`## Signature Scheme` → `## Scheme` and `[!algorithm]` → `[!scheme]` in 10 textbook notes · **V2** fix 9 `[!scheme]` callouts sitting under an h1 / `## Syntax` / orphan h3 · **V10** `Link:` → `Reference:`. No content touched | 15 min |
+| **K7** | **Transforms (V13).** A `## Syntax` note *with* `Building Blocks` is a **transform**, not a plain primitive — its blocks are universally quantified and each owes a hypothesis in `## Security`. [[Fujisaki-Okamoto Transformation]] has four blocks and **no security section at all**; [[From Collision Resistance]] is 132 B. Also: [[Public-Key Encryption]] (17 KB) hides three transforms inside the interface note — TDF→PKE, plus the RSA and ElGamal case studies, each with its own loss factor. [[North Star]] now lists Transform as a fifth kind | 45 min |
+| **K3** | **The gate.** Only **4 of 40** scheme notes carry the full Kyber shape; `## Property` appears in 8, `### Correctness` in 5, `[!security]` in 5. Walk the 40 and mark each **spec** (owes correctness + a security reduction) or **recipe** (owes nothing beyond `## Scheme`). Everything after this depends on the answer | 30 min |
+| **K4** | **Party views (V7, ~16 notes).** Start with [[Interactive Proof Systems]] — it already writes $\text{View}_{\hat{\mathcal V}}$ inside its zero-knowledge definition without defining it. Then [[Secure Multi-party Computation]], then lazily. Standardise on $\mathsf{View}$ | 20 min + lazy |
+| **K5** | **V4/V9 — the biggest structural distortion.** Four signature schemes hide inside encryption notes ([[RSA Public Key Cryptosystem]], [[ElGamal Public Key Cryptosystem]], [[NTRU Public Key Cryptosystem]], [[GGH Public Key Cryptosystem]]) while [[Digital Signature]] is a 240 B stub and [[Old Digital Signature]] holds 20 KB of security model. Extract four notes into `digital signatures/schemes/`; fold the security model into [[Digital Signature]] | an afternoon |
+| **K6** | **V5** adopt `## Cryptanalysis` as the slot for attacks (10 places invent a heading; the four classical ciphers' `## Security` is a break, not a game) · **V6** stubs: [[Merkle Tree]] 40 B is load-bearing for [[Kilian Interactive Argument of Knowledge from PCP]] · **V8** [[Dilithium]] is one heading from complete · add `Instantiates:` lines | lazy |
+| **K2c** | **[[Kyber PKE]] finish** — draft in [[Cryptography Layer]] §2.5: add a `### Setting` block **first** (it currently uses $R_q$, $\mathbb Z_q$, $\mathcal M$, $\bmod^{\pm}$, $\|\cdot\|_\infty$ without declaring any of them) · move $\text{Compress}_q$/$\text{Decompress}_q$ out of Building Blocks into Setting, leaving Building Blocks **links only** · spell the reference name $\mathsf{Kyber.PKE}$ in all three places · $\text{Adv}$ → $\mathsf{Adv}$. Two missing notes fall out: `Extendable Output Function` (broken link, also from [[Keccak]]) and `Quotient Ring` (a heading inside [[knowledge/math/algebra/structures/rings/Ring]], never promoted) | 15 min |
+
+## Cryptography — content
 
 | # | task |
 | --- | --- |
@@ -147,10 +163,15 @@ Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for pr
 | 9.6 | Sub-MOC top-ups for pre-existing orphans: [[Assumptions MOC]] (5), [[Linear Algebra MOC]] ([[Dual Bases]]), [[Calculus MOC]] ([[Fourier Analysis]]), [[Probability MOC]] ([[Bernoulli Distribution]]), [[Threshold MOC]] (2) |
 | 9.6b | *(mine, on request)* Fold the newer notes into MOCs: [[Assumption Taxonomy]], [[Privacy Amplification]], [[Alekhnovich Encryption Scheme]], [[Identical Partly Secret Sharing]], [[Reed-Solomon]], [[Ambiguous Coding]], [[Digital Signature]], [[Quantum State]], [[Quantum Circuits]], `physics/` |
 | 9.5 | Frontmatter — **decided: drop.** Remove `parent:` from `templates/default.md`, strip from the notes carrying it, delete `Fleeting MOC` |
+| S1 | [[Ring]] has **two** `[!definition] Unit` callouts — delete the old one-liner under `### Quotient rings` |
+| S2 | **Six full-path wikilinks with unique basenames** — [[Field]], [[Polynomial]], [[Division Ring]], [[Cyclic Codes]], [[Information Theory MOC]], [[Post-Quantum Cryptography MOC]]. Two render the whole path on the page. Full paths are correct *only* where the basename is ambiguous, as in `security/`'s eleven `CTF Challenges`. **Plus 8 dead `[[daily/Temp/PPT]]` links** in [[Negligible Function]], [[Puncturable Pseudorandom Function]], [[Special Functions]] (×3), [[Interactive Proof Systems]], [[Succinctness]] — the note now lives at `cryptography/foundations/PPT.md`, so these should be plain `[[PPT]]` |
+| S3 | Promote **`Unit`** and **`Zero Divisor`** out of [[Ring]] into `rings/` — [[Field]] and [[Division Ring]] currently link the heading anchor `Ring#Unit`, which the linter cannot see |
+| S4 | `Rings of Power Series` is **0 bytes** — fill or delete *(the two h3 headings and `Monoid Ring` are done)* |
+| S5 | [[Integral Domain]] could compose from [[Cancellativity]] — *a nonzero commutative ring whose nonzero elements are cancellative* |
 | 9.7 | `Pseudorandom Functionsss` duplicate; [[Universal Hash Functions]] empty; [[Special Functions]]' empty `### Prefix-Free` / `### Unpredictability` |
 | 9.11 | Adopt the `## Intuition` convention (nLab *Idea*), backfilled lazily |
 | 10.3 | The AHE near-duplicate pair — `Additively-Homomorphic Encryption` (information theory) vs `Additive-Homomorphic Encryption` (crypto). One letter apart, different folders |
-| 10.4 | `post-quantum/lattice-based/Lattice.md` has an **empty** `## Basic Definition` and one trapdoor lemma → rename `Lattice Trapdoors`, link [[Lattices]] |
+| 10.4 | `post-quantum/lattice-based/Lattice.md` has an **empty** `## Definition` and one trapdoor lemma → rename `Lattice Trapdoors`, link [[Lattices]] |
 | 10.6 | [[Unnormalized Gaussian Function]] is lattice-smoothing material filed under `set theory/function/` |
 | 10.7 | `Reviewing Paper` sits at the `knowledge/` root → `academic/` |
 | 10.8 | `math/theory/` is an empty directory. The four logic notes landed at `math/` root rather than `math/logic/` — pick one and delete the empty folder |
@@ -170,6 +191,7 @@ Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for pr
 | 10.5 | Lattice problems are stated in math ([[Lattice Problem]]) and crypto (`SVP/`), with [[Discrete Logarithm Problem]] setting a third precedent in `cs/problems/` | Problem statement in math or cs; *hardness assumption* in crypto. Then the crypto SVP notes link out for the statement |
 | 9.13 | Garden publishing | Publish **dependency closures**, not lone notes — a composed definition renders broken to a visitor when its axiom links are unpublished. Candidates: the nine MOCs plus `properties/` |
 | 9.10 | Is `physics/` a domain or a subfolder of quantum computing? | Decide before it grows past a handful of notes |
+| V3 | Three names for the defining slot: `## Definition` (math), `## Syntax` (crypto interface), `## Scheme` (crypto instance) | **Keep all three, narrowly.** `## Syntax` is the literature's own word for exactly this and is already consistent across 28 notes; the interface/instance obligations really do differ. But three names for one idea is how conventions quietly stop being followed — if a fourth ever appears, collapse back to `## Definition` and let the callout type carry the level. I lean this way without arguing hard |
 
 ---
 
@@ -189,7 +211,9 @@ broken=13  dupe=0  title=26  empty=38  hollow=115  orphan=95
 
 **title / empty / hollow** are *smells*, not errors. Real hits: [[Security Model]] (its only definition is BRKE — task 11.7) and the 38 empty notes, a genuine stub inventory.
 
-Trend — orphans 163 → 73 → 64 → 89 → 94; broken 25 → 19 → 14 → 13; duplicate names 1 → 0.
+Trend — orphans 163 → 73 → 64 → 89 → 94 → 97; broken 25 → 19 → 14 → 13 → **14**; duplicate names 1 → 0.
+
+The broken count went *up* because the linter got sharper, not because the vault got worse: it used to resolve `[[daily/Temp/PPT]]` by basename and call it fine. Obsidian resolves any link containing a slash as a **path**, so `vault-lint.py` now does too. The 8 PPT links were dead all along — see **S2**.
 
 # Appendix B — completed
 
@@ -205,7 +229,7 @@ Trend — orphans 163 → 73 → 64 → 89 → 94; broken 25 → 19 → 14 → 1
 **Phase 9** 9.1–9.4 · 9.8 · 9.12 *(`scripts/vault-lint.py`)*
 **Phase 10** 10.1 · 10.2
 **Phase 11** 11.1 · 11.2 · 11.3 · 11.4 · 11.6
-**Phase 12** Batch 0 · A1–A4 · A7 *(false set law)* · G2 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`, `Homomorphism`, `Distance Symmetry`, the `norm/` → `metric/` merge) · **E1** [[Connexity]] rename
+**Phase 12** Batch 0 · A1–A4 · **A6** *(eight set-operation definitions)* · A7 *(false set law)* · G2 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`, `Homomorphism`, `Distance Symmetry`, the `norm/` → `metric/` merge) · **E1** [[Connexity]] rename · **E2** `Basic Definition` → `Definition` (141 headings across 135 notes, 15 anchor links in 10 notes, two h3 promoted to h2)
 
 **Findings closed:** C1–C5 · D1–D13 · E1 · E3–E9 · F2–F7 · N5 · N6 · N9 · N11 · N13
 

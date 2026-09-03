@@ -3,7 +3,7 @@
 | --------------------------------------------------- | --------------------------------------------------------------- | --------------- |
 | Attack Game 10.2 (One-way trapdoor function scheme) | [[#One-way Security\|inverting]]                                | $\text{OWadv}$  |
 | Attack Game 10.3 (RSA)                              | [[#A Trapdoor Permutation Scheme Based on RSA\|RSA assumption]] | $\text{RSAadv}$ |
-## Basic Definition
+## Definition
 
 
 > [!definition] Trapdoor Function Scheme (Conceptually)

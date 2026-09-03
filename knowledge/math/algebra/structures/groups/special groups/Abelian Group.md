@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Abelian Group
 > A [[Group]] $(G, \star)$ is called Abelian Group if its operation $\star$ is [[Commutativity|Commutative]].

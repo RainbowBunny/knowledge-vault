@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Opposite Category
 > Let $\mathcal C$ be a [[Category]]. Consider a structure $\mathcal C^{op}$ with

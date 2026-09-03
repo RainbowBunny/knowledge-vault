@@ -13,7 +13,7 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 `primitive/` — the building blocks, each with its own MOC.
 
 - [[Symmetric Encryption MOC]] — [[Block Ciphers]], [[Stream Ciphers]], [[Perfect Security]], classical ciphers, schemes
-- [[Public-Key Encryption MOC]] — [[Public Key Encryption]], [[Fujisaki-Okamoto Transformation]], and the cryptosystems (RSA, ElGamal, NTRU, GGH, Kyber, …)
+- [[Public-Key Encryption MOC]] — [[Public-Key Encryption]], [[Fujisaki-Okamoto Transformation]], and the cryptosystems (RSA, ElGamal, NTRU, GGH, Kyber, …)
 - [[Digital Signatures MOC]] — [[Old Digital Signature]], [[Digital Signature Algorithm]], [[Blind Signature]], [[ID and Signatures from Sigma]], [[Dilithium]]
 - [[Key Establishment MOC]] — [[Key Exchange]], [[Diffie-Hellman Key Exchange]], [[Authenticated Key Exchange]], [[Key Encapsulation Mechanism]], [[Kyber KEM]]
 - [[Message Authentication MOC]] — [[Message Integrity]], [[Authenticated Encryption]], [[Authenticated Data Structures]]

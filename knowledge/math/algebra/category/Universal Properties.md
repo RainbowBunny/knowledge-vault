@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Universal Property
 > Object $X$ is universal with respect to the following property: For any $Y$ such that ..., there exists a unique morphism $Y \rightarrow X$ such that...

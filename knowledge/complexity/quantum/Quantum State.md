@@ -1,7 +1,7 @@
 Reference:
 - https://abgrilo.github.io/viasm/introduction.pdf
 
-## Basic Definition
+## Definition
 
 > [!definition] Quantum State
 > A quantum state is represented by a unit vector in a [[Complex Hilbert Space]].

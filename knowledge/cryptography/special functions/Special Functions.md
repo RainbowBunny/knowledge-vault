@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Functions Family
 > A collection of function families is denoted as $\mathbb F = \{\mathcal F\}_\lambda$, where each $\mathcal F$ is a function family $\mathcal F = \{f : \{0, 1\}^{q(\lambda)} \rightarrow \{0, 1\}^{\ell(\lambda)}\}$.

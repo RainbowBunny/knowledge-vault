@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 ---
-## Basic Definition
+## Definition
 
 > [!algorithm] $q$-Sample Distinguishing Advantage
 > For probability distributions $P_0$ and $P_1$ on a finite set $\mathcal R$, and adversary $\mathcal A = (\mathcal A_\mathsf{guess})$, we define the $q$-sample distinguishing advantage:
@@ -56,5 +56,5 @@ dg-publish: true
 
 ## Application
 
-- [[Symmetric Key Encryption#Indistinguishability]] and [[Public Key Encryption#Indistinguishability]] — security definitions are distinguishing games between two ciphertext distributions.
+- [[Symmetric Key Encryption#Indistinguishability]] and [[Public-Key Encryption#Indistinguishability]] — security definitions are distinguishing games between two ciphertext distributions.
 - Hybrid arguments — chains of computationally indistinguishable distributions are indistinguishable (loss linear in the chain length).

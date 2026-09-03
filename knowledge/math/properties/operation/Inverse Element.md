@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Inverse Element
 > ### Scope

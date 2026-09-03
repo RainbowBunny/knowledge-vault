@@ -4,7 +4,7 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 
 ## Primitive
 
-- [[Symmetric Key Encryption]] — the canonical note, mirroring [[Public Key Encryption]] section-for-section: syntax, correctness, min-entropy (γ-spread), perfect security, IND-ATK (eav / cpa / cca), multi-key SS, nonce-CPA, and CPA / nonce-CPA constructions.
+- [[Symmetric Key Encryption]] — the canonical note, mirroring [[Public-Key Encryption]] section-for-section: syntax, correctness, min-entropy (γ-spread), perfect security, IND-ATK (eav / cpa / cca), multi-key SS, nonce-CPA, and CPA / nonce-CPA constructions.
 - [[Perfect Security]] — equivalent characterizations (counting, predicate, independence forms)
 
 ### Attack-Game Index (Boneh–Shoup numbering)

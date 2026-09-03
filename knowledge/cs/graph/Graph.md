@@ -4,7 +4,7 @@
 > - [[Acyclic Subgraphs]] — incidence-matrix columns vs. acyclicity (matroid view)
 > - [[CP Setup]] / [[Snippet Reference]] — competitive snippet prefixes for graph algorithms
 
-## Basic Definition
+## Definition
 
 > [!definition] Sparse Graph
 > A graph that has $|E|$ is much less than $|V|^2$.

@@ -6,7 +6,7 @@ Reference:
 
 The logic of "for all elements" and "there exists an element" — quantifying over *elements of the carrier*, never over subsets, functions, or the carrier itself. Almost every Scope line in this vault is a first-order signature; almost every axiom in `properties/` is a first-order sentence over one.
 
-## Basic Definition
+## Definition
 
 > [!definition] Signature
 > A **signature** is a list of constant, function, and relation symbols, each with an arity. A **structure** for a signature is a carrier set with an interpretation of every symbol. *(This is the vault's Scope slot, made official — and the many-sorted version types each symbol by sorts: see [[Many-Sorted Operation]].)*

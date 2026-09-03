@@ -89,14 +89,12 @@ This is the most load-bearing definition in the vault. Every Scope line — $R \
 
 Correct as far as it goes, but it makes `Relation` unable to serve as the parent of `Function`, and it means "relation from $A$ to $B$" has no home. Fix: define the heterogeneous case first, homogeneous as the specialisation $A = B$.
 
-## F3 · `Function.md` has two definition blocks
+## F3 · `Function.md` had two definition blocks — **merged; one sub-problem left**
 
-The note opens with `## Basic Definition` (the graph $\Gamma_f$ formulation, good) and *ends* with a second `## Definition` absorbed from the old `Function.md` in task 7.7, redefining Function, Domain, Co-domain, Range, plus odd/even functions.
-
-Three separate problems:
-- **Range** duplicates **Image**, defined 100 lines apart with different words.
-- **Odd / even function** is analysis, not the foundation layer — it belongs in [[Calculus Functions]] (it needs an additive inverse on the domain, which sets do not have).
-- The bottom definition — "a set of ordered pairs no two of which have the same first member" — omits totality, so it is *literally the definition of a partial function*. That is the seed for the missing partial-function note rather than a duplicate to delete.
+The note opened with the graph $\Gamma_f$ formulation (good) and *ended* with a second definition block absorbed from the old `Function.md` in task 7.7, redefining Function, Domain, Co-domain, Range, plus odd/even functions. It now carries a single `## Definition`. Three sub-problems came out of it:
+- **Range** duplicates **Image**, defined 100 lines apart with different words. — **still open**; both `### Range` and `### Image` are live.
+- **Odd / even function** is analysis, not the foundation layer — it moved to [[Calculus Functions]] (it needs an additive inverse on the domain, which sets do not have). — **done** (B4).
+- The bottom definition — "a set of ordered pairs no two of which have the same first member" — omits totality, so it is *literally the definition of a partial function*. It became `### Partial Function` under `## Variant` rather than a duplicate to delete. — **done**.
 
 ## F4 · Small errors in the same note
 
@@ -110,9 +108,9 @@ They sit in `Function.md`'s `## Property` section. By the vault's own rule they 
 
 The precedent is already set on the algebra side: [[Inverse Element]] states the axiom, [[Group]] holds the *theorems* about it (uniqueness, cancellation). Apply the same split here — `properties/map/Injectivity.md` states the axiom; `Function.md` keeps the theorems (injective ⟺ monomorphism, left-inverse ⟺ injective, canonical decomposition).
 
-## F6 · `Set Foundation.md` opens with two blank lines and no `## Basic Definition`
+## F6 · `Set Foundation.md` opened with two blank lines and no `## Definition` — **half done**
 
-Cosmetic, but it is the only foundation note that breaks the section convention.
+The blank lines are gone and the heading exists, but `## Definition` is still **empty** — the note jumps straight to `## Cardinality`. Either fill it (the signature $\in$ plus the axiom list) or drop the heading; an empty one is worse than neither.
 
 ## F7 · The axiom families have gaps with existing consumers
 
@@ -126,7 +124,7 @@ Detailed in Part IV. The short version: **cancellativity** (3 consumers, current
 
 ### 3.1 `Set.md` — three restorations **[Standard]**
 
-Add to `## Basic Definition`, after the Set callout (recovered from `f9c2c34`):
+Add to `## Definition`, after the Set callout (recovered from `f9c2c34`):
 
 ```markdown
 > [!definition] Set Equality
@@ -147,7 +145,7 @@ Then, per 6.3b, cut everything from `## Operation` onward into the new note belo
 Carries the ~20-row laws table out of `Set.md` (task 6.3b) *and* restores the Cartesian product.
 
 ```markdown
-## Basic Definition
+## Definition
 
 ### Inclusion
 
@@ -215,7 +213,7 @@ Reference:
 
 A relation is just a set of pairs that "count as related" — nothing more. Everything else in the layer is a relation with conditions bolted on: an order is a relation that is reflexive and transitive; a function is a relation where each input has exactly one output.
 
-## Basic Definition
+## Definition
 
 > [!definition] Relation
 > A **(binary) relation** from a set $A$ to a set $B$ is a subset
@@ -281,7 +279,7 @@ Keep the graph definition, the image / restriction / composition / projections /
    > Equivalently: a function is a [[Relation]] $\Gamma_f \subseteq A \times B$ that is left-total and functional. The condition $(\forall a)(\exists! b)$ above says exactly that.
    ```
 2. **Delete the trailing `## Definition` block**, redistributing it:
-   - *Domain / Co-domain* → keep, fold into `## Basic Definition`.
+   - *Domain / Co-domain* → keep, fold into `## Definition`.
    - *Range* → delete; it duplicates **Image** (or keep as a one-line synonym remark).
    - *Function equality theorem* → keep, move up beside the definition.
    - *Odd / Even function* → **move to [[Calculus Functions]]** (needs additive inverse; not a set-theoretic notion).
@@ -308,7 +306,7 @@ All follow the Scope / Condition / Property template unchanged. Each has named e
 ### 3.5 `properties/operation/Cancellativity.md` **[Standard]** — 3 consumers
 
 ```markdown
-## Basic Definition
+## Definition
 
 > [!definition] Cancellativity
 > ### Scope
@@ -331,7 +329,7 @@ Consumers: [[Group]]'s `### Cancellation` proposition; [[Field]]'s "Cancellation
 ### 3.6 `properties/operation/Absorption.md` **[Standard]** — 2 consumers
 
 ```markdown
-## Basic Definition
+## Definition
 
 > [!definition] Absorption
 > ### Scope
@@ -358,7 +356,7 @@ Reference:
 
 A map that respects structure: do the operation then map, or map then do the operation, and you land in the same place. Every "…-morphism" in the vault is this with a particular signature filled in.
 
-## Basic Definition
+## Definition
 
 > [!definition] Homomorphism
 > ### Scope
@@ -417,7 +415,7 @@ Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 ### 3.9 `properties/map/Monotonicity.md` **[Standard]** — the missing row
 
 ```markdown
-## Basic Definition
+## Definition
 
 > [!definition] Monotonicity
 > ### Scope
@@ -633,7 +631,7 @@ Doing the folder moves *first* means every note created later lands in its final
 | A1 | Recover **Cartesian Product**, **Set Equality**, **Empty Set** from `git show f9c2c34:"…/Set Theory.md"` |
 | A2 | Create `Set Operation` (**6.3b**) — the laws table out of [[Set]], plus Cartesian Product, power set, complement, partition (draft 3.2) |
 | A3 | [[Set]] keeps: definition, equality, empty set, famous sets, notation, universal set. Move Universal Set out of `## Representation` |
-| A4 | [[Set Foundation]]: strip the two leading blank lines, add `## Basic Definition` |
+| A4 | [[Set Foundation]]: strip the two leading blank lines, add `## Definition` (still empty — see F6) |
 
 **Checkpoint:** no Scope line in the vault refers to an undefined product.
 

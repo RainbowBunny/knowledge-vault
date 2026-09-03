@@ -1,6 +1,6 @@
 Reference: https://eprint.iacr.org/2016/260.pdf
 
-## Basic Definition
+## Definition
 
 > [!definition] Bilinear Groups
 > Bilinear groups $\mathcal{BG}$ is a tuple $(p, \mathbb G_1, \mathbb G_2, \mathbb G_T, e, g_1, g_2)$ with the following properties:

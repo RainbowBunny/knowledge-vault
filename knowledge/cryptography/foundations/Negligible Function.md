@@ -1,7 +1,7 @@
 Reference:
 - https://toc.cryptobook.us/
 
-## Basic Definition
+## Definition
 
 > [!definition] Negligible Function
 > A function $\varepsilon: \mathbb N \rightarrow \mathbb R_{\geq 0}$ is **negligible** if for every polynomial $p$ there exists $\lambda_0$ such that

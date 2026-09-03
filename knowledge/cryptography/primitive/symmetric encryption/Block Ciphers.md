@@ -5,7 +5,7 @@
 | Attack Game 4.1 (Block Cipher) | [[#Secure Block Cipher\|secure block cipher]] | $\text{BCadv}$ |
 | Attack Game 4.4 (Key Recovery) | [[#Key Recovery\|key recovery]]               | $\text{KRadv}$ |
 
-## Basic Definition
+## Definition
 
 > [!definition] Block Cipher
 > A **block cipher** is a deterministic cipher $\mathcal E = (E, D)$ whose message space and ciphertext space are the same (finite) set $\mathcal X$. If the key space of $\mathcal E$ is $\mathcal K$, we say that $\mathcal E$ is a block cipher **defined over $(\mathcal K \times \mathcal X)$**. We call an element $x \in \mathcal X$ a **data block**, and refer to $\mathcal X$ as the **data block space** of $\mathcal E$.

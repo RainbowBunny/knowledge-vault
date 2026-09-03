@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 >[!definition] Group
 A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star: G \times G \rightarrow G$ satisfying [[Associativity]], [[Identity Element]], [[Inverse Element]].

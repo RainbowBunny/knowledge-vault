@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 ---
-## Basic Definition
+## Definition
 
 > [!definition] Statistical Distance (Total Variation Distance)
 > Let $P_0$ and $P_1$ be probability distributions on a finite set $\mathcal R$. The **statistical distance** between $P_0$ and $P_1$ is

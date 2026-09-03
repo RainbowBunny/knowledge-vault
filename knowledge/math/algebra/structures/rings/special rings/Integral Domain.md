@@ -1,4 +1,4 @@
-### Basic Definition
+## Definition
 
 > [!definition] Integral Domain
 > An **integral domain** is a nonzero [[Commutative Ring]] $R$ (with $1$) such that

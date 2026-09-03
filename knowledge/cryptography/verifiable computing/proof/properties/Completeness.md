@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!remark]
 > Completeness means a true statement can be proven.

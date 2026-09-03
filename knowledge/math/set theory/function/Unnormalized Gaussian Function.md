@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 ---
-## Basic Definition
+## Definition
 
 > [!definition] Gaussian Function
 > For any $r > 0$, the Gaussian function with parameter $r$ and for any $\mathbf{x} \in \mathbb R^n$ is defined as

@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!remark] Soundness
 > Soundness means false statement can not be proven.

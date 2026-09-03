@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Fourier Transform
 > For a nice function $f: \mathbb R^n \rightarrow \mathbb C$, we define its Fourier transform $\hat{f}: \mathbb R^n \rightarrow \mathbb C$ as

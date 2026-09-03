@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Polynomial
 > Let $R$ be a [[knowledge/math/algebra/structures/rings/Ring]]. A **polynomial** $f(x)$ in the **indeterminate** $x$ and with **coefficients** in $R$ is a **finite** linear combination of non-negative 'powers' of $x$ with coefficients in $R$:

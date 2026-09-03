@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Morphism
 > A morphism is a map between objects in an abstract [[Category]].

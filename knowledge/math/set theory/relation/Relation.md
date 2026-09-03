@@ -1,7 +1,7 @@
 Reference:
 - https://en.wikipedia.org/wiki/Binary_relation
 
-## Basic Definition
+## Definition
 
 > [!definition] Relation
 > A **(binary) relation** from a set $A$ to a set $B$ is a subset

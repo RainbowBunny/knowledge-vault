@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Probabilistic Polynomial Time (PPT)
 > An algorithm $\mathcal A$ is **PPT** if it may use random coins and there is a polynomial $p$ such that on every input of security parameter $\lambda$, $\mathcal A$ halts within $p(\lambda)$ steps.

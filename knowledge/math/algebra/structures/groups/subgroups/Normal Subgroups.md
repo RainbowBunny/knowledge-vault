@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Normal Subgroups
 > A subgroup $N$ of a group $G$ is normal if $\forall g \in G, \forall n \in N$,

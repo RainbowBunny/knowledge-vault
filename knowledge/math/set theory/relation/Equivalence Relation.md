@@ -1,7 +1,7 @@
-## Basic Definition
+## Definition
 
 > [!definition] Equivalence Relation
-> A [[Relation#Basic Definition|Relation]] is an equivalence relation iff it satisfies [[Reflexivity]], [[Symmetry]], [[Transitivity]].
+> A [[Relation#Definition|Relation]] is an equivalence relation iff it satisfies [[Reflexivity]], [[Symmetry]], [[Transitivity]].
 
 ### Equivalence Class 
 

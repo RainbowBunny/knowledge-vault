@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Bilinearity
 > ### Scope

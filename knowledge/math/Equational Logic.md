@@ -6,7 +6,7 @@ Reference:
 
 The fragment of logic where every axiom is an equation between terms — no connectives, no ∃, and only implicit ∀. It looks tiny; Birkhoff's theorems say it is exactly the right size for algebra, and it is why the magma → group → ring chain composes so cleanly in this vault.
 
-## Basic Definition
+## Definition
 
 > [!definition] Equational Theory
 > Fix a signature of operation symbols. An **equational theory** is a set of equations $s = t$ between terms, read universally quantified. A structure satisfying all of them is a **model**; the class of all models is a **variety**.

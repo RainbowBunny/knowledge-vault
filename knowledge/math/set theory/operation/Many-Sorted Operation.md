@@ -2,7 +2,7 @@ Reference:
 - https://en.wikipedia.org/wiki/Binary_operation
 - https://en.wikipedia.org/wiki/Semigroupoid
 
-## Basic Definition
+## Definition
 
 > [!definition] Many-Sorted Operation
 > Given a family of sets $(S_i)_{i \in I}$ — the **sorts** — an operation of **arity** $(i_1, \dots, i_n) \rightarrow j$ is a map

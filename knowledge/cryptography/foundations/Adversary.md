@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Adversary
 > An adversary is **an algorithm**, subject to resource constraints, that plays a game against a challenger, and security is the claim that no algorithm in the admissible class wins that game with noticeably probability better than trivial guessing.

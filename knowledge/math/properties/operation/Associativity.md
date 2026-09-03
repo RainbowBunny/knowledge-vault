@@ -1,7 +1,7 @@
 Reference: 
 - https://en.wikipedia.org/wiki/Semigroupoid
 
-## Basic Definition
+## Definition
 
 > [!definition] Associativity
 > ### Scope

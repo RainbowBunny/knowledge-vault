@@ -5,7 +5,7 @@ Reference:
 
 A map that respects structure: do the operation then map, or map then do the operation, and you land in the same place. Every "…-morphism" in the vault is this with a particular signature filled in.
 
-## Basic Definition
+## Definition
 
 > [!definition] Homomorphism
 > ### Scope

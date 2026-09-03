@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 ### Non-Interactive Proof Systems Variant
 

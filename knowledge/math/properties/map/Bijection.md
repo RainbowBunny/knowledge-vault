@@ -1,6 +1,6 @@
-## Basic Definition
+## Definition
 
-> [!definition] Bijection
+> [!definition] Bijection (one-to-one correspondence)
 > ### Scope
 > A [[Function]] $f: A \rightarrow B$
 > 

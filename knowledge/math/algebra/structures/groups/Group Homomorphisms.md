@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Group Homomorphisms
 > Let $G$ and $H$ be groups. A function $\phi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\phi(g_1 \star g_2) = \phi(g_1) \star \phi(g_2) \; \forall g_1, g_2 \in G.$$

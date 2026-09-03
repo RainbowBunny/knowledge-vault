@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Field
 > A field is a [[Commutative Ring]] with $1 \neq 0$ in which every nonzero element has a multiplicative [[Inverse Element|inverse]] (or being a [[knowledge/math/algebra/structures/rings/Ring#Unit|Unit]]).

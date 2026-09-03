@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Function
 > A function is the subset of $A \times B$:
@@ -55,8 +55,22 @@
 > Functions may be **composed**: if $f: A \rightarrow B$ and $g: B \rightarrow C$ are functions, then so is the operation $g \circ f$ defined by
 > $$(\forall a \in A) \quad (g \circ f)(a) = g(f(a))$$
 
-> [!remark]
+> [!remark] Commutative Diagram Form of Composition
+> $$\begin{CD} 
+> A @>f>> B \\ 
+> @| @VVgV \\ 
+> A @>>{g \circ f}> C 
+> \end{CD}$$
+
+> [!remark] Associativity of Composition
 > Composition is associative: if $f: A \rightarrow B, g : B \rightarrow C$, and $h: C \rightarrow D$ are functions, then $h \circ (g \circ f) = (h \circ g) \circ f$.
+
+> [!remark] Commutative Diagram Form of Composition
+> $$\begin{CD} 
+> A @>f>> B @>h \circ g>> D\\ 
+> @| @VVgV @|\\ 
+> A @>>{g \circ f}> C @>h>> D 
+> \end{CD}$$
 
 ### Natural Projection
 

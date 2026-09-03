@@ -24,5 +24,5 @@ The "elementary wrapper" phrase is what guarantees the *quantitative tightness*:
 
 ## Related
 
-- Used in essentially every `[!theorem]` block in [[Symmetric Key Encryption]], [[Public Key Encryption]], [[Pseudorandom Functionsss]], and the [[Digital Signatures MOC|signatures]] and [[Zero-knowledge MOC|ZK]] files.
+- Used in essentially every `[!theorem]` block in [[Symmetric Key Encryption]], [[Public-Key Encryption]], [[Pseudorandom Functionsss]], and the [[Digital Signatures MOC|signatures]] and [[Zero-knowledge MOC|ZK]] files.
 - See [[Security Model]] for the broader game-based framework that elementary wrappers operate inside.

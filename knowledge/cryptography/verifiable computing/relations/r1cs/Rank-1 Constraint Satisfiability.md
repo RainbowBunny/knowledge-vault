@@ -4,7 +4,7 @@ dg-publish: true
 Reference: 
 - https://eprint.iacr.org/2021/977.pdf
 
-## Basic Definition
+## Definition
 
 > [!definition] Rank-1 Constraint Satisfiability
 > A rank-1 constraint satisfiability (R1CS) system over a finite field $\mathbb F$ is specified by a tuple $\mathcal{CS} = (n, N_g, N_v, \{\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i\}_{i \in [N_g]})$ where $n, N_g, N_v \in \mathbb N, n \leq N_v$, and $\mathbf{a}_i, \mathbf{b}_i, \mathbf{c}_i \in \mathbb F^{N_v + 1}$. The system $\mathcal{CS}$ is **satisfiable** for a statement $\mathbf{x} \in \mathbb F^n$ if there exists a witness $\mathbf{w} \in \mathbb F^{N_v - n}$ and given the extended witness $\mathbf{z} = (1 || \mathbf{x} || \mathbf{w})$ we have that
@@ -14,7 +14,7 @@ Reference:
 > $$\mathcal R_{\mathcal{CS}} = \{(x, w) \in \mathbb F^n \times \mathbb F^{N_v - n}: \mathcal{CS}(x, w) = 1\}.$$
 
 > [!remark] Boolean and Arithmetic Circuit Satisfiability
-> The language of R1CS capture [[Boolean Circuit#Basic Definition|Boolean]] and [[Arithmetic Circuit#Basic Definition|Arithmetic Circuit]] circuit satisfiability as special cases.
+> The language of R1CS capture [[Boolean Circuit#Definition|Boolean]] and [[Arithmetic Circuit#Definition|Arithmetic Circuit]] circuit satisfiability as special cases.
 > - Boolean circuit satisfiability instance for a Boolean circuit $C: \{0, 1\}^n \times \{0, 1\}^h \rightarrow \{0, 1\}$ with $\alpha$ wires and $\beta$ bilinear gates yields an R1CS instance with $N_w = \alpha$ variables and $N_g = \beta + h + 1$ constraints.
 > - An arithmetic circuit $C: \mathbb F^n \times \mathbb F^h \rightarrow \mathbb F^\ell$ with $\alpha$ wires and $\beta$ bilinear gates corresponds to a R1CS instance with $N_w = \alpha$ variables and $N_g = \beta + \ell$ constraints.
 

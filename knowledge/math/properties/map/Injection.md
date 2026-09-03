@@ -1,6 +1,6 @@
-## Basic Definition
+## Definition
 
-> [!definition] Injection
+> [!definition] Injection (one-to-one)
 > ### Scope
 > A [[Function]] $f: A \rightarrow B$
 > 

@@ -5,7 +5,7 @@ Reference:
 
 A formal system is syntax with rules: a language of well-formed strings, some strings taken as axioms, and inference rules for deriving new strings. Nothing about *meaning* — that is what semantics adds, and a **logic** is a formal system with a semantics. One logic can be presented by several formal systems (Hilbert style, natural deduction, sequent calculus), so *formal system ≠ logic ≠ first-order logic* — three nested levels.
 
-## Basic Definition
+## Definition
 
 > [!definition] Formal System
 > A **formal system** consists of:

@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Category
 > A **category** $\mathcal{C}$ consists of:

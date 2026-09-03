@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Quantum Circuits
 > 1. Fix a gate $\mathcal{G} = \{G_1, G_2, \dots\}$

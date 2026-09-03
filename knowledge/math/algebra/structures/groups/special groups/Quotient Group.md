@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Quotient Groups
 > For an equivalence relation $\sim$ on a group $G$; given a group $G /_\sim$ and a group homomorphism $\pi: G \rightarrow G /_\sim$ satisfying the appropriate universal property.

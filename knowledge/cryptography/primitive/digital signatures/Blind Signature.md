@@ -10,7 +10,7 @@
 > 2. Ability of individuals to provide proof of payment, or to determine the identity of the payee under exceptional circumstances.
 > 3. Ability to stop use of payments media reported stolen.
 
-## Basic Definition
+## Definition
 
 > [!definition] Functions
 > Blind signature systems might be thought of as including the features of true two key digital signature systems combined in a special way with commutative style public key systems. The following three functions make up the blind signature cryptosystem:
@@ -81,7 +81,7 @@
 > [!algorithm] Fischlin's Blind Signature
 > Building blocks:
 > 1. A hash function $H: \{0, 1\}^* \rightarrow \mathbb Z_q^n$ that will be modeled as random oracle in the unforgeability proof.
-> 2. A [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] [[Public Key Encryption|PKE]] scheme $\text{PKE}$ that is perfectly correct.
+> 2. A [[Public-Key Encryption#Chosen Plaintext Attack Security|CPA security]] [[Public-Key Encryption|PKE]] scheme $\text{PKE}$ that is perfectly correct.
 > 3. A $\text{NIZKAoK}$ for the statement $$||y|| \leq \beta \land Cy = H(\text{Enc}(\text{PKE.pk}, \mu; r)).$$
 > 
 > Scheme:
@@ -106,7 +106,7 @@
 > Assume that $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the $\text{NIZKAoK}$ is knowledge sound. Then the blind signature scheme is [[#One More Unforgeability|one more unforgeable]] in the random oracle model.
 
 > [!theorem]
-> Assume that [[Public Key Encryption|PKE]] is [[Public Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the (?) is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
+> Assume that [[Public-Key Encryption|PKE]] is [[Public-Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the (?) is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
 
 ### From One-More-ISIS
 

@@ -3,7 +3,7 @@ Reference:
 - https://eprint.iacr.org/2004/332 (Shoup, sequences of games)
 - https://toc.cryptobook.us/ (Boneh–Shoup, the notation used vault-wide)
 
-## Basic Definition
+## Definition
 
 > [!definition] Security Game (Experiment)
 > A **security game** for a scheme $\Pi$ is a probabilistic experiment between a **challenger**, who runs $\Pi$'s algorithms honestly, and an [[Adversary]] $\mathcal A$, who may behave arbitrarily within its class. The experiment ends in a bit, and definitions are stated as probabilities of that bit over the experiment's randomness.

@@ -3,7 +3,7 @@ dg-publish: true
 ---
 ## Syntax
 
-> [!definition] Public Key Encryption Scheme
+> [!definition] Public-Key Encryption Scheme
 > A **public-key encryption scheme** $\text{PKE} = (\text{Gen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
 > - $(pk, sk) \leftarrow \text{Gen}()$: The key-generation algorithm $\text{Gen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
 > - $c \leftarrow \text{Enc}(pk, m)$ (Deterministic) or $c \leftarrow \text{Enc}(pk, m; r)$ (Probabilistic): The encryption algorithm takes a public key $pk$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
