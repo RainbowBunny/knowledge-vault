@@ -1,7 +1,7 @@
 ## Syntax
 
 > [!definition] $\Sigma$-Protocol
-> Let $\mathcal R \subseteq \mathcal X \times \mathcal W$ be an [[Effective Relation#Basic Definition|Effective Relation]]. A **Sigma protocol** for $\mathcal R$ is a pair $(\mathcal P, \mathcal V)$.
+> Let $\mathcal R \subseteq \mathcal X \times \mathcal W$ be an [[Effective Relation#Definition|Effective Relation]]. A **Sigma protocol** for $\mathcal R$ is a pair $(\mathcal P, \mathcal V)$.
 > - $\mathcal P$ is an interactive protocol algorithm called the **prover**, which takes as input a statement-witness pair $(x, w) \in \mathcal R$.
 > - $\mathcal V$ is an interactive protocol algorithm called the **verifier**, which takes as input a statement $x \in \mathcal X$, and which outputs `accept` or `reject`.
 > - $\mathcal P$ and $\mathcal V$ are structured so that an interaction between them always works as follows:

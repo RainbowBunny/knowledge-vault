@@ -7,4 +7,4 @@ Secure multi-party computation — multiple parties jointly compute a function o
 ## Related
 
 - [[Threshold MOC]] — threshold cryptography and oblivious transfer (the underlying primitives)
-- [[Zero-knowledge MOC]] — ZK is used inside MPC compilers to handle malicious parties
+- [[Verifiable Computing MOC]] — ZK is used inside MPC compilers to handle malicious parties

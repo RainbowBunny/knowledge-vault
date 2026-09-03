@@ -83,7 +83,7 @@
 > [!proposition]
 > SLWE and DLWE are equivalent.
 
-## Basic Definition
+## Definition
 
 > [!remark]
 > Regeus worst case to average-case reduction (2005)

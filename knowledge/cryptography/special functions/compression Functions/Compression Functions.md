@@ -1,3 +1,3 @@
-## Basic Definition
+## Definition
 
 

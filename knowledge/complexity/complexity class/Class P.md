@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Class P
 > $\text{P}$ is the class of languages that are decidable in polynomial time on a deterministic single-tape Turing machine: $$\text{P} = \bigcup_{k} \text{TIME}(n^k).$$

@@ -5,7 +5,7 @@
 | The only operations are AND, OR, NOT                                                 | The only operations are addition and multiplication                                                 |
 | Satisfied when the output is true                                                    | Satisfied when the left hand side equals the right hand side for all equations (there is no output) |
 | Witness is an assignment to the Boolean variables that satisfies the Boolean circuit | Witness is an assignment to the signals that satisfies all the equality constraints                 |
-## Basic Definition
+## Definition
 
 > [!definition] Arithmetic Circuit
 > Let $q$ be a prime. An **arithmetic circuit** for $\mathbb Z_q$ is a circuit with four types of gates: addition, multiplication, constant addition, and scalar multiplication.

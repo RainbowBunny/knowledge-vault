@@ -6,7 +6,7 @@
 | Attack Game 7.3 (Difference Unpredictability) | [[#Difference Unpredictability\|DUF]]                            | $\text{DUFadv}$  |
 | Attack Game 8.1 (Collision Resistance)        | [[#Collision Resistance\|collision finder]]                      | $\text{CRadv}$   |
 
-## Basic Definition
+## Definition
 
 > [!definition] Hash Function
 > A **(keyless) hash function** takes as input an arbitrarily long document $D$ in some large set $\mathcal M$ and returns a short bit string $H$ in $\mathcal T$ called **message digests** (or just digests). The primary properties that a has function $\text{Hash}$ should possess are as follows:

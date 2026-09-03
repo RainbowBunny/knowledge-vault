@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Vanishing Polynomial
 > Let $\mathbb F$ be a field and $S \subset \mathbb F$. The vanishing polynomial is defined as:

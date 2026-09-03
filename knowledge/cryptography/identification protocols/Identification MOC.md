@@ -15,5 +15,5 @@ Interactive protocols where a prover convinces a verifier of their identity.
 
 ## Related
 
-- [[Zero-knowledge MOC]] — Σ-protocols are the gateway to ZK
+- [[Verifiable Computing MOC]] — Σ-protocols are the gateway to ZK
 - [[Digital Signatures MOC]] — [[ID and Signatures from Sigma]] for the identification → signature transform

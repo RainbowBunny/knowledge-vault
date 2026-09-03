@@ -14,7 +14,7 @@
 > [!definition] One-time Ciphertext Integrity
 > $\mathcal E$ provides **one-time ciphertext integrity** if $\text{CIadv}[\mathcal A, \mathcal E]$ is negligible for every efficient single-query $\mathcal A$.
 
-## Basic Definition
+## Definition
 
 > [!definition] Authenticated Encryption
 > We say that a cipher $\mathcal E = (E, D)$ provides **authenticated encryption**, or is simply **AE-secure**, if $\mathcal E$ is 

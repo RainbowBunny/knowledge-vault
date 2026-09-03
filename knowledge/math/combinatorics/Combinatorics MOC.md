@@ -1,4 +1,4 @@
 # Combinatorics MOC
 
-- [[Set Theory]] — sets, relations, functions, cardinality
+- [[Set Foundation]] — sets, relations, functions, cardinality
 - [[Combinatorics]] — counting, identities, generating functions

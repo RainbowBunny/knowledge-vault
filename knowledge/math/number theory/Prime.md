@@ -168,4 +168,27 @@ If $p$ is prime, then the set $\mathbb Z / p \mathbb Z$ of integers modulo $p$ w
 > [!proposition]
 > If $n$ is a composite number, then $2^n - 1$ is not prime. Thus all Mersenne primes have the form $2^p - 1$ with $p$ a prime number.
 
+## Prime Function
 
+### Von Mangoldt Function
+
+> [!definition] Von Mangoldt Function
+> $$\Lambda := \begin{cases}\log p &\text{if } n = p^m \text{ , where } p \text{ is prime} \\ 0 &\text{otherwise}\end{cases}$$
+
+### Lambda Function
+
+> [!definition] Lambda Function
+> **Lambda Function** define by a modification of Euler's $\phi$-function:
+> 1. $\lambda(p^a) = \phi(p^a)$ when $p$ is an odd prime;
+> 2. $\lambda(2^a) = \phi(2^a)$ if $a = 0, 1,$ or $2$;
+> 3. $\lambda(2^a) = \frac{1}{2} \phi(2^a)$ if $a > 2$;
+> 4. $\lambda(2^a p_1^{a_1} \cdots p_i^{a_i}) = \text{the lowest common multiple of } \lambda(2^a), \lambda(p_1^{a_1}), \cdots, \lambda(p_i)^{a_i}$ with $p_1, \cdots, p_i$ being different odd primes.
+
+### Logarithmic Integral 
+
+> [!definition] Logarithmic Integral Function
+> $$\text{Li}(X) = \int_2^X \frac{dt}{\ln t}$$
+
+> [!proposition] Properties of Logarithmic Integral Function
+> 1. $\text{Li}(X) = \frac{X}{\ln X} + \int_2^X \frac{dt}{(\ln t)^2} + O(1)$
+> 2. $\lim_{X \rightarrow \infty} \frac{\text{Li}(X)}{X / \ln X} = 1$

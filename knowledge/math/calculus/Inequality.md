@@ -44,3 +44,21 @@
 > Given $n$ real numbers $a_1, \cdots, a_n$. Prove that the sum $\sum_{k = 1}^n (x - a_k)^2$ is smallest when $x$ is the arithmetic mean of $a_1, \dots, a_n$.
 
 
+## Function Analysis
+
+### Convex/Concave Function
+
+> [!definition] Convex Function
+> A function $g$ is said to be **convex** on an interval $[a, b]$ if, for all $x$ and $y$ in $[a, b]$ and for every $\alpha$ satisfying $0 < \alpha < 1$, we have $$g(z) \leq \alpha g(y) + (1 - \alpha) g(x), \quad \text{where} \quad z = \alpha y + (1 - \alpha) x.$$ We say $g$ is **concave** on $[a, b]$ if the reverse inequality holds, $$g(z) \geq \alpha g(y) + (1 - \alpha) g(x), \quad \text{where} \quad z = \alpha y + (1 - \alpha) x.$$
+
+> [!theorem]
+> Let $A(x) = \int_a^x f(t) dt$. Then $A$ is convex on every interval where $f$ is increasing, and concave on every interval where $f$ is decreasing.
+
+> [!theorem] Derivative test for Convexity
+> Assume $f$ is continuous on $[a, b]$ and has a derivative in the open interval $(a, b)$. If $f'$ is increasing on $(a, b)$, then $f$ is convex on $[a, b]$. In particular, $f$ is convex if $f''$ exists and is nonnegative in $(a, b)$.
+> 
+
+## Jensen's Inequality
+
+> [!theorem] Jensen's Inequality
+> Suppose that $F$ is concave on an interval $I$, and let $\alpha_1, \alpha_2, \dots, \alpha_n$ be nonnegative numbers satisfying $$\alpha_1 + \alpha_2 + \cdots + \alpha_n = 1.$$ Then $$\sum_{i = 1}^n \alpha_i F(t_i) \leq F(\sum_{i = 1}^n \alpha_i t_i) \qquad \forall t_1, t_2, \dots, t_n \in I.$$ Further, equality holds if and only if $t_1 = t_2 = \cdots = t_n.$

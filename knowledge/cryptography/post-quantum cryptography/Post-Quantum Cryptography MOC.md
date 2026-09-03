@@ -15,7 +15,7 @@ Constructions believed to resist quantum adversaries. Organized by the hardness 
 - [[Linear Code]] — generator / parity-check matrices, syndrome decoding
 - [[Code Properties]] — composable structural properties: systematic, cyclic / quasi-cyclic, duality axes
 - [[Cyclic Codes]] — generator polynomial theory, BCH, Reed–Solomon
-- [[Reed-Muller Codes]] — the RM family
+- [[Reed-Muller]] — the RM family
 - [[Subfield Codes]] — concatenated / subfield / trace constructions
 - [[Coding Theory Bounds]]
 - [[Hamming Quasi-Cyclic]] (`schemes/`) — NIST's backup KEM, composing systematic + quasi-cyclic

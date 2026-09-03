@@ -1,7 +1,7 @@
 Reference:
 - https://eprint.iacr.org/2014/718.pdf
 
-## Basic Definition
+## Definition
 
 > [!definition] Boolean Circuit
 > A **Boolean circuit** is a collection of **gates** and **inputs** connected by **wires**. Cycles aren't permitted. Gates take three forms: AND gates, OR gates, and NOT gates.

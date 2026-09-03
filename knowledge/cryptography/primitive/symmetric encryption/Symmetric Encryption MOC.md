@@ -4,7 +4,7 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 
 ## Primitive
 
-- [[Symmetric Key Encryption]] — the canonical note, mirroring [[Public Key Encryption]] section-for-section: syntax, correctness, min-entropy (γ-spread), perfect security, IND-ATK (eav / cpa / cca), multi-key SS, nonce-CPA, and CPA / nonce-CPA constructions.
+- [[Symmetric Key Encryption]] — the canonical note, mirroring [[Public-Key Encryption]] section-for-section: syntax, correctness, min-entropy (γ-spread), perfect security, IND-ATK (eav / cpa / cca), multi-key SS, nonce-CPA, and CPA / nonce-CPA constructions.
 - [[Perfect Security]] — equivalent characterizations (counting, predicate, independence forms)
 
 ### Attack-Game Index (Boneh–Shoup numbering)
@@ -49,4 +49,4 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 - [[Assumptions MOC]] → idealized models — ideal cipher / random oracle models used in CPA security proofs
 - [[Indistinguishability]] and [[Statistical Distance]] — the distribution-distinguishing toolkit extracted from the primitive note
 - [[Key Derivation Problem]] — guessing advantage (Attack Game 8.3), now under key establishment
-- [[knowledge/cs/foundations/Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem
+- [[CS Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem

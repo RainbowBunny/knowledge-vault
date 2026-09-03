@@ -4,7 +4,7 @@ Authenticity for the asymmetric setting — sign with a private key, verify with
 
 ## Theory
 
-- [[Digital Signature]] — syntax, EUF-CMA, hash-and-sign, security reductions
+- [[Old Digital Signature]] — syntax, EUF-CMA, hash-and-sign, security reductions
 - [[ID and Signatures from Sigma]] — turning a Σ-protocol identification scheme into a signature scheme
 
 ## Concrete Schemes

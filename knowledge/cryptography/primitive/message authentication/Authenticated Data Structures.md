@@ -3,7 +3,7 @@
 | ------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------- |
 | Attack Game 8.2 (Authenticated Data Structure Security) | [[#Authenticated Data Structures Security\|secure authenticated data structure]] | $\text{ADSadv}$ |
 
-## Basic Definition
+## Definition
 
 > [!definition] Authenticated Data Structures
 > An **authenticated data structure scheme** $\mathcal D = (H, \mathcal P, \mathcal V)$ defined over $(\mathcal X^n, \mathcal Y)$ is a tuple of three efficient deterministic algorithms:

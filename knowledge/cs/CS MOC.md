@@ -6,7 +6,7 @@ Each section below points to a sub-MOC that lists the files in that folder.
 
 ## Sub-MOCs
 
-- [[knowledge/cs/foundations/Foundations MOC]] — what algorithms are, asymptotic analysis, recurrences, formal languages, computability
+- [[CS Foundations MOC]] — what algorithms are, asymptotic analysis, recurrences, formal languages, computability
 - [[Algorithms MOC]] — sorting, searching, DP (`dp/`), greedy (`greedy/`), randomized, numeric
 - [[Data Structures MOC]] — heaps, BSTs, hashing, lists, disjoint sets, amortized analysis
 - [[Problems MOC]] — Max subarray, Subset-Sum, SAT, submodular welfare, AI search

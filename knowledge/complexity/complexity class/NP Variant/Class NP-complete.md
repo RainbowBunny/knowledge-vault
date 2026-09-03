@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Class $\text{NP-complete}$
 > A language $\mathcal L$ is in the class $\text{NP-complete}$ if:

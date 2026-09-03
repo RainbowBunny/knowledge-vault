@@ -1,5 +1,5 @@
 
-## Basic Definition
+## Definition
 
 > [!remark]
 > We begin with defining a $s$ function that measure our "surprise" of event $A$ based on their probability $P(A)$. And we find it should be $-\log P(A)$.

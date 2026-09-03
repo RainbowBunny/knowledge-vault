@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Group Homomorphisms
 > Let $G$ and $H$ be groups. A function $\phi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\phi(g_1 \star g_2) = \phi(g_1) \star \phi(g_2) \; \forall g_1, g_2 \in G.$$
@@ -6,7 +6,7 @@
 ### Isomorphisms
 
 > [!definition] Isomorphisms
-> - See [[Morphisms#Isomorphisms|Isomorphisms]].
+> - See [[Morphism#Isomorphisms|Isomorphisms]].
 
 > [!proposition]
 > Let $\phi: G \rightarrow H$ be a group homomorphism. Then $\phi$ is an isomorphism of groups if and only if it is a bijection.
@@ -22,7 +22,7 @@
 ### Monomorphisms
 
 > [!definition] Monomorphisms
-> - See [[Morphisms#Monomorphisms|Monomorphisms]].
+> - See [[Morphism#Monomorphisms|Monomorphisms]].
 
 > [!proposition]
 > The following are equivalent:

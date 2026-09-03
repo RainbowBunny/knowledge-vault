@@ -11,7 +11,7 @@
 | Attack Game 6.2 (MAC Security with Verification Queries) | [[#MAC Verification Queries\|MAC security with verification queries]] | $\text{MAC}^{vq}\text{adv}[\mathcal A, \mathcal I]$ |
 | Attack Game 7.4 (Nonce-based MAC Security)               | [[#Nonce-based MAC\|nonce-based MAC security]]                        | $\text{nMACadv}$                                    |
 
-## Basic Definition
+## Definition
 
 > [!definition] Message Authentication Code
 > A **MAC** system $\mathcal I = (S, V)$ is a pair of efficient algorithms, $S$ and $V$, where $S$ is called a **signing algorithm** and $V$ is called a **verification algorithm**. Algorithm $S$ is used to generate tags and algorithm $V$ is used to verify tags.

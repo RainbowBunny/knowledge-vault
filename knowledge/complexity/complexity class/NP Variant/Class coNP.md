@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Class $\text{coNP}$
 > A languages $\mathcal L$ is in the class $\text{coNP}$ if its complement in $\text{NP}$:

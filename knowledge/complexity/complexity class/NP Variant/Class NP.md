@@ -1,4 +1,4 @@
-## Basic Definition
+## Definition
 
 > [!definition] Verifier
 > A **verifier** for a language $\mathcal L$ is an algorithm $V$, where $$\mathcal L = \{x \mid V \text{ accepts } \langle x, w \rangle \text{ for some string } w\}.$$
