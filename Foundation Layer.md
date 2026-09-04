@@ -537,6 +537,155 @@ Folder: `properties/metric/`. Scope lines carry the precision; the folder name i
 
 ---
 
+---
+
+### 3.12 Nilpotency in rings — two notes **[Standard]**
+
+**First, a correction to the request.** *"Nilpotent ring"* is a real term, but in this vault it is **vacuous**. [[Ring]] here is a [[Monoid]] under $*$, so it is unital; a nilpotent ring means $R^n = 0$ (every product of $n$ elements vanishes), and then $1 = 1^n = 0$, so $R$ is the [[Zero Ring]]. The term only has content for **rngs** (non-unital) or, usefully, for **ideals**. So the material splits three ways, and only the first two want notes:
+
+| notion | what it is | where |
+| --- | --- | --- |
+| **nilpotent element** | $x^n = 0$ | `rings/Nilpotent Element.md` — a predicate on elements, next to `Unit` and `Zero Divisor` |
+| **reduced ring** | no nonzero nilpotents | `rings/special rings/Reduced Ring.md` — a mixin over [[Ring]] |
+| **nil / nilpotent ideal** | $I$ all-nilpotent / $I^n = 0$ | a `###` section of `Nilpotent Element` until `Ideal.md` is promoted out of [[Ring]] |
+
+Under the class/instance vocabulary: `Reduced Ring` is `Extends: [[Ring]]` — one axiom, no new data, exactly Mathlib's `class IsReduced`. `Nilpotent Element` is a predicate, not a class, exactly Mathlib's `IsNilpotent x`. Same split, arrived at independently.
+
+**Blocker.** Both drafts link `[[Unit]]` and `[[Zero Divisor]]`, which are still headings inside [[Ring]]. **This makes S3 a prerequisite, not a nicety** — precision rule 5, a dependency a definition uses but cannot link.
+
+#### A · `rings/Nilpotent Element.md`
+
+```markdown
+Reference:
+- Atiyah–Macdonald, *Introduction to Commutative Algebra*, Ch. 1
+- Lam, *A First Course in Noncommutative Rings*, §10 — the noncommutative side
+
+## Definition
+
+> [!definition] Nilpotent Element
+> ### Scope
+> A [[Ring]] $R$, with zero $0$.
+>
+> ---
+> ### Property
+> An element $x \in R$ is **nilpotent** iff
+> $$\exists n \in \mathbb Z_{\geq 1}: x^n = 0.$$
+> The least such $n$ is the **index of nilpotency** of $x$.
+
+> [!remark]
+> $0$ is the only nilpotent of index $1$; every other nilpotent has index $\geq 2$.
+
+## Property
+
+### Nilpotents are zero divisors
+
+> [!proposition]
+> A nonzero nilpotent $x$ of index $n$ is a [[Zero Divisor]]: $x \cdot x^{n-1} = 0$, and $x^{n-1} \neq 0$ by minimality of $n$.
+
+### Nilpotents and units
+
+> [!proposition]
+> If $x$ is nilpotent of index $n$, then $1 - x$ is a [[Unit]]:
+> $$(1 - x)^{-1} = 1 + x + x^2 + \dots + x^{n-1}.$$
+> No commutativity is needed — the powers of $x$ commute with each other.
+
+> [!corollary]
+> If $u$ is a unit, $x$ is nilpotent, and $ux = xu$, then $u + x$ is a unit. In a [[Commutative Ring]]: *unit $+$ nilpotent $=$ unit.*
+
+> [!proposition]
+> In a nonzero ring no nilpotent is a unit — if $x$ were invertible so would $x^n = 0$ be, forcing $1 = 0$.
+
+### Nilpotent and idempotent
+
+> [!proposition]
+> The only element that is both nilpotent and [[Idempotence|idempotent]] is $0$: from $x^2 = x$ we get $x = x^2 = \dots = x^n = 0$.
+
+### Sums — where commutativity is required
+
+> [!theorem]
+> Let $R$ be a [[Commutative Ring]] with $x^m = 0$ and $y^n = 0$. Then $(x + y)^{m + n - 1} = 0$.
+>
+> *Proof.* Expand by the binomial theorem. In each term $\binom{m+n-1}{i} x^i y^{m+n-1-i}$ either $i \geq m$ or $m+n-1-i \geq n$, so every term vanishes.
+
+> [!remark] Commutativity is a side condition, not decoration
+> In $M_2(k)$, $e_{12} = \begin{pmatrix}0&1\\0&0\end{pmatrix}$ and $e_{21} = \begin{pmatrix}0&0\\1&0\end{pmatrix}$ are nilpotent of index $2$, but
+> $$e_{12} + e_{21} = \begin{pmatrix}0&1\\1&0\end{pmatrix}, \qquad (e_{12} + e_{21})^2 = I.$$
+> Their sum is a unit. In a noncommutative ring the nilpotents need not be closed under addition at all.
+
+### Nilradical
+
+> [!definition] Nilradical
+> For a [[Commutative Ring]] $R$, $\;\mathfrak N(R) = \{x \in R : x \text{ nilpotent}\}$.
+
+> [!theorem]
+> $\mathfrak N(R)$ is an ideal — closed under addition by the theorem above, and under scaling since $(rx)^m = r^m x^m = 0$. The quotient $R / \mathfrak N(R)$ is [[Reduced Ring|reduced]].
+
+> [!theorem] Krull
+> In a commutative ring with $1$, $\mathfrak N(R)$ is the intersection of all prime ideals of $R$.
+
+### Nil and nilpotent ideals
+
+> [!definition]
+> An ideal $I \subseteq R$ is **nil** iff every element of $I$ is nilpotent, and **nilpotent** iff $I^n = 0$ for some $n$ — every product of $n$ elements of $I$ vanishes.
+
+> [!proposition]
+> Nilpotent $\Rightarrow$ nil. The converse fails: in $k[x_1, x_2, \dots]/(x_1^2, x_2^3, x_3^4, \dots)$ the ideal $(x_1, x_2, \dots)$ is nil but not nilpotent. It does hold when $I$ is finitely generated — so in a Noetherian commutative ring $\mathfrak N(R)$ is nilpotent.
+
+> [!remark]
+> A *unital* ring is never nilpotent unless it is the [[Zero Ring]]: $R^n = 0$ gives $1 = 1^n = 0$. "Nilpotent ring" is a statement about rngs and ideals, not about the objects [[Ring]] defines.
+
+## Example
+
+- $\mathbb Z / p^k$: the nilpotents are exactly the multiples of $p$. In $\mathbb Z/m$, $x$ is nilpotent iff every [[Prime]] dividing $m$ divides $x$.
+- **Dual numbers** $k[\varepsilon]/(\varepsilon^2)$ — the smallest interesting nonzero nilpotent, and the reason non-reduced rings exist in geometry.
+- Strictly upper-triangular matrices in [[Matrix|$M_n(k)$]] — nilpotent of index $\leq n$.
+- [[Polynomial Ring]]: for commutative $R$, $f = \sum a_i x^i$ is nilpotent iff every $a_i$ is; and $f$ is a unit iff $a_0$ is a unit and $a_1, \dots, a_d$ are nilpotent.
+- [[Integral Domain]] and [[Field]] — no nonzero nilpotents at all.
+
+## Related
+
+- [[Reduced Ring]] — the rings this predicate is empty in
+- [[Operators]] — the same predicate for a linear operator, where $N^{\dim V} = 0$ comes for free
+```
+
+#### B · `rings/special rings/Reduced Ring.md`
+
+```markdown
+Reference: Atiyah–Macdonald Ch. 1; Mathlib `IsReduced`
+
+## Definition
+
+> [!definition] Reduced Ring
+> ### Scope
+> A [[Ring]] $R$.
+>
+> ---
+> ### Property
+> $R$ is **reduced** iff its only [[Nilpotent Element|nilpotent]] is $0$:
+> $$\forall x \in R: x^2 = 0 \implies x = 0.$$
+
+> [!remark] Index 2 is enough
+> The index-$2$ condition kills every nilpotent. If $x^n = 0$ with $n \geq 2$ minimal, then $(x^{n-1})^2 = x^{2n-2} = 0$ since $2n - 2 \geq n$, so $x^{n-1} = 0$ — contradicting minimality.
+
+## Property
+
+> [!proposition] The chain
+> [[Field]] $\Rightarrow$ [[Integral Domain]] $\Rightarrow$ reduced.
+> Neither converse holds: $\mathbb Z$ is a domain and not a field; $\mathbb Z \times \mathbb Z$ is reduced and not a domain, since $(1,0)(0,1) = (0,0)$.
+
+> [!proposition]
+> $R$ is reduced iff $\mathfrak N(R) = 0$, and $R/\mathfrak N(R)$ is reduced for every commutative $R$.
+
+## Related
+
+- [[Nilpotent Element]] · [[Integral Domain]] · [[Commutative Ring]]
+```
+
+#### The bridge to linear algebra
+
+[[Operators]] already defines nilpotent for an operator and proves $N^{\dim V} = 0$. That is the **same predicate in a different idiom** — a two-views pair in the [[North Star]] sense, cross-domain shape. One remark on the ring side (*"for $R = \mathcal L(V)$ this is [[Operators]]' nilpotent operator, where the index is bounded by $\dim V$"*) and one on the operator side is the whole bridge; do not restate the theory twice.
+
+
 # Part IV · Complete axiom inventory
 
 Every axiom the vault has, needs, or should deliberately not write. **Consumer rule applied throughout** — nothing is proposed without a note that already wants it.

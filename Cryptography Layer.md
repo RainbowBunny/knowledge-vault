@@ -343,6 +343,65 @@ Where does a transform live? Not in the input's folder and not in the output's, 
 
 [[Public-Key Encryption]] is 17 KB and contains, past its `## Syntax`: `## Construction / ### Based on a Trapdoor Function Scheme` (a transform: TDF + symmetric cipher + hash → PKE), then `## Case Study` with RSA and ElGamal (two more transforms, each with its own theorem and loss factor), then a lattice instantiation. That is one interface note carrying **three transforms and a scheme**. It is [[RSA Public Key Cryptosystem]]'s problem (**V4**) in the other direction — there, schemes hide inside schemes; here, transforms hide inside the interface.
 
+## 2.7 Correctness vs Completeness
+
+Both are the honest-run condition: *nobody is cheating, does the thing work?* Both belong under `## Property`, never `## Security`. So why two words, and which slot does a given note want?
+
+The vault already answers it cleanly and disjointly — 10 notes use `### Correctness`, 11 use `Completeness`, and **the split follows a real line**, not habit.
+
+### The rule
+
+> **Correctness** — the honest run must reproduce **data**. $\mathsf{Dec}(sk, \mathsf{Enc}(pk, m)) = m$.
+> **Completeness** — the honest run must produce a **verdict**, and there is a dual condition on the other side of a promise.
+
+### The test: *does it have a soundness partner?*
+
+That is the whole distinction, and it is checkable in one look.
+
+| | correctness | completeness |
+| --- | --- | --- |
+| honest output | data — a message, a key, a share, a digest | a bit — accept / reject |
+| quantified over | **all** inputs | only inputs satisfying a **promise** ($\mathbf x \in \mathcal L$) |
+| has a dual | **no** | **yes** — [[Soundness]], on $\mathbf x \notin \mathcal L$ |
+| the pair means | — | no false negatives / no false positives |
+| error feeds | correctness loss $\delta$ into a CCA proof (FO) | $\varepsilon_c$ into repetition and amplification |
+| examples | [[Public-Key Encryption]], [[Key Encapsulation Mechanism]], [[Commitment Scheme]], [[Keccak]], [[Threshold Secret-Sharing]] | [[Interactive Proof Systems]], [[Sigma Protocols]], [[Argument Systems]], [[Probabilistically Checkable Proofs]], [[Schnorr Protocol]] |
+
+The promise is what does the work. Because completeness only speaks about **true** statements, there is a whole other half of the input space left unspoken for — and that space is exactly where [[Soundness]] lives. Correctness quantifies over everything, so it leaves no room for a dual and needs none.
+
+### The asymmetry that causes the filing mistake
+
+Completeness and soundness look like a matched pair, so they get filed together. They should not be:
+
+- **Completeness** — both parties honest, no attacker → `## Property`
+- **Soundness** — an attacker in the prover slot → `## Security`
+
+[[Schnorr Protocol]] and [[Interactive Proof Systems]] already do this correctly. The tell is not "is it half of a pair" but "is there an $\mathcal A$ trying to break it".
+
+> [!remark]
+> [[Completeness]] writes its condition as a game with an adversary $\mathcal A_\mathsf{find}$ — but that adversary only *chooses the statement*, it does not attack. It is there to strengthen the property to adversarially-chosen valid inputs. A chooser is not an attacker, and the note still belongs under `## Property`.
+
+### Where the name flips: [[Fiat-Shamir Transform]]
+
+A $\Sigma$-protocol has **completeness / soundness**. The signature scheme Fiat-Shamir turns it into has **correctness / unforgeability**. Same honest-run condition, renamed — and the test explains why: in a signature every $(pk, m)$ is a legitimate statement, so there is no $\mathbf x \notin \mathcal L$ half. The promise collapses, the dual disappears, and what is left is correctness. Unforgeability is a *search* game about producing $\sigma$ without $sk$, not a soundness condition on a language.
+
+A **Transform** renaming a property as it crosses is worth one remark on each side; it is the same two-views situation as everywhere else.
+
+### The homonym — four senses of "complete" in this vault
+
+Two families, and they are not the same idea:
+
+| sense | statement | dual | where |
+| --- | --- | --- | --- |
+| **proof completeness** | every true statement is provable / accepted | [[Soundness]] | crypto `proof/`, and [[First-Order Logic]] (Gödel: $\models \varphi \Rightarrow\; \vdash \varphi$), [[Equational Logic]] (Birkhoff) |
+| **NP-completeness** | everything in the class reduces to it | none | [[Class NP-complete]] |
+| **completeness of $\mathbb R$** | every Cauchy sequence converges | none | [[Real Number]] |
+| *(same shape)* | every subset has a supremum | none | order completeness |
+
+The first row is one idea in two dresses: **crypto borrowed completeness/soundness straight from proof theory**, and the duality is identical — no false negatives / no false positives. That is a genuine [[North Star|bridge]] worth a remark in [[Completeness]], because it explains the vocabulary rather than just recording it. **[Standard]**
+
+Rows 2–4 are a *different* word: "complete" there means **maximal — nothing of the relevant kind is missing**, and none of them has a dual. Filing them under the same idea would be a false bridge.
+
 ---
 
 # Part III · The view of a party
@@ -530,6 +589,20 @@ Concrete instance: [[Kyber PKE]]'s `Building Block` mixes $\text{Sam}$ (an XOF �
 It stops after `### Algorithms`. No `## Property`, no `## Security` — so the whole point of FO, that it lifts CPA security to CCA security, is nowhere in the note. See §2.6: at the interface level every Building Block owes a hypothesis. Four blocks (`PKE`, `SKE`, $G$, $H$), zero hypotheses.
 
 Same shape, smaller: [[From Collision Resistance]] is 132 B — one Building Block, no algorithms, no security.
+
+## V14 · Three notes use the wrong one of the pair
+
+| note | says | should say | why |
+| --- | --- | --- | --- |
+| [[Puncturable Pseudorandom Function]] | `### Completeness of Puncturing` | `### Correctness` | $\mathsf{Eval}(k, x') = \mathsf{Eval}(k_X, x')$ reproduces **data**. No verdict, no promise, no soundness partner |
+| [[Secure Multi-party Computation]] | `[!definition] Soundness` — *honest parties compute correct outputs* | **Correctness** | That is the honest-run condition. MPC calls it correctness; soundness is not an MPC notion. The four other bullets there (Privacy, Input Independence, Guaranteed Output Delivery, Fairness) are fine |
+| [[Completeness]] | $\mathsf{Adv}^\mathsf{cmp}_\mathsf{NIPS}(\mathcal A) = \Pr[\dots]$, *"sometimes referred to as completeness error $\varepsilon_c$"* | separate the two | The expression is a **success** probability — you want it near $1$. Every other $\mathsf{Adv}$ in the vault you want near $0$. The error is $\varepsilon_c = 1 - \mathsf{Adv}^\mathsf{cmp}$; naming them the same thing inverts the reading |
+
+The third is the one that will bite in a proof. It is also an argument for a line in [[Security Game]]: **$\mathsf{Adv}$ means a quantity to be driven to zero** — completeness is the one place that convention breaks, so say so where the convention is defined.
+
+## V15 · The completeness / soundness duality is borrowed and unlabelled
+
+[[Completeness]] and [[Soundness]] each open with a one-line `[!remark]` (*"a true statement can be proven"* / *"a false statement cannot be proven"*) and then go straight to the NIPS game. Neither says where the pair comes from: it is proof theory's, unchanged — [[First-Order Logic]]'s Gödel completeness is $\models \varphi \Rightarrow\; \vdash \varphi$ and its soundness is the converse. One `[!remark]` on each side turns two isolated definitions into a bridge, and explains the vocabulary instead of just recording it. §2.7 has the four-sense table; the other three senses (NP-complete, completeness of $\mathbb R$, order completeness) are a **different word** and must not be bridged to these.
 
 ---
 

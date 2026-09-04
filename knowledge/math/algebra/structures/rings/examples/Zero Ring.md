@@ -2,7 +2,7 @@
 
 > [!definition] Zero-ring
 > We define the zero-ring $(\{*\}, +, \cdot)$:
-> - Element of the ring is the trivial group $\{*\}$.
+> - Elements of the ring is the trivial group $\{*\}$.
 > - Operation of the ring:
 > 	- $* + * = *$.
 > 	- $* \cdot * = *$.

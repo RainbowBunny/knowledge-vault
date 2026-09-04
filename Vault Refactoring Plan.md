@@ -88,6 +88,9 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 
 | # | task |
 | --- | --- |
+| **N1** | **Nilpotency — two new notes.** Drafts in [[Foundation Layer]] §3.12. `rings/Nilpotent Element.md` (a predicate, filed next to Unit and Zero Divisor) and `rings/special rings/Reduced Ring.md` (a mixin over [[Ring]], one axiom). **Blocked by S3** — both drafts link `[[Unit]]` and `[[Zero Divisor]]`, which are still headings inside [[Ring]] |
+| **N2** | *Nilpotent ring* is **vacuous here**: [[Ring]] is unital, so $R^n = 0$ forces $1 = 0$ and $R = $ [[Zero Ring]]. The content lives on **ideals** (nil vs nilpotent) — a `###` section of `Nilpotent Element` until `Ideal.md` is promoted out of [[Ring]] |
+| **N3** | Bridge: [[Operators]] already defines nilpotent for a linear operator with $N^{\dim V} = 0$. Cross-domain two-views pair — one remark each side, no restatement |
 | 3.2 | Give [[Group]] a `## Structure` section: [[Subgroups]], [[Normal Subgroups]], [[Cosets]], [[Quotient Group]] |
 | 3.3 | Give it `## Special Groups`: [[Abelian Group]], [[Cyclic Group]], [[Symmetric Group]], [[Free Groups]], [[Bilinear Group]] |
 | 3.4 | Move the $\mathrm{GL}_n$ material out of [[Group]]'s `## Example` into [[Example of Subgroups]] or a new `General Linear Group` |
@@ -149,6 +152,8 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 
 | # | task |
 | --- | --- |
+| **V14** | **Correctness vs completeness — three mislabels.** Rule and test in [[Cryptography Layer]] §2.7: *correctness* reproduces data, *completeness* produces a verdict and has a [[Soundness]] partner across a promise. [[Puncturable Pseudorandom Function]]'s `Completeness of Puncturing` → `Correctness` · [[Secure Multi-party Computation]]'s `[!definition] Soundness` → **Correctness** (soundness is not an MPC notion) · [[Completeness]] calls a **success probability** $\mathsf{Adv}^\mathsf{cmp}$ and then names it the *error* — they are $1$ apart, and this one will bite inside a proof |
+| **V15** | Add to [[Security Game]]: **$\mathsf{Adv}$ is a quantity you drive to zero** — completeness is the single place that breaks, so flag it where the convention lives. Then one `[!remark]` each in [[Completeness]] and [[Soundness]] naming the borrowing from proof theory ([[First-Order Logic]], Gödel). Do **not** bridge to [[Class NP-complete]] or [[Real Number]] — different word, no dual |
 | 11.7 | [[Security Model]] still contains **only** a BRKE definition. Move it to `key establishment/key exchange/Bidirectional Ratcheted Key Exchange`; rewrite as the umbrella — a notion is syntax + [[Security Game]] + [[Adversary]] class + bound |
 | 11.5 | [[Indistinguishability]] game-first: retag the game `[!algorithm]` → `[!definition]`; state perfect and statistical as rows of the [[Security Game]] table |
 | 11.8 | Payoff: [[Argument Systems]] = "[[Interactive Proof Systems]] with computational [[Soundness]]"; [[Perfect Security]] links the perfect row |
