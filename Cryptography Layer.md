@@ -402,6 +402,389 @@ The first row is one idea in two dresses: **crypto borrowed completeness/soundne
 
 Rows 2–4 are a *different* word: "complete" there means **maximal — nothing of the relevant kind is missing**, and none of them has a dual. Filing them under the same idea would be a false bridge.
 
+## 2.8 Worked review — [[Non-Interactive Linear Proofs]] and the `st` / `td` question
+
+### The answer: `st` wears two hats, and whether they can be conflated is exactly the DV / PV split
+
+In Groth16's NILP (eprint 2016/260) `Setup` returns `(crs, st)` and **`st` is used by two different parties**:
+
+| role | who uses it | shows up in |
+| --- | --- | --- |
+| **verification state** | the verifier, via `Test` | completeness, soundness |
+| **simulation trapdoor** | the simulator | zero knowledge |
+
+In the linear model over $\mathbb F$ these are *the same vector* — the paper writes one symbol because at that layer there is only one object. **They separate on compilation.** The linear-only encoding sends `crs` into the target group; `st` then splits in two:
+
+- the part the verifier needs becomes a **verification key** `vk` — the *image* of `st` under the encoding,
+- the raw field elements stay as the **simulation trapdoor** `td` — the *preimage*, the toxic waste.
+
+And the crucial consequence:
+
+> **Whether `st` and `td` may be identified is precisely the designated-verifier / publicly-verifiable distinction.**
+> - **Designated verifier** — [[LUNA]], whose `st = (st_LPCP, sk.S)` contains an HGSW *decryption key*. `st` is secret, `vk = st`, and conflating `st` with `td` is harmless.
+> - **Publicly verifiable** — Groth16. `vk` is published, `td` is destroyed. Conflating them means **publishing the trapdoor**, which is the one mistake in this area that is fatal rather than untidy.
+
+**Recommendation: do not introduce `td` in [[Non-Interactive Linear Proofs]].** Keep the single symbol `st`, matching the source, and add the two-hats remark. Introduce `td` one layer up, in the compiled scheme, where the split is real — and say there that `td` is the NILP's `st` and `vk` is its encoding. Two symbols that are provably equal at the layer where you write them is worse than one symbol with a documented double role.
+
+```markdown
+> [!remark] `st` wears two hats
+> `st` is the verifier's checking material (used by `Test`, so it appears in completeness and
+> soundness) **and** the simulator's trapdoor (so it appears in zero knowledge). In the linear
+> model over $\mathbb F$ these are the same vector, which is why the source writes one symbol.
+> They separate on compilation: the encoding sends `st` to a verification key $\mathrm{vk}$,
+> while `st` itself stays as the simulation trapdoor $\mathrm{td}$. Whether the two may be
+> identified is exactly the designated-verifier / publicly-verifiable question — see [[LUNA]]
+> (DV, `st` secret) against a publicly-verifiable SNARK (`vk` public, `td` destroyed).
+```
+
+### Bugs in the two notes
+
+**Both notes:** `$\boldsymbol\pi \leftarrow \mathsf{Prove}(\mathcal R, \mathbf x, \mathbf w)$` — but step 2 returns $\Pi\,\mathrm{crs}$. **`crs` is not an argument.** Precision rule 2: an unbound symbol in a signature. Should be $\mathsf{Prove}(\mathcal R, \mathrm{crs}, \mathbf x, \mathbf w)$. [[LUNA]] already gets this right.
+
+Also both: `\mathbf{F}^\eta` should be `\mathbb{F}^\eta`; step 1 declares $\mathbf t$ and step 2 applies $t$.
+
+**[[Non-Interactive Linear Proofs]]:** no `## Property`, no `## Security` — the note stops after `## Syntax`. Three properties are missing (below). No `dg-publish`.
+
+**[[Split Non-Interactive Linear Proofs]]:** its callout is titled `Non-Interactive Linear Proof` — **the same title as the parent's** — and the body says "A NILP for $\mathcal R$", not a split one. `\mathbf{F}^{m_2}` should be `\mathbb F^{m_2}`. $\Pi \in \mathbb F^{k \times m}$ now needs $m = m_1 + m_2$ and $k = k_1 + k_2$, which are never declared. It is otherwise a **verbatim copy** of the parent — only two lines differ.
+
+### The three properties, with the right object in each
+
+| property | slot | who holds what |
+| --- | --- | --- |
+| **Completeness** | `## Property` | honest $\Pi$; probability over `Setup`'s coins |
+| **Non-adaptive knowledge soundness** (affine strategies) | `## Security` | $\mathcal A$ outputs $\Pi$ **before** `Setup` runs |
+| **Perfect zero knowledge** | `## Security` | the simulator gets `st`, **in its trapdoor role** |
+
+```markdown
+> [!definition] Non-Adaptive Knowledge Soundness against Affine Strategies
+> For any [[Adversary]] $\mathcal A = (\mathcal A_\mathsf{find})$ and extractor $\mathcal E$:
+> $$\mathsf{Adv}^{\mathsf{ks}\mbox{-}\mathsf{aff}}_\mathsf{NILP}(\mathcal A, \mathcal E) =
+\Pr\!\left[
+\begin{array}{l}
+\mathsf{Verify}(\mathcal R, \mathrm{st}, \mathbf x, \boldsymbol\Pi\,\mathrm{crs}) = 1 \\
+(\mathbf x, \mathbf w) \notin \mathcal R
+\end{array}
+\;\middle|\;
+\begin{array}{l}
+(\mathbf x, \boldsymbol\Pi) \leftarrow \mathcal A_\mathsf{find}(\mathcal R) \\
+(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R) \\
+\mathbf w \leftarrow \mathcal E(\mathcal R, \mathbf x, \boldsymbol\Pi)
+\end{array} \right]$$
+
+> [!remark] The order of the first two lines is the whole model
+> $\mathcal A_\mathsf{find}$ commits to $\boldsymbol\Pi$ **before** `Setup` runs, so the probability is over
+> `Setup`'s coins alone — which is why this is *statistical* and needs no assumption. Swap the two lines
+> and you have stated the adaptive variant, which is a different and generally false claim. Same
+> non-adaptive / adaptive pair as [[Linear Probabilistically Checkable Proofs]].
+
+> [!remark] Why `crs` must contain $1$
+> The clause "*with $1$ as an entry*" in `Setup` is not a technicality: it is what makes an **affine**
+> prover strategy expressible as a **linear** one, so a single linear model covers both.
+```
+
+```markdown
+> [!definition] Perfect Zero Knowledge
+> For any $\mathcal A = (\mathcal A_\mathsf{choose}, \mathcal A_\mathsf{guess})$ and simulator $\mathcal S$, with
+> $(\mathbf x, \mathbf w) \leftarrow \mathcal A_\mathsf{choose}(\mathcal R)$ and $(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R)$
+> shared by both branches:
+> $$\mathsf{Adv}^\mathsf{zk}_\mathsf{NILP}(\mathcal A, \mathcal S) =
+\left|\Pr[\,b = 1 \mid \boldsymbol\pi \leftarrow \mathsf{Prove}(\mathcal R, \mathrm{crs}, \mathbf x, \mathbf w)\,]
+- \Pr[\,b = 1 \mid \boldsymbol\pi \leftarrow \mathcal S(\mathcal R, \mathrm{st}, \mathbf x)\,]\right|$$
+> where $b \leftarrow \mathcal A_\mathsf{guess}(\mathrm{crs}, \mathrm{st}, \boldsymbol\pi)$ in both.
+> This is where `st` acts as the **trapdoor**: $\mathcal S$ gets it, and gets no witness.
+```
+
+Note that **both branches share one `(crs, st)`** — the simulator produces only the proof. That is what makes the definition well-formed, and it is exactly what the LPCP note gets wrong below.
+
+### The bug that actually bites: [[Linear Probabilistically Checkable Proofs]] HVZK
+
+In **both** HVZK games the simulated branch generates $(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \mathrm{st}_\mathcal S)$ and then calls
+
+$$b \leftarrow \mathcal A_\mathsf{guess}(\mathrm{st}, \mathbf Q, \widetilde{\mathbf a})$$
+
+**`st` and `Q` are unbound in that branch** — they are never generated there. It must be $\mathcal A_\mathsf{guess}(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \widetilde{\mathbf a})$, and likewise $\mathcal A_\mathsf{guess}(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \widetilde{\mathbf a}, \widetilde{\mathbf Z}, \widetilde{\mathbf b})$ in the leakage variant. As written the two branches are not comparable and the definition says nothing.
+
+An LPCP simulator legitimately generates its **own** query and state (the query is part of the verifier's view being simulated) — unlike the NILP simulator, which is handed the real `st`. Both patterns are correct; the note just has to hand the adversary the *matching* one. Worth a remark saying which pattern applies and why.
+
+Minor: three `st`-shaped symbols in one game — `st` (real), $\widetilde{\mathrm{st}}$ (simulated), $\mathrm{st}_\mathcal S$ (the simulator's own working state). Rename the third.
+
+### The split note should stop restating the syntax
+
+```markdown
+Extends: [[Non-Interactive Linear Proofs]]
+Reference: https://eprint.iacr.org/2016/260.pdf
+
+## Syntax
+
+> [!definition] Split NILP
+> A **split NILP** is a [[Non-Interactive Linear Proofs|NILP]] with the reference string and the
+> proof matrix partitioned into two independent blocks. Only two things change:
+> - $\mathrm{crs} = (\mathrm{crs}_1, \mathrm{crs}_2) \in \mathbb F^{m_1} \times \mathbb F^{m_2}$, $m = m_1 + m_2$;
+> - $\Pi = \begin{pmatrix}\Pi_1 & 0 \\ 0 & \Pi_2\end{pmatrix}$ with $\Pi_i \in \mathbb F^{k_i \times m_i}$, $k = k_1 + k_2$.
+>
+> Everything else — `Setup`, `Prove`, `Verify`, `Test`, and all three properties — is inherited unchanged.
+
+> [!remark] What the block structure buys
+> <one sentence: each block can be encoded under its own key / computed by its own party>
+> — the linear-model counterpart of [[Split Prover]].
+```
+
+That is `Extends:` doing real work: the note carries the delta and nothing else, so a fix to the parent's `Prove` signature does not have to be made twice. Right now it does — both notes carry the same missing-`crs` bug.
+
+## 2.9 Fix order, and factoring the shared properties
+
+### The fix, in order
+
+Signature first, because the properties quote it. Anything else and you write the games twice.
+
+| # | do | where | min |
+| --- | --- | --- | --- |
+| **1** | `Prove(R, x, w)` → **`Prove(R, crs, x, w)`**; `\mathbf F` → `\mathbb F` (3×); step 1 declares $\mathbf t$, step 2 applies $t$ — pick one | [[Non-Interactive Linear Proofs]] **and** [[Split Non-Interactive Linear Proofs]] | 5 |
+| **2** | Add the **two-hats remark** (§2.8). No `td` in this note | NILP | 2 |
+| **3** | Rewrite as `Extends:` + the two-line delta — draft in §2.8 | Split NILP | 10 |
+| **4** | Tilde the adversary's arguments in **both** HVZK games: $\mathcal A_\mathsf{guess}(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \dots)$. Rename $\mathrm{st}_\mathcal S$ → $\mathrm{aux}_\mathcal S$ | [[Linear Probabilistically Checkable Proofs]] | 5 |
+| **5** | Factor the properties — below | `proof/properties/` | 30 |
+| **6** | Introduce `td` where the split is real; say [[LUNA]] is designated-verifier, so there `vk = st` | [[LUNA]], and any PV scheme | 10 |
+
+Do **1** before **3**: fixing the parent first means the delta note never inherits the bug. That is the point of `Extends:`.
+
+### Why the properties can be factored: it is one equation with the pen in different hands
+
+[[Linear Probabilistically Checkable Proofs]] has a `[!definition] Linear Oracle`; [[Non-Interactive Linear Proofs]] has a `[!definition] Linear Evaluation`. **These are the same object under two names.**
+
+$$\text{LPCP:}\quad \mathbf a = \mathbf Q^{T}\boldsymbol\pi, \quad \mathbf Q^{T} \in \mathbb F^{k \times m},\ \boldsymbol\pi \in \mathbb F^{m}
+\qquad\qquad
+\text{NILP:}\quad \boldsymbol\pi = \boldsymbol\Pi\,\mathrm{crs}, \quad \boldsymbol\Pi \in \mathbb F^{k \times m},\ \mathrm{crs} \in \mathbb F^{m}$$
+
+Same shape — a $k \times m$ matrix against an $m$-vector. What differs is **who holds the pen**:
+
+| | chooses the matrix | chooses the vector | verifier reads |
+| --- | --- | --- | --- |
+| **LPCP** | the **verifier** ($\mathbf Q$) | the **prover** ($\boldsymbol\pi$) | $\mathbf Q^T \boldsymbol\pi$ |
+| **NILP** | the **prover** ($\boldsymbol\Pi$) | **`Setup`** ($\mathrm{crs}$) | $\boldsymbol\Pi\,\mathrm{crs}$ |
+| **NIPS** | — | the prover ($\boldsymbol\pi$) | $\boldsymbol\pi$ (identity) |
+
+That single swap explains a lot at once. It is why NILP soundness must be **non-adaptive** — the prover commits to its side of the pairing before `Setup` reveals the other — while LPCP has both an adaptive and a non-adaptive variant. It is also why the two ZK definitions differ in shape: the LPCP simulator has to produce the verifier's side ($\widetilde{\mathbf Q}, \widetilde{\mathrm{st}}$) because the verifier chose it, and the NILP simulator does not, because `Setup` did.
+
+Write this as one `[!remark]` in each note. It is a **bridge**, cross-domain shape: neither note restates the other.
+
+### The factoring: property notes own the game, system notes supply the arguments
+
+Call $\mathcal O$ the **response map** — how the verifier's input is derived from the prover's output. Then a property is
+
+$$\textbf{game shape} \;\times\; \mathcal O \;\times\; \textbf{adaptivity} \;\times\; \textbf{strength row}$$
+
+and three of those four already have homes: $\mathcal O$ in each system's own oracle callout, adaptivity as the named non-adaptive/adaptive pair [[Linear Probabilistically Checkable Proofs]] already uses, and the strength row in [[Security Game]]'s table.
+
+So `proof/properties/<P>.md` holds **the game, once, over an abstract $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify}, \mathcal O)$**, plus a variant table. And a system note's `## Property` / `## Security` section holds a **one-line instantiation**, no formula:
+
+```markdown
+### Completeness
+
+[[Completeness]] with $\mathcal O(\boldsymbol\Pi) = \boldsymbol\Pi\,\mathrm{crs}$ and $\varepsilon_c = 0$.
+```
+
+That is exactly what [[Group]] does with [[Associativity]] — link the axiom, supply the arguments, never restate. **And it is a note link, not a heading anchor**, so it does not break [[North Star]]'s rule; the discriminating information lives locally as parameter values.
+
+### How far to factor — three different answers
+
+Do **not** apply this uniformly. The three properties differ in how much is genuinely shared:
+
+| property | shared? | do |
+| --- | --- | --- |
+| **[[Completeness]]** | almost entirely — honest run, verdict $1$ | **Factor fully.** One game, a variant table, one-line instantiations everywhere |
+| **[[Soundness]] / [[Knowledge Soundness]]** | shape yes, adaptivity and what the extractor receives no | **Factor the statement, keep the game local.** The property note carries the shape and the comparison table; each system keeps its own formula because the quantifier order *is* the content |
+| **[[Zero Knowledge]]** | **no** — LPCP's simulator makes its own $(\widetilde{\mathbf Q}, \widetilde{\mathrm{st}})$, NILP's is handed the real `st` | **Do not factor.** State both patterns side by side in [[Zero Knowledge]] and name which system uses which. The gap *is* the content — the *not equivalent* row of the two-views convention |
+
+The failure mode to avoid: a property note that is a template with five holes, so reading it means opening three other notes. The test is whether a reader can state the property after reading **one** note. Completeness passes. Zero knowledge does not, and should not be forced to.
+
+### What this buys immediately
+
+The LPCP HVZK bug — the untilde'd $\mathcal A_\mathsf{guess}(\mathrm{st}, \mathbf Q, \dots)$ — is a copy-and-edit slip, the same failure mode that hit the algebra notes three times. Both games in the note carry it, because the second was cloned from the first. Factoring the shape into one place is the structural fix for that class of bug: there is one copy to get right.
+
+## 2.10 `Disclosure-Free NILP`, and what it teaches about property design
+
+### It extends the **split** NILP, not the plain one
+
+Groth16's **Definition 4** is stated for a *split* NILP, not for a NILP. So in the vault:
+
+```
+Extends: [[Split Non-Interactive Linear Proofs]]
+```
+
+which makes the chain `NILP → Split NILP → Disclosure-Free NILP` — and makes **V19** (rewriting Split NILP as a delta note) load-bearing rather than cosmetic: this note inherits through it.
+
+### Your current syntax cannot express it
+
+Groth16's `Vfy` computes a test on **$(\sigma, \pi)$ jointly** — $t(\sigma, \pi) = 0$ — and in the split case the check is a bilinear form $[\sigma_1; \pi_1]_1^{T}\, T_i\, [\sigma_2; \pi_2]_2 = 0$. [[Non-Interactive Linear Proofs]] currently declares $\mathbf t : \mathbb F^{k} \to \mathbb F^{\eta}$ and accepts if $t(\boldsymbol\pi) = 0$ — **the test never sees $\mathrm{crs}$.**
+
+That is not a cosmetic gap here. Disclosure-freeness is *entirely about how the test depends on $\sigma$*. With the current signature the property is **not statable**. Fix the signature (step 1 of §2.9) before writing this note.
+
+### Draft
+
+```markdown
+Extends: [[Split Non-Interactive Linear Proofs]]
+Reference:
+- https://eprint.iacr.org/2016/260.pdf — Groth16, Definition 4
+
+## Syntax
+
+> [!definition] Disclosure-Free NILP
+> A [[Split Non-Interactive Linear Proofs|split NILP]] is **disclosure-free** if the outcome of the
+> verifier's tests on the real reference string is already determined by an **independently sampled**
+> one — the accept/reject bit discloses nothing about which $\mathrm{crs}$ was drawn.
+> $$\Pr\!\left[ t(\mathrm{crs}, \boldsymbol\Pi\,\mathrm{crs}) = 0 \;\middle|\;
+> \begin{array}{l}(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R) \\
+> (\mathbf x, \boldsymbol\Pi) \leftarrow \mathcal A(\mathcal R) \\
+> \mathbf t \leftarrow \mathsf{Test}(\mathcal R, \mathbf x, \mathrm{st})\end{array}\right]
+> \;=\;
+> \Pr\!\left[ t(\mathrm{crs}', \boldsymbol\Pi\,\mathrm{crs}') = 0 \;\middle|\;
+> \begin{array}{l}\text{as above, plus} \\ (\mathrm{crs}', \mathrm{st}') \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R)\end{array}\right]$$
+
+> [!todo] Verify the quantifier against Definition 4
+> Substance is right — *tests on the real $\sigma$ are predictable from an independent $\sigma'$* — but I
+> could not retrieve Definition 4 verbatim (eprint blocks automated fetch; the mirror paraphrased).
+> Check whether it is an equality or a statistical bound, and whether $\mathcal A$ also receives $\mathrm{crs}$.
+
+## Intuition
+
+The verifier's decision is a channel from $\mathrm{crs}$ back to whoever can watch it. Disclosure-freeness
+says that channel is silent: you would have gotten the same verdict against a reference string drawn fresh.
+
+## Property
+
+### Why the condition exists
+
+> [!remark]
+> This is what lets the compiled scheme survive a verifier whose answers are observable. Without it, an
+> adversary submits malformed proofs and reads accept/reject to learn the verifier's secret one bit at a
+> time — the **verifier-rejection problem** of designated-verifier SNARKs. Compare [[LUNA]], which is
+> designated-verifier and therefore has to care.
+
+## Related
+
+- [[Split Non-Interactive Linear Proofs]] — what it extends
+- [[Non-Interactive Linear Proofs]] — the base model
+```
+
+### And this is the note that proves your instinct right
+
+Look at the shape of the definition: it mentions **`Setup` twice** — once for the real reference string and once for an independent one. It is not a statement about an honest run (completeness) or an adversarial run (soundness) or a simulation (zero knowledge). It is a statement about **the setup distribution relative to the tests**.
+
+So it does not fit the game-shape factoring of §2.9 at all, and it has exactly **one** binder. By the graduation rule it should be written where it is used — which is what you said.
+
+### The intuition you are reaching for: two kinds of "property"
+
+Associativity and Completeness are not the same *kind* of thing, and that is why the design feels different.
+
+| | **Tier 1 — equational** | **Tier 3 — game** |
+| --- | --- | --- |
+| a property is | a formula with a hole: $\mathsf{Assoc}(\star)$ | a **script**: who moves, in what order, who sees what |
+| binding is | **substitution** — plug in $\star$ | **family resemblance** — the same script with different moves |
+| exactness | mechanical and total | approximate; two uses can share a script and still differ |
+| theorems about the property | transfer **verbatim** to every binder | rarely exist |
+
+[[Associativity]] earns a note because binding is substitution: *generalized associativity* — every bracketing agrees — is proved once and inherited by [[Semigroup]], [[Monoid]], [[Group]], [[Ring]], every category. Inlining it means proving it six times.
+
+For a game property there is usually no such theorem to inherit. So the graduation test changes:
+
+> **Tier 1**: graduate as soon as a **second definition binds it**.
+> **Tier 3**: graduate only when the difference between uses **fits in a parameter slot** — same script, different named objects. If the *script* changes, keep the game local and let the shared note hold the comparison.
+
+### The part of the payoff that is easy to miss
+
+The one-line axiom is not what a property note is for. Three things are, in increasing order of value:
+
+1. **Deduplication** — least important, and the usual reason people give.
+2. **Inheritance of theorems** — real at Tier 1, rare at Tier 3.
+3. **A home for the boundary.** [[Associativity]]'s value is that subtraction is not associative, the octonions are not, and the $A_\infty$ story starts there. [[Cancellativity]]'s value is Ore's condition and the embedding theorem. **When you meet a new object the question you actually have is "does it have $P$, and what breaks if not" — and only the property note answers it.** Inlined, the boundary scatters across the binders and is never found again.
+
+Test (3) before creating a Tier-3 property note. Ranked by whether general theorems and a real boundary exist:
+
+| property | general theorems? | verdict |
+| --- | --- | --- |
+| [[Soundness]] | yes — repetition amplifies, hybrids compose | shared note earns it |
+| [[Zero Knowledge]] | yes — sequential composition | shared note earns it, but **do not** merge the game shapes (§2.9) |
+| [[Completeness]] | barely — it is almost always perfect | shared note is a comparison table, little more |
+| **disclosure-freeness** | none, one binder | **write it in the note that uses it** |
+
+## 2.11 Simulators, extractors, and where the quantifier goes
+
+### The one thing to fix: $\mathcal S$ has no quantifier
+
+[[Knowledge Soundness]] says it correctly — *"For any adversary $\mathcal A$, **there exists** an efficient extractor $\mathcal E$"*. [[Zero Knowledge]] says *"For any adversary $\mathcal A$ **and** simulator $\mathcal S$"*, which reads as $\forall \mathcal A\, \forall \mathcal S$ and is not the notion. It must be $\exists \mathcal S\, \forall \mathcal A$.
+
+And note they are **opposite orders**. That is not an accident:
+
+| notion | quantifier | why |
+| --- | --- | --- |
+| **HVZK** | $\exists \mathcal S\ \forall \mathcal A$ | one simulator must fool *every* distinguisher; a per-distinguisher $\mathcal S$ could just be told the answer |
+| **malicious-verifier ZK** | $\forall \mathcal V^*\ \exists \mathcal S$, or $\exists \mathcal S^{(\cdot)}\ \forall \mathcal V^*$ | the simulator may depend on the cheating verifier's code — **that gap is exactly the non-black-box / black-box distinction** |
+| **knowledge soundness** | $\forall \mathcal A\ \exists \mathcal E$ | the extractor may depend on the prover's code |
+
+The last row is worth a remark of its own: $\forall \mathcal A\, \exists \mathcal E$ **is not a falsifiable game** in Naor's sense — you cannot decide a winner by running an experiment, because $\mathcal E$ is quantified after $\mathcal A$. That is the formal reason knowledge assumptions sit outside the falsifiable framework, and why succinct arguments need them.
+
+### Where to put it: the game / notion split you already have
+
+[[Security Game]] already separates *a game* from *a notion* — "a security notion fixes a game, then demands the advantage be small for a class of adversaries." Use that seam:
+
+- **The advantage is a function.** *"For any $\mathcal A$ and any $\mathcal S$, define $\mathsf{Adv}^\mathsf{zk}(\mathcal A, \mathcal S) = \dots$"* — correct as written, because the advantage really is a function of both.
+- **The notion quantifies.** One sentence after the array:
+
+```markdown
+> $\Pi_\mathsf{NIPS}$ is **zero-knowledge** if there **exists** an efficient simulator $\mathcal S$ such that
+> $\mathsf{Adv}^\mathsf{zk}_\mathsf{NIPS}(\mathcal A, \mathcal S)$ is negligible for every [[PPT]] $\mathcal A$
+> — perfect if it is $0$ for every unbounded $\mathcal A$ ([[Security Game]]'s rows).
+```
+
+That is the minimal fix: **one sentence per game**, not a restructure.
+
+### Give the simulator a signature
+
+$\mathcal S$ is an algorithm. Declare it like `Prove` and `Verify`, above the game, instead of introducing it inside a probability array:
+
+```markdown
+> [!definition] Simulator
+> A **simulator** for $\Pi_\mathsf{NIPS}$ is a pair $\mathcal S = (\mathcal S_\mathsf{setup}, \mathcal S_\mathsf{prove})$:
+> - $(\widetilde{\mathrm{crs}}, \widetilde{\mathrm{st}}, \mathrm{aux}_\mathcal S) \leftarrow \mathcal S_\mathsf{setup}(1^\lambda, \mathcal R)$
+> - $\widetilde{\boldsymbol\pi} \leftarrow \mathcal S_\mathsf{prove}(\mathrm{aux}_\mathcal S, \mathbf x)$
+>
+> $\mathcal S_\mathsf{prove}$ receives **no witness**. That is the entire content of the notion; everything
+> else is bookkeeping.
+```
+
+The no-witness line is the point of the whole definition, and buried inside a probability array nobody sees it.
+
+### The simulator's phases are derivable, not conventional
+
+> **$\mathcal S$ has one phase per scheme algorithm that the simulated branch has to fake.**
+
+Count the algorithms that appear in the real branch and are *replaced* in the simulated one. That rule reproduces all four of your notes with no judgement calls:
+
+| note | faked | simulator |
+| --- | --- | --- |
+| [[Zero Knowledge]] (NIPS) | `Setup`, `Prove` | $\mathcal S = (\mathcal S_\mathsf{setup}, \mathcal S_\mathsf{prove})$ ✓ |
+| [[Linear Probabilistically Checkable Proofs]] | `Query`, `Prove` | $\mathcal S = (\mathcal S_\mathsf{query}, \mathcal S_\mathsf{prove})$ ✓ |
+| [[Non-Interactive Linear Proofs]] (§2.8 draft) | `Prove` only — `Setup` is shared | $\mathcal S$, one phase ✓ |
+| [[Split Prover]] | `Setup`$_\mathsf{split}$, `Prove`$_{I}$ | $\mathcal S = (\mathcal S_\mathsf{setup})$ doing both ✓ |
+
+So the two ZK shapes from §2.9 are not two conventions, they are two answers to one question:
+
+- **Setup simulation** — $\mathcal S$ produces its own $(\widetilde{\mathrm{crs}}, \widetilde{\mathrm{st}})$, because the setup is part of the view. NIPS, LPCP, Split Prover.
+- **Trapdoor simulation** — the setup is honest and shared; $\mathcal S$ is handed `st` in its trapdoor role. NILP.
+
+That is the same fork as §2.8's `st` / `td`: **whether the simulator programs the setup or receives a trapdoor is whether the setup is inside or outside the view.** One remark in [[Zero Knowledge]] covers both, and then each system says which it uses.
+
+### Naming
+
+$\mathrm{st}_\mathcal S$ collides with the verification state. Use $\mathrm{aux}_\mathcal S$ — [[Split Prover]] already uses $\mathrm{aux}$ for exactly this kind of hand-off between phases.
+
+### Bugs found in the same pass
+
+- **[[Zero Knowledge]]: the distinguisher has amnesia.** $\mathcal A_\mathsf{find}$ sees $(\mathcal R, \mathrm{crs}, \mathrm{st})$ and outputs $(\mathbf x, \mathbf w)$; then $\mathcal A_\mathsf{guess}(\boldsymbol\pi)$ receives *only the proof* — not the crs, not the statement, no state. It cannot even tell which statement it is looking at. The house format passes a state: compare [[Public-Key Encryption]]'s IND game, $(m_0, m_1, s) \leftarrow \mathcal A_\mathsf{find}(pk)$ then $b' \leftarrow \mathcal A_\mathsf{guess}(s, c^*)$. Fix: $(\mathbf x, \mathbf w, s) \leftarrow \mathcal A_\mathsf{find}(\dots)$, $b \leftarrow \mathcal A_\mathsf{guess}(s, \boldsymbol\pi)$. Same gap in [[Linear Probabilistically Checkable Proofs]]' $\mathcal A_\mathsf{choose}$.
+- **[[Knowledge Soundness]] declares $\mathcal E = (\mathcal E_\mathsf{NIPS})$ and then calls $\mathcal E_\mathsf{find}$** — declared with one phase name, used with another.
+- The affine variant is labelled $\mathsf{Adv}^{\mathsf{ks}}_\mathsf{NIPS}$ but is about a **NILP**; `\mathbf F` should be `\mathbb F`; and `$\Pi \in \mathbf F^{k \times m}$` sits in the *event* column of the probability, where it is a type declaration, not an event — it belongs in the experiment column or in prose. $\Pi$ / $\Pi^*$ are used interchangeably.
+
 ---
 
 # Part III · The view of a party

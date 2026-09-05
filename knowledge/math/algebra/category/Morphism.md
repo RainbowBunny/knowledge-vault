@@ -8,7 +8,7 @@
 
 ## Property
 
-### Isomorphisms
+### Isomorphism
 
 > [!definition] Isomorphism
 > Let $\mathcal C$ be a category. A morphism $f \in \mathsf{Hom}_{\mathcal{C}}(A, B)$ is an **isomorphism** if it has a (two-sided) inverse under composition: that is, if $\exists g \in \mathsf{Hom}_{\mathcal{C}}(B, A)$ such that 
@@ -26,14 +26,14 @@
 > [!corollary]
 > Isomorphism is an equivalence relation. If two objects $A, B$ are isomorphic, one writes $A \cong B$.
 
-### Monomorphisms
+### Monomorphism
 
 > [!definition] Monomorphism
 > Let $\mathcal C$ be a category. A morphism $f \in \mathsf{Hom}_{\mathcal{C}}(A, B)$ is a **monomorphism** if the following holds:
 > - For all object $Z$ of $\mathcal C$ and all morphisms $\alpha', \alpha'' \in \mathsf{Hom}_{\mathcal{C}}(Z, A)$,
 > $$f \circ \alpha' = f \circ \alpha'' \Longrightarrow \alpha' = \alpha''.$$
 
-### Epimorphisms
+### Epimorphism
 
 > [!definition] Epimorphisms
 > Let $\mathcal C$ be a category. A morphism $f \in \mathsf{Hom}_{\mathcal{C}}(A, B)$ is an **epimorphism** if the following holds:

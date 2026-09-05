@@ -1,9 +1,9 @@
 ## Definition
 
 > [!definition] Group Homomorphisms
-> Let $G$ and $H$ be groups. A function $\phi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\phi(g_1 \star g_2) = \phi(g_1) \star \phi(g_2) \; \forall g_1, g_2 \in G.$$
+> Let $(G, \star_G)$ and $(H, \star_H)$ be groups. A function $\phi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\phi(g_1 \star_G g_2) = \phi(g_1) \star_H \phi(g_2) \; \forall g_1, g_2 \in G.$$
 
-### Isomorphisms
+### Group Isomorphisms
 
 > [!definition] Isomorphisms
 > - See [[Morphism#Isomorphisms|Isomorphisms]].
@@ -21,8 +21,8 @@
 
 ### Monomorphisms
 
-> [!definition] Monomorphisms
-> - See [[Morphism#Monomorphisms|Monomorphisms]].
+> [!definition] Group Monomorphism
+> - See [[Morphism#Monomorphisms|Monomorphism]].
 
 > [!proposition]
 > The following are equivalent:

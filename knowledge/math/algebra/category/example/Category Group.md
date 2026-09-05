@@ -9,7 +9,9 @@
 
 ## Property
 
-> [!proposition]
+### Universal Property
+
+> [!proposition] Initial and Final Object
 > Trivial groups are both [[Universal Properties#Initial Objects|Initial]] and [[Universal Properties#Final Objects|Final]] in $\mathsf{Grp}$.
 
 ### Product

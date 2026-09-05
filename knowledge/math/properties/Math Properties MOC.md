@@ -94,10 +94,10 @@ Scope: a map between structured sets.
 - [[Injection]] · [[Surjection]] · [[Bijection]] — the cardinality properties
 - [[Involution]] — $f \circ f = \mathrm{id}$
 
-Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphisms]], [[Split-R1CS]], [[Function]], [[Subgroups]].
+Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphism]], [[Split-R1CS]], [[Function]], [[Subgroup]].
 
 > [!remark] One structure-preserving map per family
-> Algebra has [[Homomorphism|homomorphisms]], orders have [[Monotonicity|monotone maps]], categories have functors. A [[Morphism|morphism]] is *not* one of these: it is an arrow in an abstract [[Category]] and need not be a function at all. The two coincide only in a **concrete** category — which is what licenses [[Group Homomorphisms]] to import [[Morphism#Isomorphisms|iso]].
+> Algebra has [[Homomorphism|homomorphisms]], orders have [[Monotonicity|monotone maps]], categories have functors. A [[Morphism|morphism]] is *not* one of these: it is an arrow in an abstract [[Category]] and need not be a function at all. The two coincide only in a **concrete** category — which is what licenses [[Group Homomorphism]] to import [[Morphism#Isomorphisms|iso]].
 
 ## Metric axioms
 

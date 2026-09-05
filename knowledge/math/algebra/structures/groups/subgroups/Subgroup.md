@@ -1,7 +1,7 @@
 ## Definition
 
 > [!definition] Subgroup
-> A subgroup is a subset $H$ of a [[Group]] $(G, \star)$ that is also a group. 
+> A *subgroup* is a subset $H$ of a [[Group]] $(G, \star)$ that is also a group. 
 
 > [!proposition]
 > A nonempty subset $H$ of a group $G$ is a subgroup if and only if
