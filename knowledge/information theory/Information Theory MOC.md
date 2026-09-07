@@ -41,7 +41,7 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 
 | to | why |
 | --- | --- |
-| [[Assumptions MOC]] | [[Syndrome Decoding]], [[Rank Syndrome Decoding]], [[Quasi-Cyclic Syndrome Decoding]], [[Rank Support Learning Problem]] are the hardness side of these codes |
+| [[Assumptions MOC]] | [[Syndrome Decoding Assumption]], [[Rank Syndrome Decoding Assumption]], [[Quasi-Cyclic Syndrome Decoding Assumption]], [[Rank Support Learning Assumption]] are the hardness side of these codes |
 | [[Symmetric Encryption MOC]] | [[Perfect Security]] and the [[One-time Pad]] are entropy arguments; [[Hamming Quasi Cyclic SKE]] is code-based |
 | [[Probability MOC]] | [[Random Variables]], [[Expectation]], [[Statistical Distance]] |
 | [[Algebra MOC]] | [[Field]] — every code here is over $\mathbb F_q$; [[knowledge/math/algebra/structures/rings/Ring]] for cyclic codes; [[Matrix]] for generator matrices |

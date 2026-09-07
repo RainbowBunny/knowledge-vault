@@ -7,7 +7,7 @@ Code-based KEM; selected by NIST (March 2025) as the backup KEM to ML-KEM. The n
 > [!algorithm] HQC Framework (sketch)
 > HQC uses two codes with different roles:
 > - A **public, efficiently decodable code** $\mathcal C$ with a systematic generator matrix $G$ — in the NIST version a concatenation of [[Reed-Muller|Reed-Muller]] and Reed–Solomon codes ([[Cyclic Codes#Reed-Solomon Code|RS]]). Its decoding capability only affects *correctness*, not security.
-> - **Random quasi-cyclic codes** over $\mathbb F_2[x]/(x^n - 1)$, whose [[Syndrome Decoding|syndrome decoding]] hardness (QCSD) carries the *security*.
+> - **Random quasi-cyclic codes** over $\mathbb F_2[x]/(x^n - 1)$, whose [[Syndrome Decoding Assumption|syndrome decoding]] hardness (QCSD) carries the *security*.
 >
 > Encryption masks $mG$ with sparse quasi-cyclic noise; decryption strips the mask and uses the decoder of $\mathcal C$ to remove the residual error. IND-CCA security is obtained via the Fujisaki–Okamoto transform (HHK).
 
@@ -18,5 +18,5 @@ Code-based KEM; selected by NIST (March 2025) as the backup KEM to ML-KEM. The n
 ## Related
 
 - [[Code Properties]] — systematic + quasi-cyclic, and why QC compresses keys
-- [[Syndrome Decoding]] — the underlying assumption (quasi-cyclic variant)
+- [[Syndrome Decoding Assumption]] — the underlying assumption (quasi-cyclic variant)
 - Paper notes: RHQC (ratcheted key exchange from coding assumptions) in `academic/paper/cryptography/PQC/`

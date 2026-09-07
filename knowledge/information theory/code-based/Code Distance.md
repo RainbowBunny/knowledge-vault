@@ -23,20 +23,8 @@
 > 1. The packing radius of $\mathcal C$ equals $t = \lfloor (d - 1) / 2 \rfloor$.
 > 2. The packing radius $t$ of $\mathcal C$ is characterized by the property that nearest neighbor decoding always decodes correctly a received vector in which $t$ or fewer errors have occurred but will not always decode correctly a received vector in which $t + 1$ errors have occurred.
 
-## Hamming Distance
-
-> [!definition] Hamming Distance
-> Let $x$ and $y$ be words of length $n$ over the alphabet $A$. The **(Hamming) distance** from $x$ to $y$, denoted by $d(x, y)$, is defined to be the number of places at which $x$ and $y$ differ. If $x = x_1 \cdots x_n$ and $y = y_1 \cdots y_n$, then $$d(x, y) = d(x_1, y_1) + \cdots + d(x_n, y_n),$$ where $x_i$ and $y_i$ are regarded as words of length $1$, and $$d(x_i, y_i) = \begin{cases}1 &\text{ if } x_i \neq y_i \\ 0 &\text{ if } x_i = y_i\end{cases}$$
-
-> [!proposition]
-> Let $x, y, z$ be words of length $n$ over $A$. Then we have
-> 1. (Non-negativity) $0 \leq d(x, y) \leq n$,
-> 2. $d(x, y) = 0$ if and only if $x = y$,
-> 3. (Symmetry) $d(x, y) = d(y, x)$
-> 4. (Triangle inequality) $d(x, z) \leq d(x, y) + d(y, z)$.
-
 > [!theorem]
-> If $x, y \in \mathbb F_q^n$, then $d(x, y) = \text{wt}(x - y)$. If $\mathcal C$ is a [[Linear Code]], the minimum distance is the same as the minimum weight of the nonzero codewords of $\mathcal C$.
+> If $x, y \in \mathbb F_q^n$, then $d(x, y) = \mathsf{wt}_\mathsf{H}(x - y)$. If $\mathcal C$ is a [[Linear Code]], the minimum distance is the same as the minimum weight of the nonzero codewords of $\mathcal C$.
 
 ## Rank Metric
 
@@ -45,5 +33,5 @@
 > The rank weight $||x||$ is defined as
 > $$||x|| = \text{rank } M(x)$$
 
-## Weight of a Code
+
 

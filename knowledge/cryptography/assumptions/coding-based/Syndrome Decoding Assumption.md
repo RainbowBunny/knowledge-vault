@@ -1,12 +1,3 @@
-## Parameters
-
-> [!definition] Parameters
-> - $n$: Length of the code.
-> - $k$: Dimension of the subspace.
-> - $w$: Weight of the codeword.
-> - $\mathbb F$: Field
-> - $\omega$: Norm over $\mathcal R$ (Hamming weight)
-
 ## Distribution
 
 > [!definition] Syndrome Decoding Distribution

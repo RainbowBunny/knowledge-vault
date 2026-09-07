@@ -38,7 +38,7 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 
 ## Assumptions and attacks
 
-- [[Assumptions MOC]] — [[Discrete-Logarithm Assumption]]; lattice-based ([[Learning With Error]], [[Short Integer Solution]], [[Shortest Vector Problem]], [[Vanishing SIS]]); coding-based ([[Syndrome Decoding]], [[Rank Syndrome Decoding]]); idealized models ([[Random Oracle Model]], [[Ideal Cipher Model]], [[Uniform Random String Model]])
+- [[Assumptions MOC]] — [[Discrete-Logarithm Assumption]]; lattice-based ([[Learning With Error]], [[Short Integer Solution]], [[Shortest Vector Problem]], [[Vanishing SIS]]); coding-based ([[Syndrome Decoding Assumption]], [[Rank Syndrome Decoding Assumption]]); idealized models ([[Random Oracle Model]], [[Ideal Cipher Model]], [[Uniform Random String Model]])
 - [[Cryptanalysis MOC]] — [[Attack List]], [[Collision Algorithms]], [[Password Cracking]], [[CRIME]]
 
 ## Folder layout

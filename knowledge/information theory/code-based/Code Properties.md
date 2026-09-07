@@ -28,7 +28,7 @@ Structural properties of codes. Unlike code *families* (Reed–Muller, BCH, Gopp
 > Writing $n = \ell m$ and viewing a codeword as $\ell$ blocks of length $m$, a quasi-cyclic code of index $\ell$ is invariant under the simultaneous cyclic shift of all $\ell$ blocks. Algebraically, $C$ is a module over $\mathbb F_q[x]/(x^m - 1)$, and $C$ admits a generator matrix composed of $m \times m$ **circulant blocks**.
 
 > [!remark] Why quasi-cyclic in cryptography
-> A circulant block is determined by its first row, so a quasi-cyclic generator (or parity-check) matrix costs $O(n)$ storage instead of $O(n^2)$ — this is the key-size compression used by HQC, BIKE, and other code-based NIST candidates. The price is added algebraic structure, which must be assumed harmless (quasi-cyclic variants of [[Syndrome Decoding]]).
+> A circulant block is determined by its first row, so a quasi-cyclic generator (or parity-check) matrix costs $O(n)$ storage instead of $O(n^2)$ — this is the key-size compression used by HQC, BIKE, and other code-based NIST candidates. The price is added algebraic structure, which must be assumed harmless (quasi-cyclic variants of [[Syndrome Decoding Assumption]]).
 
 ## Related
 

@@ -785,6 +785,162 @@ $\mathrm{st}_\mathcal S$ collides with the verification state. Use $\mathrm{aux}
 - **[[Knowledge Soundness]] declares $\mathcal E = (\mathcal E_\mathsf{NIPS})$ and then calls $\mathcal E_\mathsf{find}$** — declared with one phase name, used with another.
 - The affine variant is labelled $\mathsf{Adv}^{\mathsf{ks}}_\mathsf{NIPS}$ but is about a **NILP**; `\mathbf F` should be `\mathbb F`; and `$\Pi \in \mathbf F^{k \times m}$` sits in the *event* column of the probability, where it is a type declaration, not an event — it belongs in the experiment column or in prose. $\Pi$ / $\Pi^*$ are used interchangeably.
 
+## 2.12 The proof-system properties in Scope / Condition / Property form
+
+### The analogy that makes it work
+
+$$\textbf{[[Binary Operation]]} : \textbf{[[Associativity]]} \;::\; \textbf{Proof System} : \textbf{[[Completeness]]}$$
+
+Every operation axiom opens `### Scope: A [[Binary Operation]] $\star : O \times O \to O$` — one link, and the axiom is stated against it. The proof-system properties need the same thing: **one note declaring the abstract signature they all quantify over.** Without it every property note carries a six-line preamble, which is the failure mode §2.10 warns about.
+
+That note does not exist — but `[[Proof System]]` is already a **broken link** in [[Interactive Proofs]]. Writing it closes the gap and supplies the Scope in one move.
+
+#### `proof/Proof System.md` — the Scope object
+
+```markdown
+## Definition
+
+> [!definition] Proof System
+> ### Scope
+> An [[Effective Relation]] $\mathcal R$, with language $\mathcal L_\mathcal R = \{\mathbf x : \exists \mathbf w,\ (\mathbf x, \mathbf w) \in \mathcal R\}$.
+>
+> ---
+> ### Definition
+> A **proof system** for $\mathcal R$ is $\Pi = (\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$ together with a
+> **response map** $\mathcal O$:
+> - $(\sigma, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R)$ — the public object $\sigma$ and the verification state $\mathrm{st}$.
+> - $\boldsymbol\rho \leftarrow \mathsf{Prove}(\mathcal R, \sigma, \mathbf x, \mathbf w)$ — the **prover's object**.
+> - $\boldsymbol\pi = \mathcal O(\sigma, \boldsymbol\rho)$ — what the verifier actually reads.
+> - $b \leftarrow \mathsf{Verify}(\mathcal R, \mathrm{st}, \mathbf x, \boldsymbol\pi)$.
+
+> [!remark] The response map is the only thing that varies
+> | system | $\sigma$ | $\boldsymbol\rho$ | $\mathcal O(\sigma, \boldsymbol\rho)$ |
+> | --- | --- | --- | --- |
+> | [[Non-Interactive Proof Systems]] | $\mathrm{crs}$ | $\boldsymbol\pi$ | $\boldsymbol\pi$ (identity) |
+> | [[Linear Probabilistically Checkable Proofs]] | $\mathbf Q \in \mathbb F^{m \times k}$ | $\boldsymbol\pi \in \mathbb F^m$ | $\mathbf Q^{T}\boldsymbol\pi$ |
+> | [[Non-Interactive Linear Proofs]] | $\mathrm{crs} \in \mathbb F^m$ | $\boldsymbol\Pi \in \mathbb F^{k \times m}$ | $\boldsymbol\Pi\,\mathrm{crs}$ |
+>
+> The last two are **the same bilinear pairing with the pen in different hands** — LPCP's verifier chooses the
+> matrix and the prover the vector; NILP's prover chooses the matrix and `Setup` the vector. That single swap
+> is why NILP soundness must be non-adaptive and why the two zero-knowledge shapes differ.
+```
+
+Then every property below opens with **one line**: *`### Scope` — A [[Proof System]] $\Pi$ for $\mathcal R$, with response map $\mathcal O$.*
+
+### [[Completeness]]
+
+```markdown
+> [!definition] Completeness
+> ### Scope
+> A [[Proof System]] $\Pi$ for $\mathcal R$, with response map $\mathcal O$.
+>
+> ---
+> ### Condition
+> $(\mathbf x, \mathbf w) \in \mathcal R$ — the **promise**. Both parties honest; no [[Adversary]].
+>
+> ---
+> ### Property
+> $\Pi$ is **$\varepsilon_c$-complete** iff
+> $$\Pr\!\left[\mathsf{Verify}(\mathcal R, \mathrm{st}, \mathbf x, \mathcal O(\sigma, \boldsymbol\rho)) = 1
+> \;\middle|\;
+> \begin{array}{l}(\sigma, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R) \\
+> \boldsymbol\rho \leftarrow \mathsf{Prove}(\mathcal R, \sigma, \mathbf x, \mathbf w)\end{array}\right] \;\geq\; 1 - \varepsilon_c$$
+> **Perfect** when $\varepsilon_c = 0$.
+
+> [!remark]
+> This is a **success probability with a lower bound**, not an advantage. It is the one quantity in the vault
+> you want near $1$ — see [[Security Game]].
+```
+
+### [[Soundness]]
+
+```markdown
+> [!definition] Soundness
+> ### Scope
+> A [[Proof System]] $\Pi$ for $\mathcal R$ with response map $\mathcal O$; an [[Adversary]] class $\mathbb A$.
+>
+> ---
+> ### Condition
+> $\mathbf x \notin \mathcal L_\mathcal R$ — the **complementary promise** to completeness.
+> **Adaptivity**: *non-adaptive* if $\mathcal A$ commits to $(\mathbf x, \boldsymbol\rho^*)$ before `Setup` runs; *adaptive* if it sees $(\sigma, \mathrm{st})$ first.
+>
+> ---
+> ### Property
+> For every $\mathcal A \in \mathbb A$,
+> $$\mathsf{Adv}^\mathsf{snd}_\Pi(\mathcal A) = \Pr\!\left[
+> \begin{array}{l}\mathbf x \notin \mathcal L_\mathcal R \\ \mathsf{Verify}(\mathcal R, \mathrm{st}, \mathbf x, \mathcal O(\sigma, \boldsymbol\rho^*)) = 1\end{array}
+> \;\middle|\;
+> \begin{array}{l}(\mathbf x, \boldsymbol\rho^*) \leftarrow \mathcal A(\mathcal R) \\ (\sigma, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R)\end{array}\right] \leq \varepsilon_s$$
+> Statistical soundness ($\mathbb A$ unbounded) gives a **proof**; computational gives an [[Argument Systems|argument]].
+```
+
+### [[Knowledge Soundness]]
+
+```markdown
+> [!definition] Knowledge Soundness
+> ### Scope
+> A [[Proof System]] $\Pi$ for $\mathcal R$ with response map $\mathcal O$; an [[Adversary]] class $\mathbb A$.
+>
+> ---
+> ### Condition
+> **$\forall \mathcal A \in \mathbb A\ \exists \mathcal E$** — the extractor is chosen *after* the adversary and
+> receives its code and coins. No promise on $\mathbf x$: the claim is about *every* accepted proof.
+>
+> ---
+> ### Property
+> $$\mathsf{Adv}^\mathsf{ks}_\Pi(\mathcal A, \mathcal E) = \Pr\!\left[
+> \begin{array}{l}\mathsf{Verify}(\mathcal R, \mathrm{st}, \mathbf x, \mathcal O(\sigma, \boldsymbol\rho^*)) = 1 \\ (\mathbf x, \mathbf w) \notin \mathcal R\end{array}
+> \;\middle|\;
+> \begin{array}{l}(\sigma, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal R) \\ (\mathbf x, \boldsymbol\rho^*) \leftarrow \mathcal A(\mathcal R, \sigma, \mathrm{st}) \\ \mathbf w \leftarrow \mathcal E(\mathcal R, \sigma, \mathrm{st}, \mathbf x, \boldsymbol\rho^*)\end{array}\right] \leq \varepsilon_k$$
+> *Accepted, but the extractor could not produce a witness.*
+
+> [!remark] Why there is no adaptive variant
+> $\mathcal E$ sees $\mathcal A$'s randomness, so it can rerun $\mathcal A$ — adaptivity buys the adversary nothing.
+> And $\forall\mathcal A\,\exists\mathcal E$ **is not a falsifiable game**: no efficient challenger can decide the winner.
+```
+
+### [[Zero Knowledge]]
+
+```markdown
+> [!definition] Zero Knowledge
+> ### Scope
+> A [[Proof System]] $\Pi$ for $\mathcal R$ with response map $\mathcal O$; an [[Adversary]] class $\mathbb A$;
+> a **simulator** $\mathcal S$ (signature per the pattern below).
+>
+> ---
+> ### Condition
+> **$\exists \mathcal S\ \forall \mathcal A \in \mathbb A$** — note the order is the *reverse* of knowledge soundness.
+> $(\mathbf x, \mathbf w) \in \mathcal R$. One of two patterns:
+> - **Setup simulation** — $\mathcal S$ produces its own $(\widetilde\sigma, \widetilde{\mathrm{st}})$, because the setup is inside the view.
+> - **Trapdoor simulation** — `Setup` is honest and shared; $\mathcal S$ receives $\mathrm{st}$ in its trapdoor role.
+>
+> $\mathcal S$ never receives $\mathbf w$. That is the entire content.
+>
+> ---
+> ### Property
+> $$\mathsf{Adv}^\mathsf{zk}_\Pi(\mathcal A, \mathcal S) = \big|\Pr[b = 1 \mid \textsf{real}] - \Pr[b = 1 \mid \textsf{sim}]\big| \leq \varepsilon_{zk}$$
+> with $(\mathbf x, \mathbf w, s) \leftarrow \mathcal A_\mathsf{choose}(\dots)$ and $b \leftarrow \mathcal A_\mathsf{guess}(s, \dots)$ in **both** branches,
+> each branch handing $\mathcal A_\mathsf{guess}$ **its own** $\sigma$ and $\mathrm{st}$.
+```
+
+### [[Succinctness]] — the one that does not fit
+
+```markdown
+> [!definition] Succinctness
+> ### Scope
+> A [[Proof System]] $\Pi$ for $\mathcal R$.
+>
+> ---
+> ### Property
+> $|\boldsymbol\pi| = \mathrm{poly}(\lambda) \cdot o(|\mathbf w|)$, and $\mathsf{Verify}$ runs in $\mathrm{poly}(\lambda, |\mathbf x|) \cdot o(|\mathcal R|)$.
+```
+
+No `### Condition`, no probability, no adversary — succinctness is a **complexity predicate**, not a game. It belongs beside the other four in the folder and nowhere near the shared game scope. Worth one line saying so, because a reader who has just met four games will look for the fifth.
+
+### What this costs
+
+The Scope of a game property is a **whole signature**, not one operation — which is why factoring it into [[Proof System]] is not optional here the way it is optional for [[Associativity]]. Four properties × six lines of preamble is twenty-four lines of duplicated declaration, and every one of them is a place for the clone-and-edit slip that already produced the LPCP bug.
+
 ---
 
 # Part III · The view of a party

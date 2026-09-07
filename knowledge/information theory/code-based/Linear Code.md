@@ -151,4 +151,4 @@
 - [[Code Properties]] — systematic encoders, quasi-cyclic structure, and other composable properties
 - [[Reed-Muller]] — the RM family (moved to its own note)
 - [[Cyclic Codes]] — cyclic theory, BCH, Reed–Solomon
-- [[Syndrome Decoding]] — the hardness assumption built on syndrome decoding
+- [[Syndrome Decoding Assumption]] — the hardness assumption built on syndrome decoding
