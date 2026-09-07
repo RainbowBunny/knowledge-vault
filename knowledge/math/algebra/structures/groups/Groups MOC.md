@@ -7,14 +7,14 @@ A **group** is a set with one operation satisfying [[Associativity]], [[Identity
 ## Core
 
 - [[Group]] — definition, order of a group and of an element, uniqueness and cancellation propositions
-- [[Group Homomorphisms]] — the structure-preserving maps; kernel, isomorphism, the order-divides proposition. Links out to [[Morphism]] rather than restating mono / iso
+- [[Group Homomorphism]] — the structure-preserving maps; kernel, isomorphism, the order-divides proposition. Links out to [[Morphism]] rather than restating mono / iso
 
 ## Substructure
 
 `subgroups/`
 
-- [[Subgroups]] — the subgroup criterion $ab^{-1} \in H$, intersections, preimages, [[Closure]]; Lagrange's Theorem; kernel
-- [[Normal Subgroups]]
+- [[Subgroup]] — the subgroup criterion $ab^{-1} \in H$, intersections, preimages, [[Closure]]; Lagrange's Theorem; kernel
+- [[Normal Subgroup]]
 - [[Additive Subgroup]] — a subgroup of $\mathbb R^m$ closed under addition and subtraction
 - [[Discrete Additive Subgroup]] — the additive subgroup with an $\epsilon$-separation condition; this is the definition [[Lattices]] rests on
 
@@ -42,7 +42,7 @@ A **group** is a set with one operation satisfying [[Associativity]], [[Identity
 | --- | --- |
 | [[knowledge/math/algebra/structures/rings/Ring]] | an [[Abelian Group\|abelian group]] under $+$ |
 | [[Lattices]] | a [[Discrete Additive Subgroup]] of $\mathbb R^n$ |
-| [[Category Group]] | $\mathsf{Grp}$ — objects are groups, morphisms are [[Group Homomorphisms]] |
+| [[Category Group]] | $\mathsf{Grp}$ — objects are groups, morphisms are [[Group Homomorphism]] |
 | [[Elliptic Curve]] | the group law on points |
 | [[Discrete Logarithm Problem]] | hardness in [[Cyclic Group\|cyclic groups]] |
 | [[Groupoids]] | what a group becomes when composition is only partial |

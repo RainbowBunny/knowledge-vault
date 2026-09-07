@@ -376,7 +376,7 @@ A map that respects structure: do the operation then map, or map then do the ope
 > Without a shared signature, "preserves the structure" has no referent. This is the one place the vault's [[First-Order Logic|signature]] framing is not just organisational but load-bearing.
 ```
 
-Instances to rewire: [[Group Homomorphisms]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[knowledge/math/algebra/structures/rings/Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroups]], whose definition *is* "the inclusion is a group homomorphism".
+Instances to rewire: [[Group Homomorphism]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[knowledge/math/algebra/structures/rings/Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroup]], whose definition *is* "the inclusion is a group homomorphism".
 
 ---
 
@@ -537,6 +537,265 @@ Folder: `properties/metric/`. Scope lines carry the precision; the folder name i
 
 ---
 
+---
+
+### 3.12 Nilpotency in rings — two notes **[Standard]**
+
+**First, a correction to the request.** *"Nilpotent ring"* is a real term, but in this vault it is **vacuous**. [[Ring]] here is a [[Monoid]] under $*$, so it is unital; a nilpotent ring means $R^n = 0$ (every product of $n$ elements vanishes), and then $1 = 1^n = 0$, so $R$ is the [[Zero Ring]]. The term only has content for **rngs** (non-unital) or, usefully, for **ideals**. So the material splits three ways, and only the first two want notes:
+
+| notion | what it is | where |
+| --- | --- | --- |
+| **nilpotent element** | $x^n = 0$ | `rings/Nilpotent Element.md` — a predicate on elements, next to `Unit` and `Zero Divisor` |
+| **reduced ring** | no nonzero nilpotents | `rings/special rings/Reduced Ring.md` — a mixin over [[Ring]] |
+| **nil / nilpotent ideal** | $I$ all-nilpotent / $I^n = 0$ | a `###` section of `Nilpotent Element` until `Ideal.md` is promoted out of [[Ring]] |
+
+Under the class/instance vocabulary: `Reduced Ring` is `Extends: [[Ring]]` — one axiom, no new data, exactly Mathlib's `class IsReduced`. `Nilpotent Element` is a predicate, not a class, exactly Mathlib's `IsNilpotent x`. Same split, arrived at independently.
+
+**Blocker.** Both drafts link `[[Unit]]` and `[[Zero Divisor]]`, which are still headings inside [[Ring]]. **This makes S3 a prerequisite, not a nicety** — precision rule 5, a dependency a definition uses but cannot link.
+
+#### A · `rings/Nilpotent Element.md`
+
+```markdown
+Reference:
+- Atiyah–Macdonald, *Introduction to Commutative Algebra*, Ch. 1
+- Lam, *A First Course in Noncommutative Rings*, §10 — the noncommutative side
+
+## Definition
+
+> [!definition] Nilpotent Element
+> ### Scope
+> A [[Ring]] $R$, with zero $0$.
+>
+> ---
+> ### Property
+> An element $x \in R$ is **nilpotent** iff
+> $$\exists n \in \mathbb Z_{\geq 1}: x^n = 0.$$
+> The least such $n$ is the **index of nilpotency** of $x$.
+
+> [!remark]
+> $0$ is the only nilpotent of index $1$; every other nilpotent has index $\geq 2$.
+
+## Property
+
+### Nilpotents are zero divisors
+
+> [!proposition]
+> A nonzero nilpotent $x$ of index $n$ is a [[Zero Divisor]]: $x \cdot x^{n-1} = 0$, and $x^{n-1} \neq 0$ by minimality of $n$.
+
+### Nilpotents and units
+
+> [!proposition]
+> If $x$ is nilpotent of index $n$, then $1 - x$ is a [[Unit]]:
+> $$(1 - x)^{-1} = 1 + x + x^2 + \dots + x^{n-1}.$$
+> No commutativity is needed — the powers of $x$ commute with each other.
+
+> [!corollary]
+> If $u$ is a unit, $x$ is nilpotent, and $ux = xu$, then $u + x$ is a unit. In a [[Commutative Ring]]: *unit $+$ nilpotent $=$ unit.*
+
+> [!proposition]
+> In a nonzero ring no nilpotent is a unit — if $x$ were invertible so would $x^n = 0$ be, forcing $1 = 0$.
+
+### Nilpotent and idempotent
+
+> [!proposition]
+> The only element that is both nilpotent and [[Idempotence|idempotent]] is $0$: from $x^2 = x$ we get $x = x^2 = \dots = x^n = 0$.
+
+### Sums — where commutativity is required
+
+> [!theorem]
+> Let $R$ be a [[Commutative Ring]] with $x^m = 0$ and $y^n = 0$. Then $(x + y)^{m + n - 1} = 0$.
+>
+> *Proof.* Expand by the binomial theorem. In each term $\binom{m+n-1}{i} x^i y^{m+n-1-i}$ either $i \geq m$ or $m+n-1-i \geq n$, so every term vanishes.
+
+> [!remark] Commutativity is a side condition, not decoration
+> In $M_2(k)$, $e_{12} = \begin{pmatrix}0&1\\0&0\end{pmatrix}$ and $e_{21} = \begin{pmatrix}0&0\\1&0\end{pmatrix}$ are nilpotent of index $2$, but
+> $$e_{12} + e_{21} = \begin{pmatrix}0&1\\1&0\end{pmatrix}, \qquad (e_{12} + e_{21})^2 = I.$$
+> Their sum is a unit. In a noncommutative ring the nilpotents need not be closed under addition at all.
+
+### Nilradical
+
+> [!definition] Nilradical
+> For a [[Commutative Ring]] $R$, $\;\mathfrak N(R) = \{x \in R : x \text{ nilpotent}\}$.
+
+> [!theorem]
+> $\mathfrak N(R)$ is an ideal — closed under addition by the theorem above, and under scaling since $(rx)^m = r^m x^m = 0$. The quotient $R / \mathfrak N(R)$ is [[Reduced Ring|reduced]].
+
+> [!theorem] Krull
+> In a commutative ring with $1$, $\mathfrak N(R)$ is the intersection of all prime ideals of $R$.
+
+### Nil and nilpotent ideals
+
+> [!definition]
+> An ideal $I \subseteq R$ is **nil** iff every element of $I$ is nilpotent, and **nilpotent** iff $I^n = 0$ for some $n$ — every product of $n$ elements of $I$ vanishes.
+
+> [!proposition]
+> Nilpotent $\Rightarrow$ nil. The converse fails: in $k[x_1, x_2, \dots]/(x_1^2, x_2^3, x_3^4, \dots)$ the ideal $(x_1, x_2, \dots)$ is nil but not nilpotent. It does hold when $I$ is finitely generated — so in a Noetherian commutative ring $\mathfrak N(R)$ is nilpotent.
+
+> [!remark]
+> A *unital* ring is never nilpotent unless it is the [[Zero Ring]]: $R^n = 0$ gives $1 = 1^n = 0$. "Nilpotent ring" is a statement about rngs and ideals, not about the objects [[Ring]] defines.
+
+## Example
+
+- $\mathbb Z / p^k$: the nilpotents are exactly the multiples of $p$. In $\mathbb Z/m$, $x$ is nilpotent iff every [[Prime]] dividing $m$ divides $x$.
+- **Dual numbers** $k[\varepsilon]/(\varepsilon^2)$ — the smallest interesting nonzero nilpotent, and the reason non-reduced rings exist in geometry.
+- Strictly upper-triangular matrices in [[Matrix|$M_n(k)$]] — nilpotent of index $\leq n$.
+- [[Polynomial Ring]]: for commutative $R$, $f = \sum a_i x^i$ is nilpotent iff every $a_i$ is; and $f$ is a unit iff $a_0$ is a unit and $a_1, \dots, a_d$ are nilpotent.
+- [[Integral Domain]] and [[Field]] — no nonzero nilpotents at all.
+
+## Related
+
+- [[Reduced Ring]] — the rings this predicate is empty in
+- [[Operators]] — the same predicate for a linear operator, where $N^{\dim V} = 0$ comes for free
+```
+
+#### B · `rings/special rings/Reduced Ring.md`
+
+```markdown
+Reference: Atiyah–Macdonald Ch. 1; Mathlib `IsReduced`
+
+## Definition
+
+> [!definition] Reduced Ring
+> ### Scope
+> A [[Ring]] $R$.
+>
+> ---
+> ### Property
+> $R$ is **reduced** iff its only [[Nilpotent Element|nilpotent]] is $0$:
+> $$\forall x \in R: x^2 = 0 \implies x = 0.$$
+
+> [!remark] Index 2 is enough
+> The index-$2$ condition kills every nilpotent. If $x^n = 0$ with $n \geq 2$ minimal, then $(x^{n-1})^2 = x^{2n-2} = 0$ since $2n - 2 \geq n$, so $x^{n-1} = 0$ — contradicting minimality.
+
+## Property
+
+> [!proposition] The chain
+> [[Field]] $\Rightarrow$ [[Integral Domain]] $\Rightarrow$ reduced.
+> Neither converse holds: $\mathbb Z$ is a domain and not a field; $\mathbb Z \times \mathbb Z$ is reduced and not a domain, since $(1,0)(0,1) = (0,0)$.
+
+> [!proposition]
+> $R$ is reduced iff $\mathfrak N(R) = 0$, and $R/\mathfrak N(R)$ is reduced for every commutative $R$.
+
+## Related
+
+- [[Nilpotent Element]] · [[Integral Domain]] · [[Commutative Ring]]
+```
+
+#### The bridge to linear algebra
+
+[[Operators]] already defines nilpotent for an operator and proves $N^{\dim V} = 0$. That is the **same predicate in a different idiom** — a two-views pair in the [[North Star]] sense, cross-domain shape. One remark on the ring side (*"for $R = \mathcal L(V)$ this is [[Operators]]' nilpotent operator, where the index is bounded by $\dim V$"*) and one on the operator side is the whole bridge; do not restate the theory twice.
+
+
+---
+
+### 3.13 `Kernel` — one note, and three that stay put **[Standard]**
+
+**It is already in the vault three times, and the general one is unnamed.**
+
+| where | what it says | reading |
+| --- | --- | --- |
+| [[Function]] `### Canonical Decomposition` | *"$a' \sim a'' \iff f(a') = f(a'')$"* — **the kernel, never called that** | B |
+| [[Subgroup]] `### Kernel` | $\ker \phi = \phi^{-1}(e_{G'})$ | A |
+| [[Linear Maps]] `### Null Spaces and Ranges` | *"null space (or kernel)"*, $\{v : Tv = 0\}$ | A |
+| [[knowledge/math/algebra/structures/rings/Ring]] | ring homs and [[Ideal]]s are both defined — **but never connected** | A, missing |
+
+#### Two readings, and they are not the same concept
+
+|  | **A · sub-object** | **B · equivalence relation** |
+| --- | --- | --- |
+| definition | $\ker f = f^{-1}(0)$ | $x \sim_f y \iff f(x) = f(y)$ |
+| Scope needs | a zero / identity **in the codomain** | **nothing** — any [[Function]] between bare sets |
+| yields | a normal subgroup, an ideal, a subspace | a partition, hence a [[Quotient Relation]] |
+| categorically | equalizer of $(f, 0)$ — needs zero morphisms | the *kernel pair*, a pullback — needs nothing |
+
+**Revised 2026-09-04 — the sub-object reading *is* general; what is not general is the choice of *which* sub-object.**
+
+For any [[Function]] $f: A \to B$ and any $b \in B$ the **fibre** $f^{-1}(b) \subseteq A$ exists. Fibres are perfectly general. So:
+
+> **A is one distinguished fibre. B is the whole fibre partition.**
+> $\ker f$ (sub-object) is the fibre over the basepoint; $\sim_f$ (relation) is the partition into all fibres.
+
+Reading A therefore needs exactly one extra thing: **a distinguished point in the codomain** to take the fibre over. A bare set has none. And recovering B from A needs a *second* thing — a way to translate one fibre onto the others.
+
+They **coincide exactly for group-like structures**, because inverses give that translation: $x \sim_f y \iff xy^{-1} \in \ker f$. That coincidence *is* the first isomorphism theorem, and it is why nobody distinguishes the two readings in a group theory course.
+
+They **come apart one step outside groups**:
+
+> [!remark] A monoid homomorphism can have trivial kernel and not be injective
+> Let $f : (\mathbb N, +) \to (\{0,1\}, \max)$ with $f(0) = 0$ and $f(n) = 1$ for $n > 0$. This is a [[Monoid]]
+> homomorphism, and $f^{-1}(0) = \{0\}$ is trivial — yet $f(1) = f(2)$, so $f$ is not an [[Injection]].
+> Reading **A** has lost the information; reading **B** still has it.
+
+This is a **two-views pair of the *non-equivalent* shape** ([[North Star]]): the surviving direction and the separating example are the content. Do not merge them.
+
+#### The criterion, not the list
+
+The varieties where one fibre determines the whole congruence are the **$0$-regular** (ideal-determined) ones: those with a constant $0$ and a **Mal'cev term** $p(x,y,z)$ satisfying $p(x,x,z) = z$ and $p(x,z,z) = x$. For [[Group]] it is $p(x,y,z) = xy^{-1}z$; [[knowledge/math/algebra/structures/rings/Ring]] and modules inherit it from their additive group. [[Monoid]], [[Semigroup]], lattices and orders have no such term — which is precisely why the counterexample above exists. **[Standard]** — universal algebra, the same frame as [[Equational Logic]].
+
+So the rule is checkable rather than memorised: *ask whether the structure has $xy^{-1}z$.*
+
+#### What category theory says
+
+| notion | needs | exists in $\mathbf{Set}$? |
+| --- | --- | --- |
+| **subobject** (a mono up to iso) | nothing | yes — fully general |
+| **image** (subobject of the **codomain**) | an epi–mono factorization | yes |
+| **kernel** = $\mathrm{eq}(f, 0)$ (subobject of the **domain**) | **zero morphisms** | **no** — $\mathbf{Set}$ has no zero object |
+| **kernel pair** $A \times_B A \rightrightarrows A$ | pullbacks | yes — and it *is* $\sim_f$ |
+
+So the asymmetry is real and it is not about sub-objects being special: on the **codomain** side the general object is a subobject ([[Function]]'s `### Image`), and on the **domain** side the general object is a *relation*. That is exactly why `Image` sits comfortably inside [[Function]] and `Kernel` does not.
+
+#### Placement
+
+**First, `### Fibre` goes into [[Function]]**, beside `### Image`, as the domain-side counterpart — $f^{-1}(b) = \{a \in A : f(a) = b\}$. General, derived, one line. It stays inside [[Function]] until a second note outside its parent needs it.
+
+**Then one new note: `math/set theory/function/Kernel.md`** — reading **B**, *the partition into fibres*. It graduates by the usual rule: three notes outside its parent need to link it ([[Subgroup]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]]), and its Scope is a bare function, so it belongs beside [[Function]] rather than inside any structure.
+
+```markdown
+Reference: Aluffi, *Algebra: Chapter 0*, §I.2 (canonical decomposition)
+
+## Definition
+
+> [!definition] Kernel
+> ### Scope
+> A [[Function]] $f : A \rightarrow B$.
+>
+> ---
+> ### Property
+> The **kernel** of $f$ is the [[Equivalence Relation]] $\sim_f$ on $A$ given by
+> $$a' \sim_f a'' \iff f(a') = f(a'').$$
+> Equivalently: the partition of $A$ into the non-empty fibres $f^{-1}(b)$, $b \in \operatorname{im} f$.
+
+## Property
+
+> [!theorem] Canonical decomposition
+> Every $f$ factors as $A \twoheadrightarrow A/{\sim_f} \xrightarrow{\ \tilde f\ } \operatorname{im} f \hookrightarrow B$,
+> with $\tilde f([a]) = f(a)$ a bijection — the [[Quotient Relation|quotient]] by the kernel, a bijection, and an inclusion.
+
+> [!proposition]
+> $f$ is an [[Injection]] iff $\sim_f$ is the identity relation.
+
+## Related
+
+- [[Subgroup]] · [[knowledge/math/algebra/structures/rings/Ring]] · [[Linear Maps]] — the sub-object reading, one per structure
+```
+
+**Reading A stays with each structure.** It is not one concept: the Scopes differ and all the content is structure-specific.
+
+| note | do |
+| --- | --- |
+| [[Subgroup]] | keep `### Kernel`; add *"and is a **normal subgroup**"* — currently unstated. Phrase it as *the fibre over $e_{G'}$* so the link to `Kernel.md` is visible |
+| [[knowledge/math/algebra/structures/rings/Ring]] | **add** the missing link: the kernel of a ring homomorphism **is an [[Ideal]]**, and conversely every ideal is the kernel of its quotient map. Right now [[Ideal]] appears with no reason for existing — and is defined **twice**, once well at `groups/subgroups/Ideal.md` and once weakly inline here. Delete the inline copy, link the note, and move the note to `rings/` (its Scope needs a ring) |
+| [[Linear Maps]] | keep; add a one-line synonym remark — *null space* and *kernel* are the same thing, and [[Subgroup]] uses the other word |
+
+Then one `[!remark]` in `Kernel.md` carrying the A ⟷ B bridge and the monoid counterexample. That is the whole design: **one note for the reading with no Scope requirements, one section per structure for the reading that has them.**
+
+#### Two things it surfaces
+
+- The **dual is muddled**. Kernel's dual is image, and [[Function]] still carries both `### Range` and `### Image` (the last open piece of **F3**), while [[Linear Maps]] uses *range* to mean image. Settle that in the same pass, or `Kernel.md`'s decomposition theorem will link a word with two meanings.
+- **`kernelization`** in [[Parameterized Complexity]] is a *different word* — instance compression, no relation. One disambiguation line in `Kernel.md`. The OS kernel appears only in prose (`ASM`, `security/rev`), so the bare name is free today.
+
+
 # Part IV · Complete axiom inventory
 
 Every axiom the vault has, needs, or should deliberately not write. **Consumer rule applied throughout** — nothing is proposed without a note that already wants it.
@@ -545,7 +804,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 
 | axiom                              | status                          | consumers                                                    |
 | ---------------------------------- | ------------------------------- | ------------------------------------------------------------ |
-| [[Closure]]                        | exists (subset reading)         | [[Subgroups]] (3.6) — and *only* subgroups, once 1.12 lands  |
+| [[Closure]]                        | exists (subset reading)         | [[Subgroup]] (3.6) — and *only* subgroups, once 1.12 lands  |
 | [[Associativity]]                  | exists                          | [[Semigroup]] onward; [[Category]]; [[Relation]] composition |
 | [[Commutativity]]                  | exists                          | [[Abelian Group]], [[Commutative Ring]], `Set Operation`     |
 | [[Identity Element]]               | exists                          | [[Monoid]] onward; [[Category]]                              |
@@ -578,8 +837,8 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | [[Bilinearity]] | exists | [[Bilinear Pairings]], [[Split-R1CS]] |
 | [[Multilinearity]] | exists | [[Bilinear Pairings]] |
 | [[Map Symmetry]] | exists | [[Inner-Product Spaces]] |
-| **Homomorphism** | **add** | [[Group Homomorphisms]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]], [[Subgroups]] |
-| **Injectivity** | **move in** | [[Function]], [[Group Homomorphisms]], [[Morphism]] |
+| **Homomorphism** | **add** | [[Group Homomorphism]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]], [[Subgroup]] |
+| **Injectivity** | **move in** | [[Function]], [[Group Homomorphism]], [[Morphism]] |
 | **Surjectivity** | **move in** | same |
 | **Monotonicity** | **add** | [[Calculus Functions]]; order theory; functors |
 | **Involution** | **add** | [[Field]], [[Matrix]], [[Group]], `Set Operation` |
@@ -666,7 +925,7 @@ This is where the previous three batches turn into read value. Each row deletes 
 | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | D1  | **1.12–1.15** — [[Magma]] / [[Semigroup]] / [[Monoid]]: one definition each, cite a [[Binary Operation]], drop the [[Closure]] links; [[Group]]'s second definition Semigroup → **Monoid**                |
 | D2  | [[Group]]'s Cancellation proposition → link **Cancellativity**; [[Field]]'s two cancellation rows likewise, and recompose *integral domain* as "commutative ring whose nonzero elements are cancellative" |
-| D3  | [[Group Homomorphisms]], [[Ring]], [[Linear Maps]], [[Subgroups]] → link **Homomorphism**; [[Linearity]] gains "the module-signature case of `Homomorphism`"                                              |
+| D3  | [[Group Homomorphism]], [[Ring]], [[Linear Maps]], [[Subgroup]] → link **Homomorphism**; [[Linearity]] gains "the module-signature case of `Homomorphism`"                                              |
 | D4  | **5.4 / 5.4b** — rewrite [[Metric Space]]: separate *normed group* from *metric space*, compose both from the axiom notes                                                                                 |
 | D5  | **5.5** — [[Code Distance]], [[Rank Metric Codes]] → metric axioms; [[Statistical Distance]] → the same, since total variation *is* a metric                                                              |
 | D6  | **6.5** — `Set Operation`' laws table → [[Commutativity]] / [[Associativity]] / [[Distributivity]] / [[Idempotence]] / **Absorption** as instances                                                        |

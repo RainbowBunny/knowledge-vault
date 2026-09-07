@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Definition
 
 >[!definition] Group
@@ -11,8 +14,9 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 > [!definition] Order of a Group
 > The **order of** $G$ is the number of elements in $G$; it is denoted by $|G|$ or $\# G$. We write $|G| = \inf$ if $G$ is infinite.
 
-> [!definition] Order of a group element
+> [!definition] Order of a Group Element
 > Let $G$ be a group and let $g \in G$ be an element of the group. Suppose there exists a positive integer $n$ with the property that $g^n = e$. The smallest such $n$ is called the **order of** $g$. If there is no such $n$, then $g$ is said to have **infinite order**. We denote the order of the element as $|g|$.
+> Also, if $G$ is a finite group, $|g| \mid |G|$.
 
 >[!proposition]
 >Let $G$ be a finite group. Then every element of $G$ has finite order. Further, if $g \in G$ has order $n$ and if $g^k = e$, then $n \mid k$.
@@ -42,12 +46,7 @@ A **group** consists of a nonempty set $G$ and a rule, which we denote by $\star
 ### Cancellation
 
 > [!proposition]
-> Let $G$ be a group. Then $\forall a, g, h \in G$
-> $$ga = ha \Longrightarrow g = h, \quad ag = ah \Longrightarrow g = h$$
-
-
-
-
+> Let $(G, \cdot)$ be a group, [[Cancellativity]] for $\cdot$ holds. 
 
 ## Example
 

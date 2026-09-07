@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 Reference: 
 - https://eprint.iacr.org/2022/1690.pdf (LUNA; CCS '24)
 

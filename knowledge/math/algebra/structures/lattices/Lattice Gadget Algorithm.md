@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 ## Definition
 
 > [!algorithm] The $g^{-1}_{\mathsf{rand}}$ Algorithm

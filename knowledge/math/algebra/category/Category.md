@@ -4,12 +4,11 @@
 > A **category** $\mathcal{C}$ consists of:
 > - A collection of Object $\mathsf{Obj}(\mathcal{C})$.
 > - A collection of [[Morphism]] (arrow) $\mathsf{Hom}_{\mathcal{C}}(A, B)$ for each pair of objects $A, B$.
-> - An [[Associativity|Associative]], [[Identity Element]] binary operation $\circ$ between Morphism called composition.
+> - An [[Associativity|Associative]], [[Identity Element]] binary operation $\circ$ between Morphism called [[Function#Composition|Composition]].
+> - The sets $\mathsf{Hom}_{\mathcal{C}}(A, B)$ and $\mathsf{Hom}_{\mathcal{C}}(C, D)$ be *disjoint* unless $A = C, B = D$.
 
 > [!remark]
-> $f \in \text{Hom}_{\mathcal C}(A, B)$ is the same as $f: A \rightarrow B$.
-
-
+> $f \in \mathsf{Hom}_{\mathcal{C}}(A, B)$ is the general form of $f: A \rightarrow B$.
 
 ## Property
 
