@@ -52,13 +52,13 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 `proof/properties/` — the axis each acronym in the composition table refers to.
 
-| property | note | variants |
-| --- | --- | --- |
-| Completeness | [[Completeness]] | — |
-| Soundness | [[Soundness]] | adaptive / non-adaptive |
-| Knowledge soundness | [[Knowledge Soundness]] | no adaptive variant — the extractor sees the prover's randomness |
-| Succinctness | [[Succinctness]] | succinct / preprocessing / fully succinct |
-| Zero knowledge | [[Zero Knowledge]] | HVZK; with leakage (see [[Linear Probabilistically Checkable Proofs]]) |
+| property            | note                    | variants                                                               |
+| ------------------- | ----------------------- | ---------------------------------------------------------------------- |
+| Completeness        | [[Completeness]]        | —                                                                      |
+| Soundness           | [[Soundness]]           | adaptive / non-adaptive                                                |
+| Knowledge soundness | [[Knowledge Soundness]] | no adaptive variant — the extractor sees the prover's randomness       |
+| Succinctness        | [[Succinctness]]        | succinct / preprocessing / fully succinct                              |
+| Zero knowledge      | [[Zero Knowledge]]      | HVZK; with leakage (see [[Linear Probabilistically Checkable Proofs]]) |
 
 ## 4 · Compilers and building blocks
 
