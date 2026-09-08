@@ -31,13 +31,13 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 
 Above the first heading, only what applies:
 
-| field | means | example |
-| --- | --- | --- |
-| `Reference:` | where it comes from | a paper URL, a book and section |
-| `Extends:` | this interface **is** that one, plus a condition | `Extends: [[Monoid]] + [[Inverse Element]]` |
-| `Instantiates:` | a concrete witness of an interface | `Instantiates: [[Public-Key Encryption]]` |
-| `Requires:` | building blocks it calls | `Requires: [[Extendable Output Function]]` |
-| `Import` | parameters pulled from another note, inside a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb F_2, \mathsf{wt}_\mathsf{H})$` |
+| field           | means                                                              | example                                                                                  |
+| --------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `Reference:`    | where it comes from                                                | a paper URL, a book and section                                                          |
+| `Extends:`      | this interface **is** that one, plus a condition                   | `Extends: [[Monoid]] + [[Inverse Element]]`                                              |
+| `Instantiates:` | a concrete witness of an interface                                 | `Instantiates: [[Public-Key Encryption]]`                                                |
+| `Requires:`     | building blocks it calls                                           | `Requires: [[Extendable Output Function]]`                                               |
+| `Import`        | parameters pulled from another note, inside a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb F_2, \mathsf{wt}_\mathsf{H})$` |
 
 ---
 

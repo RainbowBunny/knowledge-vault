@@ -228,6 +228,84 @@ $\odot$ (Schur / Hadamard product) and $[\![\mathbf u]\!]_T$ (additive sharing o
 
 ---
 
+# Assignment 3 · The computability section
+
+[[Computability Theory]] is accurate — I checked the Kolmogorov bounds, the LBA results and the $EQ_\mathsf{TM}$ classification against Sipser and they are right. The work here is **structural**: it is four chapters in one file, with four callouts, **zero wikilinks**, two empty sections, and an `# Note` h1 mid-file.
+
+## Sources — and the trap in mixing them
+
+| use | for |
+| --- | --- |
+| **Sipser**, *Introduction to the Theory of Computation*, ch. 3–6 | **the primary.** Every symbol in that file is his — $A_\mathsf{TM}$, $HALT_\mathsf{TM}$, $MIN_\mathsf{TM}$, the domino PCP, the `SELF` machine. The file cites nothing; fix that first |
+| **Arora–Barak**, *Computational Complexity: A Modern Approach*, ch. 1–2 | the model **as complexity needs it**, the verifier/certificate definition of NP, and the simulation overheads |
+| **Li & Vitányi**, *Kolmogorov Complexity and Its Applications* | the `## A Definition of Information` material, if it grows |
+| **Turing 1936**, *On Computable Numbers* | the Church–Turing note. §9 is the human-computer analysis and is readable |
+| **Copeland**, SEP *"The Church–Turing Thesis"* | the history, and the Extended thesis as a separate claim |
+
+> [!warning] Do not silently merge Sipser and Arora–Barak
+> Their machines are **not the same object**. Sipser: one tape, $\Sigma \subseteq \Gamma$, $\delta : Q \times \Gamma \to Q \times \Gamma \times \{L,R\}$. Arora–Barak: a read-only input tape plus $k$ work tapes, and a start symbol $\triangleright$ in the alphabet. Both are fine; a note that takes the tuple from one and a theorem from the other **does not type-check against either**. Say in `Reference:` which parts came from where — this is precision rule 1 applied to sources.
+
+**On your question: yes, use Arora–Barak — but not as the primary here.** It is a complexity book. It compresses computability into roughly one chapter and does not cover enumerators, the Post Correspondence Problem, the recursion theorem, decidability of logical theories, or the recognizable / co-recognizable lattice. Use it where it is strongest — the model with a **cost** attached, and NP — which is exactly the material you are rewriting next.
+
+## 3A · Merge the duplicate — [[Turing Machine]]
+
+**Where** `computability/computing model/` · **Layout** Object (1)
+
+`computing model/Turing Machine.md` exists **and** [[Computability Theory]] defines the 7-tuple again. Same shape as the `Ideal` duplicate: two definitions, and the second one is where people look.
+
+**Must contain** one 7-tuple, and Turing-recognizable / Turing-decidable as `###` derived vocabulary.
+**I will check** that [[Computability Theory]] now links rather than restates.
+
+## 3B · Turn three stubs into the note's best object — the **variant table**
+
+`## Multitape`, `## Nondeterministic` and `## Enumerators` each say *"replace the transition function with …"*, then the file remarks *"invariant of Turing machine are equivalence in power"*. **That equivalence is the theorem and three one-line sections bury it.**
+
+**Must contain** one table: variant · transition function · **simulation cost**. The cost column is the point — nondeterministic → deterministic is *exponential*, multitape → single-tape is *quadratic*, and the universal machine costs a log factor. Those numbers are why the model is arbitrary for computability and **not** arbitrary for complexity.
+**I will check** the cost column exists and that you drew that conclusion in a `[!remark]`.
+
+## 3C · Fill the empty section — `Church-Turing Thesis`
+
+`## Algorithm` currently contains the words *"Church Turing thesis:"* and nothing else. **Layout** Theorem (12) — except it is not a theorem, which is the content.
+
+**Must contain**
+- the three independent formalisations — **general recursive functions** (Gödel/Herbrand 1934), **λ-calculus** (Church 1936), **a-machines** (Turing 1936), plus Post's independent Formulation 1 — and that the *recursive functions came first*
+- the equivalences: Church–Kleene 1936, Turing's 1937 appendix
+- **why it cannot be proved**: one side of the claim is informal
+- why Turing's version persuaded where Church's had not — he gave an *analysis* of the human computer, not another definition
+- the **Extended** Church–Turing thesis as a **separate** claim, and that quantum computation is the standing challenge to it (Bernstein–Vazirani 1997) — link `quantum/`
+
+**I will check** that the thesis and the Extended thesis are two statements, not one paragraph.
+
+## 3D · Split the catalogues — `Decidability`
+
+`## Decidability` and `## Undecidability` are two halves of one table, listing nine and seven languages as bare display maths.
+
+**Must contain** one table — language · decidable? · recognizable? · co-recognizable? — plus the two theorems that make the columns non-redundant (*decidable ⟺ recognizable and co-recognizable*; some languages are not recognizable) and $MIN_\mathsf{TM}$ as the witness for the last column.
+**I will check** whether the table made you notice which entries you have no proof sketch for.
+
+## 3E · Move and link — `Mapping Reducibility`
+
+Four transfer theorems and their corollaries, and **no link to [[Reductions]]**, which is a live note in `complexity/foundations/`.
+
+**Must contain** $\le_m$, the four transfers, and a `[!remark]` on the relation to polynomial-time reduction: same shape, different resource bound. `Computation history` and `LBA` are stranded under `## Reducibility` with no home — decide where they go.
+
+## 3F · Extract — `Kolmogorov Complexity`
+
+`## A Definition of Information` + `## Incompressible Strings and Randomness`. **Where** you decide — `computability/` or `information theory/`. Argue it.
+
+**Must contain** the five $K$ bounds you already have, the invariance theorem, incompressibility, and — the graded part — a **bridge remark to [[Entropy]]**. They are *different notions*: descriptive complexity of one string versus the entropy of a distribution. Related by a theorem (expected $K$ tracks Shannon entropy up to a constant, for computable sources), **not** by identity.
+**I will check** that you wrote the relation as a theorem and not as a synonym. Same trap as `Completeness`.
+
+## 3G · Housekeeping
+
+- `## Post Correspondence Problem` → `computability/problems/`, Problem layout (8)
+- `## Decidability of Logical Theories` is five symbols — fill or delete
+- delete the `# Note` h1 at the bottom; its four lines are a `[!remark]` in the right notes
+- the whole file uses `**Theorem**:` prose. Convert to `[!theorem]` / `[!definition]` — this is what makes it queryable, and it is mechanical enough that **I can do it if you want**
+
+
+---
+
 ## How to hand it back
 
 Commit, then say **"review assignment 1"** or **"review 2A, 2C"** — name whatever you finished. Partial is fine; I mark what is there.
