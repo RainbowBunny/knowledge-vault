@@ -1,3 +1,6 @@
+Reference:
+- https://eprint.iacr.org/2003/230.pdf
+
 ## Definition
 
 > [!definition] Parameters
@@ -7,11 +10,14 @@
 > [!definition] Regular Word
 > A word $x$ is regular if $x = (x^{(1)}, \dots, x^{(w)})$ with $x^{(i)} \in \mathbb F_2^b$ and $\mathsf{wt}_\mathsf{H}(x^{(i)}) = 1$.
 > Also, the regular word set is defined as
-> $$\mathrm{Reg}_w(\mathbb{F}_2) := \{x : \mathsf{wt}(x^{(i)}) = 1\ \forall i \in [w]\}$$
+> $$\mathrm{Reg}_w(\mathbb{F}_2) := \{x : \mathsf{wt}_\mathsf{H}(x^{(i)}) = 1\ \forall i \in [w]\}$$
 
 > [!proposition] Regular Word Support Size
-> Generalize for $\mathbb{F}_q$, each blocks has $b$ position and $q - 1$ value to choose:
+> The regular word support size is:
+> $$|\mathrm{Reg}_2(\mathbb{F}_2)| = b^w$$
+> Also, we can generalize for $\mathbb{F}_q$, each blocks has $b$ position and $q - 1$ value to choose:
    $$|\mathrm{Reg}_w(\mathbb{F}_q)| = b^w (q - 1)^w$$
+
 
 ## Property
 
@@ -37,7 +43,7 @@
 > [!definition] 2-Regular Word
 > The condition on weight is replaced by $\mathsf{wt}_\mathsf{H}(x^{(i)}) = 0 \lor \mathsf{wt}_\mathsf{H}(x^{(i)}) = 2$.
 > And, define the set of 2-Regular Word as:
-> $$\mathrm{Reg}_w^{(2)}(\mathbb{F}_2) = \{x: \mathsf{wt}_\mathsf{H}(x^{(i)}) = 0 \lor \mathsf{wt}_\mathsf{H}(x^{(i)}) = 2\}$$
+> $$\mathrm{Reg}_w^{(2)}(\mathbb{F}_2) = \{x: (\mathsf{wt}_\mathsf{H}(x^{(i)}) = 0 \lor \mathsf{wt}_\mathsf{H}(x^{(i)}) = 2)\}$$
 
 > [!proposition] 2-Regular Word Support Size
 > For each block, there are $1 + \binom{b}{2}$ valid options.

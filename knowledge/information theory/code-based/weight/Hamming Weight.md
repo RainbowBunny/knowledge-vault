@@ -7,5 +7,7 @@
 ## Property
 
 > [!remark] Bridge to Power Set Ring
-> Let $\mathrm{supp}: \mathbb{F}_2^n \rightarrow \mathcal{P}([n])$ and the indicator map $T \mapsto \mathbf{1}_T$ are mutually inverse.
-> Thus, we have a [[Ring Homomorphism|Ring Isomorphism]] between $(\mathbb{F}_2^n, \oplus, \cdot)$ and [[Power Set Ring]] $(\mathcal{P}([n]), \Delta, \cap)$.
+> $\mathrm{supp}: \mathbb{F}_2^n \rightarrow \mathcal{P}([n]) := \{i \in [n] : z_i = 1\}$.
+> - The indicator map $T \mapsto \mathbf{1}_T$ and $\mathrm{supp}$ are mutually inverse.
+> - $\mathrm{supp}$ defines a [[Ring Homomorphism|Ring Isomorphism]] between $(\mathbb{F}_2^n, \oplus, \circ)$ and [[Power Set Ring]] $(\mathcal{P}([n]), \Delta, \cap)$.
+> - $\mathsf{wt}_\mathsf{H}(z) = |\mathrm{supp}(z)|$.

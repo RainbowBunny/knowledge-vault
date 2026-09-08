@@ -31,5 +31,5 @@ Reference:
 > The proposition makes the collision reduction **exact**: a collision in the regular-encoded syndrome hash is a
 > pair $\mathbf{x}_1 \neq \mathbf{x}_2 \in \mathcal{R}$ with equal syndrome, $\mathbf{x}_1 + \mathbf{x}_2$ is a nonzero
 > 2-RNSD solution — **and every** 2-RNSD solution arises this way. With the [[Hamming Sphere]] encoding the same
-> argument only reaches [[Null Syndrome Decoding]] at weight $2w$, and the converse fails.
+> argument only reaches [[Null Syndrome Decoding Problem]] at weight $2w$, and the converse fails.
 > **Tightness is the reason FSB encodes into regular words rather than the sphere.**

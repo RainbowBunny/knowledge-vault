@@ -14,10 +14,10 @@ Reference:
 > 	- For $\cdot$: $S$.
 
 > [!proposition]
-> Every element is [[Idempotence]] and thus the power set ring is a [[Commutative Ring]]. Furthermore, it is a Boolean Ring.
+> Every element is [[Idempotence]] so power set ring is a [[Boolean Ring]].
 
 ## Related
 
 > [!example]
-> - [[Hamming Weight#Support|Support]]
+> - [[Hamming Weight#Property|Support]]
 
