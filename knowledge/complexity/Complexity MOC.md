@@ -82,7 +82,7 @@ complexity/
 
 - **From `cryptography/foundations/Security Model.md`** to [[Randomized Complexity]] — "PPT adversary" is a complexity-theoretic concept defined there.
 - **From `cryptography/assumptions/`** to [[Conjectures MOC]] — hardness assumptions in cryptography play the same structural role as complexity-theoretic conjectures.
-- **From `cs/foundations/`** ([[Languages]], [[Computability Theory]]) to [[Complexity Class]] — strings, languages, Turing machines, decidability are prerequisites.
+- **From `cs/foundations/`** ([[Language]], [[Computability Theory]]) to [[Complexity Class]] — strings, languages, Turing machines, decidability are prerequisites.
 - **To `math/`** for diagonalization techniques used in [[Hierarchy Theorems]].
 
 ## Callout Conventions

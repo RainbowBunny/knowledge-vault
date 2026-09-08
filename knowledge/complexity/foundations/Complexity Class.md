@@ -4,7 +4,7 @@ Complexity theory studies **languages**, not "problems" in the informal sense. E
 
 ## Language Formulation
 
-The alphabet / string / language definitions live in [[Languages]]; Turing machines and deciders live in [[Computability Theory]].
+The alphabet / string / language definitions live in [[Language]]; Turing machines and deciders live in [[Computability Theory]].
 
 > [!definition] Decision Problem as a Language
 > A **decision problem** is a yes/no question about an input. Fixing an alphabet $\Sigma$ (usually $\{0, 1\}$), a decision problem is identified with the language $$L = \{w \in \Sigma^* \mid \text{the answer on } w \text{ is yes}\} \subseteq \Sigma^*,$$ and "solving the problem" means **deciding** $L$: a machine $M$ decides $L$ if $M$ halts on every input and accepts $w$ iff $w \in L$.
@@ -58,7 +58,7 @@ Strict inclusions follow from the [[Hierarchy Theorems|time and space hierarchy 
 
 ## Related
 
-- [[Languages]] — alphabets, strings, languages (the raw material)
+- [[Language]] — alphabets, strings, languages (the raw material)
 - [[Computability Theory]] — Turing machines, deciders, decidability
 - [[Reductions]] — poly-time and log-space mapping reductions, the structural relations among classes
 - [[Hierarchy Theorems]] — proofs that more resources yield strictly more computational power

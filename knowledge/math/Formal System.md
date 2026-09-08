@@ -13,7 +13,7 @@ A formal system is syntax with rules: a language of well-formed strings, some st
 > - a **deductive system** — axioms (or schemata) and inference rules deriving theorems from them.
 
 > [!remark] Non-logical formal systems
-> Lambda calculus, term rewriting, the grammars and automata of [[Languages]], and Turing machines are formal systems that are not logics. The [[Complexity MOC|complexity]] and `cs/foundations/` folders study formal systems whose derivations are *computations*.
+> Lambda calculus, term rewriting, the grammars and automata of [[Language]], and Turing machines are formal systems that are not logics. The [[Complexity MOC|complexity]] and `cs/foundations/` folders study formal systems whose derivations are *computations*.
 
 ## Property
 

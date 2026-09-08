@@ -428,6 +428,13 @@ grep -rho '^> \[!\(theorem\|lemma\|proposition\|corollary\)\] .\+' --include='*.
 
 **A named result stated twice has already earned a note.**
 
+> [!remark] Which note owns a two-hypothesis theorem?
+> **The one it says the most about — and you find that out by sharpening it until only one hypothesis is
+> doing work.** *"A Boolean integral domain is $\mathbb Z/2\mathbb Z$"* sharpens to *"in a Boolean ring every element
+> but $0$ and $1$ is a zero divisor"*, which mentions domains not at all — so it belongs to [[Boolean Ring]],
+> with a one-line pointer from [[Integral Domain]]. When sharpening does **not** collapse it, the two
+> hypotheses genuinely fight, and what you have is a pair of mixins whose conjunction is degenerate.
+
 > [!remark] Axiom or theorem — same layout, different consumption site
 > The difference is epistemic, not structural, and it shows in *where the link comes from*: an **axiom** is
 > linked from a `## Definition` (you stipulate it), a **theorem** from a `## Property` or `## Security`
