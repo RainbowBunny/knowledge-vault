@@ -33,7 +33,12 @@
 ### Disjoint Union
 
 > [!definition] Disjoint Union
-> The **disjoint union** of set $S$ and set $T$ denoted as $S \; \Pi \; T$ is the set consisting of all elements that only in $S$ or only in $T$.
+> The **disjoint union** of set $S$ and set $T$ denoted as $S \amalg T$ is the set consisting of union for element with tag about its original set.
+
+### Symmetric Difference
+
+> [!definition] Symmetric Difference
+> The **symmetric difference** of set $S$ and set $T$ denoted as $S \Delta T$ is the set consisting of all elements that only in $S$ or only in $T$.
 
 ### Partition
 
@@ -61,13 +66,14 @@
 
 ### Operations
 
-| Symbol      | Operation         |
-| ----------- | ----------------- |
-| $\cup$      | Union             |
-| $\cap$      | Intersection      |
-| $\setminus$ | Difference        |
-| $\amalg$    | Disjoint Union    |
-| $\times$    | Cartesian Product |
+| Symbol      | Operation            |
+| ----------- | -------------------- |
+| $\cup$      | Union                |
+| $\cap$      | Intersection         |
+| $\setminus$ | Difference           |
+| $\amalg$    | Disjoint Union       |
+| $\Delta$    | Symmetric Difference |
+| $\times$    | Cartesian Product    |
 ### Famous Sets
 
 | Notation    | Meaning                     |

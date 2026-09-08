@@ -6,12 +6,15 @@ Reference:
 > [!definition] Power Set Ring
 > Let $S$ be a set. We define the power set $(\mathcal{P}(S), +, \cdot)$:
 > - Elements of the ring are the set of all subsets $\mathcal{P}(S) = 2^S$.
-> - Operation of the ring:
-> 	- $A + B = A \amalg B$.
+> - Operations of the ring:
+> 	- $A + B = A \, \Delta \, B$.
 > 	- $A \cdot B = A \cap B$.
+> - Identities:
+> 	- For $+$: $\emptyset$.
+> 	- For $\cdot$: $S$.
 
 > [!proposition]
-> The power set ring is a [[Commutative Ring]].
+> Every element is [[Idempotence]] and thus the power set ring is a [[Commutative Ring]]. Furthermore, it is a Boolean Ring.
 
 ## Related
 

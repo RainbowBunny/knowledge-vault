@@ -9,21 +9,21 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 
 ## Which layout?
 
-| you are writing | layout | lives in |
-| --- | --- | --- |
-| a typed thing — set, relation, function, operation | **Object** | `set theory/` |
-| one axiom, no carriers of its own | **Property** (a mixin) | `properties/` |
-| an object plus chosen axioms | **Structure** | `structures/` |
-| a concrete model of a structure | **Example** | `structures/…/examples/` |
-| a cryptographic interface — a tuple of algorithms | **Primitive** | `primitive/`, `proof/` |
-| one concrete instantiation of a primitive | **Scheme** | `schemes/`, `scheme/` |
-| *give me an $X$, I build you a $Y$* | **Transform** | under the **output** primitive |
-| *these two are the same thing seen differently* | **Bridge** | wherever its ends are |
-| a worst-case computational problem | **Problem** | `complexity/`, `cs/problems/` |
-| the average-case hardness claim | **Assumption** | `cryptography/assumptions/` |
-| a security notion — any game | **Security property** | `proof/properties/`, beside its primitive |
-| a named result other notes invoke | **Theorem** | with its subject |
-| a hub | **MOC** | beside what it indexes |
+| you are writing                                    | layout                 | lives in                                  |
+| -------------------------------------------------- | ---------------------- | ----------------------------------------- |
+| a typed thing — set, relation, function, operation | **Object**             | `set theory/`                             |
+| one axiom, no carriers of its own                  | **Property** (a mixin) | `properties/`                             |
+| an object plus chosen axioms                       | **Structure**          | `structures/`                             |
+| a concrete model of a structure                    | **Example**            | `structures/…/examples/`                  |
+| a cryptographic interface — a tuple of algorithms  | **Primitive**          | `primitive/`, `proof/`                    |
+| one concrete instantiation of a primitive          | **Scheme**             | `schemes/`, `scheme/`                     |
+| *give me an $X$, I build you a $Y$*                | **Transform**          | under the **output** primitive            |
+| *these two are the same thing seen differently*    | **Bridge**             | wherever its ends are                     |
+| a worst-case computational problem                 | **Problem**            | `complexity/`, `cs/problems/`             |
+| the average-case hardness claim                    | **Assumption**         | `cryptography/assumptions/`               |
+| a security notion — any game                       | **Security property**  | `proof/properties/`, beside its primitive |
+| a named result other notes invoke                  | **Theorem**            | with its subject                          |
+| a hub                                              | **MOC**                | beside what it indexes                    |
 
 **The two tests that decide most cases.** Does it declare carriers of its own? If no, it is a Property, not a Structure. Does the theorem about it carry a multiplicative loss factor? If yes, it is a Transform, not a Bridge.
 
