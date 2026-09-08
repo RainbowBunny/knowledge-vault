@@ -103,8 +103,9 @@ Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — 
 
 1. Enter through a hub: [[Math MOC]] · [[Cryptography MOC]] · [[Complexity MOC]] · [[CS MOC]] · [[Information Theory MOC]] · [[Security MOC]].
 2. Learning something new: name its **objects** → search each → backlinks show everything already known → file what is missing as leaf notes → add one line to the right MOC → if it translates between representations, write the **bridge**.
-3. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]] and its crypto counterpart in [[Cryptography Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].
-4. Before committing: `python scripts/vault-lint.py`. Broken links and duplicate names are always real; the other four checks are smells.
+3. **Writing a note?** [[Note Layouts]] has every skeleton, a *which layout?* table, and the slot glossary; insertable copies are in `templates/` as `layout-*`. Practice sets live in [[Assignments]].
+4. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]] and its crypto counterpart in [[Cryptography Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].
+5. Before committing: `python scripts/vault-lint.py`. Broken links and duplicate names are always real; the other four checks are smells.
 
 ## Known tensions
 

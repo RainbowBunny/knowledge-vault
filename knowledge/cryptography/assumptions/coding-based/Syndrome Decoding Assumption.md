@@ -1,11 +1,16 @@
-## Distribution
+## Definition
+
+> [!definition] Parameters
+> - [[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb{F}_2, \mathsf{wt}_\mathsf{H})$.
+
+### Distribution
 
 > [!definition] Syndrome Decoding Distribution
 > ### Distribution
 > Sampling experiment: $\text{SD}(n, k, w)$
-> 1. $H \xleftarrow{\$} \mathbb F^{(n - k) \times n}$
-> 2. $x \xleftarrow{\$} \mathbb F^n$ with $\omega(x) = w$
-> 3. Output $(H, \sigma(x) = Hx^{T})$
+> 1. $\mathbf{H} \xleftarrow{\$} \mathbb{F}_2^{(n - k) \times n}$ ([[Linear Code#Generator Matrix and Parity-Check Matrix|Parity-Check Matrix]]).
+> 2. $\mathbf{x} \xleftarrow{\$} \mathcal{S}^n_w(\mathbb{F}_2)$ ([[Hamming Sphere]]).
+> 3. Output $(\mathbf{H}, \sigma(\mathbf{x}) = \mathbf{H}\mathbf{x}^{T})$.
 
 ## Problem
 

@@ -39,7 +39,8 @@ Anything conversational still works. The triggers exist so you never have to exp
 | --- | --- |
 | Everything in `knowledge/` | **you** — content is yours |
 | MOCs | **me** — say the word and I write or update them |
-| [[North Star]], [[Foundation Layer]], [[Cryptography Layer]], this plan | **me** |
+| [[North Star]], [[Foundation Layer]], [[Cryptography Layer]], [[Note Layouts]], this plan | **me** |
+| `templates/layout-*.md` | **me** — regenerated from [[Note Layouts]] when a layout changes |
 | `scripts/vault-lint.py` | **me** |
 
 ## Before you commit
@@ -173,6 +174,9 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 | **V26** | **The distinguisher has amnesia.** In [[Zero Knowledge]], $\mathcal A_\mathsf{find}$ sees $(\mathcal R, \mathrm{crs}, \mathrm{st})$ but $\mathcal A_\mathsf{guess}(\boldsymbol\pi)$ gets *only the proof* — no state, not even the statement. House format passes one ([[Public-Key Encryption]]'s IND game). Same gap in [[Linear Probabilistically Checkable Proofs]]. Also: [[Knowledge Soundness]] declares $\mathcal E = (\mathcal E_\mathsf{NIPS})$ then calls $\mathcal E_\mathsf{find}$; its affine variant is labelled $\mathsf{Adv}_\mathsf{NIPS}$ but is about a NILP; `\mathbf F` → `\mathbb F`; a type declaration sits in the event column |
 | **V27** | **Write `proof/Proof System.md`** — the Scope object every proof-system property quantifies over, exactly as [[Binary Operation]] is the Scope of [[Associativity]]. It declares $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$ plus the **response map** $\mathcal O$, with the three-row variant table (identity / $\mathbf Q^T\boldsymbol\pi$ / $\boldsymbol\Pi\,\mathrm{crs}$). **It also closes an existing broken link** — [[Interactive Proofs]] already points at `[[Proof System]]`. Then every property's `### Scope` is one line |
 | **V28** | **Rewrite the five properties in Scope / Condition / Property form** — full drafts in [[Cryptography Layer]] §2.12. The `### Condition` slot is where the things that kept getting lost now live: the promise ($\mathbf x \in \mathcal L$ vs $\mathbf x \notin \mathcal L$), adaptivity, and the **quantifier** ($\forall\mathcal A\exists\mathcal E$ for knowledge soundness, $\exists\mathcal S\forall\mathcal A$ for zero knowledge — opposite orders). [[Succinctness]] deliberately has no Condition slot: it is a complexity predicate, not a game, and the note should say so |
+| **T1** | **[[Schwartz-Zippel]] has one inbound link — the MOC.** Every soundness bound in `verifiable computing/` is a Schwartz–Zippel bound: [[Sum-Check Protocol]], [[QAP-based Linear PCP]], [[R1CS to QAP Reduction]], [[LUNA]], [[Groth16]]. And [[Branching Programs]] **restates it** as a local `[!lemma]`. Link, delete the copy |
+| **T2** | **[[Schwartz-Zippel]]'s Scope is under-general**: stated over $\mathbb Z_p$ with $\alpha$ uniform on all of $\mathbb Z_p$. The standard form is an **[[Integral Domain]]** $R$, a finite $S \subseteq R$, and the bound $d/\lvert S\rvert$ — it needs only *no zero divisors*. Generalising it makes it a direct consumer of [[Integral Domain]] and covers the subset-sampling uses. Also: its statement sits under `## Definition` as a `[!lemma]` — it is a `## Property` |
+| **T3** | **Duplicated named results have already earned notes** — run the grep in [[Note Layouts]] §12. Today: `Cayley-Hamilton Theorem` ×3, `Jensen's Inequality` ×2, `Cauchy-Schwarz Inequality` ×2, `Chain Rule` ×2, `Limit Comparison Test` ×2. (`Security Properties` ×2 is a heading collision, not a theorem) |
 | 8.4 | Promote **SNARK** to its own note; hang [[Groth16]] and [[LUNA]] off it. Capitals mark the acronym: `Succinct Non-interactive ARgument of Knowledge` |
 | 8.5 | Leakage parameterisation in [[Zero Knowledge]] — LPCP has `hvzk-D` locally, the shared note does not |
 | 8.6 | `reusable` variant in [[Knowledge Soundness]] |
