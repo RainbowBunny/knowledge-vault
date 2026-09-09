@@ -1,8 +1,12 @@
+Reference:
+- [[Book Reference|Term Rewriting and All That]]: - Chapter 2: Abstract Reduction Systems.
+
 ## Definition
 
-> [!definition] Reduction
-> Instantiates: [[Relation]].
-> For an [[Abstract Reduction System]], we define a reduction $\rightarrow$ as an homogenous relation on a set $A$.
+> [!definition] Abstract Reduction System
+> An **abstract reduction system** is a pair $(A, \rightarrow)$, where:
+> - $A$: Original set.
+> - $\rightarrow$: A [[Relation]] on $A$ called **reduction**.
 
 > [!remark]
 > The reduction $\rightarrow$ might go on forever.
@@ -19,7 +23,6 @@
 | $\leftrightarrow$     | $\rightarrow \cup \leftarrow$          |
 | $\xleftrightarrow{+}$ | $(\leftrightarrow)^+$                  |
 | $\xleftrightarrow{*}$ | $(\leftrightarrow)^*$                  |
-
 ### Element of the Reduction
 
 > [!definition] Element of the Reduction
@@ -28,7 +31,7 @@
 > 3. $y$ is **a normal form of** $x$ iff $x \xrightarrow{*} y$ and $y$ is in normal form. If $x$ has a uniquely determined normal form, the latter is denoted by $x \downarrow$.
 > 4. $y$ is a **direct successor** of $x$ iff $x \rightarrow y$.
 > 5. $y$ is a **successor** of $x$ iff $x \xrightarrow{+} y$.
-> 6. $x$ and $y$ are **joinable** iff there is a $z$ such that $x \xrightarrow{*} z \xleftarrow{*} y$, in which case we write $x \downarrow y$.
+> 6. $x$ and $y$ are **joinable** iff there is a $z$ in normal form such that $x \xrightarrow{*} z \xleftarrow{*} y$, in which case we write $x \downarrow y$.
 
 ## Property
 
