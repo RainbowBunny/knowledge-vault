@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Introduction to the Theory of Computation]]: - Chapter 1: Regular Languages, Section 1.1: Finite Automata.
+- [[Book Reference|Introduction to the Theory of Computation]] - Chapter 1: Regular Languages, Section 1.1: Finite Automata.
 
 ## Definition
 

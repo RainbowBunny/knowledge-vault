@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Boolean Ring
-> Extends: [[Ring]] $(R, +, *)$
+> Extends:: [[Ring]] $(R, +, *)$
 > - $*$ is [[Idempotence]] on $R$.
 
 ## Property
