@@ -5,7 +5,7 @@ Reference:
 
 > [!definition] Non-Deterministic Turing Machine
 > Extends: [[Turing Machine]].
-> - The rule 4 is now $\delta: Q \times \Gamma \rightarrow \mathcal{P}(Q \times \Gamma \times \{L, R, S\})$.
+> - The rule 4 is now $\delta: Q \times \Gamma \rightarrow \mathcal{P}(Q \times \Gamma \times \{L, R\})$.
 
 ## Property
 
@@ -16,7 +16,7 @@ Reference:
 > To be completed.
 
 > [!corollary]
-> A language is [[Language#Recognizable|Turing-recognizable]] if and only if some non-deterministic Turing machine recognizes it.
+> A [[Language]] is [[Language#Recognizable|Turing-recognizable]] if and only if some non-deterministic Turing machine recognizes it.
 
 > [!corollary]
-> A language is [[Language#Decidable|Decidable]] if and only if some non-deterministic Turing machine recognizes it.
+> A [[Language]] is [[Language#Decidable|Decidable]] if and only if some non-deterministic Turing machine decides it.
