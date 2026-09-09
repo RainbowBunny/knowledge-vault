@@ -38,14 +38,17 @@ Reference:
 > - $q_i \; b v$ yields $q_j \; c v$ if $\delta(q_i, b) = (q_j, c, L)$.
 > - $q_i \; b v$ yields $c \; q_j \; v$ if $\delta(q_i, b) = (q_j, c, R)$.
 
+### Language
+
 > [!definition] Accepts Input
 > A Turing Machine $M$ **accepts** input $w$ if a sequence of configurations $C_1, C_2, \dots, C_k$ exists, where
 > 1. $C_1$ is the start configuration of $M$ on input $w$,
 > 2. each $C_i$ yields $C_{i + 1}$, and
 > 3. $C_k$ is an accepting configuration.
 
-> [!definition] Recognize Language
-> The collection of strings that $M$ accepts is **the [[Language]] of $M$**, or **the language recognized by $M$**, denoted $\mathcal{L}(M)$
+> [!definition] Language of Turing Machine
+> The collection of strings that $M$ accepts is **the [[Language]] of $M$**, or **the language recognized by $M$**, denoted $\mathcal{L}(M)$:
+> $$\mathcal{L}(M) = \{w \in \Sigma^*: M \text{ accepts } w\}.$$
 
 ## Property
 

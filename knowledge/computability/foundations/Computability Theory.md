@@ -1,11 +1,6 @@
 
 
-## Nondeterministic Turing Machines
 
-Replace the transition function:
-	$\delta: Q \times \Gamma \rightarrow \mathcal P(Q \times \Gamma \times \{L, R\})$
-
-## Enumerators
 
 
 ## Algorithm

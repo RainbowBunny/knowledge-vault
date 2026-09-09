@@ -1,7 +1,7 @@
 ## Definition
 
 > [!definition] Polynomial
-> Let $R$ be a [[knowledge/math/algebra/structures/rings/Ring]]. A **polynomial** $f(x)$ in the **indeterminate** $x$ and with **coefficients** in $R$ is a **finite** linear combination of non-negative 'powers' of $x$ with coefficients in $R$:
+> Let $R$ be a [[Ring]]. A **polynomial** $f(x)$ in the **indeterminate** $x$ and with **coefficients** in $R$ is a **finite** linear combination of non-negative 'powers' of $x$ with coefficients in $R$:
 > $$f(x) = \sum_{i \geq 0} a_i x^i = a_0 + a_1 x + a_2 x^2 + \cdots,$$
 > where $a_i$ are elements of $R$ (the coefficients) and we require $a_i = 0$ for $i \gg 0$.
 

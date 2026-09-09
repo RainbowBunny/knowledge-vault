@@ -1,9 +1,9 @@
-Extends: 
 Reference:
 
 ## Definition
 
 > [!definition] 
+> Extends:: 
 > A **** is a [[]] $(S, \star)$ that additionally satisfies [[]].
 
 ## Structure

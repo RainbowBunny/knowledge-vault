@@ -27,17 +27,28 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 
 **The two tests that decide most cases.** Does it declare carriers of its own? If no, it is a Property, not a Structure. Does the theorem about it carry a multiplicative loss factor? If yes, it is a Transform, not a Bridge.
 
-## Header fields
+## Header fields — provenance above, relations inside
 
-Above the first heading, only what applies:
+**Revised 2026-09-09.** Two kinds, and they do not belong in the same place:
 
-| field           | means                                                              | example                                                                                  |
-| --------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `Reference:`    | where it comes from                                                | a paper URL, a book and section                                                          |
-| `Extends:`      | this interface **is** that one, plus a condition                   | `Extends: [[Monoid]] + [[Inverse Element]]`                                              |
-| `Instantiates:` | a concrete witness of an interface                                 | `Instantiates: [[Public-Key Encryption]]`                                                |
-| `Requires:`     | building blocks it calls                                           | `Requires: [[Extendable Output Function]]`                                               |
-| `Import`        | parameters pulled from another note, inside a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb F_2, \mathsf{wt}_\mathsf{H})$` |
+- **Provenance** is about the *note* — where you read it. Goes **above the first heading**.
+- **Relations** are about the *object* — they are clauses of the definition. Go **inside the definition callout**, written with `::` so Dataview still indexes them.
+
+The vault already did this in prose: [[Integral Domain]] reads *"an integral domain is a nonzero [[Commutative Ring]] $R$ (with 1) such that…"* — the parent sits inside the definition. A structured field is that same idea made queryable, not a competing convention.
+
+> [!warning] The field never replaces the sentence
+> `Extends:: [[Monoid]]` alone does not say **what is added**. The definition still owes the delta —
+> *"Extends [[Turing Machine]]; the transition function becomes …"*
+
+Fields:
+
+| field                               | means                                                              | example                                                                                  |
+| ----------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `Reference:` *(header)*             | where it comes from                                                | a paper URL, a book and section                                                          |
+| `Extends::` *(in the callout)*      | this interface **is** that one, plus a condition                   | `Extends: [[Monoid]] + [[Inverse Element]]`                                              |
+| `Instantiates::` *(in the callout)* | a concrete witness of an interface                                 | `Instantiates: [[Public-Key Encryption]]`                                                |
+| `Requires::` *(in the callout)*     | building blocks it calls                                           | `Requires: [[Extendable Output Function]]`                                               |
+| `Import`                            | parameters pulled from another note, inside a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb F_2, \mathsf{wt}_\mathsf{H})$` |
 
 ---
 
@@ -96,12 +107,12 @@ Reference:
 ## 3 · Structure
 
 ```markdown
-Extends: [[<parent>]] + [[<the added axiom>]]
 Reference:
 
 ## Definition
 
 > [!definition] <Name>
+> Extends:: [[<parent>]] + [[<the added axiom>]]
 > A **<name>** is a [[<parent>]] $(S, \star)$ that additionally satisfies [[<axiom>]].
 
 ## Structure
@@ -120,12 +131,12 @@ Compose by **link**. A definition that restates an axiom it could link is the on
 ## 4 · Example — an instance
 
 ```markdown
-Instantiates: [[<the structure>]]
 Reference:
 
 ## Definition
 
 > [!definition] <Name>
+> Instantiates:: [[<the structure>]]
 > <the carrier and the operations, concretely>
 
 ## Property
@@ -183,7 +194,7 @@ Reference:
 ## Scheme
 
 Reference Name: $\mathsf{<Name>}$
-Instantiates: [[<Primitive>]]
+Instantiates:: [[<Primitive>]]
 
 ### Setting
 

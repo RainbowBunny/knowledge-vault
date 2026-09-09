@@ -4,13 +4,16 @@ Reference:
 ## Definition
 
 > [!definition] Relation
-> A **(binary) relation** from a set $A$ to a set $B$ is a subset
+> A **(binary) relation** from a [[Set]] $A$ to a set $B$ is a subset
 > $$R \subseteq A \times B.$$ 
 > When $(a, b) \in R$ we say that $a$ and $b$ are 'related by $R$' and write
 > $$a \; R \; b.$$
 
 > [!definition] Homogeneous Relation
 > A relation on a single set $S$ is the case $A = B = S$, i.e. $R \subseteq S \times S$. These are the relations the [[Math Properties MOC|Relation Axioms]] apply to — [[Reflexivity]], [[Symmetry]], [[Antisymmetry]], [[Transitivity]], [[Connexity]] all compare two elements of the *same* set.
+
+> [!remark]
+> As the relation $R$ is subset, they also import the [[Set Operation]].
 
 ### Associated Sets
 
