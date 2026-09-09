@@ -13,24 +13,18 @@ Reference:
 >6. $q_\mathsf{accept} \in Q$ is the accept state, and
 >7. $q_\mathsf{reject} \in Q$ is the reject state, where $q_\mathsf{reject} \neq q_\mathsf{accept}$.
 
-> [!remark] About Tape
-> The Turing machine model use an infinite readable and writable tape as its unlimited memory. The Turing machine uses a head that can move left and right, and the machine can read and write input of the head.
-
-### Computation by Turing Machine
-
-> [!definition] Initial State of the Tape
-> The initial state of the Tape when running Turing Machine $M$ on input $w$ by putting $w$ at the beginning of the tape and blank else where.
-
-> [!definition] Configuration
-> A configuration of the Turing Machine can be represented by format $u \; q \; v$ where $q$ is a state, $u$ is the string formed by reading from the left most cell to the cell before the head while $v$ is the string formed by reading from the head until the last non-empty symbol.
-> - **Starting configuration**: $q_0 \; w$.
-> - **Accepting configuration**: $u \; q_\mathsf{accept} \; v$.
-> - **Rejecting configuration**: $u \; q_\mathsf{reject} \; v$.
-> - **Halting configuration**: Either an **accepting configuration** or **rejecting configuration**.
-
-> [!definition] Yield
-> A configuration $C_1$ **yields** configuration $C_2$ if the Turing machine can legally go from $C_1$ to $C_2$ in a single step.
-> Formally, suppose $a, b, c \in \Gamma$ and $u, v \in \Gamma^*$ and states $q_i$ and $q_j$. Then,
+> [!definition] Turing Machine (Abstract Machine Formulation)
+> Instantiates:: [[Abstract Machine|Acceptor]]
+> 
+> ---
+> - Configuration $C$: $\Sigma^* Q \Sigma^*$.
+> - $\mathsf{init}(w)$: $q_0 w$.
+> - $\mathsf{halt}$: $\Gamma^* q_\mathsf{accept} \Gamma^*$.
+> 
+> ---
+> The reduction rule $\vdash$:
+> 
+> Suppose $a, b, c \in \Gamma$ and $u, v \in \Gamma^*$, states $q_i$ and $q_j$ are states. Then,
 > - $u a \; q_i \; b v$ yields $u \; q_j \; a c v$ if $\delta(q_i, b) = (q_j, c, L)$.
 > - $u a \; q_i \; b v$ yields $u a c \; q_j \; v$ if $\delta(q_i, b) = (q_j, c, R)$.
 > 
@@ -38,27 +32,8 @@ Reference:
 > - $q_i \; b v$ yields $q_j \; c v$ if $\delta(q_i, b) = (q_j, c, L)$.
 > - $q_i \; b v$ yields $c \; q_j \; v$ if $\delta(q_i, b) = (q_j, c, R)$.
 
-### Language
-
-> [!definition] Accepts Input
-> A Turing Machine $M$ **accepts** input $w$ if a sequence of configurations $C_1, C_2, \dots, C_k$ exists, where
-> 1. $C_1$ is the start configuration of $M$ on input $w$,
-> 2. each $C_i$ yields $C_{i + 1}$, and
-> 3. $C_k$ is an accepting configuration.
-
-> [!definition] Language of Turing Machine
-> The collection of strings that $M$ accepts is **the [[Language]] of $M$**, or **the language recognized by $M$**, denoted $\mathcal{L}(M)$:
-> $$\mathcal{L}(M) = \{w \in \Sigma^*: M \text{ accepts } w\}.$$
-
-## Property
-
-### Decider
-
-> [!definition] Loop
-> When a Turing machine is started on an input, the machine may **loop** (or never leads to a halting configuration).
-
-> [!definition] Decider
-> A **decider** is a Turing machine that halts on all input.
+> [!remark] About Tape
+> The Turing machine model use an infinite readable and writable tape as its unlimited memory. The Turing machine uses a head that can move left and right, and the machine can read and write input of the head.
 
 ## Variant
 

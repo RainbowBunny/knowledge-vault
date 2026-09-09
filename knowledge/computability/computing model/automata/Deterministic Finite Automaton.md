@@ -10,3 +10,19 @@ Reference:
 > 3. $\delta: Q \times \Sigma \rightarrow Q$ is the **transition function**,
 > 4. $q_0 \in Q$ is the **start state**, and
 > 5. $F \subseteq Q$ is the **set of accept states**.
+
+> [!definition] Finite Automata (Abstract Machine Formulation)
+> Instantiates:: [[Abstract Machine|Acceptor]]
+> 
+> ---
+> - Configuration $C$: $Q \times \Sigma^*$.
+> - $\mathsf{init}(w)$: $(q_0, w)$.
+> - $\mathsf{halt}$: $F \times \{\epsilon\}$.
+> 
+> ---
+> The reduction rule $\vdash$:
+> 
+> Suppose $u \in \Sigma, v \in \Sigma^*$, $q_i$ and $q_j$ are states. Then,
+> - $(q_i, uv)$ yields $(q_j, v)$ if $\delta(q_i, u) = q_j$.
+
+

@@ -15,15 +15,7 @@ For concatenation, connect accept state of $A$ with start state of $B$.
 For star, create a new start node for $A$ and connect accept state with this new start node.
 For complement, invert the type of all states.
 
-## Nondeterministic Finite Automaton
 
-> [!definition] Nondeterministic Finite Automaton
- >A Nondeterministic Finite Automaton is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
-> 1. $Q$ is a finite set called the **states**,
-> 2. $\Sigma$ is the input **alphabet**,
-> 3. $\delta: Q \times \Sigma \rightarrow \mathcal P(Q)$ is the **transition function**,
-> 4. $q_0 \in Q$ is the **start state**, and
-> 5. $F \subseteq Q$ is the **set of accept states**.
 
 ## Regular Expression
 
@@ -182,15 +174,6 @@ where $a$ is any terminal and $A, B$ and $C$ are any variables with $B, C$ is no
 
 
 ## Pushdown Automaton
-
->[!definition] Pushdown Automaton
-> A **pushdown automaton** is a 6-tuple $(Q, \Sigma, \Gamma, \delta, q_0, F)$ where $Q, \Sigma, \Gamma, F$ are all finite sets, and
->1. $Q$ is the set of states,
->2. $\Sigma$ is the set of input alphabet,
->3. $\Gamma$ is the set of stack alphabet,
->4. $\delta: Q \times \Sigma_\varepsilon \times \Gamma_\varepsilon \rightarrow \mathcal P(Q \times \Gamma_\varepsilon)$ is the transition function.
->5. $q_0 \in Q$ is the start state, and
->6. $F \subseteq Q$ is the set of accept states.
 
 Note: For a transition $\delta(q, a, b) \rightarrow c$ (at state $q$, reading input $a$, stack popping $b$ and add $c$ to stack), we have:
 - If $a = \varepsilon$ then we are not reading from input.
