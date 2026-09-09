@@ -5,8 +5,19 @@ Reference:
 
 > [!definition] Language
 > - Given by a Boolean [[Function]] $f$ whose output is a single bit.
-> - The set $L_f = \{x : f(x) = 1\}$ is called a **language** (**decision problems**).
+> - The set $\mathcal{L}_f = \{x : f(x) = 1\}$ is called a **language** (**decision problems**).
 
 > [!remark]
-> The computational problem of computing $f$ is equivalent to the problem of deciding the language $L_f$.
+> The computational problem of computing $f$ is equivalent to the problem of deciding the language $\mathcal{L}_f$.
 
+## Property
+
+### Recognizable
+
+> [!definition] Recognizable
+> A language $\mathcal{L}$ is recognizable (Turing-recognizable) if some [[Turing Machine]] recognizes it.
+
+### Decidable
+
+> [!definition] Decidable
+> A language $\mathcal{L}$ is decidable (Turing-decidable) if some [[Turing Machine#Decider|Decider]] recognizes it.

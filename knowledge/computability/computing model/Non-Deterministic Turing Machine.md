@@ -16,4 +16,7 @@ Reference:
 > To be completed.
 
 > [!corollary]
-> A language is [[Turing Machine|Turing-recognizable]] if and only if some multitape Turing machine recognizes it.
+> A language is [[Language#Recognizable|Turing-recognizable]] if and only if some non-deterministic Turing machine recognizes it.
+
+> [!corollary]
+> A language is [[Language#Decidable|Decidable]] if and only if some non-deterministic Turing machine recognizes it.
