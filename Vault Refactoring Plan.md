@@ -95,13 +95,13 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 | **N4** | **`Kernel`** — draft in [[Foundation Layer]] §3.13. It is already in the vault three times and the general one is **unnamed**: [[Function]]'s `### Canonical Decomposition` *is* the kernel equivalence relation. Add `### Fibre` to [[Function]] beside `### Image` (the domain-side counterpart, general, stays inline), then one new note `set theory/function/Kernel.md` for **the partition into fibres** (Scope = a bare function, three consumers ⇒ graduates). The sub-object reading is *one distinguished fibre* and stays with each structure |
 | **N5** | **The missing half of the ideal story**: [[knowledge/math/algebra/structures/rings/Ring]] defines ring homomorphisms *and* [[Ideal]]s but never says the kernel of a hom **is** an ideal, nor that every ideal is a kernel. As it stands [[Ideal]] has no stated reason to exist. **And [[Ideal]] is defined twice** — a good note at `groups/subgroups/Ideal.md` (left / right / two-sided, links [[Ring]] and [[Subgroup]]) and a weaker inline `[!definition] Ideal` in [[knowledge/math/algebra/structures/rings/Ring]]. Delete the inline one, link the note. The duplicate is *evidence* the file is misfiled: an ideal's Scope needs a **ring**, so it belongs in `rings/` — filing it under `groups/subgroups/` groups it by shape, and a reader in ring theory never finds it. Basename resolution makes the move free. Also add *“is a normal subgroup”* to [[Subgroup]]'s `### Kernel`, and a *null space = kernel* synonym line in [[Linear Maps]] |
 | **N6** | Bridge remark in `Kernel.md`: readings **A** ($f^{-1}(0)$) and **B** ($f(a')=f(a'')$) agree for groups — that agreement *is* the first isomorphism theorem — and come apart for monoids. Counterexample in §3.13: $f:(\mathbb N,+)\to(\{0,1\},\max)$ has trivial kernel and is not injective. *Non-equivalent* two-views shape; do not merge. **State the criterion, not a list**: one fibre determines the congruence exactly in **$0$-regular** varieties — those with a Mal'cev term $p(x,y,z) = xy^{-1}z$. Groups, rings, modules have one; monoids, semigroups, lattices do not. Checkable rather than memorised |
-| 3.2 | Give [[Group]] a `## Structure` section: [[Subgroup]], [[Normal Subgroup]], [[Cosets]], [[Quotient Group]] |
-| 3.3 | Give it `## Special Groups`: [[Abelian Group]], [[Cyclic Group]], [[knowledge/math/algebra/structures/groups/special groups/Symmetric Group]], [[Free Groups]], [[Bilinear Group]] |
-| 3.4 | Move the $\mathrm{GL}_n$ material out of [[Group]]'s `## Example` into [[Example of Subgroups]] or a new `General Linear Group` |
+| 3.2 | Give [[Group]] a `## Structure` section: [[Subgroup]], [[Normal Subgroup]], [[Coset]], [[Quotient Group]] |
+| 3.3 | Give it `## Special Groups`: [[Abelian Group]], [[Cyclic Group]], [[knowledge/math/algebra/structures/groups/special groups/Symmetric Group]], [[Free Group]], [[Bilinear Group]] |
+| 3.4 | Move the $\mathrm{GL}_n$ material out of [[Group]]'s `## Example` into [[Example of Subgroup]] or a new `General Linear Group` |
 | 3.6 | [[Subgroup]] states its criterion via [[Closure]] and [[Inverse Element]] — the one place [[Closure]]'s subset reading is exactly right |
 | 3.7 | [[Subgroup]]' `## Property` heading is still empty (`### Image` now has content) |
-| 3.8 | Stubs: [[Free Groups]] (0 bytes), [[Cosets]] (21 bytes) |
-| 9.8b | The singular rename is half done in `groups/`. Renamed: [[Group]], [[Abelian Group]], [[Cyclic Group]], [[knowledge/math/algebra/structures/groups/special groups/Symmetric Group]], [[Quotient Group]], [[Bilinear Group]]. Still plural: [[Free Groups]], [[Cosets]], [[Subgroup]], [[Normal Subgroup]], [[Group Homomorphism]], and the folders. Rule to settle: **singular when the note defines one object, plural when it surveys a family** |
+| 3.8 | Stubs: [[Free Group]] (0 bytes), [[Coset]] (21 bytes) |
+| 9.8b | The singular rename is half done in `groups/`. Renamed: [[Group]], [[Abelian Group]], [[Cyclic Group]], [[knowledge/math/algebra/structures/groups/special groups/Symmetric Group]], [[Quotient Group]], [[Bilinear Group]]. Still plural: [[Free Group]], [[Coset]], [[Subgroup]], [[Normal Subgroup]], [[Group Homomorphism]], and the folders. Rule to settle: **singular when the note defines one object, plural when it surveys a family** |
 | 7b | Split [[Field]] (14.5 KB): extract `Complex Numbers`, complex-valued calculus → `calculus/`, consider `Field Arithmetic` for the consequences table |
 
 ## Category
@@ -115,8 +115,8 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 | 4.8 | Link [[Category]] → [[Category Set]], [[Category Group]] |
 | 4.15 | The **Homomorphism ↔ Morphism bridge**: one remark per side. Morphisms are not functions (preorder-as-category has pairs as arrows); the two families coincide only in a *concrete* category — which is what licenses [[Group Homomorphism]] to import [[Morphism#Isomorphisms|iso]] |
 | 4.12 | [[Morphism]]: plural headings and callout titles under a singular note name |
-| 4.13 | [[Groupoids]] → `Groupoid`, and add the algebraic reading (a group with a partial operation) |
-| 4.14 | [[Universal Properties]]: the Products example says "let $A, B$ be **sets**" then uses $\mathsf{Hom}_{\mathcal C}$ |
+| 4.13 | [[Groupoid]] → `Groupoid`, and add the algebraic reading (a group with a partial operation) |
+| 4.14 | [[Universal Property]]: the Products example says "let $A, B$ be **sets**" then uses $\mathsf{Hom}_{\mathcal C}$ |
 
 Commutative diagrams: `\begin{CD}` confirmed working, no plugin. Snippets for products and coproducts are in the conversation of 2026-08-24.
 

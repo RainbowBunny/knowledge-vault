@@ -69,8 +69,8 @@ Downstream: [[Lattice]] and [[LLL Lattice Reduction Algorithm]] in `cryptography
 - [[Category]] — objects, $\mathrm{Hom}$-sets, composition. Axioms 3 and 4 are [[Associativity]] and [[Identity Element]] for a **partial** operation
 - [[Opposite Category]] — and the duality principle
 - [[Morphism]] — endo / auto as variants; mono / epi / iso as properties
-- [[Universal Properties]] — initial and final objects, products, coproducts
-- [[Groupoids]] — a category in which every morphism is an isomorphism
+- [[Universal Property]] — initial and final objects, products, coproducts
+- [[Groupoid]] — a category in which every morphism is an isomorphism
 - `example/` — [[Category Set]], [[Category Group]]
 
 ## Geometric / number-theoretic
