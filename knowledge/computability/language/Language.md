@@ -31,13 +31,5 @@ Reference:
 
 ## Property
 
-
-### Recognizable
-
-> [!definition] Recognizable
-> A language $\mathcal{L}$ is recognizable (Turing-recognizable) if some [[Turing Machine]] recognizes it.
-
-### Decidable
-
-> [!definition] Decidable
-> A language $\mathcal{L}$ is decidable (Turing-decidable) if some [[Abstract Machine|Decider]] recognizes it.
+> [!remark]
+> [[Regular Language]] $\subsetneq$ [[Context-Free Language]] $\subsetneq$ [[Decidable Language]] $\subsetneq$ [[Recognizable Language]].

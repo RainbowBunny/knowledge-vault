@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Multitape Turing Machine
-> Extends:: [[Turing Machine]].
+> Generalizes:: [[Turing Machine]].
 > - $k$: The number of tapes.
 > - The rule 4 is now $\delta: Q \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L, R, S\}^k$.
 

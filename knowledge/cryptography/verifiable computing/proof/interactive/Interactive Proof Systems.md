@@ -1,7 +1,13 @@
 ---
 dg-publish: true
 ---
-Reference: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
+Reference: 
+- https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
+- [[Book Reference|Computational Complexity: A Modern Approach]]: - Chapter 8: Interactive Proofs.
+
+> [!remark] Goldwasser, Micali, Rackoff 1985
+> “What is intuitively required from a theorem-proving procedure? First, that it is possible to “prove” a true theorem. Second, that it is impossible to “prove” a false theorem. Third, that communicating the proof should be efficient, in the following sense. It does not matter how long must the prover compute during the proving process, but it is essential that the computation required from the verifier is easy.” 
+
 ## Syntax
 
 > [!definition] Interactive Proof System

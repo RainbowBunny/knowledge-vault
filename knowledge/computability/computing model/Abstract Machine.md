@@ -2,6 +2,8 @@ Reference:
 - Sipser, *Introduction to the Theory of Computation*, §3.1 — configuration, yields, accepts
 - Hopcroft–Motwani–Ullman — instantaneous descriptions and the ⊢ notation
 - Eilenberg, *Automata, Languages and Machines* vol. A — acceptor / transducer
+- [[Book Reference|Computational Complexity: A Modern Approach]]: - Chapter 1: The computational model —and why it doesn’t matter, Section 1.4: Machines as strings and the universal Turing machines. 
+
 
 > [!remark]
 > This abstraction is not a textbook generalization!
@@ -27,7 +29,7 @@ Reference:
 > A halting configuration is exactly a [[Abstract Reduction System|Normal Form]] of $\vdash$.
 
 > [!definition] Loop
-> A run that revisit a configuration is called a loop.
+> A run that never leads to a halting configuration is called a **loop**.
 
 > [!definition] Halting
 > $M$ **halts on** $w$ iff every run on $w$ is finite — i.e. $\vdash$ is [[Abstract Reduction System|Terminating]] on the configurations reachable from $\mathsf{init}(w)$.

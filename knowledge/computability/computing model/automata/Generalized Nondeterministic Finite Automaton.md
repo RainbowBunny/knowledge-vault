@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Generalized Nondeterministic Finite Automaton
-> Extends:: [[Non-deterministic Finite Automaton]]
+> Reference:: [[Non-deterministic Finite Automaton]].
 > 
 > ---
 > A Generalized Nondeterministic Finite Automaton $M$ is a [[Non-deterministic Finite Automaton]] $(Q, \Sigma, \delta, q_{start}, q_{accept})$, with:

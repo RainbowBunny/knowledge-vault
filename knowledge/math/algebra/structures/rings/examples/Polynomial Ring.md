@@ -7,3 +7,6 @@
 > 	- $f(x) + g(x) = \sum_{i \geq 0} (a_i + b_i) x^i$.
 > 	- $f(x) \cdot g(x) = \sum_{k \geq 0} \sum_{i + j = k} a_i b_j x^{i + j}$.
 > - The identity $1_{R[x]} = 1 + 0x + 0x^2 + \cdots$.
+
+## Property
+

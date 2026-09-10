@@ -4,8 +4,8 @@ Reference:
 ## Definition
 
 > [!definition] Turing Machine with Stay Option
-> Extends:: [[Turing Machine]].
-> - The rule 4 is now $\delta: Q \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L, R, S\}$.
+> Generalizes:: [[Turing Machine]].
+> - The rule 4 is now $\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{L, R, S\}$.
 
 ## Property
 

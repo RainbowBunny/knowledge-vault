@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 1.5: Commutative Groups.
+
 ## Definition
 
 > [!definition] Abelian Group

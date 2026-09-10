@@ -3,15 +3,8 @@ Reference:
 
 ## Definition
 
-> [!definition] Deterministic Finite Automaton
-> Extends:: [[Non-deterministic Finite Automaton]]
-> 
-> ---
-> A Deterministic Finite Automaton is a [[Non-deterministic Finite Automaton]] $M = (Q, \Sigma, \delta, q_0, F)$ with:
-> - $\delta: Q \times \Sigma_\varepsilon \rightarrow Q$: The transition function is now a state (Adding determinism).
-
 > [!definition] Deterministic Finite Automata
-> A Deterministic Finite Automata $M$ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
+> A Deterministic Finite Automata $\mathsf{DFA}$ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
 > 1. $Q$ is a finite set called the **states**.
 > 2. $\Sigma$ is a finite set called the **alphabet**.
 > 3. $\delta: Q \times \Sigma \rightarrow Q$ is the **transition function**.

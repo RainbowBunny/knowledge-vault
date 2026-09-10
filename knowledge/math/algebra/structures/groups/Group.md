@@ -1,6 +1,9 @@
 ---
 dg-publish: true
 ---
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 1.2: Definition; Section 1.3: Basic Properties; Section 1.4: Cancellation; Section 1.6: Order; Exercise 1.3; Exercise 1.4; Exercise 1.5.
+
 ## Definition
 
 >[!definition] Group

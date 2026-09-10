@@ -1,7 +1,10 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 6.1: Definition.
+
 ## Definition
 
 > [!definition] Subgroup
-> A *subgroup* is a subset $H$ of a [[Group]] $(G, \star)$ that is also a group. 
+> Let $(G, \cdot)$ be a [[Group]], and let $(H, \circ)$ be another group, whose underlying set $H$ is a subset of $G$. $(H, \circ)$ is a **subgroup** of $G$ if the [[Inclusion Function]] $i: H \hookrightarrow G$ is a [[Group Homomorphism]].
 
 > [!proposition]
 > A nonempty subset $H$ of a group $G$ is a subgroup if and only if
