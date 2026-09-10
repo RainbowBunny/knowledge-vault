@@ -42,5 +42,5 @@ Reference:
 | Basic                                                   | 1          | $\{L, R\}$    | det         | -               |
 | [[Turing Machine with Stay Option\|Stay Option]]        | 1          | $\{L, R, S\}$ | det         | $\times 2$      |
 | [[Multitape Turing Machine\|Multitape]]                 | $k$        | $\{L, R, S\}$ | det         | quadratic       |
-| [[Non-Deterministic Turing Machine\|Non-Deterministic]] | 1          | $\{L, R\}$    | nondet      | exponential     |
+| [[Non-deterministic Turing Machine\|Non-Deterministic]] | 1          | $\{L, R\}$    | nondet      | exponential     |
 |                                                         | 1, bounded | $\{L, R\}$    | det         | -               |

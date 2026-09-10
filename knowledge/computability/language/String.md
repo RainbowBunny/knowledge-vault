@@ -13,7 +13,7 @@ Reference:
 > A **string over an alphabet** is a finite sequence of symbols from that alphabet, usually written next to one another and not separated by commas.
 
 > [!definition] Empty String
-> The **empty string** is the string with zero occurrences of symbols. Denoted $\epsilon$.
+> The **empty string** is the string with zero occurrences of symbols. Denoted $\varepsilon$.
 
 > [!definition] Length of a String
 > Length is the number of positions for symbols in the string. The length of $s$ is denoted as $|s|$.
@@ -21,7 +21,7 @@ Reference:
 > [!definition] Set of String by Length
 > - For an alphabet $\Sigma$, denote $\Sigma^k$ as the set of all string of length $k$ formed by the alphabet $\Sigma$.
 > - $\Sigma^+ = \Sigma^1 \cup \Sigma^2 \cup \Sigma^3 \cup \cdots$: The set of non-empty strings over an alphabet $\Sigma$.
-> - $\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 \cup \cdots = \Sigma^+ \cup \{\epsilon\}$: The set of all strings over an alphabet $\Sigma$.
+> - $\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 \cup \cdots = \Sigma^+ \cup \{\varepsilon\}$: The set of all strings over an alphabet $\Sigma$.
 
 ### Concatenation
 
@@ -29,4 +29,4 @@ Reference:
 > Let $x$ and $y$ be strings. Then $xy$ denotes the *concatenation* of $x$ and $y$, that is, the string formed by making a copy of $x$ and following it by a copy of $y$. Precisely, let $x$ is the string composed of $i$ symbols $x = a_1 a_2 \dots a_i$ and $y$ is the string composed of $j$ symbols $y = b_1 b_2 \dots b_j$, then $xy$ is the string length $i + j: xy = a_1 a_2 \dots a_i b_1 b_2 \dots b_j$.
 
 > [!remark]
-> $(\Sigma^*, \cdot, \epsilon)$ is a [[Monoid]] on $\Sigma$.
+> $(\Sigma^*, \cdot, \varepsilon)$ is a [[Monoid]] on $\Sigma$.

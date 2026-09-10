@@ -3,12 +3,12 @@ Reference:
 
 ## Definition
 
-> [!definition] Finite Automata
-> A Finite Automata $M$ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
-> 1. $Q$ is a finite set called the **states**,
-> 2. $\Sigma$ is a finite set called the **alphabet**,
-> 3. $\delta: Q \times \Sigma \rightarrow Q$ is the **transition function**,
-> 4. $q_0 \in Q$ is the **start state**, and
+> [!definition] Deterministic Finite Automata
+> A Deterministic Finite Automata $M$ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
+> 1. $Q$ is a finite set called the **states**.
+> 2. $\Sigma$ is a finite set called the **alphabet**.
+> 3. $\delta: Q \times \Sigma \rightarrow Q$ is the **transition function**.
+> 4. $q_0 \in Q$ is the **start state**.
 > 5. $F \subseteq Q$ is the **set of accept states**.
 
 > [!definition] Finite Automata (Abstract Machine Formulation)
@@ -17,7 +17,7 @@ Reference:
 > ---
 > - Configuration $C$: $Q \times \Sigma^*$.
 > - $\mathsf{init}(w)$: $(q_0, w)$.
-> - $\mathsf{halt}$: $F \times \{\epsilon\}$.
+> - $\mathsf{halt}$: $F \times \{\varepsilon\}$.
 > 
 > ---
 > The reduction rule $\vdash$:
