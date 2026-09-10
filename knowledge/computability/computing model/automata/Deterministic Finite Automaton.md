@@ -3,6 +3,13 @@ Reference:
 
 ## Definition
 
+> [!definition] Deterministic Finite Automaton
+> Extends:: [[Non-deterministic Finite Automaton]]
+> 
+> ---
+> A Deterministic Finite Automaton is a [[Non-deterministic Finite Automaton]] $M = (Q, \Sigma, \delta, q_0, F)$ with:
+> - $\delta: Q \times \Sigma_\varepsilon \rightarrow Q$: The transition function is now a state (Adding determinism).
+
 > [!definition] Deterministic Finite Automata
 > A Deterministic Finite Automata $M$ is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$:
 > 1. $Q$ is a finite set called the **states**.
@@ -17,7 +24,7 @@ Reference:
 > ---
 > - Configuration $C$: $Q \times \Sigma^*$.
 > - $\mathsf{init}(w)$: $(q_0, w)$.
-> - $\mathsf{halt}$: $F \times \{\varepsilon\}$.
+> - $\mathsf{acc}$: $F \times \{\varepsilon\}$.
 > 
 > ---
 > The reduction rule $\vdash$:

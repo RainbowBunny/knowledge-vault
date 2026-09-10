@@ -12,7 +12,7 @@ Reference:
 > As languages are sets, we can define:
 > - **Union**: $A \cup B = \{x \mid x \in A \lor x \in B\}$.
 > - **Concatenation**: $A \circ B = \{xy \mid x \in A \land y \in B\}$.
-> - **Star**: $A = \{x_1 \dots x_k \mid k \geq 0 \land x_i \in A \; \forall \; i \in [k]\}$.
+> - **Star**: $A^* = \{x_1 \dots x_k \mid k \geq 0 \land x_i \in A \; \forall \; i \in [k]\}$.
 
 ### Defining Languages by Sets
 
@@ -40,4 +40,4 @@ Reference:
 ### Decidable
 
 > [!definition] Decidable
-> A language $\mathcal{L}$ is decidable (Turing-decidable) if some [[Turing Machine#Decider|Decider]] recognizes it.
+> A language $\mathcal{L}$ is decidable (Turing-decidable) if some [[Abstract Machine|Decider]] recognizes it.

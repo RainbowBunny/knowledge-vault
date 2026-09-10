@@ -19,7 +19,7 @@ Reference:
 > ---
 > - Configuration $C$: $\Sigma^* Q \Sigma^*$.
 > - $\mathsf{init}(w)$: $q_0 w$.
-> - $\mathsf{halt}$: $\Gamma^* q_\mathsf{accept} \Gamma^*$.
+> - $\mathsf{acc}$: $\Gamma^* q_\mathsf{accept} \Gamma^*$.
 > 
 > ---
 > The reduction rule $\vdash$:

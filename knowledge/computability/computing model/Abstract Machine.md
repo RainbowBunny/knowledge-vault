@@ -10,9 +10,8 @@ Reference:
 
 > [!definition] Abstract Machine
 > Extends:: [[Abstract Reduction System]]
-> An **abstract machine** over $\Sigma$ is a confluent [[Abstract Reduction System]] $(C, \vdash)$ together with
+> An **abstract machine** over $\Sigma$ is an [[Abstract Reduction System]] $(C, \vdash)$ together with
 > - $\mathsf{init} : \Sigma^* \rightarrow C$: the **start configuration** on an input.
-> - $\mathsf{halt} \subseteq C$: the **halting configurations**.
 >
 > $C$ are the **configurations** and $\vdash$ the **step relation**.
 
@@ -34,7 +33,7 @@ Reference:
 > $M$ **halts on** $w$ iff every run on $w$ is finite — i.e. $\vdash$ is [[Abstract Reduction System|Terminating]] on the configurations reachable from $\mathsf{init}(w)$.
 
 > [!definition] Decider
-> $m$ is a **decider** iff it halts on every $w$.
+> $M$ is a **decider** iff it halts on every $w$.
 
 ## Property
 
@@ -48,7 +47,7 @@ Reference:
 ### Acceptor
 
 > [!definition] Acceptor
-> A machine is called acceptor if there exists some $\mathsf{acc} \subseteq \mathsf{halt}$ called the acceptance configuration.
+> A machine is called acceptor if there exists some $\mathsf{acc} \subseteq \mathsf{NF}(\vdash)$ called the acceptance configuration.
 
 > [!definition] Accepts Input
 > A Machine $M$ **accepts** input $w$ if $\mathsf{init}(w)$'s normal form is an acceptance configuration.
@@ -57,12 +56,12 @@ Reference:
 > [[Language]] of an acceptor $M$ is defined as
 > $$\mathcal{L}(M) = \{w \in \Sigma^*: M \text{ accepts } w\}.$$
 
-| machine                                 | $C$                                 | $\mathsf{init}(w)$      | $\mathsf{acc}$                             |
-| --------------------------------------- | ----------------------------------- | ----------------------- | ------------------------------------------ |
-| [[Deterministic Finite Automaton\|DFA]] | $Q \times \Sigma^*$                 | $(q_0, w)$              | $F \times \{\varepsilon\}$                 |
-| NFA                                     | $Q \times \Sigma^*$                 | $(q_0, w)$              | $F \times \{\varepsilon\}$                 |
-| PDA                                     | $Q \times \Sigma^* \times \Gamma^*$ | $(q_0, w, \varepsilon)$ | $F \times \{\varepsilon\} \times \Gamma^*$ |
-| [[Turing Machine]]                      | $\Gamma^* Q \Gamma^*$               | $q_0 w$                 | $\Gamma^* q_\mathsf{accept} \Gamma^*$      |
+| machine                                     | $C$                                 | $\mathsf{init}(w)$      | $\mathsf{acc}$                             |
+| ------------------------------------------- | ----------------------------------- | ----------------------- | ------------------------------------------ |
+| [[Deterministic Finite Automaton\|DFA]]     | $Q \times \Sigma^*$                 | $(q_0, w)$              | $F \times \{\varepsilon\}$                 |
+| [[Non-deterministic Finite Automaton\|NFA]] | $Q \times \Sigma^*$                 | $(q_0, w)$              | $F \times \{\varepsilon\}$                 |
+| [[Pushdown Automaton\|PDA]]                 | $Q \times \Sigma^* \times \Gamma^*$ | $(q_0, w, \varepsilon)$ | $F \times \{\varepsilon\} \times \Gamma^*$ |
+| [[Turing Machine]]                          | $\Gamma^* Q \Gamma^*$               | $q_0 w$                 | $\Gamma^* q_\mathsf{accept} \Gamma^*$      |
 
 ### Transducer
 
