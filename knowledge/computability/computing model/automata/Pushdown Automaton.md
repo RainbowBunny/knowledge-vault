@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Introduction to the Theory of Computation]] - Chapter 2: Context-Free Languages, Section 2.2: Pushdown Automata.
+
 ## Definition
 
 >[!definition] Pushdown Automaton

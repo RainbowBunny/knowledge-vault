@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Introduction to the Theory of Computation]] - Chapter 2: Context-Free Languages, Section 2.1: Context-Free Grammars.
+
 ## Definition
 
 >[!definition] Context-free Grammar
