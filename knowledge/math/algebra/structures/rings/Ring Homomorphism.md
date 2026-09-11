@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 2.1: Ring homomorphisms; Section 2.3: Monomorphisms and epimorphisms; Section 3.1: Ideals.
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 2.1: Ring homomorphisms; Section 2.3: Monomorphisms and epimorphisms; Section 3.1: Ideals; Section 3.2: Quotients.
 
 ## Definition
 
@@ -23,6 +23,15 @@ Reference:
 > 
 > ---
 > To be completed.
+
+> [!theorem]
+> Let $I$ be a [[Ideal|Two-sided Ideal]] of a [[Ring]] $R$. Then for every ring homomorphism $\varphi: R \rightarrow S$ such that $I \subseteq \ker \varphi$ there exists a unique ring homomorphism $\tilde{\varphi}: R / I \rightarrow S$ such that the diagram:
+> $$\begin{CD}
+R @>\varphi>> S\\
+@| @AA\exists! \tilde{\varphi}A \\
+R @>>\pi> S
+\end{CD}$$
+commutes.
 
 ## Property
 

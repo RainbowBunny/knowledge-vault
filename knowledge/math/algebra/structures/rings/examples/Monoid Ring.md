@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 1.4: Monoid rings.
+
 ## Definition
 
 > [!definition] Monoid Ring

@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 3.1: Ideals.
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 3.1: Ideals; Section 4.1: Basic Operations.
 
 ## Definition
 
@@ -11,3 +11,7 @@ Reference:
 > $$(\forall r \in R)(\forall a \in I): ar \in I$$
 > - Two-sided ideal if both.
 
+### Principle Ideal Domain
+
+> [!definition] Principle Ideal
+> Let $a \in R$ be any element of a [[Ring]].

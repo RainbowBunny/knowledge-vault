@@ -1,7 +1,8 @@
 ---
 dg-publish: true
 ---
-Reference: https://eprint.iacr.org/2014/718.pdf
+Reference:
+- https://eprint.iacr.org/2012/215.pdf
 
 ## Definition
 

@@ -1,3 +1,6 @@
+Reference:
+- https://eprint.iacr.org/2025/2099
+
 ## Definition
 
 > [!remark]
@@ -5,8 +8,8 @@
 
 ### Non-Interactive Proof Systems Variant
 
-> [!definition] Knowledge Soundness
-> Given a [[Non-Interactive Proof Systems]] $\Pi_\mathsf{NIPS}$. For any adversary $\mathcal{A} = (\mathcal{A}_\mathsf{find})$, there exists an efficient extractor $\mathcal{E} = (\mathcal{E}_\mathsf{NIPS})$, we define the non-adaptive knowledge soundness advantage:
+> [!definition] Adaptive Knowledge Soundness
+> Given a [[Non-Interactive Proof Systems]] $\Pi_\mathsf{NIPS}$. For any adversary $\mathcal{A} = (\mathcal{A}_\mathsf{find})$, there exists an efficient extractor $\mathcal{E} = (\mathcal{E}_\mathsf{NIPS})$, we define the adaptive knowledge soundness advantage:
 > $$\mathsf{Adv}_\mathsf{NIPS}^{\mathsf{ks}}(\mathcal{A}, \mathcal{E}) = 
 \Pr\!\left[ 
 \begin{array}{l}
@@ -16,8 +19,8 @@
 \;\middle |\; 
 \begin{array}{l}
 (\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{R}) \\
-(\mathbf{x}, \boldsymbol{\pi}^*) \leftarrow \mathcal{A}_\mathsf{find}(\mathcal{R}, \mathrm{crs}, \mathrm{st}) \\
-\mathbf{w} \leftarrow \mathcal{E}_\mathsf{find}(1^\lambda, \mathcal{R}, \mathrm{crs}, \mathrm{st}, \mathbf{x})
+(\mathbf{x}, \boldsymbol{\pi}^*) \leftarrow \mathcal{A}_\mathsf{find}(\mathcal{R}, \mathrm{crs}) \\
+\mathbf{w} \leftarrow \mathcal{E}_\mathsf{find}(\mathcal{R}, \mathrm{crs}, \mathbf{x})
 \end{array} \right]$$
 
 > [!remark]

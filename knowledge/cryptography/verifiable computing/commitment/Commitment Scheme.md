@@ -3,6 +3,7 @@ dg-publish: true
 ---
 Reference:
 - https://homepages.cwi.nl/~schaffne/courses/crypto/2014/papers/ComZK08.pdf
+- https://eprint.iacr.org/2025/2099
 
 ## Intuition
 
@@ -15,14 +16,14 @@ Reference:
 ## Syntax
 
 > [!definition] Commitment Scheme
-> A **commitment scheme** for a finite message space $\mathcal M$, is a pair of efficient algorithms $\mathcal{CS} = (\mathsf{KeyGen}, \mathsf{Com}, \mathsf{Verify})$ where:
-> - $pp \leftarrow \mathsf{KeyGen}(1^\lambda)$: 
-> - $(c, o) \leftarrow \mathsf{Com}(pp, m)$: Commitment algorithm, where $m \in \mathcal M$ is the message to be committed, $c$ is the commitment string, and $o$ is an opening string.
-> - $\{0, 1\} \leftarrow \mathsf{Verify}(pp, m, c, o)$: Verification algorithm that output $1$ for $\mathsf{accept}$ or $0$ for $\mathsf{reject}$.
+> A **commitment scheme** for a finite message space $\mathcal M$, is a tuple of [[PPT]] $\mathcal{CS} = (\mathsf{KeyGen}, \mathsf{Com}, \mathsf{Verify})$ where:
+> - $pp \leftarrow \mathsf{Setup}(1^\lambda)$: On input the security parameter $\lambda$, outputs the public parameter $\mathrm{pp}$.
+> - $(c, o) \leftarrow \mathsf{Com}(\mathrm{pp}, m)$: Commitment algorithm, with public parameter $\mathrm{pp}$ and message $m$, returns commitment $c$ and opening string $o$.
+> - $\{0, 1\} \leftarrow \mathsf{Verify}(\mathrm{pp}, m, c, o)$: Verification algorithm, outputs $1$ for $\mathsf{accept}$ or $0$ for $\mathsf{reject}$.
 
 > [!definition] Commitment Phases
-> - Commit Phase: Sender runs $(c, o) \xleftarrow{\$} \mathsf{Com}(m)$ and sends $c$.
-> - Reveal Phase: Sender sends $(m, o)$; receiver runs $\mathsf{Verify}(m, c, o)$.
+> - Commit Phase: Sender runs $(c, o) \xleftarrow{\$} \mathsf{Com}(\mathrm{pp}, m)$ and sends $c$.
+> - Reveal Phase: Sender sends $(m, o)$; receiver runs $\mathsf{Verify}(\mathrm{pp}, m, c, o)$.
 
 ## Property
 
@@ -44,30 +45,32 @@ Reference:
 ### Binding
 
 > [!definition] Binding
-> For any adversary $\mathcal{A} = (\mathcal{A}^\mathrm{find})$, we define the binding advantage:
+> For any [[Adversary]] $\mathcal{A} = (\mathcal{A}^\mathsf{find})$, we define the binding advantage:
 > $$\mathsf{Adv}_{\mathcal{CS}}^\mathsf{Bind}(\mathcal{A}) =  
 > \; \Pr\!\left[
 > \begin{array}{l}
 > m_1 \neq m_2 \\
-> c_1 = c_2
+> \mathsf{Verify}(\mathrm{pp}, m_1, c, o_1) = 1 \\
+> \mathsf{Verify}(\mathrm{pp}, m_2, c, o_2) = 1
 > \end{array}
 > \; \middle | \; 
 > \begin{array}{l}
-> (m_1, m_2) \leftarrow \mathcal{A}^\text{find}() \\
-> (c_1, o_1) \leftarrow \mathsf{Com}(m_1) \\
-> (c_2, o_2) \leftarrow \mathsf{Com}(m_2)
+> \mathrm{pp} \leftarrow \mathsf{Setup}(1^\lambda) \\
+> (c, m_1, m_2, o_1, o_2) \leftarrow \mathcal{A}^\mathsf{find}(\mathrm{pp})
 > \end{array} \right]$$
 
 ### Hiding
 
 > [!definition] Hiding
-> For any adversary $\mathcal{A} = (\mathcal{A}_\text{find}, \mathcal A_\text{guess})$, we define the hiding advantage:
+> For any [[Adversary]] $\mathcal{A} = (\mathcal{A}_\mathsf{find}, \mathcal{A}_\mathsf{guess})$, we define the hiding advantage:
 > $$\mathsf{Adv}_\mathcal{CS}^{\mathsf{Hide}}(\mathcal{A}) = 
 > \left|\; \Pr\!\left[ b = b' \;\middle |\; 
 > \begin{array}{l}
-> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}(); \\
-> b \xleftarrow{\$} \{0, 1\}; (c^*, o^*) \xleftarrow{\$} \text{Com}(m_b) \\
-> b' \leftarrow \mathcal A_\text{guess}(s, c^*)
+> \mathrm{pp} \leftarrow \mathsf{Setup}(1^\lambda) \\
+> (m_0, m_1) \leftarrow \mathcal{A}_\mathsf{find}(\mathrm{pp}) \\
+> b \xleftarrow{\$} \{0, 1\} \\
+> (c_b, o_b) \leftarrow \mathsf{Com}(\mathrm{pp}, m_b) \\
+> b' \leftarrow \mathcal{A}_\mathsf{guess}(c_b)
 > \end{array} \right] 
 > \;- \frac{1}{2}
 > \right|.$$

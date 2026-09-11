@@ -15,7 +15,7 @@
 \end{array} 
 \;\middle |\; 
 \begin{array}{l}
-(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{r}) \\
+(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{R}) \\
 (\mathbf{x}, \mathbf{w}) \leftarrow \mathcal{A}_\mathsf{find}(\mathrm{crs}, \mathrm{st}) \\
 \pi \leftarrow \mathsf{Prove}(\mathrm{crs}, \mathbf{x}, 
 \mathbf{w})

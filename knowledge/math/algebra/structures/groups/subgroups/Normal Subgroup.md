@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 7.1: Normal subgroups.
+
 ## Definition
 
 > [!definition] Normal Subgroups
@@ -7,5 +10,5 @@
 ## Property
 
 > [!lemma] 
-> If $\phi: G \rightarrow G'$ is any group homomorphism, then $\text{ker} \; \phi$ is normal subgroup of $G$.
+> If $\varphi: G \rightarrow G'$ is any group homomorphism, then $\ker  \varphi$ is normal subgroup of $G$.
 

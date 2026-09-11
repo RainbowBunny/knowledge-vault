@@ -1,7 +1,13 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 1.1: Definitions; Section 1.2: First examples and special classes of rings; Section 3.2: Quotients.
+
 ## Definition
 
 > [!definition] Ring
-> A **ring** is a set $R$ that has two operations, which we denote by $+: R \times R \rightarrow R$ and $*: R \times R \rightarrow R$ where $R$ is an [[Abelian Group]] under $+$ and a [[Monoid]] under $*$. Also, $+$ and $*$ satisfies [[Distributivity]].
+> A **ring** is a set $R$ that has two [[Binary Operation]] $+, *$:
+> - $(R, +)$ is an [[Abelian Group]]  
+> - $(R, *)$ is a [[Monoid]]. 
+> - $+$ and $*$ satisfies [[Distributivity]].
 
 ### Zero Divisor
 
@@ -28,24 +34,25 @@
 > - $u$ is a left- (resp., right-) unit iff left- (resp., right-) multiplication by $u$ is a [[Surjection]] on $R$.
 > - If $u$ is a left- (resp., right-) unit, then right- (resp., left-) multiplication by $u$ is an [[Injection]]; that is, $u$ is not a right- (resp., left-) zero-divisor.
 > - The inverse of a two-sided unit is unique.
-> - Two-sided units form a group under multiplication.
+> - Two-sided units form a [[Group]] under multiplication.
 
-### Quotient rings
+### Characteristic
+
+> [!definition] Characteristic
+> As $\mathbb{Z}$ is the [[Category Ring|Initial Object]] of category $\mathsf{Ring}$, we have
+> $$\exists n \in \mathbb{N}: \ker \varphi = n \mathbb{Z}.$$
+> $n$ is called the **characteristic** of $R$.
+
+## Quotient rings
 
 > [!definition] Divisibility in Ring
 > Let $a$ and $b$ be elements of a ring $R$ with $b \neq 0$. We say that $b$ **divides** $a$, or that $a$ **is divisible by** $b$, if there is an element $c \in R$ such that $$a = b * c.$$ Similar to integer divisibility, we write $b \mid a$ to indicate that $b$ divides $a$. If $b$ does not divide $a$, then we write $b \nmid a$.
 
-> [!definition] Unit
-> Let $R$ be a ring. An element $u \in R$ is called a **unit** if it has a multiplicative inverse.
 
 > [!definition] Irreducible
 > An element $a$ of a ring $R$ is said to be **irreducible** if $a$ is not itself a unit and if in every factorization of $a$ as $a = b * c$, either $b$ is a unit or $c$ is a unit.
 
-> [!definition] Congruent
-> Let $R$ be a ring and choose a nonzero element $m \in R$. We say that two elements $a$ and $b$ of $R$ are **congruent modulo** $m$ if their difference $a - b$ is divisible by $m$. We write $$a \equiv b \pmod m$$ to indicate that $a$ and $b$ are congruent modulo $m$.
 
-> [!proposition] 
-> Let $R$ be a ring and let $m \in R$ with $m \neq 0$. If $$a_1 \equiv a_2 \pmod m \qquad \text{and} \qquad b_1 \equiv b_2 \pmod m$$ then $$a_1 \pm b_1 \equiv a_2 \pm b_2 \pmod m \qquad \text{and} \qquad a_1 * b_1 \equiv a_2 * b_2 \pmod m$$
 
 > [!definition] Congruence Class
 > Let $R$ be a ring and let $m \in R$ with $m \neq 0$. For any $a \in R$, we write $\overline a$ for the set of all $a' \in R$ such that $a' \equiv a \pmod m$. The set $\overline a$ is called the **congruence class** of $a$.
@@ -58,13 +65,6 @@
 
 ## Ring Homomorphism and Ideal
 
-> [!definition] Ring Homomorphism/Isomorphism
-> Suppose $R, S$ are rings, then a __ring homomorphism__ is a map $\phi: R \rightarrow S$ satisfying:
-> $$ \begin{aligned}
-\phi(a + b) &= \phi(a) + \phi(b) \\
-\phi(ab) &= \phi(a)\phi(b)
-\end{aligned}$$
->for all $a, b \in R$. In case the map $\phi$ is bijection, we have __isomorphism__ of rings
 
 > [!proposition]
 > Let $\phi : R \rightarrow S$ be a ring homomorphism.
@@ -74,11 +74,6 @@
 > - If $R$ is a field and $\phi(R) \neq \{0\}$, then $\phi(R)$ is a field.
 
 
-
-> [!definition] Ideal
-> Let $R$ be a ring. A nonempty subset $I$ of $R$ is called an **ideal** if
-> 1. Both $a + b$ and $a - b$ belongs to $I$, for all $a, b \in I$;
-> 2. $r \cdot a \in I$, for all $r \in R$ and $a \in I$.
 
 > [!definition] Principal Ideal
 > An ideal $I$ of a ring $R$ is called a **principle ideal** if there exists an element $g \in I$ such that $I = <g>$ where $$<g> = \{gr : r \in R\}.$$

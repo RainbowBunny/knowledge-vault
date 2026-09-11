@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 1.2: First examples and special classes of rings.
+
 ## Definition
 
 > [!definition] Integral Domain
