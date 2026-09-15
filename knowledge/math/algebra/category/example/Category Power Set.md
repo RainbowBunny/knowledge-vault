@@ -1,4 +1,7 @@
-## Syntax
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 3.2: Examples.
+
+## Definition
 
 > [!definition] Category $\hat{\mathsf{S}}$
 > Category $\hat{\mathsf{S}}$ consists of

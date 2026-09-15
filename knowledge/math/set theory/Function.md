@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 2.1: Definition; Section 2.3: Composition of functions; Section 2.5: Injections, surjections, bijections: Second viewpoint.
+
 ## Definition
 
 > [!definition] Function
@@ -40,9 +43,6 @@
 
 ### Partial Function
 
-
-
-
 ### Restriction
 
 > [!definition] Restriction
@@ -72,39 +72,6 @@
 > A @>>{g \circ f}> C @>h>> D 
 > \end{CD}$$
 
-### Natural Projection
-
-> [!definition] Natural Projection
-> Let $A, B$ be sets. Then there are **natural projections** $\pi_A, \pi_B$ defined by:
-> $$\pi_A((a, b)) = a, \quad \pi_B((a, b)) = b$$
-> for all $(a, b) \in A \times B$. Both of these maps are (clearly) surjective.
-
-### Natural Injections
-
-> [!definition] Natural Injections
-> Let $A, B$ be sets. Then there are **natural injections** from $A$ and $B$ to the disjoint union $A \amalg B$ obtained by sending $a \in A$ (resp., $b \in B$) to the corresponding element in the isomorphic copy $A'$ of $A$ (resp., $B'$ of $B$) in $A \amalg B$.
-
-### Canonical Projection
-
-> [!definition] Canonical Projection
-> If $\sim$ is an equivalence relation on a set $A$, there is a canonical projection
-> $$A \twoheadrightarrow A/_\sim$$
-> obtained by sending every $a \in A$ to its equivalence class $[a]_\sim$.
-
-### Canonical Decomposition
-
-> [!definition] Canonical Decomposition
-> A canonical decomposition is a function $f: A \rightarrow B$ determines an equivalence relation $\sim$ on $A$ as follows:
-> - For all $a', a'' \in A$,
-> $$a' \sim a'' \Longleftrightarrow f(a') = f(a'')$$
-
-> [!theorem]
-> Let $f: A \rightarrow B$ be any function, and define $\sim$ as above. Then $f$ decomposes as follows:
-> $$A \twoheadrightarrow (A/_\sim) \; \substack{\sim \\ \longrightarrow \\ \tilde f} \; \text{im} f \hookrightarrow B$$
-> where the first function is the canonical projection, the third function is the inclusion $\text{im} \; f \subseteq B$, and the bijection $\tilde f$ in the middle is defined by
-> $$\tilde f([a]_\sim) = f(a)$$
-> for all $a \in A$.
-
 ## Property
 
 ### Inverse
@@ -123,29 +90,5 @@
 
 > [!corollary]
 > A function $f: A \rightarrow B$ is a bijection if and only if it has a (two-sided) inverse.
-
-### Monomorphism
-
-> [!definition] Monomorphism
-> A function $f: A \rightarrow B$ is a **monomorphism** (or monic) if the following holds:
-> - For all sets $Z$ and all functions $\alpha', \alpha'': Z \rightarrow A$
-> $$f \circ \alpha' = f \circ \alpha'' \Longrightarrow \alpha' = \alpha''$$
-
-> [!proposition]
-> A function is injective if and only if it is a monomorphism.
-
-### Epimorphism
-
-> [!definition] Epimorphism
-> A function $f: A \rightarrow B$ is a **epimorphism** if the following holds:
-> - For all sets $Z$ and all function $\beta', \beta'': Z \rightarrow B$
-> $$\beta' \circ f = \beta'' \circ f \Longrightarrow \beta' = \beta''$$
-
-> [!proposition]
-> A function is surjective if and only if it is a epimorphism.
-
-
-
-
 
 

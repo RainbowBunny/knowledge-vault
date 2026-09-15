@@ -58,7 +58,7 @@ Each axiom family attaches at exactly one node of the spine. This is what justif
 
 | family | attaches to | Scope line reads | structures produced |
 | --- | --- | --- | --- |
-| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[knowledge/math/algebra/structures/rings/Ring]] → [[Field]] |
+| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]] |
 | `properties/relation/` | homogeneous relation $R \subseteq S \times S$ | "A [[Relation]] $R$ on $S$" | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
 | `properties/map/` | function $f: A \to B$ | "A [[Function]] $f: A \to B$" | homomorphism, linear map, monotone map |
 | `properties/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$" | normed space, [[Metric Space]] |
@@ -376,7 +376,7 @@ A map that respects structure: do the operation then map, or map then do the ope
 > Without a shared signature, "preserves the structure" has no referent. This is the one place the vault's [[First-Order Logic|signature]] framing is not just organisational but load-bearing.
 ```
 
-Instances to rewire: [[Group Homomorphism]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[knowledge/math/algebra/structures/rings/Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroup]], whose definition *is* "the inclusion is a group homomorphism".
+Instances to rewire: [[Group Homomorphism]] ($\varphi(g_1 \star g_2) = \varphi(g_1) \star \varphi(g_2)$), [[Ring]]'s inline ring homomorphism, [[Linear Maps]] (a homomorphism of modules — [[Linearity]] is this note's specialisation to the module signature), and [[Subgroup]], whose definition *is* "the inclusion is a group homomorphism".
 
 ---
 
@@ -697,7 +697,7 @@ Reference: Atiyah–Macdonald Ch. 1; Mathlib `IsReduced`
 | [[Function]] `### Canonical Decomposition` | *"$a' \sim a'' \iff f(a') = f(a'')$"* — **the kernel, never called that** | B |
 | [[Subgroup]] `### Kernel` | $\ker \phi = \phi^{-1}(e_{G'})$ | A |
 | [[Linear Maps]] `### Null Spaces and Ranges` | *"null space (or kernel)"*, $\{v : Tv = 0\}$ | A |
-| [[knowledge/math/algebra/structures/rings/Ring]] | ring homs and [[Ideal]]s are both defined — **but never connected** | A, missing |
+| [[Ring]] | ring homs and [[Ideal]]s are both defined — **but never connected** | A, missing |
 
 #### Two readings, and they are not the same concept
 
@@ -730,7 +730,7 @@ This is a **two-views pair of the *non-equivalent* shape** ([[North Star]]): the
 
 #### The criterion, not the list
 
-The varieties where one fibre determines the whole congruence are the **$0$-regular** (ideal-determined) ones: those with a constant $0$ and a **Mal'cev term** $p(x,y,z)$ satisfying $p(x,x,z) = z$ and $p(x,z,z) = x$. For [[Group]] it is $p(x,y,z) = xy^{-1}z$; [[knowledge/math/algebra/structures/rings/Ring]] and modules inherit it from their additive group. [[Monoid]], [[Semigroup]], lattices and orders have no such term — which is precisely why the counterexample above exists. **[Standard]** — universal algebra, the same frame as [[Equational Logic]].
+The varieties where one fibre determines the whole congruence are the **$0$-regular** (ideal-determined) ones: those with a constant $0$ and a **Mal'cev term** $p(x,y,z)$ satisfying $p(x,x,z) = z$ and $p(x,z,z) = x$. For [[Group]] it is $p(x,y,z) = xy^{-1}z$; [[Ring]] and modules inherit it from their additive group. [[Monoid]], [[Semigroup]], lattices and orders have no such term — which is precisely why the counterexample above exists. **[Standard]** — universal algebra, the same frame as [[Equational Logic]].
 
 So the rule is checkable rather than memorised: *ask whether the structure has $xy^{-1}z$.*
 
@@ -749,7 +749,7 @@ So the asymmetry is real and it is not about sub-objects being special: on the *
 
 **First, `### Fibre` goes into [[Function]]**, beside `### Image`, as the domain-side counterpart — $f^{-1}(b) = \{a \in A : f(a) = b\}$. General, derived, one line. It stays inside [[Function]] until a second note outside its parent needs it.
 
-**Then one new note: `math/set theory/function/Kernel.md`** — reading **B**, *the partition into fibres*. It graduates by the usual rule: three notes outside its parent need to link it ([[Subgroup]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]]), and its Scope is a bare function, so it belongs beside [[Function]] rather than inside any structure.
+**Then one new note: `math/set theory/function/Kernel.md`** — reading **B**, *the partition into fibres*. It graduates by the usual rule: three notes outside its parent need to link it ([[Subgroup]], [[Ring]], [[Linear Maps]]), and its Scope is a bare function, so it belongs beside [[Function]] rather than inside any structure.
 
 ```markdown
 Reference: Aluffi, *Algebra: Chapter 0*, §I.2 (canonical decomposition)
@@ -785,7 +785,7 @@ Reference: Aluffi, *Algebra: Chapter 0*, §I.2 (canonical decomposition)
 | note | do |
 | --- | --- |
 | [[Subgroup]] | keep `### Kernel`; add *"and is a **normal subgroup**"* — currently unstated. Phrase it as *the fibre over $e_{G'}$* so the link to `Kernel.md` is visible |
-| [[knowledge/math/algebra/structures/rings/Ring]] | **add** the missing link: the kernel of a ring homomorphism **is an [[Ideal]]**, and conversely every ideal is the kernel of its quotient map. Right now [[Ideal]] appears with no reason for existing — and is defined **twice**, once well at `groups/subgroups/Ideal.md` and once weakly inline here. Delete the inline copy, link the note, and move the note to `rings/` (its Scope needs a ring) |
+| [[Ring]] | **add** the missing link: the kernel of a ring homomorphism **is an [[Ideal]]**, and conversely every ideal is the kernel of its quotient map. Right now [[Ideal]] appears with no reason for existing — and is defined **twice**, once well at `groups/subgroups/Ideal.md` and once weakly inline here. Delete the inline copy, link the note, and move the note to `rings/` (its Scope needs a ring) |
 | [[Linear Maps]] | keep; add a one-line synonym remark — *null space* and *kernel* are the same thing, and [[Subgroup]] uses the other word |
 
 Then one `[!remark]` in `Kernel.md` carrying the A ⟷ B bridge and the monoid counterexample. That is the whole design: **one note for the reading with no Scope requirements, one section per structure for the reading that has them.**
@@ -837,7 +837,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | [[Bilinearity]] | exists | [[Bilinear Pairings]], [[Split-R1CS]] |
 | [[Multilinearity]] | exists | [[Bilinear Pairings]] |
 | [[Map Symmetry]] | exists | [[Inner-Product Spaces]] |
-| **Homomorphism** | **add** | [[Group Homomorphism]], [[knowledge/math/algebra/structures/rings/Ring]], [[Linear Maps]], [[Subgroup]] |
+| **Homomorphism** | **add** | [[Group Homomorphism]], [[Ring]], [[Linear Maps]], [[Subgroup]] |
 | **Injectivity** | **move in** | [[Function]], [[Group Homomorphism]], [[Morphism]] |
 | **Surjectivity** | **move in** | same |
 | **Monotonicity** | **add** | [[Calculus Functions]]; order theory; functors |

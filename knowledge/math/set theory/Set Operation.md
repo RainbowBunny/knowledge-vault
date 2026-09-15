@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 1.3: Operations between sets; Section 1.4: Disjoint unions, products.
+
 ## Definition
 
 ### Cartesian Product

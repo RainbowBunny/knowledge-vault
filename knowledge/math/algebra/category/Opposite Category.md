@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Exercise 3.1.
+
 ## Definition
 
 > [!definition] Opposite Category

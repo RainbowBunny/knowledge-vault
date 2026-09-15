@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 4.1: Isomorphisms; Section 4.2: Monomorphisms and epimorphisms.
+
 ## Definition
 
 > [!definition] Morphism
@@ -33,12 +36,18 @@
 > - For all object $Z$ of $\mathcal C$ and all morphisms $\alpha', \alpha'' \in \mathsf{Hom}_{\mathcal{C}}(Z, A)$,
 > $$f \circ \alpha' = f \circ \alpha'' \Longrightarrow \alpha' = \alpha''.$$
 
+> [!proposition]
+> A [[Function]] $f: A \rightarrow B$ is an [[Injection]] if and only if it is a monomorphism.
+
 ### Epimorphism
 
 > [!definition] Epimorphisms
 > Let $\mathcal C$ be a category. A morphism $f \in \mathsf{Hom}_{\mathcal{C}}(A, B)$ is an **epimorphism** if the following holds:
 > - For all object $Z$ of $\mathcal C$ and all morphisms $\beta', \beta'' \in \mathsf{Hom}_{\mathcal{C}}(B, Z)$:
 > $$\beta' \circ f = \beta'' \circ f \Longrightarrow \beta' = \beta''.$$
+
+> [!proposition]
+> A [[Function]] $f: A \rightarrow B$ is an [[Surjection]] if and only if it is a epimorphism.
 
 ## Variant
 

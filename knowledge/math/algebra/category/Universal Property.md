@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 5.1: Initial and final objects; Section 5.2: Universal properties.
+
 ## Definition
 
 > [!definition] Universal Property
@@ -21,30 +24,11 @@
 > [!proposition]
 > Let $\mathcal C$ be a category, If $F_1, F_2$ are both final objects in $\mathcal C$, then $F_1 \cong F_2$.
 
-## Example
-
-### Quotients
-
-> [!example] Quotients
-> Let $\sim$ be an equivalence relation defined on a set $A$. Then:
-> "The quotient $A / \sim$ is universal with respect to the property of mapping $A$ to a set in such a way that equivalent elements have the same image."
-
-> [!proposition]
-> Denoting by $\pi$ the [[Function#Canonical Projection|Canonical Projection]], the pair $(\pi, A/\sim)$ is an initial object of this category.
-
-### Products
-
-> [!example] Products
-> Let $A, B$ be sets, and consider the product $A \times B$, with the two [[Function#Natural Projection|Natural Projection]] $\pi_A, \pi_B$. Then for every set $Z$ and morphisms $f_A \in \mathsf{Hom}_{\mathcal C}(Z, A), f_B \in \mathsf{Hom}_{\mathcal{C}}(Z, B)$, there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathcal{C}}(Z, A \times B)$:
-> $$\sigma(z) = (f_A(z), f_B(z)).$$
-> 
 
 
-$$\begin{CD}
-@. Z @.\\
-@. @VV{\sigma}V @.\\
-A @<{\pi_A}<< A\times B @>{\pi_B}>> B
-\end{CD}$$
+
+
+
 ### Coproducts
 
 > [!example] Coproducts

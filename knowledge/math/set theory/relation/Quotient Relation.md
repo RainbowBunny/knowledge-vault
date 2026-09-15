@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 1.5: Equivalence relations, partitions, quotients.
+
 ## Definition
 
 > [!definition] Quotient Relation
