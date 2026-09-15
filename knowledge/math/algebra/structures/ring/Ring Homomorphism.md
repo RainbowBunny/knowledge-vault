@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 2.1: Ring homomorphisms; Section 2.3: Monomorphisms and epimorphisms; Section 3.1: Ideals; Section 3.2: Quotients.
+- [[Book Reference|Algebra: Chapter 0]] - Chapter III: Rings and modules, Section 2.1: Ring homomorphisms; Section 2.3: Monomorphisms and epimorphisms; Section 3.1: Ideals; Section 3.2: Quotients; Section 3.3: Canonical decomposition and consequences.
 
 ## Definition
 
@@ -31,7 +31,10 @@ R @>\varphi>> S\\
 @| @AA\exists! \tilde{\varphi}A \\
 R @>>\pi> S
 \end{CD}$$
-commutes.
+> commutes.
+> 
+> ---
+> $\tilde{\varphi}(r + I) = \varphi(r)$.
 
 ## Property
 
@@ -42,7 +45,8 @@ commutes.
 > $$S \cong \frac{R}{\ker{\varphi}}$$
 
 > [!proposition]
-> Let $I$ be an 
+> Let $I$ be an [[Ideal]] of a ring $R$, and let $J$ be an ideal of $R$ containing $I$. Then $J / I$ is an ideal of $R / I$ and
+> $$\frac{R/I}{J/I} \cong \frac{R}{J}.$$
 
 ### Ring Monomorphism
 
