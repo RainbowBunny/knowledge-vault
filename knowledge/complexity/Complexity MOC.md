@@ -7,7 +7,7 @@ The structure mirrors `cryptography/`: foundations + initiative folders + a `con
 ## Foundations
 
 - [[Complexity Class]] — the language formulation (decision problems as languages, encodings, co-classes), efficient algorithms, the class-inclusion lattice
-- [[Reductions]] — poly-time and log-space mapping reductions
+- [[Reductions (Foundation)]] — poly-time and log-space mapping reductions
 - [[Hierarchy Theorems]] — time / space hierarchy meta-theorems, EXPSPACE-Complete
 
 ## Resource Bounds (Initiatives)
@@ -25,7 +25,7 @@ The structure mirrors `cryptography/`: foundations + initiative folders + a `con
 
 - [[Class P]] — decidable in polynomial time
 - [[Class NP]] — polynomial-time *verifiable*; see [[Circuit Satisfaction]] for the canonical complete problem
-- [[Class NP-complete]] · [[Class NP-hard]] — the hardness frontier, via [[Reductions]]
+- [[Class NP-complete]] · [[Class NP-hard]] — the hardness frontier, via [[Reductions (Foundation)]]
 - [[Class coNP]] — complements of NP languages
 
 `circuit/` also holds [[Boolean Circuit]], [[Arithmetic Circuit]] and [[Arithmetic Circuit Satisfiability Problem]], which `cryptography/verifiable computing/` arithmetizes — see [[Verifiable Computing MOC]].

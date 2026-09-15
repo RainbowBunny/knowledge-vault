@@ -60,7 +60,7 @@ Strict inclusions follow from the [[Hierarchy Theorems|time and space hierarchy 
 
 - [[Language]] — alphabets, strings, languages (the raw material)
 - [[Computability Theory]] — Turing machines, deciders, decidability
-- [[Reductions]] — poly-time and log-space mapping reductions, the structural relations among classes
+- [[Reductions (Foundation)]] — poly-time and log-space mapping reductions, the structural relations among classes
 - [[Hierarchy Theorems]] — proofs that more resources yield strictly more computational power
 - [[Time Complexity]] / [[Space Complexity]] — the canonical resource bounds
 - [[Randomized Complexity]] — what changes when the machine has access to random coins

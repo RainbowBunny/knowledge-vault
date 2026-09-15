@@ -1,3 +1,6 @@
+Reference:
+- [[Book Reference|Computational Complexity: A Modern Approach]]: - Chapter 1: The computational model —and why it doesn’t matter, Section 1.4: Machines as strings and the universal Turing machines. 
+
 ## Definition
 
 > [!definition] Machine Encoding

@@ -4,15 +4,11 @@ The canonical resource bound: how many steps does a Turing machine take?
 
 ## Time Complexity
 
-> [!definition] Deterministic Time Complexity
-> Let $M$ be a deterministic Turing machine that halts on all inputs. The **running time** or **time complexity** of $M$ is the function $f: \mathcal N \rightarrow \mathcal N$, where $f(n)$ is the maximum number of steps that $M$ uses on any input of length $n$. If $f(n)$ is the running time of $M$, we say that $M$ runs in time $f(n)$ and that $M$ is an $f(n)$-time Turing machine. Customarily, we use $n$ to represent the length of the input.
-
 > [!definition] Nondeterministic Time Complexity
 > Let $N$ be a nondeterministic Turing machine that is a decider. The **running time** of $N$ is the function $f: \mathcal N \rightarrow \mathcal N$, where $f(n)$ is the maximum number of steps that $N$ uses on any branch of its computation on any input of length $n$.
 
 > [!definition] Time Complexity Class
 > Let $t: \mathcal N \rightarrow \mathcal R^{+}$ be a function:
-> $$\text{TIME}(t(n)) = \{L \mid L \text{ is a language decided by an } O(t(n))\text{-time deterministic Turing machine}\}.$$
 > $$\text{NTIME}(t(n)) = \{L \mid L \text{ is a language decided by an } O(t(n))\text{-time nondeterministic Turing machine}\}.$$
 
 
@@ -49,7 +45,7 @@ Sub-exponential functions sit strictly between polynomial and exponential. Used 
 ## Related
 
 - [[Space Complexity]] — the other canonical resource bound
-- [[Reductions]] — how NP-completeness is defined
+- [[Reductions (Foundation)]] — how NP-completeness is defined
 - [[Hierarchy Theorems]] — why P $\subset$ EXPTIME
 - [[Randomized Complexity]] — what changes with random coins
 - [[P vs NP]] — the famous open problem

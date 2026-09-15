@@ -2,5 +2,5 @@
 
 - [[Number Theory]] — divisibility, modular arithmetic, congruences
 - [[Prime]] — primes, primality testing
-- [[Factoring]] — factorization algorithms
+- [[knowledge/math/number theory/Factoring]] — factorization algorithms
 - [[Special Numbers]] — Mersenne, Fermat, Carmichael, etc.

@@ -1,5 +1,12 @@
+Reference:
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 2: NP and NP completeness, Section 2.2: Reducibility and NP-completeness.
+
 ## Definition
 
-> [!definition] Class $\text{NP-hard}$
-> A language $\mathcal L$ is in the class $\text{NP-hard}$ if for all $\mathcal L'$ in $\text{NP}$, there exist a polynomial-time reduction to $\mathcal L$.
+> [!definition] Class NP-hard
+> Requires:: [[Polynomial-time Karp Reducibility]]
+> 
+> ---
+> A [[Language]] $\mathcal{L} \in \mathsf{NP}\mbox{-}\mathsf{hard}$ if:
+> $$\forall \mathcal{L'} \in \mathsf{NP}: \mathcal{L} \leq_p \mathcal{L}'.$$
 

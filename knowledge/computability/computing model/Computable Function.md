@@ -9,3 +9,5 @@
 > [!definition] Computing a function and running time
 > Let $f: \{0, 1\}^* \rightarrow \{0, 1\}^*$ and let $T: \mathbb{N} \rightarrow \mathbb{N}$ be some functions, and let $M$ be a [[Turing Machine]]. We say that $M$ *computes* $f$ if for every $x \in \{0, 1\}^*$, whenever $M$ is initialized to the start configuration on input $x$, then it halts with $f(x)$ written on its output tape. We say $M$ computes $f$ in $T(n)$-time if its computation on every input $x$ requires at most $T(|x|)$ steps.
 
+> [!remark]
+> Often in complexity theory, we include the string $1^k$ in the input to allow a polynomial TM to run in time polynomial in $k$.

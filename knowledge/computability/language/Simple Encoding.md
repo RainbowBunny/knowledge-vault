@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 1: The computational model —and why it doesn’t matter, Section 1.1.1: Representing objects as strings
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 0: Notational conventions, Section 0.1: Representing objects as strings
 
 ## Definition
 

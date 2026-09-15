@@ -285,7 +285,7 @@ $\odot$ (Schur / Hadamard product) and $[\![\mathbf u]\!]_T$ (additive sharing o
 
 ## 3E · Move and link — `Mapping Reducibility`
 
-Four transfer theorems and their corollaries, and **no link to [[Reductions]]**, which is a live note in `complexity/foundations/`.
+Four transfer theorems and their corollaries, and **no link to [[Reductions (Foundation)]]**, which is a live note in `complexity/foundations/`.
 
 **Must contain** $\le_m$, the four transfers, and a `[!remark]` on the relation to polynomial-time reduction: same shape, different resource bound. `Computation history` and `LBA` are stranded under `## Reducibility` with no home — decide where they go.
 

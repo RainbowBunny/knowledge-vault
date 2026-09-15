@@ -9,7 +9,7 @@ Specific problems studied in CS, with formulations and solution approaches.
 ## Combinatorial / NP
 
 - [[Subset-Sum Problem]] — formulation, lattice approach, super-increasing sequence, collision algorithm, one-way function
-- [[Satisfiability Problem]] — SAT, 3SAT, TQBF
+- [[Satisfiability Problem (To be removed)]] — SAT, 3SAT, TQBF
 - [[Submodular Welfare Problem]] — submodular utility, item assignment, online variant
 
 ## Search (AI)

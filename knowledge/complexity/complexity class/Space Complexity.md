@@ -38,7 +38,7 @@ This gives $\text{PSPACE} = \text{NPSPACE}$ as a corollary — a dramatic differ
 > If $B$ merely satisfies condition 2, we say that it is **PSPACE-hard**.
 
 > [!theorem]
-> [[Satisfiability Problem|TQBF]] is PSPACE-complete.
+> [[Satisfiability Problem (To be removed)|TQBF]] is PSPACE-complete.
 
 > [!example] Members of PSPACE-Complete
 > **Formula game**: Player $\text{A}$ selects values for variables with $\forall$ quantifiers, player $\text{E}$ selects values for variables with $\exists$ quantifiers.
@@ -71,12 +71,12 @@ This gives $\text{PSPACE} = \text{NPSPACE}$ as a corollary — a dramatic differ
 > [!definition] Class NL-Complete
 > A language $B$ is **NL-complete** if
 > 1. $B \in \text{NL}$, and
-> 2. every $A$ in $\text{NL}$ is [[Reductions#Log-Space Reductions|log-space reducible]] to $B$.
+> 2. every $A$ in $\text{NL}$ is [[Reductions (Foundation)#Log-Space Reductions|log-space reducible]] to $B$.
 
 ## Related
 
 - [[Time Complexity]] — the other canonical resource bound
-- [[Reductions]] — log-space reductions used for NL-completeness
+- [[Reductions (Foundation)]] — log-space reductions used for NL-completeness
 - [[Hierarchy Theorems]] — strict separations $\text{L} \subset \text{PSPACE} \subset \text{EXPSPACE}$
 - [[Interactive Proofs]] — $\text{IP} = \text{PSPACE}$ (Shamir's theorem)
 - [[Complexity Class#Class Inclusions|Class inclusions]] — the full lattice
