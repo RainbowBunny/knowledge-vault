@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Turing Machine Satisfiability
-> Reference name: $\mathsf{TMSAT}$
+> Reference Name: $\mathsf{TMSAT}$
 > 
 > ---
 > Input:

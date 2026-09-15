@@ -4,4 +4,4 @@ Reference:
 ## Definition
 
 > [!definition] Integer Multiplication
-> $$\{\langle x, y, i \rangle: \text{The} \; i \text{th bit of} \; xy \; \text{is equal to} \; 1\}$$
+> $$\{\langle x, y, i \rangle \; | \; \text{The} \; i \text{th bit of} \; xy \; \text{is equal to} \; 1\}$$

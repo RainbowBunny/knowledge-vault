@@ -5,8 +5,7 @@ Reference:
 ## Definition
 
 > [!definition] Independent Set
-> $\mathsf{INDSET} = \{\langle G, k \rangle: \exists S \subseteq V(G) \; \text{s.t.} |S| \geq k \land \forall u, v \in S, (u, v) \notin E(G)\}.$
-> 
+> $\mathsf{INDSET} = \{\langle G, k \rangle \; | \; \exists S \subseteq V(G) \; \text{s.t.} |S| \geq k \land \forall u, v \in S, (u, v) \notin E(G)\}.$
 
 ## Property
 

@@ -1,8 +1,17 @@
+Reference:
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 2: NP and NP completeness, Section 2.6.1: coNP.
+
 ## Definition
 
-> [!definition] Class $\text{coNP}$
-> A languages $\mathcal L$ is in the class $\text{coNP}$ if its complement in $\text{NP}$:
-> $$\text{coNP} = \{L \mid \overline{L} \in \text{NP}\}$$
+> [!definition] Class coNP
+> Requires:: [[Class NP]]
+> 
+> ---
+> $\mathsf{coNP} = \{\mathcal{L} \mid \overline{\mathcal{L}} \in \mathsf{NP}\}$
+
+> [!definition] Class coNP (alternative definition)
+> For every $\mathcal{L} \subseteq \{0, 1\}^*$, we say that $L \in \mathsf{coNP}$ if there exists a polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ and a polynomial-time [[Turing Machine]] $M$ such that:
+> $$\forall x \in \{0, 1\}^*: x \in \mathcal{L} \iff \forall w \in \{0, 1\}^{p(|x|)}, M(x, w) = 1$$
 
 ## Member
 

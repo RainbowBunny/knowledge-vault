@@ -7,10 +7,6 @@ The canonical resource bound: how many steps does a Turing machine take?
 > [!definition] Nondeterministic Time Complexity
 > Let $N$ be a nondeterministic Turing machine that is a decider. The **running time** of $N$ is the function $f: \mathcal N \rightarrow \mathcal N$, where $f(n)$ is the maximum number of steps that $N$ uses on any branch of its computation on any input of length $n$.
 
-> [!definition] Time Complexity Class
-> Let $t: \mathcal N \rightarrow \mathcal R^{+}$ be a function:
-> $$\text{NTIME}(t(n)) = \{L \mid L \text{ is a language decided by an } O(t(n))\text{-time nondeterministic Turing machine}\}.$$
-
 
 ## Class Non-Uniform Polynomial
 
@@ -25,13 +21,6 @@ Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foun
 > [!theorem]
 > $\text{BPP} \subseteq \text{P/poly}$
 
-
-## Class EXPTIME
-
-> [!proposition] Observation
-> $$\text{NP} \subseteq \text{EXPTIME} = \bigcup_k \text{TIME}(2^{n^k}).$$
-
-The strict separation $\text{P} \subset \text{EXPTIME}$ follows from the [[Hierarchy Theorems#Time Hierarchy|time hierarchy theorem]].
 
 ## Sub-Exponential
 

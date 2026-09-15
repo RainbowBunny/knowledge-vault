@@ -14,6 +14,10 @@ Reference:
 > - **Concatenation**: $A \circ B = \{xy \mid x \in A \land y \in B\}$.
 > - **Star**: $A^* = \{x_1 \dots x_k \mid k \geq 0 \land x_i \in A \; \forall \; i \in [k]\}$.
 
+> [!definition] Completement Language
+> If $\mathcal{L} \subseteq \{0, 1\}^*$ is a language, then we denote by $\overline{\mathcal{L}}$ the **completement** of $\mathcal{L}$. That is:
+> $$\overline{\mathcal{L}} = \{0, 1\}^* \backslash \mathcal{L}$$
+
 ### Defining Languages by Sets
 
 > [!definition] Set-Formers as a Way to Define Languages

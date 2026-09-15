@@ -7,7 +7,7 @@ Reference:
 > A boolean formula over the variable $u_1, \dots, u_n$ consists of the variables and the logical operators $\land, \lor, \lnot$.
 
 > [!definition] SAT
-> $\mathsf{SAT} = \{\varphi | \varphi \; \text{is in CNF form} \land \exists w: \varphi(w) = 1\}$
+> $\mathsf{SAT} = \{\varphi \; | \; \varphi \; \text{is in CNF form} \land \exists w: \varphi(w) = 1\}$
 
 ## Property
 

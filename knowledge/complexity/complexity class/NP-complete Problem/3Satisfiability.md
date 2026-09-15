@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] 3SAT
-> $\mathsf{3SAT} = \{\varphi | \varphi \; \text{is in 3CNF form} \; \land \exists w: \varphi(w) = 1\}$
+> $\mathsf{3SAT} = \{\varphi \; | \; \varphi \; \text{is in 3CNF form} \; \land \exists w: \varphi(w) = 1\}$
 
 ## Property
 

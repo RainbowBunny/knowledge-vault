@@ -1,5 +1,6 @@
 Reference:
 - [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 1: The computational model —and why it doesn’t matter, Section 1.6: The Class P.
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 3: Diagonalization, Section 3.1: Time Hierarchy Theorem.
 
 ## Definition
 
@@ -8,3 +9,9 @@ Reference:
 
 > [!remark]
 > The $\mathsf{D}$ in $\mathsf{DTIME}$ refers to "deterministic".
+
+## Property
+
+> [!theorem] Time Hierarchy Theorem
+> If $f, g$ are [[Computable Function|Time-Constructible Function]] satisfying $f(n) \log f(n) = o(g(n))$, then
+> $$\mathsf{DTIME}(f(n)) \subsetneq \mathsf{DTIME}(g(n))$$

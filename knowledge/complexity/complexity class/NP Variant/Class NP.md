@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 2: NP and NP completeness, Section 2.1: The Class NP; Section 2.1.2: Nondeterministic Turing Machines; Section 2.2: Reducibility and NP-completeness.
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 2: NP and NP completeness, Section 2.1: The Class NP; Section 2.1.2: Nondeterministic Turing Machines; Section 2.2: Reducibility and NP-completeness; Section 2.5: Decision Versus Search.
 
 ## Definition
 
@@ -22,6 +22,9 @@ Reference:
 > [!theorem]
 > $$\mathcal{L} \in \mathsf{NP}\mbox{-}\mathsf{complete} \land \mathcal{L} \in \mathsf{P} \implies \mathsf{P} = \mathsf{NP}$$
 > $$\mathcal{L} \in \mathsf{NP}\mbox{-}\mathsf{hard} \land \mathcal{L} \in \mathsf{P} \implies \mathsf{P} = \mathsf{NP}$$
+
+> [!theorem]
+> Suppose that $\mathsf{P} = \mathsf{NP}$. Then, for every $\mathsf{NP}$ [[Language]] $\mathcal{L}$ and a verifier [[Turing Machine]] $M$ for $\mathcal{L}$, there is a polynomial-time Turing machine $B$ that on input $x \in \mathcal{L}$, outputs a certificate for $x$ (with respect to the language $\mathcal{L}$ and Turing Machine $M$).
 
 ## Open Question
 

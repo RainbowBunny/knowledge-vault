@@ -1,4 +1,5 @@
 - [[Book Reference|Computational Complexity: A Modern Approach]]: - Chapter 1: The computational model —and why it doesn’t matter, Section 1.3: Efficiency and Running Time.
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 4: Space complexity, Section 4.1: Definition of Space-bounded Computation.
 - [[Book Reference|Introduction to the Theory of Computation]]: - Chapter 5: Reducibility, Section 5.3: Mapping Reducibility.
 
 ## Definition
@@ -11,3 +12,14 @@
 
 > [!remark]
 > Often in complexity theory, we include the string $1^k$ in the input to allow a polynomial TM to run in time polynomial in $k$.
+
+### Time-constructible Function
+
+> [!definition] Time-constructible Function
+> A function $T: \mathbb{N} \rightarrow \mathbb{N}$ is **time-constructible** if $T(n) \geq n$ and there is a [[Turing Machine]] $M$ that computes the function $x \mapsto \langle T(|x|) \rangle$ in time $T(n)$.
+
+### Space-constructible Function
+
+> [!definition] Space-constructible Function
+> A function $S: \mathbb{N} \rightarrow \mathbb{N}$ is **space-constructible** if a [[Turing Machine]] $M$ computes $S(|x|)$ in $O(S(|x|))$ space given $x$ as input.
+
