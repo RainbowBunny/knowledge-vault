@@ -23,8 +23,8 @@ Reference:
 ### Circuit Depth
 
 > [!definition] Depth of a Circuit
-> The **depth** of a circuit is the length (number of wires) of the longest path from an input variable to the output gate.
- 
+> The **depth** of a circuit is the length of the longest directed path from an input node to the output node.
+
 ### Minimal Circuit
 
 > [!definition] Minimal Circuit
