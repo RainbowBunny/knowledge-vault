@@ -1,27 +1,30 @@
 Reference:
 - https://eprint.iacr.org/2014/718.pdf
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 6: Boolean circuits, Section 6.1: Boolean Circuits and P/poly; Section 6.5: Circuit Lower Bounds.
 
 ## Definition
 
 > [!definition] Boolean Circuit
-> A **Boolean circuit** is a collection of **gates** and **inputs** connected by **wires**. Cycles aren't permitted. Gates take three forms: AND gates, OR gates, and NOT gates.
+> For every $n \in \mathbb{N}$, an $n$**-input, single-output Boolean circuit** consists of 
+> - A directed acyclic graph with $n$ sources (vertices with no incoming edges)
+> - One **sink** (vertex with no outgoing edges). 
+> - All non-source vertices are called **gates** and are labeled with one of $\land, \lor$ or $\lnot$ (AND, OR or NOT).
+> - $\land$ and $\lor$ have fan-in equal to 2.
+> - $\lnot$ has fan-in 1.
 
-### Circuit Family
+> [!definition] Circuit Size
+> The **size** of a boolean circuit $C$, denoted $|C|$, is the number of vertices in it.
 
-> [!definition] Circuit Family
-> A **circuit family** $C$ is an infinite list of circuits, $(C_0, C_1, C_2, \cdots)$, where $C_n$ has $n$ input variables. We say that $C$ decides a language $A$ over $\{0, 1\}$ if for every string $w$, $$w \in A \iff C_n(w) = 1,$$
-> where $n$ is the length of $w$.
-
-### Circuit Size
-
-> [!definition] Size of a Circuit
-> The **size** of a circuit is the number of gates it contains.
+> [!definition] Output of a Circuit
+> For $x \in \{0, 1\}^n$, we denote the **output** of the circuit as $C(x)$.
+> 
+> Also, we define $\mathsf{val}(v)$ as the output of vertex $v$.
 
 ### Circuit Depth
 
 > [!definition] Depth of a Circuit
 > The **depth** of a circuit is the length (number of wires) of the longest path from an input variable to the output gate.
-
+ 
 ### Minimal Circuit
 
 > [!definition] Minimal Circuit
@@ -36,6 +39,9 @@ Reference:
 > The **circuit complexity** of a language is the size complexity of a minimal circuit family for that language. The **circuit depth complexity** is defined similarly, using depth instead of size.
 
 ## Property
+
+> [!theorem] Existence of Hard Functions
+> For every $n > 1$, there exists a function $f: \{0, 1\}^n \rightarrow \{0, 1\}$ that cannot be computed by a circuit $C$ of size $2^n / (10n)$.
 
 ### Linearization of Gate
 

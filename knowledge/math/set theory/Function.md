@@ -36,7 +36,7 @@ Reference:
 
 > [!definition] Image
 > If $S$ is a subset of $A$, we denote by $f(S)$ the subset of $B$ defined by
-> $$f(S) = \{b \in B \; | \; (\exists a \in A) \; b = f(a)\}.$$
+> $$f(S) = \{b \in B \; | \; (\exists a \in S) \; b = f(a)\}.$$
 > That is, $f(S)$ is the subset of $B$ consisting of all elements that are images of elements of $S$ by the function $f$. $f(A)$ is the **image** of $f$, denoted $\text{im} \; f$.
 
 ## Variant

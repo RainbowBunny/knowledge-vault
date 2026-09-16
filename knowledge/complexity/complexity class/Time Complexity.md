@@ -12,12 +12,6 @@ The canonical resource bound: how many steps does a Turing machine take?
 
 Reference: [[Book Reference#Foundation of Cryptography Volume I Basic Tools|Foundation of Cryptography Volume I Basic Tools]]
 
-> [!definition] P/poly
-> The complexity class non-uniform polynomial time (denoted $\text{P/poly}$) is the class of languages $L$ that can be recognized by a non-uniform sequence of polynomial time "machines". Namely, $L \in \text{P/poly}$ if there exists an infinite sequence of machines $M_1, M_2, \dots$ satisfying the following:
-> 1. There exists a polynomial $p(\cdot)$ such that for every $n$, the description of machine $M_n$ has length bounded above by $p(n)$.
-> 2. There exists a polynomial $q(\cdot)$ such that for every $n$, the running time of machine $M_n$ on each input of length $n$ is bounded above by $q(n)$.
-> 3. For every $n$ and every $x \in \{0, 1\}^n$, machine $M_n$ will accept $x$ if and only if $x \in L$.
-
 > [!theorem]
 > $\text{BPP} \subseteq \text{P/poly}$
 
@@ -34,7 +28,7 @@ Sub-exponential functions sit strictly between polynomial and exponential. Used 
 ## Related
 
 - [[Space Complexity]] — the other canonical resource bound
-- [[Reductions (Foundation)]] — how NP-completeness is defined
+- [[Reductions]] — how NP-completeness is defined
 - [[Hierarchy Theorems]] — why P $\subset$ EXPTIME
 - [[Randomized Complexity]] — what changes with random coins
 - [[P vs NP]] — the famous open problem

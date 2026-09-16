@@ -3,7 +3,7 @@
 Generic complexity-theoretic tooling: concepts and theorems that apply across resource bounds rather than being specific to time, space, randomization, etc.
 
 - [[Complexity Class]] — the language formulation: decision problems as languages, encodings, complexity class = set of languages, complement (co-) classes, efficient algorithms, class-inclusion lattice
-- [[Reductions (Foundation)]] — poly-time and log-space mapping reductions; how hardness transfers
+- [[Reductions]] — poly-time and log-space mapping reductions; how hardness transfers
 - [[Hierarchy Theorems]] — time / space hierarchies; the meta-theorems that make the inclusion lattice non-trivial
 
 ## Related
