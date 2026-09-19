@@ -11,6 +11,8 @@ Reference:
 
 ## Property
 
+### Relation to Other Classes
+
 > [!theorem]
 > Requires:: [[Class PSPACE]]
 > 

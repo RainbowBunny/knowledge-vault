@@ -3,7 +3,7 @@ Reference:
 
 ## Definition
 
-> [!definition] Class NSPACE
+> [!definition] Class Nondeterministic SPACE
 > Let $S: \mathbb{N} \rightarrow \mathbb{N}$ and $\mathcal{L} \subseteq \{0, 1\}^*$. We say that $\mathcal{L} \in \mathsf{NSPACE}(s(n))$ if there is a constant $c$ and a nondeterministic [[Offline Turing Machine|Turing Machine]] $M$ deciding $\mathcal{L}$ such at most $c \cdot s(n)$ that never uses more than $c \cdot s(n)$ nonblank tape locations on length $n$ inputs, regardless of its non-deterministic choices.
 
 ## Property

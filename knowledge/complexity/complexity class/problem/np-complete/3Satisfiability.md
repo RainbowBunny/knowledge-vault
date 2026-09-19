@@ -4,12 +4,12 @@ Reference:
 ## Definition
 
 > [!definition] 3SAT
-> $\mathsf{3SAT} = \{\varphi \; | \; \varphi \; \text{is in 3CNF form} \; \land \exists w: \varphi(w) = 1\}$
+> $\mathsf{3SAT} = \{\varphi \; | \; \varphi \; \text{is in 3CNF form} \land \exists w: \varphi(w) = 1\}$
 
 ## Property
 
 > [!theorem] Cook-Levin Theorem
-> [[Hardness and Completeness|Complete]] for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
+> Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $\mathsf{3SAT} \in \mathsf{NP}\mbox{-}\mathsf{complete}$

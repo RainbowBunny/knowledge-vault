@@ -4,7 +4,7 @@ Reference:
 
 ## Definition
 
-> [!definition] The class DTIME
+> [!definition] Class Deterministic TIME
 > Let $T: \mathbb{N} \rightarrow \mathbb{N}$ be some function. A [[Language]] $L$ is in $\mathsf{DTIME}(T(n))$ iff there is an [[Offline Turing Machine|Turing Machine]] that runs in time $c \cdot T(n)$ for some constants $c > 0$ and decides ([[Language]]) $L$.
 
 > [!remark]

@@ -16,7 +16,7 @@ Reference:
 ## Property
 
 > [!lemma]
-> [[Hardness and Completeness|Hardness]] for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
+> Hard for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $\mathsf{CKT} \mbox{-} \mathsf{SAT}$ is $\mathsf{NP} \mbox{-} \mathsf{hard}$.

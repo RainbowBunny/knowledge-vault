@@ -22,7 +22,7 @@ Reference:
 ## Property
 
 > [!theorem]
-> [[Hardness and Completeness|Complete]] for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
+> Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $0/1 \; \mathsf{IPROG} \in \mathsf{NP}\mbox{-}\mathsf{complete}$

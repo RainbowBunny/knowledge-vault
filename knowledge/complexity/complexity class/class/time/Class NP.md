@@ -3,12 +3,20 @@ Reference:
 
 ## Definition
 
-> [!definition] Class NP
+> [!definition] Class Nondeterministic Polynomial
 > A [[Language]] $\mathcal{L} \subseteq \{0, 1\}^*$ is in $\mathsf{NP}$ if there exists a polynomial $p: \mathbb{N} \rightarrow \mathbb{N}$ and a polynomial-time [[Turing Machine]] $M$ (called the **verifier** for $\mathcal{L}$) such that:
 > $$\forall x \in \{0, 1\}^*: x \in L \iff \exists w \in \{0, 1\}^{p(|x|)} \; \text{s.t.} \; M(x, w) = 1.$$
 > If $x \in \mathcal{L}$ and $w \in \{0, 1\}^{p(|x|)}$ satisfy $M(x, w) = 1$, then we call $w$ a **certificate** (**witness**) for $x$ (with respect to the language $\mathcal{L}$ and machine $M$). 
 
+> [!definition] Class NP (Alternative Definition)
+> Requires:: [[Polynomial-time Karp Reducibility]], [[3Satisfiability]]
+> 
+> ---
+> $\mathsf{NP} = \{\mathcal{L} \mid \mathcal{L} \leq_p \mathsf{3SAT}\}$.
+
 ## Property
+
+### Relation to Other Classes
 
 > [!theorem]
 > Requires:: [[Class NTIME]].
@@ -25,8 +33,3 @@ Reference:
 
 > [!theorem]
 > Suppose that $\mathsf{P} = \mathsf{NP}$. Then, for every $\mathsf{NP}$ [[Language]] $\mathcal{L}$ and a verifier [[Turing Machine]] $M$ for $\mathcal{L}$, there is a polynomial-time Turing machine $B$ that on input $x \in \mathcal{L}$, outputs a certificate for $x$ (with respect to the language $\mathcal{L}$ and Turing Machine $M$).
-
-## Open Question
-
-> [!example]
-> Does $\text{coNP} = \text{NP}$?

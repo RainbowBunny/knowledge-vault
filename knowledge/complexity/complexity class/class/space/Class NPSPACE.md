@@ -3,13 +3,15 @@ Reference:
 
 ## Definition
 
-> [!definition] Class NPSPACE
+> [!definition] Class Nondeterministic Polynomial SPACE
 > Requires:: [[Class NSPACE]]
 > 
 > ---
 > $\mathsf{NPSPACE} = \cup_{c > 0} \mathsf{NSPACE}(n^c)$
 
 ## Property
+
+### Relation to Other Classes
 
 > [!corollary]
 > Requires:: [[Complement Class]], [[Class NL]]

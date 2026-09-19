@@ -21,7 +21,7 @@ Reference:
 > 	1. Checks there is no edges between each pair of vertices in $w$.
 
 > [!theorem]
-> [[Hardness and Completeness|Complete]] for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
+> Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $\mathsf{INDSET} \in \mathsf{NP}\mbox{-}\mathsf{complete}$

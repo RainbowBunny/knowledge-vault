@@ -12,7 +12,7 @@ Reference:
 ## Property
 
 > [!theorem] Cook-Levin Theorem
-> [[Hardness and Completeness|Complete]] for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
+> Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $\mathsf{SAT} \in \mathsf{NP}\mbox{-}\mathsf{complete}$

@@ -12,6 +12,8 @@ Reference:
 
 ## Property
 
+### Relation to Other Classes
+
 > [!proposition]
 > Requires:: [[Level Polynomial Hierarchy]]
 > 
@@ -36,3 +38,15 @@ Reference:
 > 
 > ---
 > If $\mathsf{NP} \subseteq \mathsf{P_{/\mathsf{poly}}}$, then $\mathsf{PH} = \Sigma_2^p$.
+
+### Language in Class
+
+> [!theorem]
+> Requires:: [[Direct Connect Uniform Circuit Family]]
+> 
+> ---
+> $\mathcal{L} \in \mathsf{PH}$ iff $\mathcal{L}$ can be computed by a [[Direct Connect Uniform Circuit Family]] $\{C_n\}$ that:
+> - Uses $\mathsf{AND}, \mathsf{OR}, \mathsf{NOT}$ gates.
+> - Has size $2^{n^{O(1)}}$ and constant depth.
+> - Its gates can have unbounded (exponential) fan-in.
+> - Its $\mathsf{NOT}$ gates appear only at the input level.

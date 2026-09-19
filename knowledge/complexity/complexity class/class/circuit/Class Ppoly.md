@@ -11,6 +11,8 @@ Reference:
 
 ## Property
 
+### Relation to Other Classes
+
 > [!theorem]
 > Requires:: [[Class P]]
 > 
@@ -18,10 +20,12 @@ Reference:
 > $\mathsf{P} \subseteq \mathsf{P_{/\mathsf{poly}}}$
 
 > [!theorem]
-> Let $L \subseteq \{0, 1\}^*$ be a unary [[Language]] (i.e., $\mathcal{L} \subseteq \{1^n: n \in \mathbb{N}\}$). Then $\mathcal{L} \in \mathsf{P_{/\mathsf{poly}}}$.
-
-> [!theorem]
 > Requires:: [[Class DTIME with Advice]]
 > 
 > ---
 > $\mathsf{P_{/\mathsf{poly}}} = \cup_{c, d} \mathsf{DTIME}(n^c) / n^d$
+
+### Language in Class
+
+> [!theorem]
+> Let $L \subseteq \{0, 1\}^*$ be a unary [[Language]] (i.e., $\mathcal{L} \subseteq \{1^n: n \in \mathbb{N}\}$). Then $\mathcal{L} \in \mathsf{P_{/\mathsf{poly}}}$.

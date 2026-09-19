@@ -21,7 +21,7 @@ Reference:
 ## Property
 
 > [!theorem]
-> [[Hardness and Completeness|Complete]] for:: [[Class NL]] under [[Log-space Reducibility]].
+> Complete for:: [[Class NL]] under [[Log-space Reducibility]].
 > 
 > ---
 > $\mathsf{PATH}$ is $\mathsf{NL}\mbox{-}\mathsf{complete}$.

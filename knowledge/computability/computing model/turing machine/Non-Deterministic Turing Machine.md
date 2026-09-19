@@ -5,6 +5,8 @@ Reference:
 
 > [!definition] Non-Deterministic Turing Machine
 > Generalizes:: [[Turing Machine]].
+> 
+> ---
 > - The rule 4 is now $\delta: Q \times \Gamma \rightarrow \mathcal{P}(Q \times \Gamma \times \{L, R\})$.
 
 ## Property

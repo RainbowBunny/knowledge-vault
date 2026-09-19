@@ -3,13 +3,15 @@ Reference:
 
 ## Definition
 
-> [!definition] Class NEXP
+> [!definition] Class Nondeterministic EXPonential
 > Requires:: [[Class NTIME]]
 > 
 > ---
 > $\mathsf{EXP} = \cup_{c \geq 1} \mathsf{NTIME}(2^{n^c})$.
 
 ## Property
+
+### Relation to Other Classes
 
 > [!theorem]
 > Requires:: [[Class P]], [[Class NP]], [[Class EXP]].

@@ -4,13 +4,13 @@ Reference:
 
 ## Definition
 
-> [!definition] Class P
+> [!definition] Class Polynomial
 > Requires:: [[Class DTIME]]
 > 
 > ---
 >$$\mathsf{P} = \bigcup_{c \geq 1} \mathsf{DTIME}(n^c).$$
 
-> [!definition] Class P (Machine form)
+> [!definition] Class Polynomial (Machine form)
 > Unfolded (machine form): $L \in \text{P}$ iff there exist a deterministic Turing machine $M$ and a polynomial $p(\cdot)$ such that
 > - On input a string $x$, machine $M$ halts after at most $p(|x|)$ steps, and
 > - $M(x) = 1$ if and only if $x \in L$.
@@ -21,8 +21,7 @@ Reference:
 
 ## Property
 
-> [!theorem]
-> If $A \leq_\text{P} B$ and $B \in \text{P}$, then $A \in \text{P}$.
+### Relation to Other Classes
 
 > [!theorem]
 > Requires:: [[Class Ppoly]], [[P-Uniform Circuit Family]]
@@ -35,6 +34,12 @@ Reference:
 > 
 > ---
 > By restricting circuit families to be $\mathsf{log} \mbox{-} \mathsf{space} \; \mathsf{uniform}$, $\mathsf{P_{/\mathsf{poly}}}$ collapses to $\mathsf{P}$.
+
+### Language in Class
+
+> [!theorem]
+> If $A \leq_\text{P} B$ and $B \in \text{P}$, then $A \in \text{P}$.
+
 
 ## Member
 

@@ -10,7 +10,7 @@ Reference:
 ## Property
 
 > [!theorem]
-> [[Hardness and Completeness|Complete]] for:: [[Class PSPACE]] under [[Log-space Reducibility]]
+> Complete for:: [[Class PSPACE]] under [[Log-space Reducibility]]
 > 
 > ---
 > $\mathsf{TQBF}$ is $\mathsf{PSPACE} \mbox{-} \mathsf{complete}$

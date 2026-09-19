@@ -4,13 +4,15 @@ Reference:
 
 ## Definition
 
-> [!definition] Class EXP
+> [!definition] Class EXPonential
 > Requires:: [[Class DTIME]]
 > 
 > ---
 > $\mathsf{EXP} = \cup_{c \geq 1} \mathsf{DTIME}(2^{n^c})$.
 
 ## Property
+
+### Relation to Other Classes
 
 > [!theorem] Meyer's Theorem
 > Requires:: [[Class Ppoly]], [[Level Polynomial Hierarchy]]

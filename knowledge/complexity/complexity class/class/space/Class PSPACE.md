@@ -3,13 +3,15 @@ Reference:
 
 ## Definition
 
-> [!definition] Class PSPACE
+> [!definition] Class Polynomial SPACE
 > Requires:: [[Class SPACE]]
 > 
 > ---
 > $\mathsf{PSPACE} = \cup_{c > 0} \mathsf{SPACE}(n^c)$
 
 ## Property
+
+### Relation to Other Classes
 
 > [!theorem] Savitch's Theorem
 > Requires:: [[Class SPACE]]

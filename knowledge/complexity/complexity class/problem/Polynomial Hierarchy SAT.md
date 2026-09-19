@@ -8,7 +8,7 @@
 ## Property
 
 > [!proposition]
-> [[Hardness and Completeness|Completeness]] for:: [[Level Polynomial Hierarchy|Sigma]] under [[Polynomial-time Karp Reducibility]]
+> Complete for:: [[Level Polynomial Hierarchy|Sigma]] under [[Polynomial-time Karp Reducibility]]
 > 
 > ---
 > $\Sigma_i \mathsf{SAT}$ is $\Sigma_i^p \mbox{-} \mathsf{complete}$

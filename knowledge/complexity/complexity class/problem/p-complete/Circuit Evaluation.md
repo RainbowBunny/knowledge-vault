@@ -9,7 +9,7 @@ Reference:
 ## Property
 
 > [!theorem]
-> [[Hardness and Completeness|Complete]] for:: [[Class P]] under [[Log-space Reducibility]]
+> Complete for:: [[Class P]] under [[Log-space Reducibility]]
 > 
 > ---
 > $\mathsf{CIRCUIT} \mbox{-} \mathsf{EVAL}$ is $\mathsf{P} \mbox{-} \mathsf{complete}$.

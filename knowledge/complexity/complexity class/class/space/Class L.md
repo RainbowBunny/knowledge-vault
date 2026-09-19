@@ -3,13 +3,15 @@ Reference:
 
 ## Definition
 
-> [!definition] Class L
+> [!definition] Class deterministic Logarithm space
 > Requires:: [[Class SPACE]]
 > 
 > ---
 > $\mathsf{L} = \mathsf{SPACE}(\log{n})$
 
 ## Property
+
+### Language in Class
 
 > [!lemma]
 > Requires:: [[Log-space Reducibility]]

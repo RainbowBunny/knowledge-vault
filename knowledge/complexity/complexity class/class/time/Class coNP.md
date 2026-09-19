@@ -3,7 +3,7 @@ Reference:
 
 ## Definition
 
-> [!definition] Class coNP
+> [!definition] Class complement Nondeterministic Polynomial
 > Requires:: [[Class NP]]
 > 
 > ---

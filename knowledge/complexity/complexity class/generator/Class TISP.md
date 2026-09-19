@@ -3,7 +3,7 @@ Reference:
 
 ## Definition
 
-> [!definition] Class TISP
+> [!definition] Class TIme and SPace
 > For every two functions $S, T: \mathbb{N} \rightarrow \mathbb{N}$, define $\mathsf{TISP}(T(n), S(n))$ to be the set of languages decided by a [[Offline Turing Machine|Turing Machine]] $M$ that on every input $x$ takes at most $O(T(|x|))$ steps and uses at most $O(S(|x|))$ cells of its read-write tapes.
 
 ## Property

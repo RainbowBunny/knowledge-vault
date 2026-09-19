@@ -3,7 +3,7 @@ Reference:
 
 ## Definition
 
-> [!definition] Class NL
+> [!definition] Class Nondeterministic Logarithm space
 > Requires:: [[Class NSPACE]]
 > 
 > ---
@@ -15,6 +15,8 @@ Reference:
 > where by $M(x, u)$ we denote the output of $M$ where $x$ is placed on its input tape and $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read-write tapes for every input $x$.
 
 ## Property
+
+### Relation to Other Classes
 
 > [!theorem]
 > Requires: [[Vertex Path]], [[Complement Class]], [[Hardness and Completeness]]
