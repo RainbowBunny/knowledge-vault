@@ -11,7 +11,7 @@ Reference:
 
 > [!definition] Class NL (Alternative Definition)
 > A [[Language]] $\mathcal{L} \in \mathsf{NL}$ if there exists a [[Offline Turing Machine|Deterministic Turing Machine]] $M$ (called the *verifier*) with an additional special read-once input tape, and a [[Polynomial]] $p: \mathbb{N} \rightarrow \mathbb{N}$ such that:
-> $$\forall \; x \in \{0, 1\}^* : x \in \mathcal{L} \iff \exists u \in \{0, 1\}^p(|x|) \; \text{s.t.} \; M(x, u) = 1$$
+> $$\forall x \in \{0, 1\}^* : x \in \mathcal{L} \iff \exists u \in \{0, 1\}^p(|x|) \; \text{s.t.} \; M(x, u) = 1$$
 > where by $M(x, u)$ we denote the output of $M$ where $x$ is placed on its input tape and $u$ is placed on its special read-once tape, and $M$ uses at most $O(\log |x|)$ space on its read-write tapes for every input $x$.
 
 ## Property

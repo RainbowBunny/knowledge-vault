@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Graph Isomorphism
+> Reference Name: $\mathsf{GI}$
+> 
+> ---
 > Input:
 > - $M_1, M_2$: $n \times n$ adjacency matrices.
 > 
@@ -16,6 +19,5 @@ Reference:
 ## Property
 
 > [!proposition]
-> Requires:: [[Hardness and Completeness]]
 > Member of:: [[Class NP]]
 
