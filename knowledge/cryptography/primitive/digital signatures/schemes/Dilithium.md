@@ -47,7 +47,7 @@ Reference:
 > 	3. If $h = 1$ and $r_0 > 0$ return $(r_1 + 1) \mod m$
 > 	4. If $h = 1$ and $r_0 \leq 0$ return $(r_1 - 1) \mod m$
 > 	5. Returns $r_1$
-> - $\{0, 1\}^{384} \leftarrow \text{CRH}(m)$: [[Hash Functions#Collision Resistance|Collision Resistance Hash Function]] 
+> - $\{0, 1\}^{384} \leftarrow \text{CRH}(m)$: [[Hash Function#Collision Resistance|Collision Resistance Hash Function]] 
 > - $(r_1, r_0) \leftarrow \text{Power2Round}_q(r, d)$: Break up an element $r = r_1 \cdot 2^d + r_0$
 > 	1. $r = r \bmod q$
 > 	2. $r_0 = r \bmod^{\pm} 2^d$

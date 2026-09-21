@@ -230,7 +230,7 @@
 > 	5. If $H(\hat{y}) = pk$ output $\text{accept}$, otherwise output $\text{reject}$.
 
 > [!theorem]
-> Let $f$ be a [[Trapdoor Functions#One-way on $d$ iterates|one-way function on d iterates]] defined over $(\mathcal X, \mathcal X)$. Let $G_{prg}$ be a [[Pseudorandom Generators#Secure PRG|secure PRG]] over $(\mathcal S, \mathcal X^n)$, let $H$ be [[Hash Functions#Collision Resistance|collision resistant]] over $(\mathcal X^n, \mathcal T)$, and let $P: \mathcal M \rightarrow I_n^d$ be [[Cryptographically Special Function#Domination Free Function|dominaiton free]]. Then the Winternitz scheme $\mathcal S_{win}$ is a secure one-time signature for messages in $\mathcal M$.
+> Let $f$ be a [[Trapdoor Functions#One-way on $d$ iterates|one-way function on d iterates]] defined over $(\mathcal X, \mathcal X)$. Let $G_{prg}$ be a [[Pseudorandom Generators#Secure PRG|secure PRG]] over $(\mathcal S, \mathcal X^n)$, let $H$ be [[Hash Function#Collision Resistance|collision resistant]] over $(\mathcal X^n, \mathcal T)$, and let $P: \mathcal M \rightarrow I_n^d$ be [[Cryptographically Special Function#Domination Free Function|dominaiton free]]. Then the Winternitz scheme $\mathcal S_{win}$ is a secure one-time signature for messages in $\mathcal M$.
 > In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_{win}$ that issues at most one signature query. Then there exist efficient adversaries $\mathcal B_f, \mathcal B_G, \mathcal B_H$, where all three are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_{win}] \leq nd \cdot \text{iOWadv}[\mathcal B_f, f, d] + \text{PRGadv}[\mathcal B_G, G_{prg}] + \text{CRadv}[\mathcal B_H, H]$$
 
 ## Concrete Signature Schemes

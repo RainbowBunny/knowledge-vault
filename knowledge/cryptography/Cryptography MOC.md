@@ -21,7 +21,7 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 
 ## Function families
 
-- [[Special Functions MOC]] — `special functions/`: the shared property vocabulary (efficient, compressing, extendable, collision-resistant, pseudorandom) and the families that instantiate it — [[One-Way Functions]], [[Hash Functions]], [[Pseudorandom Functions]], [[Trapdoor Functions]], [[Compression Functions]]
+- [[Special Functions MOC]] — `special functions/`: the shared property vocabulary (efficient, compressing, extendable, collision-resistant, pseudorandom) and the families that instantiate it — [[One-Way Functions]], [[Hash Function]], [[Pseudorandom Functions]], [[Trapdoor Functions]], [[Compression Functions]]
 - [[Pseudorandom Generators]] — `pseudorandom/`
 
 ## Protocols and initiatives

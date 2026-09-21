@@ -208,7 +208,7 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 | S3 | Promote **`Unit`** and **`Zero Divisor`** out of [[Ring]] into `rings/` — [[Field]] and [[Division Ring]] currently link the heading anchor `Ring#Unit`, which the linter cannot see |
 | S4 | `Rings of Power Series` is **0 bytes** — fill or delete *(the two h3 headings and `Monoid Ring` are done)* |
 | S5 | [[Integral Domain]] could compose from [[Cancellativity]] — *a nonzero commutative ring whose nonzero elements are cancellative* |
-| 9.7 | `Pseudorandom Functionsss` duplicate; [[Universal Hash Functions]] empty; [[Special Functions]]' empty `### Prefix-Free` / `### Unpredictability` |
+| 9.7 | `Pseudorandom Functionsss` duplicate; [[Universal Hash Function]] empty; [[Special Functions]]' empty `### Prefix-Free` / `### Unpredictability` |
 | 9.11 | Adopt the `## Intuition` convention (nLab *Idea*), backfilled lazily |
 | 10.3 | The AHE near-duplicate pair — `Additively-Homomorphic Encryption` (information theory) vs `Additive-Homomorphic Encryption` (crypto). One letter apart, different folders |
 | 10.4 | `post-quantum/lattice-based/Lattice.md` has an **empty** `## Definition` and one trapdoor lemma → rename `Lattice Trapdoors`, link [[Lattices]] |

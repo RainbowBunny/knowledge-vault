@@ -111,7 +111,7 @@ Standard: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf (FIPS 202, 20
 
 ## Used By
 
-- [[Hash Functions]] — Keccak is the SHA-3 family, the modern standard hash.
+- [[Hash Function]] — Keccak is the SHA-3 family, the modern standard hash.
 - [[Pseudorandom Functionsss]] — KMAC uses cSHAKE as a PRF.
 - [[Extendable Output Function]] — SHAKE128 / SHAKE256 are the standardized XOFs.
 - [[Kyber KEM]] / [[Kyber PKE]] — use SHA3-256, SHA3-512, SHAKE128, SHAKE256 internally for KDF, hashing, and sampling (`ExpandA`, `ExpandMask`, CBD sampling).

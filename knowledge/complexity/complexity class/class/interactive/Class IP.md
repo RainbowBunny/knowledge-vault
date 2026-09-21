@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 8: Interactive Proofs, Section 8.1.2: The Class IP: Probabilistic verifier.
+- [[Book Reference|Computational Complexity: A Modern Approach]] - Chapter 8: Interactive Proofs, Section 8.1.2: The Class IP: Probabilistic verifier; Section 8.3: IP = PSPACE.
 
 ## Definition
 

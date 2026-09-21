@@ -19,8 +19,8 @@ The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathca
 | --- | --- |
 | [[One-Way Functions]] | easy to compute, hard to invert |
 | [[Compression Functions]] | compressing + collision-resistant — [[Inefficient Compression Function]] |
-| [[Hash Functions]] | compressing + collision-resistant, on arbitrary-length input — [[Keccak]] |
-| [[Universal Hash Functions]] | a statistical, not computational, collision guarantee |
+| [[Hash Function]] | compressing + collision-resistant, on arbitrary-length input — [[Keccak]] |
+| [[Universal Hash Function]] | a statistical, not computational, collision guarantee |
 | [[Pseudorandom Functions]] | keyed, pseudorandom — [[Puncturable Pseudorandom Function]] |
 | [[Trapdoor Functions]] | one-way, invertible with a secret |
 | [[Pseudorandom Generators]] | `pseudorandom/`; stretches a seed |
@@ -34,5 +34,5 @@ The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathca
 
 > [!todo] Housekeeping
 > `pseudorandom functions/Pseudorandom Functionsss.md` is a typo'd duplicate of [[Pseudorandom Functions]] — merge or delete.
-> [[Universal Hash Functions]] is empty.
+> [[Universal Hash Function]] is empty.
 > [[Special Functions]] has empty `### Prefix-Free` and `### Unpredictability` headings.

@@ -20,4 +20,3 @@ Reference:
 
 > [!proposition]
 > Member of:: [[Class NP]]
-

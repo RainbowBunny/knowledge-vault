@@ -138,7 +138,7 @@
 ## Hash Function Constructions
 
 > [!remark]
-> The methods below produce non-cryptographic hash functions. For collision-resistant cryptographic hash functions, see [[Hash Functions]] under cryptography.
+> The methods below produce non-cryptographic hash functions. For collision-resistant cryptographic hash functions, see [[Hash Function]] under cryptography.
 
 ### Division Method
 

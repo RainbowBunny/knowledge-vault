@@ -114,8 +114,8 @@
 > [!theorem] PRF (UHF Composition)
 > Suppose $H$ is a computational UHF and $F$ is a secure PRF. Then $F'$ is a secure PRF.
 > 
-> In particular, suppose $\mathcal A$ is a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary with respect to $F'$ and issues at most $Q$ queries. Then there exist a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Secure Universal Hash Function|secure UHF]] adversary $\mathcal B_H$, $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + (Q^2/2) \cdot \text{UHFadv}[\mathcal B_H, H].$$
-> More generally, there exists a $Q$-query [[Hash Functions#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal B_H'$, which is an elementary wrapper around $\mathcal A$ such that $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + \text{MUHFadv}[\mathcal B_H', H].$$
+> In particular, suppose $\mathcal A$ is a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary with respect to $F'$ and issues at most $Q$ queries. Then there exist a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Function#Secure Universal Hash Function|secure UHF]] adversary $\mathcal B_H$, $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + (Q^2/2) \cdot \text{UHFadv}[\mathcal B_H, H].$$
+> More generally, there exists a $Q$-query [[Hash Function#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal B_H'$, which is an elementary wrapper around $\mathcal A$ such that $$\text{PRFadv}[\mathcal A, F'] \leq \text{PRFadv}[\mathcal B_F, F] + \text{MUHFadv}[\mathcal B_H', H].$$
 
 ### Carter-Wegman MAC
 
@@ -147,7 +147,7 @@
 > [!theorem] Carter-Wegman Security
 > Let $F$ be a secure PRF defined over $(\mathcal K_F, \mathcal R, \mathcal T)$ where $|\mathcal R|$ is super-poly. Let $H$ be a computational DUF defined over $(\mathcal K_H, \mathcal M, \mathcal T)$. Then the Carter-Wegman MAC $\mathcal I_{CW}$ derived from $F$ and $H$ is a secure MAC.
 > 
-> In particular, for every [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I_{CW}$, there exist a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Functions#Difference Unpredictability|DUF]] adversary $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I_{CW}] \leq \text{PRFadv}[\mathcal B_F, F] + \text{DUFadv}[\mathcal B_H, H] + \frac{Q^2}{2|\mathcal R|} + \frac{1}{|\mathcal T|}$$
+> In particular, for every [[#MAC Security|MAC security]] adversary $\mathcal A$ that attacks $\mathcal I_{CW}$, there exist a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B_F$ and a [[Hash Function#Difference Unpredictability|DUF]] adversary $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{MACadv}[\mathcal A, \mathcal I_{CW}] \leq \text{PRFadv}[\mathcal B_F, F] + \text{DUFadv}[\mathcal B_H, H] + \frac{Q^2}{2|\mathcal R|} + \frac{1}{|\mathcal T|}$$
 
 ### Construction from Collision Resistant Hash
 
@@ -158,7 +158,7 @@
 
 > [!theorem]
 > Suppose the MAC system $\mathcal I$ is a secure MAC and the hash function $H$ is collision resistant. Then the derived MAC system $\mathcal I' = (S', V')$ is a secure MAC.
-> In particular, suppose $\mathcal A$ is a [[#MAC Security|MAC security]] adversary attacking $\mathcal I'$. Then there exist a [[#MAC Security|MAC security]] adversary $\mathcal B_{\mathcal I}$ and an efficient [[Hash Functions#Collision Resistance|collision finder]] $\mathcal B_H$, which are elementary wrappers around $\mathcal A$ such that $$\text{MACadv}[\mathcal A, \mathcal I'] \leq \text{MACadv}[\mathcal B_{\mathcal I}, \mathcal I] + \text{CRadv}[\mathcal B_H, H].$$
+> In particular, suppose $\mathcal A$ is a [[#MAC Security|MAC security]] adversary attacking $\mathcal I'$. Then there exist a [[#MAC Security|MAC security]] adversary $\mathcal B_{\mathcal I}$ and an efficient [[Hash Function#Collision Resistance|collision finder]] $\mathcal B_H$, which are elementary wrappers around $\mathcal A$ such that $$\text{MACadv}[\mathcal A, \mathcal I'] \leq \text{MACadv}[\mathcal B_{\mathcal I}, \mathcal I] + \text{CRadv}[\mathcal B_H, H].$$
 
 ## Nonce-based Construction
 
