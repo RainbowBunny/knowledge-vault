@@ -20,3 +20,10 @@ Reference:
 
 > [!proposition]
 > Member of:: [[Class NP]]
+
+> [!theorem]
+> Requires:: [[Hardness and Completeness]], [[Level Polynomial Hierarchy]]
+> 
+> ---
+> If $\mathsf{GI}$ is $\mathsf{NP} \mbox{-} \mathsf{complete}$, then $\Sigma_2^p = \Pi_2^p$.
+
