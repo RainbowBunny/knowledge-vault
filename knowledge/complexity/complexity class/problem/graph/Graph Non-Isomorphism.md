@@ -16,3 +16,6 @@ Reference:
 > 
 > ---
 > $\mathsf{GNI} \in \mathsf{AM}[2]$.
+> 
+> ---
+> [[Graph Non-isomorphism Protocol]]

@@ -22,10 +22,15 @@ Reference:
 ### Relation with Other Classes
 
 > [!proposition]
-> Requires:: [[Class PSPACE]]
+> Requires:: [[Class PSPACE]], [[True Quantified Boolean Formula]]
 > 
 > ---
-> $\mathsf{IP} \subseteq \mathsf{PSPACE}$.
+> $\mathsf{IP} = \mathsf{PSPACE}$.
+> 
+> ---
+> $\mathsf{IP} \subseteq \mathsf{SPACE}$.
+> $\mathsf{TQBF} \in \mathsf{IP}$.
+> $\mathsf{TQBF}$ is $\mathsf{PSPACE} \mbox{-} \mathsf{completeness}$.
 
 
 

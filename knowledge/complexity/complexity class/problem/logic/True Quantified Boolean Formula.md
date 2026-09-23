@@ -3,7 +3,6 @@ Reference:
 
 ## Definition
 
-
 > [!definition] True Quantified Boolean Formula
 > $\mathsf{TQBF}$ is the [[Language]] of true [[Quantified Boolean Formula]].
 
@@ -15,3 +14,12 @@ Reference:
 > 
 > ---
 > $\mathsf{TQBF}$ is $\mathsf{PSPACE} \mbox{-} \mathsf{complete}$
+
+> [!theorem]
+> Requires:: [[Class IP]], [[Linearization Operator on Polynomial]], [[Sum-Check Protocol]]
+> 
+> ---
+> $\mathsf{TQBF} \in \mathsf{IP}$.
+> 
+> ---
+> [[True Quantified Boolean Formula Protocol]]

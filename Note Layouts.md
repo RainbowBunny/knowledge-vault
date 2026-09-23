@@ -9,21 +9,25 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 
 ## Which layout?
 
-| you are writing                                    | layout                 | lives in                                  |
-| -------------------------------------------------- | ---------------------- | ----------------------------------------- |
-| a typed thing — set, relation, function, operation | **Object**             | `set theory/`                             |
-| one axiom, no carriers of its own                  | **Property** (a mixin) | `properties/`                             |
-| an object plus chosen axioms                       | **Structure**          | `structures/`                             |
-| a concrete model of a structure                    | **Example**            | `structures/…/examples/`                  |
-| a cryptographic interface — a tuple of algorithms  | **Primitive**          | `primitive/`, `proof/`                    |
-| one concrete instantiation of a primitive          | **Scheme**             | `schemes/`, `scheme/`                     |
-| *give me an $X$, I build you a $Y$*                | **Transform**          | under the **output** primitive            |
-| *these two are the same thing seen differently*    | **Bridge**             | wherever its ends are                     |
-| a worst-case computational problem                 | **Problem**            | `complexity/`, `cs/problems/`             |
-| the average-case hardness claim                    | **Assumption**         | `cryptography/assumptions/`               |
-| a security notion — any game                       | **Security property**  | `proof/properties/`, beside its primitive |
-| a named result other notes invoke                  | **Theorem**            | with its subject                          |
-| a hub                                              | **MOC**                | beside what it indexes                    |
+| you are writing                                     | layout                     | lives in                                     |
+| --------------------------------------------------- | -------------------------- | -------------------------------------------- |
+| a typed thing — set, relation, function, operation  | **Object** (1)             | `math/set theory/`                           |
+| one axiom, no carriers of its own                   | **Property** (2), a mixin  | `math/property/`                             |
+| an object plus chosen axioms                        | **Structure** (3)          | `math/algebra/structures/`                   |
+| a concrete model of a structure                     | **Example** (4)            | `structures/<X>/example/`                    |
+| a cryptographic interface — a tuple of algorithms   | **Primitive** (5)          | `primitive/`, `verifiable computing/`        |
+| one concrete instantiation of a primitive           | **Scheme** (6)             | `<primitive>/scheme/`                        |
+| an interactive protocol for one language            | **Scheme** (6)             | `complexity/interactive/`                    |
+| *give me an $X$, I build you a $Y$*                 | **Transform** (7)          | under the **output** primitive               |
+| *these two are the same thing seen differently*     | **Bridge**                 | wherever its ends are                        |
+| a worst-case computational problem                  | **Problem** (8)            | `complexity/…/problem/<subject>/`            |
+| the average-case hardness claim                     | **Assumption** (9)         | `cryptography/assumptions/`                  |
+| a security notion — any game                        | **Security property** (10) | `verifiable computing/property/`             |
+| a named result other notes invoke                   | **Theorem** (12)           | with its subject                             |
+| a machine — configurations and a step relation      | **Machine** (13)           | `computability/computing model/`             |
+| a parameterised family $\mathsf{X}(f(n))$           | **Generator** (14)         | `complexity/…/complexity class/generator/`   |
+| one named complexity class                          | **Complexity class** (15)  | `complexity/…/complexity class/class/`       |
+| a hub                                               | **MOC** (11)               | beside what it indexes                       |
 
 **The two tests that decide most cases.** Does it declare carriers of its own? If no, it is a Property, not a Structure. Does the theorem about it carry a multiplicative loss factor? If yes, it is a Transform, not a Bridge.
 
@@ -42,13 +46,37 @@ The vault already did this in prose: [[Integral Domain]] reads *"an integral dom
 
 Fields:
 
-| field                               | means                                                              | example                                                                                  |
-| ----------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `Reference:` *(header)*             | where it comes from                                                | a paper URL, a book and section                                                          |
-| `Extends::` *(in the callout)*      | this interface **is** that one, plus a condition                   | `Extends: [[Monoid]] + [[Inverse Element]]`                                              |
-| `Instantiates::` *(in the callout)* | a concrete witness of an interface                                 | `Instantiates: [[Public-Key Encryption]]`                                                |
-| `Requires::` *(in the callout)*     | building blocks it calls                                           | `Requires: [[Extendable Output Function]]`                                               |
-| `Import`                            | parameters pulled from another note, inside a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w, \mathbb F_2, \mathsf{wt}_\mathsf{H})$` |
+| field                 | means                                                     | example                                                        |
+| --------------------- | --------------------------------------------------------- | -------------------------------------------------------------- |
+| `Reference:` *header* | where it comes from                                       | a paper URL, a book and section                                |
+| `Extends::`           | this **is** that one, plus a condition                    | `Extends:: [[Multitape Turing Machine]]`                       |
+| `Generalizes::`       | this **widens a slot** of that one                        | `Generalizes:: [[Turing Machine]]`                             |
+| `Instantiates::`      | a concrete witness of an interface                        | `Instantiates:: [[Public-Key Encryption]]`                     |
+| `Requires::`          | building blocks, or a theorem's dependencies              | `Requires:: [[Hardness and Completeness]]`                     |
+| `Member of::`         | this problem lies in that class                           | `Member of:: [[Class NP]]`                                     |
+| `Complete for::`      | complete, **and the reduction**                           | `Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]` |
+| `Hard for::`          | hard, and the reduction                                   | `Hard for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]`    |
+| `Import`              | parameters pulled from another note, in a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w)$`       |
+
+> [!warning] Two ways a field silently fails
+> **One colon.** `Instantiates:` is invisible to Dataview. Every relation key takes `::`.
+> **A link in the key.** Dataview reads everything before `::` as the field name, so
+> `[[Hardness and Completeness|Complete]] for:: [[Class NP]]` has the key
+> `[[Hardness and Completeness|Complete]] for` and matches nothing.
+> **The key is plain text; links belong in the value.** Put the concept link on its own
+> `Requires::` line above.
+
+### Extends or Generalizes — the direction test
+
+> **`X Extends:: Y`** iff every X **is** a Y, once you forget X's extra axioms.
+> **`X Generalizes:: Y`** iff every Y **is** an X.
+
+Both tolerate a canonical embedding, exactly as Lean's `extends` does with a coercion — $q \mapsto \{q\}$ for DFA ↪ NFA, $\Gamma \cong \Gamma^1$ for TM ↪ Multitape.
+
+Worked: `DFA Extends:: NFA` ✓ (a DFA is an NFA with single-valued $\delta$) · `Multitape Generalizes:: Turing Machine` ✓ (widens $\delta$'s codomain) · `Offline TM Extends:: Multitape` ✓ (adds "never writes tape 1") · `Log-Space Uniform Circuit Family Extends:: Circuit Family` ✓ (adds a generation condition).
+
+This has been reversed three times. When unsure, say the sentence out loud with *"every … is a …"*.
+
 
 ---
 
@@ -237,6 +265,12 @@ Instantiates:: [[<Primitive>]]
 ```
 
 The security callout links **up** to the primitive's game and **down** to an assumption. Without both it is a floating claim.
+
+> [!remark] The same layout serves a complexity protocol
+> An interactive protocol for one language — a Graph Non-Isomorphism protocol, [[Sum-Check Protocol]],
+> [[Schnorr Protocol]] — is a Scheme whose primitive is a proof system: `Instantiates:: [[Probabilistic Interactive Proof System]]`,
+> `### Setting` points **down** at the language, `### Parties` are Prover and Verifier.
+> Two adjustments: `## Security` holds the **soundness error** rather than a game, and `## Cryptanalysis` is omitted.
 
 Slot discipline: **Parameters** point nowhere · **Setting** points down into `math/` · **Spaces** point up into the primitive · **Building Blocks** point sideways · **Parties** point into the View remark. Write only the slots that have content; the minimum is Parameters + Algorithms.
 
@@ -451,6 +485,106 @@ grep -rho '^> \[!\(theorem\|lemma\|proposition\|corollary\)\] .\+' --include='*.
 > linked from a `## Definition` (you stipulate it), a **theorem** from a `## Property` or `## Security`
 > (you derive it). That keeps precision rule 3 — *definition ≠ theorem* — intact while letting both share
 > the Scope / Condition / Property skeleton.
+
+---
+
+## 13 · Machine — a computing model
+
+```markdown
+Reference:
+
+## Definition
+
+> [!definition] <Name>
+> Generalizes:: [[<base machine>]]        ← or Extends:: — run the direction test
+>
+> ---
+> <the full tuple, or the delta: "rule 4 is now $\delta: \dots$">
+
+> [!definition] <Name> (Abstract Machine Formulation)      ← optional
+> - Configuration $C$ · $\mathsf{init}(w)$ · $\mathsf{acc}$
+> - the step relation $\vdash$
+
+## Property
+
+> [!theorem]
+> <equivalence with the base machine>
+> ---
+> <the simulation cost — this is the content>
+
+## Variant
+
+| variant | $\delta$ | simulation cost |
+
+## Related
+```
+
+**Acceptance is existential.** $M$ accepts $w$ iff $\exists c \in \mathsf{acc}$ with $\mathsf{init}(w) \vdash^* c$ — in every model, including the deterministic ones. The collapsed reading ("*the* run ends in $\mathsf{acc}$") is a `[!remark]` under determinism, never the definition; writing it as the definition excludes NFA, PDA and NTM.
+
+**The simulation-cost column is the point.** Equivalence makes the model arbitrary for computability; the cost makes it *not* arbitrary for complexity. A variant table without costs has thrown away its reason to exist.
+
+**Resource bounds do not belong here.** A machine whose definition contains "runs in time polynomial in $|x|$" is a complexity object — see 14 and the protocol remark in 6.
+
+## 14 · Generator — a parameterised class family
+
+```markdown
+Reference:
+
+## Definition
+
+> [!definition] Class <NAME>
+> A [[Language]] $\mathcal L \in \mathsf{NAME}(f(n))$ if there is a constant $c$ and a
+> [[<machine>]] $M$ deciding $\mathcal L$ that <resource bound with $c \cdot f(n)$>.
+
+## Property
+
+> [!theorem] <Name> Hierarchy Theorem
+> If $f, g$ are [[Computable Function|<Time/Space>-Constructible]] and <gap condition>, then
+> $$\mathsf{NAME}(f(n)) \subsetneq \mathsf{NAME}(g(n))$$
+
+## Related
+```
+
+**Three things a generator must name and usually doesn't.**
+The **machine** by link — and the right one: space generators take [[Offline Turing Machine]], because charging for the input tape makes $\mathsf{SPACE}(\log n)$ empty.
+The **constructibility hypothesis** — without it the hierarchy theorems are false, not merely unproven.
+**$\subsetneq$, not $\subseteq$** — a hierarchy theorem written with $\subseteq$ is trivially true and its hypothesis does no work.
+
+## 15 · Complexity class — one named class
+
+```markdown
+Reference:
+
+## Definition
+
+> [!definition] Class <NAME>
+> Requires:: [[Class <GENERATOR>]]
+>
+> ---
+> $$\mathsf{NAME} = \bigcup_{c} \mathsf{GENERATOR}(n^c)$$
+
+> [!definition] Class <NAME> (machine form)        ← optional unfolding
+
+## Property
+
+### Relation with Other Classes
+
+> [!proposition]
+> Requires:: [[Class <other>]]
+>
+> ---
+> <the inclusion or equality, and the theorem that proves it>
+
+## Member
+
+## Related
+```
+
+**A class is defined from its generator, never from scratch.** If the definition restates a machine and a bound, it is a generator wearing a class's name.
+
+**`## Member` is a pointer, not a list.** Membership lives on the problem note as `Member of::` / `Complete for::`, so this section is a Dataview query or a handful of links — duplicating it by hand is how `np/` and `np-complete/` came to disagree.
+
+**Uniformity is part of the definition** for circuit classes. $\mathsf{NC}^d$ over a plain [[Circuit Family]] is the *non-uniform* class; $\mathsf{NC}^1 \subseteq \mathsf L$ needs [[Log-Space Uniform Circuit Family]]. Name which one.
 
 ---
 
