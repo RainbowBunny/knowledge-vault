@@ -9,3 +9,8 @@ Reference:
 > - Operation of the ring:
 > 	- $* + * = *$.
 > 	- $* \cdot * = *$.
+
+## Property
+
+> [!proposition]
+> If there is a [[Ring Homomorphism]] from a zero-ring to a [[Ring]] $R$, then $R$ is a zero-ring.

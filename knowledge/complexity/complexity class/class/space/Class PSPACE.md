@@ -13,9 +13,12 @@ Reference:
 
 ### Relation to Other Classes
 
-> [!theorem] Savitch's Theorem
-> Requires:: [[Class SPACE]]
+> [!theorem]
+> Requires:: [[Class Ppoly]], [[Class MA]].
 > 
 > ---
-> For any [[Computable Function|Space-Constructible]] $S: \mathbb{N} \rightarrow \mathbb{N}$ with $S(n) \geq \log n$, 
-> $$\mathsf{NSPACE}(S(n)) \subseteq \mathsf{SPACE}(S(n)^2).$$
+> $\mathsf{PSPACE} \subseteq \mathsf{P_{/\mathsf{poly}}} \implies \mathsf{PSPACE} = \mathsf{MA}$.
+> 
+> ---
+> The prover can just give the polynomial circuit size to the verifier.
+

@@ -1,5 +1,5 @@
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 3.1: Group homomorphism; Section 3.3: Pause for reflection; Section 4.2: Homomorphism and order; Section 4.3: Isomorphisms; Section 6.2: Examples: Kernel and image; Section 6.5: Monomorphisms; Section 8.1: Canonical decomposition.
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 3.1: Group homomorphism; Section 3.3: Pause for reflection; Section 4.3: Isomorphisms; Section 6.2: Examples: Kernel and image; Section 6.5: Monomorphisms; Section 8.1: Canonical decomposition.
 
 ## Definition
 
@@ -62,11 +62,6 @@ A @>>\varphi> B
 
 > [!proposition]
 > Let $e_G$ be the identity element of $G$, let $e_H$ be the identity element of $H$, and let $g \in G$. Then $$\varphi(e_G) = e_H \quad \land \quad \varphi(g^{-1}) = \phi(g)^{-1}.$$
-
-### Order
-
-> [!proposition]
-> Let $\varphi: G \rightarrow H$ be a group homomorphism, and let $g \in G$ be an element of finite order. Then $|\varphi(g)|$ divides $|g|$.
 
 ## Example
 

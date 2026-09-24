@@ -4,7 +4,10 @@ Reference:
 ## Definition
 
 > [!definition] Category $\mathsf{Grp}$
-> [[Category]] $\mathsf{Grp}$ consists of
+> Instantiates:: [[Category]].
+> 
+> ---
+> $\mathsf{Grp}$ consists of
 > - $\mathsf{Obj}(\mathsf{Grp})$ is the class of all [[Group]].
 > - For $G, H$ groups, we define
 > $$\mathsf{Hom}_\mathsf{Grp}(G, H)$$

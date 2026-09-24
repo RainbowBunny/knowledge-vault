@@ -15,3 +15,9 @@ Reference:
 > For every [[Computable Function|Space Constructible]] $S: \mathbb{N} \rightarrow \mathbb{N}$,
 > $$\mathsf{DTIME}(S(n)) \subseteq \mathsf{SPACE}(S(n)) \subseteq \mathsf{NSPACE}(S(n)) \subseteq \mathsf{DTIME}(2^{O(S(n))})$$
 
+> [!theorem] Savitch's Theorem
+> Requires:: [[Class SPACE]]
+> 
+> ---
+> For any [[Computable Function|Space-Constructible]] $S: \mathbb{N} \rightarrow \mathbb{N}$ with $S(n) \geq \log n$, 
+> $$\mathsf{NSPACE}(S(n)) \subseteq \mathsf{SPACE}(S(n)^2).$$

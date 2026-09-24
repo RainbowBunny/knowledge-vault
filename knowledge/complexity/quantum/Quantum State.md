@@ -8,10 +8,6 @@ Reference:
 
 ### Qubit
 
-> [!definition] Qubit
-> Quantum state with two levels.
-> - Hilbert space: $\mathbb{C}^2$.
-> - Notation: $|\psi \rangle = \alpha |0 \rangle + \beta |1 \rangle, \alpha, \beta \in \mathbb{C}, |\alpha|^2 + |\beta|^2 = 1$.
 
 ### Basis
 

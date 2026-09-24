@@ -2,7 +2,7 @@
 dg-publish: true
 ---
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 1.2: Definition; Section 1.3: Basic Properties; Section 1.4: Cancellation; Section 1.6: Order; Exercise 1.3; Exercise 1.4; Exercise 1.5; Section 8.2: Presentations.
+- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 1.2: Definition; Section 1.3: Basic Properties; Section 1.4: Cancellation; Exercise 1.3; Exercise 1.4; Exercise 1.5; Section 8.2: Presentations.
 
 ## Definition
 
@@ -12,25 +12,6 @@ Reference:
 
 > [!definition] Group (Alternative)
 > Alternatively, a group is a [[Monoid]] with [[Inverse Element]].
-
-### Order
-
-> [!definition] Order of a Group
-> The **order of** $G$ is the number of elements in $G$; it is denoted by $|G|$ or $\# G$. We write $|G| = \inf$ if $G$ is infinite.
-
-> [!definition] Order of a Group Element
-> Let $G$ be a group and let $g \in G$ be an element of the group. Suppose there exists a positive integer $n$ with the property that $g^n = e$. The smallest such $n$ is called the **order of** $g$. If there is no such $n$, then $g$ is said to have **infinite order**. We denote the order of the element as $|g|$.
-> Also, if $G$ is a finite group, $|g| \mid |G|$.
-
->[!proposition]
->Let $G$ be a finite group. Then every element of $G$ has finite order. Further, if $g \in G$ has order $n$ and if $g^k = e$, then $n \mid k$.
-
-> [!proposition]
-> Let $g \in G$ be an element of finite order. Then $g^m$ has finite order $\forall m \geq 0$, and in fact
-> $$|g^m| = \frac{\text{lcm}(m, |g|)}{m} = \frac{|g|}{\gcd(m, |g|)}$$
-
-> [!proposition]
-> If $gh = hg$, then $|gh|$ divides $\text{lcm}(|g|, |h|)$.
 
 ## Property
 
@@ -50,9 +31,13 @@ Reference:
 ### Cancellation
 
 > [!proposition]
-> Let $(G, \cdot)$ be a group, [[Cancellativity]] for $\cdot$ holds. 
+> Let $(G, \star)$ be a group, [[Cancellativity]] for $\star$ holds. 
+
 
 ## Example
+
+> [!example]
+> If $|G| = p$ with prime $p$, then $G \cong \mathbb{Z} / p \mathbb{Z}$.
 
 > [!example]
 > Each of the following is a group:
