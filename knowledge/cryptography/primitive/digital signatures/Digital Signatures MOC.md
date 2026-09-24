@@ -4,6 +4,7 @@ Authenticity for the asymmetric setting — sign with a private key, verify with
 
 ## Theory
 
+- [[Digital Signature]] — the interface note (still a stub; the security model is in the note below)
 - [[Old Digital Signature]] — syntax, EUF-CMA, hash-and-sign, security reductions
 - [[ID and Signatures from Sigma]] — turning a Σ-protocol identification scheme into a signature scheme
 
@@ -11,7 +12,7 @@ Authenticity for the asymmetric setting — sign with a private key, verify with
 
 - [[Digital Signature Algorithm]] — DSA / ECDSA
 - [[Blind Signature]]
-- [[Dilithium]] — lattice-based, post-quantum
+- [[Dilithium]] (`scheme/`) — lattice-based, post-quantum
 - [[New NIBS]]
 
 ## Related

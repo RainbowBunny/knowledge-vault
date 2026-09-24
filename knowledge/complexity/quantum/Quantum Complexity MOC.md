@@ -15,5 +15,5 @@ Computational complexity in the quantum-Turing-machine model. Stub — to be exp
 ## Related
 
 - [[Randomized Complexity]] — classical analog
-- [[Interactive Proofs]] — classical analog of QIP
+- [[Class IP|Interactive Proofs]] — classical analog of QIP
 - Cryptographic implications: [[Post-Quantum Cryptography MOC|post-quantum cryptography]] exists because of BQP's power on factoring and DLP

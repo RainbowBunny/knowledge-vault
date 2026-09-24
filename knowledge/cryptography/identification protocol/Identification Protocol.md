@@ -1,11 +1,11 @@
 
 | Term                                                           | Reference                                                                       |                  |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------- |
-| Attack Game 18.1 (Secure identification: direct attacks)       | [[#Password Protocols\|direct attack]]                                          | $\text{ID1adv}$  |
-| Attack Game 18.2 (Secure identification: eavesdropping attack) | [[#Security Against Eavesdropping\|eavesdropping attack]]                       | $\text{ID2adv}$  |
-| Attack Game 18.3 (Secure identification: active attacks)       | [[#Security Against Active Attacks\|active attacks]]                            | $\text{ID3adv}$  |
-| Attack Game 19.1 ($r$-impersonating eavesdropping attack)      | [[#Repeated Impersonating Attacks\|r-impersonation eavesdropping attack]]       | $\text{rID2adv}$ |
-| Attack Game 19.2 (One-way key generation)                      | [[#Identification and Signatures from Sigma Protocols\|one-way key generation]] | $\text{OWadv}$   |
+| Attack Game 18.1 (Secure identification: direct attacks)       | [[Password Protocols\|direct attack]]                                          | $\text{ID1adv}$  |
+| Attack Game 18.2 (Secure identification: eavesdropping attack) | [[Security of Identification#Security Against Eavesdropping\|eavesdropping attack]]                       | $\text{ID2adv}$  |
+| Attack Game 18.3 (Secure identification: active attacks)       | [[Security of Identification#Security Against Active Attacks\|active attacks]]                            | $\text{ID3adv}$  |
+| Attack Game 19.1 ($r$-impersonating eavesdropping attack)      | [[Schnorr Identification#Repeated Impersonating Attacks\|r-impersonation eavesdropping attack]]       | $\text{rID2adv}$ |
+| Attack Game 19.2 (One-way key generation)                      | [[ID and Signatures from Sigma\|one-way key generation]] | $\text{OWadv}$   |
 |                                                                |                                                                                 |                  |
 
 > [!definition] Identification Problem

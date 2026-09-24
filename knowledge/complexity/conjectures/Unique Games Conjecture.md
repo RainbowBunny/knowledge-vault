@@ -27,4 +27,4 @@ Unproven in either direction. Significant progress:
 
 - [[P vs NP]] — UGC is a strengthening
 - [[Approximation Hardness]] — UGC's main use case
-- [[Interactive Proofs]] — 2-prover games are interactive structures
+- [[Class IP|Interactive Proofs]] — 2-prover games are interactive structures

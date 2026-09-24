@@ -28,7 +28,7 @@
 > [!theorem]
 > If an identification protocol $\mathcal I$ is secure against direct attacks, and is HVZK, then it is secure against eavesdropping attacks.
 > 
-> In particular, if $\mathcal I$ is HVZK with simulator Sim, then for every impersonation adversary $\mathcal A$ that attacks $\mathcal I$ via an [[#Security Against Eavesdropping|eavesdropping attack]], obtaining up to $Q$ transcripts, there is an adversary $\mathcal B$ that attacks $\mathcal I$ via a [[#Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$ (and where $\mathcal B$ runs Sim at most $Q$ times), such that $$\text{ID2adv}[\mathcal A, \mathcal I] = \text{ID1adv}[\mathcal B, \mathcal I].$$
+> In particular, if $\mathcal I$ is HVZK with simulator Sim, then for every impersonation adversary $\mathcal A$ that attacks $\mathcal I$ via an [[#Security Against Eavesdropping|eavesdropping attack]], obtaining up to $Q$ transcripts, there is an adversary $\mathcal B$ that attacks $\mathcal I$ via a [[Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$ (and where $\mathcal B$ runs Sim at most $Q$ times), such that $$\text{ID2adv}[\mathcal A, \mathcal I] = \text{ID1adv}[\mathcal B, \mathcal I].$$
 
 > [!theorem]
 > Schnorr's identification protocol is HVZK.
@@ -36,10 +36,10 @@
 > [!theorem]
 > If Schnorr's identification protocol is secure against direct attacks, then it is also secure against eavesdropping attacks.
 > 
-> In particular, for every impersonation adversary $\mathcal A$ that attacks $\mathcal I_{sch}$ via an [[#Security Against Eavesdropping|eavesdropping attack]], there is an adversary $\mathcal B$ that attacks $\mathcal I_{sch}$ via a [[#Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{ID2adv}[\mathcal A, \mathcal I_{sch}] = \text{ID1adv}[\mathcal B, \mathcal I_{sch}].$$
+> In particular, for every impersonation adversary $\mathcal A$ that attacks $\mathcal I_{sch}$ via an [[#Security Against Eavesdropping|eavesdropping attack]], there is an adversary $\mathcal B$ that attacks $\mathcal I_{sch}$ via a [[Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{ID2adv}[\mathcal A, \mathcal I_{sch}] = \text{ID1adv}[\mathcal B, \mathcal I_{sch}].$$
 
 > [!remark]
-> We still don't know if Schnorr's identification protocol is secure against [[#Security Against Active Attacks|active attacks]]: there are no known effective, active attacks, but there is also no proof that rules out such an attack under the DL assumption.
+> We still don't know if Schnorr's identification protocol is secure against [[Security of Identification#Security Against Active Attacks|active attacks]]: there are no known effective, active attacks, but there is also no proof that rules out such an attack under the DL assumption.
 
 ## From Identification Protocols to Signatures
 

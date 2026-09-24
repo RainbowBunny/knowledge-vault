@@ -4,7 +4,7 @@
 | Attack Game 7.1 (Universal Hash Function)     | [[#Secure Universal Hash Function\|secure UHF]]                  | $\text{UHFadv}$  |
 | Attack Game 7.2 (Multi-query UHF)             | [[#Multi-query Universal Hash Function\|secure multi-query UHF]] | $\text{MUHFadv}$ |
 | Attack Game 7.3 (Difference Unpredictability) | [[#Difference Unpredictability\|DUF]]                            | $\text{DUFadv}$  |
-| Attack Game 8.1 (Collision Resistance)        | [[#Collision Resistance\|collision finder]]                      | $\text{CRadv}$   |
+| Attack Game 8.1 (Collision Resistance)        | [[Hash Function#Definition\|collision finder]]                      | $\text{CRadv}$   |
 
 ## Definition
 
@@ -114,7 +114,7 @@
 > [!theorem]
 > Let $L$ be a poly-bounded length parameter and let $h$ be a collision resistant hash function defined over $(\mathcal X \times \mathcal Y, \mathcal X)$. Then the Merkle-Damgard hash function $H_{MD}$ derived from $h$, defined over $(\{0, 1\}^{\leq L}, \mathcal X)$, is collision resistant.
 > 
-> In particular, for every [[#Collision Resistance|collision finder]] $\mathcal A$ attacking $H_{MD}$, there exists a [[#Collision Resistance|collision finder]] $\mathcal B$ attacking $h$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{CRadv}[\mathcal A, H_{MD}] = \text{CRadv}[\mathcal B, h].$$
+> In particular, for every [[Hash Function#Definition|collision finder]] $\mathcal A$ attacking $H_{MD}$, there exists a [[Hash Function#Definition|collision finder]] $\mathcal B$ attacking $h$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{CRadv}[\mathcal A, H_{MD}] = \text{CRadv}[\mathcal B, h].$$
 
 ### Davies-Meyer Construction
 
@@ -138,7 +138,7 @@
 > [!theorem] Davies-Meyer
 > Let $h_{DM}$ be the Davies-Meyer hash function derived from a block cipher $\mathcal E = (E, D)$ defined over $(\mathcal K, \mathcal X)$, where $|\mathcal X|$ is large. Then $h_{DM}$ is collision resistant in the ideal cipher model.
 > 
-> In particular, every [[#Collision Resistance|collision finder]] adversary $\mathcal A$ that issues at most $q$ ideal-cipher queries will satisfy $$\text{CR}^{ic}\text{adv}[\mathcal A, h_{DM}] \leq (q + 1)(q + 2)/|\mathcal X|.$$
+> In particular, every [[Hash Function#Definition|collision finder]] adversary $\mathcal A$ that issues at most $q$ ideal-cipher queries will satisfy $$\text{CR}^{ic}\text{adv}[\mathcal A, h_{DM}] \leq (q + 1)(q + 2)/|\mathcal X|.$$
 
 ### The Sponge Construction
 
@@ -166,7 +166,7 @@
 > [!theorem]
 > Let $H$ be the hash function obtained from a permutation $\pi: \{0, 1\}^n \rightarrow \{0, 1\}^n$, with capacity $c$, rate $r$ (so $n = r + c$), and output length $v \leq r$. In the ideal permutation model, where $\pi$ is modeled as a random permutation $\Pi$, the hash function $H$ is collision resistant, assuming $2^v$ and $2^c$ are super-poly.
 > 
-> In particular, for every [[#Collision Resistance|collision finder]] adversary $\mathcal A$, if the number of ideal-permutation queries plus the number of $r$-bit blocks in the output messages of $\mathcal A$ is bounded by $q$, then $$\text{CR}^{ic}\text{adv}[\mathcal A, H] \leq \frac{q(q - 1)}{2^v} + \frac{q(q + 1)}{2^c}$$
+> In particular, for every [[Hash Function#Definition|collision finder]] adversary $\mathcal A$, if the number of ideal-permutation queries plus the number of $r$-bit blocks in the output messages of $\mathcal A$ is bounded by $q$, then $$\text{CR}^{ic}\text{adv}[\mathcal A, H] \leq \frac{q(q - 1)}{2^v} + \frac{q(q + 1)}{2^c}$$
 
 ## UHF Construction
 
@@ -192,27 +192,27 @@
 ### Using Prefix-free PRF
 
 > [!theorem]
-> Let PF be an [[Pseudorandom Functionsss#Extendable PRF|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$ where $|\mathcal Y|$ is super-poly and $|\mathcal X| > 1$. Then PF is a computational UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y).$
+> Let PF be an [[Pseudorandom Function|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$ where $|\mathcal Y|$ is super-poly and $|\mathcal X| > 1$. Then PF is a computational UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y).$
 > 
-> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$ with respect to $PF$, there exists a [[Pseudorandom Functionsss#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{1}{|\mathcal Y|}.$$
+> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$ with respect to $PF$, there exists a [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{1}{|\mathcal Y|}.$$
 > Moreover, $\mathcal B$ makes only two queries to $PF$.
 
 > [!theorem]
-> Let PF be an [[Pseudorandom Functionsss#Extendable PRF|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$, where $|\mathcal X|$ and $|\mathcal Y|$ are super-poly and $\ell$ is poly-bounded. Then PF is a multi-query UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$.
+> Let PF be an [[Pseudorandom Function|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$, where $|\mathcal X|$ and $|\mathcal Y|$ are super-poly and $\ell$ is poly-bounded. Then PF is a multi-query UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$.
 > 
-> In particular, if $|\mathcal X| > \ell Q$, then for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exists a $Q$-query [[#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{MUHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{Q^2}{2|\mathcal Y|}.$$
+> In particular, if $|\mathcal X| > \ell Q$, then for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exists a $Q$-query [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{MUHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{Q^2}{2|\mathcal Y|}.$$
 
 > [!corollary]
-> Let $F$ be a [[Pseudorandom Functionsss#PRF Security|secure PRF]] defined over $(\mathcal K, \mathcal X, \mathcal Y)$. Then the [[Pseudorandom Functionsss#CBC Construction|CBC construction]] $F_{CBC}$ (assuming $\mathcal Y = \mathcal X$ is super-poly size) and the [[Pseudorandom Functionsss#Cascade Construction|cascade construction]] $F^*$ (assuming $\mathcal Y = \mathcal K$), which take inputs in $\mathcal X^{\leq \ell}$ for poly-bounded $\ell$, are computational UHFs.
+> Let $F$ be a [[Pseudorandom Function#Definition|secure PRF]] defined over $(\mathcal K, \mathcal X, \mathcal Y)$. Then the [[Pseudorandom Function#CBC Construction|CBC construction]] $F_{CBC}$ (assuming $\mathcal Y = \mathcal X$ is super-poly size) and the [[Pseudorandom Function#Cascade Construction|cascade construction]] $F^*$ (assuming $\mathcal Y = \mathcal K$), which take inputs in $\mathcal X^{\leq \ell}$ for poly-bounded $\ell$, are computational UHFs.
 > 
-> In particular, for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exist [[Pseudorandom Functionsss#Secure Prefix-free PRF|secure prefix-free PRF]] adversaries $\mathcal B_1, \mathcal B_2$, which are elementary wrappers around $\mathcal A$, such that $$\begin{align}\text{MUHFadv}[\mathcal A, F_{CBC}] &\leq \text{PRF}^{pf}\text{adv}[\mathcal B_1, F] + \frac{Q^2(\ell + 1)^2 + Q^2}{2|\mathcal Y|} \\ \text{MUHFadv}[\mathcal A, F^*] &\leq Q(\ell + 1) \cdot \text{PRF}^{pf}\text{adv}[\mathcal B_2, F] + \frac{Q^2}{2|\mathcal Y|}\end{align}$$
+> In particular, for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exist [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversaries $\mathcal B_1, \mathcal B_2$, which are elementary wrappers around $\mathcal A$, such that $$\begin{align}\text{MUHFadv}[\mathcal A, F_{CBC}] &\leq \text{PRF}^{pf}\text{adv}[\mathcal B_1, F] + \frac{Q^2(\ell + 1)^2 + Q^2}{2|\mathcal Y|} \\ \text{MUHFadv}[\mathcal A, F^*] &\leq Q(\ell + 1) \cdot \text{PRF}^{pf}\text{adv}[\mathcal B_2, F] + \frac{Q^2}{2|\mathcal Y|}\end{align}$$
 
 ### Parallel UHF from a small PRF
 
 > [!theorem]
-> Let $F$ be a [[Pseudorandom Functionsss#PRF Security|secure PRF]] and assume $|\mathcal Y|$ is super-poly. Then $F^\oplus$ is a computational UHF.
+> Let $F$ be a [[Pseudorandom Function#Definition|secure PRF]] and assume $|\mathcal Y|$ is super-poly. Then $F^\oplus$ is a computational UHF.
 > 
-> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$, there exists a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, F^\oplus] \leq \text{PRFadv}[\mathcal B, F] + \frac{1}{|\mathcal Y|}.$$
+> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$, there exists a [[Pseudorandom Function#Definition|secure PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, F^\oplus] \leq \text{PRFadv}[\mathcal B, F] + \frac{1}{|\mathcal Y|}.$$
 
 ## Case Study
 

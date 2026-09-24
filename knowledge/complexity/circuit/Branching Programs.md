@@ -29,5 +29,5 @@ These give a randomized polynomial-identity testing algorithm: evaluate $p$ at a
 
 ## Related
 
-- [[Circuit Complexity]] — the broader non-uniform world
+- [[Boolean Circuit|Circuit Complexity]] — the broader non-uniform world
 - [[Randomized Complexity]] — Schwartz-Zippel gives randomized tests

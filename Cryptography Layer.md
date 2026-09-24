@@ -29,7 +29,7 @@ You never wrote this rule, but you have followed it without a single exception:
 | **callout**                | `[!definition]`                                        | `[!scheme]`                                      |
 | **who quantifies over it** | other notes — *"for every PKE scheme…"*                | nobody; it is a leaf                             |
 | **proof obligation**       | none — it is a stipulation                             | correctness, **and** a security reduction        |
-| **lives in**               | the primitive folder                                   | `schemes/` or `scheme/` under it                 |
+| **lives in**               | the primitive folder                                   | `scheme/` under it                 |
 | **math analogue**          | the **signature** — the `### Scope` line               | a **model** — `rings/examples/`                  |
 | **Lean analogue**          | `class`                                                | `instance`                                       |
 
@@ -47,7 +47,7 @@ Level 1   <Primitive>.md        ## Syntax    [!definition]   the interface
                                 ## Property  ### Correctness  what ANY instance must satisfy
                                 ## Security  ### <Game>       the games, as definitions of advantage
 
-Level 2   schemes/<Name>.md     ## Scheme    [!scheme]        the code
+Level 2   scheme/<Name>.md     ## Scheme    [!scheme]        the code
                                 ## Property  ### Correctness  THIS instance's concrete bound
                                 ## Security  ### <Game>       the reduction
 
@@ -60,7 +60,7 @@ The load-bearing sentence:
 
 [[Kyber PKE]] is the only note in the vault that makes this fully visible — its security callout links `[[Public-Key Encryption#Indistinguishability under Chosen-Plaintext Attacks|CPA adversary]]` (Level 1) on the left and `[[Module Learning With Error#Assumption|MLWE adversary]]` (Level 3) on the right, with the advantage inequality between them. That two-link shape is the thing to copy. Copy the links, not just the layout: a security section with no link up and no link down is a floating claim.
 
-This is the same three-part structure as the math side — signature (`properties/` Scope), axioms (`properties/`), models (`structures/`, `examples/`) — with one difference: **the axioms are games instead of equations.** That is exactly the Tier 1 / Tier 3 distinction already in [[North Star]]. Nothing new is being invented here; the crypto side is the third tier of the same architecture.
+This is the same three-part structure as the math side — signature (`property/` Scope), axioms (`property/`), models (`structures/`, `examples/`) — with one difference: **the axioms are games instead of equations.** That is exactly the Tier 1 / Tier 3 distinction already in [[North Star]]. Nothing new is being invented here; the crypto side is the third tier of the same architecture.
 
 ---
 
@@ -138,7 +138,7 @@ Six slots. The rule that makes them non-arbitrary is that **each one points some
 | **Building Block** | which *other cryptographic* object it calls | **sideways**, into another crypto note | an XOF, a hash, a PRG, a KEM, a commitment |
 | **Parties** | who runs which algorithm, and who talks to whom | **into the view remark** (§3) | $\mathcal P / \mathcal V$; $P_1, \dots, P_n$ and a dealer $D$; Alice / Bob |
 
-Then `Algorithms` — the code — and, for proof systems, `Statement` — the relation $\mathcal R$ or language $\mathcal L$, which points into `relations/`.
+Then `Algorithms` — the code — and, for proof systems, `Statement` — the relation $\mathcal R$ or language $\mathcal L$, which points into `relation/`.
 
 Two consequences worth stating plainly:
 
@@ -393,7 +393,7 @@ Two families, and they are not the same idea:
 
 | sense | statement | dual | where |
 | --- | --- | --- | --- |
-| **proof completeness** | every true statement is provable / accepted | [[Soundness]] | crypto `proof/`, and [[First-Order Logic]] (Gödel: $\models \varphi \Rightarrow\; \vdash \varphi$), [[Equational Logic]] (Birkhoff) |
+| **proof completeness** | every true statement is provable / accepted | [[Soundness]] | crypto `proof system/`, and [[First-Order Logic]] (Gödel: $\models \varphi \Rightarrow\; \vdash \varphi$), [[Equational Logic]] (Birkhoff) |
 | **NP-completeness** | everything in the class reduces to it | none | [[Class NP-complete]] |
 | **completeness of $\mathbb R$** | every Cauchy sequence converges | none | [[Real Number]] |
 | *(same shape)* | every subset has a supremum | none | order completeness |
@@ -543,7 +543,7 @@ Signature first, because the properties quote it. Anything else and you write th
 | **2** | Add the **two-hats remark** (§2.8). No `td` in this note | NILP | 2 |
 | **3** | Rewrite as `Extends:` + the two-line delta — draft in §2.8 | Split NILP | 10 |
 | **4** | Tilde the adversary's arguments in **both** HVZK games: $\mathcal A_\mathsf{guess}(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \dots)$. Rename $\mathrm{st}_\mathcal S$ → $\mathrm{aux}_\mathcal S$ | [[Linear Probabilistically Checkable Proofs]] | 5 |
-| **5** | Factor the properties — below | `proof/properties/` | 30 |
+| **5** | Factor the properties — below | `verifiable computing/property/` | 30 |
 | **6** | Introduce `td` where the split is real; say [[LUNA]] is designated-verifier, so there `vk = st` | [[LUNA]], and any PV scheme | 10 |
 
 Do **1** before **3**: fixing the parent first means the delta note never inherits the bug. That is the point of `Extends:`.
@@ -576,7 +576,7 @@ $$\textbf{game shape} \;\times\; \mathcal O \;\times\; \textbf{adaptivity} \;\ti
 
 and three of those four already have homes: $\mathcal O$ in each system's own oracle callout, adaptivity as the named non-adaptive/adaptive pair [[Linear Probabilistically Checkable Proofs]] already uses, and the strength row in [[Security Game]]'s table.
 
-So `proof/properties/<P>.md` holds **the game, once, over an abstract $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify}, \mathcal O)$**, plus a variant table. And a system note's `## Property` / `## Security` section holds a **one-line instantiation**, no formula:
+So `verifiable computing/property/<P>.md` holds **the game, once, over an abstract $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify}, \mathcal O)$**, plus a variant table. And a system note's `## Property` / `## Security` section holds a **one-line instantiation**, no formula:
 
 ```markdown
 ### Completeness
@@ -795,7 +795,7 @@ Every operation axiom opens `### Scope: A [[Binary Operation]] $\star : O \times
 
 That note does not exist — but `[[Proof System]]` is already a **broken link** in [[Interactive Proofs]]. Writing it closes the gap and supplies the Scope in one move.
 
-#### `proof/Proof System.md` — the Scope object
+#### `proof system/Proof System.md` — the Scope object
 
 ```markdown
 ## Definition
@@ -1059,7 +1059,7 @@ This is the finding I would act on before any renaming. A scheme note without a 
 | [[NTRU Public Key Cryptosystem]] | `## Digital Signature Scheme`, `## NTRU as a lattice cryptosystem` |
 | [[GGH Public Key Cryptosystem]] | `## Signature Scheme` |
 
-By the vault's own rule — one note, one object — `RSA Signature`, `ElGamal Signature`, `NTRU Signature` and `GGH Signature` are four notes under `digital signatures/schemes/`, each with its own `Instantiates: [[Digital Signature]]`. Right now [[Digital Signature]] is a 240-byte stub with no instances linked, while four signature schemes hide inside encryption notes. This is the single largest structural distortion on the crypto side.
+By the vault's own rule — one note, one object — `RSA Signature`, `ElGamal Signature`, `NTRU Signature` and `GGH Signature` are four notes under `digital signatures/scheme/`, each with its own `Instantiates: [[Digital Signature]]`. Right now [[Digital Signature]] is a 240-byte stub with no instances linked, while four signature schemes hide inside encryption notes. This is the single largest structural distortion on the crypto side.
 
 The *variants* are a different call. `## Elliptic Version` of ElGamal is genuinely the same scheme over a different group — that is a `## Variant` section, not a new note, and the same judgement you already made for [[Function]]'s partial-function variant.
 
@@ -1117,7 +1117,7 @@ Sub-format drift to settle at the same time: `### Building Block` (Kyber) vs `##
 
 Full breakdown in §2.2. The short version: `Parameters` is carrying three different jobs — the knobs you choose, the algebraic object you work in, and the carriers the algorithms range over — and two notes have already split it apart under local names (`Ring and Modulus`, `Dimensions`, `Messages`), while the fourteen textbook notes split it a different way (`Public Parameters`, `Plaintext Space`, `Key Space`) using bold labels instead of headings.
 
-Proposed slots, chosen so that each one points somewhere different: **Parameters** (points nowhere) · **Setting** (down, into `math/`) · **Spaces** (up, into the primitive) · **Distribution** (down, into `math/probability/`) · **Building Block** (sideways, into another crypto note) · **Parties** (into the view remark) · **Statement** (into `relations/`) · **Algorithms**.
+Proposed slots, chosen so that each one points somewhere different: **Parameters** (points nowhere) · **Setting** (down, into `math/`) · **Spaces** (up, into the primitive) · **Distribution** (down, into `math/probability/`) · **Building Block** (sideways, into another crypto note) · **Parties** (into the view remark) · **Statement** (into `relation/`) · **Algorithms**.
 
 Naming stragglers to fix: `Building Blocks` → `Building Block` (4 notes) · `Algorithm` → `Algorithms` (4 notes).
 
@@ -1156,10 +1156,10 @@ Six batches. K1 and K2 are mine to run if you want them; the rest are yours beca
 | **K2b** | **Split the setting slots (V12).** Judgement per note: which `Parameters` bullets are knobs, which are `Setting`, which are `Spaces`. Start with [[Kyber PKE]] (three bullets move), then the two A′ notes (already split, only renamed), then the rest as you touch them | 20 min + lazy | you |
 | **K3** | **Decide V3**: walk the 40 scheme notes and mark each *spec* or *recipe*. Only spec notes owe a `## Property` / `## Security`. This gates everything after it | 30 min | you |
 | **K4** | Party views. Start with [[Interactive Proof Systems]] (defines a symbol it already uses), then [[Secure Multi-party Computation]], then the rest of V7 lazily | 20 min + lazy | you |
-| **K5** | V4 — extract `RSA Signature`, `ElGamal Signature`, `NTRU Signature`, `GGH Signature` into `digital signatures/schemes/`; give [[Digital Signature]] its instance list. Then V9, folding `Old Digital Signature`'s security model into [[Digital Signature]] | 1–2 h | you |
+| **K5** | V4 — extract `RSA Signature`, `ElGamal Signature`, `NTRU Signature`, `GGH Signature` into `digital signatures/scheme/`; give [[Digital Signature]] its instance list. Then V9, folding `Old Digital Signature`'s security model into [[Digital Signature]] | 1–2 h | you |
 | **K6** | V5 `## Cryptanalysis` slot · V6 stubs · V8 Dilithium headings · add `Instantiates:` lines | lazy | you |
 
-Checkpoint after K3: every note in `schemes/` is either marked a recipe or has both a correctness line and a security line with a link up to its primitive and a link down to an assumption.
+Checkpoint after K3: every note in `scheme/` is either marked a recipe or has both a correctness line and a security line with a link up to its primitive and a link down to an assumption.
 
 ---
 

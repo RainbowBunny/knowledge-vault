@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Congruence
-> Instantiates: [[Equivalence Relation]]
+> Instantiates:: [[Equivalence Relation]]
 > 
 > ---
 > Let $n$ be a positive integer. Consider the relation on $\mathbb{Z}$ defined by

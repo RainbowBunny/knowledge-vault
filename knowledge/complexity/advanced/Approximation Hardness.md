@@ -13,5 +13,5 @@ Stub. Topics to cover:
 ## Related
 
 - [[Unique Games Conjecture]]
-- [[Interactive Proofs]] — PCP descends from IP
+- [[Class IP|Interactive Proofs]] — PCP descends from IP
 - [[P vs NP]]

@@ -1,7 +1,7 @@
 
 | Term                                                    | Reference                                                                        |                 |
 | ------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------- |
-| Attack Game 8.2 (Authenticated Data Structure Security) | [[#Authenticated Data Structures Security\|secure authenticated data structure]] | $\text{ADSadv}$ |
+| Attack Game 8.2 (Authenticated Data Structure Security) | [[Authenticated Data Structures#Security\|secure authenticated data structure]] | $\text{ADSadv}$ |
 
 ## Definition
 

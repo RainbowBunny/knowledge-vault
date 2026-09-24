@@ -12,45 +12,43 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 ## 1 · Relations — what gets proven
 
-`relations/`
+`relation/`
 
 - [[Effective Relation]] — the $(\mathbf x, \mathbf w)$ formulation everything else takes as input
 - [[Circuits]] — Boolean and arithmetic circuit satisfiability
-- [[Rank-1 Constraint Satisfiability]] — R1CS; NP-complete, and the target language for arithmetization
+- [[Arithmetic Circuit Satisfiability Problem]] — public input $x$, witness $w$
+- [[Rank-1 Constraint Satisfiability]] — R1CS; NP-complete, and the target language for arithmetization (`r1cs/`)
 - [[Split-R1CS]] — partitioning the extended witness into two phases
 
-`relations/arithmetization/`
+`relation/arithmetization/`
 
-- [[Quadratic Arithmetic Program]] · [[Quadratic Span Program]] · [[Square Span Program]]
+- [[Quadratic Arithmetic Program]] · [[Quadratic Span Program]] · [[Square Span Program]] · [[Span Program]]
 - [[R1CS to QAP Reduction]] — the reduction that makes QAP the working form of R1CS
+- [[Arithmetization of a Boolean formula]] · [[Multilinear Extension of Function]] · [[Linearization Operator on Polynomial]] — the sum-check side, feeding [[Sum-Check Protocol]] and [[True Quantified Boolean Formula Protocol]]
+- [[Algebraic Intermediate Representation]]
 
-## 2 · Proof systems
+## 2 · Information-theoretic proof systems
 
-`proof/interactive/`
+`proof system/interactive/`
 
-- [[Interactive Proof Systems]] — the base object
-- [[Argument Systems]] — soundness relaxed to computational
+- [[Interactive Proof Systems]] — the base object; the definition itself lives in [[Probabilistic Interactive Proof System]]
 - [[Multi-Prover Interactive Proofs]] · [[Linear Multi-Prover Interactive Proofs]]
 
-`proof/non-interactive/`
+`proof system/oracle/`
 
-- [[Non-Interactive Proof Systems]] — $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$, and **the composition table**: which of Completeness / Soundness / Knowledge / Succinctness / ZK each acronym demands
-- [[Non-interactive ARGument]] — NARG, SNARG, zk-SNARG
-- [[Non-interactive ARgument of Knowledge]] — NARK, SNARK, zk-SNARK
-
-`proof/oracle/` — the information-theoretic layer
-
-- [[Probabilistically Checkable Proofs]]
+- [[Probabilistically Checkable Proofs]] · [[Interactive Oracle Proof]]
 - [[Linear Probabilistically Checkable Proofs]] — the verifier sees only $\mathbf Q^\top \boldsymbol\pi$, never $\boldsymbol\pi$
-- [[Non-Interactive Linear Proofs]] — the prover chooses only the coefficient matrix, never the field elements
+- [[Non-Interactive Linear Proofs]] — the prover chooses only the coefficient matrix, never the field elements; [[Split Non-Interactive Linear Proofs]] (`variant/`)
 
-`proof/variants/`
+`proof system/`
 
-- [[Split Prover]] — proving in two phases, with split correctness and split zero-knowledge
+- [[Sigma Protocols]] · [[Zero-Knowledge Proof from Multi-Party Computation-in-the-Head]]
+- [[Split Prover]] (`variant/`) — proving in two phases, with split correctness and split zero-knowledge
+- constructions (`scheme/`): [[QAP-based Linear PCP]], [[Schnorr Protocol]]
 
 ## 3 · Properties
 
-`proof/properties/` — the axis each acronym in the composition table refers to.
+`property/` — the axis each acronym in the composition table refers to.
 
 | property            | note                    | variants                                                               |
 | ------------------- | ----------------------- | ---------------------------------------------------------------------- |
@@ -58,9 +56,15 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 | Soundness           | [[Soundness]]           | adaptive / non-adaptive                                                |
 | Knowledge soundness | [[Knowledge Soundness]] | no adaptive variant — the extractor sees the prover's randomness       |
 | Succinctness        | [[Succinctness]]        | succinct / preprocessing / fully succinct                              |
-| Zero knowledge      | [[Zero Knowledge]]      | HVZK; with leakage (see [[Linear Probabilistically Checkable Proofs]]) |
+| Zero knowledge      | [[Zero Knowledge]]      | [[Honest Verifier Zero Knowledge]]; with leakage (see [[Linear Probabilistically Checkable Proofs]]) |
 
 ## 4 · Compilers and building blocks
+
+`compiler/`
+
+- [[Fiat-Shamir Transform]] — interactive → non-interactive
+- [[Efficient Arguments from Linear MIPs]]
+- [[Multi-Party Computation-in-the-Head]] — an MPC protocol → a zero-knowledge proof
 
 `commitment/`
 
@@ -71,11 +75,18 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 - [[Encoding Scheme]] — [[Pairing-based Encoding Scheme]]
 
-`proof/`
+## 4½ · Arguments — the compiled output
 
-- [[Fiat-Shamir Transform]] — interactive → non-interactive
-- [[Sigma Protocols]]
-- [[Efficient Arguments from Linear MIPs]]
+`argument/interactive/`
+
+- [[Argument Systems]] — soundness relaxed to computational; [[Kilian Interactive Argument of Knowledge from PCP]] (`scheme/`)
+
+`argument/non-interactive/`
+
+- [[Non-Interactive Proof Systems]] — $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$, and **the composition table**: which of Completeness / Soundness / Knowledge / Succinctness / ZK each acronym demands
+- [[Non-interactive ARGument]] — NARG, SNARG, zk-SNARG
+- [[Non-interactive ARgument of Knowledge]] — NARK, SNARK, zk-SNARK
+- [[zk-SNARK from NILP]]; constructions (`scheme/`): [[Groth16]], [[LUNA]]
 
 ## 5 · Constructions
 
@@ -93,12 +104,11 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 ## Adjacent
 
-- [[MPC MOC]] — `secure computation/`, [[Secure Multi-party Computation]]
-- [[Private Information Retrieval]]
+- [[MPC MOC]] — `cryptography/secure computation/`: [[Secure Multi-party Computation]], [[Oblivious Transfer]], [[Private Information Retrieval]]
 
 ## Cross-domain
 
-- **To `complexity/`** — [[Interactive Proofs]] (IP = PSPACE), [[Circuit Satisfaction]], [[Class NP]]
+- **To `complexity/`** — [[Probabilistic Interactive Proof System]], [[Class IP]] (IP = PSPACE), [[Sum-Check Protocol]], [[Circuit Satisfaction]], [[Class NP]]
 - **To `math/`** — [[Polynomial]], [[Lagrange Interpolation]], [[Vanishing Polynomial]], [[Schwartz-Zippel]], [[Bilinear Pairings]], [[Bilinearity]] (used directly in [[Split-R1CS]])
 - **To `cryptography/assumptions/`** — [[Random Oracle Model]] and [[Uniform Random String Model]] for the setup; lattice assumptions for [[LUNA]]
 - **From `cryptography/primitive/`** — [[Linear-Only Vector Encryption]] is the primitive [[LUNA]] compiles through

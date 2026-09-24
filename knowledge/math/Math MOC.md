@@ -4,7 +4,7 @@ Top-level index for `knowledge/math/`.
 
 ## Cross-cutting
 
-- [[Math Properties MOC]] — `properties/`, the axiom library. Operation, relation, map and norm axioms, each stated once. Structures across the vault are defined by linking into it
+- [[Math Properties MOC]] — `property/`, the axiom library. Operation, relation, map and norm axioms, each stated once. Structures across the vault are defined by linking into it
 
 ## Sub-MOCs
 

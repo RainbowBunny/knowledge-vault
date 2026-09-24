@@ -2,7 +2,7 @@
 
 *Open work only — completed tasks are removed, git holds the history, Appendix B keeps the IDs.*
 *Conventions live in [[North Star]]. The foundation build spec lives in [[Foundation Layer]].*
-*Verified against the vault 2026-08-28.*
+*Verified against the vault 2026-09-24, after the rearrangement.*
 
 ---
 
@@ -49,7 +49,7 @@ Anything conversational still works. The triggers exist so you never have to exp
 python scripts/vault-lint.py
 ```
 
-Six checks: broken links, duplicate names, callout-title mismatch, empty notes, hollow headings, orphans. If **broken** or **dupe** went up, fix before committing — those are always real. The other four are smells, not errors; current baselines are in Appendix A.
+Nine checks: broken links, **broken anchors** (`[[Note#Heading]]` where the heading is gone — the link still resolves, so nothing else notices), **Dataview fields** that will never be indexed (a key holding a `[[link]]`, or a relation key with one colon), duplicate names, callout-title mismatch, empty notes, hollow headings, orphans, and seeds (notes marked `status:: seed`, counted apart from empty). `language/`, `security/` and `computer/` are left out of the orphan and hollow counts, because they sit outside the layout system.
 
 `--full` lists everything, `--only broken` runs one check, `--all` widens past `knowledge/`.
 
@@ -70,6 +70,66 @@ One floor item plus the last of Batch B — unchanged for three passes. Paste-re
 | **B3** | Last of Batch B: **G1** stray `,Reference:` at the top of [[Binary Operation]] · **G3** [[Many-Sorted Operation]] still lacks the sorts-are-labels remark, the small / locally-small caveat, and the Birkhoff–Lipson reference |
 
 Riding along whenever you next touch these notes: Famous Sets belongs in [[Set]] not [[Set Operation]]; Disjoint should move the other way (it uses $\cap$); the law table sits under `## Notation` but is a `## Property`; "are **equals**" → "are equal"; $P(S)$ → $\mathcal P(S)$; [[Set Foundation]]'s `## Definition` is an empty heading.
+
+---
+
+# Rearrangement — 2026-09-24
+
+The rule, now in [[Note Layouts]] under *Where it lives*: **one home per object, at the lowest layer where it can be stated; folders name kinds; family and status are fields.** Moves were folder moves (links resolve by name, so nothing broke); the three renames had their links rewritten.
+
+## What moved
+
+| from | to |
+| --- | --- |
+| `complexity/complexity class/problem/` | `complexity/problem/` — sibling of `complexity class/`, not inside it |
+| `computability/problems/dlp/` — [[Discrete Logarithm Problem]], [[Elliptic Curve DLP]], [[Hyperelliptic Curve DLP]] | `complexity/problem/group/` |
+| `computability/problems/dlp/algorithm/` — BSGS, Pohlig–Hellman, Index Calculus, DLP Collision | `cryptography/cryptanalysis/dlp/` |
+| `cryptography/assumptions/lattice-based/SVP/` — SVP, CVP, SBP | `complexity/problem/lattice/` |
+| [[Subset-Sum Problem]], [[Satisfiability Problem (To be removed)]] | `complexity/problem/number/`, `problem/logic/` — beside the notes they duplicate |
+| [[Search Problem]] (AI search: agents, A*) | `ai/` |
+| [[Arithmetic Circuit Satisfiability Problem]] | `verifiable computing/relation/`, beside R1CS |
+| [[Complexity Class]], [[Reductions]] | `complexity class/`, `complexity class/reducibility/` |
+| [[LLL Lattice Reduction Algorithm]] | `math/algebra/structures/lattice/` |
+| `post-quantum/lattice-based/Lattice.md` | [[Lattice Trapdoor]] in `special function/trapdoor function/` (renamed) |
+| `math/number theory/Factoring.md` | [[Factoring Algorithms]] (renamed — it was a duplicate name) |
+| `Pseudorandom Functionsss` | [[Pseudorandom Function]] (renamed; the 82-byte stub went to `_to_delete/`) |
+| `pseudorandom/generators/` | `special function/pseudorandom generator/` |
+| `verifiable computing/secure computation/`, plus [[Oblivious Transfer]] and [[Private Information Retrieval]] | `cryptography/secure computation/` |
+| [[Multi-Party Computation-in-the-Head]] | `verifiable computing/compiler/` |
+| `argument/interactive/` — [[Interactive Proof Systems]], [[Multi-Prover Interactive Proofs]], [[Linear Multi-Prover Interactive Proofs]] | `proof system/interactive/` |
+| [[Kilian Interactive Argument of Knowledge from PCP]] | `argument/interactive/scheme/` |
+| `elliptic-curve cryptography/`, [[Post-Quantum Cryptography MOC]] | `cryptography/family/` |
+| `information theory/code-based/` (its `schemes/` hold codes) | `information theory/coding theory/` (`code/`) |
+| [[Hamming Quasi-Cyclic]], rank-metric [[Additively-Homomorphic Encryption]] | `kem/scheme/`, `symmetric encryption/scheme/` |
+| `assumptions/coding-based/` | `assumptions/code-based/` |
+| every `schemes/`, `proof system/variants/`, `secure computation/properties/`, `structures/lattices/` | `scheme/`, `variant/`, `property/`, `lattice/` |
+| `computability/` algorithms, data-structures, graph, setup, CLRS foundations, the two algorithmic problems | `algorithms/` — a new domain; `CS MOC` merged into [[Algorithms MOC]] |
+| `knowledge/Reviewing Paper.md` | `academic/` |
+| — | new [[Computability MOC]]; [[Complexity MOC]] rebuilt as a full index |
+
+## Left for you — content
+
+| # | task |
+| --- | --- |
+| **R1** | Merge [[Subset-Sum Problem]] into [[Subset Sum]]. Its lattice section is the attack on [[Merkle–Hellman Subset-Sum Cryptosystem]] — it belongs there, or in `cryptanalysis/` |
+| **R2** | Check [[Satisfiability Problem (To be removed)]] against [[Satisfiability]], then delete it |
+| **R3** | [[Short Integer Solution Problem]] (6 KB) and [[Short Integer Solution]] (655 B) are both average-case (uniform $A$): one assumption note. [[Vanishing SIS]] is 7 bytes |
+| **R4** | [[Additively-Homomorphic Encryption]] (eprint 2023/1798, full parameters) and [[Additive-Homomorphic Encryption]] (empty Parameters) are one scheme, now side by side in `symmetric encryption/scheme/` |
+| **R5** | Fold [[Lattice Problem]] (apprSVP, SIVP, Approx-SIVP) into `complexity/problem/lattice/` — third statement of the same problems. Give SVP/CVP/SBP the `## Property` callout the other problem notes have |
+| **R6** | [[Discrete Logarithm Problem]] carries a `## Diffie-Hellman Decision Problem` section. DDH is distributional — an assumption note in `cryptography/assumptions/`. DLP itself wants a `## Property` with `Member of::` |
+| **R7** | [[Lattice Trapdoor]] has an empty `## Definition`; say what a trapdoor for $\Lambda^\perp_q(A)$ is and link [[Lattices]] |
+| **R8** | Two-home content: crypto [[Interactive Proof Systems]] redefines [[Probabilistic Interactive Proof System]] — keep the definition in complexity, make the crypto note the cost view (prover/verifier time, rounds, communication) plus knowledge soundness. Same check for [[Schnorr Protocol]] vs [[Schnorr Identification]] and [[Multi-Party Computation]] vs [[Secure Multi-party Computation]] |
+| **R9** | Write the graph definition in `math/graph/` ([[Graph Theory]] is 2 bytes). [[Graph]] in `algorithms/graph/` keeps representations and traversal and links up |
+| **R10** | Stale hubs — Assignment 4H: [[Time Complexity]], [[Space Complexity]], [[Randomized Complexity]], [[Reductions]], and [[Computability Theory]] (7 KB, zero links) |
+| **R11** | 43 empty notes: give each a Scope line and `status:: seed`, or delete. The linter then separates *want to learn* from *abandoned* |
+
+## Left for me
+
+| # | task |
+| --- | --- |
+| **M2** | Digital garden: published notes in moved folders (`secure computation/`, `proof system/interactive/`, every `scheme/`, `structures/lattice/`, `algorithms/`) get new URLs on the next publish |
+
+`_to_delete/` at the vault root holds the stub, the old `CS MOC` and eleven empty folders — delete it when you have looked.
 
 ---
 
@@ -127,11 +187,11 @@ The correspondence table is in [[North Star]] § *Class and instance*. The rule 
 | # | task | est |
 | --- | --- | --- |
 | **X1** | *(mine, on your word)* **Pilot on 12 notes** — add the fields to one of each shape and nothing else: [[Ring]], [[Group]], [[Field]] (`Extends:`) · [[Polynomial Ring]], [[Kyber PKE]], [[Shamir Secret Sharing]] (`Instantiates:`) · [[Associativity]], [[Cancellativity]] (mixins, no field needed — confirming they need none is the point) · [[Fujisaki-Okamoto Transformation]], [[Fiat-Shamir Transform]] (`Transforms:`) · [[Argument Systems]], [[Puncturable Pseudorandom Function]] (`Extends:` across the crypto side). You judge, then it rolls out lazily | 30 min |
-| **X2** | **Backfill `Instantiates:`** across `schemes/` (~40 notes) and `structures/…/examples/` (~15). One line each, added as you touch a note. This is the field that pays first: [[Public-Key Encryption]] currently cannot list its own instances | lazy |
+| **X2** | **Backfill `Instantiates:`** across `scheme/` (~40 notes) and `structures/…/examples/` (~15). One line each, added as you touch a note. This is the field that pays first: [[Public-Key Encryption]] currently cannot list its own instances | lazy |
 | **X3** | **Backfill `Extends:`** on the algebra spine and the crypto refinements. Watch for **diamonds** — [[Field]] reaches [[Ring]] two ways and nothing here will tell you. Where a diamond exists, say so in a `[!remark]`; that is the substitute for an instance resolver | lazy |
-| **X4** | *(mine)* **Lint the fields**: every `Instantiates:` target has a `## Syntax` or `## Definition`; every `Requires:` bullet is a wikilink; flag a note in `properties/` whose definition introduces a carrier (it has stopped being a mixin) | 45 min |
+| **X4** | *(mine)* **Lint the fields**: every `Instantiates:` target has a `## Syntax` or `## Definition`; every `Requires:` bullet is a wikilink; flag a note in `property/` whose definition introduces a carrier (it has stopped being a mixin) | 45 min |
 
-**Scope, stated so it does not creep.** About **200 of 557** notes are structures. The other ~350 are problems ([[Closest Vector Problem]], [[Discrete Logarithm Problem]]), algorithms ([[LLL Lattice Reduction Algorithm]] and most of `cs/`), theorems, the 48 MOCs, `language/`, `security/`. **A problem is not a class.** Do not add a field to be consistent.
+**Scope, stated so it does not creep.** About **200 of 557** notes are structures. The other ~350 are problems ([[Closest Vector Problem]], [[Discrete Logarithm Problem]]), algorithms ([[LLL Lattice Reduction Algorithm]] and most of `algorithms/`), theorems, the 48 MOCs, `language/`, `security/`. **A problem is not a class.** Do not add a field to be consistent.
 
 **Why fields and not a rewrite.** The `Basic Definition` → `Definition` pass touched 139 files and made the vault no more correct, only better named — which was the right trade there because it was one word. "Rewrite everything in class syntax" is the same trade at 200× the size, and the value is not in the words. It is in the three graphs the fields make queryable: *what extends what*, *what instantiates what*, *what depends on what*. Those you cannot get from a heading rename at any price, and you can get them from four lines added lazily.
 
@@ -143,12 +203,12 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 
 | # | task | est |
 | --- | --- | --- |
-| **K2b** | **Split the setting slots (V12).** Inside `[!scheme]`, `Parameters` is doing three jobs at once. Proposed slots, each pointing somewhere different: **Parameters** (nowhere — knobs) · **Setting** (down into `math/`: $R_q$, the group, the pairing) · **Spaces** (up into the primitive) · **Distribution** (down into `math/probability/`) · **Building Block** (sideways into another crypto note) · **Parties** (into the view remark) · **Statement** (into `relations/`) · **Algorithms**. You already split it twice under local names — `Ring and Modulus`/`Dimensions`/`Messages` in [[Module HGSW]], `Plaintext Space`/`Key Space` in the textbook notes. Start with [[Kyber PKE]]: $\text{Compress}_q$ and $\text{Decompress}_q$ are `Setting`, not `Building Block` | 20 min + lazy |
+| **K2b** | **Split the setting slots (V12).** Inside `[!scheme]`, `Parameters` is doing three jobs at once. Proposed slots, each pointing somewhere different: **Parameters** (nowhere — knobs) · **Setting** (down into `math/`: $R_q$, the group, the pairing) · **Spaces** (up into the primitive) · **Distribution** (down into `math/probability/`) · **Building Block** (sideways into another crypto note) · **Parties** (into the view remark) · **Statement** (into `relation/`) · **Algorithms**. You already split it twice under local names — `Ring and Modulus`/`Dimensions`/`Messages` in [[Module HGSW]], `Plaintext Space`/`Key Space` in the textbook notes. Start with [[Kyber PKE]]: $\text{Compress}_q$ and $\text{Decompress}_q$ are `Setting`, not `Building Block` | 20 min + lazy |
 | **K2** | *(mine, on your word)* Mechanical: **V12** naming — `Algorithm` → `Algorithms` (4 notes), and `Building Block` ↔ `Building Blocks` once you pick one (vault leans singular 26–4, your new [[Kyber PKE]] uses plural) · **V1** rename `## Encryption Scheme`/`## Signature Scheme` → `## Scheme` and `[!algorithm]` → `[!scheme]` in 10 textbook notes · **V2** fix 9 `[!scheme]` callouts sitting under an h1 / `## Syntax` / orphan h3 · **V10** `Link:` → `Reference:`. No content touched | 15 min |
 | **K7** | **Transforms (V13).** A `## Syntax` note *with* `Building Blocks` is a **transform**, not a plain primitive — its blocks are universally quantified and each owes a hypothesis in `## Security`. [[Fujisaki-Okamoto Transformation]] has four blocks and **no security section at all**; [[From Collision Resistance]] is 132 B. Also: [[Public-Key Encryption]] (17 KB) hides three transforms inside the interface note — TDF→PKE, plus the RSA and ElGamal case studies, each with its own loss factor. [[North Star]] now lists Transform as a fifth kind | 45 min |
 | **K3** | **The gate.** Only **4 of 40** scheme notes carry the full Kyber shape; `## Property` appears in 8, `### Correctness` in 5, `[!security]` in 5. Walk the 40 and mark each **spec** (owes correctness + a security reduction) or **recipe** (owes nothing beyond `## Scheme`). Everything after this depends on the answer | 30 min |
 | **K4** | **Party views (V7, ~16 notes).** Start with [[Interactive Proof Systems]] — it already writes $\text{View}_{\hat{\mathcal V}}$ inside its zero-knowledge definition without defining it. Then [[Secure Multi-party Computation]], then lazily. Standardise on $\mathsf{View}$ | 20 min + lazy |
-| **K5** | **V4/V9 — the biggest structural distortion.** Four signature schemes hide inside encryption notes ([[RSA Public Key Cryptosystem]], [[ElGamal Public Key Cryptosystem]], [[NTRU Public Key Cryptosystem]], [[GGH Public Key Cryptosystem]]) while [[Digital Signature]] is a 240 B stub and [[Old Digital Signature]] holds 20 KB of security model. Extract four notes into `digital signatures/schemes/`; fold the security model into [[Digital Signature]] | an afternoon |
+| **K5** | **V4/V9 — the biggest structural distortion.** Four signature schemes hide inside encryption notes ([[RSA Public Key Cryptosystem]], [[ElGamal Public Key Cryptosystem]], [[NTRU Public Key Cryptosystem]], [[GGH Public Key Cryptosystem]]) while [[Digital Signature]] is a 240 B stub and [[Old Digital Signature]] holds 20 KB of security model. Extract four notes into `digital signatures/scheme/`; fold the security model into [[Digital Signature]] | an afternoon |
 | **K6** | **V5** adopt `## Cryptanalysis` as the slot for attacks (10 places invent a heading; the four classical ciphers' `## Security` is a break, not a game) · **V6** stubs: [[Merkle Tree]] 40 B is load-bearing for [[Kilian Interactive Argument of Knowledge from PCP]] · **V8** [[Dilithium]] is one heading from complete · add `Instantiates:` lines | lazy |
 | **K2c** | **[[Kyber PKE]] finish** — draft in [[Cryptography Layer]] §2.5: add a `### Setting` block **first** (it currently uses $R_q$, $\mathbb Z_q$, $\mathcal M$, $\bmod^{\pm}$, $\|\cdot\|_\infty$ without declaring any of them) · move $\text{Compress}_q$/$\text{Decompress}_q$ out of Building Blocks into Setting, leaving Building Blocks **links only** · spell the reference name $\mathsf{Kyber.PKE}$ in all three places · $\text{Adv}$ → $\mathsf{Adv}$. Two missing notes fall out: `Extendable Output Function` (broken link, also from [[Keccak]]) and `Quotient Ring` (a heading inside [[Ring]], never promoted) | 15 min |
 
@@ -165,14 +225,14 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 | **V17** | **Bugs found in the same pass.** (a) Both [[Non-Interactive Linear Proofs]] and [[Split Non-Interactive Linear Proofs]]: `Prove(R, x, w)` returns $\Pi\,\mathrm{crs}$ — **`crs` is not an argument** · (b) NILP has **no `## Property` / `## Security` at all** — drafts for completeness, non-adaptive knowledge soundness against affine strategies, and perfect ZK are in §2.8 · (c) `\mathbf F` → `\mathbb F` in three places |
 | **V18** | **[[Linear Probabilistically Checkable Proofs]] HVZK is ill-formed.** Both games' simulated branch generates $(\widetilde{\mathrm{st}}, \widetilde{\mathbf Q}, \mathrm{st}_\mathcal S)$ then calls $\mathcal A_\mathsf{guess}(\mathrm{st}, \mathbf Q, \widetilde{\mathbf a})$ — **`st` and `Q` are unbound there**. Must be the tilde'd pair. As written the branches are not comparable |
 | **V19** | **[[Split Non-Interactive Linear Proofs]] is a verbatim copy** of its parent, callout title and all (two `[!definition] Non-Interactive Linear Proof` in the vault). Rewrite as `Extends:` + the two-line delta — §2.8 has the draft. It is the first real test of the `Extends:` field from **X1** |
-| **V20** | **Factor the proof-system properties (§2.9).** A property is *game shape* × *response map $\mathcal O$* × *adaptivity* × *strength row*, and three of those already have homes. `proof/properties/<P>.md` owns the game once over an abstract $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify}, \mathcal O)$; a system note carries a one-line instantiation (*"[[Completeness]] with $\mathcal O(\Pi) = \Pi\,\mathrm{crs}$, $\varepsilon_c = 0$"*) — a **note link, not a heading anchor**. Factor [[Completeness]] fully · [[Soundness]]/[[Knowledge Soundness]] statement-only, games stay local (quantifier order is the content) · **do not factor [[Zero Knowledge]]** — LPCP's simulator makes its own query, NILP's is handed `st`; that gap is the content |
+| **V20** | **Factor the proof-system properties (§2.9).** A property is *game shape* × *response map $\mathcal O$* × *adaptivity* × *strength row*, and three of those already have homes. `verifiable computing/property/<P>.md` owns the game once over an abstract $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify}, \mathcal O)$; a system note carries a one-line instantiation (*"[[Completeness]] with $\mathcal O(\Pi) = \Pi\,\mathrm{crs}$, $\varepsilon_c = 0$"*) — a **note link, not a heading anchor**. Factor [[Completeness]] fully · [[Soundness]]/[[Knowledge Soundness]] statement-only, games stay local (quantifier order is the content) · **do not factor [[Zero Knowledge]]** — LPCP's simulator makes its own query, NILP's is handed `st`; that gap is the content |
 | **V21** | **The bridge that makes V20 possible.** LPCP's `[!definition] Linear Oracle` and NILP's `[!definition] Linear Evaluation` are **one equation with the pen in different hands**: both are a $k \times m$ matrix against an $m$-vector, but LPCP's verifier picks the matrix and the prover the vector, while NILP's prover picks the matrix and `Setup` the vector. That swap is *why* NILP soundness must be non-adaptive and why the two ZK definitions differ in shape. One `[!remark]` each side, cross-domain bridge |
 | **V22** | **`Disclosure-Free NILP`** — draft in [[Cryptography Layer]] §2.10. Groth16's Definition 4 is stated for a **split** NILP, so `Extends: [[Split Non-Interactive Linear Proofs]]` and the chain is NILP → Split → Disclosure-Free (which makes **V19** load-bearing). **Blocked by V17**: Groth16's test is $t(\sigma, \pi)$, our `Test` is $\mathbf t : \mathbb F^k \to \mathbb F^\eta$ applied to $\boldsymbol\pi$ alone — the test never sees $\mathrm{crs}$, and disclosure-freeness is *entirely* about that dependence, so the property is currently **unstatable**. One `[!todo]` left in the draft: I could not get Definition 4 verbatim (eprint blocks fetch), so check equality-vs-bound against the paper |
 | **V23** | **Tier-1 vs Tier-3 properties — the graduation rule differs** (§2.10). Equational properties bind by *substitution*, so theorems transfer verbatim and a note pays as soon as a second definition binds it ([[Associativity]] → generalized associativity, proved once). Game properties bind by *family resemblance*; graduate only when the difference fits a parameter slot, else keep the game local. Ranked: [[Soundness]] and [[Zero Knowledge]] earn shared notes (amplification, composition), [[Completeness]] is mostly a comparison table, disclosure-freeness stays inline. Add the rule to [[North Star]] once you have used it twice |
 | **V24** | **The simulator has no quantifier (§2.11).** [[Knowledge Soundness]] correctly writes *“for any $\mathcal A$ **there exists** $\mathcal E$”*; [[Zero Knowledge]] writes *“for any $\mathcal A$ **and** simulator $\mathcal S$”*, which is $\forall\mathcal S$ and not the notion. Fix is **one sentence per game**, using [[Security Game]]'s own game/notion seam: the advantage is a function of $(\mathcal A, \mathcal S)$, the *notion* says $\exists \mathcal S\ \forall \mathcal A$. Note the orders are opposite — ZK is $\exists\mathcal S\forall\mathcal A$, knowledge soundness is $\forall\mathcal A\exists\mathcal E$, and $\forall\mathcal A\exists\mathcal E$ **is not a falsifiable game** (Naor), which is why succinct arguments need knowledge assumptions |
 | **V25** | **Give $\mathcal S$ a signature**, declared above the game like `Prove`/`Verify` — with the *“receives no witness”* line stated in prose, not buried in a probability array. **Phases are derivable**: one per scheme algorithm the simulated branch fakes. Checks out on all four notes (NIPS 2, LPCP 2, NILP 1, [[Split Prover]] 1). The two shapes are **setup simulation** vs **trapdoor simulation** — the same fork as §2.8's `st`/`td`. Rename $\mathrm{st}_\mathcal S$ → $\mathrm{aux}_\mathcal S$ |
 | **V26** | **The distinguisher has amnesia.** In [[Zero Knowledge]], $\mathcal A_\mathsf{find}$ sees $(\mathcal R, \mathrm{crs}, \mathrm{st})$ but $\mathcal A_\mathsf{guess}(\boldsymbol\pi)$ gets *only the proof* — no state, not even the statement. House format passes one ([[Public-Key Encryption]]'s IND game). Same gap in [[Linear Probabilistically Checkable Proofs]]. Also: [[Knowledge Soundness]] declares $\mathcal E = (\mathcal E_\mathsf{NIPS})$ then calls $\mathcal E_\mathsf{find}$; its affine variant is labelled $\mathsf{Adv}_\mathsf{NIPS}$ but is about a NILP; `\mathbf F` → `\mathbb F`; a type declaration sits in the event column |
-| **V27** | **Write `proof/Proof System.md`** — the Scope object every proof-system property quantifies over, exactly as [[Binary Operation]] is the Scope of [[Associativity]]. It declares $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$ plus the **response map** $\mathcal O$, with the three-row variant table (identity / $\mathbf Q^T\boldsymbol\pi$ / $\boldsymbol\Pi\,\mathrm{crs}$). **It also closes an existing broken link** — [[Interactive Proofs]] already points at `[[Proof System]]`. Then every property's `### Scope` is one line |
+| **V27** | **Write `proof system/Proof System.md`** — the Scope object every proof-system property quantifies over, exactly as [[Binary Operation]] is the Scope of [[Associativity]]. It declares $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$ plus the **response map** $\mathcal O$, with the three-row variant table (identity / $\mathbf Q^T\boldsymbol\pi$ / $\boldsymbol\Pi\,\mathrm{crs}$). Then every property's `### Scope` is one line |
 | **V28** | **Rewrite the five properties in Scope / Condition / Property form** — full drafts in [[Cryptography Layer]] §2.12. The `### Condition` slot is where the things that kept getting lost now live: the promise ($\mathbf x \in \mathcal L$ vs $\mathbf x \notin \mathcal L$), adaptivity, and the **quantifier** ($\forall\mathcal A\exists\mathcal E$ for knowledge soundness, $\exists\mathcal S\forall\mathcal A$ for zero knowledge — opposite orders). [[Succinctness]] deliberately has no Condition slot: it is a complexity predicate, not a game, and the note should say so |
 | **T1** | **[[Schwartz-Zippel]] has one inbound link — the MOC.** Every soundness bound in `verifiable computing/` is a Schwartz–Zippel bound: [[Sum-Check Protocol]], [[QAP-based Linear PCP]], [[R1CS to QAP Reduction]], [[LUNA]], [[Groth16]]. And [[Branching Programs]] **restates it** as a local `[!lemma]`. Link, delete the copy |
 | **T2** | **[[Schwartz-Zippel]]'s Scope is under-general**: stated over $\mathbb Z_p$ with $\alpha$ uniform on all of $\mathbb Z_p$. The standard form is an **[[Integral Domain]]** $R$, a finite $S \subseteq R$, and the bound $d/\lvert S\rvert$ — it needs only *no zero divisors*. Generalising it makes it a direct consumer of [[Integral Domain]] and covers the subset-sampling uses. Also: its statement sits under `## Definition` as a `[!lemma]` — it is a `## Property` |
@@ -192,7 +252,6 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 
 | # | task |
 | --- | --- |
-| 7.2b | [[Prime]] links `[[Function#Logarithmic Integral|Logarithmic Integral]]` — but $\mathrm{Li}(X)$ now lives **in [[Prime]] itself**, at its own `### Logarithmic Integral` heading. The note name resolves again after the rename, so the linter is silent, but the anchor points at a heading that no longer exists. Change it to a local reference. *(Broken **headings** are invisible to the linter — only broken notes are caught.)* |
 | 7.3 | [[Inequality]] — convex / concave, derivative test, **and the analytic Jensen**; [[Probability Inequalities]] keeps the expectation form and links back |
 | 6.4 | [[Function]] still has both a `### Composition` and a `### Inverse` — check whether these are the two survivors or a leftover duplicate pair from the `Function.md` absorption |
 
@@ -200,23 +259,15 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 
 | # | task |
 | --- | --- |
-| 9.6 | Sub-MOC top-ups for pre-existing orphans: [[Assumptions MOC]] (5), [[Linear Algebra MOC]] ([[Dual Bases]]), [[Calculus MOC]] ([[Fourier Analysis]]), [[Probability MOC]] ([[Bernoulli Distribution]]), [[Threshold MOC]] (2) |
-| 9.6b | *(mine, on request)* Fold the newer notes into MOCs: [[Assumption Taxonomy]], [[Privacy Amplification]], [[Alekhnovich Encryption Scheme]], [[Identical Partly Secret Sharing]], [[Reed-Solomon]], [[Ambiguous Coding]], [[Digital Signature]], [[Quantum State]], [[Quantum Circuits]], `physics/` |
 | 9.5 | Frontmatter — **decided: drop.** Remove `parent:` from `templates/default.md`, strip from the notes carrying it, delete `Fleeting MOC` |
 | S1 | [[Ring]] has **two** `[!definition] Unit` callouts — delete the old one-liner under `### Quotient rings` |
-| S2 | **Six full-path wikilinks with unique basenames** — [[Field]], [[Polynomial]], [[Division Ring]], [[Cyclic Codes]], [[Information Theory MOC]], [[Post-Quantum Cryptography MOC]]. Two render the whole path on the page. Full paths are correct *only* where the basename is ambiguous, as in `security/`'s eleven `CTF Challenges`. **Plus 8 dead `[[daily/Temp/PPT]]` links** in [[Negligible Function]], [[Puncturable Pseudorandom Function]], [[Special Functions]] (×3), [[Interactive Proof Systems]], [[Succinctness]] — the note now lives at `cryptography/foundations/PPT.md`, so these should be plain `[[PPT]]` |
 | S3 | Promote **`Unit`** and **`Zero Divisor`** out of [[Ring]] into `rings/` — [[Field]] and [[Division Ring]] currently link the heading anchor `Ring#Unit`, which the linter cannot see |
 | S4 | `Rings of Power Series` is **0 bytes** — fill or delete *(the two h3 headings and `Monoid Ring` are done)* |
 | S5 | [[Integral Domain]] could compose from [[Cancellativity]] — *a nonzero commutative ring whose nonzero elements are cancellative* |
-| 9.7 | `Pseudorandom Functionsss` duplicate; [[Universal Hash Function]] empty; [[Special Functions]]' empty `### Prefix-Free` / `### Unpredictability` |
+| 9.7 | [[Universal Hash Function]] empty; [[Special Functions]]' empty `### Prefix-Free` / `### Unpredictability` |
 | 9.11 | Adopt the `## Intuition` convention (nLab *Idea*), backfilled lazily |
-| 10.3 | The AHE near-duplicate pair — `Additively-Homomorphic Encryption` (information theory) vs `Additive-Homomorphic Encryption` (crypto). One letter apart, different folders |
-| 10.4 | `post-quantum/lattice-based/Lattice.md` has an **empty** `## Definition` and one trapdoor lemma → rename `Lattice Trapdoors`, link [[Lattices]] |
 | 10.6 | [[Unnormalized Gaussian Function]] is lattice-smoothing material filed under `set theory/function/` |
-| 10.7 | `Reviewing Paper` sits at the `knowledge/` root → `academic/` |
-| 10.8 | `math/theory/` is an empty directory. The four logic notes landed at `math/` root rather than `math/logic/` — pick one and delete the empty folder |
 | 10.9 | `physics/` — four quantum-optics notes, no MOC, no inbound links. Presumably QKD context |
-| 0.10 | Accidental links: `a` ×3, `b`, `c` in [[Secure Multi-party Computation]] |
 | 10.10 | `language/` mixes languages with tools and hardware — 50 of the 89 orphans live here | *parked* |
 
 ---
@@ -226,10 +277,10 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 | # | question | my recommendation |
 | --- | --- | --- |
 | 9.8b | Singular vs plural note names | Singular when the note defines one object; plural when it surveys a family. Settle before inbound links harden |
-| 2.13 | A `properties/compatibility/` family — `Translation Invariance`, `Order Compatibility` | Needed the moment `Ordered Field` exists, which [[Positive Definiteness]] and [[Triangle Inequality]] already presuppose. Not before |
+| 2.13 | A `property/compatibility/` family — `Translation Invariance`, `Order Compatibility` | Needed the moment `Ordered Field` exists, which [[Positive Definiteness]] and [[Triangle Inequality]] already presuppose. Not before |
 | 2.14 | `Lattice (Order Theory)` | Worth it — the one natural consumer [[Idempotence]] has, and where the operation and relation families provably coincide. Name it with the qualifier; [[Lattices]] is the geometric object |
-| 10.5 | Lattice problems are stated in math ([[Lattice Problem]]) and crypto (`SVP/`), with [[Discrete Logarithm Problem]] setting a third precedent in `cs/problems/` | Problem statement in math or cs; *hardness assumption* in crypto. Then the crypto SVP notes link out for the statement |
-| 9.13 | Garden publishing | Publish **dependency closures**, not lone notes — a composed definition renders broken to a visitor when its axiom links are unpublished. Candidates: the nine MOCs plus `properties/` |
+| 9.13 | Garden publishing | Publish **dependency closures**, not lone notes — a composed definition renders broken to a visitor when its axiom links are unpublished. Candidates: the nine MOCs plus `property/` |
+| R-D1 | Halting Problem: join the one catalog in `complexity/problem/`? | **No.** Undecidable problems are the subject of `computability/uncomputability/`, and a folder for them there is a kind, not a status. Decidable problems with a complexity status go to `complexity/problem/`. Revisit if `uncomputability/` stays at two notes |
 | 9.10 | Is `physics/` a domain or a subfolder of quantum computing? | Decide before it grows past a handful of notes |
 | V3 | Three names for the defining slot: `## Definition` (math), `## Syntax` (crypto interface), `## Scheme` (crypto instance) | **Keep all three, narrowly.** `## Syntax` is the literature's own word for exactly this and is already consistent across 28 notes; the interface/instance obligations really do differ. But three names for one idea is how conventions quietly stop being followed — if a fourth ever appears, collapse back to `## Definition` and let the callout type carry the level. I lean this way without arguing hard |
 
@@ -237,23 +288,23 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 
 # Appendix A — audit snapshot
 
-`python scripts/vault-lint.py`, 2026-09-02 · 548 notes in `knowledge/`.
+`python scripts/vault-lint.py`, 2026-09-24, end of day · 735 notes in `knowledge/`.
 
 ```
-broken=13  dupe=0  title=26  empty=38  hollow=115  orphan=95
+broken=10  anchor=1  field=1  dupe=0  title=58  empty=43  hollow=64  orphan=1  seed=0
 ```
 
-**broken (13)** — all genuine, none new. `Complexity Theory` ×4 (probably wants [[Complexity MOC]]) · `Non-Interactive Zero Knowledge` ×3 · `Extendable Output Function` ×2 · `Knowledge Extractor` ×2 (worth writing) · `Complex Hilbert Space` · `Interactive Zero Knowledge` · `Proof System` · `Non-Abelian Group` · `Zyalov Bound` (→ **Zyablov**) · `Zero-knowledge MOC` (task 8.9) · the `a`/`b`/`c` accidents (0.10). The dead `Function` link in [[Prime]] is gone — resolved by the `Function between Sets` → [[Function]] rename.
+Morning of the same day: `broken=21 dupe=1 title=58 empty=43 hollow=126 orphan=175` (anchor and field did not exist yet — the first run found 97 dead anchors and 5 unindexed fields).
 
-**dupe (0)** — clear.
+**broken (10)** — every one is a note you have not written yet: `Boolean Formula` · `Knowledge Extractor` ×2 · `Non-Interactive Zero Knowledge` ×3 · `Interactive Zero Knowledge` · `Extendable Output Function` ×2 · `Complex Hilbert Space` · `EPR State` · `Non-Abelian Group` · `Zyalov Bound` (→ **Zyablov**) · `Zero-knowledge MOC` (task 8.9).
 
-**orphan (94)** — `language/` ~50 (no MOC, task 10.10) · `cryptography/` ~17 · `math/` single digits · the rest scattered. Rising because new notes arrive faster than hubs absorb them, not decay.
+**anchor (1)** — [[Binary Operation Examples]] → `Binary Operation#Indexed Composition` (Assignment 4C). The other 96 were repaired: headings that had been renamed (`PRF Security` → `Definition`, `Semantic Security` → `Indistinguishability`) or promoted to notes (`Language#Recognizable` → [[Recognizable Language]], `Ring#Ideal` → [[Ideal]]).
 
-**title / empty / hollow** are *smells*, not errors. Real hits: [[Security Model]] (its only definition is BRKE — task 11.7) and the 38 empty notes, a genuine stub inventory.
+**field (1)** — [[Graph Non-Isomorphism]]'s `[[Complement Class]] of::` (Assignment 4G).
 
-Trend — orphans 163 → 73 → 64 → 89 → 94 → 97; broken 25 → 19 → 14 → 13 → **14**; duplicate names 1 → 0.
+**orphan (1)** — [[Random Note]], one byte in `cryptography/foundations/`. Delete it or say what it is for. Everything else is reachable from a hub: new [[Rings MOC]], [[Computability MOC]], [[AI MOC]], [[Physics MOC]]; the rest were top-ups.
 
-The broken count went *up* because the linter got sharper, not because the vault got worse: it used to resolve `[[daily/Temp/PPT]]` by basename and call it fine. Obsidian resolves any link containing a slash as a **path**, so `vault-lint.py` now does too. The 8 PPT links were dead all along — see **S2**.
+Trend — orphans 163 → 73 → 64 → 89 → 94 → 97 → 175 → **1**; broken 25 → 19 → 14 → 13 → 21 → **10**; duplicate names 1 → 0 → 1 → **0**.
 
 # Appendix B — completed
 
@@ -270,6 +321,8 @@ The broken count went *up* because the linter got sharper, not because the vault
 **Phase 10** 10.1 · 10.2
 **Phase 11** 11.1 · 11.2 · 11.3 · 11.4 · 11.6
 **Phase 12** Batch 0 · A1–A4 · **A6** *(eight set-operation definitions)* · A7 *(false set law)* · G2 · **Batch B** (B1 [[Relation]] rewritten heterogeneous-first; B2 `Function between Sets` → [[Function]], restructured with a partial-function variant; B4 odd/even → [[Calculus Functions]]) · **Batch C**, 9 of 11 (`Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity`, `Homomorphism`, `Distance Symmetry`, the `norm/` → `metric/` merge) · **E1** [[Connexity]] rename · **E2** `Basic Definition` → `Definition` (141 headings across 135 notes, 15 anchor links in 10 notes, two h3 promoted to h2)
+
+**Rearrangement 2026-09-24** Phases 0–5 of the full-vault review (70 moves, three renames, see *What moved*) · M1 · 9.6 · 9.6b · 7.2b · the anchor and field checks (96 anchors, 4 fields repaired) · S2 · 0.10 · 10.3 (move; merge is R4) · 10.4 · 10.5 · 10.7 · 10.8 · the `Pseudorandom Functionsss` half of 9.7
 
 **Findings closed:** C1–C5 · D1–D13 · E1 · E3–E9 · F2–F7 · N5 · N6 · N9 · N11 · N13
 

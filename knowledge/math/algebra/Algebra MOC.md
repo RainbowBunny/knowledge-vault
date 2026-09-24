@@ -4,7 +4,7 @@ Index for `math/algebra/`. Organised by **what kind of thing** a note defines: a
 
 ## Axioms
 
-- [[Math Properties MOC]] — the axiom library in `math/properties/`. Structures below are *defined by linking into it*, not by restating it
+- [[Math Properties MOC]] — the axiom library in `math/property/`. Structures below are *defined by linking into it*, not by restating it
 
 ## Structures
 
@@ -12,12 +12,13 @@ Index for `math/algebra/`. Organised by **what kind of thing** a note defines: a
 
 | folder                        | notes                                                                                                 |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `set theory/`                 | [[Set]], [[Set Foundation]], [[Function]], `relations/`, `functions/` — see [Set theory](#set-theory) |
-| **[[Groups MOC\|`groups/`]]** | [[Group]] and its 13-note subtree                                                                     |
-| `rings/`                      | [[Ring]], [[Commutative Ring]]                                                                        |
-| `fields/`                     | [[Field]] — axioms, integral domains, characteristic, finite fields                                   |
-| `polynomial/`                 | [[Polynomial]], [[Multivariate Polynomial]], [[Vanishing Polynomial]], [[Lagrange Interpolation]]     |
-| `lattices/`                   | see [Lattices](#lattices)                                                                             |
+| `set theory/`                 | [[Set]], [[Set Foundation]], [[Function]], `relation/`, `function/` — see [Set theory](#set-theory) |
+| **[[Groups MOC\|`group/`]]** | [[Group]] and its 13-note subtree                                                                     |
+| **[[Rings MOC\|`ring/`]]**   | [[Ring]] and its subtree — special rings, ideals, modules, examples                                   |
+| `field/`                      | [[Field]] — axioms, integral domains, characteristic, finite fields                                   |
+| `polynomial/`                 | [[Polynomial]], [[Multivariate Polynomial]], [[Multilinear Polynomial]], [[Polynomial Ring]], [[Quotient of Polynomial Ring]], [[Vanishing Polynomial]], [[Lagrange Interpolation]] |
+| `action/`                     | [[Group Action]] — see [[Groups MOC]]                                                                 |
+| `lattice/`                    | see [Lattices](#lattices)                                                                             |
 | `elliptic curve/`             | [[Elliptic Curve MOC]]                                                                                |
 
 ### The closure hierarchy
@@ -41,8 +42,8 @@ Outside the hierarchy: [[Algebra Structure]] — quaternions, octonions, the Fro
 - [[Set]] — objects, notation, operations, the algebra of $\cup$ / $\cap$
 - [[Set Foundation]] — cardinality, countability, Russell's paradox
 - [[Function]] — image, restriction, composition, injective / surjective / bijective, and the proof that in $\mathsf{Set}$ injective ⟺ mono and surjective ⟺ epi
-- `relations/` — [[Relation]], [[Equivalence Relation]], [[Quotient Relation]], [[Preorder]], [[Partial Order]], [[Total Order]]
-- `functions/` — [[Identity Function]], [[Unnormalized Gaussian Function]]
+- `relation/` — [[Relation]], [[Equivalence Relation]], [[Quotient Relation]], [[Preorder]], [[Partial Order]], [[Total Order]]
+- `function/` — [[Identity Function]], [[Unnormalized Gaussian Function]]
 
 ### Lattices
 
@@ -51,10 +52,10 @@ The geometric lattice — a discrete additive subgroup of $\mathbb R^n$ — not 
 - [[Lattices]] — definition, bases, determinant
 - [[Lattice Problem]] — apprSVP, SIVP, Approx-SIVP
 - [[Lattice Bounds]] — Hermite, Hadamard ratio, Minkowski, the Gaussian heuristic
-- [[Babai's Algorithm]], [[LLL-Based Approximate CVP algorithm]]
+- [[LLL Lattice Reduction Algorithm]], [[Babai's Algorithm]], [[LLL-Based Approximate CVP algorithm]]
 - [[Lattice Gadget Algorithm]], [[Lattice Smoothing]]
 
-Downstream: [[Lattice]] and [[LLL Lattice Reduction Algorithm]] in `cryptography/post-quantum cryptography/`, and the whole of `assumptions/lattice-based/`.
+Downstream: [[Lattice Trapdoor]] in `cryptography/special function/trapdoor function/`, the worst-case lattice problems ([[Shortest Vector Problem]], [[Closest Vector Problem]], [[Shortest Basis Problem]]) in `complexity/problem/lattice/`, and the whole of `assumptions/lattice-based/`.
 
 ## Linear structures
 
@@ -69,9 +70,10 @@ Downstream: [[Lattice]] and [[LLL Lattice Reduction Algorithm]] in `cryptography
 - [[Category]] — objects, $\mathrm{Hom}$-sets, composition. Axioms 3 and 4 are [[Associativity]] and [[Identity Element]] for a **partial** operation
 - [[Opposite Category]] — and the duality principle
 - [[Morphism]] — endo / auto as variants; mono / epi / iso as properties
-- [[Universal Property]] — initial and final objects, products, coproducts
+- [[Universal Property]] — initial and final objects, products, coproducts; [[Categorical Product]] · [[Categorical Coproduct]]
 - [[Groupoid]] — a category in which every morphism is an isomorphism
-- `example/` — [[Category Set]], [[Category Group]]
+- `example/` — [[Category Set]] · [[Category Power Set]] · [[Slice Category]] · [[Coslice Category]] · [[Quotient Category]] · [[Equivalence Category]]
+- categories of the structures above, filed with them: [[Category Group]] · [[Category Abelian]] · [[Category G-Set]] · [[Category Ring]] · [[Commutative Ring Category]] · [[Category R-Mod]] · [[Category R-Alg]]
 
 ## Geometric / number-theoretic
 
@@ -82,7 +84,7 @@ Downstream: [[Lattice]] and [[LLL Lattice Reduction Algorithm]] in `cryptography
 - **To [[Math Properties MOC]]** — every structure definition on this page resolves there
 - **From `cryptography/`** — [[Bilinear Pairings]] → pairing-based encoding; [[Field]] → every scheme over $\mathbb F_q$; [[Lattices]] → lattice assumptions
 - **From `information theory/`** — [[Code Distance]] and [[Rank Metric Codes]] draw on the norm axioms
-- **From `cs/`** — [[Polynomial]] and [[Lagrange Interpolation]] → `verifiable computing/relations/arithmetization/`
+- **To `cryptography/verifiable computing/`** — [[Polynomial]] and [[Lagrange Interpolation]] feed `relation/arithmetization/`
 
 ## References
 

@@ -9,7 +9,7 @@ Reference:
 ## Property
 
 > [!theorem]
-> Requires: [[Class DTIME]], [[Class SPACE]].
+> Requires:: [[Class DTIME]], [[Class SPACE]].
 > 
 > ---
 > For every [[Computable Function|Space Constructible]] $S: \mathbb{N} \rightarrow \mathbb{N}$,

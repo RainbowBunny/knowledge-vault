@@ -81,7 +81,7 @@
 > [!algorithm] Fischlin's Blind Signature
 > Building blocks:
 > 1. A hash function $H: \{0, 1\}^* \rightarrow \mathbb Z_q^n$ that will be modeled as random oracle in the unforgeability proof.
-> 2. A [[Public-Key Encryption#Chosen Plaintext Attack Security|CPA security]] [[Public-Key Encryption|PKE]] scheme $\text{PKE}$ that is perfectly correct.
+> 2. A [[Public-Key Encryption#Indistinguishability|CPA security]] [[Public-Key Encryption|PKE]] scheme $\text{PKE}$ that is perfectly correct.
 > 3. A $\text{NIZKAoK}$ for the statement $$||y|| \leq \beta \land Cy = H(\text{Enc}(\text{PKE.pk}, \mu; r)).$$
 > 
 > Scheme:
@@ -106,7 +106,7 @@
 > Assume that $\text{SIS}_{q, n, m, 2 \beta}$ is hard and the $\text{NIZKAoK}$ is knowledge sound. Then the blind signature scheme is [[#One More Unforgeability|one more unforgeable]] in the random oracle model.
 
 > [!theorem]
-> Assume that [[Public-Key Encryption|PKE]] is [[Public-Key Encryption#Chosen Plaintext Attack Security|CPA security]] secure and the (?) is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
+> Assume that [[Public-Key Encryption|PKE]] is [[Public-Key Encryption#Indistinguishability|CPA security]] secure and the (?) is zero-knowledge. Then the blind signature scheme satisfies honest signer blindness.
 
 ### From One-More-ISIS
 

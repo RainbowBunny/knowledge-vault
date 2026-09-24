@@ -49,4 +49,4 @@ These theorems are what make complexity theory *non-vacuous* unconditionally. Ma
 - [[Complexity Class]] — the inclusion lattice that hierarchy theorems make non-trivial
 - [[Time Complexity]] — TIME(t), the resource bound
 - [[Space Complexity]] — SPACE(s), the resource bound
-- [[Oracle Machines]] — relativization, the technique that *fails* for some separations
+- [[Oracle Turing Machine|Oracle Machines]] — relativization, the technique that *fails* for some separations

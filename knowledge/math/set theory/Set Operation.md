@@ -11,7 +11,7 @@ Reference:
 > The $n$-fold product $A_1 \times \cdots \times A_n$ consists of $n$-tuples; $A^n$ abbreviates the $n$-fold product of $A$ with itself.
 
 > [!remark] Why this definition carries the vault
-> Every Scope line in `properties/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
+> Every Scope line in `property/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
 
 ### Union
 

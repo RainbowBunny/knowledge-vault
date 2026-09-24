@@ -81,7 +81,7 @@ Whether $\text{P} = \text{BPP}$ is the *derandomization conjecture* — widely b
 ## Related
 
 - [[Time Complexity]] / [[Space Complexity]] — deterministic resource bounds
-- [[Interactive Proofs]] — IP uses probabilistic verification
-- [[Circuit Complexity]] — non-uniform analog (polynomial-size circuits can simulate BPP)
+- [[Class IP|Interactive Proofs]] — IP uses probabilistic verification
+- [[Boolean Circuit|Circuit Complexity]] — non-uniform analog (polynomial-size circuits can simulate BPP)
 - [[Derandomization Conjecture]] — P vs BPP
 - The PPT definition above is what every cryptography security definition references with "PPT adversary"

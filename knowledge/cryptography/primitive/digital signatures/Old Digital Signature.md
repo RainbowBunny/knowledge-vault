@@ -13,8 +13,8 @@
 
 | Term                                                  | Reference                                                  |                   |
 | ----------------------------------------------------- | ---------------------------------------------------------- | ----------------- |
-| Attack Game 13.1 (Signature Security)                 | [[#Secure Signatures\|signature security]]                 | $\text{SIGadv}$   |
-| Attack Game 13.2 (Strongly Secure Signature Security) | [[#Secure Signatures\|strongly secure signature security]] | $\text{stSIGadv}$ |
+| Attack Game 13.1 (Signature Security)                 | [[Old Digital Signature#Unforgeability\|signature security]]                 | $\text{SIGadv}$   |
+| Attack Game 13.2 (Strongly Secure Signature Security) | [[Old Digital Signature#Unforgeability\|strongly secure signature security]] | $\text{stSIGadv}$ |
 
 - A security parameter k, which is chosen by the user when he creates his public and secret keys. The parameter k determines a number of quantities (length of signatures, length of signable messages, running time of the signing algorithm, overall security, etc). 
 - A message space M,which is the set of messages to which the signature algorithm may be applied. Without loss of generality, we assume in this paper that all messages are represented as binary strings, that is, {0, 1}/. To ensure that the entire signing process is polynomial in the security parameter, we assume that the length of the messages to be signed is bounded by kc, for some constant c > 0. 
@@ -90,7 +90,7 @@
 > [!theorem]
 > Suppose the signature scheme $\mathcal S$ is secure and the hash function $H$ is collision resistant. Then the derived signature scheme $\mathcal S' = (G, S', V')$ is a secure signature.
 > 
-> In particular, suppose $\mathcal A$ is a signature adversary in [[#Secure Signatures|signature security]]. Then there exist an efficient signature adversary $\mathcal B_{\mathcal S}$ and an efficient collision finder $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S'] \leq \text{SIGadv}[\mathcal B_{\mathcal S}, \mathcal S] + \text{CRadv}[\mathcal B_H, H]$$
+> In particular, suppose $\mathcal A$ is a signature adversary in [[Old Digital Signature#Unforgeability|signature security]]. Then there exist an efficient signature adversary $\mathcal B_{\mathcal S}$ and an efficient collision finder $\mathcal B_H$, which are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S'] \leq \text{SIGadv}[\mathcal B_{\mathcal S}, \mathcal S] + \text{CRadv}[\mathcal B_H, H]$$
 
 ### TCR Functions
 
@@ -102,7 +102,7 @@
 > [!theorem]
 > Suppose $\mathcal S = (G, S, V)$ is a secure signature scheme and the hash function $H$ is TCR. Then the derived signature scheme $S' = (G, S', V')$ is secure.
 > 
-> In particular, for every signature adversary $\mathcal A$ in [[#Secure Signatures|signature security]] that issues at most $Q$ signing queries, there exist an efficient signature adversary $\mathcal B_{\mathcal S}$ and an efficient TCP adversary $\mathcal B_H,$ which are elementary wrapper around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S'] \leq \text{SIGadv}[\mathcal B_{\mathcal S}, \mathcal S] + Q \cdot \text{TCRadv}[\mathcal B_{H}, H].$$ 
+> In particular, for every signature adversary $\mathcal A$ in [[Old Digital Signature#Unforgeability|signature security]] that issues at most $Q$ signing queries, there exist an efficient signature adversary $\mathcal B_{\mathcal S}$ and an efficient TCP adversary $\mathcal B_H,$ which are elementary wrapper around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S'] \leq \text{SIGadv}[\mathcal B_{\mathcal S}, \mathcal S] + Q \cdot \text{TCRadv}[\mathcal B_{H}, H].$$ 
 
 ## Signatures from Trapdoor Permutations
 
@@ -180,7 +180,7 @@
 > [!algorithm] General Lamport Framework
 > ### Building Block
 > - One-way function $f$ defined over $(\mathcal X, \mathcal Y)$.
-> - [[Pseudorandom Functionsss#PRF Security|Secure PRF]] $F$.
+> - [[Pseudorandom Function#Definition|Secure PRF]] $F$.
 > - Function $P$
 > 
 > ---
@@ -201,7 +201,7 @@
 > 	3. If $\ell = u$ and $f(\sigma_i) = y_{s_i}$ for all $i = 1, \dots, \ell$ then output $\text{accept}$, else $\text{reject}$.
 
 > [!theorem]
-> Suppose $f$ is a one-way hash over $(\mathcal X, \mathcal Y)$ and $F$ is a [[Pseudorandom Functionsss#PRF Security|secure PRF]] defined over $(\mathcal K, \{1, \dots, n\}, \mathcal X)$. Let $P$ be a containment free function from $\mathcal M$ to subsets of $\{1, \dots, n\}$. Then $\mathcal S_P$ is a secure one-time signature for messages in $\mathcal M$.
+> Suppose $f$ is a one-way hash over $(\mathcal X, \mathcal Y)$ and $F$ is a [[Pseudorandom Function#Definition|secure PRF]] defined over $(\mathcal K, \{1, \dots, n\}, \mathcal X)$. Let $P$ be a containment free function from $\mathcal M$ to subsets of $\{1, \dots, n\}$. Then $\mathcal S_P$ is a secure one-time signature for messages in $\mathcal M$.
 > In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_P$ that issues at most one signature query. Then there exist an efficient adversary $\mathcal B_f$ attacking the one-wayness of $f$, and a PRF adversary $\mathcal B_F$, where $\mathcal B_f$ and $\mathcal B_F$ are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_P] \leq n \cdot \text{OWadv}[\mathcal B_f, f] + \text{PRFadv}[\mathcal B_F, F]$$
 
 ### Winternitz Signatues
@@ -230,7 +230,7 @@
 > 	5. If $H(\hat{y}) = pk$ output $\text{accept}$, otherwise output $\text{reject}$.
 
 > [!theorem]
-> Let $f$ be a [[Trapdoor Functions#One-way on $d$ iterates|one-way function on d iterates]] defined over $(\mathcal X, \mathcal X)$. Let $G_{prg}$ be a [[Pseudorandom Generators#Secure PRG|secure PRG]] over $(\mathcal S, \mathcal X^n)$, let $H$ be [[Hash Function#Collision Resistance|collision resistant]] over $(\mathcal X^n, \mathcal T)$, and let $P: \mathcal M \rightarrow I_n^d$ be [[Cryptographically Special Function#Domination Free Function|dominaiton free]]. Then the Winternitz scheme $\mathcal S_{win}$ is a secure one-time signature for messages in $\mathcal M$.
+> Let $f$ be a [[Trapdoor Functions#One-way on $d$ iterates|one-way function on d iterates]] defined over $(\mathcal X, \mathcal X)$. Let $G_{prg}$ be a [[Pseudorandom Generators#Secure PRG|secure PRG]] over $(\mathcal S, \mathcal X^n)$, let $H$ be [[Hash Function#Definition|collision resistant]] over $(\mathcal X^n, \mathcal T)$, and let $P: \mathcal M \rightarrow I_n^d$ be [[Cryptographically Special Function#Domination Free Function|dominaiton free]]. Then the Winternitz scheme $\mathcal S_{win}$ is a secure one-time signature for messages in $\mathcal M$.
 > In particular, suppose $\mathcal A$ is a signature adversary attacking $\mathcal S_{win}$ that issues at most one signature query. Then there exist efficient adversaries $\mathcal B_f, \mathcal B_G, \mathcal B_H$, where all three are elementary wrappers around $\mathcal A$, such that $$\text{SIGadv}[\mathcal A, \mathcal S_{win}] \leq nd \cdot \text{iOWadv}[\mathcal B_f, f, d] + \text{PRGadv}[\mathcal B_G, G_{prg}] + \text{CRadv}[\mathcal B_H, H]$$
 
 ## Concrete Signature Schemes

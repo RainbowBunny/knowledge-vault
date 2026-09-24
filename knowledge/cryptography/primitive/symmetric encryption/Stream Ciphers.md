@@ -8,7 +8,7 @@
 > [!theorem]
 > If $G$ is a secure PRG, then the stream cipher $\mathcal E$ constructed from $G$ is a semantically secure cipher.
 > 
-> In particular, for every [[Symmetric Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[#Pseudo-Random Generators|secure PRG]] adversary $\mathcal B$ that attacks $G$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSAdv}[\mathcal A, \mathcal E] = 2 \cdot \text{PRGadv}[\mathcal B, \mathcal E].$$
+> In particular, for every [[Symmetric Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Generators#Secure PRG|secure PRG]] adversary $\mathcal B$ that attacks $G$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSAdv}[\mathcal A, \mathcal E] = 2 \cdot \text{PRGadv}[\mathcal B, \mathcal E].$$
 
 ### Construction from Block Cipher
 
@@ -17,7 +17,7 @@
 > - For $k \in \mathcal K$ and $m \in \mathcal X^{\leq \ell}$, with $v = |m|$, we define $$E'(k, m) = (E(k, \langle 0 \rangle_n) \oplus m[0], \dots, E(k, \langle v - 1 \rangle_n) \oplus m[v - 1]).$$
 > - For $k \in \mathcal K$ and $c \in \mathcal X^{\leq \ell}$, with $v = |m|$, we define $$D'(k, c) = (D(k, \langle 0 \rangle_n) \oplus c[0], \dots, D(k, \langle v - 1 \rangle_n) \oplus c[v - 1]).$$
 > 
-> This mode of operation of a block cipher is called **deterministic counter mode**. In particular, for any efficient [[#Semantic Security|semantic security]] adversary $\mathcal A$, there exists an [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal B$ such that $$\text{SSadv}[\mathcal A, \mathcal E'] \leq 2 \cdot \text{BCadv}[\mathcal B, \mathcal E] + \ell^2/N.$$
+> This mode of operation of a block cipher is called **deterministic counter mode**. In particular, for any efficient [[Symmetric Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$, there exists an [[Block Ciphers#Secure Block Cipher|secure block cipher]] adversary $\mathcal B$ such that $$\text{SSadv}[\mathcal A, \mathcal E'] \leq 2 \cdot \text{BCadv}[\mathcal B, \mathcal E] + \ell^2/N.$$
 
 ## Limitations
 

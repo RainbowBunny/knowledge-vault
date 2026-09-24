@@ -23,4 +23,4 @@ Reference:
 ### Product
 
 > [!proposition]
-> With operation defined component-wise, $G \times H$ is a [[Universal Property#Products|Product]] in $\mathsf{Grp}$.
+> With operation defined component-wise, $G \times H$ is a [[Categorical Product|Product]] in $\mathsf{Grp}$.

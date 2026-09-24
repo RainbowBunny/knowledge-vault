@@ -18,12 +18,12 @@ Every piece of knowledge is one of five kinds:
 | kind | what it is | lives in | examples |
 | --- | --- | --- | --- |
 | **Object** | the raw typed things | `math/set theory/` | [[Relation]], [[Binary Operation]], [[Function]] |
-| **Property** | one axiom, stated once, in the Scope / Condition / Property shape | `math/properties/`, `proof/properties/` | [[Associativity]], [[Soundness]] |
+| **Property** | one axiom, stated once, in the Scope / Condition / Property shape | `math/property/`, `verifiable computing/property/` | [[Associativity]], [[Soundness]] |
 | **Structure / scheme** | object + chosen properties, **composed by links** | `structures/`, `primitive/`, `proof/` | [[Group]], [[Non-interactive ARGument]] |
 | **Bridge** | a *translation* — two representations of the same thing, stated as an equivalence | wherever its ends are | [[R1CS to QAP Reduction]], [[Statistical Distance]] ↔ [[Indistinguishability]] |
 | **Transform** | a *construction* — give it an $X$, it builds a $Y$. One direction, and it costs a loss factor | filed under the **output** | [[Fiat-Shamir Transform]], [[Fujisaki-Okamoto Transformation]] |
 
-A definition *links* its axioms and never restates them. `## Syntax` in a crypto note and `### Scope` in a math note are the same slot. Bridge and Transform are told apart by the **loss factor**: an equivalence is a bridge, a multiplicative constant in the theorem is a transform. A transform's inputs sit in its `Building Blocks` block, universally quantified, and each one must reappear in `## Security` as a hypothesis. A property becomes an axiom only when a definition requires it — which is why the folder is `properties/`, not `axioms/`.
+A definition *links* its axioms and never restates them. `## Syntax` in a crypto note and `### Scope` in a math note are the same slot. Bridge and Transform are told apart by the **loss factor**: an equivalence is a bridge, a multiplicative constant in the theorem is a transform. A transform's inputs sit in its `Building Blocks` block, universally quantified, and each one must reappear in `## Security` as a hypothesis. A property becomes an axiom only when a definition requires it — which is why the folder is `property/`, not `axiom/`.
 
 Formal systems (first-order logic, equational logic, type theory, security games) are **content, not the medium**: the vault is written in informal-rigorous prose, states each concept once in its home system, and writes bridges where representations meet. Conflicts between systems are resolved by one remark at the boundary where they bite.
 
@@ -34,7 +34,7 @@ The crypto side's `## Syntax` / `## Scheme` split is one case of a pattern that 
 | Lean | vault | example |
 | --- | --- | --- |
 | `class` with data | a **structure** note — carriers, operations, axioms | [[Ring]], [[Public-Key Encryption]], [[Metric Space]] |
-| `class … : Prop` — a **mixin**, one axiom, no data | a note in `properties/` | [[Associativity]], [[Cancellativity]], [[Soundness]] |
+| `class … : Prop` — a **mixin**, one axiom, no data | a note in `property/` | [[Associativity]], [[Cancellativity]], [[Soundness]] |
 | `extends` | **`Extends:`** — this interface *is* that one, plus a condition | [[Group]] over [[Monoid]]; [[Argument Systems]] over [[Interactive Proof Systems]] |
 | `instance` | **`Instantiates:`** — a concrete witness | [[Polynomial Ring]] : [[Ring]]; [[Kyber PKE]] : [[Public-Key Encryption]] |
 | a `def` on structures | a **Transform** note | [[Fiat-Shamir Transform]], [[Fujisaki-Okamoto Transformation]] |
@@ -42,9 +42,9 @@ The crypto side's `## Syntax` / `## Scheme` split is one case of a pattern that 
 | `variable` / arguments | the `Setting` block, or the `### Scope` line | $R_q$; a group $\mathbb G$ of prime order |
 | `Iff` | a **Bridge** | [[R1CS to QAP Reduction]] |
 
-The strongest part is the middle row, because it is not an analogy: `properties/` **is** the mixin folder. Mathlib defines `IsDomain` as a `Prop` mixin extending `IsCancelMulZero` and `Nontrivial` — which is exactly *a nonzero ring whose nonzero elements are cancellative*, the composed definition of [[Integral Domain]] this vault already wants. Independent convergence is the best evidence the shape is right. **[Standard]**
+The strongest part is the middle row, because it is not an analogy: `property/` **is** the mixin folder. Mathlib defines `IsDomain` as a `Prop` mixin extending `IsCancelMulZero` and `Nontrivial` — which is exactly *a nonzero ring whose nonzero elements are cancellative*, the composed definition of [[Integral Domain]] this vault already wants. Independent convergence is the best evidence the shape is right. **[Standard]**
 
-It also says when to stop: **a mixin declares no carriers.** If a note in `properties/` starts introducing a set or an operation of its own, it has become a class and belongs in `structures/`.
+It also says when to stop: **a mixin declares no carriers.** If a note in `property/` starts introducing a set or an operation of its own, it has become a class and belongs in `structures/`.
 
 ### Carried by four fields, not by rewriting
 
@@ -61,7 +61,7 @@ Reference:    <source>
 
 ### Where the analogy does not reach
 
-- **Most of the vault is not a structure.** About 200 of 557 notes are — `math/properties/`, `math/algebra/structures/`, `math/set theory/`, `cryptography/primitive/`, `verifiable computing/`. The other ~350 are *problems* (SVP, discrete log), *algorithms* (LLL, the `cs/` notes), *theorems*, hubs, language references and narrative. A problem is not a class; do not give it an `Instantiates:` line to be consistent.
+- **Most of the vault is not a structure.** About 200 of 557 notes are — `math/property/`, `math/algebra/structures/`, `math/set theory/`, `cryptography/primitive/`, `verifiable computing/`. The other ~350 are *problems* (SVP, discrete log), *algorithms* (LLL, the `cs/` notes), *theorems*, hubs, language references and narrative. A problem is not a class; do not give it an `Instantiates:` line to be consistent.
 - **There is no instance resolver here.** Lean spends real machinery on diamonds — [[Field]] inherits [[Ring]] by two routes and the compiler reconciles them. In prose those are just two links, and the shared ancestor is invisible. Copying `extends` without a resolver means noticing diamonds is *your* job.
 - **Skip the bundled/unbundled question entirely.** It is an artefact of Lean's elaborator, not a fact about mathematics.
 
@@ -101,7 +101,7 @@ Notes meant for sharing open with an `## Intuition` section (nLab's *Idea*) — 
 
 ## When lost
 
-1. Enter through a hub: [[Math MOC]] · [[Cryptography MOC]] · [[Complexity MOC]] · [[CS MOC]] · [[Information Theory MOC]] · [[Security MOC]].
+1. Enter through a hub: [[Math MOC]] · [[Cryptography MOC]] · [[Complexity MOC]] · [[Computability MOC]] · [[Algorithms MOC]] · [[Information Theory MOC]] · [[Security MOC]].
 2. Learning something new: name its **objects** → search each → backlinks show everything already known → file what is missing as leaf notes → add one line to the right MOC → if it translates between representations, write the **bridge**.
 3. **Writing a note?** [[Note Layouts]] has every skeleton, a *which layout?* table, and the slot glossary; insertable copies are in `templates/` as `layout-*`. Practice sets live in [[Assignments]].
 4. Notation lives in [[Tag System]]; the object → axiom → structure spine is mapped in [[Foundation Layer]] and its crypto counterpart in [[Cryptography Layer]]; live work — and how to hand it back to Claude — is in [[Vault Refactoring Plan]].

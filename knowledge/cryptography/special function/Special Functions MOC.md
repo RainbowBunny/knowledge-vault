@@ -1,6 +1,6 @@
 # Special Functions MOC
 
-Index for `cryptography/special functions/` — the function families cryptography is built out of, and the property vocabulary they share.
+Index for `cryptography/special function/` — the function families cryptography is built out of, and the property vocabulary they share.
 
 The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathcal F\}_\lambda$ plus a set of properties. Each family below is that same object with a different subset of properties demanded — the same compositional move [[Non-Interactive Proof Systems]] makes for proof systems.
 
@@ -18,12 +18,12 @@ The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathca
 | family | demands |
 | --- | --- |
 | [[One-Way Functions]] | easy to compute, hard to invert |
-| [[Compression Functions]] | compressing + collision-resistant — [[Inefficient Compression Function]] |
+| [[Compression Functions]] | compressing + collision-resistant — [[Inefficient Compression Function]], [[Syndrome Based Compression Function]], [[Fast Syndrome Based Compression Function]] |
 | [[Hash Function]] | compressing + collision-resistant, on arbitrary-length input — [[Keccak]] |
-| [[Universal Hash Function]] | a statistical, not computational, collision guarantee |
-| [[Pseudorandom Functions]] | keyed, pseudorandom — [[Puncturable Pseudorandom Function]] |
+| [[Universal Hash Function]] | a statistical, not computational, collision guarantee — [[Pairwise Independent Hash Function]] |
+| [[Pseudorandom Function]] | keyed, pseudorandom — [[Puncturable Pseudorandom Function]] |
 | [[Trapdoor Functions]] | one-way, invertible with a secret |
-| [[Pseudorandom Generators]] | `pseudorandom/`; stretches a seed |
+| [[Pseudorandom Generators]] | `pseudorandom generator/`; stretches a seed |
 
 ## Cross-domain
 
@@ -33,6 +33,5 @@ The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathca
 - **To [[Cryptanalysis MOC]]** — [[Collision Algorithms]] attack exactly the collision-resistance property
 
 > [!todo] Housekeeping
-> `pseudorandom functions/Pseudorandom Functionsss.md` is a typo'd duplicate of [[Pseudorandom Functions]] — merge or delete.
 > [[Universal Hash Function]] is empty.
 > [[Special Functions]] has empty `### Prefix-Free` and `### Unpredictability` headings.

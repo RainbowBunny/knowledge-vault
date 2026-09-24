@@ -4,7 +4,7 @@
 >  An integer $p$ is called a **prime** if $p \geq 2$ and if the only positive integers dividing $p$ are $1$ and $p$.
 
 > [!remark]
-> $\text{COMPOSITES} = \{x | x = pq, \text{ for integer } p, q > 1\}$ is in [[Complexity Theory#Class NP|Class NP]]
+> $\text{COMPOSITES} = \{x | x = pq, \text{ for integer } p, q > 1\}$ is in [[Class NP]]
 
 > [!proposition] 
 Let $p$ be a prime number, and suppose that $p$ divides the product $ab$ of two integers $a$ and $b$. Then $p$ divides at least one of $a$ and $b$. More generally, if $p$ divides a product of integers: $$p \mid a_1 a_2 \cdots a_n$$then $p$ divides at least one of the individual $a_i$.
@@ -155,7 +155,7 @@ If $p$ is prime, then the set $\mathbb Z / p \mathbb Z$ of integers modulo $p$ w
 > [!proposition]
 > Riemann hypothesis is equivalent to the following more accurate statement:
 > $$\pi(X) = \int_2^X \frac{dt}{\ln t} + \mathcal O(\sqrt{X} \cdot \ln (X))$$
-> So because of the properties of the [[Function#Logarithmic Integral|Logarithmic Integral]], we have $\pi(X) = X / \ln X$
+> So because of the properties of the [[#Logarithmic Integral|Logarithmic Integral]], we have $\pi(X) = X / \ln X$
 
 > [!example]
 > $$\Pr(N \text{ primes } \mid N \equiv k \pmod m) \approx \frac{m}{\phi(m) \ln N}$$

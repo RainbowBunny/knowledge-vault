@@ -1,10 +1,10 @@
 # Math Properties MOC
 
-Index for `math/properties/` — the axiom library.
+Index for `math/property/` — the axiom library.
 
 Every note here states **one** property, in one place, in the same shape. Structures elsewhere in the vault are then defined by *linking* to these rather than restating them: a [[Group|group]] is a set with an operation satisfying [[Associativity]] + [[Identity Element]] + [[Inverse Element]], and nothing about associativity is written twice.
 
-The library is deliberately **not** under `algebra/` — relation axioms are order theory, metric axioms are analysis, and `information theory/code-based/` needs the metric axioms too.
+The library is deliberately **not** under `algebra/` — relation axioms are order theory, metric axioms are analysis, and `information theory/coding theory/` needs the metric axioms too.
 
 ## The pattern
 
@@ -22,7 +22,7 @@ Every structure in the vault has the same three parts: a **carrier**, some **add
 So an ordered set $(S, \leq)$ is the same *kind* of thing as a group $(S, \star)$ — a carrier with data and axioms. Order theory is not a different pattern; it is this pattern with a relation in the data slot instead of an operation.
 
 > [!remark] Where a genuinely different family appears
-> **Compatibility axioms.** An *ordered group* or *ordered field* carries an operation **and** an order, plus axioms linking them — $a \leq b \Rightarrow a + c \leq b + c$, and $0 \leq a, 0 \leq b \Rightarrow 0 \leq ab$. Those constrain the *interaction*, so they belong to neither `operation/` nor `relation/`. The vault already depends on them: [[Positive Definiteness]] writes $\lVert x \rVert \geq 0$ and [[Triangle Inequality]] writes $\leq$, both presupposing that $\mathbb R$ is an ordered field. A `properties/compatibility/` folder is the place for these when they are needed.
+> **Compatibility axioms.** An *ordered group* or *ordered field* carries an operation **and** an order, plus axioms linking them — $a \leq b \Rightarrow a + c \leq b + c$, and $0 \leq a, 0 \leq b \Rightarrow 0 \leq ab$. Those constrain the *interaction*, so they belong to neither `operation/` nor `relation/`. The vault already depends on them: [[Positive Definiteness]] writes $\lVert x \rVert \geq 0$ and [[Triangle Inequality]] writes $\leq$, both presupposing that $\mathbb R$ is an ordered field. A `property/compatibility/` folder is the place for these when they are needed.
 
 > [!remark] Where the two families merge
 > An **order-theoretic lattice** is simultaneously a [[Partial Order|poset]] with meets and joins, *and* an algebraic structure with two [[Idempotence|idempotent]], [[Commutativity|commutative]], [[Associativity|associative]] operations satisfying absorption — the two definitions are equivalent. It is the cleanest demonstration that operation axioms and relation axioms describe one thing from two sides. *(Name it `Lattice (Order Theory).md` when it exists — [[Lattices]] here is the geometric object.)*
@@ -39,7 +39,7 @@ Each note is a single `[!definition]` callout with the same three parts:
 
 Consequences do **not** live here. "Inverses are unique" is a theorem of associativity and belongs in [[Group]]; this library states only what is assumed.
 
-A **property** is what an object may have; an **axiom** is a property a definition chooses to require. These notes state properties — [[Abelian Group]] is what turns [[Commutativity]] into an axiom. That is why the folder is `properties/` and not `axioms/`, and why `verifiable computing/proof/properties/` on the cryptography side follows the same shape.
+A **property** is what an object may have; an **axiom** is a property a definition chooses to require. These notes state properties — [[Abelian Group]] is what turns [[Commutativity]] into an axiom. That is why the folder is `property/` and not `axiom/`, and why `verifiable computing/property/` on the cryptography side follows the same shape.
 
 ## Operation axioms
 
@@ -52,6 +52,7 @@ Scope: a binary operation $\star: O \times O \to O$.
 - [[Inverse Element]]
 - [[Distributivity]] — the one two-operation axiom
 - [[Idempotence]]
+- [[Absorption]] — the two-operation law $a \wedge (a \vee b) = a$ of lattices and Boolean algebras
 - [[Alternativity]] — left / right alternative; weaker than associativity, satisfied by the octonions
 
 Structures: [[Magma]] → [[Semigroup]] → [[Monoid]] → [[Group]] → [[Abelian Group]] → [[Ring]] → [[Commutative Ring]] → [[Field]]. The closure table lives in [[Algebra MOC]], with the structures it indexes.
@@ -97,7 +98,7 @@ Scope: a map between structured sets.
 Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphism]], [[Split-R1CS]], [[Function]], [[Subgroup]].
 
 > [!remark] One structure-preserving map per family
-> Algebra has [[Homomorphism|homomorphisms]], orders have [[Monotonicity|monotone maps]], categories have functors. A [[Morphism|morphism]] is *not* one of these: it is an arrow in an abstract [[Category]] and need not be a function at all. The two coincide only in a **concrete** category — which is what licenses [[Group Homomorphism]] to import [[Morphism#Isomorphisms|iso]].
+> Algebra has [[Homomorphism|homomorphisms]], orders have [[Monotonicity|monotone maps]], categories have functors. A [[Morphism|morphism]] is *not* one of these: it is an arrow in an abstract [[Category]] and need not be a function at all. The two coincide only in a **concrete** category — which is what licenses [[Group Homomorphism]] to import [[Morphism#Isomorphism|iso]].
 
 ## Metric axioms
 
@@ -118,7 +119,7 @@ A function satisfying the first three is a **metric**; one satisfying positive d
 > [!remark] Non-negativity is a theorem
 > $d(x,y) \geq 0$ is **not** an axiom — it follows from the other three: $0 = d(x,x) \leq d(x,y) + d(y,x) = 2\,d(x,y)$. It belongs in [[Metric Space]] as a proposition, never inside a definition callout.
 
-Consumers: [[Metric Space]], [[Inner-Product Spaces]], [[Lattices]] and everything under `structures/lattices/`, and — the reason this library is not under `algebra/` — [[Code Distance]], [[Rank Metric Codes]], and [[Statistical Distance]], since total variation distance is itself a metric.
+Consumers: [[Metric Space]], [[Inner-Product Spaces]], [[Lattices]] and everything under `structures/lattice/`, and — the reason this library is not under `algebra/` — [[Code Distance]], [[Rank Metric Codes]], and [[Statistical Distance]], since total variation distance is itself a metric.
 
 ## Related
 

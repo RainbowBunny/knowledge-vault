@@ -8,14 +8,14 @@
 
 | batch                   | state                                                                                                                                                                                                                                                                  |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **0** moves             | done — `math/set theory/`, 10.2 relocations, `properties/metric/` created                                                                                                                                                                                              |
+| **0** moves             | done — `math/set theory/`, 10.2 relocations, `property/metric/` created                                                                                                                                                                                              |
 | **A** restore the floor | **A1–A4 done · A5, A6, A7 still open** — the Cartesian product is defined but [[Set Operation]] still has **zero inbound links**; union / intersection / difference / disjoint union are still undefined; the false law $A-(B-C) = (A-B) \cup C$ is still in the table |
 | **B** join the spine    | done — [[Relation]] rewritten heterogeneous-first (with left/right-total, better than the draft), `Function between Sets` → **[[Function]]** restructured with a partial-function variant                                                                              |
 | **C** axiom notes       | **9 of 11 done** — `Cancellativity`, `Absorption`, `Injection`, `Surjection`, `Bijection`, `Involution`, `Monotonicity` created. **Missing: `Homomorphism`** (the biggest gap) and the whole **`metric/` family** — see the revised §3.11                              |
 | **D** rewire            | open                                                                                                                                                                                                                                                                   |
 | **E** hygiene           | open                                                                                                                                                                                                                                                                   |
 
-Batches B and C ran ahead of A. The floor items are three edits and about fifteen minutes; they block nothing else technically, but every Scope line in `properties/` still points at a product that no note links.
+Batches B and C ran ahead of A. The floor items are three edits and about fifteen minutes; they block nothing else technically, but every Scope line in `property/` still points at a product that no note links.
 
 
 
@@ -58,12 +58,12 @@ Each axiom family attaches at exactly one node of the spine. This is what justif
 
 | family | attaches to | Scope line reads | structures produced |
 | --- | --- | --- | --- |
-| `properties/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]] |
-| `properties/relation/` | homogeneous relation $R \subseteq S \times S$ | "A [[Relation]] $R$ on $S$" | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
-| `properties/map/` | function $f: A \to B$ | "A [[Function]] $f: A \to B$" | homomorphism, linear map, monotone map |
-| `properties/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$" | normed space, [[Metric Space]] |
+| `property/operation/` | binary operation $\star: S \times S \to S$ | "A [[Binary Operation]] $\star$ on $O$" | [[Magma]] → [[Group]] → [[Ring]] → [[Field]] |
+| `property/relation/` | homogeneous relation $R \subseteq S \times S$ | "A [[Relation]] $R$ on $S$" | [[Preorder]] → [[Total Order]]; [[Equivalence Relation]] |
+| `property/map/` | function $f: A \to B$ | "A [[Function]] $f: A \to B$" | homomorphism, linear map, monotone map |
+| `property/norm/`, `metric/` | function $V \to \mathbb R$ or $X \times X \to \mathbb R$ | "A function $N: V \to \mathbb R$" | normed space, [[Metric Space]] |
 
-There is a pleasing regularity here that the vault can state once and reuse: **each object family has its own notion of structure-preserving map.** Algebra has homomorphisms, orders have monotone maps, metric spaces have isometries (and, loosened, continuous maps), categories have functors. That is one row per family, and it is the row `properties/map/` is currently missing.
+There is a pleasing regularity here that the vault can state once and reuse: **each object family has its own notion of structure-preserving map.** Algebra has homomorphisms, orders have monotone maps, metric spaces have isometries (and, loosened, continuous maps), categories have functors. That is one row per family, and it is the row `property/map/` is currently missing.
 
 ---
 
@@ -102,11 +102,11 @@ The note opened with the graph $\Gamma_f$ formulation (good) and *ended* with a 
 - "We often **right** $f$" → write.
 - `### Inversion` heading over an `[!definition] Inverse` callout.
 
-## F5 · Injective / surjective / bijective filed as object content — **resolved**, moved to `properties/map/` as `Injection`, `Surjection`, `Bijection`
+## F5 · Injective / surjective / bijective filed as object content — **resolved**, moved to `property/map/` as `Injection`, `Surjection`, `Bijection`
 
-They sit in `Function.md`'s `## Property` section. By the vault's own rule they belong in `properties/map/` — their Scope is "a map $f: A \to B$", identical in shape to [[Linearity]].
+They sit in `Function.md`'s `## Property` section. By the vault's own rule they belong in `property/map/` — their Scope is "a map $f: A \to B$", identical in shape to [[Linearity]].
 
-The precedent is already set on the algebra side: [[Inverse Element]] states the axiom, [[Group]] holds the *theorems* about it (uniqueness, cancellation). Apply the same split here — `properties/map/Injectivity.md` states the axiom; `Function.md` keeps the theorems (injective ⟺ monomorphism, left-inverse ⟺ injective, canonical decomposition).
+The precedent is already set on the algebra side: [[Inverse Element]] states the axiom, [[Group]] holds the *theorems* about it (uniqueness, cancellation). Apply the same split here — `property/map/Injectivity.md` states the axiom; `Function.md` keeps the theorems (injective ⟺ monomorphism, left-inverse ⟺ injective, canonical decomposition).
 
 ## F6 · `Set Foundation.md` opened with two blank lines and no `## Definition` — **half done**
 
@@ -176,7 +176,7 @@ Carries the ~20-row laws table out of `Set.md` (task 6.3b) *and* restores the Ca
 > The $n$-fold product $A_1 \times \cdots \times A_n$ consists of $n$-tuples; $A^n$ abbreviates the $n$-fold product of $A$ with itself.
 
 > [!remark] Why this definition carries the vault
-> Every Scope line in `properties/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
+> Every Scope line in `property/` is written over a product: a [[Relation]] is a subset of $A \times B$, a [[Function|function]] is a special relation, a [[Binary Operation]] is a function $S \times S \to S$. Ordered pairs are taken as primitive here; the set-theoretic construction $(x,y) := \{\{x\},\{x,y\}\}$ is a foundational detail, noted in [[Foundations of Mathematics]] and used nowhere else.
 
 > [!definition] Disjoint
 > $S$ and $T$ are **disjoint** if $S \cap T = \emptyset$.
@@ -293,7 +293,7 @@ Keep the graph definition, the image / restriction / composition / projections /
    > 
    > Division on $\mathbb R$ is the standard example; see [[Binary Operation#Partial Operation]].
    ```
-4. **Move injective / surjective / bijective out** to `properties/map/` (F5). What stays here is the theorems: left-inverse ⟺ injective, right-inverse ⟺ surjective, bijection ⟺ two-sided inverse, injective ⟺ monomorphism, surjective ⟺ epimorphism.
+4. **Move injective / surjective / bijective out** to `property/map/` (F5). What stays here is the theorems: left-inverse ⟺ injective, right-inverse ⟺ surjective, bijection ⟺ two-sided inverse, injective ⟺ monomorphism, surjective ⟺ epimorphism.
 5. **Fix F4**: the missing $B$ in the surjective definition, "right" → "write", `### Inversion` → `### Inverse`.
 6. **Add the composition remark** pointing at [[Relation#Composition]], so the two composition definitions are one concept stated once.
 
@@ -303,7 +303,7 @@ Keep the graph definition, the image / restriction / composition / projections /
 
 All follow the Scope / Condition / Property template unchanged. Each has named existing consumers; nothing speculative.
 
-### 3.5 `properties/operation/Cancellativity.md` **[Standard]** — 3 consumers
+### 3.5 `property/operation/Cancellativity.md` **[Standard]** — 3 consumers
 
 ```markdown
 ## Definition
@@ -326,7 +326,7 @@ Consumers: [[Group]]'s `### Cancellation` proposition; [[Field]]'s "Cancellation
 
 ---
 
-### 3.6 `properties/operation/Absorption.md` **[Standard]** — 2 consumers
+### 3.6 `property/operation/Absorption.md` **[Standard]** — 2 consumers
 
 ```markdown
 ## Definition
@@ -346,7 +346,7 @@ Consumers: `Set Operation`' law table ($A \cup (A \cap B) = A$); and the order-t
 
 ---
 
-### 3.7 `properties/map/Homomorphism.md` **[Standard]** — 4 consumers, the biggest gap
+### 3.7 `property/map/Homomorphism.md` **[Standard]** — 4 consumers, the biggest gap
 
 ```markdown
 Reference:
@@ -380,7 +380,7 @@ Instances to rewire: [[Group Homomorphism]] ($\varphi(g_1 \star g_2) = \varphi(g
 
 ---
 
-### 3.8 `properties/map/Injectivity.md`, `Surjectivity.md` **[Standard]**
+### 3.8 `property/map/Injectivity.md`, `Surjectivity.md` **[Standard]**
 
 Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 
@@ -412,7 +412,7 @@ Moved out of [[Function]] (F5), verbatim apart from the missing $B$:
 
 ---
 
-### 3.9 `properties/map/Monotonicity.md` **[Standard]** — the missing row
+### 3.9 `property/map/Monotonicity.md` **[Standard]** — the missing row
 
 ```markdown
 ## Definition
@@ -439,7 +439,7 @@ Consumers: [[Calculus Functions]]' increasing / decreasing / strictly monotone d
 
 ---
 
-### 3.10 `properties/map/Involution.md` **[Standard]** — 4 consumers, cheap
+### 3.10 `property/map/Involution.md` **[Standard]** — 4 consumers, cheap
 
 ```markdown
 > [!definition] Involution
@@ -456,7 +456,7 @@ Consumers: complex conjugation and $-(-a) = a$ in [[Field]]; matrix transpose in
 
 ---
 
-### 3.11 `properties/metric/` — the family, **revised 2026-08-29** **[Standard]**
+### 3.11 `property/metric/` — the family, **revised 2026-08-29** **[Standard]**
 
 > [!warning] Correction to the earlier draft
 > This section previously proposed a **Non-negativity** axiom and kept `norm/` and `metric/` as separate folders. Both were wrong. See the reasoning below.
@@ -488,7 +488,7 @@ Under the induced metric $d(x,y) = \lVert x - y \rVert$, positive definiteness *
 
 ### The four notes
 
-Folder: `properties/metric/`. Scope lines carry the precision; the folder name is navigation.
+Folder: `property/metric/`. Scope lines carry the precision; the folder name is navigation.
 
 ```markdown
 > [!definition] Positive Definiteness
@@ -800,7 +800,7 @@ Then one `[!remark]` in `Kernel.md` carrying the A ⟷ B bridge and the monoid c
 
 Every axiom the vault has, needs, or should deliberately not write. **Consumer rule applied throughout** — nothing is proposed without a note that already wants it.
 
-## `properties/operation/` — Scope: a binary operation $\star: O \times O \to O$
+## `property/operation/` — Scope: a binary operation $\star: O \times O \to O$
 
 | axiom                              | status                          | consumers                                                    |
 | ---------------------------------- | ------------------------------- | ------------------------------------------------------------ |
@@ -817,7 +817,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | ~~Annihilator / zero element~~     | defer                           | a *theorem* in rings ($0 \cdot a = 0$), not an axiom         |
 | ~~Nilpotency, anti-commutativity~~ | defer                           | no consumer — needs Lie algebras or cross products           |
 
-## `properties/relation/` — Scope: a homogeneous relation $R \subseteq S \times S$
+## `property/relation/` — Scope: a homogeneous relation $R \subseteq S \times S$
 
 | axiom | status | consumers |
 | --- | --- | --- |
@@ -829,7 +829,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | ~~Irreflexivity, Asymmetry, Trichotomy~~ | defer | strict orders — no note wants them yet |
 | ~~Well-foundedness~~ | optional | [[Proofs]]' induction principle is the one candidate |
 
-## `properties/map/` — Scope: a map $f: A \to B$
+## `property/map/` — Scope: a map $f: A \to B$
 
 | axiom | status | consumers |
 | --- | --- | --- |
@@ -845,7 +845,7 @@ Every axiom the vault has, needs, or should deliberately not write. **Consumer r
 | ~~Continuity~~ | defer (Tier 2) | analysis — when `analysis/` exists |
 | ~~Isometry, Lipschitz~~ | after `metric/` | [[Calculus Functions]] has a Lipschitz-1 section already |
 
-## `properties/metric/` — the merged family *(revised, see §3.11)*
+## `property/metric/` — the merged family *(revised, see §3.11)*
 
 Scope: a function $d: X \times X \to \mathbb R$, or $N: V \to \mathbb R$ for the norm forms.
 
@@ -881,7 +881,7 @@ Doing the folder moves *first* means every note created later lands in its final
 | --- | --- |
 | 0a | **10.1** — `algebra/structures/set theory/` → `math/set theory/`. It holds the objects every Scope line points at; they are not algebra |
 | 0b | **10.2** — [[Matrix]], [[Vector Algebra]], [[Kronecker Product]] → `linear algebra/`; [[Metric Space]] → `calculus/` (it is analysis, and Batch D rewrites it anyway) |
-| 0c | Create empty `math/properties/metric/` |
+| 0c | Create empty `math/property/metric/` |
 
 ## Batch A · Restore the floor · ~30 min · **blocks everything**
 

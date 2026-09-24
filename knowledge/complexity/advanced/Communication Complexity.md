@@ -12,6 +12,6 @@ Stub. Topics to cover:
 
 ## Related
 
-- [[Circuit Complexity]] — Karchmer-Wigderson connection
+- [[Boolean Circuit|Circuit Complexity]] — Karchmer-Wigderson connection
 - [[Randomized Complexity]] — randomized communication
 - [[Quantum Complexity MOC|Quantum complexity]] — quantum communication

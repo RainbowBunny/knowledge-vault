@@ -69,7 +69,7 @@ $$u = u_0 + \frac{b \cdot k}{\gcd(a, b)} \text{ and } v = v_0 - \frac{a \cdot k}
 >  Let $a$ and $b$ be integers. We say that $a$ and $b$ are **relatively prime** if $\gcd(a, b) = 1$.
 
 > [!remark]
-> $\text{RELPRIME} = \{\langle x, y \rangle | x \text{ and } y \text{ are relatively prime}\}$ is in [[Complexity Theory#Class P|Class P]].
+> $\text{RELPRIME} = \{\langle x, y \rangle | x \text{ and } y \text{ are relatively prime}\}$ is in [[Class P]].
 
 ## Modular Arithmetic
 

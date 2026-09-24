@@ -5,7 +5,7 @@ The most famous open problem in computer science: does every polynomially-verifi
 > [!conjecture] P ≠ NP
 > There exists a language $L \in \text{NP}$ such that $L \notin \text{P}$.
 
-Equivalently: there is no polynomial-time algorithm for [[Time Complexity#Class NP-Complete|SAT]] (since SAT is NP-complete).
+Equivalently: there is no polynomial-time algorithm for [[Hardness and Completeness|SAT]] (since SAT is NP-complete).
 
 ## What's Known
 
@@ -32,7 +32,7 @@ These barriers tell us that resolving P vs NP requires fundamentally new proof t
 ## Related
 
 - [[Time Complexity]] — definitions of P, NP, NP-Complete
-- [[Oracle Machines]] — relativization barrier
-- [[Circuit Complexity]] — natural proofs barrier
+- [[Oracle Turing Machine|Oracle Machines]] — relativization barrier
+- [[Boolean Circuit|Circuit Complexity]] — natural proofs barrier
 - [[Exponential Time Hypothesis]] — quantitative form
 - [[Conjectures MOC]]

@@ -12,7 +12,7 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 
 ## Coding theory
 
-`code-based/`
+`coding theory/`
 
 - [[Coding Theory]] — codes, codewords, encoding and decoding
 - [[Linear Code]] — generator and parity-check matrices, syndromes
@@ -25,17 +25,26 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 
 ### Concrete codes
 
-`code-based/schemes/`
+`coding theory/code/`
 
-- [[Hamming Codes]] · [[Golay Codes]] · [[Reed-Muller]] · [[Hamming Quasi-Cyclic]]
+- [[Hamming Codes]] · [[Golay Codes]] · [[Reed-Muller]] · [[Reed-Solomon]] · [[Ambiguous Coding]]
+
+### Weight and distance
+
+`coding theory/weight/`
+
+- [[Hamming Weight]] · [[Hamming Distance]] · [[Hamming Sphere]] · [[Regular Word]]
 
 ### Rank metric
 
-`code-based/rank-metric/`
+`coding theory/rank-metric/`
 
 - [[Rank Metric Codes]] — distance measured by rank rather than Hamming weight
 - [[Gabidulin Vector Codes]] · [[Delsarte Matrix Codes]] · [[Dual Bases Codes]]
-- [[Additively-Homomorphic Encryption]]
+
+### Schemes built on these codes
+
+These live in `cryptography/primitive/`: [[Hamming Quasi-Cyclic]] (KEM), [[Hamming Quasi Cyclic SKE]] and [[Additively-Homomorphic Encryption]] (symmetric).
 
 ## Cross-domain
 
@@ -46,7 +55,7 @@ Two halves that share a spine: **entropy** measures uncertainty, and **coding th
 | [[Probability MOC]] | [[Random Variables]], [[Expectation]], [[Statistical Distance]] |
 | [[Algebra MOC]] | [[Field]] — every code here is over $\mathbb F_q$; [[Ring]] for cyclic codes; [[Matrix]] for generator matrices |
 | [[Math Properties MOC]] | the norm axioms that [[Code Distance]] generalises over |
-| [[Complexity MOC]] | decoding is NP-hard — see [[Class NP-hard]] |
+| [[Complexity MOC]] | decoding is NP-hard — see [[Hardness and Completeness|NP-hard]] |
 
 > [!remark] Where code-based cryptography lives
-> The *codes* are here; the *cryptographic hardness assumptions* built on them are in `cryptography/assumptions/coding-based/`, and the *schemes* are split between `code-based/schemes/` here and `cryptography/primitive/`. If that split starts costing you, the rule to apply is the same one [[Algebra MOC]] uses for lattices: the mathematical object lives in its home discipline, the hardness assumption lives in `cryptography/assumptions/`.
+> The *codes* are here; the *cryptographic hardness assumptions* built on them are in `cryptography/assumptions/code-based/`, and the *schemes* are in `cryptography/primitive/`. Same rule [[Algebra MOC]] uses for lattices: the mathematical object lives in its home discipline, the hardness assumption in `cryptography/assumptions/`, the scheme with its primitive.

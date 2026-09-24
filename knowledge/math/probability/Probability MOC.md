@@ -12,6 +12,7 @@
 - [[Discrete Probability]] — PMF and the discrete distribution catalog (Bernoulli … Poisson)
 - [[Continuous Probability]] — PDF and the continuous distribution catalog (Uniform … Pareto)
 - [[Random Vectors]] — multivariate and bivariate normal distributions
+- one note per distribution (`discrete probability/distribution/`): [[Bernoulli Distribution]] · [[Fixed-Weight Distribution]] · [[Discrete Gaussian Distribution]]
 
 ## Theory & Asymptotics
 

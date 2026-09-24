@@ -24,7 +24,7 @@
 ### List Guessing Advantage
 
 > [!algorithm] List Guessing Advantage
-> Generalize of [[#Key Derivation Problem|guessing advantage]] problem by output a list of guesses $\hat{s}_1, \dots, \hat{s}_Q$, where the adversary is said to win the game if $\hat{s}_i = s$ for some $i = 1, \dots, Q$. An adversary $\mathcal A$'s probability of winning in this game is called his **list guessing advantage**, denoted $\text{ListGuessadv}[\mathcal A, P, I]$.
+> Generalize of [[Key Derivation Problem|guessing advantage]] problem by output a list of guesses $\hat{s}_1, \dots, \hat{s}_Q$, where the adversary is said to win the game if $\hat{s}_i = s$ for some $i = 1, \dots, Q$. An adversary $\mathcal A$'s probability of winning in this game is called his **list guessing advantage**, denoted $\text{ListGuessadv}[\mathcal A, P, I]$.
 
 > [!theorem]
 > If $H$ is modeled as a random oracle, then for every distinguishing adversary $\mathcal A$ that makes at most $Q_{ro}$ random oracle queries, there exists a list guessing adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{Dist}^{ro}\text{adv}[\mathcal A, P, I, H] \leq \text{ListGuessadv}[\mathcal B, P, I]$$ and $\mathcal B$ outputs a list of size at most $Q_{ro}$. In particular, there exists a guessing adversary $\mathcal B'$, which is an elementary wrapper around $\mathcal A$, such that $$\text{Dist}^{ro}\text{adv}[\mathcal A, P, I, H] \leq Q_{ro} \cdot \text{Guessadv}[\mathcal B', P, I].$$

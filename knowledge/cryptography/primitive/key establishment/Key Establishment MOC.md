@@ -13,7 +13,8 @@ Establishing a shared secret between parties. Two protocol shapes share this umb
 
 ## Key Encapsulation (`kem/`)
 
-- [[Kyber KEM]] — lattice-based KEM (NIST PQC standard)
+- [[Key Encapsulation Mechanism]] — the interface
+- schemes (`scheme/`): [[Kyber KEM]] — lattice-based (NIST PQC standard) · [[Hamming Quasi-Cyclic]] — code-based (NIST backup KEM)
 
 ## Related
 

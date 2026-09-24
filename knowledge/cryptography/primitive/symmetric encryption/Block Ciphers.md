@@ -60,7 +60,7 @@
 > [!theorem]
 > Let $\mathcal E = (E, D)$ be a block cipher. Let $\ell \geq 1$ be any poly-bounded value, and let $\mathcal E' = (E', D')$ be the $\ell$-wise ECB cipher derived from $\mathcal E$, but with the message space restricted to all sequence of at most $\ell$ distinct data blocks. If $\mathcal E$ is a secure block cipher, then $\mathcal E'$ is a semantically secure cipher.
 > 
-> In particular, for every [[#Semantic Security|semantic security]] adversary $\mathcal A$ with respect to $\mathcal E'$, there exists a [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal B$ with respect to $\mathcal E$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSadv}[\mathcal A, \mathcal E'] = 2 \cdot \text{BCadv}[\mathcal B, \mathcal E].$$
+> In particular, for every [[Symmetric Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ with respect to $\mathcal E'$, there exists a [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal B$ with respect to $\mathcal E$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{SSadv}[\mathcal A, \mathcal E'] = 2 \cdot \text{BCadv}[\mathcal B, \mathcal E].$$
 
 ### Key Recovery
 
@@ -112,7 +112,7 @@
 > [!theorem]
 > If $F$ is a secure PRF and $N = |\mathcal X| = 2^n$ is super-poly, then the Luby-Rackoff cipher $\mathcal E = (E, D)$ constructed from $F$ is a secure block cipher.
 > 
-> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Functionsss#PRF Security|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
+> In particular, for every [[#Secure Block Cipher|secure block cipher]] adversary $\mathcal A$ that attacks $\mathcal E$, there exists a [[Pseudorandom Function#Definition|secure PRF]] adversary $\mathcal B$ with respect to $F$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{BCadv}[\mathcal A, \mathcal E] \leq 3 \cdot \text{PRFadv}[\mathcal B, F] + \frac{Q^2}{N} + \frac{Q^2}{2N^2}.$$
 
 ## Case Study
 

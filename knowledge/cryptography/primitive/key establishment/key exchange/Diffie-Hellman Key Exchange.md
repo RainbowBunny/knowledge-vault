@@ -206,7 +206,7 @@ Let $p$ be a prime and $g$ an integer. The **Diffie-Hellman Problem (DHP)** is t
 >  = \hat{e}_\ell(Q_A, Q_B)^{n_C}.$$
 
 > [!remark] Security of Tripartite Diffie-Hellman key exchange
-> - If Eve can solve the [[Discrete Logarithm Problem#Elliptic Curve Discrete Logarithm Problem|ECDLP]], she can recover $n_A$, $n_B$ or $n_C$ and get the shared secret $K$.
-> - The distortion map $\phi$ is a mapping to $\mathbb F_q^*$ so Eve can just solve the [[Discrete Logarithm Problem#Discrete Logarithm Problem|DLP]] for a subgroup of $\mathbb F_q^*$ of order $\ell$.
+> - If Eve can solve the [[Elliptic Curve DLP|ECDLP]], she can recover $n_A$, $n_B$ or $n_C$ and get the shared secret $K$.
+> - The distortion map $\phi$ is a mapping to $\mathbb F_q^*$ so Eve can just solve the [[Discrete Logarithm Problem|DLP]] for a subgroup of $\mathbb F_q^*$ of order $\ell$.
 
 

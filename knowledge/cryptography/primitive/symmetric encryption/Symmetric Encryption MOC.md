@@ -38,9 +38,11 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 - [[Vigenère cipher]]
 - [[Other Encoding]] — Enigma, Rot47
 
-## Modern Schemes (`schemes/`)
+## Modern Schemes (`scheme/`)
 
-*Empty for now. Future: AES, ChaCha20, DES / 3DES, Salsa20.*
+- [[Hamming Quasi Cyclic SKE]] — code-based
+- [[Additively-Homomorphic Encryption]] (rank metric, eprint 2023/1798) and [[Additive-Homomorphic Encryption]] — one scheme written twice; to be merged
+- Future: AES, ChaCha20, DES / 3DES, Salsa20
 
 ## Related
 
@@ -49,4 +51,4 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 - [[Assumptions MOC]] → idealized models — ideal cipher / random oracle models used in CPA security proofs
 - [[Indistinguishability]] and [[Statistical Distance]] — the distribution-distinguishing toolkit extracted from the primitive note
 - [[Key Derivation Problem]] — guessing advantage (Attack Game 8.3), now under key establishment
-- [[CS Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem
+- [[Cryptography Foundations MOC]] → [[Elementary Wrapper]] — the meta-concept used in every reduction theorem

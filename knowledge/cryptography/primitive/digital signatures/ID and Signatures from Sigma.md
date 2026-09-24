@@ -16,12 +16,12 @@
 > [!theorem]
 > Let $(P, V)$ be a Sigma protocol for an effective relation $\mathcal R$ with a large challenge space. Let $G$ be a key generation algorithm for $\mathcal R$. If $(P, V)$ provides special soundness and $G$ is one-way, then the identification scheme $\mathcal I = (G, P, V)$ is secure against direct attacks.
 > 
-> In particular, suppose $\mathcal A$ is an efficient impersonating adversary attacking $\mathcal I$ via a [[#Password Protocols|direct attack]], with advantage $\epsilon = \text{ID1adv}[\mathcal A, \mathcal I]$. Then there exists an efficient adversary $\mathcal B$ attacking $G$ as in [[#Identification and Signatures from Sigma Protocols|one-way key generation]], with advantage $\epsilon' = \text{OWadv}[\mathcal B, G]$, such that $$\epsilon' \geq \epsilon^2 - \epsilon / N,$$ where $N$ is the size of the challenge space, which implies $$\epsilon \leq \frac{1}{N} + \sqrt{e'}.$$
+> In particular, suppose $\mathcal A$ is an efficient impersonating adversary attacking $\mathcal I$ via a [[Password Protocols|direct attack]], with advantage $\epsilon = \text{ID1adv}[\mathcal A, \mathcal I]$. Then there exists an efficient adversary $\mathcal B$ attacking $G$ as in [[#Identification and Signatures from Sigma Protocols|one-way key generation]], with advantage $\epsilon' = \text{OWadv}[\mathcal B, G]$, such that $$\epsilon' \geq \epsilon^2 - \epsilon / N,$$ where $N$ is the size of the challenge space, which implies $$\epsilon \leq \frac{1}{N} + \sqrt{e'}.$$
 
 > [!theorem]
 > Let $(P, V)$ be a Sigma protocol for an effective relation $\mathcal R$. Let $G$ be a key generation algorithm for $\mathcal R$. If the identification protocol $\mathcal I = (G, P, V)$ is secure against direct attacks, and $(P, V)$ is special HVZK, then $\mathcal I$ is also secure against eavesdropping attacks.
 > 
-> In particular, for every impersonating adversary $\mathcal A$ that attacks $\mathcal I$ via an [[#Security Against Eavesdropping|eavesdropping attack]], there is an adversary $\mathcal B$ that attacks $\mathcal I$ via a [[#Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{ID2adv}[\mathcal A, \mathcal I] = \text{ID1adv}[\mathcal B, \mathcal I].$$
+> In particular, for every impersonating adversary $\mathcal A$ that attacks $\mathcal I$ via an [[Security of Identification#Security Against Eavesdropping|eavesdropping attack]], there is an adversary $\mathcal B$ that attacks $\mathcal I$ via a [[Password Protocols|direct attack]], where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{ID2adv}[\mathcal A, \mathcal I] = \text{ID1adv}[\mathcal B, \mathcal I].$$
 
 ### The Fiat-Shamir Heuristic for Signatures
 

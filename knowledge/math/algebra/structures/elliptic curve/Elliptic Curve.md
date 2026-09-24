@@ -15,7 +15,7 @@
 > Curves with $\Delta_E = 0$ have singular points. The addition law does not work well on these curves. That is why we include the requirement that $\Delta_E \neq 0$ in the definition of an elliptic curve.
 
 > [!theorem] 
-> Let $E$ be an elliptic curve. The addition law makes the point of $E$ into an [[Algebra Structure#Group|Abelian Group]]
+> Let $E$ be an elliptic curve. The addition law makes the point of $E$ into an [[Group|Abelian Group]]
 
 > [!algorithm] Elliptic Curve Addition Algorithm
 > **Input:**  

@@ -8,7 +8,7 @@ Asymmetric confidentiality — encrypt with a public key, decrypt with a private
 - [[Public-Key Encryption]] — PKE syntax and security (CPA / CCA in the asymmetric setting)
 - [[Trapdoor Functions]] — TDF / TDP and the PKE generic construction
 
-## Concrete Schemes (`schemes/`)
+## Concrete Schemes (`scheme/`)
 
 - [[RSA Public Key Cryptosystem]]
 - [[ElGamal Public Key Cryptosystem]]
@@ -19,6 +19,9 @@ Asymmetric confidentiality — encrypt with a public key, decrypt with a private
 - [[NTRU Public Key Cryptosystem]]
 - [[GGH Public Key Cryptosystem]]
 - [[Lindner-Peikert Public Key Encryption]]
+- [[Lyubashevsky-Peikert-Regev Public Key Encryption]]
+- [[Kyber PKE]]
+- [[Alekhnovich Encryption Scheme]]
 - [[ID-based Public Key Cryptosystems]]
 
 ## Related

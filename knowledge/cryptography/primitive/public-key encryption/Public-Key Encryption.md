@@ -89,7 +89,7 @@ dg-publish: true
  > [!security]
  > If a public-key encryption scheme $\mathcal E$ is semantically secure, then it is also CPA secure.
  > 
- > In particular, for every [[#Chosen Plaintext Attack Security|CPA security]] adversary $\mathcal A$ with respect to $\mathcal E$, and which makes at most $Q$ queries to its challenger, there exists an [[#Semantic Security|semantic security]] adversary $\mathcal B$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that 
+ > In particular, for every [[Public-Key Encryption#Indistinguishability|CPA security]] adversary $\mathcal A$ with respect to $\mathcal E$, and which makes at most $Q$ queries to its challenger, there exists an [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal B$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that 
  > $$\text{CPAadv}[\mathcal A, \mathcal E] = Q \cdot \text{SSadv}[\mathcal B, \mathcal E].$$
 
 ### Non-Malleability
@@ -183,7 +183,7 @@ dg-publish: true
 > [!theorem] 
 > Assume $H: \mathcal X \rightarrow \mathcal K$ is modeled as a random oracle. If $\mathcal T$ is one-way and $\mathcal E_s$ is semantically secure, then $\mathcal E_{TDF}$ is semantically secure.
 > 
-> In particular, for every [[#Semantic Security|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E_{TDF}$, there exists an [[#One-way Security|inverting]] adversary $\mathcal B_{ow}$ that attacks $\mathcal T$, and an [[#Semantic Security|semantic security]] adversary $\mathcal B_s$ that attacks $\mathcal E_s$, where $\mathcal B_{ow}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
+> In particular, for every [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ that attacks $\mathcal E_{TDF}$, there exists an [[Public-Key Encryption#One-way Encryption|inverting]] adversary $\mathcal B_{ow}$ that attacks $\mathcal T$, and an [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal B_s$ that attacks $\mathcal E_s$, where $\mathcal B_{ow}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
 > $$\text{SS}^{ro}\text{adv}[\mathcal A, \mathcal E_{TDF}] \leq 2 \cdot \text{OWadv}[\mathcal B_{ow}, \mathcal T] + \text{SSadv}[\mathcal B_s, \mathcal E_s]$$
 
 ## Case Study
@@ -202,7 +202,7 @@ dg-publish: true
 > [!theorem]
 > Assume $H : \mathcal X \rightarrow \mathcal K$ is modeled as a random oracle. If the RSA assumption holds for parameters $(\ell, e)$, and $\mathcal E_s$ is semantically secure, then $\mathcal E_{RSA}$ is semantically secure.
 > 
-> In particular, for any [[#Semantic Security|semantic security]] $\mathcal A$ that attacks $\mathcal E_{RSA}$, there exist an RSA adversary $\mathcal B_{rsa}$ that breaks the [[Trapdoor Functions#A Trapdoor Permutation Scheme Based on RSA|RSA assumption]] for $(\ell, e)$, and an [[#Semantic Security|semantic security]] adversary $\mathcal B_s$ that attacks $\mathcal E_s$, where $\mathcal B_{rsa}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
+> In particular, for any [[Public-Key Encryption#Indistinguishability|semantic security]] $\mathcal A$ that attacks $\mathcal E_{RSA}$, there exist an RSA adversary $\mathcal B_{rsa}$ that breaks the [[Trapdoor Functions#A Trapdoor Permutation Scheme Based on RSA|RSA assumption]] for $(\ell, e)$, and an [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal B_s$ that attacks $\mathcal E_s$, where $\mathcal B_{rsa}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
 > $$\text{SS}^{ro}\text{adv}^*[\mathcal A, \mathcal E_{RSA}] \leq \text{RSAadv}[\mathcal B_{RSA}, \ell, e] + \text{SSadv}^*[\mathcal B_s, \mathcal E_s].$$
 
 ### ElGamal Encryption
@@ -225,7 +225,7 @@ dg-publish: true
 > [!theorem]
 > Assume $H: \mathbb G^2 \rightarrow \mathcal K$ is modeled as a random oracle. If the CDH assumption holds for $\mathbb G$, and $\mathcal E_s$ is semantically secure, then $\mathcal E_{EG}$ is semantically secure.
 > 
-> In particular, for every [[#Semantic Security|semantic security]] adversary $\mathcal A$ with respect to $\mathcal E_{EG}$, and makes at most $Q$ queries to the random oracle, there exist a [[Key Exchange#Computational Diffie-Hellman|computational Diffie-Hellman]] adversary $\mathcal B_{cdh}$ with respect to $\mathbb G$, and an [[#Semantic Security|semantic security]] adversary $\mathcal B_s$ with respect to $\mathcal E_s$, where $\mathcal B_{cdh}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
+> In particular, for every [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal A$ with respect to $\mathcal E_{EG}$, and makes at most $Q$ queries to the random oracle, there exist a [[Key Exchange#Computational Diffie-Hellman|computational Diffie-Hellman]] adversary $\mathcal B_{cdh}$ with respect to $\mathbb G$, and an [[Public-Key Encryption#Indistinguishability|semantic security]] adversary $\mathcal B_s$ with respect to $\mathcal E_s$, where $\mathcal B_{cdh}$ and $\mathcal B_s$ are elementary wrappers around $\mathcal A$, such that 
 > $$\text{SS}^{ro}\text{adv}[\mathcal A, \mathcal E_{EG}] \leq 2Q \cdot \text{CDHadv}[\mathcal B_{cdh}, \mathbb G] + \text{SSadv}[\mathcal B_s, \mathcal E_s].$$
 
 ### Lattice-Based Instantiation

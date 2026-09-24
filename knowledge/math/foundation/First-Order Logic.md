@@ -4,7 +4,7 @@ Reference:
 
 ## Intuition
 
-The logic of "for all elements" and "there exists an element" — quantifying over *elements of the carrier*, never over subsets, functions, or the carrier itself. Almost every Scope line in this vault is a first-order signature; almost every axiom in `properties/` is a first-order sentence over one.
+The logic of "for all elements" and "there exists an element" — quantifying over *elements of the carrier*, never over subsets, functions, or the carrier itself. Almost every Scope line in this vault is a first-order signature; almost every axiom in `property/` is a first-order sentence over one.
 
 ## Definition
 

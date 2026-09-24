@@ -10,5 +10,5 @@ Generic complexity-theoretic tooling: concepts and theorems that apply across re
 
 - [[Time Complexity]] — applies reductions and hierarchy results within the time setting
 - [[Space Complexity]] — applies them within the space setting
-- [[Language]] (`cs/foundations/`) — alphabets, strings, languages
-- [[Computability Theory]] (`cs/foundations/`) — the prerequisite: Turing machines, decidability
+- [[Language]] (`computability/language/`) — alphabets, strings, languages
+- [[Computability Theory]] (`computability/foundations/`) — the prerequisite: Turing machines, decidability

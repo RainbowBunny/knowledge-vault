@@ -19,7 +19,7 @@ Reference:
 ### Relation to Other Classes
 
 > [!theorem]
-> Requires: [[Vertex Path]], [[Complement Class]], [[Hardness and Completeness]]
+> Requires:: [[Vertex Path]], [[Complement Class]], [[Hardness and Completeness]]
 > 
 > ---
 > $\mathsf{NL} = \mathsf{coNL}$.

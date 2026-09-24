@@ -1,89 +1,107 @@
 # Complexity MOC
 
-Top-level index for the complexity-theory domain. Organized by **resource bound**: each first-level folder studies how a particular computational resource (time, space, randomness, circuits, interaction) constrains what can be computed.
+Index for the complexity domain. The spine is **machine → generator → class**: a machine model (in `computability/computing model/`) with a resource bound left open is a generator ([[Class DTIME]], [[Class SPACE]], …); fixing the bound gives a named class ([[Class P]], [[Class PSPACE]], …). Problems are catalogued separately in `problem/`, and a problem's status (which class it is in, what it is complete for) is a field on the problem note, not a folder.
 
-The structure mirrors `cryptography/`: foundations + initiative folders + a `conjectures/` folder (parallel to crypto's `assumptions/`) for open problems that act as leaves of the proof DAG.
+`conjectures/` plays the role here that `assumptions/` plays in cryptography.
 
-## Foundations
+## Foundations — `foundations/`
 
-- [[Complexity Class]] — the language formulation (decision problems as languages, encodings, co-classes), efficient algorithms, the class-inclusion lattice
-- [[Reductions]] — poly-time and log-space mapping reductions
-- [[Hierarchy Theorems]] — time / space hierarchy meta-theorems, EXPSPACE-Complete
+- [[Complexity Foundations MOC]]
+- [[Hierarchy Theorems]] — more resource, strictly more power
 
-## Resource Bounds (Initiatives)
+## Class machinery — `complexity class/`
 
-- [[Time Complexity]] — TIME, NTIME, P, NP, NP-Complete, Cook-Levin, EXPTIME, sub-exponential
-- [[Space Complexity]] — SPACE, NSPACE, PSPACE, L, NL, Savitch's theorem
-- [[Randomized Complexity]] — Probabilistic TM, PPT, BPP, RP, ZPP, Monte Carlo, amplification
-- [[Circuit Complexity]] — Boolean circuits, NC, AC, P/poly, branching programs, alternating TMs
-- [[Interactive Proofs]] — IP class, verifier/prover, IP = PSPACE; [[Oracle Machines]], [[Polynomial Hierarchy]]
-- [[Quantum Complexity MOC|Quantum Complexity]] — BQP, QMA (stub)
+- [[Complexity Class]] — what a class is: languages, encodings, co-classes
 
-## Classes
+**Generators** (`generator/`)
+- time: [[Class DTIME]] · [[Class NTIME]]
+- space: [[Class SPACE]] · [[Class NSPACE]]
+- time and space together: [[Class TISP]]
+- alternation: [[Class ATIME]] · [[Class SigmaTIME]] · [[Class PiTIME]]
+- randomized: [[Class BPTIME]] · [[Class RTIME]] · [[Class ZTIME]]
+- circuit: [[Class SIZE]] · [[Class DTIME with Advice]]
 
-`complexity class/` — the named classes themselves, as leaves under the resource bounds above.
+**Named classes** (`class/`)
+- time: [[Class P]] · [[Class NP]] · [[Class coNP]] · [[Class NP-Intermediate]] · [[Class EXP]] · [[Class NEXP]]
+- space: [[Class L]] · [[Class NL]] · [[Class PSPACE]] · [[Class NPSPACE]]
+- alternation: [[Class AP]] · [[Class PH]] · [[Level Polynomial Hierarchy]]
+- randomized: [[Class BPP]] · [[Class RP]] · [[Class coRP]] · [[Class ZPP]] · [[Class BPL]] · [[Class RL]] · [[Class BP dot NP]]
+- circuit: [[Class NC]] · [[Class AC]] · [[Class Ppoly]]
+- interactive: [[Class IP]] · [[Class AM]] · [[Class MA]] · [[Class MIP]] · [[Class dIP]]
 
-- [[Class P]] — decidable in polynomial time
-- [[Class NP]] — polynomial-time *verifiable*; see [[Circuit Satisfaction]] for the canonical complete problem
-- [[Class NP-complete]] · [[Class NP-hard]] — the hardness frontier, via [[Reductions]]
-- [[Class coNP]] — complements of NP languages
+**Operators** (`operator/`) — build a class from a class
+- [[Complement Class]] · [[Complexity Class with Oracle]] · [[Hardness and Completeness]]
 
-`circuit/` also holds [[Boolean Circuit]], [[Arithmetic Circuit]] and [[Arithmetic Circuit Satisfiability Problem]], which `cryptography/verifiable computing/` arithmetizes — see [[Verifiable Computing MOC]].
+**Reducibility** (`reducibility/`)
+- [[Polynomial-time Karp Reducibility]] · [[Log-space Reducibility]] · [[Randomized Polynomial Reducibility]]
 
-## Open Problems
+> [!todo] Pre-refactor hubs still to dissolve (Assignment 4H)
+> [[Time Complexity]] · [[Space Complexity]] · [[Randomized Complexity]] · [[Reductions]] still repeat definitions that now have their own notes (e.g. [[Probabilistic Turing Machine]] already exists in `computability/`). Move what is unique into the machine, generator or reducibility notes, then delete the hub.
 
-- [[Conjectures MOC]] — P vs NP, ETH/SETH, Derandomization, Unique Games
+## Problems — `problem/`
 
-## Advanced Subfields
+A problem note states the language once; `Member of::`, `Complete for::` and `Hard for::` in its Property callout carry its status. A cryptographic *assumption* (a distribution plus an advantage) stays in `cryptography/assumptions/` and points here with `Requires::`.
 
-- [[Advanced MOC]] — Approximation Hardness, Communication Complexity, Parameterized Complexity, Average-Case Complexity, Fine-Grained Complexity
+- logic: [[Satisfiability]] · [[3Satisfiability]] · [[Circuit Satisfiability]] · [[Circuit Satisfaction]] · [[Circuit Evaluation]] · [[Tautology]] · [[True Quantified Boolean Formula]] · [[Polynomial Hierarchy SAT]] · [[Counting Satisfiability Decision]]
+- graph: [[Vertex Path]] · [[Undirected Vertex Path]] · [[Graph Connectivity]] · [[Directed Hamiltonian Path]] · [[Independent Set]] · [[Two Coloring]] · [[Three Coloring]] · [[Traveling Salesperson]] · [[Graph Isomorphism]] · [[Graph Non-Isomorphism]]
+- number: [[Integer Multiplication]] · [[Composite Number]] · [[Factoring]] · [[Quadratic Residue]] · [[Subset Sum]] · [[0-1 Integer Programming]] · [[Linear Programming]]
+- group: [[Discrete Logarithm Problem]] · [[Elliptic Curve DLP]] · [[Hyperelliptic Curve DLP]]
+- lattice: [[Shortest Vector Problem]] · [[Closest Vector Problem]] · [[Shortest Basis Problem]]
+- code: [[Syndrome Decoding Problem]] · [[Regular Syndrome Decoding Problem]] · [[Null Syndrome Decoding Problem]] · [[2-Regular Null Syndrome Decoding]]
+- machine: [[Turing Machine Satisfiability]] · [[Unary Halting Problem]] · [[Exponential Computation]]
+- awaiting merge: [[Subset-Sum Problem]] into [[Subset Sum]]; [[Satisfiability Problem (To be removed)]] into [[Satisfiability]]
 
-## Folder Layout
+## Interaction — `interactive/`
+
+- [[Deterministic Function Interaction]] · [[Deterministic Interactive Proof System]] · [[Probabilistic Interactive Proof System]]
+- protocols for one language (`protocol/`): [[Sum-Check Protocol]] · [[True Quantified Boolean Formula Protocol]] · [[Graph Non-isomorphism Protocol]] · [[Quadratic Non Residue Protocol]] · [[Goldwasser-Sipser Set Lower Bound Protocol]]
+- the classes they define: [[Class IP]] · [[Class AM]] · [[Class MA]] · [[Class MIP]] · [[Class dIP]]
+
+## Circuits — `circuit/`
+
+Non-uniform models. The circuit *classes* are in `complexity class/class/circuit/`.
+
+- [[Boolean Circuit]] · [[Arithmetic Circuit]] · [[Branching Programs]] · [[Quantified Boolean Formula]]
+- families and uniformity: [[Circuit Family]] · [[P-Uniform Circuit Family]] · [[Log-Space Uniform Circuit Family]] · [[Direct Connect Uniform Circuit Family]]
+
+## Quantum — `quantum/`
+
+- [[Quantum Complexity MOC]] · [[Quantum Bit]] · [[Quantum State]] · [[Quantum Circuits]] · [[Parity Game]]
+
+## Open problems — `conjectures/`
+
+- [[Conjectures MOC]] — [[P vs NP]] · [[Exponential Time Hypothesis]] · [[Derandomization Conjecture]] · [[Unique Games Conjecture]]
+
+## Subfields — `advanced/`
+
+- [[Advanced MOC]] — [[Approximation Hardness]] · [[Communication Complexity]] · [[Parameterized Complexity]] · [[Average-Case Complexity]] · [[Fine-Grained Complexity]]
+
+## Folder layout
 
 ```
 complexity/
 ├── Complexity MOC.md
 ├── foundations/
-│   ├── Complexity Class.md
-│   ├── Reductions.md
-│   └── Hierarchy Theorems.md
-├── time/
-│   └── Time Complexity.md
-├── space/
-│   └── Space Complexity.md
-├── randomized/
-│   └── Randomized Complexity.md
+├── complexity class/
+│   ├── generator/      (time/, space/, alternation/, randomized/, circuit/)
+│   ├── class/          (time/, space/, alternation/, randomized/, circuit/, interactive/)
+│   ├── operator/
+│   └── reducibility/
+├── problem/            (logic/, graph/, number/, group/, lattice/, code/, machine/)
+├── interactive/        (protocol/)
 ├── circuit/
-│   ├── Circuit Complexity.md
-│   ├── Branching Programs.md
-│   └── Alternating Turing Machine.md
-├── interactive/
-│   ├── Interactive Proofs.md
-│   ├── Oracle Machines.md
-│   └── Polynomial Hierarchy.md
+├── randomized/         old hub, to dissolve
 ├── quantum/
-│   └── Quantum Complexity MOC.md
 ├── conjectures/
-│   ├── Conjectures MOC.md
-│   ├── P vs NP.md
-│   ├── Exponential Time Hypothesis.md
-│   ├── Derandomization Conjecture.md
-│   └── Unique Games Conjecture.md
 └── advanced/
-    ├── Advanced MOC.md
-    ├── Approximation Hardness.md
-    ├── Communication Complexity.md
-    ├── Parameterized Complexity.md
-    ├── Average-Case Complexity.md
-    └── Fine-Grained Complexity.md
 ```
 
-## Cross-Domain Cross-References
+## Cross-domain
 
-- **From `cryptography/foundations/Security Model.md`** to [[Randomized Complexity]] — "PPT adversary" is a complexity-theoretic concept defined there.
-- **From `cryptography/assumptions/`** to [[Conjectures MOC]] — hardness assumptions in cryptography play the same structural role as complexity-theoretic conjectures.
-- **From `cs/foundations/`** ([[Language]], [[Computability Theory]]) to [[Complexity Class]] — strings, languages, Turing machines, decidability are prerequisites.
-- **To `math/`** for diagonalization techniques used in [[Hierarchy Theorems]].
+- **From `computability/`** — the machine models ([[Turing Machine]], [[Oracle Turing Machine]], [[Probabilistic Turing Machine]]) and [[Language]] come first.
+- **To `cryptography/assumptions/`** — each assumption names the problem it averages over: [[Discrete-Logarithm Assumption]] over [[Discrete Logarithm Problem]]; `assumptions/lattice-based/` over `problem/lattice/`; `assumptions/code-based/` over `problem/code/`. "PPT adversary" rests on randomized machines.
+- **To `cryptography/verifiable computing/`** — [[Arithmetic Circuit Satisfiability Problem]] and the arithmetization notes turn circuits and formulas into polynomial identities; [[Sum-Check Protocol]] is shared.
+- **To `math/`** — diagonalization in [[Hierarchy Theorems]].
 
 ## Callout Conventions
 

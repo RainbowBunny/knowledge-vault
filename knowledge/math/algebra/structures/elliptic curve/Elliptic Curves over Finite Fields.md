@@ -6,7 +6,7 @@
 > [!theorem]
 > Let $E$ be an elliptic curve over $\mathbb F_p$ and let $P$ and $Q$ be points in $E(\mathbb F_p).$
 > 1. The elliptic curve addition algorithm applied to $P$ and $Q$ yields a point in $E(\mathbb F_p)$. We denote this point by $P + Q$.
-> 2. This addition law makes $E(\mathbb F_p)$ into a [[Algebra Structure#Group|Finite Group]].
+> 2. This addition law makes $E(\mathbb F_p)$ into a [[Group|Finite Group]].
 
 > [!theorem] Hasse
 > Let $E$ be an elliptic curve over $\mathbb F_p$. Then $$\#(\mathbb F_p) = p + 1 - t_p \quad \text{with } t_p \text{ satisfying } |t_p| \leq 2 \sqrt{p}.$$

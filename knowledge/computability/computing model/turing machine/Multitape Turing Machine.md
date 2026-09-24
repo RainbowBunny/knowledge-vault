@@ -19,4 +19,4 @@ Reference:
 > To be completed.
 
 > [!corollary]
-> A [[Language]] is [[Language#Recognizable|Turing-recognizable]] if and only if some multitape Turing machine recognizes it.
+> A [[Language]] is [[Recognizable Language|Turing-recognizable]] if and only if some multitape Turing machine recognizes it.

@@ -15,19 +15,21 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 | one axiom, no carriers of its own                   | **Property** (2), a mixin  | `math/property/`                             |
 | an object plus chosen axioms                        | **Structure** (3)          | `math/algebra/structures/`                   |
 | a concrete model of a structure                     | **Example** (4)            | `structures/<X>/example/`                    |
-| a cryptographic interface — a tuple of algorithms   | **Primitive** (5)          | `primitive/`, `verifiable computing/`        |
+| a cryptographic interface — a tuple of algorithms   | **Primitive** (5)          | `primitive/`, `special function/`, `verifiable computing/`, `secure computation/` |
 | one concrete instantiation of a primitive           | **Scheme** (6)             | `<primitive>/scheme/`                        |
-| an interactive protocol for one language            | **Scheme** (6)             | `complexity/interactive/`                    |
+| an interactive protocol for one language            | **Scheme** (6)             | `complexity/interactive/protocol/`           |
 | *give me an $X$, I build you a $Y$*                 | **Transform** (7)          | under the **output** primitive               |
 | *these two are the same thing seen differently*     | **Bridge**                 | wherever its ends are                        |
-| a worst-case computational problem                  | **Problem** (8)            | `complexity/…/problem/<subject>/`            |
+| a worst-case computational problem                  | **Problem** (8)            | `complexity/problem/<subject>/`              |
 | the average-case hardness claim                     | **Assumption** (9)         | `cryptography/assumptions/`                  |
 | a security notion — any game                        | **Security property** (10) | `verifiable computing/property/`             |
 | a named result other notes invoke                   | **Theorem** (12)           | with its subject                             |
 | a machine — configurations and a step relation      | **Machine** (13)           | `computability/computing model/`             |
-| a parameterised family $\mathsf{X}(f(n))$           | **Generator** (14)         | `complexity/…/complexity class/generator/`   |
-| one named complexity class                          | **Complexity class** (15)  | `complexity/…/complexity class/class/`       |
-| a hub                                               | **MOC** (11)               | beside what it indexes                       |
+| a parameterised family $\mathsf{X}(f(n))$           | **Generator** (14)         | `complexity/complexity class/generator/<resource>/` |
+| one named complexity class                          | **Complexity class** (15)  | `complexity/complexity class/class/<resource>/` |
+| a hub                                               | **MOC** (11)               | beside what it indexes; family hubs (elliptic-curve, post-quantum) in `cryptography/family/` |
+
+**Where it lives.** One home per object, at the lowest layer where it can be stated: the lattice in `math/`, SVP in `complexity/problem/`, LWE in `cryptography/assumptions/`, the lattice trapdoor with the trapdoor functions. Folders name kinds; a family (lattice-based, post-quantum) or a status (NP-complete, worst case) is a field, not a folder. The one exception is `assumptions/`, split by family because that is the natural split there.
 
 **The two tests that decide most cases.** Does it declare carriers of its own? If no, it is a Property, not a Structure. Does the theorem about it carry a multiplicative loss factor? If yes, it is a Transform, not a Bridge.
 

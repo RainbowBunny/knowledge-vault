@@ -30,7 +30,7 @@ If one-way functions exist, then pseudorandom generators exist (Håstad-Impaglia
 ## Related
 
 - [[Randomized Complexity]] — BPP definition
-- [[Circuit Complexity]] — circuit lower bounds power derandomization
+- [[Boolean Circuit|Circuit Complexity]] — circuit lower bounds power derandomization
 - [[Time Complexity]] — P, the target class
 - [[P vs NP]] — independent open problem
 - [[Pseudorandom Generators]] (in `cryptography/foundations/`) — the workhorse primitive

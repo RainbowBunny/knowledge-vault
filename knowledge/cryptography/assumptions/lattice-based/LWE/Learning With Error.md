@@ -19,7 +19,7 @@
 > [!remark] Choosing LWE parameter $B$
 > 1. If $B = 0$, then $As = b \pmod q$ can be solved efficiently.
 > 2. If $B = (q - 1)/2$, then every $s$ can be the solution. Thus, assume $B < q / 4$.
-> 3. **Arora-Ge**: If $B < \mathcal O(\sqrt{n})$, then LWE can be solved in [[Complexity Theory#Sub-exponential|sub-exponential]] time for sufficiently large $m \gg n$.
+> 3. **Arora-Ge**: If $B < \mathcal O(\sqrt{n})$, then LWE can be solved in [[Class DTIME|sub-exponential]] time for sufficiently large $m \gg n$.
 
 > [!remark]
 > For $m \gg n$, one expects there is a unique LWE solution $(s, e)$.

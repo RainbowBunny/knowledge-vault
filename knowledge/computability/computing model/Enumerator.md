@@ -24,4 +24,4 @@ Reference:
 ## Property
 
 > [!theorem]
-> A [[Language]] is [[Language#Recognizable|Turing-Recognizable]] if and only if some enumerator enumerates it. 
+> A [[Language]] is [[Recognizable Language|Turing-Recognizable]] if and only if some enumerator enumerates it. 

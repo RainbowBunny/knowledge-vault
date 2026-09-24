@@ -2,42 +2,44 @@
 
 Security assumptions — the things crypto reductions actually depend on. Split by *kind* of assumption:
 
-- **Hardness assumptions** — "this computational problem is intractable." Organized by algebraic family.
+- **Hardness assumptions** — "this problem is intractable *on average*, for instances drawn from this distribution." Organized by algebraic family.
 - **Idealized models** — "we pretend our hash / cipher / group is ideal in the proof." Proof-technique conventions, not computational problems.
 
-Algorithms that *attack* the hardness assumptions live alongside the assumption (BSGS, Pohlig-Hellman, Index Calculus are filed under DLP, not under cryptanalysis). Attacks on deployed protocols (CRIME, password cracking) live in [[Cryptanalysis MOC]] instead.
+An assumption names the worst-case problem it averages over with `Requires::`. The problems themselves are stated once in `complexity/problem/` (see [[Complexity MOC]]), and the algorithms that attack them live in `cryptanalysis/` (see [[Cryptanalysis MOC]]).
+
+- [[Assumption Taxonomy]] — how the families relate
 
 ## Hardness Assumptions
 
-### Discrete Logarithm Family (`dlp/`)
+### Discrete logarithm
 
-- [[Discrete Logarithm Problem]] — definition over generic groups
-- [[Baby-Step Giant-Step]]
-- [[Pohlig-Hellman]]
-- [[Index Calculus]]
-- [[DLP Collision Algorithm]]
-- [[Elliptic Curve DLP]]
-- [[Hyperelliptic Curve DLP]]
+- [[Discrete-Logarithm Assumption]] — over [[Discrete Logarithm Problem]]; the elliptic and hyperelliptic instances are [[Elliptic Curve DLP]] and [[Hyperelliptic Curve DLP]]
 
 ### Lattice (`lattice-based/`)
 
-- [[Learning With Error]] — LWE / Ring-LWE
-- [[Short Integer Solution Problem]] — SIS
+- LWE family (`LWE/`): [[Learning With Error]] · [[Module Learning With Error]] · [[Short Secret Learning With Error]]
+- SIS family (`SIS/`): [[Short Integer Solution Problem]] · [[Short Integer Solution]] · [[Normal Form Short Integer Solution]] · [[Vanishing SIS]]
+- worst-case problems they reduce from: [[Shortest Vector Problem]], [[Closest Vector Problem]], [[Shortest Basis Problem]] (`complexity/problem/lattice/`)
+
+### Code-based (`code-based/`)
+
+- [[Syndrome Decoding Assumption]] · [[Regular Syndrome Decoding Assumption]] · [[Quasi-Cyclic Syndrome Decoding Assumption]]
+- rank metric: [[Rank Syndrome Decoding Assumption]] · [[Ideal Rank Syndrome Decoding Assumption]] · [[Rank Support Learning Assumption]]
+- worst-case problems: [[Syndrome Decoding Problem]], [[Regular Syndrome Decoding Problem]] (`complexity/problem/code/`)
 
 ### Stubs (planned)
 
-- Factoring (integer factoring, RSA problem, quadratic residuosity, strong RSA)
-- CDH / DDH variants of DLP
+- Factoring (RSA problem, quadratic residuosity, strong RSA) — over [[Factoring]]
+- CDH / DDH — DDH currently sits as a section inside [[Discrete Logarithm Problem]]
 - Pairing assumptions (BDH, q-SDH, LRSW)
-- Coding-theory assumptions (syndrome decoding, McEliece)
 
 ## Idealized Models (`idealized models/`)
 
-- [[Ideal Cipher Model]] — ICM (ideal block / permutation), ROM
+- [[Random Oracle Model]] · [[Ideal Cipher Model]] · [[Uniform Random String Model]]
 - Stubs: Generic Group Model (GGM), Algebraic Group Model (AGM), Common Reference String (CRS)
 
 ## Related
 
-- [[Post-Quantum Cryptography MOC]] — schemes built *on* lattice / coding assumptions; the math (lattices, codes) lives there too
-- [[Cryptanalysis MOC]] — concrete attacks on deployed protocols (CRIME, …), as opposed to attacks on the underlying assumptions
-- [[CS Foundations MOC]] — security definitions and games (these are *what* we prove, not *what* we assume)
+- [[Post-Quantum Cryptography MOC]] — schemes built *on* lattice and code-based assumptions
+- [[Cryptanalysis MOC]] — attacks, on assumptions (`dlp/`) and on deployed protocols
+- [[Cryptography Foundations MOC]] — security definitions and games (*what* we prove, not *what* we assume)

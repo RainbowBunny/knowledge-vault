@@ -21,65 +21,65 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 
 ## Function families
 
-- [[Special Functions MOC]] — `special functions/`: the shared property vocabulary (efficient, compressing, extendable, collision-resistant, pseudorandom) and the families that instantiate it — [[One-Way Functions]], [[Hash Function]], [[Pseudorandom Functions]], [[Trapdoor Functions]], [[Compression Functions]]
-- [[Pseudorandom Generators]] — `pseudorandom/`
+- [[Special Functions MOC]] — `special function/`: the shared property vocabulary (efficient, compressing, extendable, collision-resistant, pseudorandom) and the families that instantiate it — [[One-Way Functions]], [[Hash Function]], [[Pseudorandom Function]], [[Trapdoor Functions]], [[Compression Functions]]
+- [[Pseudorandom Generators]] — `special function/pseudorandom generator/`
 
 ## Protocols and initiatives
 
 - [[Identification MOC]] — [[Identification Protocol]], [[Schnorr Identification]], [[Security of Identification]], [[Password Protocols]]
 - [[Verifiable Computing MOC]] — **`verifiable computing/`**: proof systems, R1CS and arithmetization, commitments, SNARKs. The largest and most active area in this folder
-- [[Threshold MOC]] — [[Threshold Cryptography]], [[Oblivious Transfer]], [[Threshold Secret-Sharing]], [[Shamir Secret Sharing]]
-- [[MPC MOC]] — [[Secure Multi-party Computation]]
+- [[Threshold MOC]] — [[Threshold Cryptography]], [[Threshold Secret-Sharing]], [[Shamir Secret Sharing]]
+- [[MPC MOC]] — **`secure computation/`**: [[Secure Multi-party Computation]], [[Oblivious Transfer]], [[Private Information Retrieval]]
 
-## Algebra-heavy constructions
+## Families — `family/`
 
 - [[Elliptic-Curve Cryptography MOC]] — [[Elliptic Curve Cryptography]], [[Hyperelliptic Curve Cryptography]]
-- [[Post-Quantum Cryptography MOC]] — [[Lattice]], [[LLL Lattice Reduction Algorithm]]; code-based material lives in `information theory/code-based/`, see [[Information Theory MOC]]
+- [[Post-Quantum Cryptography MOC]] — [[Lattice Trapdoor]], [[LLL Lattice Reduction Algorithm]]; the codes live in `information theory/coding theory/`, see [[Information Theory MOC]]
 
 ## Assumptions and attacks
 
-- [[Assumptions MOC]] — [[Discrete-Logarithm Assumption]]; lattice-based ([[Learning With Error]], [[Short Integer Solution]], [[Shortest Vector Problem]], [[Vanishing SIS]]); coding-based ([[Syndrome Decoding Assumption]], [[Rank Syndrome Decoding Assumption]]); idealized models ([[Random Oracle Model]], [[Ideal Cipher Model]], [[Uniform Random String Model]])
-- [[Cryptanalysis MOC]] — [[Attack List]], [[Collision Algorithms]], [[Password Cracking]], [[CRIME]]
+- [[Assumptions MOC]] — [[Discrete-Logarithm Assumption]]; lattice-based ([[Learning With Error]], [[Short Integer Solution]], [[Vanishing SIS]]); code-based ([[Syndrome Decoding Assumption]], [[Rank Syndrome Decoding Assumption]]); idealized models ([[Random Oracle Model]], [[Ideal Cipher Model]], [[Uniform Random String Model]])
+- [[Cryptanalysis MOC]] — attacks on hard problems (`dlp/`: [[Baby-Step Giant-Step]], [[Pohlig-Hellman]], [[Index Calculus]]; [[Collision Algorithms]]) and on deployed systems ([[Attack List]], [[Password Cracking]], [[CRIME]])
 
 ## Folder layout
 
 ```
 cryptography/
 ├── Cryptography MOC.md
-├── foundations/
-│   └── generic helper/
+├── foundations/             (generic helper/)
 ├── primitive/
-│   ├── symmetric encryption/     (classical/, schemes/)
-│   ├── public-key encryption/    (schemes/)
-│   ├── digital signatures/       (schemes/)
-│   ├── key establishment/        (key exchange/, kem/schemes/)
+│   ├── symmetric encryption/     (classical/, scheme/)
+│   ├── public-key encryption/    (scheme/)
+│   ├── digital signatures/       (scheme/)
+│   ├── key establishment/        (key exchange/, kem/scheme/)
 │   ├── message authentication/
 │   └── linear-only vector encryption/  (scheme/)
-├── special functions/
-│   ├── one-way functions/    hash functions/    (schemes/)
-│   ├── pseudorandom functions/  (schemes/)
-│   ├── compression functions/   (schemes/)
-│   └── trapdoor functions/
-├── pseudorandom/generators/
-├── identification protocols/
+├── special function/
+│   ├── one-way function/    hash function/  (scheme/)
+│   ├── pseudorandom function/    pseudorandom generator/
+│   ├── compression function/     (scheme/)
+│   └── trapdoor function/
+├── identification protocol/
 ├── verifiable computing/
-│   ├── relations/        (r1cs/, arithmetization/)
-│   ├── proof/            (interactive/, non-interactive/, oracle/, properties/, variants/, scheme/)
+│   ├── relation/         (r1cs/, arithmetization/)
+│   ├── proof system/     (interactive/, oracle/, variant/, scheme/)
+│   ├── compiler/
 │   ├── commitment/       (scheme/)
 │   ├── encoding scheme/  (scheme/)
-│   └── secure computation/
-├── threshold cryptography/  (secret sharing/schemes/)
-├── elliptic-curve cryptography/
-├── post-quantum cryptography/  (lattice-based/)
-├── assumptions/         (lattice-based/, coding-based/, idealized models/)
-└── cryptanalysis/
+│   ├── argument/         (interactive/, non-interactive/)
+│   └── property/
+├── secure computation/   (property/)
+├── threshold cryptography/  (secret sharing/scheme/)
+├── family/               hubs for families that cut across kinds (elliptic-curve, post-quantum)
+├── assumptions/          (lattice-based/, code-based/, idealized models/)
+└── cryptanalysis/        (dlp/)
 ```
 
 ## Cross-domain
 
-- **To [[Complexity MOC]]** — "PPT adversary" is [[Randomized Complexity]]; [[Assumptions MOC]] plays the role of [[Conjectures MOC]]; [[Interactive Proofs]] underpins [[Verifiable Computing MOC]]
+- **To [[Complexity MOC]]** — "PPT adversary" is [[Randomized Complexity]]; [[Assumptions MOC]] plays the role of [[Conjectures MOC]]; [[Class IP|Interactive Proofs]] underpins [[Verifiable Computing MOC]]
 - **To [[Algebra MOC]]** — [[Field]], [[Lattices]], [[Bilinear Pairings]], [[Polynomial]]
-- **To [[Information Theory MOC]]** — [[Entropy]] behind [[Perfect Security]]; `code-based/` behind the coding assumptions
+- **To [[Information Theory MOC]]** — [[Entropy]] behind [[Perfect Security]]; `coding theory/` behind the code-based assumptions
 - **To [[Math Properties MOC]]** — the norm axioms behind lattice and rank-metric distance
 
 ## Callout conventions

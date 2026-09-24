@@ -38,7 +38,7 @@ This gives $\text{PSPACE} = \text{NPSPACE}$ as a corollary — a dramatic differ
 > If $B$ merely satisfies condition 2, we say that it is **PSPACE-hard**.
 
 > [!theorem]
-> [[Satisfiability Problem (To be removed)|TQBF]] is PSPACE-complete.
+> [[True Quantified Boolean Formula|TQBF]] is PSPACE-complete.
 
 > [!example] Members of PSPACE-Complete
 > **Formula game**: Player $\text{A}$ selects values for variables with $\forall$ quantifiers, player $\text{E}$ selects values for variables with $\exists$ quantifiers.
@@ -78,5 +78,5 @@ This gives $\text{PSPACE} = \text{NPSPACE}$ as a corollary — a dramatic differ
 - [[Time Complexity]] — the other canonical resource bound
 - [[Reductions]] — log-space reductions used for NL-completeness
 - [[Hierarchy Theorems]] — strict separations $\text{L} \subset \text{PSPACE} \subset \text{EXPSPACE}$
-- [[Interactive Proofs]] — $\text{IP} = \text{PSPACE}$ (Shamir's theorem)
+- [[Class IP|Interactive Proofs]] — $\text{IP} = \text{PSPACE}$ (Shamir's theorem)
 - [[Complexity Class#Class Inclusions|Class inclusions]] — the full lattice
