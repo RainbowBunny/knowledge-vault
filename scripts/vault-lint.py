@@ -108,8 +108,10 @@ def main():
     pathset = set(os.path.normpath(p).replace(os.sep, '/') for p in every)
     # headings of every note, for anchor checks
     heads_of = defaultdict(set)
+    text_of = {}                                   # read each file once: the vault sits on a slow mount
     for p in every:
-        t = FENCE.sub('', open(p, encoding='utf-8', errors='replace').read())
+        text_of[p] = open(p, encoding='utf-8', errors='replace').read()
+        t = FENCE.sub('', text_of[p])
         key = os.path.splitext(os.path.basename(p))[0]
         for _, h in HEAD.findall(t):
             heads_of[key].add(hnorm(h))
@@ -122,7 +124,7 @@ def main():
     broken, empty, hollow, title, seeds = defaultdict(list), [], [], [], []
 
     for p in files:
-        raw = open(p, encoding='utf-8', errors='replace').read()
+        raw = text_of.get(p) or open(p, encoding='utf-8', errors='replace').read()
         name = os.path.splitext(os.path.basename(p))[0]
         body = strip_code(raw)
 

@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Subgroup
+> Extends:: [[Substructure]]
+> 
+> ---
 > Let $(G, \cdot)$ be a [[Group]], and let $(H, \circ)$ be another group, whose underlying set $H$ is a subset of $G$. $(H, \circ)$ is a **subgroup** of $G$ if the [[Inclusion Function]] $i: H \hookrightarrow G$ is a [[Group Homomorphism]].
 
 > [!proposition]

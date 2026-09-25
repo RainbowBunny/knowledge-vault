@@ -4,6 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Submodule
+> Extends:: [[Substructure]]
 > Requires:: [[R-Module]], [[Group Action]].
 > 
 > ---
@@ -18,6 +19,6 @@ Reference:
 > The kernel and the image of a [[Ring Homomorphism]] $\varphi: M \rightarrow M'$ of [[R-Module]] are submodules (of $M, M'$, respectively).
 
 > [!proposition]
-> - If $r$ is in the [[Center]] of $R$ and $M$ is an $R$-module, then $rM = \{rm \mid m \in M\}$ is a submodule of $M$.
+> - If $r$ is in the [[Ring Center|center]] of $R$ and $M$ is an $R$-module, then $rM = \{rm \mid m \in M\}$ is a submodule of $M$.
 > - If $I$ is any (left-)[[Ideal]] of $R$, then $IM = \{\sum_i r_i m_i \mid r_i \in I, m_i \in M\}$ is a submodule of $M$.
 

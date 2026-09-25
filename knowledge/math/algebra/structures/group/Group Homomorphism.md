@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Group Homomorphism
+> Extends:: [[Homomorphism]]
+> 
+> ---
 > Let $(G, \star_G)$ and $(H, \star_H)$ be groups. A function $\varphi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\varphi(g_1 \star_G g_2) = \varphi(g_1) \star_H \varphi(g_2) \; \forall g_1, g_2 \in G.$$
 
 > [!definition] Group Homomorphism (Category Definition)
@@ -16,6 +19,8 @@ A @>>\varphi> B
 
 ### Kernel
 
+Specializes [[Kernel]].
+
 > [!definition] Kernel
 > The **kernel** of $\varphi: G \rightarrow G'$ is the subset of $G$ consisting of elements mapping to the identity in $G'$:
 > $$\ker \varphi = \{g \in G \; | \; \varphi(g) = e_{G'}\} = \varphi^{-1}(e_{G'}).$$
@@ -26,7 +31,7 @@ A @>>\varphi> B
 ### Group Isomorphism
 
 > [!definition] Isomorphisms
-> - See [[Morphism|Isomorphisms]].
+> - See [[Morphism#Isomorphism|Isomorphism]].
 
 > [!proposition]
 > Let $\varphi: G \rightarrow H$ be a group homomorphism. Then $\varphi$ is an isomorphism of groups if and only if it is a bijection.
@@ -42,7 +47,7 @@ A @>>\varphi> B
 ### Monomorphisms
 
 > [!definition] Group Monomorphism
-> - See [[Morphism|Monomorphism]].
+> - See [[Morphism#Monomorphism|Monomorphism]].
 
 > [!proposition]
 > The following are equivalent:

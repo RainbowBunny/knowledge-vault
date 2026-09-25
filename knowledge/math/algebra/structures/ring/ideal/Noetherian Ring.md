@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Noetherian Ring
-> Generalizes:: [[Commutative Ring]]
+> Extends:: [[Commutative Ring]]
 > 
 > ---
 > A commutative ring $R$ is **Noetherian** if every [[Ideal]] of $R$ is finitely generated.

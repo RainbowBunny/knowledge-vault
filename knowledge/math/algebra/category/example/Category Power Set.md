@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Category $\hat{\mathsf{S}}$
+> Instantiates:: [[Category]]
+> 
+> ---
 > Category $\hat{\mathsf{S}}$ consists of
 > - Object: $\mathcal{P}(\hat{\mathsf{S}})$.
 > - For $A, B \subset \hat{\mathsf{S}}$, we define

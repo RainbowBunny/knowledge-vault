@@ -17,7 +17,7 @@ A **ring** is an [[Abelian Group|abelian group]] under $+$ and a [[Monoid|monoid
 
 ## Substructure
 
-`subring/` — [[Subring]] · [[Center]]
+`subring/` — [[Subring]] · [[Ring Center]] (origin: [[Center]])
 
 `ideal/` — [[Ideal]] · [[Prime Ideal]] · [[Maximal Ideal]] · [[Principal Ideal Domain]] · [[Noetherian Ring]]
 

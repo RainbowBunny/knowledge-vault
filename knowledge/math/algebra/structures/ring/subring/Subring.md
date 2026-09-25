@@ -4,4 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Subring
+> Extends:: [[Substructure]]
+> 
+> ---
 > A **subring** $S$ of a [[Ring]] $R$ is a ring where $S \subseteq R$ and [[Inclusion Function]] $S \hookrightarrow R$ is a [[Ring Homomorphism]]. 

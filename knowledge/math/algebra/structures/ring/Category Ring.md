@@ -1,6 +1,9 @@
 ## Definition
 
 > [!definition] Category $\mathsf{Ring}$
+> Instantiates:: [[Category]]
+> 
+> ---
 > Category $\mathsf{Ring}$ consists of
 > - $\mathsf{Obj}(\mathsf{Ring})$ is the class of all [[Ring]].
 > - For $R, S$ rings, we define

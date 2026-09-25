@@ -74,6 +74,8 @@ If $p$ is prime, then the set $\mathbb Z / p \mathbb Z$ of integers modulo $p$ w
 > [!example]
 > Let $m \in \mathbb Z$ and suppose that $m \equiv 1 \pmod b$. Then, $b^{-1} = \frac{1 - m}{b} \pmod m$.
 
+Specializes [[Ring#Unit|Unit]] to the ring $\mathbb Z / m\mathbb Z$.
+
 > [!definition] Units and Group of Units
 >  Numbers that have inverses are called **units**. We denoted the **set of all units** by $$\begin{align}
 (\mathbb Z / m \mathbb Z)^* &= \{a \in \mathbb Z / m\mathbb Z : \gcd(a, m) = 1\} \\

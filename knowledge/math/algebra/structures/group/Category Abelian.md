@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Category $\mathsf{Ab}$
+> Instantiates:: [[Category]]
+> 
+> ---
 > [[Category]] $\mathsf{Ab}$ consists of
 > - $\mathsf{Obj}(\mathsf{Ab})$ is the class of all [[Abelian Group]].
 > - For $G, H$ groups, we define

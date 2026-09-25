@@ -79,6 +79,27 @@ Worked: `DFA Extends:: NFA` ✓ (a DFA is an NFA with single-valued $\delta$) ·
 
 This has been reversed three times. When unsure, say the sentence out loud with *"every … is a …"*.
 
+Reversed twice more, found 2026-09-25: [[Principal Ideal Domain]] said `Generalizes:: [[Integral Domain]]` ("every integral domain is a PID" — false) and [[Noetherian Ring]] said `Generalizes:: [[Commutative Ring]]`. Both are `Extends::`.
+
+### Origin and specialization — one concept across structures
+
+For a concept every structure has its own version of — homomorphism, kernel, center, sub-structure, quotient, isomorphism:
+
+| | what it is | where it lives | how it is marked |
+| --- | --- | --- | --- |
+| **origin** | the concept at its most general Scope | the lowest layer where that Scope exists: `set theory/`, `property/map/`, `structures/` root, `category/` | lists its specializations in a `where \| what the structure adds` table |
+| **specialization, a whole note** | e.g. [[Group Homomorphism]], [[Subring]], [[Ring Center]] | with its structure | `Extends:: [[origin]]` at the top of its definition callout |
+| **specialization, a section** | e.g. `### Kernel` in [[Ring Homomorphism]] | inside the structure's note | opens with the plain line `Specializes [[origin]].` — not a field, because a field would claim the whole note |
+
+A specialization **restates nothing** the origin says. It carries what the structure adds: a theorem (a ring kernel is an [[Ideal]]), a criterion ($ab^{-1} \in H$), a local name (null space). If a section is only the origin's definition with the structure's symbols filled in, it is one line and a link.
+
+Current origins: [[Homomorphism]] · [[Morphism]] (isomorphism, mono, epi, endo, auto) · [[Kernel]] · [[Center]] · [[Substructure]] · [[Quotient Relation]] · [[Categorical Product]] / [[Categorical Coproduct]] · [[Identity Element]] / [[Inverse Element]] · [[Category]] (its examples use `Instantiates::`).
+
+**Two things that look like this and are not:**
+
+- **A theorem that recurs across structures** — [[Canonical Decomposition]] is the model: one note, one section per structure, because the comparison *is* the content. Theorems stay together; definitions spread out to their structures.
+- **Same name, different concept** — lattice (geometric) vs lattice (order), ring ideal vs order ideal, completeness (proof systems / metric spaces / NP), characteristic of a ring vs characteristic function. These get qualified names and no origin. The test: can you write one Scope that both instances fill in? If not, they are homonyms.
+
 
 ---
 

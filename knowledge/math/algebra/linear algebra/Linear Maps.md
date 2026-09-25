@@ -1,6 +1,9 @@
 ## Linear Maps
 
 > [!definition] Linear Map
+> Extends:: [[Homomorphism]]
+> 
+> ---
 > A **linear map** from $V$ to $W$ is a function $T: V \rightarrow W$ with the following properties:
 > - Additivity: $T(u + v) = T(u) + T(v)$ for all $u, v \in V$;
 > - Homogeneity: $$T(av) = a T(v)$$ for all $a \in F$ and all $v \in V$.
@@ -17,6 +20,8 @@
 > - **Distributive Law**
 
 ### Null Spaces and Ranges
+
+Specializes [[Kernel]] (null space) and [[Function#Image|Image]] (range).
 
 > [!definition] Null Space
 > For $T \in \mathcal L(V, W)$, the **null space (or kernel)** of $T$, denoted by $\text{null } T$, is the subset of $V$ consisting of those vectors that $T$ maps to $0$: $$\text{null } T = \{v \in V: T(v) = 0\}.$$ 
@@ -39,6 +44,8 @@
 > A linear map from a vector space to itself is called an **operator**.
 
 ### Invertibility
+
+Specializes [[Morphism#Isomorphism|Isomorphism]] — an invertible linear map is an isomorphism in the category of vector spaces.
 
 > [!definition] Invertible, Inverse
 > A linear map $T \in \mathcal L(V, W)$ is called **invertible** if there exists a linear map $S \in \mathcal L(W, V)$ such that $ST$ equals the identity map on $V$ and $TS$ equals the identity map on $W$. A linear map $S \in \mathcal L(W, V)$ satisfying $ST = I$ and $TS = I$ is called an **inverse** of $T$.

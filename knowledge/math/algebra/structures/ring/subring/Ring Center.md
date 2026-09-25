@@ -4,6 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Center
+> Extends:: [[Center]]
 > Requires:: [[Ring]], [[Subring]].
 > 
 > ---

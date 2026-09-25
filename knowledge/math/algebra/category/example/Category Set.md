@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Category $\mathsf{Set}$
+> Instantiates:: [[Category]]
+> 
+> ---
 > Category $\mathsf{Set}$ consists of 
 > - $\mathsf{Obj}(\mathsf{Set})$ is the class of all sets.
 > - For $A, B$ sets, we define

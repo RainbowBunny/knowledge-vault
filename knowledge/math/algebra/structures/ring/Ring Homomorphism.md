@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Ring Homomorphism
+> Extends:: [[Homomorphism]]
+> 
+> ---
 > Let $R, S$ are rings, a function $\varphi: R \rightarrow S$ is a ring homomorphism if:
 > - Addition is preserved:
 > $$(\forall a, b \in R): \varphi(a + b) = \varphi(a) + \varphi(b)$$
@@ -13,6 +16,8 @@ Reference:
 > $$\varphi(1_R) = 1_S$$
 
 ### Kernel
+
+Specializes [[Kernel]].
 
 > [!definition] Kernel
 > The **kernel** of a homomorphism $\varphi: R \rightarrow S$ of [[Ring]] is
@@ -39,6 +44,8 @@ R @>>\pi> S
 ## Property
 
 ### Ring Isomorphism
+
+Specializes [[Morphism#Isomorphism|Isomorphism]].
 
 > [!corollary]
 > Suppose $\varphi: R \rightarrow S$ is a [[Surjection|Surjective]] ring homomorphism. Then

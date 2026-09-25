@@ -152,7 +152,7 @@ Specification and drafts in [[Foundation Layer]]; its Status block tracks the ba
 | **N1** | **Nilpotency — two new notes.** Drafts in [[Foundation Layer]] §3.12. `rings/Nilpotent Element.md` (a predicate, filed next to Unit and Zero Divisor) and `rings/special rings/Reduced Ring.md` (a mixin over [[Ring]], one axiom). **Blocked by S3** — both drafts link `[[Unit]]` and `[[Zero Divisor]]`, which are still headings inside [[Ring]] |
 | **N2** | *Nilpotent ring* is **vacuous here**: [[Ring]] is unital, so $R^n = 0$ forces $1 = 0$ and $R = $ [[Zero Ring]]. The content lives on **ideals** (nil vs nilpotent) — a `###` section of `Nilpotent Element` until `Ideal.md` is promoted out of [[Ring]] |
 | **N3** | Bridge: [[Operators]] already defines nilpotent for a linear operator with $N^{\dim V} = 0$. Cross-domain two-views pair — one remark each side, no restatement |
-| **N4** | **`Kernel`** — draft in [[Foundation Layer]] §3.13. It is already in the vault three times and the general one is **unnamed**: [[Function]]'s `### Canonical Decomposition` *is* the kernel equivalence relation. Add `### Fibre` to [[Function]] beside `### Image` (the domain-side counterpart, general, stays inline), then one new note `set theory/function/Kernel.md` for **the partition into fibres** (Scope = a bare function, three consumers ⇒ graduates). The sub-object reading is *one distinguished fibre* and stays with each structure |
+| **N4** | **Write the three origin notes** — seeds exist since 09-25, each with its specialization table already filled in (rule: [[Note Layouts]] § *Origin and specialization*). [[Kernel]] (`set theory/function/`): move the relation out of [[Canonical Decomposition]]'s `[!definition]` (it is the kernel, not the decomposition), then the one-fibre reading and the categorical kernel + cokernel; draft in [[Foundation Layer]] §3.13. [[Center]] (`structures/`): the definition over a [[Magma]]; [[Ring Center]] already `Extends::` it; the group center is still unwritten. [[Substructure]] (`structures/`): closure under the whole signature; [[Subgroup]], [[Subring]], [[Submodule]] already `Extends::` it. Say `draft Kernel` (or Center, Substructure) and I write a paste-ready draft |
 | **N5** | **The missing half of the ideal story**: [[Ring]] defines ring homomorphisms *and* [[Ideal]]s but never says the kernel of a hom **is** an ideal, nor that every ideal is a kernel. As it stands [[Ideal]] has no stated reason to exist. **And [[Ideal]] is defined twice** — a good note at `groups/subgroups/Ideal.md` (left / right / two-sided, links [[Ring]] and [[Subgroup]]) and a weaker inline `[!definition] Ideal` in [[Ring]]. Delete the inline one, link the note. The duplicate is *evidence* the file is misfiled: an ideal's Scope needs a **ring**, so it belongs in `rings/` — filing it under `groups/subgroups/` groups it by shape, and a reader in ring theory never finds it. Basename resolution makes the move free. Also add *“is a normal subgroup”* to [[Subgroup]]'s `### Kernel`, and a *null space = kernel* synonym line in [[Linear Maps]] |
 | **N6** | Bridge remark in `Kernel.md`: readings **A** ($f^{-1}(0)$) and **B** ($f(a')=f(a'')$) agree for groups — that agreement *is* the first isomorphism theorem — and come apart for monoids. Counterexample in §3.13: $f:(\mathbb N,+)\to(\{0,1\},\max)$ has trivial kernel and is not injective. *Non-equivalent* two-views shape; do not merge. **State the criterion, not a list**: one fibre determines the congruence exactly in **$0$-regular** varieties — those with a Mal'cev term $p(x,y,z) = xy^{-1}z$. Groups, rings, modules have one; monoids, semigroups, lattices do not. Checkable rather than memorised |
 | 3.2 | Give [[Group]] a `## Structure` section: [[Subgroup]], [[Normal Subgroup]], [[Coset]], [[Quotient Group]] |
@@ -291,7 +291,7 @@ Specification, templates and the full audit in [[Cryptography Layer]]; its Statu
 `python scripts/vault-lint.py`, 2026-09-24, end of day · 735 notes in `knowledge/`.
 
 ```
-broken=10  anchor=1  field=1  dupe=0  title=58  empty=43  hollow=64  orphan=1  seed=0
+broken=10  anchor=1  field=1  dupe=0  title=58  empty=43  hollow=64  orphan=1  seed=3
 ```
 
 Morning of the same day: `broken=21 dupe=1 title=58 empty=43 hollow=126 orphan=175` (anchor and field did not exist yet — the first run found 97 dead anchors and 5 unindexed fields).
@@ -301,6 +301,8 @@ Morning of the same day: `broken=21 dupe=1 title=58 empty=43 hollow=126 orphan=1
 **anchor (1)** — [[Binary Operation Examples]] → `Binary Operation#Indexed Composition` (Assignment 4C). The other 96 were repaired: headings that had been renamed (`PRF Security` → `Definition`, `Semantic Security` → `Indistinguishability`) or promoted to notes (`Language#Recognizable` → [[Recognizable Language]], `Ring#Ideal` → [[Ideal]]).
 
 **field (1)** — [[Graph Non-Isomorphism]]'s `[[Complement Class]] of::` (Assignment 4G).
+
+**seed (3)** — the origin notes [[Kernel]], [[Center]], [[Substructure]] (task N4).
 
 **orphan (1)** — [[Random Note]], one byte in `cryptography/foundations/`. Delete it or say what it is for. Everything else is reachable from a hub: new [[Rings MOC]], [[Computability MOC]], [[AI MOC]], [[Physics MOC]]; the rest were top-ups.
 

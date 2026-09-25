@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Quotient Ring
+> Extends:: [[Quotient Relation]]
+> 
+> ---
 > Let $I$ be an [[Ideal]] of the [[Ring]] $(R, +, \cdot)$. The **quotient ring** of $R$ **modulo** $I$, denoted $R / I$, is defined as the set of [[Coset]] of $I$.
 
 

@@ -4,6 +4,9 @@ Reference:
 ## Definition
 
 > [!definition] Quotient Group
+> Extends:: [[Quotient Relation]]
+> 
+> ---
 > For an [[Equivalence Relation]] $\sim$ on a group $G$; given a group $G /_\sim$ and a [[Group Homomorphism]] $\pi: G \rightarrow G /_\sim$ satisfying the appropriate universal property.
 
 > [!definition] Quotient by Normal Subgroup

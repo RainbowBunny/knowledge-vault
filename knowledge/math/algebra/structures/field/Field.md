@@ -36,6 +36,8 @@ Reference:
 
 ## Characteristic 
 
+Specializes [[Ring#Characteristic|Characteristic]] — a field is a ring.
+
 > [!definition] 
 > The characteristic of a ring $R$ is the least positive integer $n$ s.t $nr = 0$ for all $r \in R$
 

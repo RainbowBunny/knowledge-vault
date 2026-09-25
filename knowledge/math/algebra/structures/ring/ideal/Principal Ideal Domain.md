@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Principal Ideal Domain
-> Generalizes:: [[Integral Domain]]
+> Extends:: [[Integral Domain]]
 > 
 > ---
 > An integral domain $R$ is a PID ('Principal Ideal Domain') if every [[Ideal]] of $R$ is principal.

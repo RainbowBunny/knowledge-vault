@@ -4,6 +4,8 @@ Reference:
 
 ## Definition
 
+The relation defined here is the [[Kernel]] of $f$ — it belongs in that note; the decomposition is the theorem below.
+
 > [!definition] Canonical Decomposition
 > A canonical decomposition is a [[Function]] $f: A \rightarrow B$ determines an [[Equivalence Relation]] $\sim$ on $A$ as follows:
 > - For all $a', a'' \in A$,
