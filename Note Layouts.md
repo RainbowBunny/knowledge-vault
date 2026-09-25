@@ -89,7 +89,11 @@ For a concept every structure has its own version of — homomorphism, kernel, c
 | --- | --- | --- | --- |
 | **origin** | the concept at its most general Scope | the lowest layer where that Scope exists: `set theory/`, `property/map/`, `structures/` root, `category/` | lists its specializations in a `where \| what the structure adds` table |
 | **specialization, a whole note** | e.g. [[Group Homomorphism]], [[Subring]], [[Ring Center]] | with its structure | `Extends:: [[origin]]` at the top of its definition callout |
-| **specialization, a section** | e.g. `### Kernel` in [[Ring Homomorphism]] | inside the structure's note | opens with the plain line `Specializes [[origin]].` — not a field, because a field would claim the whole note |
+| **specialization, a section** | e.g. `### Kernel` in [[Ring Homomorphism]] | inside the structure's note | opens with the plain line `Specializes [[origin]].` — not a field: a field would claim the whole note, and the claim is weaker than `Extends` (below) |
+
+**`Specializes` is not `Extends` for sections.** `Extends` promises a literal *is-a*: every [[Group Homomorphism]] **is** a [[Homomorphism]]. `Specializes` promises only *"this is the origin's concept in this structure, and the section says how it is presented here."* The kernel shows why the weaker word is needed: [[Kernel]] is the relation $f(a') = f(a'')$, while `### Kernel` in [[Group Homomorphism]] defines the subset $\varphi^{-1}(e)$ — one fibre, which *determines* the relation but is not it. If such a section ever graduates to its own note: literal is-a → `Extends::`; a re-reading like this one → `Requires:: [[origin]]` plus a bridge remark.
+
+**No `Generalizes::` on an origin.** Each edge is declared once, on the note built from the other — the specialization. The origin's `where | what the structure adds` table is the reverse view; for whole-note specializations it can be a query, `LIST FROM [[]] WHERE contains(flat(list(Extends)), this.file.link)` (`FROM [[]]` = notes linking here; `flat(list(…))` copes with one value or several).
 
 A specialization **restates nothing** the origin says. It carries what the structure adds: a theorem (a ring kernel is an [[Ideal]]), a criterion ($ab^{-1} \in H$), a local name (null space). If a section is only the origin's definition with the structure's symbols filled in, it is one line and a link.
 
