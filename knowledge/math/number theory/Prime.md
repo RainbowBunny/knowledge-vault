@@ -41,6 +41,8 @@ Let $p$ be a prime number, and suppose that $p$ divides the product $ab$ of two 
 > [!theorem] Fermat's Little Theorem, Version 2
 > Let $p$ be a prime number. Then $$a^p \equiv a \pmod p \quad \forall a \in \mathbb Z$$
 
+Specializes [[Group Order]] — the order of $a$ as an element of $\mathbb F_p^* = (\mathbb Z / p\mathbb Z)^*$.
+
 > [!proposition] Order of $a$ modulo $p$
 >  Let $p$ be a prime and let $a$ be an integer not divisible by $p$. Suppose that $a^n \equiv 1 \pmod p$. Then the order of a module $p$ divides $n$. In particular, the order of $a$ divides $p - 1$.
 

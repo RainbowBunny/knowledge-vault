@@ -4,7 +4,7 @@ Reference:
 ## Definition
 
 > [!definition] Group Homomorphism
-> Extends:: [[Homomorphism]]
+> Specialize:: [[Homomorphism]]
 > 
 > ---
 > Let $(G, \star_G)$ and $(H, \star_H)$ be groups. A function $\varphi: G \rightarrow H$ is called a **(groups) homomorphism** if it satisfies $$\varphi(g_1 \star_G g_2) = \varphi(g_1) \star_H \varphi(g_2) \; \forall g_1, g_2 \in G.$$
@@ -17,16 +17,6 @@ G \times G @>\varphi \times \varphi>> H \times H\\
 A @>>\varphi> B 
 \end{CD}$$
 
-### Kernel
-
-Specializes [[Kernel]].
-
-> [!definition] Kernel
-> The **kernel** of $\varphi: G \rightarrow G'$ is the subset of $G$ consisting of elements mapping to the identity in $G'$:
-> $$\ker \varphi = \{g \in G \; | \; \varphi(g) = e_{G'}\} = \varphi^{-1}(e_{G'}).$$
-
-> [!proposition]
-> Let $\varphi: G \rightarrow G'$ be a homomorphism. Then the [[Inclusion Function]] $\iota: \ker \varphi \hookrightarrow G$ is [[Universal Property|Final]] in the [[Category]] of group homomorphism $\alpha: K \rightarrow G$ such that $\varphi \circ \alpha$ is the [[Trivial Group]].
 
 ### Group Isomorphism
 

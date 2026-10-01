@@ -27,5 +27,3 @@
 
 ## Russell's Paradox
 
-> [!proposition] Russell's Paradox
-> Let $R = \{x \;|\; x \notin x\}$. Then $R \in R \Longleftrightarrow R \notin R$.

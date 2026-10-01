@@ -73,6 +73,8 @@ Specializes [[Ring#Characteristic|Characteristic]] — a field is a ring.
 > [!definition] Galois Fields
 > We write $\mathbb F_{p^d}$ for a field with $p^d$ elements. We know that any two fields with $p^d$ elements are essentially the same. These fields are also sometimes called **Galois fields** and denoted by $\text{GF}(p^d)$.
 
+Specializes [[Group Order]] — the order of $\alpha$ as an element of the multiplicative group $\mathbb F_q^*$.
+
 > [!definition] Order
 > The **order** of a nonzero element $\alpha \in \mathbb F_q$, denoted by $\text{ord}(\alpha)$, is the smallest positive integer $k$ such that $\alpha^k = 1$.
 

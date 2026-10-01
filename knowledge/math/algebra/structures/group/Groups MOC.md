@@ -8,7 +8,7 @@ A **group** is a set with one operation satisfying [[Associativity]], [[Identity
 
 - [[Group]] — definition, order of a group and of an element, uniqueness and cancellation propositions
 - [[Group Order]] · [[Group Presentation]]
-- origins these specialize: [[Homomorphism]], [[Kernel]], [[Substructure]], [[Center]], [[Quotient Relation]]
+- origins these specialize: [[Homomorphism]], [[knowledge/math/set theory/function/Kernel]], [[Substructure]], [[Center]], [[Quotient Relation]]
 - [[Group Homomorphism]] — the structure-preserving maps; kernel, isomorphism, the order-divides proposition. Links out to [[Morphism]] rather than restating mono / iso
 
 ## Substructure

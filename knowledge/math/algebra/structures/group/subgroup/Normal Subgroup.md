@@ -16,7 +16,7 @@ Reference:
 > $\varphi(g n g^{-1}) = \varphi(g) \varphi(n) \varphi(g^{-1}) = e_G \implies gng^{-1} \in \ker{\varphi}$.
 
 > [!proposition]
-> Every normal subgroup is a [[Group Homomorphism|Kernel]].
+> Every normal subgroup is a [[Kernel of Group Homomorphism]].
 
 > [!proposition]
 > Let $H, K$ be [[Subgroup]] of a [[Group]] $G$, and assume that $H$ is normal in $G$. Then:

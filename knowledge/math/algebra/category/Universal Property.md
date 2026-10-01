@@ -23,21 +23,3 @@ Reference:
 
 > [!proposition]
 > Let $\mathcal C$ be a category, If $F_1, F_2$ are both final objects in $\mathcal C$, then $F_1 \cong F_2$.
-
-
-
-
-
-
-### Coproducts
-
-> [!example] Coproducts
-> Let $A, B$ be objects of a category $\mathcal C$. A coproduct $A \amalg B$ of $A$ and $B$ will be an object of $\mathcal C$, endowed with two morphisms $i_A: A \rightarrow A \amalg B, i_B: B \rightarrow A \amalg B$ and satisfying the following property:
-> For all objects $Z$ and morphisms $f_A \in \text{Hom}_{\mathcal C}(A, Z), f_B \in \text{Hom}_{\mathcal C}(B, Z)$, there exists a unique morphism $\sigma : A \amalg B \rightarrow Z$ such that $\sigma i_A = f_A, \sigma i_B = f_B$.
-
-> [!proposition]
-> The disjoint union is a coproduct in $\text{Set}$:
-> $$\sigma(c) = \begin{cases}
-> f_A(a) \quad &\text{if } c = (0, a) \in \{0\} \times A, \\
-> f_B(b) \quad &\text{if } c = (1, b) \in \{1\} \times B.
-> \end{cases}$$

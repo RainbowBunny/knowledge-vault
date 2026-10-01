@@ -21,7 +21,7 @@
 
 ### Null Spaces and Ranges
 
-Specializes [[Kernel]] (null space) and [[Function#Image|Image]] (range).
+Specializes [[knowledge/math/set theory/function/Kernel]] (null space) and [[Function#Image|Image]] (range).
 
 > [!definition] Null Space
 > For $T \in \mathcal L(V, W)$, the **null space (or kernel)** of $T$, denoted by $\text{null } T$, is the subset of $V$ consisting of those vectors that $T$ maps to $0$: $$\text{null } T = \{v \in V: T(v) = 0\}.$$ 

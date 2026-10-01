@@ -11,3 +11,8 @@ Reference:
 > - $\mathsf{Obj}(\mathsf{Set})$ is the class of all sets.
 > - For $A, B$ sets, we define
 > $$\mathsf{Hom}_\mathsf{Set}(A, B) = B^A$$
+
+## Property
+
+> [!proposition]
+> The disjoint union is a [[Coproduct]] in $\mathsf{Set}$.

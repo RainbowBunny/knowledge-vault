@@ -1,6 +1,4 @@
-status:: seed
-
-The origin note for **kernel**: stated once, for any function. Each structure keeps its own kernel section, which opens with `Specializes [[Kernel]]` and carries only what that structure adds.
+## Definition
 
 ## Scope
 

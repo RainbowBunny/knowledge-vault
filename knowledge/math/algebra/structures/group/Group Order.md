@@ -3,6 +3,8 @@ Reference:
 
 ## Definition
 
+Specializes [[Set Foundation#Cardinality|cardinality]] — *order* is group theory's name for $|G|$.
+
 > [!definition] Order of a Group
 > The **order of** [[Group]] $G$ is the number of elements in $G$; it is denoted by $|G|$ or $\# G$. We write $|G| = \inf$ if $G$ is infinite.
 

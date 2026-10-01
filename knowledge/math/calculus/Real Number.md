@@ -1,6 +1,8 @@
 
 ## The Order Axiom
 
+Specializes [[Total Order]]; axiom 7 adds compatibility with $+$ and $\cdot$, which makes $\mathbb R$ an *ordered field*.
+
 > [!axiom] The Order Axiom
 > Assume that there exists a certain subset $\mathbb R^+ \subset \mathbb R$, called the set of **positive** numbers, which satisfies the following order axioms:
 > 

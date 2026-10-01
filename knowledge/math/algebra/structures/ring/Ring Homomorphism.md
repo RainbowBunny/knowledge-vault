@@ -17,7 +17,7 @@ Reference:
 
 ### Kernel
 
-Specializes [[Kernel]].
+Specializes [[knowledge/math/set theory/function/Kernel]].
 
 > [!definition] Kernel
 > The **kernel** of a homomorphism $\varphi: R \rightarrow S$ of [[Ring]] is
