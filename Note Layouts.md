@@ -440,7 +440,7 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 ## Related
 ```
 
-**Access is the one general knob.** [[Public-Key Encryption]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
+**Access is the one general knob.** [[Public-Key Encryption Scheme]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
 
 Those four Condition lines are not a wish list: **each one is a place something broke.** Access → an adversary handed the *real* state in a simulated branch. Promise → completeness confused with soundness. Quantifier → a simulator with no $\exists$. Adaptivity → a non-adaptive model written adaptively.
 

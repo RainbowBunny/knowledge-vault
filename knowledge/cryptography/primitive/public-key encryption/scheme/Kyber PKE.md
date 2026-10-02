@@ -6,8 +6,6 @@ Link: https://eprint.iacr.org/2017/634.pdf
 
 Reference Name: $\mathsf{Kyber.PKE}$
 
-### Parameters
-
 > [!definition] Parameters
 > - $\eta$: Noise parameter.
 > - $\beta_\eta$: Centered binomial distribution with parameter $\eta$.
@@ -16,8 +14,6 @@ Reference Name: $\mathsf{Kyber.PKE}$
 > - $d_u$: Ciphertext compression parameter for $u$.
 > - $d_v$: Ciphertext compression parameter for $v$.
 
-### Building Blocks
-
 > [!definition] Building Blocks
 > - $\text{Sam}$: Extendable output function.
 > - $\text{Compress}_q(x, d)$: Takes an element $x \in \mathbb Z_q$ and outputs an integer in $\{0, \dots, 2^d - 1\}$, where $d < \lceil \log_2(q) \rceil$:
@@ -25,8 +21,6 @@ Reference Name: $\mathsf{Kyber.PKE}$
 > - $\text{Decompress}_q(x, d)$: Output an element $x'$ close to $x$ that satisfies $|x' - x \mod^{\pm} q| \leq B_q = \lceil \frac{q}{2^{d + 1}} \rfloor$.
 > 	1. Output $\lceil (q / 2^d) \cdot x \rfloor$
 > 
-
-### Algorithms
 
 > [!scheme] Kyber PKE
 > - $(pk, sk) \leftarrow \text{Gen}()$:
@@ -67,6 +61,6 @@ Reference Name: $\mathsf{Kyber.PKE}$
 ### Indistinguishability under Chosen-Plaintext Attacks
 
 > [!security]
-> For any [[Public-Key Encryption#Indistinguishability|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Problem|MLWE adversary]] $\mathcal B$ such that: 
+> For any [[Public-Key Encryption Scheme#Indistinguishability|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Problem|MLWE adversary]] $\mathcal B$ such that: 
 > $$\text{Adv}_{Kyber.PKE}^{\text{cpa}}(\mathcal A) \leq 2 \cdot \text{Adv}_{k + 1, k, \eta}^{\text{mlwe}}(\mathcal B).$$
 

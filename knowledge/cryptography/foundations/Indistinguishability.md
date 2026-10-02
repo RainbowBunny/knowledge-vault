@@ -52,5 +52,5 @@ dg-publish: true
 
 ## Application
 
-- [[Symmetric Key Encryption#Indistinguishability]] and [[Public-Key Encryption#Indistinguishability]] — security definitions are distinguishing games between two ciphertext distributions.
+- [[Symmetric Key Encryption#Indistinguishability]] and [[Public-Key Encryption Scheme#Indistinguishability]] — security definitions are distinguishing games between two ciphertext distributions.
 - Hybrid arguments — chains of computationally indistinguishable distributions are indistinguishable (loss linear in the chain length).

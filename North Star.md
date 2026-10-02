@@ -33,10 +33,10 @@ The crypto side's `## Syntax` / `## Scheme` split is one case of a pattern that 
 
 | Lean | vault | example |
 | --- | --- | --- |
-| `class` with data | a **structure** note — carriers, operations, axioms | [[Ring]], [[Public-Key Encryption]], [[Metric Space]] |
+| `class` with data | a **structure** note — carriers, operations, axioms | [[Ring]], [[Public-Key Encryption Scheme]], [[Metric Space]] |
 | `class … : Prop` — a **mixin**, one axiom, no data | a note in `property/` | [[Associativity]], [[Cancellativity]], [[Soundness]] |
 | `extends` | **`Extends:`** — this interface *is* that one, plus a condition | [[Group]] over [[Monoid]]; [[Argument Systems]] over [[Interactive Proof Systems]] |
-| `instance` | **`Instantiates:`** — a concrete witness | [[Polynomial Ring]] : [[Ring]]; [[Kyber PKE]] : [[Public-Key Encryption]] |
+| `instance` | **`Instantiates:`** — a concrete witness | [[Polynomial Ring]] : [[Ring]]; [[Kyber PKE]] : [[Public-Key Encryption Scheme]] |
 | a `def` on structures | a **Transform** note | [[Fiat-Shamir Transform]], [[Fujisaki-Okamoto Transformation]] |
 | `theorem` | `## Property` / `## Security` | correctness, an IND-CPA reduction |
 | `variable` / arguments | the `Setting` block, or the `### Scope` line | $R_q$; a group $\mathbb G$ of prime order |
@@ -79,7 +79,7 @@ Prose is free everywhere **except five places**. These get checked; everything e
 
 `## Definition` holds what you must **stipulate** — the defining callout plus the derived vocabulary that only exists once the object does. `## Property` holds what you can **prove**. Then `## Variant`, `## Example`, `## Related`, with an optional `## Intuition` on top.
 
-On the crypto side the defining slot splits in two, because the two halves carry different obligations. `## Syntax` declares an **interface** — the tuple of algorithms and the spaces they range over, in a `[!definition]`; other notes then quantify over it. `## Scheme` gives an **instance** — concrete code, in a `[!scheme]` — and owes a `## Property`/`### Correctness` plus a `## Security` section whose callout links **up** to the interface's game and **down** to an assumption. Interface is to instance as `class` is to `instance`. Inside the `[!scheme]` callout the **setting** is declared before the algorithms, in slots chosen so each points somewhere different: **Parameters** (knobs, pointing nowhere) · **Setting** (down into `math/`) · **Spaces** (up into the primitive) · **Distribution** · **Building Block** (sideways into another crypto note) · **Parties**. That block is the crypto form of the math side's `### Scope` line — same job, same rule: no algorithm may mention a symbol the setting has not declared. Model: [[Kyber PKE]] against [[Public-Key Encryption]]. Spelled out in [[Cryptography Layer]].
+On the crypto side the defining slot splits in two, because the two halves carry different obligations. `## Syntax` declares an **interface** — the tuple of algorithms and the spaces they range over, in a `[!definition]`; other notes then quantify over it. `## Scheme` gives an **instance** — concrete code, in a `[!scheme]` — and owes a `## Property`/`### Correctness` plus a `## Security` section whose callout links **up** to the interface's game and **down** to an assumption. Interface is to instance as `class` is to `instance`. Inside the `[!scheme]` callout the **setting** is declared before the algorithms, in slots chosen so each points somewhere different: **Parameters** (knobs, pointing nowhere) · **Setting** (down into `math/`) · **Spaces** (up into the primitive) · **Distribution** · **Building Block** (sideways into another crypto note) · **Parties**. That block is the crypto form of the math side's `### Scope` line — same job, same rule: no algorithm may mention a symbol the setting has not declared. Model: [[Kyber PKE]] against [[Public-Key Encryption Scheme]]. Spelled out in [[Cryptography Layer]].
 
 A derived concept graduates to its own note **when a note other than its parent needs to link it** — never as a heading anchor. Heading anchors are invisible to `vault-lint`, break silently on rename, and record the backlink against the wrong concept.
 
