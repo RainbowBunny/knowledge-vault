@@ -2,9 +2,18 @@ Reference:
 
 ## Syntax
 
+> [!definition] Parameters
+> - $\lambda$: the security parameter
+> - $\mathcal M$: 
+
 > [!definition]  Scheme
-> A **** $\Pi = (\mathsf{Gen}, \dots)$ is a tuple of efficient algorithms with message space $\mathcal M$.
-> - $out \leftarrow \mathsf{Gen}(in)$: 
+> A **** $\Pi = (\mathsf{Gen}, \dots)$ is a tuple of efficient algorithms over the security parameter and the spaces of Parameters.
+> - $out \leftarrow \mathsf{Gen}(in)$: (Randomized) 
+>     - **Input**: 
+>     - **Output**: 
+
+> [!remark] Notation in the literature
+> 
 
 ## Property
 

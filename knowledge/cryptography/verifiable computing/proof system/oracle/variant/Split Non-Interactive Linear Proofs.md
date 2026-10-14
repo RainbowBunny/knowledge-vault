@@ -5,6 +5,8 @@ Reference:
 
 > [!definition] Split Non-Interactive Linear Proof
 > Extends:: [[Non-Interactive Linear Proofs]]
+> 
+> ---
 > - $\mathsf{Setup}$: $\mathrm{crs}$ is now $(\mathrm{crs}_1, \mathrm{crs}_2) \in \mathbb{F}^{m_1} \times \mathbf{F}^{m_2}$.
 > - $\mathsf{Prove}$: 
 > 	1. $\Pi$ is now $\begin{pmatrix}\Pi_1 & 0 \\ 0 & \Pi_2\end{pmatrix}$ where $\Pi_1 \in \mathbb{F}^{k_1 \times m_1}$ and $\Pi_2 \in \mathbb{F}^{k_2 \times m_2}$.
@@ -16,4 +18,11 @@ Reference:
 
 ## Property
 
-### 
+### Disclosure-free
+
+> [!definition] Disclosure-free
+> The Disclosure-free NILP Game:
+> 
+> ---
+> A split NILP is disclosure-free if for all adversaries $\mathcal{A}$:
+> 

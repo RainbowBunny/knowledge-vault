@@ -9,19 +9,6 @@ dg-publish: true
 > - $c \leftarrow \text{Enc}(k, m)$ (Deterministic) or $c \leftarrow \text{Enc}(k, m; r)$ (Probabilistic): The encryption algorithm takes a key $k \in \mathcal K$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
 > - $m \leftarrow \text{Dec}(k, c)$: The deterministic decryption algorithm takes a key $k \in \mathcal K$ and a ciphertext $c$, and outputs either a message $m \in \mathcal M$ or a special symbol $\perp$ to indicate **rejection**.
 
-> [!algorithm] Computational Cipher (Mathematical Detail)
-> Let $\mathcal E = (E, D)$ be a computational cipher defined over $(\mathcal K, \mathcal M, \mathcal C)$. We associate with $\mathcal E$ families of key, message, and ciphertext spaces, indexed by
-> - A **security parameter** $\lambda \in \mathbb Z_{\geq 1}$, and
-> - A **system parameter** $\Lambda$ (a bit string).
->
-> Thus, instead of finite sets, we have families $\{\mathcal K_{\lambda, \Lambda}\}, \{\mathcal M_{\lambda, \Lambda}\}, \{\mathcal C_{\lambda, \Lambda}\}$ such that:
-> 1. $K, M, C$ are efficiently recognizable.
-> 2. $K$ is efficiently sampleable.
-> 3. $M$ has an effective length function.
-> 4. $E$ is an efficient probabilistic algorithm that on input $\lambda, \Lambda, k, m$ outputs an element of $\mathcal C_{\lambda, \Lambda}$.
-> 5. $D$ is an efficient deterministic algorithm that on input $\lambda, \Lambda, k, c$ outputs either an element of $\mathcal M_{\lambda, \Lambda}$ or the special symbol $\text{reject} \notin \mathcal M_{\lambda, \Lambda}$.
-> 6. Correctness: for all valid inputs, $D(\lambda, \Lambda; k, E(\lambda, \Lambda; k, m)) = m$.
-
 ## Property
 
 ### Correctness
@@ -38,7 +25,7 @@ dg-publish: true
 > $$\forall k \in \mathcal K, m \in \mathcal M: \gamma(k, m) \geq \gamma$$
 
 > [!remark]
-> Equivalent formulation ($\gamma$-uniformity): $\mathcal E$ is $\gamma$-uniform if $\Pr[c = E(k, m; r) \;|\; r \in \mathcal R] \leq \gamma$ for all $k, m, c$. A $\gamma$-spread scheme is $2^{-\gamma}$-uniform (Hofheinz–Hövelmanns–Kiltz 2017). This matches the [[Public-Key Encryption Scheme#Min-Entropy|PKE min-entropy]] definition.
+> Equivalent formulation ($\gamma$-uniformity): $\mathcal E$ is $\gamma$-uniform if $\Pr[c = E(k, m; r) \;|\; r \in \mathcal R] \leq \gamma$ for all $k, m, c$. A $\gamma$-spread scheme is $2^{-\gamma}$-uniform (Hofheinz–Hövelmanns–Kiltz 2017). This matches the [[Public-Key Encryption Scheme (Old)#Min-Entropy|PKE min-entropy]] definition.
 
 ## Security
 
@@ -84,7 +71,7 @@ dg-publish: true
 > $$\text{Adv}_{\text{SKE}}^{\text{ind-atk}}(\mathcal A) \leq \varepsilon$$
 
 > [!remark]
-> 1. ATK here is a placeholder for the attacker. Unlike [[Public-Key Encryption Scheme#Indistinguishability|PKE]], there is no public key, so even IND-CPA requires an explicit encryption oracle.
+> 1. ATK here is a placeholder for the attacker. Unlike [[Public-Key Encryption Scheme (Old)#Indistinguishability|PKE]], there is no public key, so even IND-CPA requires an explicit encryption oracle.
 > 2. IND-EAV in bit-guessing form is exactly **semantic security** (Boneh–Shoup): $\text{SSadv}[\mathcal A, \mathcal E] = 2 \cdot \text{SSadv}^*[\mathcal A, \mathcal E]$, where $\text{SSadv}^*$ is the advantage above.
 > 3. The multi-query (distinguishing) forms $\text{CPAadv}$ and $\text{CCAadv}$, where the adversary adaptively submits pairs $(m_{i0}, m_{i1})$ and must distinguish Experiment 0 from Experiment 1, are the versions used in the Construction theorems below; they relate to the bit-guessing form by a factor of 2.
 > 4. 1CCA security restricts the adversary to a single encryption query; it is the notion used in [[Authenticated Encryption]].

@@ -1,7 +1,0 @@
-- Part 1: Introduction
-	- [[Ten Principles of Economics]]
-	- [[Thinking Like an Economist]]
-	- [[Interdependence and the Gains from Trade]]
-- Part 2: How Markets Work
-	- [[The Market Forces of Supply and Demand]]
-	- [[Elasticity and Its Application]]

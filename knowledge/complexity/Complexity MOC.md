@@ -51,9 +51,12 @@ A problem note states the language once; `Member of::`, `Complete for::` and `Ha
 - machine: [[Turing Machine Satisfiability]] · [[Unary Halting Problem]] · [[Exponential Computation]]
 - awaiting merge: [[Subset-Sum Problem]] into [[Subset Sum]]; [[Satisfiability Problem (To be removed)]] into [[Satisfiability]]
 
-## Interaction — `interactive/`
+## Proof systems — `proof system/`
 
-- [[Deterministic Function Interaction]] · [[Deterministic Interactive Proof System]] · [[Probabilistic Interactive Proof System]]
+Languages and unbounded provers. The cryptographic versions — relations, efficient provers with a witness, setups, arguments — are in [[Verifiable Computing MOC]].
+
+- interaction: [[Deterministic Function Interaction]] · [[Deterministic Interactive Proof System]] · [[Probabilistic Interactive Proof System]] · [[Multi-Prover Interactive Proofs]]
+- oracle: [[Probabilistically Checkable Proofs]] · [[Interactive Oracle Proof]]
 - protocols for one language (`protocol/`): [[Sum-Check Protocol]] · [[True Quantified Boolean Formula Protocol]] · [[Graph Non-isomorphism Protocol]] · [[Quadratic Non Residue Protocol]] · [[Goldwasser-Sipser Set Lower Bound Protocol]]
 - the classes they define: [[Class IP]] · [[Class AM]] · [[Class MA]] · [[Class MIP]] · [[Class dIP]]
 
@@ -88,7 +91,7 @@ complexity/
 │   ├── operator/
 │   └── reducibility/
 ├── problem/            (logic/, graph/, number/, group/, lattice/, code/, machine/)
-├── interactive/        (protocol/)
+├── proof system/       (protocol/)
 ├── circuit/
 ├── randomized/         old hub, to dissolve
 ├── quantum/

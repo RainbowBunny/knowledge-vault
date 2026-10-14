@@ -17,7 +17,7 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 | a concrete model of a structure                     | **Example** (4)            | `structures/<X>/example/`                    |
 | a cryptographic interface — a tuple of algorithms   | **Primitive** (5)          | `primitive/`, `special function/`, `verifiable computing/`, `secure computation/` |
 | one concrete instantiation of a primitive           | **Scheme** (6)             | `<primitive>/scheme/`                        |
-| an interactive protocol for one language            | **Scheme** (6)             | `complexity/interactive/protocol/`           |
+| an interactive protocol for one language            | **Scheme** (6)             | `complexity/proof system/protocol/`          |
 | *give me an $X$, I build you a $Y$*                 | **Transform** (7)          | under the **output** primitive               |
 | *these two are the same thing seen differently*     | **Bridge**                 | wherever its ends are                        |
 | a worst-case computational problem                  | **Problem** (8)            | `complexity/problem/<subject>/`              |
@@ -58,7 +58,7 @@ Fields:
 | `Member of::`         | this problem lies in that class                           | `Member of:: [[Class NP]]`                                     |
 | `Complete for::`      | complete, **and the reduction**                           | `Complete for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]` |
 | `Hard for::`          | hard, and the reduction                                   | `Hard for:: [[Class NP]] under [[Polynomial-time Karp Reducibility]]`    |
-| `Import`              | parameters pulled from another note, in a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w)$`       |
+| `Import`              | symbols pulled from the note that declares them, as a bullet of a `Parameters` callout | `[[Syndrome Decoding Problem]]: Import $(n, k, w)$`       |
 
 > [!warning] Two ways a field silently fails
 > **One colon.** `Instantiates:` is invisible to Dataview. Every relation key takes `::`.
@@ -105,6 +105,71 @@ Current origins: [[Homomorphism]] · [[Morphism]] (isomorphism, mono, epi, endo,
 - **Same name, different concept** — lattice (geometric) vs lattice (order), ring ideal vs order ideal, completeness (proof systems / metric spaces / NP), characteristic of a ring vs characteristic function. These get qualified names and no origin. The test: can you write one Scope that both instances fill in? If not, they are homonyms.
 - **One word, several concepts** — sort every occurrence *before* looking for an origin. *Order* is four concepts plus homonyms: **size** (order of a group = [[Set Foundation#Cardinality|cardinality]]), **element order** (origin [[Group Order]]; $\mathbb F_q^*$ and $(\mathbb Z/p)^*$ specialize it), **valuation** ($\mathrm{ord}_p(a)$, multiplicity of a zero or pole), **ordering** ([[Preorder]] → [[Partial Order]] → [[Total Order]]); order of an ODE and first-order logic are homonyms. *Characteristic* is three: **of a ring** (origin [[Ring#Characteristic]]), **characteristic polynomial** (a family of its own, over operators), **characteristic function** (indicator $\chi_S$ vs probability $\varphi_X$ — homonyms).
 
+
+---
+
+## Parameters and Building Blocks — one callout each
+
+**Revised 2026-10-14.** Every object that has variables gets its own `[!definition] Parameters` callout, directly above the callout that defines the object. Building Blocks, when the object has any, get a **separate** `[!definition] Building Blocks` callout. Neither is folded into the definition or into the algorithms.
+
+```markdown
+> [!definition] Parameters
+> - [[<Note>]]: Import $(\dots)$.        ← symbols another note declares
+> - $x$: <what it is>                    ← symbols introduced here
+
+> [!definition] Building Blocks
+> - $\Pi$: any [[<primitive>]]           ← other objects it calls
+
+> [!definition] <Name>
+> <the definition, or the algorithms>
+```
+
+- **Parameters hold variables.** One bullet per symbol the definition uses. A symbol is declared once, in the note that owns it; every other note `Import`s it (see the `Import` row above). Import only symbols the source note lists in its own `Parameters` callout. If it does not, add the line to the source note first, or the import points at nothing.
+- **Building Blocks hold objects, never variables.** Other cryptographic objects the definition calls. Every bullet is a wikilink, except at an interface level (layout 7), where a bullet is a universally quantified type.
+- **Placement.** Where a layout puts the definition under a heading (`## Syntax`, `## Definition`), the two callouts sit directly under that heading, Parameters first.
+- **One per object, not one per note.** A note with several definitions (a correctness notion with a bound $\delta$, a game with oracles and a time bound) gives each its own `Parameters` callout, short as it may be. Omit the callout only when the definition introduces and uses no symbol.
+- **Already this way:** Problem (8) and Assumption (9). **Changed to this way:** Primitive (5), Scheme (6), Transform (7), Security property (10). **Not affected:** Property (2) and Theorem (12), whose `### Scope` line plays this role.
+
+Worked examples: [[Kyber PKE]] (Parameters and Building Blocks as separate callouts above the algorithms); [[Gentry Bootstrapping Transformation]] (`Import` lines in Parameters, a quantified Building Block).
+
+---
+
+## Algorithms — signature, Input, Output, Steps
+
+**Revised 2026-10-14.** Every algorithm is written the same way, whether it belongs to an interface or to a construction:
+
+```markdown
+> - $out \leftarrow \mathsf{Alg}(in)$: (Randomized | Deterministic) <name of the algorithm>.
+>     - **Input**: <each argument, typed, and any promise about it>
+>     - **Output**: <each result, typed, including a rejection symbol>
+>     - **Steps**: 1. …                    ← constructions only
+```
+
+- The signature line says what the algorithm is; Input and Output describe the arguments and results one by one; Steps say how.
+- **Interface** (Primitive, 5; a specification such as `Refresh`): Input and Output only. What a caller may rely on, and nothing else.
+- **Construction** (Scheme, 6; Transform, 7): Input, Output and Steps. In a Scheme, Input and Output give *this scheme's* concrete types ($\mathrm{pk} = (t, \rho)$); they do not restate the primitive.
+- **Promises go in Input** ("$\mathrm{bk}$ is an honest encryption of $\mathrm{sk}_1$ under $\mathrm{pk}_2$"). **Rejection goes in Output** ("or $\perp$").
+- **Both at once: split.** An algorithm that is a specification with several constructions (`Refresh`) gets a specification callout in `## Syntax`, each construction gets its own callout with Steps, and correctness is stated once, on the specification.
+- Layout 6's short form `out ← Alg(in): 1. …` remains fine for an algorithm whose Input and Output need no words; the signature then carries both.
+
+## Syntax is the most generic form — notation goes in a remark
+
+**Revised 2026-10-14.** A primitive's `## Syntax` is written in the most general form found in the literature, so that each source's variant is the same object with an argument fixed or an output forgotten. Differences in names and arguments are recorded once, in a remark at the end of `## Syntax`:
+
+```markdown
+> [!remark] Notation in the literature
+> <one sentence: which form this note follows and which sources it generalises>
+>
+> | source | algorithms | differences |
+> | --- | --- | --- |
+> | `[BS Def 11.1]` | $(G, E, D)$ | $G()$ takes no argument; $D$ may output a reject symbol |
+```
+
+- **Use the vault's names** (`Gen`, `Enc`, `Dec`, `Eval`). Do not rename them to follow a source; list the source's names in the table.
+- **List only sources you opened.** Mark a row written from memory `⚠️ verify`.
+- **Typical differences:** $\lambda$ vs $1^\lambda$ vs implicit; one key pair vs separate keys (and a separate evaluation key); a reject symbol; explicit coins $r$; the message space ($\mathcal M$ vs $P$; a bit vs a general space); keys written as subscripts.
+
+Worked example: [[Public-Key Encryption Scheme (Old)]] and [[Homomorphic Encryption]] (drafts in the vault now carry this remark).
 
 ---
 
@@ -214,10 +279,19 @@ Reference:
 
 ## Syntax
 
+> [!definition] Parameters
+> - $\lambda$: the security parameter
+> - $\mathcal M$, $\mathcal C$, $\mathcal K$, …: <the spaces>
+> - [[<Base primitive>]]: Import $(\dots)$        ← only when this primitive extends another
+
 > [!definition] <Primitive> Scheme
-> A **<primitive>** $\Pi = (\mathsf{Alg}_1, \dots)$ is a tuple of efficient algorithms with
-> <spaces: $\mathcal M$, $\mathcal C$, $\mathcal K$, …>.
-> - $out \leftarrow \mathsf{Alg}_1(in)$: <one sentence>
+> A **<primitive>** $\Pi = (\mathsf{Alg}_1, \dots)$ is a tuple of efficient algorithms over the security parameter and the spaces of Parameters.
+> - $out \leftarrow \mathsf{Alg}_1(in)$: (Randomized | Deterministic) <name>.
+>     - **Input**: <arguments, typed>
+>     - **Output**: <results, typed>
+
+> [!remark] Notation in the literature
+> <which form this note follows; table of source / algorithms / differences>
 
 > [!remark] View                        ← multi-party / interactive only
 > $\mathsf{View}_i = (x_i, r_i, m_i^{(1)}, \dots)$ — and which security notion quantifies over it.
@@ -239,6 +313,8 @@ Reference:
 
 `## Security` here holds **definitions of advantage**. A number belongs one level down, in a Scheme.
 
+A primitive is an interface, so it has no `Building Blocks` callout. A primitive that extends another ([[Homomorphic Encryption]] extends [[Public-Key Encryption Scheme (Old)]]) `Import`s the base's symbols in its `Parameters` and adds its own.
+
 ## 6 · Scheme — one instantiation
 
 ```markdown
@@ -259,19 +335,22 @@ Instantiates:: [[<Primitive>]]
 
 ### Parameters
 
-> [!scheme] Parameters
+> [!definition] Parameters
 > - <the knobs you choose; these link nowhere>
+> - [[<Note>]]: Import $(\dots)$        ← the one exception: symbols another note declares
 
 ### Building Blocks
 
-> [!scheme] Building Blocks
+> [!definition] Building Blocks
 > - <other cryptographic objects it calls — **every bullet is a wikilink**>
 
 ### Algorithms
 
 > [!scheme] Algorithms
-> - $out \leftarrow \mathsf{Alg}(in)$:
-> 	1. …
+> - $out \leftarrow \mathsf{Alg}(in)$: (Randomized | Deterministic) <name>.
+>     - **Input**: <this scheme's concrete types>
+>     - **Output**: <…>
+>     - **Steps**: 1. …
 
 ## Property
 
@@ -300,7 +379,7 @@ The security callout links **up** to the primitive's game and **down** to an ass
 > `### Setting` points **down** at the language, `### Parties` are Prover and Verifier.
 > Two adjustments: `## Security` holds the **soundness error** rather than a game, and `## Cryptanalysis` is omitted.
 
-Slot discipline: **Parameters** point nowhere · **Setting** points down into `math/` · **Spaces** point up into the primitive · **Building Blocks** point sideways · **Parties** point into the View remark. Write only the slots that have content; the minimum is Parameters + Algorithms.
+Slot discipline: **Parameters** point nowhere (an `Import` line is the one exception: it points at the note that declares the symbol) · **Setting** points down into `math/` · **Spaces** point up into the primitive · **Building Blocks** point sideways · **Parties** point into the View remark. Write only the slots that have content; the minimum is Parameters + Algorithms.
 
 ## 7 · Transform
 
@@ -309,14 +388,19 @@ Reference:
 
 ## Syntax
 
-> [!definition] <Name>
-> ### Building Blocks
+> [!definition] Parameters
+> - [[<Note>]]: Import $(\dots)$.
+> - $d$: <a knob of the transform>
+
+> [!definition] Building Blocks
 > - $\Pi_\mathsf{in}$: any [[<input primitive>]]     ← universally quantified
 > - $H$: a hash function
->
-> ---
-> ### Algorithms
-> …
+
+> [!definition] <Name>
+> - $out \leftarrow \mathsf{Alg}(in)$: (Randomized | Deterministic) <name>.
+>     - **Input**: …
+>     - **Output**: …
+>     - **Steps**: 1. …
 
 ## Property
 ### Correctness
@@ -418,9 +502,13 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 ```markdown
 ## Definition
 
+> [!definition] Parameters
+> - [[<Primitive>]]: Import $(\lambda, \dots)$.
+> - $\mathbb A$, …: <the classes the game quantifies over>
+
 > [!definition] <Name>
 > ### Scope
-> A <primitive> $\Pi$; an [[Adversary]] class $\mathbb A$; auxiliary algorithms (<simulator, extractor>).
+> The primitive $\Pi$ and the [[Adversary]] class $\mathbb A$ of Parameters; auxiliary algorithms (<simulator, extractor>).
 >
 > ---
 > ### Condition
@@ -440,7 +528,7 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 ## Related
 ```
 
-**Access is the one general knob.** [[Public-Key Encryption Scheme]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
+**Access is the one general knob.** [[Public-Key Encryption Scheme (Old)]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
 
 Those four Condition lines are not a wish list: **each one is a place something broke.** Access → an adversary handed the *real* state in a simulated branch. Promise → completeness confused with soundness. Quantifier → a simulator with no $\exists$. Adaptivity → a non-adaptive model written adaptively.
 
@@ -623,6 +711,8 @@ Reference:
 | `## Intuition` | the friendly reading, for sharing | anything the skeleton depends on |
 | `## Definition` | what you must **stipulate** | consequences |
 | `## Syntax` | the tuple, the spaces, one line per algorithm | any bound, any adversary |
+| `[!definition] Parameters` | the variables the next definition uses: new ones, and `Import` lines for symbols another note declares | building blocks, anything with a definition of its own |
+| `[!definition] Building Blocks` | other objects the next definition calls | variables |
 | `## Scheme` | Setting, Parameters, Building Blocks, Algorithms | correctness, security |
 | `## Property` | what holds **unconditionally** — provable without an adversary | anything with $\mathcal A$ in it |
 | `## Security` | games and bounds — what holds **against someone** | attacks |

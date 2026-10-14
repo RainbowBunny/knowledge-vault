@@ -36,7 +36,7 @@ Reference:
 ### Compactness
 
 > [!remark]
-> A trivial traitor tracing scheme can be built from any [[Public-Key Encryption Scheme]]:
+> A trivial traitor tracing scheme can be built from any [[Public-Key Encryption Scheme (Old)]]:
 > - Generating $N$ keypairs $(\mathrm{pk}_i, \mathrm{sk}_i)_{i \in [N]}$.
 > - The traitor tracing public key $\mathrm{pk} = (\mathrm{pk}_1, \dots, \mathrm{pk}_N)$.
 > - Encryption: Encrypting separately for each user $\mathsf{Enc}(\mathrm{pk}_i, m)$.

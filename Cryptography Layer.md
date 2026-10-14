@@ -4,14 +4,14 @@
 
 ## Status · 2026-09-03
 
-| thing | state |
-| --- | --- |
-| **slot placement** | **settled 2026-09-03** — real `###` headings under `## Scheme`, one `[!scheme]` callout each ([[Kyber PKE]]). §2.5 |
-| **the setting slots themselves** | **four competing forms** — see §2.2 and **V12**. `Parameters`/`Building Block`/`Algorithms` (17) · that plus `Ring and Modulus`/`Dimensions`/`Messages` (2) · `Parameters`/`Statement`/`Scheme` (3) · the HPS bold-label form `Public Parameters`/`Plaintext Space`/`Key Creation (Alice)` (~14) |
-| the `## Syntax` / `## Scheme` split | **already real and perfectly disjoint** — 28 notes use one, 22 use the other, **zero use both**. Never written down |
-| the full Kyber shape (Scheme + Property + Security) | **4 notes of 40**: [[Kyber PKE]], [[Kyber KEM]], [[Keccak]], and *almost* [[Schnorr Protocol]] / [[Sum-Check Protocol]] |
-| party views | one note has it — [[Multi-Party Computation]]. ~14 notes need it |
-| legacy `## Encryption Scheme` form | 10 notes, all textbook-derived |
+| thing                                               | state                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **slot placement**                                  | **settled 2026-09-03** — real `###` headings under `## Scheme`, one `[!scheme]` callout each ([[Kyber PKE]]). §2.5                                                                                                                                                                               |
+| **the setting slots themselves**                    | **four competing forms** — see §2.2 and **V12**. `Parameters`/`Building Block`/`Algorithms` (17) · that plus `Ring and Modulus`/`Dimensions`/`Messages` (2) · `Parameters`/`Statement`/`Scheme` (3) · the HPS bold-label form `Public Parameters`/`Plaintext Space`/`Key Creation (Alice)` (~14) |
+| the `## Syntax` / `## Scheme` split                 | **already real and perfectly disjoint** — 28 notes use one, 22 use the other, **zero use both**. Never written down                                                                                                                                                                              |
+| the full Kyber shape (Scheme + Property + Security) | **4 notes of 40**: [[Kyber PKE]], [[Kyber KEM]], [[Keccak]], and *almost* [[Schnorr Protocol]] / [[Sum-Check Protocol]]                                                                                                                                                                          |
+| party views                                         | one note has it — [[Multi-Party Computation]]. ~14 notes need it                                                                                                                                                                                                                                 |
+| legacy `## Encryption Scheme` form                  | 10 notes, all textbook-derived                                                                                                                                                                                                                                                                   |
 
 Counts from a full walk of `knowledge/cryptography/` (40 notes carrying a `[!scheme]` callout or a scheme-ish `##` heading): `## Property` 8 · `### Correctness` 5 · `## Security` 9 (4 of which are cryptanalysis prose, not a game) · `[!security]` 5 · `Link:`/`Reference:` 12 · `dg-publish` 15.
 
@@ -103,7 +103,7 @@ Reference:
 ```
 
 Rules for this note:
-- **Every algorithm gets an arrow line.** `$out \leftarrow \text{Alg}(in)$` then a colon then one sentence. [[Public-Key Encryption Scheme]] and [[Multi-Party Computation]] both do this; copy either.
+- **Every algorithm gets an arrow line.** `$out \leftarrow \text{Alg}(in)$` then a colon then one sentence. [[Public-Key Encryption Scheme (Old)]] and [[Multi-Party Computation]] both do this; copy either.
 - **The syntax block declares nothing you cannot type-check.** Spaces before algorithms; no algorithm mentions a space that has not been named.
 - **`## Security` here holds *definitions of advantage*, not bounds.** A number belongs at Level 2.
 
@@ -310,7 +310,7 @@ Yes — a `## Syntax` note can have `Building Blocks`, and [[Fujisaki-Okamoto Tr
 | | `## Scheme` — instance | `## Syntax` — interface |
 | --- | --- | --- |
 | holds | the components this scheme **picks** | the components the construction is **parameterized by** |
-| quantifier | fixed — $\text{Sam} = $ SHAKE-128 | **universal** — "for any [[Public-Key Encryption Scheme]] scheme, any hash $H$" |
+| quantifier | fixed — $\text{Sam} = $ SHAKE-128 | **universal** — "for any [[Public-Key Encryption Scheme (Old)]] scheme, any hash $H$" |
 | bullets look like | a name and a wikilink | a name, a type, and a hypothesis waiting to happen |
 | **invariant** | every bullet is a **wikilink** | every bullet **reappears in `## Security` carrying a hypothesis** |
 
@@ -322,7 +322,7 @@ Told apart by what is in Building Blocks:
 
 | kind | Building Blocks | examples |
 | --- | --- | --- |
-| **plain primitive** | none — defined from spaces and algorithms alone | [[Public-Key Encryption Scheme]], [[Key Encapsulation Mechanism]], [[Commitment Scheme]], [[Digital Signature]], [[Sigma Protocols]] |
+| **plain primitive** | none — defined from spaces and algorithms alone | [[Public-Key Encryption Scheme (Old)]], [[Key Encapsulation Mechanism]], [[Commitment Scheme]], [[Digital Signature]], [[Sigma Protocols]] |
 | **transform** | generic, universally quantified other primitives | [[Fujisaki-Okamoto Transformation]], [[Fiat-Shamir Transform]], [[From Collision Resistance]], [[Kilian Interactive Argument of Knowledge from PCP]] |
 | **refinement** | none — it *extends* another interface | [[Puncturable Pseudorandom Function]] over a PRF, [[Argument Systems]] = [[Interactive Proof Systems]] with computational [[Soundness]], threshold signatures over signatures |
 
@@ -341,7 +341,7 @@ Where does a transform live? Not in the input's folder and not in the output's, 
 
 ### Where this bites already
 
-[[Public-Key Encryption Scheme]] is 17 KB and contains, past its `## Syntax`: `## Construction / ### Based on a Trapdoor Function Scheme` (a transform: TDF + symmetric cipher + hash → PKE), then `## Case Study` with RSA and ElGamal (two more transforms, each with its own theorem and loss factor), then a lattice instantiation. That is one interface note carrying **three transforms and a scheme**. It is [[RSA Public Key Cryptosystem]]'s problem (**V4**) in the other direction — there, schemes hide inside schemes; here, transforms hide inside the interface.
+[[Public-Key Encryption Scheme (Old)]] is 17 KB and contains, past its `## Syntax`: `## Construction / ### Based on a Trapdoor Function Scheme` (a transform: TDF + symmetric cipher + hash → PKE), then `## Case Study` with RSA and ElGamal (two more transforms, each with its own theorem and loss factor), then a lattice instantiation. That is one interface note carrying **three transforms and a scheme**. It is [[RSA Public Key Cryptosystem]]'s problem (**V4**) in the other direction — there, schemes hide inside schemes; here, transforms hide inside the interface.
 
 ## 2.7 Correctness vs Completeness
 
@@ -365,7 +365,7 @@ That is the whole distinction, and it is checkable in one look.
 | has a dual | **no** | **yes** — [[Soundness]], on $\mathbf x \notin \mathcal L$ |
 | the pair means | — | no false negatives / no false positives |
 | error feeds | correctness loss $\delta$ into a CCA proof (FO) | $\varepsilon_c$ into repetition and amplification |
-| examples | [[Public-Key Encryption Scheme]], [[Key Encapsulation Mechanism]], [[Commitment Scheme]], [[Keccak]], [[Threshold Secret-Sharing]] | [[Interactive Proof Systems]], [[Sigma Protocols]], [[Argument Systems]], [[Probabilistically Checkable Proofs]], [[Schnorr Protocol]] |
+| examples | [[Public-Key Encryption Scheme (Old)]], [[Key Encapsulation Mechanism]], [[Commitment Scheme]], [[Keccak]], [[Threshold Secret-Sharing]] | [[Interactive Proof Systems]], [[Sigma Protocols]], [[Argument Systems]], [[Probabilistically Checkable Proofs]], [[Schnorr Protocol]] |
 
 The promise is what does the work. Because completeness only speaks about **true** statements, there is a whole other half of the input space left unspoken for — and that space is exactly where [[Soundness]] lives. Correctness quantifies over everything, so it leaves no room for a dual and needs none.
 
@@ -403,6 +403,9 @@ The first row is one idea in two dresses: **crypto borrowed completeness/soundne
 Rows 2–4 are a *different* word: "complete" there means **maximal — nothing of the relevant kind is missing**, and none of them has a dual. Filing them under the same idea would be a false bridge.
 
 ## 2.8 Worked review — [[Non-Interactive Linear Proofs]] and the `st` / `td` question
+
+> [!warning] Correction, 2026-10-06
+> The table below misreads Groth16. In eprint 2016/260 §2.2 the NILP is $(\sigma, \tau) \leftarrow \mathsf{Setup}(R)$ and the verifier evaluates $t(\sigma, \boldsymbol\pi)$ — **the test reads $\sigma$, the crs**; $\tau$ is used only by $\mathsf{Sim}$. So Groth16's second output is a pure trapdoor $\mathrm{td}$, and the vault's NILP (whose `Verify` already reads `crs`) should name it `td`, not `st`. The *two hats* picture — one secret object that both verifies and simulates — is right for the **designated-verifier** line (LPCP, [[LUNA]]), where `st` is the verifier's secret state. Current recommendation: plan **V16**.
 
 ### The answer: `st` wears two hats, and whether they can be conflated is exactly the DV / PV split
 
@@ -781,7 +784,7 @@ $\mathrm{st}_\mathcal S$ collides with the verification state. Use $\mathrm{aux}
 
 ### Bugs found in the same pass
 
-- **[[Zero Knowledge]]: the distinguisher has amnesia.** $\mathcal A_\mathsf{find}$ sees $(\mathcal R, \mathrm{crs}, \mathrm{st})$ and outputs $(\mathbf x, \mathbf w)$; then $\mathcal A_\mathsf{guess}(\boldsymbol\pi)$ receives *only the proof* — not the crs, not the statement, no state. It cannot even tell which statement it is looking at. The house format passes a state: compare [[Public-Key Encryption Scheme]]'s IND game, $(m_0, m_1, s) \leftarrow \mathcal A_\mathsf{find}(pk)$ then $b' \leftarrow \mathcal A_\mathsf{guess}(s, c^*)$. Fix: $(\mathbf x, \mathbf w, s) \leftarrow \mathcal A_\mathsf{find}(\dots)$, $b \leftarrow \mathcal A_\mathsf{guess}(s, \boldsymbol\pi)$. Same gap in [[Linear Probabilistically Checkable Proofs]]' $\mathcal A_\mathsf{choose}$.
+- **[[Zero Knowledge]]: the distinguisher has amnesia.** $\mathcal A_\mathsf{find}$ sees $(\mathcal R, \mathrm{crs}, \mathrm{st})$ and outputs $(\mathbf x, \mathbf w)$; then $\mathcal A_\mathsf{guess}(\boldsymbol\pi)$ receives *only the proof* — not the crs, not the statement, no state. It cannot even tell which statement it is looking at. The house format passes a state: compare [[Public-Key Encryption Scheme (Old)]]'s IND game, $(m_0, m_1, s) \leftarrow \mathcal A_\mathsf{find}(pk)$ then $b' \leftarrow \mathcal A_\mathsf{guess}(s, c^*)$. Fix: $(\mathbf x, \mathbf w, s) \leftarrow \mathcal A_\mathsf{find}(\dots)$, $b \leftarrow \mathcal A_\mathsf{guess}(s, \boldsymbol\pi)$. Same gap in [[Linear Probabilistically Checkable Proofs]]' $\mathcal A_\mathsf{choose}$.
 - **[[Knowledge Soundness]] declares $\mathcal E = (\mathcal E_\mathsf{NIPS})$ and then calls $\mathcal E_\mathsf{find}$** — declared with one phase name, used with another.
 - The affine variant is labelled $\mathsf{Adv}^{\mathsf{ks}}_\mathsf{NIPS}$ but is about a **NILP**; `\mathbf F` should be `\mathbb F`; and `$\Pi \in \mathbf F^{k \times m}$` sits in the *event* column of the probability, where it is a type declaration, not an event — it belongs in the experiment column or in prose. $\Pi$ / $\Pi^*$ are used interchangeably.
 

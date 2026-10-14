@@ -159,7 +159,7 @@ Their Definition 2 is the parameterisation we were groping toward with "admissib
 
 ## 2B · Create — `Gap-HVZK`
 
-**Where** `proof/properties/` · **Layout** Security property (10) · **Reference** CCJ §2.2; [CKY09]
+**Where** `verifiable computing/property/` · **Layout** Security property (10) · **Reference** CCJ §2.2; [CKY09]
 
 Knowledge soundness where the extractor produces a witness for a **larger** language $\mathcal L' \supseteq \mathcal L$ — the extracted vector is only *close* to regular.
 

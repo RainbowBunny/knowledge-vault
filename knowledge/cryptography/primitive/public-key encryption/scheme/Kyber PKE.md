@@ -61,6 +61,6 @@ Reference Name: $\mathsf{Kyber.PKE}$
 ### Indistinguishability under Chosen-Plaintext Attacks
 
 > [!security]
-> For any [[Public-Key Encryption Scheme#Indistinguishability|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Problem|MLWE adversary]] $\mathcal B$ such that: 
+> For any [[Public-Key Encryption Scheme (Old)#Indistinguishability|CPA adversary]] $\mathcal A$, there exists an [[Module Learning With Error#Problem|MLWE adversary]] $\mathcal B$ such that: 
 > $$\text{Adv}_{Kyber.PKE}^{\text{cpa}}(\mathcal A) \leq 2 \cdot \text{Adv}_{k + 1, k, \eta}^{\text{mlwe}}(\mathcal B).$$
 

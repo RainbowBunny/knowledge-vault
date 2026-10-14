@@ -12,19 +12,22 @@ Instantiates:: [[]]
 
 ### Parameters
 
-> [!scheme] Parameters
+> [!definition] Parameters
 > - 
+> - [[]]: Import $()$.
 
 ### Building Blocks
 
-> [!scheme] Building Blocks
+> [!definition] Building Blocks
 > - 
 
 ### Algorithms
 
 > [!scheme] Algorithms
-> - $out \leftarrow \mathsf{Alg}(in)$:
-> 	1. 
+> - $out \leftarrow \mathsf{Alg}(in)$: (Randomized) 
+>     - **Input**: 
+>     - **Output**: 
+>     - **Steps**: 1. 
 
 ## Property
 
