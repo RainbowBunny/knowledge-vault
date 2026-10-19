@@ -4,19 +4,15 @@ dg-publish: true
 Reference: 
 - https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
 
-## Syntax
-
-### NARK
+## Definition
 
 > [!definition] Non-interactive ARgument of Knowledge
-> A NARK is a [[Non-interactive ARGument|NARG]] whose [[Soundness]] condition is strengthened [[Knowledge Soundness]].
+> Extends:: [[Non-interactive ARGument]]
+>
+> ---
+> A **non-interactive argument of knowledge** (NARK) is a [[Non-interactive ARGument|NARG]] whose [[Soundness]] condition is strengthened to [[Knowledge Soundness]].
 
-### SNARK
+## Related
 
-> [!definition] SNARK
-> A SNARK is a [[#NARK]] with [[Succinctness]].
-
-### zk-SNARK
-
-> [!definition] zk-SNARK
-> A zk-SNARK is a [[#SNARK]] with [[Zero Knowledge]]
+### Descendants
+- [[Succinct Non-interactive ARgument of Knowledge|SNARK]] — adds [[Succinctness]]

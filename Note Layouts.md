@@ -27,6 +27,7 @@ Insertable copies are in `templates/`, prefixed `layout-` — **Insert template*
 | a machine — configurations and a step relation      | **Machine** (13)           | `computability/computing model/`             |
 | a parameterised family $\mathsf{X}(f(n))$           | **Generator** (14)         | `complexity/complexity class/generator/<resource>/` |
 | one named complexity class                          | **Complexity class** (15)  | `complexity/complexity class/class/<resource>/` |
+| a name for a bundle of properties on an existing syntax | **Composition**       | beside the syntax note it composes           |
 | a hub                                               | **MOC** (11)               | beside what it indexes; family hubs (elliptic-curve, post-quantum) in `cryptography/family/` |
 
 **Where it lives.** One home per object, at the lowest layer where it can be stated: the lattice in `math/`, SVP in `complexity/problem/`, LWE in `cryptography/assumptions/`, the lattice trapdoor with the trapdoor functions. Folders name kinds; a family (lattice-based, post-quantum) or a status (NP-complete, worst case) is a field, not a folder. The one exception is `assumptions/`, split by family because that is the natural split there.
@@ -51,6 +52,7 @@ Fields:
 | field                 | means                                                     | example                                                        |
 | --------------------- | --------------------------------------------------------- | -------------------------------------------------------------- |
 | `Reference:` *header* | where it comes from                                       | a paper URL, a book and section                                |
+| `aliases:` *frontmatter* | other names for the note, the acronym first             | `aliases: [SNARK]`                                             |
 | `Extends::`           | this **is** that one, plus a condition                    | `Extends:: [[Multitape Turing Machine]]`                       |
 | `Generalizes::`       | this **widens a slot** of that one                        | `Generalizes:: [[Turing Machine]]`                             |
 | `Instantiates::`      | a concrete witness of an interface                        | `Instantiates:: [[Public-Key Encryption]]`                     |
@@ -173,6 +175,73 @@ Worked example: [[Public-Key Encryption Scheme (Old)]] and [[Homomorphic Encrypt
 
 ---
 
+## Related — relations out, grouped by kind
+
+**Added 2026-10-14.** A flat list of links says *that* two notes are related, not *how*. Provenance is above the first heading and the parent is inside the definition (`Extends::`); `## Related` is the **fan-out**: what hangs off this note. Write only the subsections that have content, in this order:
+
+| subsection | holds | backed by |
+| --- | --- | --- |
+| `### Descendants` | the **important** notes that `Extends::` or `Generalizes::` this one, each with what it adds | their `Extends::` field |
+| `### Instantiations` | schemes and examples that `Instantiates::` this one | their `Instantiates::` field |
+| `### Constructions` | transforms and schemes that take this as a Building Block, or produce it | their `Building Blocks` callout |
+| `### Properties` | property notes (layout 10) that quantify over this object | the property note's `Import` line |
+| `### Siblings` | same-level objects often confused with this one, with the one line that separates them | nothing: curated |
+| `### Prerequisites` | what this note `Import`s or `Requires::`, when the parent alone does not cover it | its own fields |
+
+**List or table.** The default is a list, one line per note: `- [[Note]] — what it adds / the one fact that tells it apart`. Use a **table** when three or more entries differ along the same axes: the first column is the link, the others are the axes. The table replaces the list, it does not repeat it. The model is the composition table of [[Non-Interactive Proof Systems]]: rows are notes, columns are the properties each one demands.
+
+**Curated, not complete.** The fields are the source of truth and the full set is a Dataview query over them; `## Related` holds the entries a reader should see first. If an entry has no field behind it, write the field on that note first, otherwise the entry is a claim nobody can query.
+
+```markdown
+## Related
+
+### Descendants
+| | permitted circuits | adds |
+| --- | --- | --- |
+| [[Fully Homomorphic Encryption]] | all | the cost bound |
+| [[Bootstrappable Encryption]] | contains its own decryption circuit | $\mathsf{Refresh}$ |
+
+### Instantiations
+- [[Kyber PKE]] — Module-LWE
+
+### Constructions
+- [[Gentry Bootstrapping Transformation]] — bootstrappable → leveled
+
+### Properties
+- [[Key-Dependent Message Security|KDM Security]]
+
+### Siblings
+- [[Key Encapsulation Mechanism]] — encrypts a fresh key, not a message
+```
+
+## Composition — a named bundle
+
+*A name for a syntax plus a list of properties.* zk-SNARK is a [[Non-Interactive Proof Systems]] that is complete, knowledge sound, succinct and zero-knowledge; it has no algorithms of its own. It earns a note so that schemes can say `Instantiates:: [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge|zk-SNARK]]` and so that links have somewhere to land.
+
+```markdown
+Reference:
+
+## Definition
+
+> [!definition] <Name>
+> Extends:: [[<the nearest bundle, or the syntax note>]]
+>
+> ---
+> A **<name>** is a [[<syntax note>]] that is also [[<Property>]]. <one sentence on what the added property buys>
+
+## Related
+
+### Instantiations
+- [[<Scheme>]]
+```
+
+Rules.
+- **No `Syntax`, no `Parameters`, no algorithms.** They are the base note's. If the bundle needs a parameter (a succinctness bound), it belongs to the property note.
+- **Spell the name out.** The note is `Zero-Knowledge Succinct Non-interactive ARgument of Knowledge`, not `zk-SNARK`; the acronym goes in `aliases:` and as link text (`[[…|zk-SNARK]]`), so search and prose still find it. The same goes for any note named after an abbreviation.
+- **One parent in `Extends::`**, the nearest bundle (zk-SNARK extends SNARK). Another parent goes in a remark: a SNARK is also a SNARG, since knowledge soundness implies soundness.
+- **The base note's `## Variant` table lists every bundle**, each name a link to its note.
+- **A composition note is finished when it names its base and its properties.** Add a section only for a result the combination has on its own (a separation, an impossibility), not to fill the page.
+
 ## 1 · Object
 
 ```markdown
@@ -191,7 +260,7 @@ Reference:
 
 ## Example
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 ## 2 · Property — a mixin
@@ -220,7 +289,7 @@ Reference:
 
 ### <where it holds, and the counterexample where it fails — the boundary is the point>
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 **A mixin declares no carriers.** The moment it introduces a set or an operation of its own it has become a Structure.
@@ -244,7 +313,7 @@ Reference:
 
 ## Example
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 Compose by **link**. A definition that restates an axiom it could link is the one thing this vault is against.
@@ -264,7 +333,7 @@ Reference:
 
 ### <what is special about this one — not what every instance has>
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 ---
@@ -305,10 +374,11 @@ Reference:
 ### <Game name>
 
 > [!definition] <Primitive> <Game> Advantage
+> <the experiment as a challenger/adversary table — see "Game form" under layout 10>
 > $$\mathsf{Adv}^{\text{<game>}}_\Pi(\mathcal A) = \dots$$
 > $\Pi$ is **<notion>** if <quantifier> such that the advantage is <bound> for every $\mathcal A \in \mathbb A$.
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 `## Security` here holds **definitions of advantage**. A number belongs one level down, in a Scheme.
@@ -368,7 +438,7 @@ Instantiates:: [[<Primitive>]]
 
 ## Cryptanalysis                        ← attacks, not games. `[!attack]`
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 The security callout links **up** to the primitive's game and **down** to an assumption. Without both it is a floating claim.
@@ -411,7 +481,7 @@ Reference:
 > If $\Pi_\mathsf{in}$ is <hypothesis> and $H$ is <hypothesis>, then the output is <notion>,
 > with loss factor $\dots$
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 **Every Building Block must reappear in `## Security` carrying a hypothesis.** Blocks with no hypothesis mean the security section is unfinished.
@@ -492,7 +562,7 @@ Reference:
 > [!remark]
 > <the hardness assertion; whether search and decision are equivalent, and by which theorem>
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
 Two traps. **"Decision" means membership in the Problem note and distinguishing here** — they are different questions. And **worst-case NP-completeness does not imply average-case hardness**; codes have no worst-case→average-case reduction, lattices do. Say so in `## Claim`.
@@ -519,14 +589,35 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 > - **Adaptivity** — when $\mathcal A$ commits, relative to `Setup`.
 >
 > ---
+> ### Experiment                       ← an interaction between challenger and adversary, not a list of assignments
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda)$ | $\xrightarrow{\ \mathrm{pk}\ }$ | |
+> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | $\mathcal A_\mathsf{find}(\mathrm{pk})$ |
+> | 3 | **Game 0**: $c \leftarrow \mathsf{Enc}(m_0)$<br>**Game 1**: $c \leftarrow \mathsf{Enc}(m_1)$ | $\xrightarrow{\ c\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | $\mathcal A_\mathsf{guess}(c)$ |
+>
+> **Target** — what the experiment outputs, e.g. "one bit: $\mathsf{Expt}_b(\mathcal A)$ is the $b'$ that $\mathcal A$ outputs in Game $b$"
+>
+> ---
 > ### Property
-> $$\mathsf{Adv}(\mathcal A) \leq \varepsilon \qquad \text{(or } \geq 1 - \varepsilon \text{ for completeness)}$$
+> $$\mathsf{Adv}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0 = 1] - \Pr[\mathsf{Expt}_1 = 1]\big| \leq \varepsilon \qquad \text{(search game: } \Pr[\mathsf{Expt} = 1] \leq \varepsilon\text{)}$$
 > A **search** game ($\Pr[\text{win}]$) or a **distinguishing** game ($|\Pr[G_0] - \Pr[G_1]|$) — see [[Security Game]].
 
 ## Variant
 
-## Related
+## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
+
+**Game form — an interaction, not an algorithm.** *Added 2026-10-14.* A security experiment is a conversation between a challenger and an adversary, so it is written as one: a table with the challenger on the left, the adversary on the right and the message between them (`→` challenger to adversary, `←` back), one row per step. Rules:
+- **Branch only where the games differ.** A distinguishing game has one table and a cell with two lines, **Game 0** and **Game 1**: the real branch first, the simulated / challenge-$m_1$ / fake-oracle branch second. A reduction then reads as a step from Game $i$ to Game $i+1$, and the hybrid argument has names for its games.
+- **The advantage is the difference**, $|\Pr[\mathsf{Expt}_0 = 1] - \Pr[\mathsf{Expt}_1 = 1]|$, not "the adversary guesses a hidden bit". The bit-guessing form $|\Pr[b' = b] - 1/2|$ is exactly half of it; mention that in a remark when a source uses it, and do not mix the two in one note.
+- **A search game has one branch** (soundness, linear-only): the challenger's last row outputs the bit.
+- **Phases share memory.** $\mathcal A_\mathsf{find}$ and $\mathcal A_\mathsf{guess}$ are names for the two moments of one adversary, not two algorithms; say so in a remark rather than threading a state variable through every row (a source that writes `state` or $s$ gets its notation in the note's literature remark).
+- **An oracle is a message.** A query is a row (or a repeated row) in which the adversary sends and the challenger answers; the Access line says which answers are available.
+- **Auxiliary algorithms sit in the row that calls them**: the simulator $\mathcal S$ in the cell where it produces the challenge, the extractor $\mathcal E$ in the challenger's row after the adversary has spoken.
+- **State the target.** *Added 2026-10-14.* Under the table, one line `**Target** — …` says what the experiment outputs and what the property compares. Three cases: (1) *one bit* — a distinguishing game; the target is the $b'$ that $\mathcal A$ outputs, and $\mathsf{Expt}_b$ is its value in Game $b$; (2) *several results folded into one bit* — a search game with $k$ outputs; list the vector $(w_1, \dots, w_k)$ and say how it is folded ($\bigvee$: the adversary wins if any entry does; $\bigwedge$: only if all do; or the index is chosen by whom) — [[Linear-Only Security]]; (3) *a tuple or a view* — e.g. the decryptions of $k$ output ciphertexts, or a verifier's whole view; the target is a random variable that the two games produce and a distinguisher $D$ compares, so $D$ goes in Parameters and the advantage is $D$'s — [[Strictly Linear Targeted Malleability]], [[Zero Knowledge]]. The Property section then only says how the target is compared (a difference of two probabilities, a probability, a distance between distributions). A note whose target is not stated cannot say what a reduction has to preserve.
+- **Draw the notes in the same shape.** [[Indistinguishability under Chosen-Plaintext Attack]], [[Public-Key Encryption Scheme]], [[Key-Dependent Message Security]], [[Circuit Privacy]] and [[Linear-Only Security]] are worked examples; the older proof-system properties ([[Zero Knowledge]], [[Soundness]]) still use the probability-over-assignments form and move to this one when touched.
 
 **Access is the one general knob.** [[Public-Key Encryption Scheme (Old)]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
 
@@ -719,7 +810,7 @@ Reference:
 | `## Cryptanalysis` | concrete attacks, broken parameters, history | definitions |
 | `## Variant` | same object, different scope | a different object |
 | `## Example` | instances, **and counterexamples** | theory |
-| `## Related` | links out | content |
+| `## Related` | links out, grouped by kind: Descendants, Instantiations, Constructions, Properties, Siblings, Prerequisites | content |
 
 ## Callout types
 

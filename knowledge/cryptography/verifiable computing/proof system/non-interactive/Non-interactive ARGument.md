@@ -4,19 +4,16 @@ dg-publish: true
 Reference:
 - https://eprint.iacr.org/2022/1690.pdf (LUNA, CCS '2024)
 
-## Syntax
+## Definition
 
-### NARG
+> [!definition] Non-interactive ARGument
+> Extends:: [[Non-Interactive Proof Systems]]
+>
+> ---
+> A **non-interactive argument** (NARG) is a [[Non-Interactive Proof Systems]] that satisfies [[Completeness]] and computational [[Soundness]].
 
-> [!definition] NARG
-> A NARG is a [[Non-Interactive Proof Systems]] that satisfies [[Completeness]] and computational [[Soundness]].
+## Related
 
-### SNARG
-
-> [!definition] Succinct Non-Interactive Argument
-> A SNARG is a [[#NARG]] with [[Succinctness]].
-
-### zk-SNARG
-
-> [!definition] zk-SNARG
-> A zk-SNARG is a [[#SNARG]] with [[Zero Knowledge]].
+### Descendants
+- [[Succinct Non-interactive ARGument|SNARG]] — adds [[Succinctness]]
+- [[Non-interactive ARgument of Knowledge|NARK]] — strengthens [[Soundness]] to [[Knowledge Soundness]]

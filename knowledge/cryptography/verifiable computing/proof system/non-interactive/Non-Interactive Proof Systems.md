@@ -57,16 +57,31 @@ The properties are separate notes; the acronyms below are combinations of them.
 |                                        | Completeness | Soundness     | Knowledge | Succinct | ZK  |
 | -------------------------------------- | ------------ | ------------- | --------- | -------- | --- |
 | [[Non-Interactive Proof Systems\|NIP]] | ✓            | statistical   | —         | —        | —   |
-| NARG                                   | ✓            | computational | —         | —        | —   |
-| NARK                                   | ✓            | computational | ✓         | —        | —   |
-| SNARG                                  | ✓            | computational | —         | ✓        | —   |
-| SNARK                                  | ✓            | computational | ✓         | ✓        | —   |
-| zk-SNARG                               | ✓            | computational | —         | ✓        | ✓   |
-| zk-SNARK                               | ✓            | computational | ✓         | ✓        | ✓   |
+| [[Non-interactive ARGument\|NARG]]                  | ✓            | computational | —         | —        | —   |
+| [[Non-interactive ARgument of Knowledge\|NARK]]     | ✓            | computational | ✓         | —        | —   |
+| [[Succinct Non-interactive ARGument\|SNARG]]                              | ✓            | computational | —         | ✓        | —   |
+| [[Succinct Non-interactive ARgument of Knowledge\|SNARK]]                              | ✓            | computational | ✓         | ✓        | —   |
+| [[Zero-Knowledge Succinct Non-interactive ARGument\|zk-SNARG]]                           | ✓            | computational | —         | ✓        | ✓   |
+| [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge\|zk-SNARK]]                           | ✓            | computational | ✓         | ✓        | ✓   |
 
 ## Related
 
+### Descendants
+- The rows of the Variant table, one note each; the chain is [[Non-interactive ARGument|NARG]] → [[Succinct Non-interactive ARGument|SNARG]] → [[Zero-Knowledge Succinct Non-interactive ARGument|zk-SNARG]] and [[Non-interactive ARgument of Knowledge|NARK]] → [[Succinct Non-interactive ARgument of Knowledge|SNARK]] → [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge|zk-SNARK]].
+
+### Instantiations
+| | bundle | verifier | built from |
+| --- | --- | --- | --- |
+| [[Groth16]] | [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge\|zk-SNARK]] | publicly verifiable | [[Quadratic Arithmetic Program]], [[Bilinear Pairings]] |
+| [[LUNA]] | [[Zero-Knowledge Succinct Non-interactive ARGument\|zk-SNARG]] | designated: $\mathrm{st}$ holds a secret key | [[Linear Probabilistically Checkable Proofs\|LPCP]], [[Module HGSW]] |
+
+### Properties
+- [[Completeness]], [[Soundness]], [[Knowledge Soundness]], [[Succinctness]], [[Zero Knowledge]]
+
+### Siblings
+- [[Non-Interactive Linear Proofs]] — the same three algorithms with the prover restricted to linear combinations of $\mathrm{crs}$
+- [[Interactive Proof Systems]], [[Argument Systems]] — the interactive counterparts
+- [[Split Prover]] — a variant: the proving algorithm split into two phases
+
+### Prerequisites
 - [[Effective Relation]], [[Relation Generator]]
-- [[Non-interactive ARGument]], [[Non-interactive ARgument of Knowledge]] — the rows of the table
-- [[Non-Interactive Linear Proofs]], [[Split Prover]], [[Groth16]], [[LUNA]]
-- [[Interactive Proof Systems]], [[Argument Systems]]

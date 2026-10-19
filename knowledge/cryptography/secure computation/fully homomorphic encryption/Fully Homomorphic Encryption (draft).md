@@ -26,7 +26,7 @@ Reference:
 
 > [!remark] Where known FHE comes from
 > - From a [[Bootstrappable Encryption|bootstrappable]] scheme one gets leveled FHE with no extra assumption `[S Thm 3]` `[BV Thm 3.1]`; the construction is the [[Gentry Bootstrapping Transformation]].
-> - To get a scheme whose parameters do not depend on the depth, the known route adds a circular security assumption: weak circular security of the bootstrappable scheme `[BV Thm 3.2, Def 3.8]` `[S §2]` `[T §1.3]`. See [[KDM Security]].
+> - To get a scheme whose parameters do not depend on the depth, the known route adds a circular security assumption: weak circular security of the bootstrappable scheme `[BV Thm 3.2, Def 3.8]` `[S §2]` `[T §1.3]`. See [[Key-Dependent Message Security|KDM Security]].
 > - Leveled FHE can also be built **without** bootstrapping, from LWE or ring-LWE `[BGV]` (abstract only). Per its abstract, bootstrapping is then an optional optimization that makes the per-gate cost independent of the depth. I read only the abstract, so I do not state which assumption that step needs.
 > - `⚠️ CLAUDE – verify:` `[BV]` is from 2011. I searched once for whether unbounded FHE from LWE without any circularity assumption is known today and found nothing conclusive, so I state only what the cited papers say.
 
@@ -37,5 +37,15 @@ Reference:
 
 ## Related
 
-- [[Homomorphic Encryption]], [[Leveled Fully Homomorphic Encryption]]
-- [[Bootstrappable Encryption]], [[Gentry Bootstrapping Transformation]], [[KDM Security]]
+### Constructions
+- [[Gentry Bootstrapping Transformation]] — its self-loop variant gives unbounded depth under [[Key-Dependent Message Security|KDM Security]]
+
+### Properties
+- [[Key-Dependent Message Security|KDM Security]]
+
+### Siblings
+- [[Leveled Fully Homomorphic Encryption]] — the depth bound is a key-generation input, not the cost
+- [[Bootstrappable Encryption]] — the condition the transformation needs from a base scheme
+
+### Prerequisites
+- [[Homomorphic Encryption]]

@@ -76,7 +76,7 @@ Reference:
 > - $\varepsilon$: the IND-CPA advantage of the adversary $\mathcal A$ against $E^{(d)}$. $\mathcal B$: the adversary against $E$ built from $\mathcal A$.
 
 > [!security] Security of $E^{(d)}$ `[S Thm 4]`
-> For any [[Public-Key Encryption Scheme#Indistinguishability|IND-CPA]] adversary $\mathcal A$ against $E^{(d)}$ with advantage $\varepsilon$, there is an IND-CPA adversary $\mathcal B$ against $E$, running in time $\mathrm{poly}(\ell, d)$ times that of $\mathcal A$, with
+> For any [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]] adversary $\mathcal A$ against $E^{(d)}$ with advantage $\varepsilon$, there is an IND-CPA adversary $\mathcal B$ against $E$, running in time $\mathrm{poly}(\ell, d)$ times that of $\mathcal A$, with
 > $$\mathsf{Adv}^{\mathsf{ind}\text{-}\mathsf{cpa}}_{E}(\mathcal B) \geq \frac{\varepsilon}{\ell\,(d+1)}.$$
 > The only hypothesis on the building block $E$ is its semantic security; no circular-security assumption is needed `[S Thm 4]`.
 
@@ -89,7 +89,7 @@ Reference:
 > - $\mathrm{bk}_j$: the bootstrapping key, an encryption of the bit $\mathrm{sk}_j$ under $\mathrm{pk}$.
 
 > [!theorem] Unbounded FHE under KDM security `[S §2]` `[T §1.3]` `[BV Thm 3.2]`
-> If $E$ is bootstrappable and [[KDM Security|circular secure]], replace the key chain by one key pair $(\mathrm{pk}, \mathrm{sk})$ and the bootstrapping key $\mathrm{bk}_j \leftarrow E.\mathsf{Enc}(\mathrm{pk}, \mathrm{sk}_j)$, so that $\mathsf{Refresh}$ runs with $\mathrm{pk}_2 = \mathrm{pk}_1$. The result is [[Fully Homomorphic Encryption|fully homomorphic]], its keys do not depend on the circuit depth, and its security follows from the KDM security of $E$ `[S §2]`.
+> If $E$ is bootstrappable and [[Key-Dependent Message Security|circular secure]], replace the key chain by one key pair $(\mathrm{pk}, \mathrm{sk})$ and the bootstrapping key $\mathrm{bk}_j \leftarrow E.\mathsf{Enc}(\mathrm{pk}, \mathrm{sk}_j)$, so that $\mathsf{Refresh}$ runs with $\mathrm{pk}_2 = \mathrm{pk}_1$. The result is [[Fully Homomorphic Encryption|fully homomorphic]], its keys do not depend on the circuit depth, and its security follows from the KDM security of $E$ `[S §2]`.
 > - `[BV Thm 3.2, Def 3.8]` states this with *weak circular security* (IND-CPA stays secure when the adversary also gets encryptions of every bit of the secret key).
 > - I do not state a concrete advantage bound for this variant: the notes I worked from give none.
 
@@ -101,6 +101,12 @@ Reference:
 
 ## Related
 
-- [[Bootstrappable Encryption]], [[Leveled Fully Homomorphic Encryption]], [[Fully Homomorphic Encryption]]
-- [[KDM Security]], [[Public-Key Encryption Scheme]]
+### Properties
+- [[Key-Dependent Message Security|KDM Security]] — needed by the self-loop variant
+- [[Indistinguishability]] — the notion preserved, with loss $\varepsilon/(\ell(d+1))$
+
+### Siblings
 - [[Fujisaki-Okamoto Transformation]] — another transformation in this vault with the same layout
+
+### Prerequisites
+- [[Bootstrappable Encryption]], [[Leveled Fully Homomorphic Encryption]], [[Fully Homomorphic Encryption]], [[Public-Key Encryption Scheme]]

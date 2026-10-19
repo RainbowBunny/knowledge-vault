@@ -8,7 +8,7 @@ Reference:
 - `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
 
 > [!todo] Draft of the Homomorphic Encryption note after the split — delete this block when you swap it in
-> - **What moved out:** Bootstrapping, `Refresh`, the augmented decryption circuit, "bootstrappable" → [[Bootstrappable Encryption]]; the theorem and the construction $E^{(d)}$ → [[Gentry Bootstrapping Transformation]]; circular security → [[KDM Security]]; FHE and leveled FHE → [[Fully Homomorphic Encryption]], [[Leveled Fully Homomorphic Encryption]].
+> - **What moved out:** Bootstrapping, `Refresh`, the augmented decryption circuit, "bootstrappable" → [[Bootstrappable Encryption]]; the theorem and the construction $E^{(d)}$ → [[Gentry Bootstrapping Transformation]]; circular security → [[Key-Dependent Message Security|KDM Security]]; FHE and leveled FHE → [[Fully Homomorphic Encryption]], [[Leveled Fully Homomorphic Encryption]].
 > - **Parameters:** $\lambda, \mathrm{aux}, \mathcal M, \mathcal C, \mathcal R, \mathcal K$ are imported from [[Public-Key Encryption Scheme]]. $\mathcal{SK}, \mathcal{PK}$ are dropped: nothing in the note used them. $\Gamma, \ell$ moved to where they are first used.
 > - **Reference list:** the `[BV]` entry now points to ePrint 2011/344 (Brakerski–Vaikuntanathan, FOCS 2011), as in your current note; the draft adds the title and a separate `[BGV]` entry for ePrint 2011/277. The two statements credited to `[BV]` were checked against the 2011/344 text: see [[Leveled Fully Homomorphic Encryption]] and [[Fully Homomorphic Encryption]].
 
@@ -83,12 +83,28 @@ Reference:
 ## Security
 
 > [!remark] What "secure" means for a homomorphic scheme
-> `⚠️ CLAUDE – verify:` I take the notion to be that of the base note, [[Public-Key Encryption Scheme#Indistinguishability|IND-CPA]] of $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$, with no separate game for $\mathsf{Eval}$: $\mathsf{Eval}$ takes only public inputs ($\mathrm{pk}$, $C$, ciphertexts), so an adversary can run it itself. This is my reasoning; I did not locate the sentence in `[T §2.1]` or `[S §1.1]` in this pass.
+> `⚠️ CLAUDE – verify:` I take the notion to be that of the base note, [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]] of $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$, with no separate game for $\mathsf{Eval}$: $\mathsf{Eval}$ takes only public inputs ($\mathrm{pk}$, $C$, ciphertexts), so an adversary can run it itself. This is my reasoning; I did not locate the sentence in `[T §2.1]` or `[S §1.1]` in this pass.
 > By the same token IND-CCA2 is out of reach for a scheme whose $\mathsf{Eval}$ turns a challenge ciphertext into a different valid ciphertext of a related plaintext: the adversary submits that ciphertext to the decryption oracle. This is folklore, not taken from the sources above; confirm it before relying on it.
-> Security that depends on how keys are used inside bootstrapping is separate: see [[KDM Security]].
+> Security that depends on how keys are used inside bootstrapping is separate: see [[Key-Dependent Message Security|KDM Security]].
 
 ## Related
 
-- [[Public-Key Encryption Scheme]] — the base note; [[Fully Homomorphic Encryption]], [[Leveled Fully Homomorphic Encryption]]
-- [[Bootstrappable Encryption]], [[Gentry Bootstrapping Transformation]], [[KDM Security]]
-- [[Additively-Homomorphic Encryption]] — a scheme with $\mathcal C_E$ restricted to additions
+### Descendants
+| | permitted circuits $\mathcal C_E$ | adds |
+| --- | --- | --- |
+| [[Fully Homomorphic Encryption]] | all circuits | the cost bound: evaluation cost polynomial in $\lambda$ and the circuit size |
+| [[Leveled Fully Homomorphic Encryption]] | all circuits of depth at most $d$, one scheme $E^{(d)}$ per $d$ | the depth parameter $d$; a family of schemes, so it points back with a `Requires` field, not `Extends` |
+| [[Bootstrappable Encryption]] | $\mathcal C_E$ contains the augmented decryption circuit | $\mathsf{Refresh}$ |
+
+### Instantiations
+- [[Additively-Homomorphic Encryption]] — $\mathcal C_E$ restricted to additions
+
+### Constructions
+- [[Gentry Bootstrapping Transformation]] — a bootstrappable scheme in, a leveled scheme out
+
+### Properties
+- [[Key-Dependent Message Security|KDM Security]] — what publishing an encrypted secret key costs; the self-loop of the transformation needs it
+- [[Indistinguishability]] — the security notion, from [[Public-Key Encryption Scheme]]
+
+### Siblings
+- [[Secure Multi-party Computation]] — computing on private inputs without a single key holder

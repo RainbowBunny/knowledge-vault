@@ -48,7 +48,8 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 `proof system/non-interactive/`
 
 - [[Non-Interactive Proof Systems]] — the origin: $\mathsf{Setup}$, keys, and **the composition table** — which of Completeness / Soundness / Knowledge / Succinctness / ZK each acronym demands
-- [[Non-interactive ARGument]] — NARG, SNARG, zk-SNARG · [[Non-interactive ARgument of Knowledge]] — NARK, SNARK, zk-SNARK
+- the bundles, one note each: [[Non-interactive ARGument]] (NARG) → [[Succinct Non-interactive ARGument|SNARG]] → [[Zero-Knowledge Succinct Non-interactive ARGument|zk-SNARG]] · [[Non-interactive ARgument of Knowledge]] (NARK) → [[Succinct Non-interactive ARgument of Knowledge|SNARK]] → [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge|zk-SNARK]]
+- [[Relation Generator]] (`relation/`) — the generator behind $(\mathcal R, \mathrm{aux})$
 - [[Split Prover]] (`variant/`) — proving in two phases, with split correctness and split zero-knowledge
 - constructions (`scheme/`): [[Groth16]], [[LUNA]]
 
@@ -63,6 +64,9 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 | Knowledge soundness | [[Knowledge Soundness]] | no adaptive variant — the extractor sees the prover's randomness       |
 | Succinctness        | [[Succinctness]]        | succinct / preprocessing / fully succinct                              |
 | Zero knowledge      | [[Zero Knowledge]]      | [[Honest Verifier Zero Knowledge]]; with leakage (see [[Linear Probabilistically Checkable Proofs]]) |
+| Circuit privacy     | [[Circuit Privacy]]     | with respect to a set of coefficients; multiple evaluations; computational / statistical |
+| Linear-only         | [[Linear-Only Security]], [[Strictly Linear Targeted Malleability]] | strict / affine; extractor / simulator |
+| Key-dependent messages | [[Key-Dependent Message Security]] | circular security (weak) |
 
 ## 4 · Compilers and building blocks
 
@@ -92,10 +96,10 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 | [[Sum-Check Protocol]] | interactive, multilinear |
 | [[QAP-based Linear PCP]] | [[Quadratic Arithmetic Program]] → [[Linear Probabilistically Checkable Proofs\|LPCP]] |
 | [[Groth16]] | pairing-based SNARK |
-| [[LUNA]] | lattice-based, via [[Linear-Only Vector Encryption]] |
+| [[LUNA]] | lattice-based, via [[Vector Encryption]] |
 
 > [!todo] Lattice-based construction table
-> Still to write: the comparison table across lattice-based constructions — [[LUNA]], [[Module HGSW]], [[Linear-Only Vector Encryption]], [[Vanishing SIS]] — over assumption, proof size, setup, and which succinctness level is achieved.
+> Still to write: the comparison table across lattice-based constructions — [[LUNA]], [[Module HGSW]], [[Vector Encryption]], [[Vanishing SIS]] — over assumption, proof size, setup, and which succinctness level is achieved.
 
 ## Adjacent
 
@@ -106,4 +110,4 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 - **To `complexity/`** — [[Probabilistic Interactive Proof System]], [[Multi-Prover Interactive Proofs]], [[Probabilistically Checkable Proofs]], [[Interactive Oracle Proof]], [[Class IP]] (IP = PSPACE), [[Sum-Check Protocol]], [[Circuit Satisfaction]], [[Class NP]]
 - **To `math/`** — [[Polynomial]], [[Lagrange Interpolation]], [[Vanishing Polynomial]], [[Schwartz-Zippel]], [[Bilinear Pairings]], [[Bilinearity]] (used directly in [[Split-R1CS]])
 - **To `cryptography/assumptions/`** — [[Random Oracle Model]] and [[Uniform Random String Model]] for the setup; lattice assumptions for [[LUNA]]
-- **From `cryptography/primitive/`** — [[Linear-Only Vector Encryption]] is the primitive [[LUNA]] compiles through
+- **From `cryptography/primitive/`** — [[Vector Encryption]] is the primitive [[LUNA]] compiles through

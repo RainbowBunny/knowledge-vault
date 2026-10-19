@@ -91,7 +91,7 @@ Reference:
 > At one point the message is doubly encrypted (under $\mathrm{pk}_1$ inside $\mathrm{pk}_2$), and $\mathsf{Eval}$ strips the inner layer. Evaluating the decryption circuit removes the noise of $c$, but $\mathsf{Eval}$ adds fresh noise under $\mathrm{pk}_2$. Progress is made when the new noise is smaller than the removed noise.
 
 > [!remark] Is it safe to publish $\mathrm{bk}$? `[T §1.3]` `[C §4.3]`
-> If $\mathrm{pk}_1 \ne \mathrm{pk}_2$, the encrypted key bits are indistinguishable from encryptions of $0$ whenever $E$ is semantically secure (hybrid argument). The hybrid argument breaks if $\mathrm{pk}_1 = \mathrm{pk}_2$; then one needs key-dependent-message security, here circular security: see [[KDM Security]].
+> If $\mathrm{pk}_1 \ne \mathrm{pk}_2$, the encrypted key bits are indistinguishable from encryptions of $0$ whenever $E$ is semantically secure (hybrid argument). The hybrid argument breaks if $\mathrm{pk}_1 = \mathrm{pk}_2$; then one needs key-dependent-message security, here circular security: see [[Key-Dependent Message Security|KDM Security]].
 
 > [!remark] A deterministic variant `[S §6]`
 > `[S §6]` lists as an optimization that the homomorphic decryption circuit can take the bits of $c$ directly as inputs instead of encryptions of them (credited there to a personal communication of Canetti).
@@ -105,6 +105,14 @@ Reference:
 
 ## Related
 
-- [[Homomorphic Encryption]], [[Leveled Fully Homomorphic Encryption]], [[Fully Homomorphic Encryption]]
+### Constructions
 - [[Gentry Bootstrapping Transformation]] — what a bootstrappable scheme buys
-- [[KDM Security]] — what publishing $\mathrm{bk}$ under its own key costs
+
+### Properties
+- [[Key-Dependent Message Security|KDM Security]] — what publishing $\mathrm{bk}$ under its own key costs
+
+### Siblings
+- [[Leveled Fully Homomorphic Encryption]], [[Fully Homomorphic Encryption]] — what the transformation outputs
+
+### Prerequisites
+- [[Homomorphic Encryption]]

@@ -9,6 +9,9 @@ type: zk-SNARK
 > - [[Bilinear Pairings]]
 
 > [!scheme] Groth16
+> Instantiates:: [[Zero-Knowledge Succinct Non-interactive ARgument of Knowledge|zk-SNARK]]
+>
+> ---
 > - $(\mathrm{prk}, \mathrm{vk}, \mathrm{td}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{R})$:
 > 	1. $(\tau, \alpha, \beta, \delta, \gamma) \xleftarrow{\$} \mathbb{F}^5$.
 > 	2. $\mathrm{td} = (\tau, \alpha, \beta, \delta, \gamma)$.
@@ -16,8 +19,13 @@ type: zk-SNARK
 > 	4. $\mathrm{vk} \leftarrow \begin{pmatrix}[\alpha]_1, [\beta]_2, [\delta]_1, [\delta]_2 \\ \left(\left[\frac{\beta a_j(\tau) + \alpha b_j(\tau) + c_j(\tau)}{\gamma}\right]_1\right)_{i \in [0, N_v]}\end{pmatrix}$.
 > 	5. Returns $(\mathrm{prk}, \mathrm{vk}, \mathrm{td})$.
 > - $\pi \leftarrow \mathsf{Prove}(\mathrm{prk}, \mathbf{x}, \mathbf{w})$:
-> 	1. $$
+> 	1. $haha$
+
+> [!remark]
+> In Groth16:
+> - $\alpha$ and $\beta$ guarantee the same $c_i$ were used in $\pi_A$ and $\pi_B$.
+> - $\gamma$ guarantees the public coordinates are the verifier’s x and not something the prover substituted.
+> - $\delta$ guarantees the $\psi_i$ appear only in $\pi_C$, so the read-off is unambiguous.
+> - $\tau$ guarantees the extracted assignment satisfies the QAP.
 
 
-
-$$$$

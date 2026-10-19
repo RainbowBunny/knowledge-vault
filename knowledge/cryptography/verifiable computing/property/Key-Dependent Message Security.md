@@ -1,3 +1,6 @@
+---
+aliases: [KDM Security]
+---
 Reference:
 - `[BRS x]` — Black, Rogaway, Shrimpton, _Encryption-Scheme Security in the Presence of Key-Dependent Messages_, SAC 2002: https://home.cs.colorado.edu/~jrblack/papers/kdm.pdf
 - `[BV x]` — Brakerski, Vaikuntanathan, _Efficient Fully Homomorphic Encryption from (Standard) LWE_, FOCS 2011 (ePrint 2011/344): https://eprint.iacr.org/2011/344.pdf
@@ -27,7 +30,18 @@ Reference:
 >
 > ---
 > ### Property
-> $$\mathsf{Adv}^{\mathsf{kdm}}_{\mathsf{PKE}, \mathcal F}(\mathcal A) = \left| \Pr\!\left[ b' = 1 \;\middle|\; \begin{array}{l} (\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda); \\ b' \leftarrow \mathcal A^{\mathcal O_\mathsf{real}}(\mathrm{pk}) \end{array} \right] - \Pr\!\left[ b' = 1 \;\middle|\; \begin{array}{l} (\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda); \\ b' \leftarrow \mathcal A^{\mathcal O_\mathsf{fake}}(\mathrm{pk}) \end{array} \right] \right|.$$
+> An interaction between a challenger $\mathcal C$ and $\mathcal A$, played in two branches that differ in step 3 only: **Game 0** (real) and **Game 1** (fake).
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $\mathrm{aux} \leftarrow \mathcal P(1^\lambda)$; $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda, \mathrm{aux})$ | $\xrightarrow{\ \mathrm{pk}\ }$ | |
+> | 2 | | $\xleftarrow{\ f\ }$ | $\mathcal A(\mathrm{pk})$ queries $f \in \mathcal F$, as often as it likes, adaptively |
+> | 3 | **Game 0**: $c \leftarrow \mathsf{Enc}(\mathrm{pk}, f(\mathrm{sk}))$<br>**Game 1**: $c \leftarrow \mathsf{Enc}(\mathrm{pk}, 0^{\lvert f(\mathrm{sk}) \rvert})$ | $\xrightarrow{\ c\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | $\mathcal A$ outputs $b'$ |
+>
+> **Target** — one bit: $\mathsf{Expt}_b(\mathcal A)$ is the bit $b'$ that $\mathcal A$ outputs in Game $b$.
+>
+> $$\mathsf{Adv}^{\mathsf{kdm}}_{\mathsf{PKE}, \mathcal F}(\mathcal A) = \Big|\Pr\big[\mathsf{Expt}_0 = 1\big] - \Pr\big[\mathsf{Expt}_1 = 1\big]\Big|.$$
 > $\mathsf{PKE}$ is **KDM$[\mathcal F]$-secure** if this advantage is negligible in $\lambda$ for every $\mathcal A \in \mathbb A$. It is a *distinguishing* game, see [[Security Game]].
 
 > [!remark] Provenance of this definition
@@ -76,6 +90,15 @@ Reference:
 
 ## Related
 
-- [[Public-Key Encryption Scheme]] — the base primitive and its CPA/CCA games
-- [[Bootstrappable Encryption]], [[Gentry Bootstrapping Transformation]], [[Fully Homomorphic Encryption]]
-- [[Security Game]], [[Adversary]]
+### Descendants
+- Weak circular security — a variant in `## Variant` above, the notion `[BV Def 3.8]` uses
+
+### Constructions
+- [[Gentry Bootstrapping Transformation]] — the self-loop needs circular security
+- [[Bootstrappable Encryption]] — publishing $\mathrm{bk}$
+
+### Siblings
+- [[Indistinguishability]] — the base game this one extends with key-dependent messages
+
+### Prerequisites
+- [[Public-Key Encryption Scheme]], [[Security Game]], [[Adversary]]

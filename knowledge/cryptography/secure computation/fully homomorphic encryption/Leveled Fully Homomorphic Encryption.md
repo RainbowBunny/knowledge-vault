@@ -37,5 +37,12 @@ Reference:
 
 ## Related
 
-- [[Homomorphic Encryption]], [[Fully Homomorphic Encryption]]
-- [[Bootstrappable Encryption]], [[Gentry Bootstrapping Transformation]] — the construction of a leveled scheme from a bootstrappable one
+### Constructions
+- [[Gentry Bootstrapping Transformation]] — builds a leveled scheme from a [[Bootstrappable Encryption|bootstrappable]] one
+
+### Siblings
+- [[Fully Homomorphic Encryption]] — one scheme for every depth
+- [[Bootstrappable Encryption]]
+
+### Prerequisites
+- [[Homomorphic Encryption]]

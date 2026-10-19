@@ -30,14 +30,28 @@
 | `draft <note>` | Write a full draft in house style with a `Reference:` line |
 | `done <ids>` | Fast path — mark without a full review |
 | `audit` | Full scan: lint plus a read pass over a named area |
+| `ingest <note>` · `ingest inbox` | Place a raw note from `inbox/` into `knowledge/` — procedure in § *Ingest* below |
 
 Anything conversational still works. The triggers exist so you never have to explain context.
+
+## Ingest
+
+For `ingest <note>`. Decided 2026-10-14: judgement calls are **placed by default and reported**, not asked first; incomplete notes may be **supplemented** (step 4).
+
+1. **Read** the raw note in `inbox/`. Turn its `Source:` line into a `Reference:` line ([[Book Reference]] name + section, or the URL).
+2. **Look up** every concept it defines or uses, across note names, `aliases:`, headings and `[!definition]` titles. For each, decide: new note · new section in an existing note · already there (link only) · specialization of an origin · homonym (qualified name).
+3. **Place**: the layout from [[Note Layouts]]; the home at the lowest layer where it can be stated; the user's wording, unchanged, inside the layout's slots; fields (`Extends::`, `Instantiates::`, `Requires::`, a `Specializes` line for sections); links to what already exists.
+4. **Supplement what is missing, and mark it.** Fill the empty slots of the layout for the concepts the note introduces: a missing Scope or Condition, a standard property, an example or counterexample. Every supplemented block ends with the tag `#supplemented` and its source is added to the note's `Reference:` line — so a tag search is the review queue, and removing the tag means *read and accepted*. Sources in this order: the one the note cites, then [[Book Reference]] and references already in the vault, then a standard text, then the web. Nothing from memory alone: if a claim could not be checked against a source, the report says so. A concept the note **uses** but the vault lacks gets a seed (`status:: seed` + Scope), not a full note. No tangents beyond the note's topic.
+5. **Do not fix the user's content.** Anything in their wording that looks wrong becomes a review comment in the report. If it contradicts an existing note, name both.
+6. **Hubs and lint**: add new notes to their MOC; run `vault-lint.py`; broken, anchor, field and dupe must not go up.
+7. **Archive**: move the raw note to `inbox/done/` (deleting is blocked) and log the moves.
+8. **Report**: a table of what went where; every supplement with its source; every judgement call with the rule used, so it can be overruled; review comments.
 
 ## Ownership
 
 | | owner |
 | --- | --- |
-| Everything in `knowledge/` | **you** — content is yours |
+| Everything in `knowledge/` | **you** — content is yours. Write it in `inbox/` and I place it (your wording, my structure), or write it in place yourself |
 | MOCs | **me** — say the word and I write or update them |
 | [[North Star]], [[Foundation Layer]], [[Cryptography Layer]], [[Note Layouts]], this plan | **me** |
 | `templates/layout-*.md` | **me** — regenerated from [[Note Layouts]] when a layout changes |

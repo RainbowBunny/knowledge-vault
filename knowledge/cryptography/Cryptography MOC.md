@@ -17,7 +17,7 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 - [[Digital Signatures MOC]] — [[Old Digital Signature]], [[Digital Signature Algorithm]], [[Blind Signature]], [[ID and Signatures from Sigma]], [[Dilithium]]
 - [[Key Establishment MOC]] — [[Key Exchange]], [[Diffie-Hellman Key Exchange]], [[Authenticated Key Exchange]], [[Key Encapsulation Mechanism]], [[Kyber KEM]]
 - [[Message Authentication MOC]] — [[Message Integrity]], [[Authenticated Encryption]], [[Authenticated Data Structures]]
-- [[Linear-Only Vector Encryption]] — [[Module HGSW]]; the primitive behind [[LUNA]]
+- [[Vector Encryption]] — [[Module HGSW]]; the primitive behind [[LUNA]]; its properties are [[Circuit Privacy]], [[Linear-Only Security]] and [[Strictly Linear Targeted Malleability]]
 
 ## Function families
 
@@ -53,7 +53,7 @@ cryptography/
 │   ├── digital signatures/       (scheme/)
 │   ├── key establishment/        (key exchange/, kem/scheme/)
 │   ├── message authentication/
-│   └── linear-only vector encryption/  (scheme/)
+│   └── vector encryption/  (scheme/)
 ├── special function/
 │   ├── one-way function/    hash function/  (scheme/)
 │   ├── pseudorandom function/    pseudorandom generator/

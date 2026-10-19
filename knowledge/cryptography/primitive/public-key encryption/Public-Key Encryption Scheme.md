@@ -1,6 +1,7 @@
 Reference:
 - `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, Ch. 11, public-key encryption: https://toc.cryptobook.us/
 - `[G x]` — Goldreich, _Foundations of Cryptography, Vol. 2: Basic Applications_, Cambridge University Press, 2004, Ch. 5 (sample chapter: https://assets.cambridge.org/97805218/30843/excerpt/9780521830843_excerpt.pdf). Read through a summarizer; check the wording against the book.
+- `[BSW11 x]` — Boneh, Segev, Waters, _Targeted Malleability: Homomorphic Encryption for Restricted Computations_ (ePrint 2011/311): https://eprint.iacr.org/2011/311.pdf. Definition 2.2 read through a summarizer.
 - `[HHK17]` — Hofheinz, Hövelmanns, Kiltz, _A Modular Analysis of the Fujisaki-Okamoto Transformation_, TCC 2017 (ePrint 2017/604): https://eprint.iacr.org/2017/604
 - `[T x]` — Gentry, _A Fully Homomorphic Encryption Scheme_, PhD thesis, Stanford, 2009: https://crypto.stanford.edu/craig/craig-thesis.pdf
 - `[carried]` — kept from the previous version of this note; its source was not re-checked in this pass.
@@ -21,9 +22,9 @@ Reference:
 > - $\mathcal R$: the randomness space of $\mathsf{Enc}$. $\mathcal K$: the set of key pairs $(\mathrm{pk}, \mathrm{sk})$ that $\mathsf{Gen}$ can output. Neither is named in `[G]`, where keys are bit strings of length $\mathrm{poly}(\lambda)$.
 
 > [!definition] Public-Key Encryption Scheme `[G Def 5.1.1]`
-> A **public-key encryption scheme** $\mathsf{PKE} = (\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$ is a triple of efficient algorithms over the spaces of Parameters. The context generator $\mathcal P$ is not one of them: it runs first, and its output is an input of $\mathsf{Gen}$.
-> - $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda, \mathrm{aux})$: (Randomized) Key-generation algorithm.
->     - **Input**: the security parameter $1^\lambda$ and the context $\mathrm{aux}$. Written $\mathsf{Gen}(1^\lambda)$ when $\mathrm{aux} = \perp$.
+> A **public-key encryption scheme** $\mathsf{PKE} = (\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$ is a triple of efficient algorithms:
+> - $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda)$: (Randomized) Key-generation algorithm.
+>     - **Input**: the security parameter $1^\lambda$. Usually, this algorithm will also run the context generator $\mathcal{P}$ to generate auxiliary $\mathsf{aux}$.
 >     - **Output**: a public key $\mathrm{pk}$ and a secret key $\mathrm{sk}$, with $(\mathrm{pk}, \mathrm{sk}) \in \mathcal K$. Both keys contain $\mathrm{aux}$, so $\mathsf{Enc}$ and $\mathsf{Dec}$ do not take it.
 > - $c \leftarrow \mathsf{Enc}(\mathrm{pk}, m; r)$: (Randomized) Encryption algorithm.
 >     - **Input**: a public key $\mathrm{pk}$, a message $m \in \mathcal M$ and internal randomness $r \in \mathcal R$. Written $\mathsf{Enc}(\mathrm{pk}, m)$ when $r \xleftarrow{\$} \mathcal R$ is left implicit, and $\mathsf{Enc}(\mathrm{pk}, m; r)$ when the coins are fixed, as in [[Fujisaki-Okamoto Transformation]].
@@ -80,19 +81,31 @@ Reference:
 > [!definition] Parameters
 > - $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$: the attack.
 > - $\mathcal O_\mathsf{find}$, $\mathcal O_\mathsf{guess}$: the oracles of the two phases, fixed by $\mathsf{atk}$.
+> - $b \in \{0, 1\}$: the branch; the two games differ in one step.
 > - $t$, $\varepsilon$: the running-time bound and the advantage bound.
 
-> [!definition] PKE Indistinguishability Advantage
-> For an [[Adversary]] $\mathcal A = (\mathcal A_\mathsf{find}, \mathcal A_\mathsf{guess})$ and $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$, define the advantage
-> $$\mathsf{Adv}^{\mathsf{ind}\text{-}\mathsf{atk}}_{\mathsf{PKE}}(\mathcal A) = \left|\; \Pr\!\left[ b = b' \;\middle|\; \begin{array}{l} \mathrm{aux} \leftarrow \mathcal P(1^\lambda); (\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda, \mathrm{aux}); \\ (m_0, m_1, s) \leftarrow \mathcal A_\mathsf{find}^{\mathcal O_\mathsf{find}}(\mathrm{pk}); \\ b \xleftarrow{\$} \{0, 1\}; \; c^* \leftarrow \mathsf{Enc}(\mathrm{pk}, m_b); \\ b' \leftarrow \mathcal A_\mathsf{guess}^{\mathcal O_\mathsf{guess}}(s, c^*) \end{array} \right] - \frac{1}{2} \right|.$$
+> [!definition] PKE Indistinguishability Experiment `[BSW11 Def 2.2]`
+> An interaction between a challenger $\mathcal C$ and an [[Adversary]] $\mathcal A = (\mathcal A_\mathsf{find}, \mathcal A_\mathsf{guess})$, played in two branches $b \in \{0, 1\}$ that differ in step 3 only: **Game 0** and **Game 1**. A query of $\mathcal A$ to an oracle is one more message to $\mathcal C$, answered inside the phase.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $\mathrm{aux} \leftarrow \mathcal P(1^\lambda)$; $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda, \mathrm{aux})$ | $\xrightarrow{\ \mathrm{pk}\ }$ | |
+> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | $(m_0, m_1) \leftarrow \mathcal A_\mathsf{find}^{\mathcal O_\mathsf{find}}(\mathrm{pk})$ |
+> | 3 | **Game 0**: $c^* \leftarrow \mathsf{Enc}(\mathrm{pk}, m_0)$<br>**Game 1**: $c^* \leftarrow \mathsf{Enc}(\mathrm{pk}, m_1)$ | $\xrightarrow{\ c^*\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | $b' \leftarrow \mathcal A_\mathsf{guess}^{\mathcal O_\mathsf{guess}}(c^*)$ |
+>
+> **Target** — one bit: $\mathsf{Expt}_b^{\mathsf{ind}\text{-}\mathsf{atk}}(\mathcal A)$ is the bit $b'$ that $\mathcal A$ outputs in Game $b$.
+>
+> For $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ the advantage is
+> $$\mathsf{Adv}^{\mathsf{ind}\text{-}\mathsf{atk}}_{\mathsf{PKE}}(\mathcal A) = \Big|\Pr\big[\mathsf{Expt}_0^{\mathsf{ind}\text{-}\mathsf{atk}}(\mathcal A) = 1\big] - \Pr\big[\mathsf{Expt}_1^{\mathsf{ind}\text{-}\mathsf{atk}}(\mathcal A) = 1\big]\Big|.$$
 > Where:
-> 1. **Chosen plaintext attack**, $\mathsf{atk} = \mathsf{cpa}$: $\mathcal O_\mathsf{find}(\cdot) = \varepsilon$ and $\mathcal O_\mathsf{guess}(\cdot) = \varepsilon$ (no oracle; $\mathcal A$ encrypts by itself with $\mathrm{pk}$).
+> 1. **Chosen plaintext attack**, $\mathsf{atk} = \mathsf{cpa}$: $\mathcal O_\mathsf{find}(\cdot) = \varepsilon$ and $\mathcal O_\mathsf{guess}(\cdot) = \varepsilon$ (no oracle; $\mathcal A$ encrypts by itself with $\mathrm{pk}$). It has its own note: [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]].
 > 2. **Lunch-time attack**, $\mathsf{atk} = \mathsf{lta}$ (sometimes $\mathsf{cca1}$): $\mathcal O_\mathsf{find}(\cdot) = \mathsf{Dec}(\mathrm{sk}, \cdot)$ and $\mathcal O_\mathsf{guess}(\cdot) = \varepsilon$.
 > 3. **Adaptive chosen ciphertext attack**, $\mathsf{atk} = \mathsf{cca}$: $\mathcal O_\mathsf{find}(\cdot) = \mathsf{Dec}(\mathrm{sk}, \cdot)$ and $\mathcal O_\mathsf{guess}(\cdot) = \mathsf{Dec}(\mathrm{sk}, \cdot)$.
 >
 > Also:
-> 4. The output of $\mathcal A_\mathsf{find}$ satisfies $|m_0| = |m_1|$.
-> 5. For $\mathsf{atk} = \mathsf{cca}$, $\mathcal A_\mathsf{guess}$ may not query $\mathcal O_\mathsf{guess}$ on $c^*$.
+> 1. The output of $\mathcal A_\mathsf{find}$ satisfies $|m_0| = |m_1|$.
+> 2. For $\mathsf{atk} = \mathsf{cca}$, $\mathcal A_\mathsf{guess}$ may not query $\mathcal O_\mathsf{guess}$ on $c^*$.
 
 > [!definition] $(t, \varepsilon)$-IND-ATK Security
 > $\mathsf{PKE}$ is **$(t, \varepsilon)$-IND-ATK secure** if for every adversary $\mathcal A$ with running time at most $t$,
@@ -100,16 +113,48 @@ Reference:
 
 > [!remark]
 > - ATK is a placeholder for the attack. A lunch-time attack has one oracle phase, "before lunch".
-> - Relation to `[BS]`: with $\mathsf{atk} = \mathsf{cpa}$ the advantage above is the bit-guessing advantage $\mathsf{SSadv}^*[\mathcal A, \mathsf{PKE}]$ of Attack Game 11.1, and $\mathsf{SSadv} = 2 \cdot \mathsf{SSadv}^*$ (their Eq. 11.1). **Semantic security** is Definition 11.2. The multi-query game, where $\mathcal A$ submits a sequence of message pairs, is Attack Game 11.2 with advantage $\mathsf{CPAadv}$; **CPA security** is Definition 11.4.
+> - The case $\mathsf{atk} = \mathsf{cpa}$ is [[Indistinguishability under Chosen-Plaintext Attack]]: its relation to `[BS]` (semantic security, $\mathsf{SSadv}$, multi-challenge CPA security) and to `[BSW11 Def 2.2]` is in that note.
 > - In the CPA game the oracle is empty because $\mathrm{pk}$ is public. Contrast [[Symmetric Key Encryption#Indistinguishability]], where CPA needs an explicit encryption oracle.
 
+> [!remark] The phases share memory
+> $\mathcal A_\mathsf{find}$ and $\mathcal A_\mathsf{guess}$ are the two phases of one adversary, not two adversaries: everything $\mathcal A_\mathsf{find}$ computed stays available to $\mathcal A_\mathsf{guess}$. Writing $\mathcal A_\mathsf{guess}(c^*)$ without an explicit state is therefore enough; `[BSW11 Def 2.2]` passes it explicitly as `state` from $\mathcal A_1$ to $\mathcal A_2$, and the first version of this note passed $s$. Without shared memory the notion would be much weaker: $\mathcal A_\mathsf{guess}$ could not know $m_0, m_1$.
 
 > [!remark] Asymptotic security
 > `[G]` states security asymptotically: for every probabilistic polynomial-time (or polynomial-size) adversary the advantage is negligible in $\lambda$, and the adversary receives $1^\lambda$, plus the public key in the public-key setting `[G Def 5.2.1–5.2.3]`. A scheme family is IND-ATK secure in this sense when, for every polynomial $t$, every adversary of running time $t(\lambda)$ has advantage negligible in $\lambda$: the $(t, \varepsilon)$ definition above with $\varepsilon = \varepsilon(\lambda)$ negligible. `⚠️ CLAUDE – verify:` `[G]` fixes the pair $(x_n, y_n)$ and uses non-uniform circuits instead of the find–guess form above; that the two coincide for non-uniform adversaries is from memory. I read `[G]` through the sample chapter only.
 
 ## Related
 
-- [[Public-Key Cryptography]], [[Public-Key Encryption MOC]]
-- [[Symmetric Key Encryption]], [[Key Encapsulation Mechanism]], [[Fujisaki-Okamoto Transformation]]
-- [[Homomorphic Encryption]] extends this note; [[KDM Security]]
-- [[Security Game]], [[Indistinguishability]], [[Elementary Wrapper]], [[Adversary]]
+### Descendants
+- [[Homomorphic Encryption]] — adds $\mathsf{Eval}$ and the permitted circuits $\mathcal C_E$; its own descendants are the table there
+
+### Instantiations
+`⚠️ CLAUDE – verify:` the hardness column is from memory, not from the scheme notes; check it before keeping.
+
+| | hardness it rests on |
+| --- | --- |
+| [[RSA Public Key Cryptosystem]] | RSA / factoring |
+| [[Goldwasser–Micali Cryptosystem]] | quadratic residuosity |
+| [[ElGamal Public Key Cryptosystem]] | discrete logarithm / DDH |
+| [[GGH Public Key Cryptosystem]] | lattice problems (CVP) |
+| [[NTRU Public Key Cryptosystem]] | NTRU assumption |
+| [[Lindner-Peikert Public Key Encryption]] | LWE |
+| [[Lyubashevsky-Peikert-Regev Public Key Encryption]] | Ring-LWE |
+| [[Kyber PKE]] | Module-LWE |
+| [[Alekhnovich Encryption Scheme]] | decoding / LPN-type problems |
+| [[Merkle–Hellman Subset-Sum Cryptosystem]] | subset sum (broken) |
+
+I did not place [[A Congruential Public Key Cryptosystem]], [[ID-based Public Key Cryptosystems]] (a different primitive: identity-based) or [[Massey-Omura Three-Pass Cryptosystem]].
+
+### Constructions
+- [[Fujisaki-Okamoto Transformation]] — builds on a PKE and a symmetric scheme
+- [[Traitor Tracing Encryption Scheme]], [[Multi-Receiver Encryption Scheme]] — built from a PKE
+- [[Blind Signature]] — uses a CPA-secure PKE as a building block
+
+### Properties
+- [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]] (the case atk = cpa of the game in `## Security`), [[Indistinguishability]], [[Key-Dependent Message Security|KDM Security]]
+- [[Security Game]], [[Elementary Wrapper]], [[Adversary]] — the tools the games use
+
+### Siblings
+- [[Symmetric Key Encryption]] — same triple, one key; the adversary gets no public key
+- [[Key Encapsulation Mechanism]] — encrypts a fresh key instead of a message
+- [[Public-Key Cryptography]], [[Public-Key Encryption MOC]] — the hubs

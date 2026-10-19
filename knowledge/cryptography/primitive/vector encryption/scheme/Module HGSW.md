@@ -8,6 +8,7 @@ Reference:
 
 > [!scheme] Module Half-Gentry-Sahai-Waters
 > Reference Name: $\mathsf{HGSW}$
+> Instantiates:: [[Vector Encryption]]
 > 
 > ---
 >  ### Parameters

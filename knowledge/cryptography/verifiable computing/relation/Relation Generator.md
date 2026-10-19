@@ -45,6 +45,14 @@ Reference:
 
 ## Related
 
-- [[Non-Interactive Proof Systems]] — uses $(\mathcal R, \mathrm{aux})$; [[Effective Relation]]
+### Constructions
+- [[Non-Interactive Proof Systems]] — takes $(\mathcal R, \mathrm{aux})$; its Instantiations table lists the schemes
+
+### Properties
 - [[Soundness]], [[Knowledge Soundness]], [[Zero Knowledge]] — the games where $\mathrm{aux}$ reaches the adversary
-- [[Public-Key Encryption Scheme]]
+
+### Siblings
+- the context generator of [[Public-Key Encryption Scheme]] — same shape, but there $\mathrm{aux}$ is an input of $\mathsf{Gen}$
+
+### Prerequisites
+- [[Effective Relation]]

@@ -6,6 +6,7 @@ Asymmetric confidentiality — encrypt with a public key, decrypt with a private
 
 - [[Public-Key Cryptography]] — overview, motivation, public-vs-secret framing
 - [[Public-Key Encryption Scheme (Old)]] — PKE syntax and security (CPA / CCA in the asymmetric setting)
+- [[Public-Key Encryption Scheme]] — the rewritten note (Goldreich syntax, `aux`); its security notions: [[Indistinguishability under Chosen-Plaintext Attack]] (`property/`)
 - [[Trapdoor Functions]] — TDF / TDP and the PKE generic construction
 
 ## Concrete Schemes (`scheme/`)

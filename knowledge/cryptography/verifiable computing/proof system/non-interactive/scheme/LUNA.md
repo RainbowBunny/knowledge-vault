@@ -9,6 +9,7 @@ Reference:
 
 > [!scheme] Lattice-based sUccinct Non-interactive Argument
 > Reference Name: $\mathsf{LUNA}$
+> Instantiates:: [[Zero-Knowledge Succinct Non-interactive ARGument|zk-SNARG]]
 > 
 > ---
 > ### Parameters
