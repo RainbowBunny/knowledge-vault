@@ -94,6 +94,7 @@ Scope: a map between structured sets.
 - [[Monotonicity]] — preserves order; the [[Preorder|order]] family's structure-preserving map
 - [[Injection]] · [[Surjection]] · [[Bijection]] — the cardinality properties
 - [[Involution]] — $f \circ f = \mathrm{id}$
+- [[Lipschitz Map]] — stretches distances by at most the constant $\mathrm{Lip}\, F$; [[Contraction]] is the case $\mathrm{Lip}\, F < 1$, with the Banach fixed-point theorem (a contraction has exactly one fixed point)
 
 Consumers: [[Linear Maps]], [[Bilinear Pairings]], [[Kronecker Product]], [[Group Homomorphism]], [[Split-R1CS]], [[Function]], [[Subgroup]].
 

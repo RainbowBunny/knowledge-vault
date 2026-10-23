@@ -1,3 +1,8 @@
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023, Ch. 23: https://toc.cryptobook.us/ (§23.1 the basic idea of MPC, §23.2 arithmetic circuits and Beaver's protocol, §23.3 garbled circuits). `⚠️ CLAUDE – verify:` Chapter 23 lies past every copy of the book that could be read, so the garbling games redraw the wording this note already had, checked against `[BHR12]`; their attack-game numbers are not known.
+- `[BHR12]` — M. Bellare, V. T. Hoang, P. Rogaway, _Adaptively Secure Garbling with Applications to One-Time Programs and Secure Outsourcing_, ASIACRYPT 2012: https://www.iacr.org/archive/asiacrypt2012/76580129/76580129.pdf (§2 syntax; §4 and Fig. 6, the games $\mathrm{obv}$, $\mathrm{obv1}$, $\mathrm{aut}$, $\mathrm{aut1}$). Full version: https://eprint.iacr.org/2012/564
+- `[Lin20]` — Y. Lindell, _Secure Multiparty Computation (MPC)_, ePrint 2020/300, also Communications of the ACM 64(1), 2021: https://eprint.iacr.org/2020/300 (§2.1, the definitional paradigm).
+
 ## Definition
 
 ### Common Properties
@@ -9,7 +14,7 @@
 > Honest parties computes correct outputs (if they compute any output at all)
 
 > [!definition] Input Independence
-> All parties must choose their inputs independently of the other parties' inputs.
+> Corrupted parties must choose their inputs independently of the honest parties' inputs. `[Lin20 §2.1]`
 
 > [!definition] Guaranteed Output Delivery
 > All honest parties are guaranteed to obtain their output.
@@ -19,6 +24,10 @@
 
 > [!remark]
 > **Guaranteed output delivery** property is stronger than the **fairness** property.
+
+> [!remark] Names in the literature, and why there is no game here
+> - `[Lin20 §2.1]` lists the same five requirements as *privacy*, *correctness* (this note's soundness), *independence of inputs*, *guaranteed output delivery* and *fairness*. Its fairness reads: corrupted parties receive their outputs if and only if the honest parties also receive theirs.
+> - These properties are informal. The formal definition is the real/ideal paradigm: for every adversary attacking a real execution of the protocol there is an adversary attacking an ideal execution, in which an incorruptible trusted party computes the function, such that the input/output distributions of the two executions are essentially the same `[Lin20 §2.1]`. It compares two executions of $n$ parties through a simulator, not a challenger and one adversary, so it is not drawn as a game table ([[Note Layouts]] § *Game form*, "Where it stops").
 
 ### Common Assumptions
 
@@ -60,7 +69,7 @@
 > [!algorithm] Sharings
 > For a value $x \in \mathbb Z_q$, we denote by $[x]$ a sharing of $x$ between $P_1$ and $P_2$, so that $P_1$ holds $x_1$ and $P_2$ holds $x_2$.
 > - **Open a sharing $[x]$ to $P_i$**: If $P_1$ and $P_2$ hold a sharing $[x] = (x_1, x_2)$, then $P_{3 - i}$ sends $x_{3 - i}$ to $P_i$, and $P_i$ computes the value $x \leftarrow x_1 + x_2$.
-> - **Add two sharing $[z] \leftarrow [x] + [y]$**: If $P_1$ and $P_2$ hold a sharing $[x] = (x_1, x_2)$ and $[y] = (y_1, y_2)$, then they both locally compute a sharing $[z] = (z_1, z_2)$ of $z = x + y$, by simply adding their shares: $P_1$ computes $z_1 \leftarrow x_1 + y_1$, and $P_2$ computes $z_2 = x_2 + y_2$.
+> - **Add two sharing $[z] \leftarrow [x] + [y]$**: If $P_1$ and $P_2$ hold a sharing $[x] = (x_1, x_2)$ and $[y] = (y_1, y_2)$, then they both locally compute a sharing $[z] = (z_1, z_2)$ of $z = x + y$, by simply adding their shares: $P_1$ computes $z_1 \leftarrow x_1 + y_1$, and $P_2$ computes $z_2 \leftarrow x_2 + y_2$.
 > - **Multiply a sharing by a constant $[z] \leftarrow c[x]$**: If $P_1$ and $P_2$ hold a sharing $[x] = (x_1, x_2)$, and $c \in \mathbb Z_q$ is a publicly known value, then they both locally compute a sharing $[z] = (z_1, z_2)$ of $z = cx$, by simply multiplying their shares by $c$: $P_1$ computes $z_1 \leftarrow c x_1$, and $P_2$ computes $z_2 \leftarrow c x_2$.
 > - **Add a constant to a sharing $[z] \leftarrow [x] + c$**: If $P_1$ and $P_2$ hold a sharing $[x] = (x_1, x_2)$, and $c \in \mathbb Z_q$ is a publicly known value, then they both locally compute a sharing $[z] = (z_1, z_2)$ of $z = x + c$ by the following local computation: $P_1$ computes $z_1 \leftarrow x_1 + c$, and $P_2$ computes $z_2 \leftarrow x_2$.
 
@@ -95,7 +104,7 @@
 > 	2. $P_i$ sends $\delta \leftarrow x - a$ to $P_{3 - i}$;
 > 	3. Execute $[x] \leftarrow [a] + \delta$
 > - **Addition gate**: To add $[x]$ and $[y]$, obtaining $[z] = [x + y]$, the parties execute $[z] \leftarrow [x] + [y]$.
-> - **Scalar multiplication gate**: To multiply $[x]$ by a constant $c$, obtaining $[z] = [cx]$, the parties execute $[z] \leftarrow [x] + c$.
+> - **Scalar multiplication gate**: To multiply $[x]$ by a constant $c$, obtaining $[z] = [cx]$, the parties execute $[z] \leftarrow c[x]$.
 > - **Multiplication gate**: To multiply $[x]$ and $[y]$, obtaining $[z] = [xy]$, a Beaver triple sharing $([a], [b], [c])$ from the dealer is used as follows:
 > 	1. Execute $[u] \leftarrow [x] - [a]$;
 > 	2. Execute $[v] \leftarrow [y] - [b]$;
@@ -108,20 +117,20 @@
 > [!proposition] Keeping the Dealer honest
 > Assume that $D$ is corrupt and in the majority assumption, $P_1$ and $P_2$ is honest. The problem we need to solve is that: the dealer sends to party $P_1$ values $$a_{11}, \dots, a_{m1}, \quad b_{11}, \dots, b_{m1}, \quad c_{11}, \dots, c_{m1} \quad \in \mathbb Z_q,$$ and to $P_2$ values $$a_{12}, \dots, a_{m2}, \quad b_{12}, \dots, b_{m2}, \quad c_{12}, \dots, c_{m2} \quad \in \mathbb Z_q,$$ the goal is to have $D$ send $P_1$ and $P_2$ additional data that will allow $P_1$ and $P_2$ to verify that the following relation holds: $$(a_{k1} + a_{k2})(b_{k1} + b_{k2}) = (c_{k1} + c_{k2}) \quad \text{for } k = 1, \dots, m.$$
 > The security requirements are:
-> 1. If $D$ is corrupt and both $P_1$ and $P_2$ are honest, and both successfully complete the protocol without aborting, then with overwhelming probability, the above relation must hold.
-> 2. If $D$ is honest and one of $P_1$ or $P_2$ is corrupt, then the corrupt party should not learn anything about the honest party's values.
+> - **Requirement 1** — if $D$ is corrupt and both $P_1$ and $P_2$ are honest, and both successfully complete the protocol without aborting, then with overwhelming probability, the above relation must hold.
+> - **Requirement 2** — if $D$ is honest and one of $P_1$ or $P_2$ is corrupt, then the corrupt party should not learn anything about the honest party's values.
  
 > [!algorithm] Proving Product Relations
 > 1. Given values $a_{ki}, b_{ki}$, and $c_{ki}$, for $i = 1, 2$ and $k = 1, \dots, m$, which satisfy $$(a_{k1} + a_{k2})(b_{k1} + b_{k2}) = (c_{k1} + c_{k2}) \quad \text{for } k = 1, \dots, m,$$ the dealer $D$ performs the following local computations:
 > 	- The dealer chooses value $a_{01}, a_{02}, b_{01}, b_{02} \in \mathbb Z_q$ at random, and chooses $c_{01}, c_{02} \in \mathbb Z_q$ at random, subject to $(a_{01} + a_{02})(b_{01} + b_{02}) = (c_{01} + c_{02})$.
-> 	- The dealer runs a polynomial interpolation algorithm to obtain the unique polynomials $A_1(X), A_2(X), B_1(X), B_2(X)$, each of degree at most $m$, such that $$A_i(k) = a_{ki} \quad \text{and} \quad B_i(k) = b_{ki} \quad \text{for } i = 1, 2 \quad \text{and} \quad k = 0, \dots, m.$$
+> 	- The dealer runs a polynomial interpolation algorithm to obtain the unique polynomials $A_1(X), A_2(X), B_1(X), B_2(X)$, each of degree at most $m$, such that $$\begin{aligned} A_i(k) &= a_{ki} \\ B_i(k) &= b_{ki} \end{aligned} \qquad \text{for } i = 1, 2 \text{ and } k = 0, \dots, m.$$
 > 	- The dealer computes the polynomial $C(X) \leftarrow (A_1(X) + A_2(X))(B_1(X) + B_2(X))$, which has degree at most $2m$.
 > 	- For $i = 1, 2$ and $k = m + 1, \dots, 2m$, the dealer chooses $c_{k1}, c_{k2} \in \mathbb Z_q$ at random, subject to $c_{k1} + c_{k2} = C(k)$.
 > 	- Finally, for $i = 1, 2$, the dealer sends to $P_i$ the values $$a_{ki} \quad \text{and} \quad b_{ki} \quad \text{for } k = 0, \dots, m$$ and $$c_{ki} \quad \text{for } k = 0, \dots, 2m.$$
-> 2. Each party $P_i$ (for $i = 1, 2$) runs a polynomial interpolation algorithms on the values it receives to obtain polynomials $A_i(X), B_i(X)$, and $C_i(X)$, where $A_i(X)$ and $B_i(X)$ are of degree at most $m$, and $C_i(X)$ is of degree at most $2m$, such that $$A_i(k) = a_{ki} \quad \text{and} \quad B_i(k) = b_{ki} \quad \text{for } k = 0, \dots, m$$ and $$C_{i}(k) = c_{ki}, \quad k = 0, \dots, 2m.$$ Note that by construction, we have $$(A_1(X) + A_2(X))(B_1(X) + B_2(X)) = (C_1(X) + C_2(X))$$ if the dealer is honest.
+> 2. Each party $P_i$ (for $i = 1, 2$) runs a polynomial interpolation algorithms on the values it receives to obtain polynomials $A_i(X), B_i(X)$, and $C_i(X)$, where $A_i(X)$ and $B_i(X)$ are of degree at most $m$, and $C_i(X)$ is of degree at most $2m$, such that $$\begin{aligned} A_i(k) &= a_{ki} \\ B_i(k) &= b_{ki} \end{aligned} \qquad \text{for } k = 0, \dots, m$$ and $$C_{i}(k) = c_{ki}, \quad k = 0, \dots, 2m.$$ Note that by construction, we have $$(A_1(X) + A_2(X))(B_1(X) + B_2(X)) = (C_1(X) + C_2(X))$$ if the dealer is honest.
 > 3. Party $P_1$ chooses $r \in \mathbb Z_q \backslash \{0, \dots, m\}$ at random, and sends it to $P_2$.
 > 4. Party $P_2$ verifies that $r \in \mathbb Z_q \backslash \{0, \dots, m\}$; if not, $P_2$ aborts.
-> 5. Each party $P_i$ (for $i = 1, 2$) sends the other party $$\alpha_i \leftarrow A_i(r), \quad \beta_i \leftarrow B_i(r), \quad \gamma_i \leftarrow C_i(r).$$
+> 5. Each party $P_i$ (for $i = 1, 2$) sends the other party $$\begin{aligned} \alpha_i &\leftarrow A_i(r) \\ \beta_i &\leftarrow B_i(r) \\ \gamma_i &\leftarrow C_i(r). \end{aligned}$$
 > 6. Each party $P_i$ (for $i = 1, 2$) locally checks that $$(\alpha_1 + \alpha_2)(\beta_1 + \beta_2) = (\gamma_1 + \gamma_2).$$ If not, abort the protocol.
 
 > [!lemma] Requirement 1 of honest Dealer
@@ -142,17 +151,17 @@
 
 > [!algorithm] Garbled Scheme
 > A **garbling scheme** consists of four efficient algorithms:
-> 1. A probabilistic **circuit garbling algorithm** $\text{Garble}$ that is invoked as $$(F, e, d) \xleftarrow{R} \text{Garble(f)}$$ where the input $f$ is a boolean circuit. The result $F$ is called a **garbled encoding of** $f$, the result $e$ is called the **input encoding data**, and the result $d$ is called the **output decoding data**.
+> 1. A probabilistic **circuit garbling algorithm** $\text{Garble}$ that is invoked as $$(F, e, d) \xleftarrow{R} \text{Garble}(f)$$ where the input $f$ is a boolean circuit. The result $F$ is called a **garbled encoding of** $f$, the result $e$ is called the **input encoding data**, and the result $d$ is called the **output decoding data**.
 > 2. A deterministic **input encoding algorithm** $\text{Encode}$ that is invoked as $$X \leftarrow \text{Encode}(e, x),$$ where $e$ is the input encoding data, and $x$ is a vector of bits. The result $X$ is called a **garbled encoding of** $x$.
 > 3. A deterministic **garbled circuit evaluation algorithm** $\text{Eval}$ that is invoked as $$Y \leftarrow \text{Eval}(F, X),$$ where $F$ is a garbled encoding of a circuit and $X$ is a garbled encoding of an input vector. The result $Y$ is called a **garbled output**.
 > 4. A deterministic **output decoding algorithm** $\text{Decode}$ that is invoked as $$y \leftarrow \text{Decode}(d, Y),$$ where $d$ is the output decoding data and $Y$ is a garbled output. The result $y$ is either the special symbol $\text{reject}$ or a vector of bits.
 > 
 > The basic **correctness requirement** for any general garbling scheme is as follows:
-> - For every boolean circuit $f$, every possible output $(F, e, d)$ of $\text{Garble}(f)$, and every boolean input vector $x$ for $f$, we have $$\text{Decode}(d, \text{Eval}(f, \text{Encode}(e, x))) = f(x).$$
+> - For every boolean circuit $f$, every possible output $(F, e, d)$ of $\text{Garble}(f)$, and every boolean input vector $x$ for $f$, we have $$\text{Decode}(d, \text{Eval}(F, \text{Encode}(e, x))) = f(x).$$
 
 > [!proposition] Security Properties
-> - **Obliviousness**: $(f, X)$ reveals nothing about $x$;
-> - **Authenticity**: given $(f, X)$, it is hard to find $\hat{Y} \neq \text{Eval}(F, X)$ that decodes to something besides $\text{reject}$;
+> - **Obliviousness**: $(F, X)$ reveals nothing about $x$;
+> - **Authenticity**: given $(F, X)$, it is hard to find $\hat{Y} \neq \text{Eval}(F, X)$ that decodes to something besides $\text{reject}$;
 > - **Output simulatablity**: $Y$ can be efficiently computed from $f(x)$ and $d$.
 
 > [!algorithm] High Level Idea (Language of Garbling Schemes)
@@ -163,39 +172,126 @@
 
 ### Oblivious Garbling
 
-> [!algorithm] Oblivious Garbling
-> For a given garbling scheme $$(\text{Garble}, \text{Encode}, \text{Eval}, \text{Decode}),$$ and for a given adversary, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define
-> **Experiment $b$**: 
-> - The adversary submits a circuit $f$ and two circuit input vectors $x^{(0)}, x^{(1)}$ to the challenger.
-> - The challenger computes $$(f, e, d) \xleftarrow{R} \text{Garble}(f), X \leftarrow \text{Encode}(e, x^{(b)}),$$ and sends $(f, X)$ to the adversary.
-> - The adversary outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> For $b = 0, 1$, let $W_b$ be the event that the adversary outputs $1$ in Experiment $b$. We define the adversary's advantage in the game as $|P[W_0] - P[W_1]|$.
+> [!definition] Parameters
+> - $(\text{Garble}, \text{Encode}, \text{Eval}, \text{Decode})$: a garbling scheme, as in *Garbled Scheme* above.
+> - $f$: a boolean circuit. $x^{(0)}, x^{(1)}$: two input vectors for $f$. $(F, e, d)$: the garbled circuit, the input encoding data and the output decoding data.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]].
 
 > [!definition] Oblivious Garbling
-> A garbling scheme is called **oblivious** if every efficient adversary has a negligible advantage in the previous game.
+> ### Scope
+> A garbling scheme $(\text{Garble}, \text{Encode}, \text{Eval}, \text{Decode})$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — $\mathcal A$ receives the garbled circuit $F$ and one garbled input $X$; never $e$ or $d$.
+> - **Promise** — $x^{(0)}$ and $x^{(1)}$ are both input vectors for $f$. They need not give the same output: without $d$, $\mathcal A$ cannot decode.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — static: $\mathcal A$ commits to $f$, $x^{(0)}$ and $x^{(1)}$ before it sees anything garbled. The adaptive version is below.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches that differ in row 2 only, **Game 0** (input $x^{(0)}$) and **Game 1** (input $x^{(1)}$). `[BS §23.3]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ f,\, x^{(0)},\, x^{(1)}\ }$ | chooses a circuit $f$ and two input vectors $x^{(0)}, x^{(1)}$ for $f$ |
+> | 2 | $(F, e, d) \xleftarrow{\$} \text{Garble}(f)$<br>**Game 0**: $X \leftarrow \text{Encode}(e, x^{(0)})$<br>**Game 1**: $X \leftarrow \text{Encode}(e, x^{(1)})$ | $\xrightarrow{\ F,\, X\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\mathsf{Adv}^{\mathsf{obv}}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - The garbling scheme is **oblivious** if $\mathsf{Adv}^{\mathsf{obv}}(\mathcal A)$ is negligible for every efficient $\mathcal A$.
+>
+> It is a *distinguishing* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> - `[BS §23.3]` writes Experiment $b$ and the event $W_b$ that the adversary outputs $1$ in it, with advantage $|\Pr[W_0] - \Pr[W_1]|$; $W_b$ is $\mathsf{Expt}_b(\mathcal A) = 1$ here.
+> - `[BHR12 §4, Fig. 6]` call the algorithms $(\mathsf{Gb}, \mathsf{En}, \mathsf{Ev}, \mathsf{De})$ and state obliviousness in simulation form: the real branch gives $\mathcal A$ the pair $(F, X)$, the fake branch a pair produced by a simulator that sees only the side information $\Phi(f)$, not $y = f(x)$; in both, $\mathcal A$ never gets $d$.
 
 > [!definition] Adaptive Obliviousness
-> The adversary can see the garbled encoding of the circuit before generating input $x$.
+> The adversary sees the garbled circuit before it chooses the inputs: the same distinguishing game with row 1 split around the garbling. `[BS §23.3]`; `[BHR12 Fig. 6]`, game $\mathrm{obv1}$, in simulation form.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ f\ }$ | chooses a circuit $f$ |
+> | 2 | $(F, e, d) \xleftarrow{\$} \text{Garble}(f)$ | $\xrightarrow{\ F\ }$ | |
+> | 3 | | $\xleftarrow{\ x^{(0)},\, x^{(1)}\ }$ | chooses two input vectors $x^{(0)}, x^{(1)}$ for $f$ |
+> | 4 | **Game 0**: $X \leftarrow \text{Encode}(e, x^{(0)})$<br>**Game 1**: $X \leftarrow \text{Encode}(e, x^{(1)})$ | $\xrightarrow{\ X\ }$ | |
+> | 5 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> The scheme is **adaptively oblivious** if this difference is negligible for every efficient $\mathcal A$.
 
 ### Authentic Garbling
 
-> [!algorithm] Authentic Garbling
-> For a given garbling scheme $$(\text{Garble}, \text{Encode}, \text{Eval}, \text{Decode}),$$ the attack game runs as follows:
-> - The adversary submits a circuit $F$ and an input vector $x$ to the challenger.
-> - The challenger computes $$(F, e, d) \xleftarrow{R} \text{Garble}(F), X \leftarrow \text{Encode}(e, x),$$ and sends $(F, X)$ to the adversary.
-> - The adversary outputs a garbled output $\hat{Y}$.
-> 
-> We say the adversary wins the game if $\hat{Y} \neq \text{Eval}(F, X)$ and $\text{Decode}(d, \hat{Y}) \neq \text{reject}$. We define the adversary's advantage in the game as the probability that it wins the game.
+> [!definition] Parameters
+> - The garbling scheme, $f$ and $(F, e, d)$: as for obliviousness. $x$: an input vector for $f$. $\hat Y$: the garbled output the adversary produces.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]].
 
 > [!definition] Authentic Garbling
-> A garbling scheme is called **authentic** if every efficient adversary has a negligible advantage.
+> ### Scope
+> A garbling scheme $(\text{Garble}, \text{Encode}, \text{Eval}, \text{Decode})$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — $\mathcal A$ receives $F$ and $X = \text{Encode}(e, x)$; never $e$ or $d$.
+> - **Promise** — $x$ is an input vector for $f$.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — static: $\mathcal A$ commits to $f$ and $x$ before the garbling. The adaptive version is below.
+>
+> ---
+> ### Experiment
+> A search game: one branch; the challenger checks the garbled output in the last row. `[BS §23.3]`; `[BHR12 Fig. 6]`, game $\mathrm{aut}$.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ f,\, x\ }$ | chooses a circuit $f$ and an input vector $x$ for $f$ |
+> | 2 | $(F, e, d) \xleftarrow{\$} \text{Garble}(f)$<br>$X \leftarrow \text{Encode}(e, x)$ | $\xrightarrow{\ F,\, X\ }$ | |
+> | 3 | | $\xleftarrow{\ \hat Y\ }$ | outputs a garbled output $\hat Y$ |
+> | 4 | $Y \leftarrow \text{Eval}(F, X)$<br>$\hat y \leftarrow \text{Decode}(d, \hat Y)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff both hold:
+> - $\hat Y \neq Y$;
+> - $\hat y \neq \text{reject}$.
+>
+> ---
+> ### Property
+> $$\mathsf{Adv}^{\mathsf{aut}}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
+> - The garbling scheme is **authentic** if $\mathsf{Adv}^{\mathsf{aut}}(\mathcal A)$ is negligible for every efficient $\mathcal A$.
+>
+> It is a *search* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> `[BHR12 Fig. 6]` ends the game $\mathrm{aut}$ with $\mathrm{Finalize}(Y)$, which returns $\mathsf{De}(d, Y) \neq \perp$ and $Y \neq \mathsf{Ev}(F, X)$: the same two winning conditions, with $\perp$ for $\text{reject}$.
 
 > [!definition] Output Simulatable Garbling
-> A garbling scheme is called **output simulatable** if there is an efficient deterministic algorithm $\text{Reverse}$ with the following property: for every circuit $F$, every possible output $(F, e, d)$ of $\text{Garble(f)}$, and every input vector $x$ for $f$, we have $$\text{Eval}(F, \text{Encode}(e, x)) = \text{Reverse}(d, f(x)).$$
+> A garbling scheme is called **output simulatable** if there is an efficient deterministic algorithm $\text{Reverse}$ with the following property: for every circuit $f$, every possible output $(F, e, d)$ of $\text{Garble}(f)$, and every input vector $x$ for $f$, we have $$\text{Eval}(F, \text{Encode}(e, x)) = \text{Reverse}(d, f(x)).$$
 
 > [!definition] Adaptive Authenticity
-> The adversary can see the garbled encoding of the circuit before generating input $x$.
+> The adversary sees the garbled circuit before it chooses the input: the same search game with row 1 split around the garbling. `[BS §23.3]`; `[BHR12 Fig. 6]`, game $\mathrm{aut1}$.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ f\ }$ | chooses a circuit $f$ |
+> | 2 | $(F, e, d) \xleftarrow{\$} \text{Garble}(f)$ | $\xrightarrow{\ F\ }$ | |
+> | 3 | | $\xleftarrow{\ x\ }$ | chooses an input vector $x$ for $f$ |
+> | 4 | $X \leftarrow \text{Encode}(e, x)$ | $\xrightarrow{\ X\ }$ | |
+> | 5 | | $\xleftarrow{\ \hat Y\ }$ | outputs a garbled output $\hat Y$ |
+> | 6 | $Y \leftarrow \text{Eval}(F, X)$<br>$\hat y \leftarrow \text{Decode}(d, \hat Y)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff both hold:
+> - $\hat Y \neq Y$;
+> - $\hat y \neq \text{reject}$.
+>
+> The scheme is **adaptively authentic** if $\Pr[\mathcal A \text{ wins}]$ is negligible for every efficient $\mathcal A$.
 
 ### Simple Garbling Scheme
 

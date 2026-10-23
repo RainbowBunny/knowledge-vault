@@ -10,6 +10,7 @@ Establishing a shared secret between parties. Two protocol shapes share this umb
 - [[Key Exchange]] — security definitions for interactive KE
 - [[Authenticated Key Exchange]] — AKE, identity binding, MITM resistance
 - [[Diffie-Hellman Key Exchange]] — DH / ECDH
+- [[Bidirectional Ratcheted Key Exchange]] — BRKE: every message establishes a new key and advances the state; correctness game FUNC
 
 ## Key Encapsulation (`kem/`)
 

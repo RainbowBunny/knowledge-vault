@@ -13,8 +13,10 @@ Top-level index for `knowledge/math/`.
 - [[Combinatorics MOC]] — counting
 - [[Geometry MOC]] — Cartesian geometry, trigonometry
 - [[Graph Theory MOC]] — graph theory, regular and random graphs
-- [[Number Theory MOC]] — primes, factoring, special numbers
+- [[Measure Theory MOC]] — σ-algebras, measures, push-forward, stationary measures, iterated function systems
+- [[Number Theory MOC]] — primes, factoring, special numbers, $p$-adic numbers
 - [[Probability MOC]] — discrete, continuous, random vectors, statistical distance
+- `topology/` — [[Topological Space]] (open sets, metric topology, compactness, connectedness); a MOC when it has more notes
 
 ## Top-level notes
 

@@ -1,3 +1,6 @@
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023: https://toc.cryptobook.us/ (Ch. 8, Attack Game 8.2). `⚠️ CLAUDE – verify:` WebFetch returns only the first ~17 pages of the book, so Attack Game 8.2 could not be read; the table redraws the wording this note already had. Check it against the book.
+- `⚠️ CLAUDE – verify:` — a point I could not check against the source.
 
 | Term                                                    | Reference                                                                        |                 |
 | ------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------- |
@@ -16,11 +19,22 @@
 
 ### Authenticated Data Structures
 
-> [!algorithm] Authenticated Data Structures Security
-> For an authenticated data structure scheme $\mathcal D = (H, \mathcal P, \mathcal V)$ defined over $(\mathcal X^n, \mathcal Y)$, and a given adversary $\mathcal A$, the attack game runs as follows:
-> - The adversary $\mathcal A$ outputs a $y \in \mathcal Y$, a position $i \in \{1, \dots, n\}$, and two pairs $(x, \pi)$ and $(x', \pi')$ where $x, x' \in \mathcal X$.
-> 
-> We say that $\mathcal A$ wins the game if $x \neq x'$ and $\mathcal V(i, x, y, \pi) = \mathcal V(i, x', y, \pi') = \text{accept}$. Define $\mathcal A$'s advantage with respect to $\mathcal D$, denoted $\text{ADSadv}[\mathcal A, \mathcal D]$, as the probability that $\mathcal A$ wins the game.
+> [!definition] Authenticated Data Structures Security
+> For an authenticated data structure scheme $\mathcal D = (H, \mathcal P, \mathcal V)$ defined over $(\mathcal X^n, \mathcal Y)$, and a given adversary $\mathcal A$, the attack game runs as follows. The challenger holds no secret: it only checks what $\mathcal A$ outputs.
+>
+> A search game: one branch. `[BS Attack Game 8.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ y,\, i,\, (x, \pi),\, (x', \pi')\ }$ | outputs a digest $y \in \mathcal Y$, a position $i \in \{1, \dots, n\}$ and two pairs $(x, \pi)$ and $(x', \pi')$ with $x, x' \in \mathcal X$ |
+> | 2 | $r \leftarrow \mathcal V(i, x, y, \pi)$<br>$r' \leftarrow \mathcal V(i, x', y, \pi')$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all hold:
+> - $x \neq x'$;
+> - $r = \text{accept}$;
+> - $r' = \text{accept}$.
+>
+> Define $\mathcal A$'s advantage with respect to $\mathcal D$, denoted $\text{ADSadv}[\mathcal A, \mathcal D]$, as the probability that $\mathcal A$ wins the game.
 
 > [!definition] Secure Authenticated Data Structures
 > We say that an authenticated data structure scheme $\mathcal D$ is secure if for all efficient adversaries $\mathcal A$, the value $\text{ADSadv}[\mathcal A, \mathcal D]$ is negligible.

@@ -1,3 +1,6 @@
+Reference:
+- `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, v0.6: https://toc.cryptobook.us/ (Attack Games 4.2 and 8.1, Definitions 4.2, 4.3 and 8.1, Eq. 4.22).
+
 ## Definition
 
 > [!definition] Functions Family
@@ -28,17 +31,23 @@
 ### Collision Resistant
 
 > [!definition] Collision Resistant Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{find})$, we define the collision resistant advantage for function $f$:
-> $$\text{Adv}_\text{f}^\text{CR}(\mathcal A) = 
-> \; \Pr\!\left[
-> \begin{array}{l}
-> x \neq x' \\
-> f(x) = f(x')
-> \end{array}
-> \; \middle | \; 
-> \begin{array}{l}
-> (x, x') = \mathcal A^\text{find}()
-> \end{array} \right]$$
+> A search game: one branch, and the challenger checks the output in the last row. `[BS Attack Game 8.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ x,\, x'\ }$ | takes no input; outputs two inputs $x, x'$ |
+> | 2 | checks whether $x \neq x'$<br>checks whether $f(x) = f(x')$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff both hold:
+> - $x \neq x'$;
+> - $f(x) = f(x')$.
+>
+> $$\text{Adv}_\text{f}^\text{CR}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
+> $f$ is **collision resistant** if $\text{Adv}_\text{f}^\text{CR}(\mathcal A)$ is negligible for all [[PPT]] algorithms $\mathcal A$ `[BS Def 8.1]`.
+
+> [!remark] The source's form
+> `[BS Attack Game 8.1]` writes $\mathsf{CRadv}[\mathcal A, H]$ for a hash function $H$ over $(\mathcal M, \mathcal T)$ and calls $\mathcal A$ a *collision finder*.
+
 
 ### Prefix-Free
 
@@ -49,59 +58,39 @@
 ### Pseudorandom
 
 > [!definition] Pseudorandom Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{find}, \mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
-> $$\text{Adv}_{\mathcal F}^{Q\text{-Pr}}(\mathcal A) = 
-> \left|\; \Pr\!\left[
-> \begin{array}{l}
-> b = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> k \xleftarrow{\$} \mathcal K; f_k \leftarrow \mathcal F; \\
-> (x_1, \dots, x_q) \leftarrow \mathcal A_\text{find}(); \\
-> y_1 \leftarrow f_k(y_1), \dots, y_q \leftarrow f_k(y_q); \\
-> b \leftarrow \mathcal A^\text{guess}(y_1, \dots, y_q)
-> \end{array} \right] 
-> \;- 
-> \Pr\!\left[
-> \begin{array}{l}
-> b = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> f \leftarrow \text{Func}(\mathcal X, \mathcal Y) \\
-> (x_1, \dots, x_q) \leftarrow \mathcal A_\text{find}(); \\
-> y_1 \leftarrow f(y_1), \dots, y_q \leftarrow f(y_q); \\
-> b \leftarrow \mathcal A^\text{guess}(y_1, \dots, y_q)
-> \end{array} \right] 
-> \right|.$$
+> A distinguishing game: **Game 0** (the family) and **Game 1** (a random function) differ in row 1 only. `[BS Attack Game 4.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>**Game 0**: $f \leftarrow f_k$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X, \mathcal Y]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Evaluation queries** (repeated, adaptive, at most $Q$ times): sends $x_i \in \mathcal X$ |
+> | | $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> $$\text{Adv}_{\mathcal F}^{Q\text{-Pr}}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> $\mathcal F$ is **pseudorandom** (a secure PRF) if this is negligible for all [[PPT]] algorithms $\mathcal A$ `[BS Def 4.2]`.
 
 > [!definition] Weakly Pseudorandom Advantage
-> For all [[PPT]] algorithms $\mathcal A = (\mathcal A^\text{guess})$, we define the pseudorandom advantage for a function families $\mathcal F = \{f_k: \mathcal X \rightarrow \mathcal Y\}$:
-> $$\text{Adv}_{\mathcal F}^{Q\text{-wPr}}(\mathcal A) = 
-> \left|\; \Pr\!\left[
-> \begin{array}{l}
-> b = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> k \xleftarrow{\$} \mathcal K; f_k \leftarrow \mathcal F; \\
-> (x_1, \dots, x_q) \xleftarrow{\$} \mathcal X^q; \\
-> y_1 \leftarrow f_k(y_1), \dots, y_q \leftarrow f_k(y_q); \\
-> b \leftarrow \mathcal A^\text{guess}(y_1, \dots, y_q)
-> \end{array} \right] 
-> \;- 
-> \Pr\!\left[
-> \begin{array}{l}
-> b = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> f \leftarrow \text{Func}(\mathcal X, \mathcal Y) \\
-> (x_1, \dots, x_q) \xleftarrow{\$} \mathcal X^q; \\
-> y_1 \leftarrow f(y_1), \dots, y_q \leftarrow f(y_q); \\
-> b \leftarrow \mathcal A^\text{guess}(y_1, \dots, y_q)
-> \end{array} \right] 
-> \right|.$$
+> The same distinguishing game, except that $\mathcal A$ does not choose the inputs: each query returns the value at a fresh uniform point, together with the point. `[BS Def 4.3]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>**Game 0**: $f \leftarrow f_k$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X, \mathcal Y]$ | | |
+> | 2 | | $\xleftarrow{\ \mathsf{sample}\ }$ | **Sample queries** (repeated, at most $Q$ times): asks for a sample |
+> | | $x_i \xleftarrow{\$} \mathcal X$<br>$y_i \leftarrow f(x_i)$ | $\xrightarrow{\ x_i,\, y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> $$\text{Adv}_{\mathcal F}^{Q\text{-wPr}}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> $\mathcal F$ is **weakly pseudorandom** (a weakly secure PRF) if this is negligible for all [[PPT]] algorithms $\mathcal A$ `[BS Def 4.3]`.
 
-
+> [!remark] The source's form
+> - `[BS]` writes the two advantages $\mathsf{PRFadv}[\mathcal A, F]$ (Attack Game 4.2) and $\mathsf{wPRFadv}[\mathcal A, F]$ (Section 4.4.1), with $F$ defined over $(\mathcal K, \mathcal X, \mathcal Y)$. Its bit-guessing form $\mathsf{PRFadv}^*[\mathcal A, F] = |\Pr[\hat b = b] - 1/2|$ satisfies $\mathsf{PRFadv} = 2 \cdot \mathsf{PRFadv}^*$ (Eq. 4.22); this note uses the difference.
+> - The queries of Attack Game 4.2 are adaptive: each $x_i$ may depend on the earlier answers. In the weak game the adversary sees the random points $x_i$ as well as the values $f(x_i)$.

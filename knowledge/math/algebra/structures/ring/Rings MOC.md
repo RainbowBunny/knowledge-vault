@@ -27,7 +27,7 @@ A **ring** is an [[Abelian Group|abelian group]] under $+$ and a [[Monoid|monoid
 
 ## Examples
 
-`example/` — [[Zero Ring]] · [[Matrix Ring]] · [[Monoid Ring]] · [[Power Set Ring]] · [[Rings of Power Series]]
+`example/` — [[Zero Ring]] · [[Matrix Ring]] · [[Monoid Ring]] · [[Power Set Ring]] · [[Rings of Power Series]] · [[Group Algebra]] · [[Hecke Algebra]]
 
 ## Categories
 

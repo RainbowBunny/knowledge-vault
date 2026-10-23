@@ -39,7 +39,7 @@ The alphabet / string / language definitions live in [[Language]]; Turing machin
 > Let $A$ be an algorithm (possibly probabilistic) that takes as input a security parameter $\lambda \in \mathbb Z_{\geq 1}$, as well as other parameters encoded as a bit string $x \in \{0, 1\}^{p(\lambda)}$ for some fixed polynomial $p$. We call $A$ an **efficient algorithm** if there exist a poly-bounded function $t$ and a negligible function $\epsilon$ such that for all $\lambda \in \mathbb Z_{\geq 1}$, and all $x \in \{0, 1\}^{\leq p(\lambda)}$, the probability that the running time of $A$ on input $(\lambda, x)$ exceeds $t(\lambda)$ is at most $\epsilon(\lambda)$.
 
 > [!remark]
-> The second definition is the Boneh–Shoup convention used throughout `cryptography/` (running time measured in the security parameter, negligible slack allowed); see [[Security Model]]. Complexity-theory notes use the plain "polynomial in the input length" convention, i.e. [[Randomized Complexity#Probabilistic Polynomial Time (PPT)|PPT]].
+> The second definition is the Boneh–Shoup convention used throughout `cryptography/` (running time measured in the security parameter, negligible slack allowed); see [[PPT]] and [[Security Game]]. Complexity-theory notes use the plain "polynomial in the input length" convention, i.e. [[Randomized Complexity#Probabilistic Polynomial Time (PPT)|PPT]].
 
 ## Complexity Relationships Among Models
 

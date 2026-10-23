@@ -1,3 +1,6 @@
+Reference:
+- `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, v0.6: https://toc.cryptobook.us/ (Ch. 7, §7.1 and §7.1.1: Attack Games 7.1, 7.2 and 7.3; Ch. 8, §8.1: Attack Game 8.1, Definition 8.1).
+- `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
 
 | Term                                          | Reference                                                        |                  |
 | --------------------------------------------- | ---------------------------------------------------------------- | ---------------- |
@@ -18,6 +21,48 @@
 > A **(keyless) hash function** is an efficient algorithm $H$, along with two families of spaces with system parameterization $P$: $$M = \{\mathcal M_{\lambda, \Lambda}\}, T = \{\mathcal T_{\lambda, \Lambda}\}_{\lambda, \Lambda},$$ such that
 > 1. $M$, and $T$ are efficiently recognizable.
 > 2. Algorithm $H$ is an efficient deterministic algorithm that on input $\lambda, \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda))$, and $m \in \mathcal M_{\lambda, \Lambda}$, outputs an element of $\mathcal T_{\lambda, \Lambda}$.
+
+### Collision Resistance
+
+Specializes [[Special Functions#Collision Resistant]].
+
+> [!definition] Parameters
+> - $H$: a keyless hash function defined over $(\mathcal M, \mathcal T)$.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]]; one that plays this game is a **collision finder**.
+
+> [!definition] Collision Resistance
+> ### Scope
+> A hash function $H$ defined over $(\mathcal M, \mathcal T)$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — none: there is no key and no oracle, and $\mathcal A$ evaluates $H$ by itself.
+> - **Promise** — none.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — none: $\mathcal A$ speaks once.
+>
+> ---
+> ### Experiment
+> A search game: one branch, and the challenger checks the output in the last row. `[BS Attack Game 8.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ m_0,\, m_1\ }$ | outputs two messages $m_0, m_1 \in \mathcal M$ |
+> | 2 | checks whether $m_0 \neq m_1$<br>checks whether $H(m_0) = H(m_1)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $m_0 \neq m_1$;
+> - $H(m_0) = H(m_1)$.
+>
+> ---
+> ### Property
+> $$\text{CRadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
+> - $H$ is **collision resistant** if $\text{CRadv}[\mathcal A, H]$ is negligible for every $\mathcal A \in \mathbb A$ `[BS Def 8.1]`.
+>
+> It is a *search* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> `[BS Attack Game 8.1]` says that $\mathcal A$ *takes no input* and outputs $m_0, m_1$, and that $\mathcal A$ wins if the pair is a collision for $H$; here the adversary never has inputs, so row 1 is all there is. In the "mathematical details" form, $H$ also depends on the system parameter $\Lambda$ of the Mathematical Detail callout above.
 
 ## Universal Hash Functions (UHFs)
 
@@ -40,30 +85,84 @@
 
 ### Secure Universal Hash Function
 
-> [!algorithm] Universal Hash Function
-> For a keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$, and a given adversary $\mathcal A$, the attack game runs as follows:
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$ and keeps $k$ to itself.
-> - $\mathcal A$ outputs two distinct messages $m_0, m_1 \in \mathcal M$.
-> 
-> We say that $\mathcal A$ wins the above game if $H(k, m_0) = H(k, m_1)$. We define $\mathcal A$'s advantage with respect to $H$, denoted $\text{UHFadv}[\mathcal A, H]$, as the probability that $\mathcal A$ wins the game.
+> [!definition] Parameters
+> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$.
+> - $\varepsilon$: a bound, $0 \leq \varepsilon \leq 1$.
 
-> [!proposition] Secure Universal Hash Function
-> Let $H$ be a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$,
-> - We say that $H$ is an $\epsilon$-**bounded universal hash function**, or $\epsilon$-**UHF**, if $\text{UHFadv}[\mathcal A, H] \leq \epsilon$ for all adversaries $\mathcal A$ (even inefficient ones).
-> - We say that $H$ is a **statistical UHF** if it is an $\epsilon$-UHF for some negligible $\epsilon$.
-> - We say that $H$ is a **computational UHF** if $\text{UHFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
+> [!definition] Secure Universal Hash Function
+> ### Scope
+> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$, against all adversaries (the bounded and statistical notions) or against efficient ones (the computational notion).
+>
+> ---
+> ### Condition
+> - **Access** — none: $\mathcal A$ sees no hash value and has no oracle; $k$ stays with the challenger.
+> - **Promise** — $m_0 \neq m_1$.
+> - **Quantifier** — $\forall \mathcal A$, even inefficient, for an $\varepsilon$-UHF; $\forall$ efficient $\mathcal A$ for a computational UHF.
+> - **Adaptivity** — none: $\mathcal A$ commits to its messages without any information about $k$.
+>
+> ---
+> ### Experiment
+> A search game: one branch; the challenger checks the collision in the last row. `[BS Attack Game 7.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
+> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | outputs two distinct messages $m_0, m_1 \in \mathcal M$ |
+> | 3 | checks whether $H(k, m_0) = H(k, m_1)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $H(k, m_0) = H(k, m_1)$.
+>
+> ---
+> ### Property
+> $$\text{UHFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
+> - $H$ is an $\varepsilon$-**bounded universal hash function**, or $\varepsilon$-**UHF**, if $\text{UHFadv}[\mathcal A, H] \leq \varepsilon$ for all adversaries $\mathcal A$, even inefficient ones.
+> - $H$ is a **statistical UHF** if it is an $\varepsilon$-UHF for some negligible $\varepsilon$.
+> - $H$ is a **computational UHF** if $\text{UHFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
+>
+> It is a *search* game, see [[Security Game]]. `[BS §7.1]`
+
+> [!remark] An alternate characterization of the $\varepsilon$-UHF property
+> $\mathcal A$ learns nothing about $k$, so an unbounded $\mathcal A$ does best by outputting one fixed pair. Hence $H$ is an $\varepsilon$-UHF iff for every pair of distinct $m_0, m_1 \in \mathcal M$,
+> $$\Pr[H(k, m_0) = H(k, m_1)] \leq \varepsilon,$$
+> the probability being over the random choice of $k \in \mathcal K$ — the same shape as the DUF characterization below.
 
 ### Multi-query Universal Hash Function
 
-> [!algorithm] Multi-query UHF
-> For a keyed hash function $H$ over $(\mathcal K, \mathcal M, \mathcal T)$, and a given adversary $\mathcal A$, the attack game runs as follows.
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$ and keeps $k$ to itself.
-> - $\mathcal A$ outputs distinct messages $m_1, \dots, m_s \in \mathcal M$.
-> 
-> We say that $\mathcal A$ wins the above game if there are indices $i \neq j$ such that $H(k, m_i) = H(k, m_j)$. We define $\mathcal A$'s advantage with respect to $H$, denoted $\text{MUHFadv}[\mathcal A, H]$, as the probability that $\mathcal A$ wins the game. We call $\mathcal A$ a $Q$**-query UHF adversary** if it always outputs a list of size $s \leq Q$.
+> [!definition] Parameters
+> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$.
+> - $Q$: a bound on the length $s$ of the list $\mathcal A$ outputs; an $\mathcal A$ that always outputs $s \leq Q$ messages is a $Q$**-query UHF adversary**.
 
 > [!definition] Multi-query UHF
-> We say that a hash function $H$ over $(\mathcal K, \mathcal M, \mathcal T)$ is a **multi-query UHF** if for all efficient adversaries $\mathcal A$, the quantity $\text{MUHFadv}[\mathcal A, H]$ is negligible.
+> ### Scope
+> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$ and the efficient [[Adversary|adversaries]].
+>
+> ---
+> ### Condition
+> - **Access** — none, as in the single-pair game.
+> - **Promise** — $m_1, \dots, m_s$ are distinct, and $s \leq Q$ for a $Q$-query adversary.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — none: the whole list is output at once.
+>
+> ---
+> ### Experiment
+> A search game: one branch; the challenger checks for a collision in the last row. `[BS Attack Game 7.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
+> | 2 | | $\xleftarrow{\ m_1, \dots, m_s\ }$ | outputs distinct messages $m_1, \dots, m_s \in \mathcal M$ |
+> | 3 | checks whether $H(k, m_i) = H(k, m_j)$ for some $i \neq j$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - there are indices $i \neq j$ with $H(k, m_i) = H(k, m_j)$.
+>
+> ---
+> ### Property
+> $$\text{MUHFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
+> - $H$ is a **multi-query UHF** if $\text{MUHFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$ `[BS §7.1.1]`.
+>
+> It is a *search* game, see [[Security Game]].
 
 > [!lemma]
 > If $H$ is a computational UHF, then it is also a multi-query UHF.
@@ -72,18 +171,42 @@
 
 ### Difference Unpredictability
 
-> [!algorithm] Difference Unpredictability
-> For a keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$, where $\mathcal T = \mathbb Z_N$, and a given adversary $\mathcal A$, the attack game runs as follows
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$ and keeps $k$ to itself.
-> - $\mathcal A$ outputs two distinct messages $m_0, m_1 \in \mathcal M$ and a value $\delta \in \mathcal T$.
-> 
-> We say that $\mathcal A$ wins the game if $H(k, m_1) - H(k, m_0) = \delta$. We define $\mathcal A$'s advantage with respect to $H$, denoted $\text{DUFadv}[\mathcal A, H]$, as the probability that $\mathcal A$ wins the game.
+> [!definition] Parameters
+> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$, where $\mathcal T = \mathbb Z_N$.
+> - $\varepsilon$: a bound, $0 \leq \varepsilon \leq 1$.
 
-> [!definition] Bounded Difference Unpredictable Function
-> Let $H$ be a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$, 
-> - We say that $H$ is an $\epsilon$**-bounded difference unpredictable function**, or $\epsilon$-**DUF**, if $\text{DUFadv}[\mathcal A, H] \leq \epsilon$ for all adversaries $\mathcal A$ (even inefficient ones).
-> - We say that $H$ is a **satistical DUF** if it is an $\epsilon$-DUF for some negligible $\epsilon$.
-> - We say that $H$ is a **computational DUF** if $\text{DUFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
+> [!definition] Difference Unpredictability
+> ### Scope
+> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathbb Z_N)$, against all adversaries (the bounded and statistical notions) or against efficient ones (the computational notion).
+>
+> ---
+> ### Condition
+> - **Access** — none: $\mathcal A$ sees no hash value and has no oracle.
+> - **Promise** — $m_0 \neq m_1$.
+> - **Quantifier** — $\forall \mathcal A$, even inefficient, for an $\varepsilon$-DUF; $\forall$ efficient $\mathcal A$ for a computational DUF.
+> - **Adaptivity** — none: $\mathcal A$ commits without any information about $k$.
+>
+> ---
+> ### Experiment
+> A search game: one branch; the challenger checks the difference in the last row. `[BS Attack Game 7.3]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
+> | 2 | | $\xleftarrow{\ m_0,\, m_1,\, \delta\ }$ | outputs two distinct messages $m_0, m_1 \in \mathcal M$ and a value $\delta \in \mathcal T$ |
+> | 3 | checks whether $H(k, m_1) - H(k, m_0) = \delta$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $H(k, m_1) - H(k, m_0) = \delta$.
+>
+> ---
+> ### Property
+> $$\text{DUFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
+> - $H$ is an $\varepsilon$**-bounded difference unpredictable function**, or $\varepsilon$-**DUF**, if $\text{DUFadv}[\mathcal A, H] \leq \varepsilon$ for all adversaries $\mathcal A$, even inefficient ones.
+> - $H$ is a **statistical DUF** if it is an $\varepsilon$-DUF for some negligible $\varepsilon$.
+> - $H$ is a **computational DUF** if $\text{DUFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
+>
+> It is a *search* game, see [[Security Game]].
 
 > [!remark] An alternate characterization of $\epsilon$-DUF property
 > For every pair of distinct messages $m_0, m_1 \in \mathcal M$, for every $\delta \in \mathcal T$, the following inequality holds: $P[H(k, m_1) - H(k, m_0) = \delta] \leq \epsilon$. Here, the probability is over the random choice of $k \in \mathcal K$.

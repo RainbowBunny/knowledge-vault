@@ -30,18 +30,18 @@ A **group** is a set with one operation satisfying [[Associativity]], [[Identity
 - [[Symmetric Group]] — permutations
 - [[Free Group]]
 - [[Bilinear Group]] — the pairing-friendly setting; see [[Bilinear Pairings]]
-- [[Coset]]
+- [[Coset]] — and double cosets $HgK$
 - [[Quotient Group]]
 
 ## Examples
 
 `example/`
 
-- [[Subgroup of Cyclic Group]] · [[Matrix Group]] · [[Trivial Group]]
+- [[Subgroup of Cyclic Group]] · [[Matrix Group]] (and the Bruhat decomposition) · [[Trivial Group]]
 
 ## Actions
 
-`structures/action/` — [[Group Action]] · [[Orbit]] · [[Stabilizer]] · [[Group Action on Group]] · [[Category G-Set]]
+`structures/action/` — [[Group Action]] · [[Orbit]] · [[Stabilizer]] · [[Group Action on Group]] · [[Category G-Set]] · [[Group Representation]] · [[Specht Module]]
 
 ## Where groups are used
 

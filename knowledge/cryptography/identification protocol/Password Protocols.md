@@ -1,24 +1,66 @@
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023, Ch. 18: https://toc.cryptobook.us/ (Attack Game 18.1; password protocols; the salted one-wayness game with preprocessing). `⚠️ CLAUDE – verify:` WebFetch reaches only the front of the book, so Ch. 18 could not be read; the games redraw the wording this note already had, checked against `[AABN02]` and `[CDGS18]`.
+- `[AABN02]` — M. Abdalla, J. H. An, M. Bellare, C. Namprempre, _From Identification to Signatures via the Fiat–Shamir Transform_, EUROCRYPT 2002; full version ePrint 2002/022: https://eprint.iacr.org/2002/022 (Def 2.1, impersonation under passive attack).
+- `[CDGS18]` — S. Coretti, Y. Dodis, S. Guo, J. Steinberger, _Random Oracles and Non-Uniformity_, EUROCRYPT 2018; full version ePrint 2017/937: https://cims.nyu.edu/~dodis/ps/presampling.pdf (Def 2, the $(S, T)$-attacker; §3.1, one-wayness; §6.1, salting).
+- `⚠️ CLAUDE – verify:` — a point I could not check against the source.
+
 ## Password Protocols
 
 > [!algorithm] Password Protocol (version 1)
-> The prover's secret key $sk$ is a password $pw$, chosen as random from some finite password space $\mathcal P$, while the verifier's key $vk$ is $H(pw)$ for some hash function $H: \mathcal P \rightarrow y$. Formally, the **password ID protocol** $\mathcal I_{\text{pwd}} = (G, P, V)$ is defined as follows:
-> - $G:$ set $pw \xleftarrow{R} \mathcal P$ and output $sk := pw$ and $vk := H(pw)$.
+> The prover's secret key $sk$ is a password $pw$, chosen as random from some finite password space $\mathcal P$, while the verifier's key $vk$ is $H(pw)$ for some hash function $H: \mathcal P \rightarrow \mathcal Y$. Formally, the **password ID protocol** $\mathcal I_{\text{pwd}} = (\mathsf{KeyGen}, P, V)$ is defined as follows:
+> - $\mathsf{KeyGen}$: set $pw \xleftarrow{R} \mathcal P$ and output $sk := pw$ and $vk := H(pw)$.
 > - Algorithm $P$, on input $sk = pw$, and algorithm $V$, in input $vk = H(pw)$, interact as follows:
 > 	1. $P$ sends $pw$ to $V$;
 > 	2. $V$ outputs `accept` if the received $pw$ satisfies $H(pw) = vk$;
 
-> [!algorithm] Secure Identification: Direct Attacks
-> For a given identification protocol $\mathcal I = (G, P, V)$ and a given adversary $\mathcal A$, the attack game runs as follows:
-> - **Key generation phase**: The challenger runs $(vk, sk) \xleftarrow{R} G()$, and sends $vk$ to $\mathcal A$.
-> - **Impersonation attempt**: The challenger and $\mathcal A$ now interact, with the challenger following the verifier's algorithm $V$ (with input $vk$), and with $\mathcal A$ playing the role of a prover, but not necessarily following the prover's algorithm $P$ (indeed, $\mathcal A$ does not receive the secret key $sk$).
-> 
-> We say that the adversary wins the game if $V$ outputs `accept` at the end of the interaction. We define $\mathcal A$'s advantage with respect to $\mathcal I$, denoted $\text{ID1adv}[\mathcal A, \mathcal I]$, as the probability that $\mathcal A$ wins the game.
+### Security Against Direct Attacks
 
- > [!definition] Secure Against Direct Attacks
- > We say that an identification protocol $\mathcal I$ is **secure against direct attacks** if for all efficient adversary $\mathcal A$, the quantity $\text{ID1adv}[\mathcal A, \mathcal I]$ is negligible.
+> [!definition] Parameters
+> - [[Identification Protocol#ID Protocol|ID protocol]] $\mathcal I = (\mathsf{KeyGen}, P, V)$.
+> - $\mathcal A$: an efficient [[Adversary|adversary]], playing a cheating prover.
+> - $a_j$: the $j$-th message $\mathcal A$ sends as the prover; $b_j$: the verifier's reply.
+> - $\mathrm{out} \in \{\text{accept}, \text{reject}\}$: the verifier's output.
+
+> [!definition] Secure Identification: Direct Attacks
+> ### Scope
+> An identification protocol $\mathcal I = (\mathsf{KeyGen}, P, V)$ and an efficient adversary $\mathcal A$.
+>
+> ---
+> ### Condition
+> - **Access** — $\mathcal A$ gets $vk$ and nothing else: no transcript, no interaction with the prover, never $sk$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — one impersonation attempt, after $vk$ is sent; each message of $\mathcal A$ may depend on everything it has seen.
+>
+> ---
+> ### Experiment
+> A search game with one branch: the challenger plays the honest verifier $V(vk)$, and its last row computes the verifier's output. `[BS Attack Game 18.1]`
+>
+> | | challenger $\mathcal C$ (honest verifier $V(vk)$) | | adversary $\mathcal A$ (cheating prover) |
+> | --- | --- | --- | --- |
+> | 1 | $(vk, sk) \xleftarrow{R} \mathsf{KeyGen}()$ | $\xrightarrow{\ vk\ }$ | |
+> | 2 | | $\xleftarrow{\ a_j\ }$ | **Impersonation attempt** (repeated, one row pair per round of the protocol): sends the prover's next message $a_j$, not necessarily computed by $P$ |
+> | | runs $V(vk)$ on $a_j$<br>$b_j \leftarrow$ the verifier's next message | $\xrightarrow{\ b_j\ }$ | |
+> | 3 | $\mathrm{out} \leftarrow$ the output of $V(vk)$ | | |
+>
+> In a protocol where the verifier speaks first, such as a challenge–response protocol, each row pair of row 2 starts with $b_j$.
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - $\mathrm{out} = \text{accept}$.
+>
+> ---
+> ### Property
+> $$\text{ID1adv}[\mathcal A, \mathcal I] = \Pr[\mathcal A \text{ wins}].$$
+> - $\mathcal I$ is **secure against direct attacks** if $\text{ID1adv}[\mathcal A, \mathcal I]$ is negligible for every efficient $\mathcal A$.
+>
+> A *search* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> - `[BS]` writes the protocol as $(G, P, V)$, with $G$ taking no input, and splits the game into a *key generation phase* and an *impersonation attempt*. Here the adversary is one stateful machine and the phases are rows, see [[Security Game]].
+> - For a three-move protocol, a direct attack is the passive attack of `[AABN02 Def 2.1]` with no transcript queries: the impersonator outputs a commitment and a state, receives a random challenge, and answers from that state.
 
 > [!theorem]
-> Suppose that hash function $H: \mathcal P \rightarrow \mathcal I$ is one-way. Then the ID protocol $\mathcal I_{\text{pwd}}$ is secure against direct attacks.
+> Suppose that hash function $H: \mathcal P \rightarrow \mathcal Y$ is one-way. Then the ID protocol $\mathcal I_{\text{pwd}}$ is secure against direct attacks.
 
 ### Password Cracking using a Dictionary Attack
 
@@ -58,28 +100,61 @@
 > - Slow memory-hard hash functions
 
 > [!algorithm] Password Protocol (version 2)
-> - $G$: set $pw \xleftarrow{R} \mathcal P, salt \xleftarrow{R} \mathcal S, y \leftarrow H(pw, salt)$, output $sk := pw$ and $vk := (salt, y)$.
+> - $\mathsf{KeyGen}$: set $pw \xleftarrow{R} \mathcal P$, $salt \xleftarrow{R} \mathcal S$ and $y \leftarrow H(pw, salt)$; output $sk := pw$ and $vk := (salt, y)$.
 > - Algorithm $P$, on input $sk = pw$, and algorithm $V$, on input $vk = (salt, y)$, interact as follows:
 >     1. $P$ sends $pw$ to $V$;
 >     2. $V$ outputs `accept` if the received $pw$ satisfies $H(pw, salt) = y$; it outputs `reject` otherwise.
 
-> [!algorithm] Salt One-way Functions with Preprocessing Attack
-> Let $H$ be a hash function defined over $(\mathcal D \times \mathcal S, \mathcal Y)$. We define the advantage $\text{OWsp}^\text{ro}\text{adv}[\mathcal A, H]$ of an adversary $\mathcal A = (\mathcal A_0, \mathcal A_1)$ in defeating the one-wayness of $H$ in the preprocessing model as the probability of winning the following game:
-> - $\mathcal A_0$ issues queries to $H$ and outputs an advice string $L$;
-> - the challenger chooses $(pw, s) \xleftarrow{R} \mathcal D \times \mathcal S$, sets $y := H(pw, s)$, and sends $(L, y, s)$ to $\mathcal A_1$;
-> - $\mathcal A_1$ issues queries to $H$ and outputs $pw' \in \mathcal D$; it wins the game if $H(pw', s) = y$.
-> 
-> Note that the adversary $\mathcal A_1$ is given both $L$ and the salt $s$. It needs to find a pre-image of $y$ with salt $s$. The following theorem gives a bound on the time to invert a salted function $H$ in the processing model, when $H$ is modeled as a random oracle.
+> [!definition] Parameters
+> - $H$: a hash function defined over $(\mathcal D \times \mathcal S, \mathcal Y)$, modeled as a [[Random Oracle Model|random oracle]]: $\mathcal D$ is the dictionary, $\mathcal S$ the salt space.
+> - $\mathcal A$: an adversary. $\ell$: the length in bits of its advice string $L$. $Q_{\text{ro}}$: the bound on its queries to $H$ after the challenge.
+> - $x_j$: a query to $H$; $h_j$: its answer. $(pw, s)$: the challenge password and salt; $y$: their hash. $pw' \in \mathcal D$: the adversary's answer.
+
+> [!definition] Salted One-Wayness with Preprocessing
+> ### Scope
+> A hash function $H$ over $(\mathcal D \times \mathcal S, \mathcal Y)$, modeled as a random oracle, and an adversary $\mathcal A$ with an $\ell$-bit advice string.
+>
+> ---
+> ### Condition
+> - **Access** — $\mathcal A$ queries $H$ before and after the challenge. Before it, $\mathcal A$ sees no challenge; between the two, it keeps only the $\ell$-bit advice string $L$, which the challenger hands back with the challenge. The salt $s$ is public.
+> - **Promise** — none; $pw$ and $s$ are uniform.
+> - **Quantifier** — $\forall \mathcal A$ with $\ell$-bit advice and at most $Q_{\text{ro}}$ queries after the challenge. `⚠️ CLAUDE – verify:` the preprocessing queries of row 1 are not counted; in `[CDGS18 Def 2]` the first stage is computationally unbounded — check `[BS]`.
+> - **Adaptivity** — $L$ is fixed before $(pw, s)$ is chosen; the later queries may depend on $(L, y, s)$.
+>
+> ---
+> ### Experiment
+> A search game with one branch; row 6 computes the winning condition. `[BS Ch. 18]`; `[CDGS18 Def 2, §3.1, §6.1]`.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ x_j\ }$ | **Preprocessing hash queries** (repeated, adaptive): sends a point $x_j \in \mathcal D \times \mathcal S$ |
+> | | $h_j \leftarrow H(x_j)$ | $\xrightarrow{\ h_j\ }$ | |
+> | 2 | | $\xleftarrow{\ L\ }$ | sends an advice string $L \in \{0, 1\}^\ell$, and forgets everything else |
+> | 3 | $(pw, s) \xleftarrow{R} \mathcal D \times \mathcal S$<br>$y \leftarrow H(pw, s)$ | $\xrightarrow{\ L,\, y,\, s\ }$ | |
+> | 4 | | $\xleftarrow{\ x_j\ }$ | **Hash queries** (repeated, adaptive, at most $Q_{\text{ro}}$ times): sends a point $x_j \in \mathcal D \times \mathcal S$ |
+> | | $h_j \leftarrow H(x_j)$ | $\xrightarrow{\ h_j\ }$ | |
+> | 5 | | $\xleftarrow{\ pw'\ }$ | outputs a password $pw' \in \mathcal D$ |
+> | 6 | checks whether $H(pw', s) = y$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - $H(pw', s) = y$: $pw'$ is a pre-image of $y$ under the salt $s$, not necessarily $pw$.
+>
+> ---
+> ### Property
+> $$\text{OWsp}^{\text{ro}}\text{adv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
+> - The theorem below bounds it when $H$ is a random oracle: the advice helps only through the term $\ell \cdot Q_{\text{ro}} / (|\mathcal S| \cdot |\mathcal D|)$, which a large salt space makes small.
+
+> [!remark] Notation in the literature — and why row 2 forgets
+> `[BS]` writes the adversary as a pair $\mathcal A = (\mathcal A_0, \mathcal A_1)$: $\mathcal A_0$ issues queries to $H$ and outputs $L$, and the challenger sends $(L, y, s)$ to $\mathcal A_1$. `[CDGS18 Def 2]` has the same split, an $(S, T)$-attacker $(\mathcal A_1, \mathcal A_2)$ whose unbounded first stage outputs $S$ bits of advice and whose second stage makes $T$ queries. Here the split is not cosmetic: the bound counts the $\ell$ bits that cross from preprocessing to the attack. So the table keeps one adversary column, but row 2 erases everything except $L$ and row 3 hands $L$ back — the one exception to the rule that $\mathcal A$ remembers every earlier row ([[Security Game]]).
 
 > [!theorem] 
-> Let $H$ be a hash function defined over $(\mathcal D \times \mathcal S, \mathcal Y)$ where $H$ is modeled as random oracle and where $|\mathcal D| \leq |\mathcal Y|$. Let $\mathcal A = (\mathcal A_0, \mathcal A_1)$ be an adversary, where $\mathcal A_0$ outputs an $\ell$-bit advice string $L$, and $\mathcal A_1$ makes at most $Q_{\text{ro}}$ queries to $H$. Then $$\text{OWsp}^\text{ro}\text{adv}[\mathcal A, H] \leq O(\frac{\ell \cdot Q_{\text{ro}}}{|\mathcal S| \cdot |\mathcal D|} + \frac{Q_{\text{ro}}}{|\mathcal D|}).$$
+> Let $H$ be a hash function defined over $(\mathcal D \times \mathcal S, \mathcal Y)$ where $H$ is modeled as random oracle and where $|\mathcal D| \leq |\mathcal Y|$. Let $\mathcal A$ be an adversary whose advice string $L$ has $\ell$ bits and which makes at most $Q_{\text{ro}}$ queries to $H$ after receiving the challenge (in `[BS]`: $\mathcal A_0$ outputs $L$ and $\mathcal A_1$ makes the queries). Then $$\text{OWsp}^\text{ro}\text{adv}[\mathcal A, H] \leq O(\frac{\ell \cdot Q_{\text{ro}}}{|\mathcal S| \cdot |\mathcal D|} + \frac{Q_{\text{ro}}}{|\mathcal D|}).$$
 
 > [!algorithm] Password Protocol (Version 3)
-> - $G$: set $pw \xrightarrow{R} \mathcal P, salt \xrightarrow{R} \mathcal S, pepper \xrightarrow{R} \mathcal S_p, y \rightarrow H(pw, salt, pepper),$ 
-> $\text{ output } sk := pw \text{ and } vk := (salt, y)$.
+> - $\mathsf{KeyGen}$: set $pw \xleftarrow{R} \mathcal P$, $salt \xleftarrow{R} \mathcal S$, $pepper \xleftarrow{R} \mathcal S_p$ and $y \leftarrow H(pw, salt, pepper)$; output $sk := pw$ and $vk := (salt, y)$.
 > - Algorithm $P$, on input $sk = pw$, and algorithm $V$, on input $vk = (salt, y)$, interact as follows:
 > 	1. $P$ sends $pw$ to $V$;
-> 	2. $V$ outputs `accept` if the received $pw$ satisfies $H(pw, salt, p)$ for some $p \in \mathcal S_p$; it outputs `reject` otherwise.
+> 	2. $V$ outputs `accept` if the received $pw$ satisfies $H(pw, salt, p) = y$ for some $p \in \mathcal S_p$; it outputs `reject` otherwise.
 
 ### Password-based Key Derivation Function
 

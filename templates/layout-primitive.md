@@ -7,8 +7,8 @@ Reference:
 > - $\mathcal M$: 
 
 > [!definition]  Scheme
-> A **** $\Pi = (\mathsf{Gen}, \dots)$ is a tuple of efficient algorithms over the security parameter and the spaces of Parameters.
-> - $out \leftarrow \mathsf{Gen}(in)$: (Randomized) 
+> A **** $\Pi = (\mathsf{KeyGen}, \dots)$ is a tuple of efficient algorithms over the security parameter and the spaces of Parameters.
+> - $out \leftarrow \mathsf{KeyGen}(in)$: (Randomized) 
 >     - **Input**: 
 >     - **Output**: 
 

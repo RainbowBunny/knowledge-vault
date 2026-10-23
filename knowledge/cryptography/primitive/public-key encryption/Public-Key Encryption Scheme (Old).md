@@ -1,31 +1,45 @@
 ---
 dg-publish: false
 ---
+Reference:
+- `[BDPR98]` — M. Bellare, A. Desai, D. Pointcheval, P. Rogaway, _Relations Among Notions of Security for Public-Key Encryption Schemes_, CRYPTO 1998; full version: https://www.di.ens.fr/david.pointcheval/Documents/Papers/1998_crypto.pdf
+- `[HHK17]` — D. Hofheinz, K. Hövelmanns, E. Kiltz, _A Modular Analysis of the Fujisaki-Okamoto Transformation_, TCC 2017 (ePrint 2017/604): https://eprint.iacr.org/2017/604
+- `[BS]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, Ch. 11: https://toc.cryptobook.us/
+
 ## Syntax
 
 > [!definition] Public-Key Encryption Scheme
-> A **public-key encryption scheme** $\text{PKE} = (\text{Gen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
-> - $(pk, sk) \leftarrow \text{Gen}()$: The key-generation algorithm $\text{Gen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
+> A **public-key encryption scheme** $\text{PKE} = (\mathsf{KeyGen}, \text{Enc}, \text{Dec})$ is a triple of efficient algorithms with a message space $\mathcal M$, ciphertext space $\mathcal C$, randomness space $\mathcal R$ and key space $\mathcal K$.
+> - $(pk, sk) \leftarrow \mathsf{KeyGen}()$: The key-generation algorithm $\mathsf{KeyGen}$ returns a pair $(pk, sk)$ consisting of a public key $pk$ and a secret key $sk$. 
 > - $c \leftarrow \text{Enc}(pk, m)$ (Deterministic) or $c \leftarrow \text{Enc}(pk, m; r)$ (Probabilistic): The encryption algorithm takes a public key $pk$, a message $m \in \mathcal M$ and possibly an internal random $r \leftarrow \mathcal R$ to produce a ciphertext $c \in \mathcal C$.
 > - $m \leftarrow \text{Dec}(sk, c)$: The deterministic decryption algorithm takes a secret key $sk$ and a ciphertext $c$, and outputs either a message $m \in \mathcal M$ or a special symbol $\perp$ to indicate **rejection**. 
 
 > [!algorithm] Public-key Encryption Scheme (Mathematical Detail)
-> A **public-key encryption scheme** consists of three algorithms, $G$, $E$, and $D$, along with two families of spaces with system parameterization $P$: 
+> A **public-key encryption scheme** consists of three algorithms, $\mathsf{KeyGen}$, $E$, and $D$, along with two families of spaces with system parameterization $P$: 
 > $$M = \{\mathcal M_{\lambda, \Lambda}\}_{\lambda, \Lambda} \quad \text{and} \quad C = \{\mathcal C_{\lambda, \Lambda}\}_{\lambda, \Lambda},$$
 > such that
 > 1. $M$ and $C$ are efficiently recognizable.
 > 2. $M$ has an effective length function.
-> 3. Algorithm $G$ is an efficiently probabilistic algorithm that on input $\lambda, \Lambda$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda))$, outputs a pair $(pk, sk)$, where $pk$ and $sk$ are bit strings whose lengths are always bounded by a polynomial in $\lambda$.
-> 4. Algorithm $E$ is an efficiently probabilistic algorithm that on input $\lambda, \Lambda, pk, m$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda))$ for some $sk$, and $m \in \mathcal M_{\lambda, \Lambda}$, always outputs an element of $\mathcal C_{\lambda, \Lambda}$.
-> 5. Algorithm $D$ is an efficiently deterministic algorithm that on input $\lambda, \Lambda, sk, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda))$ for some $pk$, and $c \in \mathcal C_{\lambda, \Lambda}$, outputs either an element of $\mathcal M_{\lambda, \Lambda}$, or a special symbol $\text{reject} \notin \mathcal M_{\lambda, \Lambda}$.
-> 6. For all $\lambda, \Lambda, pk, sk, m, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(G(\lambda, \Lambda)), k \in \mathcal K_{\lambda, \Lambda}, m \in \mathcal M_{\lambda, \Lambda}$ and $c \in \text{Supp}(E(\lambda, \Lambda; pk, m))$, we have $D(\lambda, \Lambda; sk, c) = m$.
+> 3. Algorithm $\mathsf{KeyGen}$ is an efficiently probabilistic algorithm that on input $\lambda, \Lambda$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda))$, outputs a pair $(pk, sk)$, where $pk$ and $sk$ are bit strings whose lengths are always bounded by a polynomial in $\lambda$.
+> 4. Algorithm $E$ is an efficiently probabilistic algorithm that on input $\lambda, \Lambda, pk, m$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(\mathsf{KeyGen}(\lambda, \Lambda))$ for some $sk$, and $m \in \mathcal M_{\lambda, \Lambda}$, always outputs an element of $\mathcal C_{\lambda, \Lambda}$.
+> 5. Algorithm $D$ is an efficiently deterministic algorithm that on input $\lambda, \Lambda, sk, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(\mathsf{KeyGen}(\lambda, \Lambda))$ for some $pk$, and $c \in \mathcal C_{\lambda, \Lambda}$, outputs either an element of $\mathcal M_{\lambda, \Lambda}$, or a special symbol $\text{reject} \notin \mathcal M_{\lambda, \Lambda}$.
+> 6. For all $\lambda, \Lambda, pk, sk, m, c$, where $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), (pk, sk) \in \text{Supp}(\mathsf{KeyGen}(\lambda, \Lambda)), k \in \mathcal K_{\lambda, \Lambda}, m \in \mathcal M_{\lambda, \Lambda}$ and $c \in \text{Supp}(E(\lambda, \Lambda; pk, m))$, we have $D(\lambda, \Lambda; sk, c) = m$.
+
+> [!remark] Notation in the literature
+> Key generation is $\mathsf{KeyGen}$ in this vault ([[Note Layouts]] § *Game form*); the current syntax, with the full table, is [[Public-Key Encryption Scheme#Syntax]].
+>
+> | source | key generation | differences |
+> | --- | --- | --- |
+> | `[BS Def 11.1, 11.3]` | $G()$; $G(\lambda, \Lambda)$ | the form of the "Mathematical Detail" callout above, with system parameter $\Lambda$; row taken from the table in [[Public-Key Encryption Scheme]] |
+> | `[BDPR98 §2]` | $\mathcal K(1^k)$ | the scheme is $(\mathcal K, \mathcal E, \mathcal D)$ |
+> | `[HHK17 §2.1]` | $\mathsf{Gen}$ | the scheme is $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$ with a finite message space $\mathcal M$ |
 
 ## Property
 
 ### Injectivity
 
 > [!definition] PKE Injectivity
-> A public-key encryption scheme $\text{PKE}$ is *injective* if for all key pairs $(pk, sk) \leftarrow \text{Gen}()$, it holds that $\text{Enc}(pk, m; r) = \text{Enc}(pk, m'; r') \Rightarrow (m, r) = (m', r')$ for all $m, m' \in \mathcal M$ and $r, r' \in \mathcal R$.
+> A public-key encryption scheme $\text{PKE}$ is *injective* if for all key pairs $(pk, sk) \leftarrow \mathsf{KeyGen}()$, it holds that $\text{Enc}(pk, m; r) = \text{Enc}(pk, m'; r') \Rightarrow (m, r) = (m', r')$ for all $m, m' \in \mathcal M$ and $r, r' \in \mathcal R$.
 
 ### Correctness
 
@@ -51,32 +65,38 @@ dg-publish: false
 ### Rigidity
 
 > [!definition] PKE Rigidity
-> We say that a $\text{PKE}$ is **rigid** if for all key pairs $(pk, sk) \leftarrow Gen()$, and all ciphertexts $c$, it holds that either $\text{Dec}(sk, c) = \perp$ or $\text{Enc}(pk, \text{Dec}(sk, c)) = c$.
+> We say that a $\text{PKE}$ is **rigid** if for all key pairs $(pk, sk) \leftarrow \mathsf{KeyGen}()$, and all ciphertexts $c$, it holds that either $\text{Dec}(sk, c) = \perp$ or $\text{Enc}(pk, \text{Dec}(sk, c)) = c$.
 
 ## Security
 
 ### Indistinguishability
 
 > [!definition] PKE Indistinguishability Advantage
-> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$, we define the indistinguiability advantage:
-> $$\text{Adv}_\text{PKE}^{\text{ind-atk}}(\mathcal A) = 
-> \left|\; \Pr\!\left[ b = b' \;\middle |\; 
-> \begin{array}{l}
-> (pk, sk) \leftarrow \text{Gen}(); \\
-> (m_0, m_1, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
-> b \xleftarrow{\$} \{0, 1\}; c^* \leftarrow \text{Enc}(pk, m_b); \\
-> b' \leftarrow \mathcal A_\text{guess}^{\mathcal O_\text{guess}}(s, c^*)
-> \end{array} \right] 
-> \;- \frac{1}{2}
-> \right|.$$
+> A distinguishing game: two branches that differ in row 4 only, **Game 0** and **Game 1**. `[BDPR98 Def 2.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $(pk, sk) \leftarrow \mathsf{KeyGen}()$ | $\xrightarrow{\ pk\ }$ | |
+> | 2 | | $\xleftarrow{\ c\ }$ | **Decryption queries** (repeated, adaptive; $\text{atk} \in \{\text{lta}, \text{cca}\}$ only): sends $c$ |
+> | | $m \leftarrow \text{Dec}(sk, c)$ | $\xrightarrow{\ m\ }$ | |
+> | 3 | | $\xleftarrow{\ m_0,\, m_1\ }$ | chooses $m_0, m_1 \in \mathcal M$ with $\lvert m_0 \rvert = \lvert m_1 \rvert$ |
+> | 4 | **Game 0**: $c^* \leftarrow \text{Enc}(pk, m_0)$<br>**Game 1**: $c^* \leftarrow \text{Enc}(pk, m_1)$ | $\xrightarrow{\ c^*\ }$ | |
+> | 5 | | $\xleftarrow{\ c\ }$ | **Decryption queries** (repeated, adaptive; $\text{atk} = \text{cca}$ only): sends $c \neq c^*$ |
+> | | $m \leftarrow \text{Dec}(sk, c)$ | $\xrightarrow{\ m\ }$ | |
+> | 6 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are:
+>   $$\text{Adv}_\text{PKE}^{\text{ind-atk}}(\mathcal A) = \Big|\Pr\big[\mathsf{Expt}_0(\mathcal A) = 1\big] - \Pr\big[\mathsf{Expt}_1(\mathcal A) = 1\big]\Big|.$$
+>
 > Where:
-> 1. Chosen Plaintext Attack: $\text{atk} = \text{cpa}$ then $\mathcal O_\text{find}(\cdot) = \varepsilon$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
-> 2. Lunch Time Attack: $\text{atk} = \text{lta}$ (or sometimes $\text{cca1}$) then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
-> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(\cdot) = \text{Dec}(sk, \cdot)$
-> 
-> Also:
-> 4. The first phase adversary $\mathcal A_\text{find}$'s output should have $|m_0| = |m_1|$.
-> 5. In the adaptive chosen ciphertext attack setting, the second phase adversary $\mathcal A_2$ is not allowed to query $c^*$ to the oracle.
+> 1. Chosen Plaintext Attack: $\text{atk} = \text{cpa}$: no decryption query; rows 2 and 5 are skipped.
+> 2. Lunch Time Attack: $\text{atk} = \text{lta}$ (or sometimes $\text{cca1}$): decryption queries in row 2 only.
+> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$: decryption queries in rows 2 and 5, never on $c^*$.
+
+> [!remark] The source's form and the previous one
+> `[BDPR98 Def 2.1]` splits the adversary into $(A_1, A_2)$, which pass a state $s$ and get oracles $\mathcal O_1, \mathcal O_2$, and measures $2 \Pr[b' = b] - 1$ for a uniform bit $b$. The previous version of this note had $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{guess})$ and $|\Pr[b = b'] - 1/2|$, which is half the difference above. Here the adversary is one stateful machine, see [[Security Game]]. The current version of this game is [[Public-Key Encryption Scheme#Indistinguishability]].
 
 > [!definition] $(t,\varepsilon)$-IND-ATK security of a PKE 
 > A PKE scheme is **$(t, \varepsilon)$-IND-ATK secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: 
@@ -95,45 +115,38 @@ dg-publish: false
 ### Non-Malleability
 
 > [!definition] PKE Non-Malleability Advantage
-> For any adversary $\mathcal A = (\mathcal A_\text{find}, \mathcal A_\text{maul})$, we define the non-malleability advantage:
-> $$\text{Adv}_\text{PKE}^{\text{nm-atk}}(\mathcal A) = 
-> \left|\; \Pr\!\left[
-> \begin{array}{l}
-> c \notin (c_1, \dots, c_n) \; \\ 
-> \perp \; \notin (m_1, \dots, m_n) \\ 
-> R(m, (m_1, \dots, m_n))
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> (pk, sk) \leftarrow \text{Gen}(); \\
-> (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
-> m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
-> (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
-> (m_1, \dots, m_n) \leftarrow \text{Dec}(sk, (y_1, \dots, y_n)))
-> \end{array} \right] 
-> \;- 
-> \Pr\!\left[
-> \begin{array}{l}
-> c \notin (c_1, \dots, c_n) \; \\ 
-> \perp \; \notin (m_1, \dots, m_n) \\ 
-> R(\tilde m, (m_1, \dots, m_n))
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> (pk, sk) \leftarrow \text{Gen}(); \\
-> (M, s) \leftarrow \mathcal A_\text{find}^{\mathcal O_\text{find}}(pk); \\
-> m, \tilde m \leftarrow M; c \leftarrow \text{Enc}(pk, m) \\
-> (R, (c_1, \dots, c_n)) \leftarrow \mathcal A_\text{maul}^{\mathcal O_\text{maul}} (M, s, c); \\
-> (m_1, \dots, m_n) \leftarrow \text{Dec}(sk, (y_1, \dots, y_n)))
-> \end{array} \right] 
-> \right|.$$
+> Two experiments that differ in row 7 only: the relation is checked against the encrypted message in **Game 0** (real) and against an independent sample of $M$ in **Game 1** (random). `[BDPR98 Def 2.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $(pk, sk) \leftarrow \mathsf{KeyGen}()$ | $\xrightarrow{\ pk\ }$ | |
+> | 2 | | $\xleftarrow{\ c'\ }$ | **Decryption queries** (repeated, adaptive; $\text{atk} \in \{\text{lta}, \text{cca}\}$ only): sends $c'$ |
+> | | $m' \leftarrow \text{Dec}(sk, c')$ | $\xrightarrow{\ m'\ }$ | |
+> | 3 | | $\xleftarrow{\ M\ }$ | chooses a message distribution $M$ whose messages all have the same length |
+> | 4 | $m \leftarrow M$<br>$c \leftarrow \text{Enc}(pk, m)$ | $\xrightarrow{\ c\ }$ | |
+> | 5 | | $\xleftarrow{\ c'\ }$ | **Decryption queries** (repeated, adaptive; $\text{atk} = \text{cca}$ only): sends $c' \neq c$ |
+> | | $m' \leftarrow \text{Dec}(sk, c')$ | $\xrightarrow{\ m'\ }$ | |
+> | 6 | | $\xleftarrow{\ R,\, (c_1, \dots, c_n)\ }$ | outputs a relation $R$ and ciphertexts $c_1, \dots, c_n$ |
+> | 7 | $m_i \leftarrow \text{Dec}(sk, c_i)$ for $i \in [1, n]$<br>**Game 0**: $\hat m \leftarrow m$<br>**Game 1**: $\hat m \leftarrow M$, a fresh sample independent of $m$ | | |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A) = 1$ in Game $b$ iff all hold:
+>     - $c \notin (c_1, \dots, c_n)$;
+>     - $\perp \notin (m_1, \dots, m_n)$;
+>     - $R(\hat m, (m_1, \dots, m_n))$.
+> - **Measure** — how far apart the two success probabilities are:
+>   $$\text{Adv}_\text{PKE}^{\text{nm-atk}}(\mathcal A) = \Big|\Pr\big[\mathsf{Expt}_0(\mathcal A) = 1\big] - \Pr\big[\mathsf{Expt}_1(\mathcal A) = 1\big]\Big|.$$
+>
 > Where:
-> 1. Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \varepsilon$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
-> 2. Lunch Time Attack: $\text{atk} = \text{lta}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(\cdot) = \varepsilon$.
-> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$ then $\mathcal O_\text{find}(\cdot) = \text{Dec}(sk, \cdot)$ and $\mathcal O_\text{guess}(sk, \cdot)$
-> 
+> 1. Chosen Plaintext Attack: $\text{atk} = \text{cpa}$: no decryption query; rows 2 and 5 are skipped.
+> 2. Lunch Time Attack: $\text{atk} = \text{lta}$: decryption queries in row 2 only.
+> 3. Adaptive Chosen Ciphertext Attack: $\text{atk} = \text{cca}$: decryption queries in rows 2 and 5, never on $c$.
+>
 > Also:
 > 1. $R$ is a predicate.
+
+> [!remark] The source's form and the previous one
+> `[BDPR98 Def 2.2]` splits the adversary into $(A_1, A_2)$ passing a state $s$, calls the two probabilities $\mathrm{Succ}^{\mathrm{nm\text{-}atk}}_{A, \Pi}$ and $\mathrm{Succ}^{\mathrm{nm\text{-}atk}}_{A, \Pi, \$}$, and asks that $M$ be samplable and $R$ computable. The previous version of this note listed the oracles of $\text{atk} = \text{cpa}$ under the label "cca" and decrypted $(y_1, \dots, y_n)$ instead of the adversary's $(c_1, \dots, c_n)$; both are corrected above.
 
 > [!definition] $(t,\varepsilon)$-NM-ATK security of a PKE 
 > A PKE scheme is **$(t, \varepsilon)$-NM-ATK secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: 
@@ -142,14 +155,17 @@ dg-publish: false
 ### One-way Encryption
 
 > [!definition] PKE OWE Advantage
-> For any adversary $\mathcal A$, we define the OWE advantage:
-> $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) = 
-> \; \Pr\!\left[ \mathcal A(pk, c) = \text{Dec}(sk, c) \; \middle | \; 
-> \begin{array}{l}
-> (pk, sk) \leftarrow \text{Gen}(); \\
-> m \leftarrow \mathcal M; \\
-> c \leftarrow \text{Enc}(pk, m)
-> \end{array} \right]$$
+> A search game with one branch: `[HHK17 Def 2.1]` with $\text{ATK} = \text{CPA}$, where it is called OW-CPA.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $(pk, sk) \leftarrow \mathsf{KeyGen}()$<br>$m \xleftarrow{\$} \mathcal M$<br>$c \leftarrow \text{Enc}(pk, m)$ | $\xrightarrow{\ pk,\, c\ }$ | |
+> | 2 | | $\xleftarrow{\ m'\ }$ | outputs a message $m'$ |
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - $\text{Dec}(sk, c) = m'$.
+>
+> $$\text{Adv}_{\text{PKE}}^{\text{owe}}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
 
 > [!definition] $(t,\varepsilon)$-OWE security of a PKE 
 > A PKE scheme is **$(t, \varepsilon)$-OWE secure** if for every adversary $\mathcal{A}$ that has running time bounded by $t$, we have: 
@@ -167,7 +183,7 @@ dg-publish: false
 
 > [!algorithm] PKE by Trapdoor Function Scheme
 > Component of $\mathcal E_{TDF}$:
-> - A trapdoor function scheme $\mathcal T = (G, F, I)$, defined over $(\mathcal X, \mathcal Y)$,
+> - A trapdoor function scheme $\mathcal T = (\mathsf{KeyGen}, F, I)$, defined over $(\mathcal X, \mathcal Y)$,
 > - A symmetric cipher $\mathcal E_s = (E_s, D_s)$, defined over $(\mathcal K, \mathcal M, \mathcal C)$,
 > - A hash function $H: \mathcal X \rightarrow \mathcal K$.
 > 
@@ -178,7 +194,7 @@ dg-publish: false
 > - For a given secret key $sk$, and a given ciphertext $(y, c) \in \mathcal Y \times \mathcal C$, the decryption algorithm runs as follows: 
 > $$D(sk, (y, c)) = x \leftarrow I(sk, y), k \leftarrow H(x), m \leftarrow D_s(k, c), \text{output } m.$$
 > 
-> Thus $\mathcal E_{TDF} = (G, E, D)$, and is defined over $(\mathcal M, \mathcal Y \times \mathcal C)$.
+> Thus $\mathcal E_{TDF} = (\mathsf{KeyGen}, E, D)$, and is defined over $(\mathcal M, \mathcal Y \times \mathcal C)$.
 
 > [!theorem] 
 > Assume $H: \mathcal X \rightarrow \mathcal K$ is modeled as a random oracle. If $\mathcal T$ is one-way and $\mathcal E_s$ is semantically secure, then $\mathcal E_{TDF}$ is semantically secure.
@@ -191,9 +207,9 @@ dg-publish: false
 ### RSA Trapdoor Function Scheme
 
 > [!algorithm] RSA Trapdoor Function Scheme
-> The basic RSA encryption scheme is $\mathcal E_{RSA} = (G, E, D)$, with message space $\mathcal M$ and ciphertext space $\mathcal X \times \mathcal C$, where
+> The basic RSA encryption scheme is $\mathcal E_{RSA} = (\mathsf{KeyGen}, E, D)$, with message space $\mathcal M$ and ciphertext space $\mathcal X \times \mathcal C$, where
 > - The key generation algorithm runs as follows: 
-> $$G() = (n, d) \xleftarrow{R} \text{RSAGen}(\ell, e), pk \leftarrow (n, e), sk \leftarrow (n, d), \text{output } (pk, sk);$$
+> $$\mathsf{KeyGen}() = (n, d) \xleftarrow{R} \text{RSAGen}(\ell, e), pk \leftarrow (n, e), sk \leftarrow (n, d), \text{output } (pk, sk);$$
 > - For a given public key $pk = (n, e)$, and message $m \in \mathcal M$, the encryption algorithm runs as follows: 
 > $$E(pk, m) = x \xleftarrow{R} \mathbb Z_n, y \leftarrow x^e, k \leftarrow H(x), c \xleftarrow{R} E_s(k, m), \text{output } (y, c) \in \mathcal X \times \mathcal C'$$
 > - For a given secret key $sk = (n, d)$, and a given ciphertext $(y, c) \in \mathcal X \times \mathcal C$, where $y$ represents an element of $\mathbb Z_n$, the decryption algorithm runs as follows: 
@@ -214,13 +230,13 @@ dg-publish: false
 > - A hash function $H: \mathbb G^2 \rightarrow \mathcal K$.
 > The key generation, encryption, and decryption algorithms for $\mathcal E_{EG}$.
 > - The key generation algorithm runs as follows: 
-> $$\begin{align} G() = \quad &\alpha \xleftarrow{R} \mathbb Z_q, u \leftarrow g^\alpha, \\ &pk \leftarrow u, sk \leftarrow \alpha \\ &\text{output }(pk, sk); \end{align}$$
+> $$\begin{align} \mathsf{KeyGen}() = \quad &\alpha \xleftarrow{R} \mathbb Z_q, u \leftarrow g^\alpha, \\ &pk \leftarrow u, sk \leftarrow \alpha \\ &\text{output }(pk, sk); \end{align}$$
 > - For a given public key $pk = u \in \mathbb G$ and message $m \in \mathcal M$, the encryption algorithm runs as follows:
 > $$E(pk, m) = \beta \xleftarrow{R} \mathbb Z_q, v \leftarrow g^\beta, w \leftarrow u^\beta, k \leftarrow H(v, w), c \leftarrow E_s(k, m), \text{output } (v, c);$$
 > - For a given secret key $sk = \alpha \in \mathbb Z_q$ and a ciphertext $(v, c) \in \mathbb G \times \mathcal C$, the decryption algorithm runs as follows: 
 > $$D(sk, (v, c)) = w \leftarrow v^\alpha, k \leftarrow H(v, w), m \leftarrow D_s(k, c), \text{output } m.$$
 > 
-> Thus, $\mathcal E_{EG} = (G, E, D)$, and is defined over $(\mathcal M, \mathbb G \times \mathcal C)$.
+> Thus, $\mathcal E_{EG} = (\mathsf{KeyGen}, E, D)$, and is defined over $(\mathcal M, \mathbb G \times \mathcal C)$.
 
 > [!theorem]
 > Assume $H: \mathbb G^2 \rightarrow \mathcal K$ is modeled as a random oracle. If the CDH assumption holds for $\mathbb G$, and $\mathcal E_s$ is semantically secure, then $\mathcal E_{EG}$ is semantically secure.
@@ -235,7 +251,7 @@ dg-publish: false
 > 	- $\tau$: $\ell_{\infty}$-norm bound on all short elements in the scheme.
 > 	- $q_{PKE}$: a modulus
 > 	- $p < q_{PKE}$: a positive integer
-> - $\text{Gen}()$:
+> - $\mathsf{KeyGen}()$:
 > 	- Sample $A_1 \in \mathcal R_{128}^{8 \times 8}$ uniform modulo $q_{PKE}$.
 > 	- Sample $S_1, S_2 \leftarrow U(\mathcal S_r^{12 \times 8})$.
 > 	- Compute $A_2 = S_1 \cdot A_1 + S_2$

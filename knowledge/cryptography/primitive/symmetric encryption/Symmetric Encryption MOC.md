@@ -6,6 +6,7 @@ Confidentiality with a shared key. Mirrors the structure of [[Public-Key Encrypt
 
 - [[Symmetric Key Encryption]] — the canonical note, mirroring [[Public-Key Encryption Scheme (Old)]] section-for-section: syntax, correctness, min-entropy (γ-spread), perfect security, IND-ATK (eav / cpa / cca), multi-key SS, nonce-CPA, and CPA / nonce-CPA constructions.
 - [[Perfect Security]] — equivalent characterizations (counting, predicate, independence forms)
+- [[Private Quantum Channel]] — the quantum case: a classical key hides a quantum state; Pauli encryption ($2n$ key bits for $n$ qubits, and no fewer)
 
 ### Attack-Game Index (Boneh–Shoup numbering)
 

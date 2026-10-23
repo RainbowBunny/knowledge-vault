@@ -1,5 +1,8 @@
 Reference:
 - https://abgrilo.github.io/viasm/introduction.pdf
+- `[dW]` — R. de Wolf, _Quantum Computing: Lecture Notes_, arXiv:1907.09415: https://arxiv.org/abs/1907.09415
+- `[Wat]` — J. Watrous, CPSC 519 lecture notes, Lectures 14 and 15: https://cs.uwaterloo.ca/~watrous/QC-notes/QC-notes.14.pdf, https://cs.uwaterloo.ca/~watrous/QC-notes/QC-notes.15.pdf
+- `[Pre]` — J. Preskill, _Lecture Notes for Physics 219: Quantum Computation_, Chapter 2: https://preskill.caltech.edu/ph219/chap2_15.pdf
 
 ## Definition
 
@@ -68,6 +71,26 @@ Reference:
 > [!definition] Density Matrix of a qubit
 > Density matrix of $|\psi \rangle$ is $| \psi \rangle \langle \psi |$.
 
+> [!example] Density matrices of the basis states
+> $|0\rangle = (1, 0)^T$ and $|1\rangle = (0, 1)^T$ `[dW §1.3]`; $|\pm\rangle = \frac{1}{\sqrt 2}(|0\rangle \pm |1\rangle)$, which are $H|0\rangle$ and $H|1\rangle$ `[dW §1.2.2, §1.4]`. Their density matrices $|\psi\rangle\langle\psi|$:
+>
+> | state | vector | density matrix |
+> | --- | --- | --- |
+> | $\vert 0 \rangle$ | $\begin{pmatrix}1 \\ 0\end{pmatrix}$ | $\begin{pmatrix}1 & 0 \\ 0 & 0\end{pmatrix}$ |
+> | $\vert 1 \rangle$ | $\begin{pmatrix}0 \\ 1\end{pmatrix}$ | $\begin{pmatrix}0 & 0 \\ 0 & 1\end{pmatrix}$ |
+> | $\vert + \rangle$ | $\frac{1}{\sqrt 2}\begin{pmatrix}1 \\ 1\end{pmatrix}$ | $\frac12\begin{pmatrix}1 & 1 \\ 1 & 1\end{pmatrix}$ |
+> | $\vert - \rangle$ | $\frac{1}{\sqrt 2}\begin{pmatrix}1 \\ -1\end{pmatrix}$ | $\frac12\begin{pmatrix}1 & -1 \\ -1 & 1\end{pmatrix}$ |
+>
+> The equal mixtures of $|0\rangle, |1\rangle$ and of $|+\rangle, |-\rangle$ give the same matrix, $\frac12 I$: the *totally mixed state*, which represents complete ignorance about the qubit `[Wat L15]` and can be prepared as an ensemble of pure states in infinitely many ways `[Pre eq. (2.101)]`.
+
 > [!definition] Mathematical Representation of Mixed State
 > Suppose we have a mixed state $((p_1, |\psi_1 \rangle), (p_2, |\psi_2 \rangle), \cdots, (p_k, \psi_{k}))$:
 > $$\rho = \sum_{i = 1}^k p_i | \psi_i \rangle \langle \psi_i |$$
+
+> [!proposition] Density matrices are the positive semidefinite matrices of trace 1
+> Every density matrix has trace $1$ and is positive semidefinite; conversely, any matrix with these two properties is the density matrix of some mixture `[Wat L14]`.
+
+> [!proposition] Measuring a mixed state
+> Measuring $\rho$ with operators $\{M_a\}_a$, $\sum_a M_a^\dagger M_a = I$, gives outcome $a$ with probability $\mathrm{Tr}(M_a \rho M_a^\dagger)$ `[Wat L15]`. For the measurement in an orthonormal basis $\{|m\rangle\}$, $M_m = |m\rangle\langle m|$, so for $\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$
+> $$P(m) = \langle m | \rho | m \rangle = \sum_i p_i\, |\langle m | \psi_i \rangle|^2:$$
+> the average, over the mixture, of the pure-state probabilities $|\langle m|\psi_i\rangle|^2$ `[dW §1.2.2]`.

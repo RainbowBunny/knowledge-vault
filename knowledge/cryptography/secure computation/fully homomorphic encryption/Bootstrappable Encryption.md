@@ -48,7 +48,7 @@ Reference:
 > `⚠️ CLAUDE – verify:` the sources speak of "the encrypted bits of the secret key" and "the bootstrapping key" but, as far as I read, name no algorithm that produces them. $\mathsf{BKGen}$ is mine; it exists so that the promise on $\mathrm{bk}$ in the Input of $\mathsf{Refresh}$ has something to refer to. In your previous note this was the "Setup" step.
 
 > [!remark] Notation in the literature
-> This note calls the operation $\mathsf{Refresh}$ and keeps $\mathrm{bk}$ as an argument.
+> This note calls the operation $\mathsf{Refresh}$ and keeps $\mathrm{bk}$ as an argument. Key generation is $\mathsf{KeyGen}$, as $\mathsf{KeyGen}_E$ in `[T §2.1]`.
 >
 > | source | algorithms | differences |
 > | --- | --- | --- |
@@ -59,7 +59,7 @@ Reference:
 ## Construction
 
 > [!definition] Building Blocks
-> - $E = (\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$: a [[Homomorphic Encryption]] scheme with $f_\mathsf{Dec} \in \mathcal C_E$ (a bootstrappable scheme). $\mathsf{Enc}$ and $\mathsf{Eval}$ are called below.
+> - $E = (\mathsf{KeyGen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$: a [[Homomorphic Encryption]] scheme with $f_\mathsf{Dec} \in \mathcal C_E$ (a bootstrappable scheme). $\mathsf{Enc}$ and $\mathsf{Eval}$ are called below.
 
 > [!definition] Refresh from Eval `[S §1.2]` `[T §1.3]` `[C §4.3]`
 > - $\mathrm{bk} \leftarrow \mathsf{BKGen}(\mathrm{pk}_2, \mathrm{sk}_1)$: (Randomized) Bootstrapping-key generation.

@@ -1,3 +1,7 @@
+Reference:
+- `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, v0.6: https://toc.cryptobook.us/ (Ch. 4, §4.4: Attack Games 4.2 and 4.3, Definition 4.2; Ch. 6, §6.4: prefix-free PRFs; Ch. 8: Attack Game 8.4).
+- `[BR x]` — M. Bellare, P. Rogaway, _Introduction to Modern Cryptography_, Ch. 3 "Pseudorandom Functions": https://www.cs.ucdavis.edu/~rogaway/classes/227/fall03/book/prf.pdf (Definition 3.6, Lemma 3.17).
+- `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
 
 | Term                                             | Reference                                                    |                             |
 | ------------------------------------------------ | ------------------------------------------------------------ | --------------------------- |
@@ -17,41 +21,143 @@
 > 2. $K$ and $Y$ are efficiently sampleable.
 > 3. Algorithm $F$ is a deterministic algorithm that on input $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), k \in \mathcal K_{\lambda, \Lambda}$, and $x \in \mathcal X_{\lambda, \Lambda}$, runs in time bounded by a polynomial in $\lambda$, and outputs an element of $\mathcal Y_{\lambda, \Lambda}$.
 
+### Secure PRF
+
+Specializes [[Special Functions#Pseudorandom]].
+
+> [!definition] Parameters
+> - $F$: a PRF defined over $(\mathcal K, \mathcal X, \mathcal Y)$, as above.
+> - $\mathrm{Funs}[\mathcal X, \mathcal Y]$: the set of all functions from $\mathcal X$ to $\mathcal Y$.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]]. $Q$: a bound on the number of evaluation queries.
+
+> [!definition] Secure PRF
+> ### Scope
+> A PRF $F$ defined over $(\mathcal K, \mathcal X, \mathcal Y)$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — an evaluation oracle for $f$, which is $F(k, \cdot)$ in Game 0 and a uniformly random function in Game 1. $\mathcal A$ never sees $k$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — adaptive: each query may depend on the answers to the earlier ones.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches that differ in row 1 only, **Game 0** (the PRF) and **Game 1** (a random function). `[BS Attack Game 4.2]`; `[BR Def 3.6]`.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>**Game 0**: $f \leftarrow F(k, \cdot)$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X, \mathcal Y]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Evaluation queries** (repeated, adaptive, at most $Q$ times): sends $x_i \in \mathcal X$ |
+> | | $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{PRFadv}[\mathcal A, F] = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - $F$ is a **secure PRF** if $\text{PRFadv}[\mathcal A, F]$ is negligible for every $\mathcal A \in \mathbb A$ `[BS Def 4.2]`.
+> - The theorems in this note bound $\text{PRFadv}[\mathcal A, F]$ for an $\mathcal A$ that makes at most $Q$ queries.
+>
+> It is a *distinguishing* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> - `[BS Attack Game 4.2]` names the branches Experiment 0 and Experiment 1, samples $k$ only in Experiment 0, calls the output bit $\hat b$, and writes $W_b$ for the event that $\mathcal A$ outputs $1$ in Experiment $b$, so $\Pr[W_b] = \Pr[\mathsf{Expt}_b(\mathcal A) = 1]$. Sampling $k$ in Game 1 as well changes nothing, since it is not used there.
+> - The bit-guessing form $\text{PRFadv}^*[\mathcal A, F] = |\Pr[\hat b = b] - 1/2|$, with a hidden uniform $b$, is exactly half of $\text{PRFadv}[\mathcal A, F]$; this note uses the difference.
+> - `[BR Def 3.6]` writes the real game as $\mathbf{Exp}^{\mathrm{prf}\text{-}1}_F(A)$ (a uniform key $K$, oracle $F_K$), the random one as $\mathbf{Exp}^{\mathrm{prf}\text{-}0}_F(A)$ (oracle $g \xleftarrow{\$} \mathrm{Rand}(D, R)$), and $\mathbf{Adv}^{\mathrm{prf}}_F(A) = \Pr[\mathbf{Exp}^{\mathrm{prf}\text{-}1}_F(A) = 1] - \Pr[\mathbf{Exp}^{\mathrm{prf}\text{-}0}_F(A) = 1]$, without the absolute value. Its adversary is an oracle machine, the same single stateful machine as here.
+
 ### Permutation vs. Function
 
-> [!algorithm] Permutation vs. Function
-> For a given finite set $\mathcal X$, and for a given adversary $\mathcal A$, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define:
-> **Experiment $b$:**
-> - The challenger selects $f \in \text{Funs}[\mathcal X, \mathcal X]$ as follows:
-> 	- If $b = 0: f \xleftarrow{R} \text{Perms}[\mathcal X]$;
-> 	- If $b = 1: f \xleftarrow{R} \text{Funs}[\mathcal X, \mathcal X]$.
-> - The adversary submits a sequence of queries to the challenger.
-> 	For $i = 1, 2, \dots$, the $i$-th query is an input data block $x_i \in \mathcal X$.
-> 	The challenger computes $y_i \leftarrow f(x_i) \in \mathcal Y$, and gives $y_i$ to the adversary.
-> - The adversary computes and outputs a bit $\hat{b} \in \{0, 1\}$.
-> For $b = 0, 1$, let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. We define $\mathcal A$'s **advantage** with respect to $\mathcal X$ as $$\text{PFadv}[\mathcal A, \mathcal X] = |P[W_0] - P[W_1]|.$$
+> [!definition] Parameters
+> - $\mathcal X$: a finite set, $N = |\mathcal X|$.
+> - $\mathrm{Perms}[\mathcal X]$: the set of all permutations of $\mathcal X$. $\mathrm{Funs}[\mathcal X, \mathcal X]$: the set of all functions from $\mathcal X$ to $\mathcal X$.
+> - $Q$: a bound on the number of queries.
+
+> [!definition] Permutation vs. Function
+> ### Scope
+> A finite set $\mathcal X$ and any [[Adversary]] $\mathcal A$. There is no primitive and no key.
+>
+> ---
+> ### Condition
+> - **Access** — an evaluation oracle for $f$, a random permutation in Game 0 and a random function in Game 1.
+> - **Promise** — none.
+> - **Quantifier** — $\forall \mathcal A$ that makes at most $Q$ queries, efficient or not: the bound in the theorem below is information-theoretic.
+> - **Adaptivity** — adaptive: each query may depend on the answers to the earlier ones.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches that differ in row 1 only, **Game 0** (a random permutation) and **Game 1** (a random function). `[BS Attack Game 4.3]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | **Game 0**: $f \xleftarrow{\$} \mathrm{Perms}[\mathcal X]$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X, \mathcal X]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Evaluation queries** (repeated, adaptive, at most $Q$ times): sends $x_i \in \mathcal X$ |
+> | | $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{PFadv}[\mathcal A, \mathcal X] = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - The theorem below bounds it by $Q^2 / 2N$ for every $\mathcal A$ that makes at most $Q$ queries.
+
+> [!remark] Notation in the literature
+> - `[BS Attack Game 4.3]` names the branches Experiment 0 and Experiment 1 and writes $W_b$ for the event that $\mathcal A$ outputs $1$ in Experiment $b$; the answers $y_i = f(x_i)$ lie in $\mathcal X$.
+> - `[BR Lemma 3.17]` compares a random function with a random permutation on $\{0, 1\}^n$ and gets the sharper bound $q(q - 1) / 2^{n + 1}$ for $q$ queries.
 
 > [!theorem]
 > Let $\mathcal X$ be a finite set of size $N$. Let $\mathcal A$ be an adversary that makes at most $Q$ queries to its challenger. Then $$\text{PFadv}[\mathcal A, \mathcal X] \leq Q^2 / 2N.$$
 
 ### PRF in the Random Oracle Model
 
-> [!algorithm] PRF in the Random Oracle Model
-> Let $F$ be a PRF defined over $(\mathcal K, \mathcal X, \mathcal Y)$ that uses a hash function $H$ defined over $(\mathcal M, \mathcal T)$ as an oracle. For a given adversary $\mathcal A$, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define
-> **Experiment $b$**:
-> - $\mathcal O \xleftarrow{R} \text{Funs}[\mathcal M, \mathcal T]$.
-> - The challenger selects $f \in \text{Funs}[\mathcal X, \mathcal Y]$ as follows:
-> 	- If $b = 0: k \xleftarrow{R} \mathcal K, f \leftarrow F^{\mathcal O}(k, \cdot)$;
-> 	- If $b = 1: f \xleftarrow{R} \text{Funs}[\mathcal X, \mathcal Y]$.
-> - The adversary submits a sequence of queries to the challenger.
-> 	- $F$-query: respond to a query $x \in \mathcal X$ with $y = f(x) \in \mathcal Y$.
-> 	- $\mathcal O$-query: respond to a query $m \in \mathcal M$ with $t = \mathcal O(m) \in \mathcal T$.
-> - The adversary computes and outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> For $b = 0, 1$, let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. We define $\mathcal A$'s **advantage** with respect to $F$ as $$\text{PRF}^{ro}\text{adv}[\mathcal A, F] = |P[W_0] - P[W_1]|.$$
+> [!definition] Parameters
+> - $F$: a PRF defined over $(\mathcal K, \mathcal X, \mathcal Y)$ that uses a hash function $H$ defined over $(\mathcal M, \mathcal T)$ as an oracle.
+> - $\mathcal O$: the random oracle that replaces $H$, a uniform element of $\mathrm{Funs}[\mathcal M, \mathcal T]$.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]]. $Q_{ro}$: a bound on the number of $\mathcal O$-queries.
 
-> [!definition] Secure PRF in Random Oracle
-> We say that a PRF $F$ is secure in the random oracle model if for all efficient adversaries $\mathcal A$, the value $\text{PRF}^{ro}\text{adv}[\mathcal A, F]$ is negligible.
+> [!definition] PRF in the Random Oracle Model
+> ### Scope
+> A PRF $F$ whose hash function $H$ is modeled as a random oracle, and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — two oracles: $F$-queries, answered by $f$, and $\mathcal O$-queries, answered by the random oracle. In Game 1, $f$ is independent of $\mathcal O$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — both kinds of query are adaptive and may be interleaved in any order.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches that differ in row 1 only, **Game 0** ($F$ keyed with a random key, over the random oracle) and **Game 1** (a random function). `[BS Attack Game 8.4]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $\mathcal O \xleftarrow{\$} \mathrm{Funs}[\mathcal M, \mathcal T]$<br>$k \xleftarrow{\$} \mathcal K$<br>**Game 0**: $f \leftarrow F^{\mathcal O}(k, \cdot)$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X, \mathcal Y]$ | | |
+> | 2 | | $\xleftarrow{\ x\ }$ | **$F$-queries** (repeated, adaptive): sends $x \in \mathcal X$ |
+> | | $y \leftarrow f(x)$ | $\xrightarrow{\ y\ }$ | |
+> | 3 | | $\xleftarrow{\ m\ }$ | **$\mathcal O$-queries** (repeated, adaptive, at most $Q_{ro}$ times): sends $m \in \mathcal M$ |
+> | | $t \leftarrow \mathcal O(m)$ | $\xrightarrow{\ t\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{PRF}^{ro}\text{adv}[\mathcal A, F] = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - $F$ is a **secure PRF in the random oracle model** if $\text{PRF}^{ro}\text{adv}[\mathcal A, F]$ is negligible for every $\mathcal A \in \mathbb A$.
+>
+> It is a *distinguishing* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> `[BS Attack Game 8.4]` names the branches Experiment 0 and Experiment 1, samples $k$ only in Experiment 0, and writes $W_b$ for the event that $\mathcal A$ outputs $1$ in Experiment $b$. Its two kinds of query are listed together; rows 2 and 3 above may come in any order.
 
 > [!theorem]
 > If $\mathcal K$ is large then $F_{pre}$ is a secure PRF when $H$ is modeled as a random oracle.
@@ -64,8 +170,43 @@
 
 ### Secure Prefix-free PRF
 
-> [!definition] Prefix-free Adversary
-> Let $F$ be a PRF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$. We say that a [[Pseudorandom Function#Definition|secure PRF]] adversary $\mathcal A$ with respect to $F$ is a **prefix-free adversary** if all of its queries are non-empty strings over $\mathcal X$ of length at most $\ell$, no one of which is a proper prefix of another. We denote $\mathcal A$'s advantage in winning the game by $\text{PRF}^{pf}\text{adv}[\mathcal A, F]$. Further, let us say that $F$ is a **prefix-free secure PRF** if $\text{PRF}^{pf}\text{adv}[\mathcal A, F]$ is negligible for all efficient, prefix-free adversaries $\mathcal A$.
+> [!definition] Parameters
+> - $F$: a PRF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$; $\mathcal X^{\leq \ell}$ is the set of strings over $\mathcal X$ of length at most $\ell$, and $\mathcal X^{\leq \ell}_{> 0}$ its non-empty strings.
+> - $\mathbb A$: the class of efficient prefix-free [[Adversary|adversaries]]. $Q$: a bound on the number of queries.
+
+> [!definition] Secure Prefix-free PRF
+> ### Scope
+> A PRF $F$ defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — the evaluation oracle of the [[#Secure PRF|secure PRF game]].
+> - **Promise** — $\mathcal A$ is a **prefix-free adversary**: all of its queries are non-empty strings over $\mathcal X$ of length at most $\ell$, no one of which is a proper prefix of another.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — adaptive, as in the secure PRF game.
+>
+> ---
+> ### Experiment
+> The [[#Secure PRF|secure PRF game]] on the input space $\mathcal X^{\leq \ell}$, played by a prefix-free adversary: two branches that differ in row 1 only. `[BS §6.4]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$<br>**Game 0**: $f \leftarrow F(k, \cdot)$<br>**Game 1**: $f \xleftarrow{\$} \mathrm{Funs}[\mathcal X^{\leq \ell}, \mathcal Y]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Evaluation queries** (repeated, adaptive, at most $Q$ times): sends $x_i \in \mathcal X^{\leq \ell}_{> 0}$ that is not a proper prefix of an earlier query and has no earlier query as a proper prefix |
+> | | $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{PRF}^{pf}\text{adv}[\mathcal A, F] = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - $F$ is a **prefix-free secure PRF** if $\text{PRF}^{pf}\text{adv}[\mathcal A, F]$ is negligible for every efficient prefix-free adversary $\mathcal A$.
+
+> [!remark] Notation in the literature
+> `[BS §6.4]` defines no new attack game: a prefix-free adversary plays Attack Game 4.2 against $F$, and $\text{PRF}^{pf}\text{adv}[\mathcal A, F]$ is its advantage there.
 
 ## Construction
 

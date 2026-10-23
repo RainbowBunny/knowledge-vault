@@ -1,3 +1,6 @@
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023: https://toc.cryptobook.us/ (Ch. 6: Attack Games 6.1 and 6.2; Ch. 7: Attack Game 7.4). `⚠️ CLAUDE – verify:` WebFetch returns only the first ~17 pages of the book, so Chapters 6 and 7 could not be read: the tables redraw the wording this note already had, and the attack-game numbers are those of the index table below.
+- `⚠️ CLAUDE – verify:` — a point I could not check against the source.
 
 > [!remark] Basic Question of Message Integrity 
 > Bob receives a message $m$ from Alice and wants to convince himself that the message was not modified en-route. We will design a mechanism that lets Alice compute a short message integrity tag $t$ for the message $m$ and send the pair $(m, t)$ to Bob. Upon receipt, Bob checks the tag $t$ and rejects the message if the tag fails to verify. If the tag verifies then Bob is assured that the message was not modified in transmission.
@@ -37,30 +40,88 @@
 
 ### MAC Security
 
-> [!algorithm] MAC Security
-> For a given MAC system $\mathcal I = (S, V)$, defined over $(\mathcal K, \mathcal M, \mathcal T)$, and a given adversary $\mathcal A$, the attack game runs as follows:
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$.
-> - $\mathcal A$ queries the challenger several times. For $i = 1, 2, \dots,$ the $i$-th **signing query** is a message $m_i \in \mathcal M$. Given $m_i$, the challenger computes a tag $t_i \xleftarrow{R} S(k, m_i)$, and then gives $t_i$ to $\mathcal A$.
-> - Eventually $\mathcal A$ outputs a candidate forgery pair $(m, t) \in \mathcal M \times \mathcal T$ that is not among signed pairs, i.e., $$(m, t) \notin \{(m_1, t_1), (m_2, t_2), \dots\}.$$
-> 
-> We say that $\mathcal A$ wins the above game if $(m, t)$ is a valid pair under $k$ (i.e., $V(k, m, t) = \text{accept}$). We define $\mathcal A$'s advantage with respect to $\mathcal I$, denoted $\text{MACadv}[\mathcal A, \mathcal I]$, as the probability that $\mathcal A$ wins the game. Finally, we say that $\mathcal A$ is a $Q$**-query MAC adversary** if $\mathcal A$ issues at most $Q$ signing queries.
+> [!definition] Parameters
+> - $\mathcal I = (S, V)$: a MAC system defined over $(\mathcal K, \mathcal M, \mathcal T)$.
+> - $Q$: the maximal number of signing queries.
 
-> [!definition] Secure MAC
-> We say that a MAC system $\mathcal I$ is secure if for all efficient adversaries $\mathcal A$, the value $\text{MACadv}[\mathcal A, \mathcal I]$ is negligible.
+> [!definition] MAC Security
+> ### Scope
+> A MAC system $\mathcal I$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — signing queries: $\mathcal A$ sends messages and receives their tags under $k$ (a chosen message attack).
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$; a **$Q$-query MAC adversary** issues at most $Q$ signing queries.
+> - **Adaptivity** — each query and the forgery may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A search game: one branch. `[BS Attack Game 6.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ m_i\ }$ | **Signing queries** (repeated, adaptive, at most $Q$ times): sends $m_i \in \mathcal M$ |
+> | | $t_i \leftarrow S(k, m_i)$ | $\xrightarrow{\ t_i\ }$ | |
+> | 3 | | $\xleftarrow{\ (m,\, t)\ }$ | outputs a candidate forgery pair $(m, t) \in \mathcal M \times \mathcal T$ |
+> | 4 | $r \leftarrow V(k, m, t)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $(m, t) \notin \{(m_1, t_1), (m_2, t_2), \dots\}$: the pair is not among the signed pairs;
+> - $r = \text{accept}$: $(m, t)$ is a valid pair under $k$.
+>
+> ---
+> ### Property
+> $$\text{MACadv}[\mathcal A, \mathcal I] = \Pr[\mathcal A \text{ wins}].$$
+> - **Secure MAC** — a MAC system $\mathcal I$ is secure if $\text{MACadv}[\mathcal A, \mathcal I]$ is negligible for every efficient adversary $\mathcal A$.
+>
+> It is a *search* game, see [[Security Game]].
 
 > [!remark]
 > The pair $(m, t)$ is called an **existential forgery**, and the MAC system that satisfy the secure criteria are said to be **existentially unforgeable under a chosen message attack**.
 
+> [!remark] Notation in the literature
+> - `[BS]` has no key-generation algorithm for a MAC: the challenger picks $k \xleftarrow{R} \mathcal K$, written $k \xleftarrow{\$} \mathcal K$ above.
+> - `[BS]` states "not among the signed pairs" as a restriction on the pair $\mathcal A$ outputs; here it is a winning condition, which gives the same probability.
+> - `⚠️ CLAUDE – verify:` from memory: Katz–Lindell's basic definition (key generation $\mathsf{Gen}$, experiment $\mathsf{Mac\text{-}forge}$) only asks for a new *message*, $m \notin \{m_1, m_2, \dots\}$, and calls the pair condition used here a *strongly secure* MAC.
+
 ### MAC Verification Queries
 
-> [!algorithm] MAC Security with Verification Queries
-> For a given MAC system $\mathcal I = (S, V)$, defined over $(\mathcal K, \mathcal M, \mathcal T)$, and a given adversary $\mathcal A$, the attack game runs as follows:
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$.
-> - A queries the challenger several times. Each query can be one of two types:
-> 	- **Signing query**: For $i = 1, 2, \dots$, the $i$-th signing query consists of a message $m_i \in \mathcal M$. The challenger computes a tag $t_i \xleftarrow{R} S(k, m_i)$, and gives $t_i$ to $\mathcal A$.
-> 	- **Verification query**: For $j = 1, 2, \dots$, the $j$-th verification query consists of a message-tag pair $(\hat{m}_j, \hat{t}_j) \in \mathcal M \times \mathcal T$ that is not among the previously signed pair, i.e., $$(\hat{m}_j, \hat{t}_j) \notin \{(m_1, t_1), (m_2, t_2), \dots\}.$$ The challenger responds to $\mathcal A$ with $V(\hat{m}_j, \hat{t}_j)$.
-> 
-> We say that $\mathcal A$ wins the above game if the challenger ever responds to a verification query with `accept`. We define $\mathcal A$'s advantage with respect to $\mathcal I$, denoted $\text{MAC}^{vq}\text{adv}[\mathcal A, \mathcal I]$, as the probability that $\mathcal A$ wins the game.
+> [!definition] Parameters
+> - $\mathcal I = (S, V)$: a MAC system defined over $(\mathcal K, \mathcal M, \mathcal T)$.
+> - $Q_s$, $Q_v$: the maximal numbers of signing and verification queries.
+
+> [!definition] MAC Security with Verification Queries
+> ### Scope
+> A MAC system $\mathcal I$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — signing queries and verification queries, in any order.
+> - **Promise** — a verification query is never a previously signed pair: $(\hat m_j, \hat t_j) \notin \{(m_1, t_1), (m_2, t_2), \dots\}$.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$ with at most $Q_s$ signing and $Q_v$ verification queries.
+> - **Adaptivity** — each query may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A search game: one branch. `[BS Attack Game 6.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ m_i\ }$ | **Signing queries** (repeated, adaptive, at most $Q_s$ times, interleaved with row 3): sends $m_i \in \mathcal M$ |
+> | | $t_i \leftarrow S(k, m_i)$ | $\xrightarrow{\ t_i\ }$ | |
+> | 3 | | $\xleftarrow{\ (\hat m_j,\, \hat t_j)\ }$ | **Verification queries** (repeated, adaptive, at most $Q_v$ times): sends $(\hat m_j, \hat t_j) \in \mathcal M \times \mathcal T$ with $(\hat m_j, \hat t_j) \notin \{(m_1, t_1), (m_2, t_2), \dots\}$ |
+> | | $r_j \leftarrow V(k, \hat m_j, \hat t_j)$ | $\xrightarrow{\ r_j\ }$ | |
+>
+> **Goal** — $\mathcal A$ wins iff any of:
+> - $r_j = \text{accept}$ for some verification query $j$.
+>
+> ---
+> ### Property
+> $$\text{MAC}^{vq}\text{adv}[\mathcal A, \mathcal I] = \Pr[\mathcal A \text{ wins}].$$
+> - $\mathcal I$ is **secure in the presence of verification queries** if $\text{MAC}^{vq}\text{adv}[\mathcal A, \mathcal I]$ is negligible for every efficient $\mathcal A$.
 
 > [!theorem]
 > If $\mathcal I$ is a secure MAC system, then it is also secure in the presence of verification queries.
@@ -76,16 +137,44 @@
 > 
 > We say that the nonce-based MAC is defined over $(\mathcal K, \mathcal M, \mathcal T, \mathcal N)$. The MAC must satisfy the following **correctness property**: for all keys $k$, all messages $m$, and all nonces $n \in \mathcal N$: $$V(k, m, S(k, m, n), n) = \text{accept}.$$
 
-> [!algorithm] Nonce-based MAC Security
-> For a given nonce-based MAC system $\mathcal I = (S, V)$, defined over $(\mathcal K, \mathcal M, \mathcal T, \mathcal N)$, and a given adversary $\mathcal A$, the attack game runs as follows:
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$.
-> - $\mathcal A$ queries the challenger several times. For $i = 1, 2, \dots$, the $i$-th signing query consists of a pair $(m_i, n_i)$ where $m_i \in \mathcal M$ and $n_i \in \mathcal N$. We require that $n_i \neq n_j$ for all $j < i$. The challenger computes $t_i \xleftarrow{R} S(k, m_i, n_i)$, and gives $t_i$ to $\mathcal A$.
-> - Eventually $\mathcal A$ sends outputs a candidate forgery triple $(m, t, n) \in \mathcal M \times \mathcal T \times \mathcal N$, where $$(m, t, n) \notin \{(m_1, t_1, n_1), (m_2, t_2, n_2), \dots\}.$$
-> 
-> We say that $\mathcal A$ wins the game if $V(k, m, t, n) = \text{accept}$. We define $\mathcal A$'s advantage with respect to $\mathcal I$, denoted $\text{nMACadv}[\mathcal A, \mathcal I]$, as the probability that $\mathcal A$ wins the game.
+> [!definition] Parameters
+> - $\mathcal I = (S, V)$: a nonce-based MAC system defined over $(\mathcal K, \mathcal M, \mathcal T, \mathcal N)$.
+> - $Q$: the maximal number of signing queries.
 
 > [!definition] Nonce-based MAC Security
-> We say that a nonce-based MAC system $\mathcal I$ is secure if for all efficient adversaries $\mathcal A$, the value $\text{nMACadv}[\mathcal A, \mathcal I]$ is negligible.
+> ### Scope
+> A nonce-based MAC system $\mathcal I$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — signing queries on a message and a nonce of $\mathcal A$'s choice.
+> - **Promise** — the signing nonces are distinct: $n_i \neq n_j$ for all $j < i$. The forgery's nonce may repeat one of them.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — each query, nonce included, and the forgery may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A search game: one branch. `[BS Attack Game 7.4]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ m_i,\, n_i\ }$ | **Signing queries** (repeated, adaptive, at most $Q$ times): sends $m_i \in \mathcal M$ and a nonce $n_i \in \mathcal N$ with $n_i \neq n_j$ for all $j < i$ |
+> | | $t_i \leftarrow S(k, m_i, n_i)$ | $\xrightarrow{\ t_i\ }$ | |
+> | 3 | | $\xleftarrow{\ (m,\, t,\, n)\ }$ | outputs a candidate forgery triple $(m, t, n) \in \mathcal M \times \mathcal T \times \mathcal N$ |
+> | 4 | $r \leftarrow V(k, m, t, n)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $(m, t, n) \notin \{(m_1, t_1, n_1), (m_2, t_2, n_2), \dots\}$;
+> - $r = \text{accept}$.
+>
+> ---
+> ### Property
+> $$\text{nMACadv}[\mathcal A, \mathcal I] = \Pr[\mathcal A \text{ wins}].$$
+> - A nonce-based MAC system $\mathcal I$ is **secure** if $\text{nMACadv}[\mathcal A, \mathcal I]$ is negligible for every efficient adversary $\mathcal A$.
+
+> [!remark]
+> $S$ is deterministic, so the table writes $t_i \leftarrow S(k, m_i, n_i)$ where the previous version had $t_i \xleftarrow{R} S(k, m_i, n_i)$.
 
 ### One Time MAC
 

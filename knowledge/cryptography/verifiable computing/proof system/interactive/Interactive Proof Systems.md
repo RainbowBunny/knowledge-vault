@@ -2,7 +2,7 @@
 dg-publish: true
 ---
 Reference: 
-- https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
+- `[Thaler]` — J. Thaler, _Proofs, Arguments, and Zero-Knowledge_: https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf
 - [[Book Reference|Computational Complexity: A Modern Approach]]: - Chapter 8: Interactive Proofs.
 
 > [!remark] Goldwasser, Micali, Rackoff 1985
@@ -18,71 +18,38 @@ Reference:
 > 	- The party sending each message alternates, meaning for example that if $\mathcal V$ sends $m_1$, then $\mathcal P$ sends $m_2$, $\mathcal V$ sends $m_3$, $\mathcal P$ sends $m_4$, and so on.
 > - Both $\mathcal P$ and $\mathcal V$ are thought of as "next-message-computing algorithms", meaning that when it is $\mathcal V$'s (respectively, $\mathcal P$'s) turn to send a message $m_i$, $\mathcal V$ (respectively, $\mathcal P$) is run on input $(x, m_1, m_2, \dots, m_{i - 1})$ to produce message $m_i$.
 > - The entire sequence of $k$ messages $t = (m_1, m_2, \dots, m_k)$ exchanged by $\mathcal P$ and $\mathcal V$, along with the claimed answer $y$, is called a **transcript**.
-> - At the end of the protocol, $\mathcal V$ must output either **accept** or **reject** for the prover's claim that $y = f(x)$. The value output by the verifier at the end of the protocol may depend on both the transcript $t$ and the verifier's internal randomness.
-> - Denote by $\text{out}(\mathcal V, x, r, \mathcal P) \in \{\text{accept}, \text{reject}\}$ the output of verifier $\mathcal V$ on input $x$ when interacting with deterministic prover strategy $\mathcal P$, with $\mathcal V$'s internal randomness equal to $r$. For any fixed value $r$ of $\mathcal V$'s internal randomness, $\text{out}(\mathcal V, x, r, \mathcal P)$ is a deterministic function of $x$.
+> - At the end of the protocol, $\mathcal V$ must output either $1$ (accept) or $0$ (reject) for the prover's claim that $y = f(x)$. The value output by the verifier at the end of the protocol may depend on both the transcript $t$ and the verifier's internal randomness.
+> - Denote by $\mathrm{out}(\mathcal V, x, r, \mathcal P) \in \{0, 1\}$ the output of verifier $\mathcal V$ on input $x$ when interacting with deterministic prover strategy $\mathcal P$, with $\mathcal V$'s internal randomness equal to $r$. For any fixed value $r$ of $\mathcal V$'s internal randomness, $\text{out}(\mathcal V, x, r, \mathcal P)$ is a deterministic function of $x$.
 
 ## Property
 
 ### Completeness
 
 > [!definition] Completeness Error
-> An interactive proof system $(\mathcal P, \mathcal V)$ is said to have **completeness error** $\delta_c$ if:
-> - For every $x \in \{0, 1\}^n$,
-> $$\mathsf{Adv}_{\mathcal V}^\text{com}(\mathcal P) = 
-> \; \Pr\!\left[
-> \begin{array}{l}
-> \text{out}(\mathcal V, x, r, \mathcal P) = \text{accept}
-> \end{array}
-> \; \middle | \; 
-> \begin{array}{l}
-> x \xleftarrow{\$} \{0, 1\}^n
-> \end{array} \right] \geq 1 - \delta_c$$
+> Let $\mathrm{out}(\mathcal V, x, r, \mathcal P) \in \{0, 1\}$ be the output of $\mathcal V$ on input $x$ when interacting with the deterministic prover strategy $\mathcal P$, with $\mathcal V$'s internal randomness equal to $r$. $(\mathcal V, \mathcal P)$ has **completeness error** $\delta_c$ if for every $x \in \{0, 1\}^n$
+> $$\Pr_r\big[\mathrm{out}(\mathcal V, x, r, \mathcal P) = 1\big] \geq 1 - \delta_c.$$
+> `[Thaler Def 3.1]`
 
-> [!remark]
-> The completeness condition requires that there be a convincing proof for what is the value of $f$ on input $x$.
-
-> [!remark]
-> When $\delta_c = 0$, we call this property **perfect completeness**.
+> [!remark] Perfect completeness
+> $\delta_c = 0$. All the interactive proofs in `[Thaler]` have it `[Thaler §3.3]`.
 
 ## Security
 
 ### Soundness
 
 > [!definition] Soundness Error
-> An interactive proof system $(\mathcal V, \mathcal P)$ is said to have **soundness error** $\varepsilon_{\mathsf{snd}}$ if for every deterministic prover strategy $\mathcal P'$:
-> $$\mathsf{Adv}_{\mathcal V}^\mathsf{snd}(\mathcal P') = 
-> \; \Pr\!\left[
-> \begin{array}{l}
-> y \neq f(x) \\
-> \text{out}(\mathcal V, x, r, \mathcal P') = \text{accept}
-> \end{array}
-> \; \middle | \; 
-> \begin{array}{l}
-> x \xleftarrow{\$} \{0, 1\}^n \\
-> y \leftarrow \mathcal P'()
-> \end{array} \right] \leq \varepsilon_{\mathsf{snd}}$$
+> $(\mathcal V, \mathcal P)$ has **soundness error** $\delta_s$ if for every $x \in \{0, 1\}^n$ and every deterministic prover strategy $\mathcal P'$: if $\mathcal P'$ sends a value $y \neq f(x)$ at the start of the protocol, then
+> $$\Pr_r\big[\mathrm{out}(\mathcal V, x, r, \mathcal P') = 1\big] \leq \delta_s.$$
+> `[Thaler Def 3.1]`
 
-> [!remark]
-> The soundness condition requires that false statement of the form "$f(x) = y$" for any $y \neq f(x)$ lack a convincing proof.
-
-> [!remark]
-> - As the prover computing power is unbounded, we often refer this property as **statistical soundness** or **information-theoretic soundness**.
-> - If the prover computing power is bounded, we call the property **computationally soundness**.
+> [!remark] Valid, deterministic, unbounded
+> - The system is **valid** if $\delta_c, \delta_s \leq 1/3$. `[Thaler §3.1]`
+> - Restricting to deterministic provers loses no generality: a randomized prover is no more powerful. `[Thaler §3.1 fn. 22, §3.3]`
+> - Soundness holds against every prover, however powerful: it is *statistical* (information-theoretic) soundness. Against polynomial-time provers only, the system is an *argument*. `[Thaler §3.2]`
 
 ### Knowledge Soundness
 
-> [!definition] Knowledge Soundness
-> An interactive prove $\Pi = (\mathcal P, \mathcal V)$ is knowledge sound for an [[Effective Relation]] $R$ if there exists an efficient [[Knowledge Extractor]] $\mathcal E$, such that for all $(x, w) \in R$ and all provers $\mathcal P'$, we have
-> $$\mathsf{Adv}_{\mathcal V}^{\mathsf{ks}}(\mathcal P') = \mathsf{Adv}_{\mathcal V}^{\mathsf{com}}(\mathcal P') - \Pr[(x, w') \in R \;|\; w' \leftarrow \mathcal E^{\mathcal P'}(x)]$$
-
-> [!remark]
-> Knowledge soundness condition requires that not only a witness exists but also the prover need to know one witness $w$.
-
-> [!remark]
-> To prove this knowledge soundness, we need to construct a [[Knowledge Extractor]].
-
-> [!remark] Of Knowledge
-> Proof of Knowledge or Argument of Knowledge mean that the system satisfies knowledge soundness.
+Proofs and arguments *of knowledge* add that a prover who convinces the verifier must know a witness, which an extractor recovers from it — see [[Knowledge Soundness]] and [[Knowledge Extractor]].
 
 ### Zero Knowledge
 

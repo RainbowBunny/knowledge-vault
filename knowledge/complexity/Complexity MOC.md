@@ -69,7 +69,7 @@ Non-uniform models. The circuit *classes* are in `complexity class/class/circuit
 
 ## Quantum — `quantum/`
 
-- [[Quantum Complexity MOC]] · [[Quantum Bit]] · [[Quantum State]] · [[Quantum Circuits]] · [[Parity Game]]
+- [[Quantum Complexity MOC]] · [[Quantum Bit]] · [[Quantum State]] · [[Pauli Matrices]] · [[Quantum Circuits]] · [[Parity Game]]
 
 ## Open problems — `conjectures/`
 

@@ -1,27 +1,45 @@
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter I: Preliminaries: Set theory and categories, Section 5.1: Initial and final objects; Section 5.4: Products.
+- `[Alu]` — [[Book Reference|Algebra: Chapter 0]] (P. Aluffi), Chapter I: Preliminaries: Set theory and categories, Section 5.1: Initial and final objects; Section 5.4: Products.
+- `[nLab]` — nLab, _cartesian product_ (the binary product in a category): https://ncatlab.org/nlab/show/product
 
 ## Definition
 
+> [!definition] Parameters
+> - $\mathsf C$: a [[Category]].
+> - $A, B$: objects of $\mathsf C$.
+
 > [!definition] Categorical Product
-> Let $A, B$ be objects of a category $\mathsf{C}$. A product $A \times B$ of $A$ and $B$ will be an object $C$, endowed with two [[Natural Projection]] $\pi_A, \pi_B$.
-
-## Property
-
-> [!proposition] Universal Property
-For every set $Z$ and morphisms 
+> Requires:: [[Universal Property]].
+>
+> ---
+> Let $A, B$ be objects of a category $\mathsf{C}$. A product $A \times B$ of $A$ and $B$ will be an object $C$, endowed with two morphisms, the projections
+> - $\pi_A: C \to A$,
+> - $\pi_B: C \to B$,
+>
+> satisfying the following universal property: for every object $Z$ and morphisms
 > $$\begin{CD}
-A @<f_A<< Z \\
-@.   @|\\
-B @<<f_B< Z
-\end{CD}$$
-> there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathcal{C}}(Z, A \times B)$ such that the diagram
+> A @<f_A<< Z \\
+> @.   @|\\
+> B @<<f_B< Z
+> \end{CD}$$
+> there exists a unique morphism $\sigma \in \mathsf{Hom}_{\mathsf{C}}(Z, A \times B)$ such that the diagram
 > $$\begin{CD}
-Z @= Z @= Z\\
-@Vf_AVV @VV{\sigma}V @VVf_BV\\
-A @<{\pi_A}<< A\times B @>{\pi_B}>> B
-\end{CD}$$
-> commutes.
+> Z @= Z @= Z\\
+> @Vf_AVV @VV{\sigma}V @VVf_BV\\
+> A @<{\pi_A}<< A\times B @>{\pi_B}>> B
+> \end{CD}$$
+> commutes. `[Alu I.5.4]` `[nLab]`
 
+## Example
 
+- [[Category Set]] — in $\mathsf{Set}$ the product is the cartesian product of sets. `[nLab]`
+- [[Category Group]] — in $\mathsf{Grp}$, $G \times H$ with the componentwise operation (its section Product).
 
+## Related
+
+### Siblings
+- [[Categorical Coproduct]] — the dual notion: the same universal property with every arrow reversed.
+- [[Natural Projection]] — a function; $\pi_A, \pi_B$ are morphisms of $\mathsf C$ and need not be surjective.
+
+### Prerequisites
+- [[Universal Property]] — the form the definition takes.

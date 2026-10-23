@@ -13,15 +13,15 @@ Reference:
 > - [[Bootstrappable Encryption]]: Import $(\ell, f_\mathsf{Dec})$.
 
 > [!definition] Building Blocks
-> - $E = (\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$: any [[Bootstrappable Encryption|bootstrappable]] [[Homomorphic Encryption]] with respect to $\Gamma$ (universally quantified).
+> - $E = (\mathsf{KeyGen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$: any [[Bootstrappable Encryption|bootstrappable]] [[Homomorphic Encryption]] with respect to $\Gamma$ (universally quantified).
 
 > [!definition] Gentry Bootstrapping Transformation `[S §2]` `[C §4.3]`
 > The output is the family $\{E^{(d)}\}$. Keys are indexed as in `[S §2]`: ciphertexts enter under $\mathrm{pk}_d$ and are decrypted with $\mathrm{sk}_0$.
-> - $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}^{(d)}(1^\lambda)$: (Randomized) Key-generation algorithm.
+> - $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{KeyGen}^{(d)}(1^\lambda)$: (Randomized) Key-generation algorithm.
 >     - **Input**: the security parameter $1^\lambda$ (and the depth $d$ of Parameters).
 >     - **Output**: a public key $\mathrm{pk}$, made of the $d+1$ public keys of $E$ and a chain of encrypted secret keys, and a secret key $\mathrm{sk} = \mathrm{sk}_0$.
 >     - **Steps**:
->         1. $(\mathrm{pk}_i, \mathrm{sk}_i) \leftarrow E.\mathsf{Gen}(1^\lambda)$ for $i \in [0, d]$.
+>         1. $(\mathrm{pk}_i, \mathrm{sk}_i) \leftarrow E.\mathsf{KeyGen}(1^\lambda)$ for $i \in [0, d]$.
 >         2. $\mathrm{bk}^{(i)} \leftarrow E.\mathsf{BKGen}(\mathrm{pk}_{i-1}, \mathrm{sk}_i)$ for $i \in [1, d]$, that is, $\mathrm{bk}^{(i)}_j = E.\mathsf{Enc}(\mathrm{pk}_{i-1}, \mathrm{sk}_{i,j})$ for $j \in [1, \ell]$.
 >         3. Return $\mathrm{pk} = \big((\mathrm{pk}_i)_{i \in [0,d]}, (\mathrm{bk}^{(i)})_{i \in [1,d]}\big)$ and $\mathrm{sk} = \mathrm{sk}_0$.
 > - $c \leftarrow \mathsf{Enc}^{(d)}(\mathrm{pk}, m)$: (Randomized) Encryption algorithm.
@@ -45,7 +45,7 @@ Reference:
 > `⚠️ CLAUDE – verify:` the previous Homomorphic Encryption note described $E^{(d)}$ in prose (keys; level-by-level evaluation; the two index conventions). Writing it as four algorithms, and the formula for the gate step, is my formalization of that prose. Check it against `[S §2]` before keeping it, in particular: (a) how wires that skip a level are handled (I expect the identity gate $\mathsf{id} \in \Gamma$ is used for this, which would explain why $\mathsf{id}$ is required in $\Gamma$ `[S Def 4]`; that is my guess); (b) the index convention. `[C §4.3]` chains keys upward ($\mathrm{sk}_i$ under $\mathrm{pk}_{i+1}$), `[S §2]` the other way, as above.
 
 > [!remark] Notation in the literature
-> The output family is written with the superscript $(d)$ for the depth.
+> The output family is written with the superscript $(d)$ for the depth. Key generation is $\mathsf{KeyGen}$, as $\mathsf{KeyGen}_E$ in `[S §1.1]` and `[T §2.1]`.
 >
 > | source | algorithms | differences |
 > | --- | --- | --- |

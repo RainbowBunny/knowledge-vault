@@ -17,7 +17,7 @@ Index for `math/algebra/`. Organised by **what kind of thing** a note defines: a
 | **[[Rings MOC\|`ring/`]]**   | [[Ring]] and its subtree — special rings, ideals, modules, examples                                   |
 | `field/`                      | [[Field]] — axioms, integral domains, characteristic, finite fields                                   |
 | `polynomial/`                 | [[Polynomial]], [[Multivariate Polynomial]], [[Multilinear Polynomial]], [[Polynomial Ring]], [[Quotient of Polynomial Ring]], [[Vanishing Polynomial]], [[Lagrange Interpolation]] |
-| `action/`                     | [[Group Action]] — see [[Groups MOC]]                                                                 |
+| `action/`                     | [[Group Action]], [[Group Representation]] — see [[Groups MOC]]                                       |
 | `lattice/`                    | see [Lattices](#lattices)                                                                             |
 | `elliptic curve/`             | [[Elliptic Curve MOC]]                                                                                |
 
@@ -62,6 +62,16 @@ Downstream: [[Lattice Trapdoor]] in `cryptography/special function/trapdoor func
 - [[Linear Algebra MOC]] — [[Vector Spaces]], [[Linear Maps]], [[Eigenvalues and Eigenvectors]], [[Inner-Product Spaces]], [[Operators]], [[Trace, Determinant, and Volume]], [[Vector Spaces Over Finite Fields]], [[Examples]]
 - [[Vector Algebra]], [[Matrix]], [[Kronecker Product]]
 - [[Metric Space]] — norm and distance, composed from the [[Math Properties MOC|norm axioms]]
+
+## Representation theory
+
+No folder of its own: each note sits with its kind.
+
+- [[Group Representation]] (`action/`) — a group acting on a vector space by linear maps; Maschke's theorem (in good characteristic every representation splits into irreducibles), the Jordan–Hölder theorem (the pieces are unique)
+- [[Specht Module]] (`action/`) — the irreducible representations of $S_n$, one per partition; Young's rule (permutation modules decompose by Kostka numbers)
+- [[Group Algebra]] (`ring/example/`) — $\mathbb C[G]$ with convolution; its modules are the representations
+- [[Hecke Algebra]] (`ring/example/`) — a deformation of $\mathbb C[W]$; Iwahori's theorem (it is the Hecke algebra of $\mathrm{GL}_n(\mathbb F_q)$ and its Borel subgroup), the affine Hecke algebra of $\mathrm{GL}_n(\mathbb Q_p)$, the Bernstein presentation and the Borel–Casselman equivalence
+- [[Nilpotent Orbit]] (`linear algebra/`) — conjugacy classes of nilpotent matrices, indexed by partitions; Gerstenhaber's theorem (the closure order is the dominance order)
 
 ## Category theory
 

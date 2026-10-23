@@ -8,4 +8,5 @@
 - [[Trace, Determinant, and Volume]] — characteristic polynomial, trace, determinant, volume interpretation
 - [[Vector Spaces Over Finite Fields]] — vector spaces over $\mathbb F_q$
 - [[Dual Bases]]
+- [[Nilpotent Orbit]] — conjugacy classes of nilpotent matrices, indexed by partitions through the Jordan form; Gerstenhaber's theorem (the closure order is the dominance order)
 - [[Examples]] — worked examples

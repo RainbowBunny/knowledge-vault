@@ -1,4 +1,7 @@
-
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023: https://toc.cryptobook.us/ (Ch. 4: Attack Games 4.1 and 4.4, the prediction game and strongly secure block ciphers in §4.1, the ideal cipher model in §4.7). `⚠️ CLAUDE – verify:` WebFetch returns only the first ~17 pages of the book, so Chapter 4 could not be read: the tables redraw the wording this note already had, and the attack-game numbers are those of the index table below.
+- `[KL Def 3.28]` — J. Katz, Y. Lindell, _Introduction to Modern Cryptography_, 2nd ed., CRC Press, 2014, Definition 3.28 (strong pseudorandom permutation: the distinguisher also gets the inverse). The number is the one listed in https://www.cs.purdue.edu/homes/jblocki/courses/555_Spring21/slides/Week3.pdf; the definition itself was not read.
+- `⚠️ CLAUDE – verify:` — a point I could not check against the source.
 
 | Term                           | Reference                                     |                |
 | ------------------------------ | --------------------------------------------- | -------------- |
@@ -8,44 +11,133 @@
 ## Definition
 
 > [!definition] Block Cipher
-> A **block cipher** is a deterministic cipher $\mathcal E = (E, D)$ whose message space and ciphertext space are the same (finite) set $\mathcal X$. If the key space of $\mathcal E$ is $\mathcal K$, we say that $\mathcal E$ is a block cipher **defined over $(\mathcal K \times \mathcal X)$**. We call an element $x \in \mathcal X$ a **data block**, and refer to $\mathcal X$ as the **data block space** of $\mathcal E$.
+> A **block cipher** is a deterministic cipher $\mathcal E = (E, D)$ whose message space and ciphertext space are the same (finite) set $\mathcal X$. If the key space of $\mathcal E$ is $\mathcal K$, we say that $\mathcal E$ is a block cipher **defined over $(\mathcal K, \mathcal X)$**. We call an element $x \in \mathcal X$ a **data block**, and refer to $\mathcal X$ as the **data block space** of $\mathcal E$.
 
 ### Secure Block Cipher
 
-> [!algorithm] Block Cipher
-> For a given block cipher $(E, D)$, defined over $(\mathcal K, \mathcal X)$, and for a given adversary $\mathcal A$, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define:
-> 
-> **Experiment $b$:**
-> - The challenger selects $f \in \text{Perms}[\mathcal X]$ as follows:
-> 	- If $b = 0: k \xleftarrow{R} \mathcal K, f \leftarrow E(k, \cdot)$;
-> 	- If $b = 1: f \xleftarrow{R} \text{Perms}[\mathcal X]$.
-> - The adversary submits a sequence of queries to the challenger.
-> For $i = 1, 2, \dots,$ the $i$-th query is a data block $x_i \in \mathcal X$.
-> The challenger computes $y_i \leftarrow f(x_i) \in \mathcal X$, and gives $y_i$ to the adversary.
-> - The adversary computes and outputs a bit $\hat{b} \in \{0, 1\}$.
-> 
-> For $b = 0, 1$, let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. We define $\mathcal A$'s **advantage** with respect to $\mathcal E$ as $$\text{BCadv}[\mathcal A, \mathcal E] = |P[W_0] - P[W_1]|.$$ Finally, we say that $\mathcal A$ is a $Q$-**query BC adversary** if $\mathcal A$ issues at most $Q$ queries.
+> [!definition] Parameters
+> - $\mathcal E = (E, D)$: a block cipher defined over $(\mathcal K, \mathcal X)$.
+> - $\text{Perms}[\mathcal X]$: the set of all permutations of $\mathcal X$.
+> - $Q$: the maximal number of queries.
 
 > [!definition] Secure Block Cipher
-> A block cipher $\mathcal E$ is **secure** if for all efficient adversaries $\mathcal A$, the value $\text{BCadv}[\mathcal A, \mathcal E]$ is negligible.
+> ### Scope
+> A block cipher $\mathcal E$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — forward queries only: $\mathcal A$ sends data blocks and receives their images under $E(k, \cdot)$ in Game 0, under a uniform permutation $f$ in Game 1.
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$; a **$Q$-query BC adversary** issues at most $Q$ queries.
+> - **Adaptivity** — each query may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches, **Game 0** (the block cipher) and **Game 1** (a random permutation), that differ in rows 1 and 2. `[BS Attack Game 4.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | **Game 0**: $k \xleftarrow{\$} \mathcal K$<br>**Game 1**: $f \xleftarrow{\$} \text{Perms}[\mathcal X]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Queries** (repeated, adaptive, at most $Q$ times): sends a data block $x_i \in \mathcal X$ |
+> | | **Game 0**: $y_i \leftarrow E(k, x_i)$<br>**Game 1**: $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{BCadv}[\mathcal A, \mathcal E] = \Big|\Pr\big[\mathsf{Expt}_0(\mathcal A) = 1\big] - \Pr\big[\mathsf{Expt}_1(\mathcal A) = 1\big]\Big|.$$
+> - A block cipher $\mathcal E$ is **secure** if $\text{BCadv}[\mathcal A, \mathcal E]$ is negligible for every efficient adversary $\mathcal A$.
+>
+> It is a *distinguishing* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> `[BS]` lets the challenger select $f \in \text{Perms}[\mathcal X]$ in both experiments — $k \xleftarrow{R} \mathcal K$ and $f \leftarrow E(k, \cdot)$ in Experiment 0 — and answers every query with $f(x_i)$; rows 1 and 2 above write the two cases out. It calls the output bit $\hat b$ and lets $W_b$ be the event that $\mathcal A$ outputs $1$ in Experiment $b$, so $\text{BCadv}[\mathcal A, \mathcal E] = |P[W_0] - P[W_1]|$.
 
 > [!remark] Bit-guessing Version
 > The challenger chooses $b \in \{0, 1\}$ at random, and then runs Experiment $b$ against the adversary $\mathcal A$. In this game, we measure $\mathcal A$'s **bit-guessing advantage** $\text{BCadv}^*[\mathcal A, \mathcal E]$ as $|P[\hat{b} = b] - 1/2|$: $$\text{BCadv}[\mathcal A, \mathcal E] = 2 \cdot \text{BCadv}^*[\mathcal A, \mathcal E].$$
 
-> [!remark] Prediction Game
-> The challenger chooses a random key $k$, and the adversary submits a sequence of queries $x_1, \dots, x_Q$; in response to the $i$-th query $x_i$, the challenger responds with $E(k, x_i)$. The adversary outputs a pair of values $(x_{Q + 1}, y)$, where $x_{Q + 1} \notin \{x_1, \dots, x_Q\}$. The adversary wins the game if $y = E(k, x_{Q + 1})$.
-> 
-> If the block cipher is secure then it is unpredictable.
+> [!definition] Parameters
+> - $\mathcal E = (E, D)$: a block cipher defined over $(\mathcal K, \mathcal X)$.
+> - $Q$: the number of queries before the prediction.
+
+> [!definition] Prediction Game
+> ### Scope
+> A block cipher $\mathcal E$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — forward queries to $E(k, \cdot)$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — the queries and the final point $x_{Q+1}$ may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A search game: one branch. `[BS §4.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Queries** (repeated, adaptive, $Q$ times): sends $x_i \in \mathcal X$ |
+> | | $y_i \leftarrow E(k, x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ x_{Q+1},\, y\ }$ | outputs a pair $(x_{Q+1}, y) \in \mathcal X^2$ |
+> | 4 | $y^* \leftarrow E(k, x_{Q+1})$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $x_{Q+1} \notin \{x_1, \dots, x_Q\}$: the point is new;
+> - $y = y^*$: its image is predicted.
+>
+> ---
+> ### Property
+> $$\text{Adv}^{\text{pred}}[\mathcal A, \mathcal E] = \Pr[\mathcal A \text{ wins}].$$
+> - $\mathcal E$ is **unpredictable** if $\text{Adv}^{\text{pred}}[\mathcal A, \mathcal E]$ is negligible for every efficient $\mathcal A$. The name $\text{Adv}^{\text{pred}}$ is mine; the note had none.
+> - If the block cipher is secure then it is unpredictable. `⚠️ CLAUDE – verify:` this needs $|\mathcal X|$ super-poly, since even a random permutation is predicted with probability $1/(|\mathcal X| - Q)$; my addition.
 
 > [!remark] Key Recovery Game
-> This game is similar to the prediction game except that the objective of the challenger is to outputs a candidate key $k \in \mathcal K$.
+> The game of [[#Key Recovery]]: like the prediction game, except that the objective of the adversary is to output a candidate key $k' \in \mathcal K$, and it wins iff $k' = k$.
 > 
 > If the block cipher is unpredictable then it is secure against key recovery game.
 
-> [!remark] Strongly Secure Block Cipher
-> Now there are two types of queries:
-> - **Forward queries**: The adversary sends a value $x_i \in \mathcal X$ to the challenger, who sends $y_i = f(x_i)$ to the adversary;
-> - **Inverse queries**: The adversary sends a value $y_i \in \mathcal X$ to the challenger, who sends $x_i = f^{-1}(y_i)$ to the adversary (In Experiment 0 in the attack game, this is done using algorithm $D$).
+> [!definition] Parameters
+> - $\mathcal E = (E, D)$: a block cipher defined over $(\mathcal K, \mathcal X)$; $D(k, \cdot)$ is the inverse of $E(k, \cdot)$.
+> - $\text{Perms}[\mathcal X]$: the set of all permutations of $\mathcal X$; $f^{-1}$: the inverse of $f$.
+
+> [!definition] Strongly Secure Block Cipher
+> ### Scope
+> A block cipher $\mathcal E$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — two types of queries, in any order: **forward queries**, answered with $f(x_i)$, and **inverse queries**, answered with $f^{-1}(y_j)$; in Game 0 this is done using algorithms $E$ and $D$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — each query may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A distinguishing game: the game of [[#Secure Block Cipher]] with inverse queries added; the branches differ in rows 1, 2 and 3. `[BS §4.1]`; `[KL Def 3.28]`.
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | **Game 0**: $k \xleftarrow{\$} \mathcal K$<br>**Game 1**: $f \xleftarrow{\$} \text{Perms}[\mathcal X]$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Forward queries** (repeated, adaptive): sends $x_i \in \mathcal X$ |
+> | | **Game 0**: $y_i \leftarrow E(k, x_i)$<br>**Game 1**: $y_i \leftarrow f(x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ y_j\ }$ | **Inverse queries** (repeated, adaptive, interleaved with row 2): sends $y_j \in \mathcal X$ |
+> | | **Game 0**: $x_j \leftarrow D(k, y_j)$<br>**Game 1**: $x_j \leftarrow f^{-1}(y_j)$ | $\xrightarrow{\ x_j\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{Adv}^{\text{ss}}[\mathcal A, \mathcal E] = \Big|\Pr\big[\mathsf{Expt}_0(\mathcal A) = 1\big] - \Pr\big[\mathsf{Expt}_1(\mathcal A) = 1\big]\Big|.$$
+> - $\mathcal E$ is **strongly secure** if $\text{Adv}^{\text{ss}}[\mathcal A, \mathcal E]$ is negligible for every efficient $\mathcal A$. The name $\text{Adv}^{\text{ss}}$ is mine; the note had none.
+> - `[KL Def 3.28]` calls the same notion a *strong pseudorandom permutation*.
 
 ### Using Block Cipher Directly for Encryption
 
@@ -64,13 +156,40 @@
 
 ### Key Recovery
 
-> [!algorithm] Key Recovery
-> For a given block cipher $\mathcal E = (E, D)$, defined over $(\mathcal K, \mathcal X)$, and for a given adversary $\mathcal A$, define the following game:
-> - The challenger picks a random $k \xleftarrow{R} \mathcal K$.
-> - $\mathcal A$ queries the challenger several times. For $i = 1, 2, \dots$, the $i$-th query consists of a message $x_i \in \mathcal M$. The challenger, given $x_i$, computes $y_i \xleftarrow{R} E(k, x_i)$, and gives $y_i$ to $\mathcal A$.
-> - Eventually $\mathcal A$ outputs a candidate key $k' \in \mathcal K$.
-> 
-> We say that $\mathcal A$ wins the game if $k' = k$. We let $\text{KRadv}[\mathcal A, \mathcal E]$ denote the probability that $\mathcal A$ wins the game.
+> [!definition] Parameters
+> - $\mathcal E = (E, D)$: a block cipher defined over $(\mathcal K, \mathcal X)$.
+
+> [!definition] Key Recovery
+> ### Scope
+> A block cipher $\mathcal E$ and all efficient adversaries.
+>
+> ---
+> ### Condition
+> - **Access** — forward queries to $E(k, \cdot)$: chosen plaintexts.
+> - **Promise** — none.
+> - **Quantifier** — $\forall$ efficient $\mathcal A$.
+> - **Adaptivity** — each query may depend on the earlier answers.
+>
+> ---
+> ### Experiment
+> A search game: one branch. `[BS Attack Game 4.4]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{\$} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ x_i\ }$ | **Queries** (repeated, adaptive): sends $x_i \in \mathcal X$ |
+> | | $y_i \leftarrow E(k, x_i)$ | $\xrightarrow{\ y_i\ }$ | |
+> | 3 | | $\xleftarrow{\ k'\ }$ | outputs a candidate key $k' \in \mathcal K$ |
+> | 4 | compares $k'$ with $k$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - $k' = k$.
+>
+> ---
+> ### Property
+> $$\text{KRadv}[\mathcal A, \mathcal E] = \Pr[\mathcal A \text{ wins}].$$
+> - $\mathcal E$ is secure against key recovery if $\text{KRadv}[\mathcal A, \mathcal E]$ is negligible for every efficient $\mathcal A$.
+> - In the [[Ideal Cipher Model|ideal cipher model]] the same advantage is written $\text{KR}^{ic}\text{adv}$, as in the theorem below.
 
 > [!theorem]
 > Let $\mathcal E = (E, D)$ be a block cipher defined over $(\mathcal K, \mathcal X)$. Then there exists a [[#Key Recovery|key recovery]] adversary $\mathcal A_{EX}$ with respect to $\mathcal E$, modeled as an ideal cipher, making $Q$ standard queries and $Q |\mathcal K|$ ideal cipher queries, such that $$\text{KR}^{ic}\text{adv}[\mathcal A_{EX}, \mathcal E] \geq 1 - \epsilon \quad \text{where} \quad \epsilon = \frac{|\mathcal K|}{(|\mathcal X| - Q)^Q}$$

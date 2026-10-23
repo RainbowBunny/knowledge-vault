@@ -2,6 +2,7 @@
   "enabledCssSnippets": [
     "dataview-tables",
     "math-blocks",
-    "pseudocode-callout"
+    "pseudocode-callout",
+    "nested-numbering"
   ]
 }

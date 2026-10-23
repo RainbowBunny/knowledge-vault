@@ -36,22 +36,22 @@ Anything conversational still works. The triggers exist so you never have to exp
 
 ## Ingest
 
-For `ingest <note>`. Decided 2026-10-14: judgement calls are **placed by default and reported**, not asked first; incomplete notes may be **supplemented** (step 4).
+For `ingest <note>`. Decided 2026-10-14: judgement calls are **placed by default and reported**, not asked first. **Revised 2026-10-19:** the raw note is *data* — a list of what you want in the vault — not text to preserve. The notes are written from real sources.
 
-1. **Read** the raw note in `inbox/`. Turn its `Source:` line into a `Reference:` line ([[Book Reference]] name + section, or the URL).
+1. **Read** the raw note in `inbox/` as a list of concepts, statements, examples and questions to cover. Its `Source:` line, if any, names the first source to consult.
 2. **Look up** every concept it defines or uses, across note names, `aliases:`, headings and `[!definition]` titles. For each, decide: new note · new section in an existing note · already there (link only) · specialization of an origin · homonym (qualified name).
-3. **Place**: the layout from [[Note Layouts]]; the home at the lowest layer where it can be stated; the user's wording, unchanged, inside the layout's slots; fields (`Extends::`, `Instantiates::`, `Requires::`, a `Specializes` line for sections); links to what already exists.
-4. **Supplement what is missing, and mark it.** Fill the empty slots of the layout for the concepts the note introduces: a missing Scope or Condition, a standard property, an example or counterexample. Every supplemented block ends with the tag `#supplemented` and its source is added to the note's `Reference:` line — so a tag search is the review queue, and removing the tag means *read and accepted*. Sources in this order: the one the note cites, then [[Book Reference]] and references already in the vault, then a standard text, then the web. Nothing from memory alone: if a claim could not be checked against a source, the report says so. A concept the note **uses** but the vault lacks gets a seed (`status:: seed` + Scope), not a full note. No tangents beyond the note's topic.
-5. **Do not fix the user's content.** Anything in their wording that looks wrong becomes a review comment in the report. If it contradicts an existing note, name both.
+3. **Find sources.** Every definition, theorem and example comes from a real source: the one the raw note names; then [[Book Reference]] and the sources already cited in the vault; then textbooks, lecture notes and papers that can be read freely (open-access books, author pages, arXiv, the IACR archives). Wikipedia only when nothing else is reachable, and the report says so. Nothing from memory: a statement no source confirms is left out, or kept with `⚠️ CLAUDE – verify:` when the note needs it.
+4. **Write**: the layout from [[Note Layouts]]; the home at the lowest layer where it can be stated; fields (`Extends::`, `Instantiates::`, `Requires::`, a `Specializes` line for sections); links to what already exists. Parameters in their own callout ([[Note Layouts]] § *Parameters and Building Blocks*); a security game as an interaction table with a **Game 0 / Game 1** cell where the games differ ([[Note Layouts]] § *Game form*); a named theorem with a few words that say what it states ([[Note Layouts]] § 12). Each definition and theorem carries a citation key such as `[EGH+ Thm 3.1]` that resolves on the note's `Reference:` line; a one-line consequence of a cited fact may be written out as a proof. No `#supplemented` tag, and no mention of the raw note.
+5. **Compare.** Where the raw note and the source disagree, the vault follows the source and the report lists the difference as a review comment — that is the feedback on your reading. If the source contradicts an existing note, name both.
 6. **Hubs and lint**: add new notes to their MOC; run `vault-lint.py`; broken, anchor, field and dupe must not go up.
 7. **Archive**: move the raw note to `inbox/done/` (deleting is blocked) and log the moves.
-8. **Report**: a table of what went where; every supplement with its source; every judgement call with the rule used, so it can be overruled; review comments.
+8. **Report**: a table of what went where; the sources used, with links; every judgement call with the rule used, so it can be overruled; review comments.
 
 ## Ownership
 
 | | owner |
 | --- | --- |
-| Everything in `knowledge/` | **you** — content is yours. Write it in `inbox/` and I place it (your wording, my structure), or write it in place yourself |
+| Everything in `knowledge/` | **you** — content is yours. Write raw notes in `inbox/` and I write them up from sources, or write in place yourself |
 | MOCs | **me** — say the word and I write or update them |
 | [[North Star]], [[Foundation Layer]], [[Cryptography Layer]], [[Note Layouts]], this plan | **me** |
 | `templates/layout-*.md` | **me** — regenerated from [[Note Layouts]] when a layout changes |

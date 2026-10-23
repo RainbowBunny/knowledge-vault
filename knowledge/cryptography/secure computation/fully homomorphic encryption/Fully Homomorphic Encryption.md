@@ -46,7 +46,8 @@
 
 > [!definition] Bootstrapping
 > **Setup (once, by the owner of $\mathrm{sk}_1$):** 
-> - $\mathrm{bk}_i \leftarrow \mathsf{Enc}(\mathrm{pk}_2, \mathrm{sk}_{1,i})$ for $i \in [1, n_{sk}]$, and $\mathrm{bk} = (\mathrm{bk}_1, \dots, \mathrm{bk}_{n_{sk}})$.
+> - $\mathrm{bk}_i \leftarrow \mathsf{Enc}(\mathrm{pk}_2, \mathrm{sk}_{1,i})$ for $i \in [1, n_{sk}]$.
+> - $\mathrm{bk} = (\mathrm{bk}_1, \dots, \mathrm{bk}_{n_{sk}})$.
 > 
 > ---
 > $c' \leftarrow \mathsf{Refresh}(\mathrm{pk}_2, \mathrm{bk}, c)$: (Randomized) Bootstrapping algorithm:
@@ -66,7 +67,9 @@
 > [!definition] Bootstrappable
 > A scheme is **$\Gamma$-bootstrappable** if for every $g \in \Gamma$, $\mathsf{Eval}$ is correct on $f_{\mathsf{Dec},g}$. That is, for all $(\mathrm{pk}, \mathrm{sk})$ and all ciphertexts $c_1, \dots, c_t$ that decrypt correctly,
 > $$\mathsf{Dec}\Big(\mathrm{sk}, \mathsf{Eval}\big(\mathrm{pk}, f_{\mathsf{Dec},g}, (\mathrm{bk}_1, \dots, \mathrm{bk}_{n_{sk}}, c'_{1,1}, \dots, c'_{t,n_c})\big)\Big) = g\big(\mathsf{Dec}(\mathrm{sk}, c_1), \dots, \mathsf{Dec}(\mathrm{sk}, c_t)\big)$$
-> where $\mathrm{bk}_i = \mathsf{Enc}(\mathrm{pk}, \mathrm{sk}_i)$ and $c'_{s,j} = \mathsf{Enc}(\mathrm{pk}, c_{s,j})$.
+> where
+> - $\mathrm{bk}_i = \mathsf{Enc}(\mathrm{pk}, \mathrm{sk}_i)$,
+> - $c'_{s,j} = \mathsf{Enc}(\mathrm{pk}, c_{s,j})$.
 >
 > Equivalently: the circuit class that $\mathsf{Eval}$ handles correctly contains all augmented decryption circuits $f_{\mathsf{Dec},g}$, $g \in \Gamma$.
 

@@ -2,53 +2,94 @@
 dg-publish: true
 ---
 Reference:
-- [[Book Reference|Algebra: Chapter 0]] - Chapter II: Groups, first encounter, Section 1.2: Definition; Section 1.3: Basic Properties; Section 1.4: Cancellation; Exercise 1.3; Exercise 1.4; Exercise 1.5; Section 8.2: Presentations.
+- `[Alu]` — [[Book Reference|Algebra: Chapter 0]] (P. Aluffi), Chapter II: Groups, first encounter, Section 1.2: Definition; Section 1.3: Basic Properties; Section 1.4: Cancellation; Exercise 1.3; Exercise 1.4; Exercise 1.5; Section 8.2: Presentations.
+- `[Jud]` — T. W. Judson, _Abstract Algebra: Theory and Applications_: https://abstract.ups.edu/aata/ (read in the LibreTexts copy, item numbers as there: https://math.libretexts.org/Bookshelves/Abstract_and_Geometric_Algebra/Abstract_Algebra%3A_Theory_and_Applications_%28Judson%29), §3.2 Definitions and Examples; §9.1 Isomorphisms; §12.1 Matrix Groups.
+- `[WP]` — Wikipedia, _General linear group_ (GL over a commutative ring): https://en.wikipedia.org/wiki/General_linear_group
+- `[BR]` — L. Berger, S. Rozensztajn, _Modular representations of $\mathrm{GL}_2(\mathbb F_p)$_ (PROMYS notes), §1, Exercise 2: https://perso.ens-lyon.fr/laurent.berger/autrestextes/GL2promys.pdf
 
 ## Definition
 
->[!definition] Group
-   A **group** consists of a nonempty set $G$ and a [[Binary Operation]] $\star$ on $G$:
+> [!definition] Parameters
+> - $G$: a nonempty [[Set]].
+> - $\star: G \times G \to G$: a [[Binary Operation]] on $G$.
+> - $e_G \in G$: the identity element of $\star$.
+
+> [!definition] Group
+> Extends:: [[Monoid]].
+>
+> ---
+> A **group** consists of a nonempty set $G$ and a [[Binary Operation]] $\star$ on $G$:
 > - $\star$ satisfies [[Associativity]], [[Identity Element]], [[Inverse Element]].
+>
+> `[Alu II.1.2]` `[Jud §3.2]`
 
 > [!definition] Group (Alternative)
-> Alternatively, a group is a [[Monoid]] with [[Inverse Element]].
+> Alternatively, a group is a [[Monoid]] with [[Inverse Element]]. `[Jud §3.2]`
 
 ## Property
 
 ### Identity
 
-> [!proposition] Uniqueness of Identity
-> If $h \in G$ is an identity of $G$, then $h = e_G$.
+> [!proposition] Uniqueness of Identity — a group has exactly one identity
+> If $h \in G$ is an identity of $G$, then $h = e_G$. `[Alu II.1.3]` `[Jud Prop 3.17]`
 
 ### Inverse
 
-> [!proposition] Uniqueness of Inverse
-> If $h_1, h_2$ are both inverses of $g$ in $G$, then $h_1 = h_2$.
+> [!proposition] Uniqueness of Inverse — each element has exactly one inverse
+> If $h_1, h_2$ are both inverses of $g$ in $G$, then $h_1 = h_2$. `[Alu II.1.3]` `[Jud Prop 3.18]`
 
-> [!proposition] Inverse of Product
+> [!proposition] Inverse of Product — the inverse of a product is the product of the inverses in reverse order
 > $$\forall g, h \in G, \quad (gh)^{-1} = h^{-1} g^{-1}$$
+> `[Jud Prop 3.19]`
 
 ### Cancellation
 
-> [!proposition]
-> Let $(G, \star)$ be a group, [[Cancellativity]] for $\star$ holds. 
-
+> [!proposition] Cancellation — a group operation is cancellative
+> Let $(G, \star)$ be a group, [[Cancellativity]] for $\star$ holds. `[Alu II.1.4]` `[Jud Prop 3.22]`
 
 ## Example
 
 > [!example]
-> If $|G| = p$ with prime $p$, then $G \cong \mathbb{Z} / p \mathbb{Z}$.
+> If $|G| = p$ with prime $p$, then $G \cong \mathbb{Z} / p \mathbb{Z}$. `[Jud Cor 9.9]`
 
 > [!example]
 > Each of the following is a group:
-> 1. $\text{GL}_n(\mathbb R) = \{n\text{-by-}n \text{ matrices } A \text{ with real coefficients and } \det(A) \neq 0\}$ with operation $\star$ is matrix multiplication.
+> 1. $\text{GL}_n(\mathbb R) = \{n\text{-by-}n \text{ matrices } A \text{ with real coefficients and } \det(A) \neq 0\}$ with operation $\star$ is matrix multiplication. `[Jud §12.1]` — see [[Matrix Group]].
+
+### General Linear Group over the Integers Modulo n
+
+> [!definition] Parameters
+> - $s \geq 1$: the degree (the size of the matrices).
+> - $n \geq 2$: the modulus; $\mathbb Z_n = \mathbb Z / n \mathbb Z$ ([[Modular Arithmetic]]).
 
 > [!definition] General Linear Group
-> The **General Linear Group** of order $s$, denoted $\text{GL}_s(\mathbb Z_n)$, is the monoid of invertible $s \times s$ matrices containing elements from $\mathbb Z_n$ with respect to multiplication such that the determinants of the matrices and $n$ are relatively prime.
+> The **General Linear Group** of degree $s$, denoted $\text{GL}_s(\mathbb Z_n)$, is the group of invertible $s \times s$ matrices containing elements from $\mathbb Z_n$ with respect to multiplication; these are exactly the matrices whose determinant and $n$ are relatively prime. `[WP]` `[Jud Prop 3.4(6)]`
 
-> [!theorem]
-> The order of the General Linear Group $\text{GL}_2(\mathbb Z_p)$ is given by $$|\text{GL}_2(\mathbb Z_p)| = (p^2 - 1)(q^2 - 1),$$ where $p$ is a prime integer.
+> [!theorem] Order of $\mathrm{GL}_2(\mathbb Z_p)$ — there are $(p^2 - 1)(p^2 - p)$ invertible $2 \times 2$ matrices modulo a prime
+> The order of the General Linear Group $\text{GL}_2(\mathbb Z_p)$ is given by $$|\text{GL}_2(\mathbb Z_p)| = (p^2 - 1)(p^2 - p),$$ where $p$ is a prime integer. `[BR §1 Ex. 2]`
 
-> [!lemma]
-> Let $n = pq$ where $p$ and $q$ are distinct prime integers. If $M \in \text{GL}_2(\mathbb Z_n)$, then $M \in \text{GL}_2(\mathbb Z_p)$ and $M \in \text{GL}_2(\mathbb Z_q)$. 
- 
+> [!lemma] Reduction modulo the prime factors — an invertible matrix modulo $pq$ stays invertible modulo $p$ and modulo $q$
+> Let $n = pq$ where $p$ and $q$ are distinct prime integers. If $M \in \text{GL}_2(\mathbb Z_n)$, then $M \in \text{GL}_2(\mathbb Z_p)$ and $M \in \text{GL}_2(\mathbb Z_q)$ (entries reduced modulo $p$, resp. modulo $q$). `[WP]`
+
+## Related
+
+### Descendants
+- [[Abelian Group]] — the operation is commutative
+- [[Cyclic Group]] — generated by a single element
+- [[p-Group]] — finite, of prime-power order
+
+### Instantiations
+- [[Trivial Group]] — the one-element group
+- [[Matrix Group]] — $\mathrm{GL}_n(\mathbb R)$ under matrix multiplication
+- [[Symmetric Group]] — the permutations of a set
+
+### Constructions
+- [[Subgroup]], [[Quotient Group]] — groups built inside and out of $G$
+- [[Free Group]], [[Group Presentation]] — groups from generators and relations
+- [[Group Homomorphism]], [[Group Action]] — maps out of a group
+
+### Properties
+- [[Group Order]] — the size of a group and the order of an element
+
+### Siblings
+- [[Monoid]] — inverses not required

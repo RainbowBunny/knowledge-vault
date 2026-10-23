@@ -29,3 +29,4 @@
 
 - [[Lattice Helper]] — crypto-side Gaussians: discrete Gaussian over lattices, tail bounds, rejection sampling, Rényi divergence
 - [[Indistinguishability]] — the crypto counterpart of statistical distance
+- [[Measure Theory MOC]] — the general setting: a probability is a measure of total mass $1$

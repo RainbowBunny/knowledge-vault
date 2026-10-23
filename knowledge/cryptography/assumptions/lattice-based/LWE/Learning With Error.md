@@ -1,3 +1,7 @@
+Reference:
+- `[Pei16]` — C. Peikert, _A Decade of Lattice Cryptography_, Foundations and Trends in Theoretical Computer Science 10(4), 2016; ePrint 2015/939: https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf
+- `[AKSY22]` — S. Agrawal, E. Kirshanova, D. Stehlé, A. Yadav, _Practical, Round-Optimal Lattice-Based Blind Signatures_, ACM CCS 2022; ePrint 2021/1565: https://eprint.iacr.org/2021/1565
+
 ## Parameters
 
 > [!definition] Parameters
@@ -26,8 +30,18 @@
 > Imagine we are placing balls from one space ($s$ space) into another ($e$ space).
 
 > [!definition] Learning With Error (LWE) Problem Distribution Version
-> Let $q, n, m, \alpha$ be functions of a parameter $\lambda$. For a secret $s \in \mathbb Z_q^n$, the distribution $A_{q, n, \alpha, s}$ over $\mathbb Z_q^n \times \mathbb Z_q$ is obtained by sampling $a \leftarrow \mathbb Z_q^n$ and an $e \leftarrow \mathcal D_{\mathbb Z, \alpha q}$, and returning $(a, \langle a, s \rangle + e) \in \mathbb Z_q^{n + 1}$. The Learning With Errors problem $\text{LWE}_{q, n, m, \alpha}$ is as follows: For $s \leftarrow \mathbb Z_q^n$, the goal is to distinguish between the distributions: $$D_0(s) = U(\mathbb Z_q^{m \times (n + 1)}) \quad \text{and} \quad D_1(s) = (A_{q, n, \alpha, s})^m.$$
-> We say that a $2^{o(\lambda)}$-time algorithm $\mathcal A$ solves $\text{LWE}_{q, n, m, \alpha}$ if it distinguishes $D_0(s)$ and $D_1(s)$ with $2^{-\omega(\lambda)}$ advantage (over the random coins of $\mathcal A$ and the randomness of the samples), with $2^{-\omega(\lambda)}$ probability over the randomness of $s$.
+> Let $q, n, m, \alpha$ be functions of a parameter $\lambda$. For a secret $s \in \mathbb Z_q^n$, the distribution $A_{q, n, \alpha, s}$ over $\mathbb Z_q^n \times \mathbb Z_q$ is obtained by sampling $a \leftarrow \mathbb Z_q^n$ and an $e \leftarrow \mathcal D_{\mathbb Z, \alpha q}$, and returning $(a, \langle a, s \rangle + e) \in \mathbb Z_q^{n + 1}$. The Learning With Errors problem $\text{LWE}_{q, n, m, \alpha}$ is the following distinguishing game; the two branches differ in row 1 only. `[AKSY22 Def 2.11]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $s \xleftarrow{\$} \mathbb Z_q^n$<br>**Game 0**: $X \leftarrow D_1(s) = (A_{q, n, \alpha, s})^m$<br>**Game 1**: $X \leftarrow D_0(s) = U(\mathbb Z_q^{m \times (n + 1)})$ | $\xrightarrow{\ X\ }$ | |
+> | 2 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_i(\mathcal A)$, the bit $b'$ in Game $i$.
+> - **Measure** — for the secret $s$ of row 1, how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1 \mid s]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1 \mid s]$ are, over the random coins of $\mathcal A$ and the randomness of the samples.
+>
+> The source names the uniform branch $D_0(s)$ and the LWE branch $D_1(s)$; here the real branch comes first. We say that a $2^{o(\lambda)}$-time algorithm $\mathcal A$ solves $\text{LWE}_{q, n, m, \alpha}$ if it distinguishes $D_0(s)$ and $D_1(s)$ with $2^{-\omega(\lambda)}$ advantage, with $2^{-\omega(\lambda)}$ probability over the randomness of $s$.
 
 ## Problem
 
@@ -37,18 +51,17 @@
 > Reference Name: $\text{SLWE}(n, m, q, \chi)$
 > 
 > ---
-> For any adversary $\mathcal A_\text{search}$, we define the following advantage:
-> $$\text{Adv}_\text{LWE}^\text{search}(\mathcal A_\text{search}) = 
-> \Pr\!\left[ 
-> \begin{array}{l}
-> (b - As \bmod q) \in \chi^m
-> \end{array} 
-> \;\middle |\; 
-> \begin{array}{l}
-> (A, b) \leftarrow \text{LWE}(n, m, q, \chi) \\
-> s \leftarrow \mathcal A_\text{search}(A, b)
-> \end{array} \right] 
-> $$
+> A search game: recover the secret of $m$ LWE samples. `[Pei16 Def 4.2.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $A \xleftarrow{\$} \mathbb Z_q^{m \times n}$<br>$s \xleftarrow{\$} \mathbb Z_q^n$<br>$e \leftarrow \chi^m$<br>$b = As + e$ | $\xrightarrow{\ (A,\, b)\ }$ | |
+> | 2 | | $\xleftarrow{\ s'\ }$ | outputs a candidate secret $s' \in \mathbb Z_q^n$ |
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - $s' = s$.
+>
+> $$\text{Adv}_\text{LWE}^\text{search}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
 
 ### Decision Variant
 
@@ -56,29 +69,18 @@
 > Reference Name: $\text{DLWE}(n, m, q, \chi)$
 > 
 > ---
-> For any adversary $\mathcal A_\text{decide}$, we define the following advantage:
-> $$\text{Adv}^\text{decide}_\text{LWE}(\mathcal A_\text{decide}) = 
-> \left|\; \Pr\!\left[
-> \begin{array}{l}
-> b' = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> (A, b) \leftarrow \text{LWE}(n, m, q, \chi) \\
-> b' \leftarrow \mathcal A_\text{decide}(A, b)
-> \end{array} \right] 
-> \;- 
-> \Pr\!\left[
-> \begin{array}{l}
-> b' = 1
-> \end{array}
-> \;\middle |\; 
-> \begin{array}{l}
-> (A, b) \xleftarrow{\$} \mathbb Z_q^{n \times m} \times \mathbb Z_q^n \\
-> b' \leftarrow \mathcal A_\text{decide}(A, b)
-> \end{array} \right] 
-> \right|.
-> $$
+> A distinguishing game: LWE samples against uniform ones; the two branches differ in row 1 only. `[Pei16 Def 4.2.3]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | **Game 0**: $(A, b) \leftarrow \text{LWE}(n, m, q, \chi)$<br>**Game 1**: $(A, b) \xleftarrow{\$} \mathbb Z_q^{m \times n} \times \mathbb Z_q^m$ | $\xrightarrow{\ (A,\, b)\ }$ | |
+> | 2 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_i(\mathcal A)$, the bit $b'$ in Game $i$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> $$\text{Adv}^\text{decide}_\text{LWE}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
 
 > [!proposition]
 > SLWE and DLWE are equivalent.

@@ -22,13 +22,13 @@ Reference:
 > Extends:: [[Public-Key Encryption Scheme]]
 >
 > ---
-> A **homomorphic encryption scheme** $E = (\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$ is a [[Public-Key Encryption Scheme]] $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$ together with one more algorithm and the parameter $\mathcal C_E$. The first three algorithms are those of the base note. All algorithms run in time $\mathrm{poly}(\lambda)$, and $\mathsf{Eval}$ in time $\mathrm{poly}(\lambda, |C|)$ `[S §1.1]`.
+> A **homomorphic encryption scheme** $E = (\mathsf{KeyGen}, \mathsf{Enc}, \mathsf{Dec}, \mathsf{Eval})$ is a [[Public-Key Encryption Scheme]] $(\mathsf{KeyGen}, \mathsf{Enc}, \mathsf{Dec})$ together with one more algorithm and the parameter $\mathcal C_E$. The first three algorithms are those of the base note. All algorithms run in time $\mathrm{poly}(\lambda)$, and $\mathsf{Eval}$ in time $\mathrm{poly}(\lambda, |C|)$ `[S §1.1]`.
 > - $c \leftarrow \mathsf{Eval}(\mathrm{pk}, C, (c_1, \dots, c_t))$: (Possibly randomized) Evaluation algorithm `[T §2.1]`.
 >     - **Input**: a public key $\mathrm{pk}$; a circuit $C \in \mathcal C_E$ with $t$ inputs over $\mathcal M$; ciphertexts $c_1, \dots, c_t \in \mathcal C$ of its input wires.
 >     - **Output**: a ciphertext $c \in \mathcal C$ meant to encrypt $C(m_1, \dots, m_t)$ (see Correctness).
 
 > [!remark] Notation in the literature
-> The base algorithms are as in [[Public-Key Encryption Scheme#Syntax|PKE]]. For $\mathsf{Eval}$ and the key material the sources differ as follows.
+> The base algorithms are as in [[Public-Key Encryption Scheme#Syntax|PKE]]; key generation is $\mathsf{KeyGen}$, as $\mathsf{KeyGen}_E$ in `[T §2.1]` and `[S §1.1]`. For $\mathsf{Eval}$ and the key material the sources differ as follows.
 >
 > | source | algorithms | differences |
 > | --- | --- | --- |
@@ -49,7 +49,7 @@ Reference:
 > - $C \in \mathcal C_E$: a permitted circuit with $t$ inputs over $\mathcal M$.
 
 > [!definition] Correctness for $\mathcal C_E$ `[T 2.1.1]` `[S §1.1]`
-> $E$ is **correct for $\mathcal C_E$** if for **every** key pair $(\mathrm{pk}, \mathrm{sk})$ output by $\mathsf{Gen}(1^\lambda)$, **every** circuit $C \in \mathcal C_E$ with $t$ inputs, **every** $(m_1, \dots, m_t) \in \mathcal M^t$ and every $c_i \leftarrow \mathsf{Enc}(\mathrm{pk}, m_i)$:
+> $E$ is **correct for $\mathcal C_E$** if for **every** key pair $(\mathrm{pk}, \mathrm{sk})$ output by $\mathsf{KeyGen}(1^\lambda)$, **every** circuit $C \in \mathcal C_E$ with $t$ inputs, **every** $(m_1, \dots, m_t) \in \mathcal M^t$ and every $c_i \leftarrow \mathsf{Enc}(\mathrm{pk}, m_i)$:
 > $$\mathsf{Dec}(\mathrm{sk}, \mathsf{Eval}(\mathrm{pk}, C, (c_1, \dots, c_t))) = C(m_1, \dots, m_t)$$
 > except with negligible probability over the coins of $\mathsf{Eval}$ `[T 2.1.1]`.
 
@@ -83,8 +83,8 @@ Reference:
 ## Security
 
 > [!remark] What "secure" means for a homomorphic scheme
-> `⚠️ CLAUDE – verify:` I take the notion to be that of the base note, [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]] of $(\mathsf{Gen}, \mathsf{Enc}, \mathsf{Dec})$, with no separate game for $\mathsf{Eval}$: $\mathsf{Eval}$ takes only public inputs ($\mathrm{pk}$, $C$, ciphertexts), so an adversary can run it itself. This is my reasoning; I did not locate the sentence in `[T §2.1]` or `[S §1.1]` in this pass.
-> By the same token IND-CCA2 is out of reach for a scheme whose $\mathsf{Eval}$ turns a challenge ciphertext into a different valid ciphertext of a related plaintext: the adversary submits that ciphertext to the decryption oracle. This is folklore, not taken from the sources above; confirm it before relying on it.
+> `⚠️ CLAUDE – verify:` I take the notion to be that of the base note, [[Indistinguishability under Chosen-Plaintext Attack|IND-CPA]] of $(\mathsf{KeyGen}, \mathsf{Enc}, \mathsf{Dec})$, with no separate game for $\mathsf{Eval}$: $\mathsf{Eval}$ takes only public inputs ($\mathrm{pk}$, $C$, ciphertexts), so an adversary can run it itself. This is my reasoning; I did not locate the sentence in `[T §2.1]` or `[S §1.1]` in this pass.
+> By the same token IND-CCA2 is out of reach for a scheme whose $\mathsf{Eval}$ turns a challenge ciphertext into a different valid ciphertext of a related plaintext: the adversary submits that ciphertext to the decryption oracle. `[T §1.6]` says the same: CCA2 security is impossible because the ciphertexts are extremely malleable.
 > Security that depends on how keys are used inside bootstrapping is separate: see [[Key-Dependent Message Security|KDM Security]].
 
 ## Related

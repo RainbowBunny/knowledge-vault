@@ -131,6 +131,7 @@ Current origins: [[Homomorphism]] · [[Morphism]] (isomorphism, mono, epi, endo,
 - **Placement.** Where a layout puts the definition under a heading (`## Syntax`, `## Definition`), the two callouts sit directly under that heading, Parameters first.
 - **One per object, not one per note.** A note with several definitions (a correctness notion with a bound $\delta$, a game with oracles and a time bound) gives each its own `Parameters` callout, short as it may be. Omit the callout only when the definition introduces and uses no symbol.
 - **Already this way:** Problem (8) and Assumption (9). **Changed to this way:** Primitive (5), Scheme (6), Transform (7), Security property (10). **Not affected:** Property (2) and Theorem (12), whose `### Scope` line plays this role.
+- **Extended 2026-10-19, on your instruction:** defining parameters always go in their own callout. Property (2) and Theorem (12) keep `### Scope` for the object the property is about, and add a `Parameters` callout above it when they introduce further symbols (a constant $c$, a measure $\mathcal O$) — [[Contraction]], [[Stationary Measure]].
 
 Worked examples: [[Kyber PKE]] (Parameters and Building Blocks as separate callouts above the algorithms); [[Gentry Bootstrapping Transformation]] (`Import` lines in Parameters, a quantified Building Block).
 
@@ -547,15 +548,32 @@ Reference:
 
 ## Problem
 
-### Search Variant                      ← a **search game**
+### Search Variant                      ← a **search game**, drawn as in layout 10
 
-> [!definition] Search <Name> Advantage
-> $$\mathsf{Adv}^\mathsf{search}(\mathcal A) = \Pr[\dots]$$
+> [!definition] Search <Name>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $(\mathbf x, \mathbf w) \leftarrow \mathrm{<NAME>}(\dots)$ | $\xrightarrow{\ \mathbf x\ }$ | |
+> | 2 | | $\xleftarrow{\ \mathbf w'\ }$ | outputs a candidate solution $\mathbf w'$ |
+>
+> **Goal** — $\mathcal A$ wins iff:
+> - <the winning condition, one bullet each>
+>
+> $$\mathsf{Adv}^\mathsf{search}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
 
-### Decision Variant                    ← a **distinguishing game**
+### Decision Variant                    ← a **distinguishing game**, drawn as in layout 10
 
-> [!definition] Decision <Name> Advantage
-> $$\mathsf{Adv}^\mathsf{decide}(\mathcal A) = \big|\Pr[\dots] - \Pr[\dots]\big|$$
+> [!definition] Decision <Name>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | **Game 0**: $\mathbf x \leftarrow \mathrm{<NAME>}(\dots)$<br>**Game 1**: $\mathbf x \leftarrow U(\dots)$ | $\xrightarrow{\ \mathbf x\ }$ | |
+> | 2 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> $$\mathsf{Adv}^\mathsf{decide}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
 
 ## Claim
 
@@ -582,46 +600,54 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 >
 > ---
 > ### Condition
-> - **Access** — what $\mathcal A$ may query and when: the oracle set ($\mathcal O_\mathsf{find}, \mathcal O_\mathsf{guess}$),
->   or the response map $\mathcal O$ for a proof system.
+> - **Access** — what $\mathcal A$ may query and when, or the response map $\mathcal O$ for a proof system.
 > - **Promise** — what the challenger guarantees about the input ($\mathbf x \in \mathcal L$, $\mathbf x \notin \mathcal L$, $(\mathbf x, \mathbf w) \in \mathcal R$, none).
 > - **Quantifier** — $\forall \mathcal A$, and where $\exists \mathcal S$ / $\exists \mathcal E$ sits relative to it.
 > - **Adaptivity** — when $\mathcal A$ commits, relative to `Setup`.
 >
 > ---
-> ### Experiment                       ← an interaction between challenger and adversary, not a list of assignments
+> ### Experiment                       ← two stateful interactive machines, not a list of assignments
+> <one sentence: search or distinguishing; which row branches> `[<source and number>]`
+>
 > | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
 > | --- | --- | --- | --- |
-> | 1 | $(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{Gen}(1^\lambda)$ | $\xrightarrow{\ \mathrm{pk}\ }$ | |
-> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | $\mathcal A_\mathsf{find}(\mathrm{pk})$ |
-> | 3 | **Game 0**: $c \leftarrow \mathsf{Enc}(m_0)$<br>**Game 1**: $c \leftarrow \mathsf{Enc}(m_1)$ | $\xrightarrow{\ c\ }$ | |
-> | 4 | | $\xleftarrow{\ b'\ }$ | $\mathcal A_\mathsf{guess}(c)$ |
+> | 1 | $\mathrm{aux} \leftarrow \mathcal P(1^\lambda)$<br>$(\mathrm{pk}, \mathrm{sk}) \leftarrow \mathsf{KeyGen}(1^\lambda, \mathrm{aux})$ | $\xrightarrow{\ \mathrm{pk}\ }$ | |
+> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | chooses $m_0, m_1 \in \mathcal M$ with $\lvert m_0 \rvert = \lvert m_1 \rvert$ |
+> | 3 | **Game 0**: $c^* \leftarrow \mathsf{Enc}(\mathrm{pk}, m_0)$<br>**Game 1**: $c^* \leftarrow \mathsf{Enc}(\mathrm{pk}, m_1)$ | $\xrightarrow{\ c^*\ }$ | |
+> | 4 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
 >
-> **Target** — what the experiment outputs, e.g. "one bit: $\mathsf{Expt}_b(\mathcal A)$ is the $b'$ that $\mathcal A$ outputs in Game $b$"
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
 >
 > ---
 > ### Property
-> $$\mathsf{Adv}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0 = 1] - \Pr[\mathsf{Expt}_1 = 1]\big| \leq \varepsilon \qquad \text{(search game: } \Pr[\mathsf{Expt} = 1] \leq \varepsilon\text{)}$$
-> A **search** game ($\Pr[\text{win}]$) or a **distinguishing** game ($|\Pr[G_0] - \Pr[G_1]|$) — see [[Security Game]].
+> $$\mathsf{Adv}(\mathcal A) = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> $\Pi$ is <name> if $\mathsf{Adv}(\mathcal A) \leq \varepsilon$ for every $\mathcal A \in \mathbb A$. A **search** game ($\Pr[\text{win}]$) or a **distinguishing** game ($|\Pr[G_0] - \Pr[G_1]|$) — see [[Security Game]].
 
 ## Variant
 
 ## Related                          ← grouped: Descendants · Instantiations · Constructions · Properties · Siblings
 ```
 
-**Game form — an interaction, not an algorithm.** *Added 2026-10-14.* A security experiment is a conversation between a challenger and an adversary, so it is written as one: a table with the challenger on the left, the adversary on the right and the message between them (`→` challenger to adversary, `←` back), one row per step. Rules:
+**Game form — an interaction, not an algorithm.** *Added 2026-10-14, unified 2026-10-19.* A security experiment is a conversation between a challenger and an adversary, so it is written as one: a table with the challenger on the left, the adversary on the right and the message between them (`→` challenger to adversary, `←` back), one row per step. Rules:
+- **Follow the literature.** The game in a note is the game of its source, redrawn in this shape, and the source is cited on the line above the table. Where an older version of the note disagrees with the source, the source wins.
+- **Two stateful interactive machines.** $\mathcal C$ and $\mathcal A$ are interactive machines that keep state: each remembers everything it received and computed in earlier rows, including its random tape. So the adversary's column never shows inputs — write "chooses $m_0, m_1$ …", "sends $\mathbf x$", "outputs a bit $b'$", never $b' \leftarrow \mathcal A(c^*)$ or $\mathcal A_\mathsf{find}(\mathrm{pk})$. There is one adversary and no phases; a source that splits $\mathcal A$ into $(\mathcal A_1, \mathcal A_2)$ or threads a `state` gets that in the note's literature remark. Stated once in [[Security Game]].
+- **One equation per line.** In a cell, each assignment, sampling or update is its own line, separated by `<br>`; never chain two with `;`. The same outside the table: two displayed equations are two lines, and a condition with several equations is a list.
 - **Branch only where the games differ.** A distinguishing game has one table and a cell with two lines, **Game 0** and **Game 1**: the real branch first, the simulated / challenge-$m_1$ / fake-oracle branch second. A reduction then reads as a step from Game $i$ to Game $i+1$, and the hybrid argument has names for its games.
 - **The advantage is the difference**, $|\Pr[\mathsf{Expt}_0 = 1] - \Pr[\mathsf{Expt}_1 = 1]|$, not "the adversary guesses a hidden bit". The bit-guessing form $|\Pr[b' = b] - 1/2|$ is exactly half of it; mention that in a remark when a source uses it, and do not mix the two in one note.
-- **A search game has one branch** (soundness, linear-only): the challenger's last row outputs the bit.
-- **Phases share memory.** $\mathcal A_\mathsf{find}$ and $\mathcal A_\mathsf{guess}$ are names for the two moments of one adversary, not two algorithms; say so in a remark rather than threading a state variable through every row (a source that writes `state` or $s$ gets its notation in the note's literature remark).
-- **An oracle is a message.** A query is a row (or a repeated row) in which the adversary sends and the challenger answers; the Access line says which answers are available.
+- **A search game has one branch** (soundness, unforgeability, linear-only): the challenger's last row computes the winning conditions.
+- **An oracle is a message.** A query is a pair of rows — the adversary sends, the challenger answers — marked "(repeated, adaptive, at most $q$ times)" when it repeats; the Access line says which answers are available.
 - **Auxiliary algorithms sit in the row that calls them**: the simulator $\mathcal S$ in the cell where it produces the challenge, the extractor $\mathcal E$ in the challenger's row after the adversary has spoken.
-- **State the target.** *Added 2026-10-14.* Under the table, one line `**Target** — …` says what the experiment outputs and what the property compares. Three cases: (1) *one bit* — a distinguishing game; the target is the $b'$ that $\mathcal A$ outputs, and $\mathsf{Expt}_b$ is its value in Game $b$; (2) *several results folded into one bit* — a search game with $k$ outputs; list the vector $(w_1, \dots, w_k)$ and say how it is folded ($\bigvee$: the adversary wins if any entry does; $\bigwedge$: only if all do; or the index is chosen by whom) — [[Linear-Only Security]]; (3) *a tuple or a view* — e.g. the decryptions of $k$ output ciphertexts, or a verifier's whole view; the target is a random variable that the two games produce and a distinguisher $D$ compares, so $D$ goes in Parameters and the advantage is $D$'s — [[Strictly Linear Targeted Malleability]], [[Zero Knowledge]]. The Property section then only says how the target is compared (a difference of two probabilities, a probability, a distance between distributions). A note whose target is not stated cannot say what a reduction has to preserve.
-- **Draw the notes in the same shape.** [[Indistinguishability under Chosen-Plaintext Attack]], [[Public-Key Encryption Scheme]], [[Key-Dependent Message Security]], [[Circuit Privacy]] and [[Linear-Only Security]] are worked examples; the older proof-system properties ([[Zero Knowledge]], [[Soundness]]) still use the probability-over-assignments form and move to this one when touched.
+- **The goal is a list.** *Revised 2026-10-19.* Under the table, `**Goal**` and one bullet per item. A distinguishing game: an **Output** bullet ($\mathsf{Expt}_b$ is the adversary's bit in Game $b$) and a **Measure** bullet (what is compared). A search game: "$\mathcal A$ wins iff" and one bullet per winning condition, saying whether all or any must hold — [[Linear-Only Security]]. A tuple or a view: an **Output** bullet naming the random variable and a **Measure** bullet naming the distinguisher $D$, which then goes in Parameters — [[Strictly Linear Targeted Malleability]], [[Zero Knowledge]]. The Property section only says how the goal is compared (a difference of probabilities, a probability, a distance between distributions).
+- **Key generation is $\mathsf{KeyGen}$.** *Added 2026-10-19.* The house name for the algorithm that produces keys, whatever the source calls it ($\mathsf{Gen}$, $G$, $\mathsf{KG}$, $\mathsf{keygen}$, $\mathsf{KeyDer}$); the source's name goes in the literature remark. $\mathsf{Setup}$ stays $\mathsf{Setup}$ when it outputs public parameters or a master key from which $\mathsf{KeyGen}$ derives user keys ([[Functional Encryption]], [[Trace-and-Revoke Scheme]]).
+- **Draw the notes in the same shape.** Worked examples: [[Indistinguishability under Chosen-Plaintext Attack]] (distinguishing, one challenge), [[Inner-Product Functional Encryption#IND-CPA]] (key queries on both sides of the challenge), [[Trace-and-Revoke Scheme]] (a search game and a distinguishing game in one note).
 
-**Access is the one general knob.** [[Public-Key Encryption Scheme (Old)]] already parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles each phase gets — and a proof system's response map is the same slot under another name.
+**Access is the one general knob.** [[Public-Key Encryption Scheme]] parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles the adversary has before and after the challenge — and a proof system's response map is the same slot under another name.
 
 Those four Condition lines are not a wish list: **each one is a place something broke.** Access → an adversary handed the *real* state in a simulated branch. Promise → completeness confused with soundness. Quantifier → a simulator with no $\exists$. Adaptivity → a non-adaptive model written adaptively.
+
+**No game where the source has none.** *Added 2026-10-20.* Completeness and correctness, and soundness or knowledge against a *fixed* cheating strategy (a proof vector $\boldsymbol\pi^*$, a deterministic prover $\mathcal P'$), are quantified statements in the literature, not interactions: write them as the source does — the quantifiers first, one displayed equation per line, and the sampling steps as a list under "where" — [[Linear Probabilistically Checkable Proofs]], [[Interactive Proof Systems]], [[Vector Encryption#Additive homomorphism]]. A correctness notion that the source does define with an adversary (a scheduler choosing inputs) is drawn as a game — [[Bidirectional Ratcheted Key Exchange]].
 
 **Where it stops.** Correctness has no adversary; succinctness is a complexity predicate, not a game; and UC / composability is a different framework entirely (an ideal functionality and an environment, not a two-party experiment). Do not force those into this shape.
 
@@ -679,6 +705,8 @@ grep -rho '^> \[!\(theorem\|lemma\|proposition\|corollary\)\] .\+' --include='*.
 ```
 
 **A named result stated twice has already earned a note.**
+
+**A named theorem says what it states.** *Added 2026-10-19.* After the name in the callout title, a few words state the result: `> [!theorem] Banach fixed-point theorem — a contraction has exactly one fixed point`. Where the theorem is only mentioned — a list, a MOC line, a Related bullet — the same few words follow the name. The name says who proved it; the few words say when to reach for it. Examples: [[Contraction]], [[Group Representation]], [[Iterated Function System]], [[Hecke Algebra]].
 
 > [!remark] Which note owns a two-hypothesis theorem?
 > **The one it says the most about — and you find that out by sharpening it until only one hypothesis is

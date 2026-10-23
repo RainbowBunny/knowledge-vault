@@ -73,6 +73,8 @@
 
 ### Lipschitz-1 Function
 
+Specializes [[Lipschitz Map]].
+
 > [!example]
 > Let $f$ be a function that $|f(u) - f(v)| \leq |u - v|$ for all $u$ and $v$ in an interval $[a, b]$.
 > 1. $f$ is continuous at each point of $[a, b]$.

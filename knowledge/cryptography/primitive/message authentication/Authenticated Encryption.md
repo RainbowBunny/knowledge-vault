@@ -1,12 +1,27 @@
+Reference:
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023: https://toc.cryptobook.us/ (Ch. 9, Attack Game 9.1). `⚠️ CLAUDE – verify:` WebFetch returns only the first ~17 pages of the book, so Attack Game 9.1 could not be read; the table redraws the wording this note already had. Check it against the book.
+- `⚠️ CLAUDE – verify:` — a point I could not check against the source.
+
 ## Ciphertext Integrity
 
 > [!definition] SKE Ciphertext Integrity Advantage
-> For an adversary $\mathcal A$:
-> - The challenger chooses $k \xleftarrow{R} \mathcal K$.
-> - For $i = 1, 2, \dots$, $\mathcal A$ submits $m_i \in \mathcal M$; the challenger returns $c_i \xleftarrow{R} E(k, m_i)$.
-> - $\mathcal A$ eventually outputs a candidate ciphertext $c \notin \{c_1, c_2, \dots\}$.
+> For a cipher $\mathcal E = (E, D)$ over $(\mathcal K, \mathcal M, \mathcal C)$ and an adversary $\mathcal A$:
 >
-> $\mathcal A$ wins if $D(k, c) \neq \text{reject}$. Define $\text{CIadv}[\mathcal A, \mathcal E] = \Pr[\mathcal A \text{ wins}]$. $\mathcal A$ is a **$Q$-query adversary** if it issues at most $Q$ encryption queries.
+> A search game: one branch. `[BS Attack Game 9.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $k \xleftarrow{R} \mathcal K$ | | |
+> | 2 | | $\xleftarrow{\ m_i\ }$ | **Encryption queries** (repeated, adaptive): sends $m_i \in \mathcal M$, for $i = 1, 2, \dots$ |
+> | | $c_i \xleftarrow{R} E(k, m_i)$ | $\xrightarrow{\ c_i\ }$ | |
+> | 3 | | $\xleftarrow{\ c\ }$ | outputs a candidate ciphertext $c \in \mathcal C$ |
+> | 4 | $m \leftarrow D(k, c)$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all hold:
+> - $c \notin \{c_1, c_2, \dots\}$: $c$ is not a ciphertext it was given;
+> - $m \neq \text{reject}$: $c$ decrypts.
+>
+> Define $\text{CIadv}[\mathcal A, \mathcal E] = \Pr[\mathcal A \text{ wins}]$. $\mathcal A$ is a **$Q$-query adversary** if it issues at most $Q$ encryption queries.
 
 > [!definition] Ciphertext Integrity
 > A cipher $\mathcal E$ provides **ciphertext integrity** (CI) if $\text{CIadv}[\mathcal A, \mathcal E]$ is negligible for every efficient $\mathcal A$.

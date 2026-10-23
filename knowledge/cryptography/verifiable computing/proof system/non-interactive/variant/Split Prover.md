@@ -2,75 +2,51 @@
 dg-publish: true
 ---
 Reference:
-- https://eprint.iacr.org/2025/373.pdf
+- `[GGKSS25]` — S. Garg, A. Goel, D. Kolonelos, S. Shiehian, R. Sinha, _Split Prover Zero-Knowledge SNARKs_, PKC 2025, LNCS 15674, pp. 353–380; ePrint 2025/373: https://eprint.iacr.org/2025/373. The paper's text could not be read; this note follows the PKC 2025 talk slides: https://iacr.org/submit/files/slides/2025/pkc/pkc2025/97/97_slides.pdf
+- `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
 
 ## Syntax
 
+> [!definition] Parameters
+> - [[Non-Interactive Proof Systems]]: Import $(\mathcal R, \mathrm{crs}, \mathrm{st})$ and $(\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$.
+> - $\mathbf x = \mathbf x_1 \Vert \mathbf x_2$, $\mathbf w = \mathbf w_1 \Vert \mathbf w_2$: the statement and the witness, each split into a first and a second part.
+> - $\mathrm{aux}$: the hand-off from the first prover to the second.
+>
+> `[GGKSS25, slides]`
+
 > [!definition] Split Prover
-> Let $\Pi_\mathsf{NIPS} = (\mathsf{Setup}, \mathsf{Prove}, \mathsf{Verify})$ be a [[Non-Interactive Proof Systems]] for a relation $\mathcal{R}$ **decided by a circuit $\mathbf{C}$**, we say that $\Pi$ admits a **split prover** if there exist algorithms $\Pi_\mathsf{split} = (\mathsf{Setup}_\mathsf{split}, \mathsf{Prove}_{I}, \mathsf{Prove}_{II})$:
-> - $(\mathrm{srs}_{I}, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}) \leftarrow \mathsf{Setup}_\mathsf{split}(1^\lambda, \mathcal R, \mathcal{X}_{II}, \mathcal{W}_{II})$: On indexed sets $\mathcal{X}_{II}, \mathcal{W}_{II}$ specifying the phase-$II$ portions of statement and witness, outputs the split reference string for each phase and the verification state $\widetilde{\mathrm{st}}$.
-> - $\mathrm{aux}_\mathsf{split} \leftarrow \mathsf{Prove}_{I}(\mathrm{srs}_{I}, \mathbf{x}_I, \mathbf{w}_I)$: On the phase $I$ split reference string and the phase-$I$ portion of statement and witness, outputs auxiliary information for phase-$II$.
-> - $\boldsymbol{\pi^*} \leftarrow \mathsf{Prove}_{II}(\mathrm{srs}_{II}, \mathbf{x}_{II}, \mathbf{w}_{II}, \mathrm{aux}_\mathsf{split})$: On the phase $II$ split reference string, phase-$II$ portion of statement and witness and auxiliary information, outputs a proof.
-> 
-> Also, we can write $\mathbf{C} = \mathbf{C}_{II}(\mathbf{x}_{II}, \mathbf{w}_{II}, \mathbf{C}_{I}(\mathbf{x}_I, \mathbf{w}_I))$
+> A zkSNARK **admits a split prover** if proving can be done by two provers $(\mathcal P_1, \mathcal P_2)$ whose output the *original* verifier accepts:
+> - $\mathrm{aux} \leftarrow \mathsf{Prove}_1(\mathbf x_1, \mathbf w_1)$: run by $\mathcal P_1$, who holds the first part.
+> - $\boldsymbol\pi \leftarrow \mathsf{Prove}_2(\mathbf x_2, \mathbf w_2, \mathrm{aux})$: run by $\mathcal P_2$, who holds the second part and $\mathrm{aux}$.
+> - $\mathsf{Verify}(\mathbf x, \boldsymbol\pi) = 1$: the verifier of the original zkSNARK, unchanged.
+>
+> `[GGKSS25, slides]`
+>
+> `⚠️ CLAUDE – verify:` the slides omit the reference string; in the paper both provers presumably take (parts of) $\mathrm{crs}$.
 
-> [!remark] Naming
-> $\mathrm{aux}_\mathsf{split}$ is the hand-off from $\mathsf{Prove}_{I}$ to $\mathsf{Prove}_{II}$. The plain $\mathrm{aux}$ is reserved for the context returned by the relation generator, see [[Non-Interactive Proof Systems]].
-
-> [!remark] View of Each Party
-> **Public View**: $\mathcal{R}, \mathbf{C}, \mathcal{X}_{II}, \mathcal{W}_{II}$.
-> **Prover I**: $\mathrm{srs}_I, \mathbf{x}_I, \mathbf{w}_I$.
-> **Prover II**: $\mathrm{srs}_{II}, \mathbf{x}_{II}, \mathbf{w}_{II}, \mathrm{aux}_\mathsf{split}$. 
-> **Verifier**: $\tilde{\mathrm{st}}, \mathbf{x}, \mathbf{\pi}$.
+> [!remark] Who sees what
+> - $\mathcal P_1$: $\mathbf x_1, \mathbf w_1$.
+> - $\mathcal P_2$ (the delegatee): $\mathbf x_2, \mathbf w_2, \mathrm{aux}$ — it must not learn $\mathbf w_1$.
+> - Verifier: $\mathbf x, \boldsymbol\pi$.
+>
+> The application is delegation: $\mathcal P_1$ does a light first step and hands the rest of the proving work to $\mathcal P_2$. `[GGKSS25, slides]`
 
 ## Property
- 
-### Split Correctness
 
-> [!definition] Split Correctness
-> For any adversary $\mathcal{A} = (\mathcal{A}_\mathsf{find})$, we define the split correctness advantage:
-> $$\mathsf{Adv}_{\Pi_\mathsf{NIPS}, \Pi_\mathsf{split}}^\mathsf{scmp}(\mathcal{A}) = 
-\Pr\!\left[ 
-\begin{array}{l}
-\mathsf{Verify}(\mathrm{st}, \mathbf{x}, \boldsymbol{\pi}) = \mathsf{Verify}(\widetilde{\mathrm{st}}, \mathbf{x}, \boldsymbol{\pi}')
-\end{array} 
-\;\middle |\; 
-\begin{array}{l}
-(\mathcal{X}_{II}, \mathcal{W}_{II}, \mathbf{x}, \mathbf{w}) \leftarrow \mathcal{A}_\mathsf{find}(\mathcal{R}) \\
-(\mathrm{crs}, \mathrm{st}) \leftarrow \mathsf{Setup}(1^\lambda, \mathcal{R}); (\mathrm{srs}_I, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}) \leftarrow \mathsf{Setup}_\mathsf{split}(1^\lambda, \mathcal{R}, \mathcal{X}_{II}, \mathcal{W}_{II}) \\
-\mathbf{x} = (\mathbf{x}_I || \mathbf{x}_{II}); \mathbf{w} = (\mathbf{w}_I || \mathbf{w}_{II}) \\
-\boldsymbol{\pi} \leftarrow \mathsf{Prove}(\mathrm{crs}, \mathbf{x}, \mathbf{w}) \\
-\mathrm{aux}_\mathsf{split} \leftarrow \mathsf{Prove}_{I}(\mathrm{srs}_I, \mathbf{x}_{I}, \mathbf{w}_{I});
-\boldsymbol{\pi}' \leftarrow \mathsf{Prove}_{II}(\mathrm{srs}_{II}, \mathbf{x}_{II}, \mathbf{w}_{II}, \mathrm{aux}_\mathsf{split})
-\end{array} \right]$$
+### Split correctness
+The two-phase proof is accepted by the original verifier whenever the original prover's would be. `[GGKSS25, slides]` (named only; formal statement in the paper, not read.)
 
 ## Security
 
-### Split Zero-Knowledge
+### Split zero knowledge
+$\mathrm{aux}$ leaks nothing about $\mathbf w_1$ to $\mathcal P_2$. `[GGKSS25, slides]` (named only; the paper's simulator and experiment were not read.)
 
-> [!definition] Split Zero-Knowledge
-> For any adversary $\mathcal{A} = (\mathcal{A}_\mathsf{choose}, \mathcal{A}_\mathsf{guess})$and simulator $\mathcal{S} = (\mathcal{S}_\mathsf{setup})$, we define the zero-knowledge advantage:
-> $$\mathsf{Adv}_{\Pi_\mathsf{NIPS}, \Pi_\mathsf{split}}^{\mathsf{szk}}(\mathcal{A}) = \left|\; \Pr\!\left[
-\begin{array}{l}
-b' = 1
-\end{array}
-\;\middle |\; 
-\begin{array}{l}
-(\mathbf{x}, \mathbf{w}) \leftarrow \mathcal{A}_\mathsf{choose}(1^\lambda, \mathcal{R}, \mathcal{X}_{II}, \mathcal{W}_{II}) \\
-(\mathrm{srs}_{I}, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}) \leftarrow \mathsf{Setup}_{\mathsf{split}}(1^\lambda, \mathcal{R}, \mathcal{X}_{II}, \mathcal{W}_{II}) \\
-\mathrm{aux}_\mathsf{split} \leftarrow \mathsf{Prove}_{I}(\mathrm{srs}_{I}, \mathbf{x}_{I}, \mathbf{w}_{I}) \\
-b' \leftarrow \mathcal{A}_\mathsf{guess}(\mathrm{srs}_{I}, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}, \mathrm{aux}_\mathsf{split})
-\end{array} \right] 
-\;- 
-\Pr\!\left[
-\begin{array}{l}
-b' = 1
-\end{array}
-\;\middle |\; 
-\begin{array}{l}
-(\mathbf{x}, \mathbf{w}) \leftarrow \mathcal{A}_\mathsf{choose}(1^\lambda, \mathcal{R}, \mathcal{X}_{II}, \mathcal{W}_{II}) \\
-(\mathrm{srs}_{I}, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}, \mathrm{aux}_\mathsf{split}) \leftarrow \mathcal{S}_{\mathsf{setup}}(1^\lambda, \mathcal{R}, \mathcal{X}_{II}, \mathcal{W}_{II}, \mathbf{x}, \mathbf{C}_I(\mathbf{x}_I, \mathbf{w}_I)) \\
-\\
-b' \leftarrow \mathcal{A}_\mathsf{guess}(\mathrm{srs}_{I}, \mathrm{srs}_{II}, \widetilde{\mathrm{st}}, \mathrm{aux}_\mathsf{split})
-\end{array} \right] 
-\right|.$$
+## Construction
+
+- From Groth16: the construction keeps Groth16's verification algorithm. It splits the R1CS as $\mathbf z = \mathbf z_I \Vert \mathbf z_{II}$ with block matrices $(\mathbf A_I\ \mathbf A_{II})$, $(\mathbf B_I\ \mathbf B_{II})$, $(\mathbf C_I\ \mathbf C_{II})$, and adds three dummy constraints with random values to blind $\mathrm{aux}$. `[GGKSS25, abstract and slides]`
+- Lower bound: $\mathcal P_{II}$ must perform $\Omega(\min\{n - 1, \mathrm{rank}(\mathbf A_{II}) \cdot \mathrm{rank}(\mathbf B_{II})\})$ group operations. `[GGKSS25, slides]`
+
+## Related
+
+### Prerequisites
+- [[Non-Interactive Proof Systems]], [[Zero Knowledge]], [[Rank-1 Constraint Satisfiability]]

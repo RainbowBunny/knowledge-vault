@@ -9,7 +9,10 @@ Reference:
 > A **security game** for a scheme $\Pi$ is a probabilistic experiment between a **challenger**, who runs $\Pi$'s algorithms honestly, and an [[Adversary]] $\mathcal A$, who may behave arbitrarily within its class. The experiment ends in a bit, and definitions are stated as probabilities of that bit over the experiment's randomness.
 
 > [!remark] House format
-> Games are written as bracketed probability arrays: outcome condition on the left, experiment steps on the right, adversary phases named ($\mathcal A_\mathsf{find}, \mathcal A_\mathsf{guess}, \dots$). See [[Soundness]] or [[Zero Knowledge]] for the shape.
+> Games are written as an interaction: a table with the challenger on the left, the adversary on the right and the messages between them, one row per step, one equation per line. Where the two games of a distinguishing game differ, the cell holds **Game 0** and **Game 1**; under the table, the **Goal** is a bullet list. Full rules: [[Note Layouts]] § *Game form*. Worked examples: [[Indistinguishability under Chosen-Plaintext Attack]], [[Inner-Product Functional Encryption#IND-CPA]], [[Trace-and-Revoke Scheme]].
+
+> [!definition] Stateful Interactive Machines
+> The challenger $\mathcal C$ and the adversary $\mathcal A$ are interactive machines that keep state: each remembers everything it received and computed in earlier rows, including its random tape. The adversary is therefore one machine across the whole game — its moves are written as what it sends ("chooses $m_0, m_1$", "outputs $b'$"), not as an algorithm applied to inputs, and it is not split into phases.
 
 ## Variant
 

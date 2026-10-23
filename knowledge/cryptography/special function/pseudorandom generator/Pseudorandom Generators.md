@@ -1,3 +1,7 @@
+Reference:
+- `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, v0.6, Ch. 3: https://toc.cryptobook.us/ (§3.1.1: Attack Game 3.1, Definition 3.1; §3.5 "The next bit test": Attack Game 3.2).
+- `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
+
 ## Overview
 
 > [!proposition] Cryptographically Secure
@@ -21,39 +25,92 @@
 
 ## Secure PRG
 
-> [!algorithm] PRG
-> For a given PRG $G$, defined over $(\mathcal S, \mathcal R)$, and for a given adversary $\mathcal A$, we define two experiments, Experiment 0 and Experiment 1. For $b = 0, 1$, we define:
-> **Experiment $b$**: 
-> - The challenger computes $r \in \mathcal R$ as follows:
-> 	- If $b = 0: s \xleftarrow{R} \mathcal S, r \leftarrow G(s)$;
-> 	- If $b = 1: r \xleftarrow R$.
-> 	and sends $r$ to the adversary.
-> - Given $r$, the adversary computes and outputs a bit $\hat{b} \in \{0, 1\}$.
-> For $b = 0, 1$, let $W_b$ be the event that $\mathcal A$ outputs 1 in Experiment $b$. We define $\mathcal A$'s **advantage** with respect to $G$ as $$\text{PRGadv}[\mathcal A, G] = |P[W_0] - P[W_1]|.$$
+> [!definition] Parameters
+> - $G$: a PRG defined over $(\mathcal S, \mathcal R)$.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]].
 
 > [!definition] Secure PRG
-> A PRG $G$ is **secure** if the value $\text{PRGadv}[\mathcal A, G]$ is negligible for all efficient adversary $\mathcal A$.
+> ### Scope
+> A PRG $G$ defined over $(\mathcal S, \mathcal R)$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — one string $r \in \mathcal R$; no oracle, and never the seed $s$.
+> - **Promise** — none.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — none: $\mathcal A$ sends nothing before it receives $r$.
+>
+> ---
+> ### Experiment
+> A distinguishing game: two branches that differ in row 1 only, **Game 0** (an output of $G$) and **Game 1** (a uniform string). `[BS Attack Game 3.1]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | $s \xleftarrow{\$} \mathcal S$<br>**Game 0**: $r \leftarrow G(s)$<br>**Game 1**: $r \xleftarrow{\$} \mathcal R$ | $\xrightarrow{\ r\ }$ | |
+> | 2 | | $\xleftarrow{\ b'\ }$ | outputs a bit $b'$ |
+>
+> **Goal**
+> - **Output** — $\mathsf{Expt}_b(\mathcal A)$, the bit $b'$ in Game $b$.
+> - **Measure** — how far apart $\Pr[\mathsf{Expt}_0(\mathcal A) = 1]$ and $\Pr[\mathsf{Expt}_1(\mathcal A) = 1]$ are.
+>
+> ---
+> ### Property
+> $$\text{PRGadv}[\mathcal A, G] = \big|\Pr[\mathsf{Expt}_0(\mathcal A) = 1] - \Pr[\mathsf{Expt}_1(\mathcal A) = 1]\big|.$$
+> - $G$ is a **secure PRG** if $\text{PRGadv}[\mathcal A, G]$ is negligible for every $\mathcal A \in \mathbb A$ `[BS Def 3.1]`.
+>
+> It is a *distinguishing* game, see [[Security Game]].
+
+> [!remark] Notation in the literature
+> - `[BS Attack Game 3.1]` names the branches Experiment 0 and Experiment 1, samples $s$ only in Experiment 0, calls the output bit $\hat b$, and writes $W_b$ for the event that $\mathcal A$ outputs $1$ in Experiment $b$, so $\Pr[W_b] = \Pr[\mathsf{Expt}_b(\mathcal A) = 1]$. Sampling $s$ in Game 1 as well changes nothing, since it is not used there.
+> - A bit-guessing version — the challenger picks a hidden uniform $b$ and the advantage is $|\Pr[b' = b] - 1/2|$ — is exactly half of $\text{PRGadv}[\mathcal A, G]$; this note uses the difference.
 
 ### Next Bit Test
 
-> [!algorithm] Unpredictable PRG
-> For a given PRG $G$, defined over $(\mathcal S, \{0, 1\}^L)$, and a given adversary $\mathcal A$, the attack game proceeds as follows:
-> - The adversary sends an index $i$, with $0 \leq i \leq L - 1$, to the challenger.
-> - The challenger computes $$s \xleftarrow{R} \mathcal S, r \leftarrow G(s)$$ and sends $r[0 \dots i - 1]$ to the adversary.
-> - The adversary outputs $g \in \{0, 1\}$.
-> 
-> We say that $\mathcal A$ **wins** if $r[i] = g$, and we define $\mathcal A$'s **advantage** $\text{Predadv}[\mathcal A, G]$ to be $|P[\mathcal A \text{ wins}] - 1/2|$.
+> [!definition] Parameters
+> - $G$: a PRG defined over $(\mathcal S, \{0, 1\}^L)$. For $r \in \{0, 1\}^L$, $r[j]$ is its bit $j$ and $r[0 \dots i - 1]$ its first $i$ bits.
+> - $\mathbb A$: the class of efficient [[Adversary|adversaries]].
 
 > [!definition] Unpredictable PRG
-> A PRG $G$ is **unpredictable** if the value $\text{Predadv}[\mathcal A, G]$ is negligible for all efficient adversaries $\mathcal A$.
+> ### Scope
+> A PRG $G$ defined over $(\mathcal S, \{0, 1\}^L)$ and the adversary class $\mathbb A$ of Parameters.
+>
+> ---
+> ### Condition
+> - **Access** — the first $i$ bits of one output $r = G(s)$; no oracle, and never $s$.
+> - **Promise** — $0 \leq i \leq L - 1$.
+> - **Quantifier** — $\forall \mathcal A \in \mathbb A$.
+> - **Adaptivity** — $\mathcal A$ commits to the position $i$ before the seed is chosen.
+>
+> ---
+> ### Experiment
+> A prediction game with one branch; the challenger checks the guess in the last row. `[BS Attack Game 3.2]`
+>
+> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
+> | --- | --- | --- | --- |
+> | 1 | | $\xleftarrow{\ i\ }$ | chooses an index $i$ with $0 \leq i \leq L - 1$ |
+> | 2 | $s \xleftarrow{\$} \mathcal S$<br>$r \leftarrow G(s)$ | $\xrightarrow{\ r[0 \dots i - 1]\ }$ | |
+> | 3 | | $\xleftarrow{\ g\ }$ | outputs a guess $g \in \{0, 1\}$ for the next bit |
+> | 4 | checks whether $g = r[i]$ | | |
+>
+> **Goal** — $\mathcal A$ wins iff all of:
+> - $g = r[i]$.
+>
+> ---
+> ### Property
+> $$\text{Predadv}[\mathcal A, G] = \big|\Pr[\mathcal A \text{ wins}] - 1/2\big|.$$
+> - $G$ is **unpredictable** if $\text{Predadv}[\mathcal A, G]$ is negligible for every $\mathcal A \in \mathbb A$ `[BS §3.5]`.
+>
+> A coin flip wins with probability $1/2$, so the advantage is measured from $1/2$ instead of from $0$. This is a prediction game in its own right, not the bit-guessing form of a distinguishing game; the two theorems below relate it to $\text{PRGadv}$.
 
 > [!theorem]
 > Let $G$ be a PRG, defined over $(\mathcal S, \{0, 1\}^L)$. If $G$ is secure, then $G$ is unpredictable.
 > 
-> In particular, for every [[#Next Bit Test|unpredictable PRG]] adversaries $\mathcal A$ of $G$, there exists an [[#Secure PRG|secure PRG]] adversary $\mathcal B$ breaking the security of $G$, where $\mathcal B$ is an elementary wrapper $\mathcal A$, such that $$\text{Predadv}[\mathcal A, G] = \text{PRGadv}[\mathcal A, G].$$
+> In particular, for every [[#Next Bit Test|unpredictable PRG]] adversaries $\mathcal A$ of $G$, there exists an [[#Secure PRG|secure PRG]] adversary $\mathcal B$ breaking the security of $G$, where $\mathcal B$ is an elementary wrapper $\mathcal A$, such that $$\text{Predadv}[\mathcal A, G] = \text{PRGadv}[\mathcal B, G].$$
 
 > [!lemma] Distinguisher/Predictor Lemma
 > Let $X$ be a random variable taking values in some set $S$, and let $B$ and $R$ be a 0/1-valued random variables, where $R$ is uniformly distributed over $\{0, 1\}$ and is independent of $(X, B)$. Let $d : S \times \{0, 1\} \rightarrow \{0, 1\}$ be an arbitrary function, and let $$\epsilon = P[d(X, B) = 1] - P[d(X, R) = 1].$$ Define the random variable $B'$ as follows: $$B' = \begin{cases}R &\text{if } d(X, R) = 1 \\ \overline{R} &\text{otherwise}\end{cases}$$
+> Then $$\Pr[B' = B] = 1/2 + \epsilon.$$
+> Check: since $R$ is independent of $(X, B)$, $\Pr[B' = B] = \tfrac12 \Pr[d(X, B) = 1] + \tfrac12 \big(1 - \Pr[d(X, \overline B) = 1]\big)$ and $\Pr[d(X, R) = 1] = \tfrac12 \Pr[d(X, B) = 1] + \tfrac12 \Pr[d(X, \overline B) = 1]$; subtract.
 
 > [!theorem]
 > Let $G$ be a PRG, defined over $(\mathcal S, \{0, 1\}^L)$. If $G$ is unpredictable, then $G$ is secure.
