@@ -404,6 +404,11 @@ Instantiates:: [[<Primitive>]]
 > [!scheme] Setting
 > - <the ambient mathematics: $R_q$, a group $\mathbb G$, $\bmod^{\pm}$ — links into `math/`>
 
+### Parties                              ← protocols only
+
+> [!definition] Parties
+> - <who exists and what each holds: the parties, a CA, a channel; a system parameter shared by all>
+
 ### Parameters
 
 > [!definition] Parameters
@@ -642,6 +647,8 @@ Two traps. **"Decision" means membership in the Problem note and distinguishing 
 - **The goal is a list.** *Revised 2026-10-19.* Under the table, `**Goal**` and one bullet per item. A distinguishing game: an **Output** bullet ($\mathsf{Expt}_b$ is the adversary's bit in Game $b$) and a **Measure** bullet (what is compared). A search game: "$\mathcal A$ wins iff" and one bullet per winning condition, saying whether all or any must hold — [[Linear-Only Security]]. A tuple or a view: an **Output** bullet naming the random variable and a **Measure** bullet naming the distinguisher $D$, which then goes in Parameters — [[Strictly Linear Targeted Malleability]], [[Zero Knowledge]]. The Property section only says how the goal is compared (a difference of probabilities, a probability, a distance between distributions).
 - **Key generation is $\mathsf{KeyGen}$.** *Added 2026-10-19.* The house name for the algorithm that produces keys, whatever the source calls it ($\mathsf{Gen}$, $G$, $\mathsf{KG}$, $\mathsf{keygen}$, $\mathsf{KeyDer}$); the source's name goes in the literature remark. $\mathsf{Setup}$ stays $\mathsf{Setup}$ when it outputs public parameters or a master key from which $\mathsf{KeyGen}$ derives user keys ([[Functional Encryption]], [[Trace-and-Revoke Scheme]]).
 - **Draw the notes in the same shape.** Worked examples: [[Indistinguishability under Chosen-Plaintext Attack]] (distinguishing, one challenge), [[Inner-Product Functional Encryption#IND-CPA]] (key queries on both sides of the challenge), [[Trace-and-Revoke Scheme]] (a search game and a distinguishing game in one note).
+- **A hybrid argument is one table per changed algorithm.** *Added 2026-10-23, from your draft of 2026-10-21.* Rows are the steps of the algorithm the games change (key generation, the challenge encryption), columns are the games, a cell says "same" where a step does not change, and the last row, **hop**, says what justifies the change from the previous column: *statistical* with the lemma, or the assumption. Columns that agree are merged ("Game 0 – 1"). Under the tables, one **Goal** for all games. Worked example: [[Bounded-Collusion LWE Inner-Product FE#Security]].
+- **A reduction is a three-machine table.** *Added 2026-10-23, from your draft of 2026-10-19.* Columns: the outer challenger (of the assumption or the building block), the reduction $\mathcal B$, the adversary $\mathcal A$, with the messages between neighbours. $\mathcal B$'s checks — when it aborts, why its challenge is admissible — follow as a table or a list, and then the computation of its advantage. Worked examples: [[Trace-and-Revoke from Inner-Product FE#Proof of Theorem 16]], [[Pedersen Commitment#Binding]].
 
 **Access is the one general knob.** [[Public-Key Encryption Scheme]] parameterises it — $\mathsf{atk} \in \{\mathsf{cpa}, \mathsf{lta}, \mathsf{cca}\}$ selects which oracles the adversary has before and after the challenge — and a proof system's response map is the same slot under another name.
 
@@ -707,6 +714,31 @@ grep -rho '^> \[!\(theorem\|lemma\|proposition\|corollary\)\] .\+' --include='*.
 **A named result stated twice has already earned a note.**
 
 **A named theorem says what it states.** *Added 2026-10-19.* After the name in the callout title, a few words state the result: `> [!theorem] Banach fixed-point theorem — a contraction has exactly one fixed point`. Where the theorem is only mentioned — a list, a MOC line, a Related bullet — the same few words follow the name. The name says who proved it; the few words say when to reach for it. Examples: [[Contraction]], [[Group Representation]], [[Iterated Function System]], [[Hecke Algebra]].
+
+**A theorem inside an object's note — Scope and Property, line by line.** *Added 2026-10-29, on your instruction.* A `[!theorem]`, `[!proposition]`, `[!lemma]` or `[!corollary]` that stays inside the note of its object (it has not graduated) uses the same two words as a theorem note, as bold labels:
+
+```markdown
+> [!theorem] <Name> — <a few words that state it>
+> **Scope**
+> - $\Lambda$: a lattice of rank $n$, with dual $\Lambda^*$.     ← one hypothesis per line, typed and linked
+> - $\epsilon \in (0, 1)$.                                    ← a side condition is a line of its own
+>
+> ---
+> **Property**
+> $$1 \leq \lambda_i(\Lambda) \cdot \lambda_{n-i+1}(\Lambda^*),$$   ← one relation per line
+> $$\lambda_i(\Lambda) \cdot \lambda_{n-i+1}(\Lambda^*) \leq n.$$
+>
+> `[<source and number>]`
+```
+
+- **Scope is a list, never a sentence.** No "Let $L$ be a lattice of dimension $n$ and let …": each object the statement uses gets its own bullet with its type. A symbol declared in the note's `Parameters` callout is still listed, so the statement can be read alone.
+- **Property is one relation per line.** A two-sided bound or a chain $a = b \leq c$ is two lines. An existential gets a short lead-in and a bullet per condition (*there is a matrix $U$ with* — $U \in \mathbb Z^{n \times n}$; $B' = BU$; $\det U = \pm 1$). An equivalence is one line. Prose comes after the relations, and only for a consequence ("Hence $\det L$ does not depend on $\mathcal F$").
+- **Bold labels, not headings.** A note can hold ten such statements, and `### Scope` headings would flood its outline; a graduated theorem note keeps the `###` headings and its `### Condition` section.
+- **Citation last**, on its own line under Property; notes on the source (a misprint, a stronger hypothesis elsewhere, a `⚠️ CLAUDE – verify:`) follow it.
+- **The same discipline as a quantified security statement** (§ 10, *No game where the source has none*): the quantified objects first, one per line, then the displayed result.
+- **Definitions do not restate their Parameters.** Under a `Parameters` callout, the definition body starts with the term defined, not with "Let …".
+
+Worked example: [[Lattices]] (§ Property).
 
 > [!remark] Which note owns a two-hypothesis theorem?
 > **The one it says the most about — and you find that out by sharpening it until only one hypothesis is

@@ -19,6 +19,7 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 - [[Arithmetic Circuit Satisfiability Problem]] — public input $x$, witness $w$
 - [[Rank-1 Constraint Satisfiability]] — R1CS; NP-complete, and the target language for arithmetization (`r1cs/`)
 - [[Split-R1CS]] — partitioning the extended witness into two phases
+- [[Set Membership Relation]] — a committed element lies in a (public or committed) set; the relation behind ring signatures and anonymous credentials
 
 `relation/arithmetization/`
 
@@ -35,7 +36,8 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 - [[Interactive Proof Systems]] — for a relation, with an efficient prover holding $\mathbf w$; specializes [[Probabilistic Interactive Proof System]]
 - [[Argument Systems]] — the same syntax, sound only against efficient provers
-- [[Sigma Protocols]] — three moves, public coin, special soundness
+- [[Sigma Protocols]] — three moves, public coin, special soundness; OR composition
+- [[Trapdoor Sigma Protocol]] — a Σ-protocol in the CRS model for a pair of languages, whose trapdoor computes the one bad challenge; compiles to a NIZK without random oracles
 - [[Linear Multi-Prover Interactive Proofs]] — sound only against *linear* provers, so not literally an MIP
 - constructions (`scheme/`): [[Schnorr Protocol]]
 
@@ -80,7 +82,9 @@ relation  →  arithmetization  →  IT proof system  →  compiler  →  argume
 
 `commitment/`
 
-- [[Commitment Scheme]] — [[Merkle Tree]], [[From Collision Resistance]]
+- [[Commitment Scheme]] — `Setup`, `Commit`, `Open`; hiding and binding games
+    - constructions (`scheme/`): [[Pedersen Commitment]] (discrete log) · [[Ajtai Commitment]] (SIS, short messages) · [[BDLOP Commitment]] (Module-SIS / Module-LWE, any message; extractable mode) · [[Merkle Tree]] · [[From Collision Resistance]]
+- [[Cryptographic Accumulator]] — a set compressed to one value, with membership witnesses; the lattice Merkle-tree accumulator
 - [[Commitment with Linear Decommitment]] — [[Basic Commitment with Linear Decommitment]], [[Parallel Commitments with Linear Decommitments]]
 
 `encoding scheme/`

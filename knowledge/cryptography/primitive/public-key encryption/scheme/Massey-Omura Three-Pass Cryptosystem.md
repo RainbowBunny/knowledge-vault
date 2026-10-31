@@ -54,7 +54,7 @@
 
 > [!remark]
 > If Eve can solve [[Discrete Logarithm Problem|DLP]], Eve can break this cryptosystem.
-> If Eve can solve [[Diffie-Hellman Key Exchange#Diffie-Hellman Problem|Diffie-Hellman Problem]], Eve can break this cryptosystem.
+> If Eve can solve [[Computational Diffie-Hellman Assumption|Diffie-Hellman Problem]], Eve can break this cryptosystem.
 
 ## Elliptic Version
 

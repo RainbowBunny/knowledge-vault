@@ -12,6 +12,7 @@ Attacks — on the hard problems underneath the assumptions, and on deployed pro
 ## Attacks on deployed systems
 
 - [[Attack List]] — running index of attacks
+- [[Man-in-the-Middle Attack]] — against unauthenticated key exchange; identity misbinding against signed Diffie–Hellman and STS
 - [[CRIME]] — compression-side-channel attack on TLS
 - [[Password Cracking]]
 - [[Random Crack]] — bad-randomness exploits

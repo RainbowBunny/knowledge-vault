@@ -11,6 +11,7 @@ Asymmetric confidentiality — encrypt with a public key, decrypt with a private
 - [[Multi-Receiver Encryption Scheme]] — one public key, $N$ secret keys
 - [[Traitor Tracing Encryption Scheme]] — extends it with $\mathsf{Trace}$, run by the holder of all keys
 - [[Trace-and-Revoke Scheme]] — extends that with revocation and *public* tracing; its public-traceability and IND-CPA games
+- [[Trace-and-Revoke from Inner-Product FE]] — the transform of Agrawal et al.: any inner-product FE of dimension $t + r + 1$ gives a trace-and-revoke scheme
 
 ## Concrete Schemes (`scheme/`)
 

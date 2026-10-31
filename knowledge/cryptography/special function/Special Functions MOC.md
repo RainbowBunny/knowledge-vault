@@ -19,7 +19,7 @@ The organising idea is in [[Special Functions]]: a family $\mathbb F = \{\mathca
 | --- | --- |
 | [[One-Way Functions]] | easy to compute, hard to invert |
 | [[Compression Functions]] | compressing + collision-resistant — [[Inefficient Compression Function]], [[Syndrome Based Compression Function]], [[Fast Syndrome Based Compression Function]] |
-| [[Hash Function]] | compressing + collision-resistant, on arbitrary-length input — [[Keccak]] |
+| [[Hash Function]] | compressing + collision-resistant, on arbitrary-length input — [[Keccak]], [[Ajtai Hash Function]] (collision resistant from SIS) |
 | [[Universal Hash Function]] | a statistical, not computational, collision guarantee — [[Pairwise Independent Hash Function]] |
 | [[Pseudorandom Function]] | keyed, pseudorandom — [[Puncturable Pseudorandom Function]] |
 | [[Trapdoor Functions]] | one-way, invertible with a secret |

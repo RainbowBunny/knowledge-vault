@@ -13,7 +13,9 @@ An assumption names the worst-case problem it averages over with `Requires::`. T
 
 ### Discrete logarithm
 
-- [[Discrete-Logarithm Assumption]] — over [[Discrete Logarithm Problem]]; the elliptic and hyperelliptic instances are [[Elliptic Curve DLP]] and [[Hyperelliptic Curve DLP]]
+- [[Discrete-Logarithm Assumption]] — the average-case claim over [[Discrete Logarithm Problem]] (the worst-case problem, its algorithms and the generic $\sqrt r$ bound); the elliptic and hyperelliptic instances are [[Elliptic Curve DLP]] and [[Hyperelliptic Curve DLP]]
+- [[Computational Diffie-Hellman Assumption]] — compute $g^{ab}$ from $g^a, g^b$
+- [[Decisional Diffie-Hellman Assumption]] — tell $g^{ab}$ from a random element; $\mathrm{DDH} \leq_R \mathrm{CDH} \leq_R \mathrm{DLP}$
 
 ### Lattice (`lattice-based/`)
 
@@ -30,7 +32,6 @@ An assumption names the worst-case problem it averages over with `Requires::`. T
 ### Stubs (planned)
 
 - Factoring (RSA problem, quadratic residuosity, strong RSA) — over [[Factoring]]
-- CDH / DDH — DDH currently sits as a section inside [[Discrete Logarithm Problem]]
 - Pairing assumptions (BDH, q-SDH, LRSW)
 
 ## Idealized Models (`idealized models/`)

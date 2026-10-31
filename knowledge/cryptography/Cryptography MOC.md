@@ -18,7 +18,7 @@ Structurally parallel to [[Complexity MOC]]: foundations + initiative folders + 
 - [[Key Establishment MOC]] — [[Key Exchange]], [[Diffie-Hellman Key Exchange]], [[Authenticated Key Exchange]], [[Key Encapsulation Mechanism]], [[Kyber KEM]]
 - [[Message Authentication MOC]] — [[Message Integrity]], [[Authenticated Encryption]], [[Authenticated Data Structures]]
 - [[Vector Encryption]] — [[Module HGSW]]; the primitive behind [[LUNA]]; its properties are [[Circuit Privacy]], [[Linear-Only Security]] and [[Strictly Linear Targeted Malleability]]
-- `functional encryption/` — [[Functional Encryption]] and [[Inner-Product Functional Encryption]], from which [[Trace-and-Revoke Scheme]] is built
+- `functional encryption/` — [[Functional Encryption]] and [[Inner-Product Functional Encryption]] (`scheme/`: [[Bounded-Collusion LWE Inner-Product FE]]), from which [[Trace-and-Revoke Scheme]] is built by [[Trace-and-Revoke from Inner-Product FE]]
 
 ## Function families
 

@@ -1,26 +1,64 @@
+---
+dg-publish: true
+aliases: [Collision-Resistant Hash Function, CRHF]
+---
 Reference:
-- `[BS x]` — Boneh, Shoup, _A Graduate Course in Applied Cryptography_, v0.6: https://toc.cryptobook.us/ (Ch. 7, §7.1 and §7.1.1: Attack Games 7.1, 7.2 and 7.3; Ch. 8, §8.1: Attack Game 8.1, Definition 8.1).
+- `[BS]` — D. Boneh, V. Shoup, _A Graduate Course in Applied Cryptography_, v0.6, 2023: https://toc.cryptobook.us/ (§7.1 and §7.1.2: keyed hash functions; §8.1 and §8.1.1: collision resistance, Definition 8.1).
+- `[HPS]` — J. Hoffstein, J. Pipher, J. H. Silverman, _An Introduction to Mathematical Cryptography_, 2nd ed., Springer, 2014, §8.1. `⚠️ CLAUDE – verify:` the informal description in Syntax follows this section's wording; the book could not be read.
 - `⚠️ CLAUDE – verify:` — added by me, not taken from a source.
 
-| Term                                          | Reference                                                        |                  |
-| --------------------------------------------- | ---------------------------------------------------------------- | ---------------- |
-| Attack Game 7.1 (Universal Hash Function)     | [[#Secure Universal Hash Function\|secure UHF]]                  | $\text{UHFadv}$  |
-| Attack Game 7.2 (Multi-query UHF)             | [[#Multi-query Universal Hash Function\|secure multi-query UHF]] | $\text{MUHFadv}$ |
-| Attack Game 7.3 (Difference Unpredictability) | [[#Difference Unpredictability\|DUF]]                            | $\text{DUFadv}$  |
-| Attack Game 8.1 (Collision Resistance)        | [[Hash Function#Definition\|collision finder]]                      | $\text{CRadv}$   |
+## Syntax
 
-## Definition
+> [!definition] Parameters
+> - $\mathcal M$: the message space. 
+> - $\mathcal T$: the digest space.
+> - $\mathcal K$: the key space, for a keyed hash function.
 
 > [!definition] Hash Function
-> A **(keyless) hash function** takes as input an arbitrarily long document $D$ in some large set $\mathcal M$ and returns a short bit string $H$ in $\mathcal T$ called **message digests** (or just digests). The primary properties that a has function $\text{Hash}$ should possess are as follows:
-> - Computation of $\text{Hash}(D)$ should be fast and easy, e.g., linear time.
-> - Inversion of $\text{Hash}$ should be difficult, e.g., exponential time. More precisely, given a hash value $H$, it should be difficult to find any document $D$ such that $\text{Hash}(D) = H$.
-> - For many applications it is also important that $\text{Hash}$ be **collision resistant**. This means that it should be hard to find two different documents $D_1$ and $D_2$ whose hash values $\text{Hash}(D_1)$ and $\text{Hash}(D_2)$ are the same.
+> A **(keyless) hash function** $H$ defined over $(\mathcal M, \mathcal T)$ is one efficient algorithm:
+> - $t \leftarrow H(m)$: (Deterministic) Hash algorithm.
+>     - **Input**: a message $m \in \mathcal M$.
+>     - **Output**: a **digest** $t \in \mathcal T$.
+>
+> `[BS §8.1]`
 
-> [!algorithm] Hash Function (Mathematical Detail)
-> A **(keyless) hash function** is an efficient algorithm $H$, along with two families of spaces with system parameterization $P$: $$M = \{\mathcal M_{\lambda, \Lambda}\}, T = \{\mathcal T_{\lambda, \Lambda}\}_{\lambda, \Lambda},$$ such that
-> 1. $M$, and $T$ are efficiently recognizable.
-> 2. Algorithm $H$ is an efficient deterministic algorithm that on input $\lambda, \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda))$, and $m \in \mathcal M_{\lambda, \Lambda}$, outputs an element of $\mathcal T_{\lambda, \Lambda}$.
+> [!remark] What a hash function is for `[HPS §8.1]`
+> It maps an arbitrarily long document to a short digest, and it should be
+> - fast to compute;
+> - hard to invert: given a digest $t$, hard to find any $m$ with $H(m) = t$ — [[One-Way Functions|one-wayness]];
+> - collision resistant: hard to find $m_0 \neq m_1$ with $H(m_0) = H(m_1)$ — the game in Security.
+>
+> When $|\mathcal M| > |\mathcal T|$, collisions exist by the pigeonhole principle; the requirement is only that they be hard to find.
+
+> [!remark] Asymptotic form `[BS §8.1.1]`
+> With a system parameterization $P$, the spaces are families $M = \{\mathcal M_{\lambda, \Lambda}\}_{\lambda, \Lambda}$ and $T = \{\mathcal T_{\lambda, \Lambda}\}_{\lambda, \Lambda}$, both efficiently recognizable, and $H$ takes
+> - $\lambda \in \mathbb Z_{\geq 1}$: the security parameter;
+> - $\Lambda \in \mathrm{Supp}(P(\lambda))$: the system parameter;
+> - $m \in \mathcal M_{\lambda, \Lambda}$: the message;
+>
+> and outputs an element of $\mathcal T_{\lambda, \Lambda}$. A family indexed by a public random matrix, such as [[Ajtai Hash Function]] ($f_\mathbf A$), fits this form with the matrix inside $\Lambda$.
+
+### Keyed hash function
+
+> [!definition] Keyed Hash Function
+> A **keyed hash function** $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$ is one efficient algorithm:
+> - $t \leftarrow H(k, m)$: (Deterministic) Hash algorithm.
+>     - **Input**: a key $k \in \mathcal K$ and a message $m \in \mathcal M$.
+>     - **Output**: a digest $t \in \mathcal T$.
+>
+> `[BS §7.1]`
+
+> [!definition] Collision under a Key
+> Messages $m_0, m_1 \in \mathcal M$ form a **collision for $H$ under the key $k \in \mathcal K$** iff
+> - $H(k, m_0) = H(k, m_1)$;
+> - $m_0 \neq m_1$.
+>
+> `[BS §7.1]`
+
+> [!remark] Asymptotic form `[BS §7.1.2]`
+> As for the keyless form, with three families $K, M, T$: all efficiently recognizable, and $K$ and $T$ also efficiently sampleable. $H$ takes $\lambda$, $\Lambda$, a key $k \in \mathcal K_{\lambda, \Lambda}$ and a message $m \in \mathcal M_{\lambda, \Lambda}$, and outputs an element of $\mathcal T_{\lambda, \Lambda}$.
+
+## Security
 
 ### Collision Resistance
 
@@ -43,7 +81,7 @@ Specializes [[Special Functions#Collision Resistant]].
 >
 > ---
 > ### Experiment
-> A search game: one branch, and the challenger checks the output in the last row. `[BS Attack Game 8.1]`
+> A search game: one branch, and the challenger checks the output in the last row. `[BS §8.1]`
 >
 > | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
 > | --- | --- | --- | --- |
@@ -56,328 +94,34 @@ Specializes [[Special Functions#Collision Resistant]].
 >
 > ---
 > ### Property
-> $$\text{CRadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
-> - $H$ is **collision resistant** if $\text{CRadv}[\mathcal A, H]$ is negligible for every $\mathcal A \in \mathbb A$ `[BS Def 8.1]`.
+> $$\mathsf{Adv}^{\mathsf{cr}}_{H}(\mathcal A) = \Pr[\mathcal A \text{ wins}].$$
+> - $H$ is **collision resistant** if $\mathsf{Adv}^{\mathsf{cr}}_{H}(\mathcal A)$ is negligible for every $\mathcal A \in \mathbb A$ `[BS Def 8.1]`.
 >
 > It is a *search* game, see [[Security Game]].
 
 > [!remark] Notation in the literature
-> `[BS Attack Game 8.1]` says that $\mathcal A$ *takes no input* and outputs $m_0, m_1$, and that $\mathcal A$ wins if the pair is a collision for $H$; here the adversary never has inputs, so row 1 is all there is. In the "mathematical details" form, $H$ also depends on the system parameter $\Lambda$ of the Mathematical Detail callout above.
+> `[BS §8.1]` says that $\mathcal A$ *takes no input* and outputs $m_0, m_1$, and that $\mathcal A$ wins if the pair is a collision for $H$; here the adversary never has inputs, so row 1 is all there is. In the asymptotic form, $H$ also depends on the system parameter $\Lambda$.
 
-## Universal Hash Functions (UHFs)
+> [!remark] In an idealized model
+> When $H$ is built from a block cipher or a permutation modeled as ideal, $\mathcal A$ also gets oracle access to it, and the advantage is written $\mathsf{Adv}^{\mathsf{cr\text{-}ic}}_{H}(\mathcal A)$ — see [[Davies-Meyer Compression Function#Security]] and [[Sponge Construction#Security]].
 
-> [!definition] Keyed Hash Functions
-> A **keyed hash function** $H$ is a deterministic algorithm that takes two inputs, a **key** $k$ and a **message** $m$; its output $t = H(k, x)$ is called a **digest**. As usual, there are associated spaces: the key space $\mathcal K$, in which $k$ lies, a message space $\mathcal M$, in which $m$ lies, and the digest space $\mathcal T$, in which $t$ lies. We say that the hash function $H$ is defined over $(\mathcal K, \mathcal M, \mathcal T)$.
+## Related
 
-> [!definition] Collision Under Key
-> We say that two messages $m_0, m_1 \in \mathcal M$ forms a **collision for $H$ under key $k \in \mathcal K$ if** $$H(k, m_0) = H(k, m_1) \quad \text{and} \quad m_0 \neq m_1.$$
+### Instantiations
 
-> [!algorithm] Keyed Hash Functions (Mathematical Details)
-> A **keyed hash function** is an efficient algorithm $H$, along with three families of spaces with system parameterization $P$:
-> $$K = \{\mathcal K_{\lambda, \Lambda}\}_{\lambda, \Lambda}, M = \{\mathcal M_{\lambda, \Lambda}\}_{\lambda, \Lambda}, T = \{\mathcal T_{\lambda, \Lambda}\}_{\lambda, \Lambda}$$ such that
-> 1. $K, M$, and $T$ are efficiently recognizable.
-> 2. $K$ and $T$ are efficiently sampleable.
-> 3. Algorithm $H$ is an efficient deterministic algorithm that on input $\lambda \in \mathbb Z_{\geq 1}, \Lambda \in \text{Supp}(P(\lambda)), k \in \mathcal K_{\lambda, \Lambda}$, and $m \in \mathcal M_{\lambda, \Lambda}$, outputs an element of $\mathcal T_{\lambda, \Lambda}$.
+| | built from | collision resistance rests on |
+| --- | --- | --- |
+| [[SHA-256]] | [[Merkle-Damgard Transform\|Merkle–Damgård]] over [[Davies-Meyer Compression Function\|Davies–Meyer]] on the SHACAL-2 cipher | heuristic: the cipher treated as an ideal cipher |
+| [[Keccak]] | a [[Sponge Construction\|sponge]] on Keccak-$f$ | heuristic: the permutation treated as random |
+| [[MD5]] | Merkle–Damgård | broken: collisions found in 2004 |
+| [[Ajtai Hash Function]] | one random matrix over $\mathbb Z_q$ | [[Short Integer Solution\|SIS]] |
 
-> [!lemma] Leftover Hash Lemma
-> Let $\mathcal H = \{h: \mathcal X \rightarrow \mathcal Y\}$ be a 2-universal hash function family. Then for any random variable $X \in \mathcal X$, for $\epsilon > 0$ such that $\log |\mathcal Y| \leq H_{\infty}(X) - 2 \log (1 / \varepsilon)$, the distributions $$(h, h(X)) \quad \text{and} \quad (h, \mathcal U(\mathcal Y))$$ are within statistical distance $\varepsilon$.
-> Further, the family $\{A \in \mathbb Z_q^{n \times m} : r \rightarrow Ar\}$ is 2-universal for any prime $q$.
+### Constructions
+- [[Merkle-Damgard Transform]] — collision-resistant compression function → hash function on long messages
+- [[Sponge Construction]] — permutation → hash function, in the ideal permutation model
+- [[Compression Functions]] — the fixed-length case, the building block of Merkle–Damgård
 
-### Secure Universal Hash Function
-
-> [!definition] Parameters
-> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$.
-> - $\varepsilon$: a bound, $0 \leq \varepsilon \leq 1$.
-
-> [!definition] Secure Universal Hash Function
-> ### Scope
-> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$, against all adversaries (the bounded and statistical notions) or against efficient ones (the computational notion).
->
-> ---
-> ### Condition
-> - **Access** — none: $\mathcal A$ sees no hash value and has no oracle; $k$ stays with the challenger.
-> - **Promise** — $m_0 \neq m_1$.
-> - **Quantifier** — $\forall \mathcal A$, even inefficient, for an $\varepsilon$-UHF; $\forall$ efficient $\mathcal A$ for a computational UHF.
-> - **Adaptivity** — none: $\mathcal A$ commits to its messages without any information about $k$.
->
-> ---
-> ### Experiment
-> A search game: one branch; the challenger checks the collision in the last row. `[BS Attack Game 7.1]`
->
-> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
-> | --- | --- | --- | --- |
-> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
-> | 2 | | $\xleftarrow{\ m_0,\, m_1\ }$ | outputs two distinct messages $m_0, m_1 \in \mathcal M$ |
-> | 3 | checks whether $H(k, m_0) = H(k, m_1)$ | | |
->
-> **Goal** — $\mathcal A$ wins iff all of:
-> - $H(k, m_0) = H(k, m_1)$.
->
-> ---
-> ### Property
-> $$\text{UHFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
-> - $H$ is an $\varepsilon$-**bounded universal hash function**, or $\varepsilon$-**UHF**, if $\text{UHFadv}[\mathcal A, H] \leq \varepsilon$ for all adversaries $\mathcal A$, even inefficient ones.
-> - $H$ is a **statistical UHF** if it is an $\varepsilon$-UHF for some negligible $\varepsilon$.
-> - $H$ is a **computational UHF** if $\text{UHFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
->
-> It is a *search* game, see [[Security Game]]. `[BS §7.1]`
-
-> [!remark] An alternate characterization of the $\varepsilon$-UHF property
-> $\mathcal A$ learns nothing about $k$, so an unbounded $\mathcal A$ does best by outputting one fixed pair. Hence $H$ is an $\varepsilon$-UHF iff for every pair of distinct $m_0, m_1 \in \mathcal M$,
-> $$\Pr[H(k, m_0) = H(k, m_1)] \leq \varepsilon,$$
-> the probability being over the random choice of $k \in \mathcal K$ — the same shape as the DUF characterization below.
-
-### Multi-query Universal Hash Function
-
-> [!definition] Parameters
-> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$.
-> - $Q$: a bound on the length $s$ of the list $\mathcal A$ outputs; an $\mathcal A$ that always outputs $s \leq Q$ messages is a $Q$**-query UHF adversary**.
-
-> [!definition] Multi-query UHF
-> ### Scope
-> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathcal T)$ and the efficient [[Adversary|adversaries]].
->
-> ---
-> ### Condition
-> - **Access** — none, as in the single-pair game.
-> - **Promise** — $m_1, \dots, m_s$ are distinct, and $s \leq Q$ for a $Q$-query adversary.
-> - **Quantifier** — $\forall$ efficient $\mathcal A$.
-> - **Adaptivity** — none: the whole list is output at once.
->
-> ---
-> ### Experiment
-> A search game: one branch; the challenger checks for a collision in the last row. `[BS Attack Game 7.2]`
->
-> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
-> | --- | --- | --- | --- |
-> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
-> | 2 | | $\xleftarrow{\ m_1, \dots, m_s\ }$ | outputs distinct messages $m_1, \dots, m_s \in \mathcal M$ |
-> | 3 | checks whether $H(k, m_i) = H(k, m_j)$ for some $i \neq j$ | | |
->
-> **Goal** — $\mathcal A$ wins iff all of:
-> - there are indices $i \neq j$ with $H(k, m_i) = H(k, m_j)$.
->
-> ---
-> ### Property
-> $$\text{MUHFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
-> - $H$ is a **multi-query UHF** if $\text{MUHFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$ `[BS §7.1.1]`.
->
-> It is a *search* game, see [[Security Game]].
-
-> [!lemma]
-> If $H$ is a computational UHF, then it is also a multi-query UHF.
-> 
-> In particular, for every $Q$-query UHF adversary $\mathcal A$, there exists a UHF adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{MUHFadv}[\mathcal A, H] \leq (Q^2/2) \cdot \text{UHFadv}[\mathcal B, H].$$
-
-### Difference Unpredictability
-
-> [!definition] Parameters
-> - $H$: a keyed hash function defined over $(\mathcal K, \mathcal M, \mathcal T)$, where $\mathcal T = \mathbb Z_N$.
-> - $\varepsilon$: a bound, $0 \leq \varepsilon \leq 1$.
-
-> [!definition] Difference Unpredictability
-> ### Scope
-> A keyed hash function $H$ defined over $(\mathcal K, \mathcal M, \mathbb Z_N)$, against all adversaries (the bounded and statistical notions) or against efficient ones (the computational notion).
->
-> ---
-> ### Condition
-> - **Access** — none: $\mathcal A$ sees no hash value and has no oracle.
-> - **Promise** — $m_0 \neq m_1$.
-> - **Quantifier** — $\forall \mathcal A$, even inefficient, for an $\varepsilon$-DUF; $\forall$ efficient $\mathcal A$ for a computational DUF.
-> - **Adaptivity** — none: $\mathcal A$ commits without any information about $k$.
->
-> ---
-> ### Experiment
-> A search game: one branch; the challenger checks the difference in the last row. `[BS Attack Game 7.3]`
->
-> | | challenger $\mathcal C$ | | adversary $\mathcal A$ |
-> | --- | --- | --- | --- |
-> | 1 | $k \xleftarrow{\$} \mathcal K$<br>keeps $k$ to itself | | |
-> | 2 | | $\xleftarrow{\ m_0,\, m_1,\, \delta\ }$ | outputs two distinct messages $m_0, m_1 \in \mathcal M$ and a value $\delta \in \mathcal T$ |
-> | 3 | checks whether $H(k, m_1) - H(k, m_0) = \delta$ | | |
->
-> **Goal** — $\mathcal A$ wins iff all of:
-> - $H(k, m_1) - H(k, m_0) = \delta$.
->
-> ---
-> ### Property
-> $$\text{DUFadv}[\mathcal A, H] = \Pr[\mathcal A \text{ wins}].$$
-> - $H$ is an $\varepsilon$**-bounded difference unpredictable function**, or $\varepsilon$-**DUF**, if $\text{DUFadv}[\mathcal A, H] \leq \varepsilon$ for all adversaries $\mathcal A$, even inefficient ones.
-> - $H$ is a **statistical DUF** if it is an $\varepsilon$-DUF for some negligible $\varepsilon$.
-> - $H$ is a **computational DUF** if $\text{DUFadv}[\mathcal A, H]$ is negligible for all efficient adversaries $\mathcal A$.
->
-> It is a *search* game, see [[Security Game]].
-
-> [!remark] An alternate characterization of $\epsilon$-DUF property
-> For every pair of distinct messages $m_0, m_1 \in \mathcal M$, for every $\delta \in \mathcal T$, the following inequality holds: $P[H(k, m_1) - H(k, m_0) = \delta] \leq \epsilon$. Here, the probability is over the random choice of $k \in \mathcal K$.
-
-## Collision Resistance Construction
-
-### Merkle-Damgard Paradigm
-
-> [!algorithm] Merkle-Damgard Function
-> Let $h: \mathcal X \times \mathcal Y \rightarrow \mathcal X$ be a hash function. We shall assume that $\mathcal Y$ is of the form $\{0, 1\}^\ell$ for some $\ell$. The **Merkle-Damgard function derived from $h$**, denoted $H_{MD}$, is a hash function defined over $(\{0, 1\}^{\leq L}, \mathcal X)$ that works as follows:
-> 
-> ---
-> **Input**: $M \in \{0, 1\}^{\leq L}$
-> **Output**: A tag in $\mathcal X$
-> 1. $\hat{M} \leftarrow M || PB$
-> 2. Partition $\hat{M}$ into consecutive $\ell$-bit blocks so that $$\hat{M} = m_1 || m_2 || \dots || m_s \quad \text{where} \quad m_1, \dots, m_s \in \{0, 1\}^\ell$$
-> 3. $t_0 \leftarrow IV \in \mathcal X$
-> 4. For $i = 1$ to $s$ do: $t_i \leftarrow h(t_{i - 1}, m_i)$
-> 5. Output $t_s$.
-
-> [!definition] Important Term
-> - The hash function $h$ is called the **compression function** of $H$.
-> - The constant IV is called the **initial value** and is fixed to some pre-specified value.
-> - The variables $m_1, \dots, m_s$ are called **message blocks**.
-> - The variables $t_0, t_1, \dots, t_s \in \mathcal X$ are called **chaining variables**.
-> - The string PB is called the **padding blocks**. It is appended to the message to ensure that the message length is a multiple of $\ell$ bits.
-
-> [!theorem]
-> Let $L$ be a poly-bounded length parameter and let $h$ be a collision resistant hash function defined over $(\mathcal X \times \mathcal Y, \mathcal X)$. Then the Merkle-Damgard hash function $H_{MD}$ derived from $h$, defined over $(\{0, 1\}^{\leq L}, \mathcal X)$, is collision resistant.
-> 
-> In particular, for every [[Hash Function#Definition|collision finder]] $\mathcal A$ attacking $H_{MD}$, there exists a [[Hash Function#Definition|collision finder]] $\mathcal B$ attacking $h$, where $\mathcal B$ is an elementary wrapper around $\mathcal A$, such that $$\text{CRadv}[\mathcal A, H_{MD}] = \text{CRadv}[\mathcal B, h].$$
-
-### Davies-Meyer Construction
-
-> [!algorithm] Davies-Meyer Compression Function
-> Let $\mathcal E = (E, D)$ be a block cipher over $(\mathcal K, \mathcal X)$ where $\mathcal X = \{0, 1\}^n$. The **Davies-Meyer compression function derived from $E$** maps inputs in $\mathcal X \times \mathcal K$ to outputs in $\mathcal X$. The function is defined as follows: $$h_{DM}(x, y) = E(y, x) \oplus x.$$
-> In symbols, $h_{DM}$ is defined over $(\mathcal X \times \mathcal K, \mathcal X)$.
-
-> [!remark] Davies-Meyer Variant
-> Secure variants:
-> - Matyas-Meyer-Oseas: $h_1(x, y) = E(x, y) \oplus y$
-> - Miyaguchi-Preneel: $h_2(x, y) = E(x, y) \oplus y \oplus x$
-> - Or even: $h_3(x, y) = E(x \oplus y, y) \oplus y$
-> 
-> Insecure variants:
-> - $h_4(x, y) = E(y, x) \oplus y$
-> - $h_5(x, y) = E(x, x \oplus y) \oplus x$
-
-> [!remark]
-> The $\oplus$ operation can be replaced by the $\boxplus$ operation (byte adding modulo $2^{32}$).
-
-> [!theorem] Davies-Meyer
-> Let $h_{DM}$ be the Davies-Meyer hash function derived from a block cipher $\mathcal E = (E, D)$ defined over $(\mathcal K, \mathcal X)$, where $|\mathcal X|$ is large. Then $h_{DM}$ is collision resistant in the ideal cipher model.
-> 
-> In particular, every [[Hash Function#Definition|collision finder]] adversary $\mathcal A$ that issues at most $q$ ideal-cipher queries will satisfy $$\text{CR}^{ic}\text{adv}[\mathcal A, h_{DM}] \leq (q + 1)(q + 2)/|\mathcal X|.$$
-
-### The Sponge Construction
-
-> [!algorithm] Sponge Construction
-> - $\pi: \{0, 1\}^n \rightarrow \{0, 1\}^n$, permutation.
-> - $r$: **rate** of the sponger, larger rate values lead to faster evaluation.
-> - $c$: **capacity** of the sponger, larger capacity values lead to better security bounds.
-> 
-> ---
-> **Input**: Message $M \in \{0, 1\}^{\leq L}$ and desired output length $v > 0$
-> **Output**: A tag $h \in \{0, 1\}^v$
-> 1. **Absorbing Phase**: 
-> 	1. Pad $M$ and break into $r$-bit blocks $m_1, \dots, m_s \in \{0, 1\}^r$
-> 	2. $h \leftarrow 0^n$
-> 	3. For $i \leftarrow 1$ to $s$ do
-> 		- $m_i' \leftarrow m_i || 0^c \in \{0, 1\}^n$
-> 		- $h \leftarrow \pi(h \oplus m_i')$
-> 2. **Squeezing State**:
-> 	1. $z_1 \leftarrow h[0 \dots r - 1]$
-> 	2. For $i \leftarrow 2$ to $\lfloor v/r \rfloor$ do
-> 		- $h \leftarrow \pi(h)$
-> 		- $z_i \leftarrow h[0 \dots r - 1]$
-> 3. Output $(z_1 || \dots || z_{\lfloor v/r \rfloor})[0 \dots v - 1]$.
-
-> [!theorem]
-> Let $H$ be the hash function obtained from a permutation $\pi: \{0, 1\}^n \rightarrow \{0, 1\}^n$, with capacity $c$, rate $r$ (so $n = r + c$), and output length $v \leq r$. In the ideal permutation model, where $\pi$ is modeled as a random permutation $\Pi$, the hash function $H$ is collision resistant, assuming $2^v$ and $2^c$ are super-poly.
-> 
-> In particular, for every [[Hash Function#Definition|collision finder]] adversary $\mathcal A$, if the number of ideal-permutation queries plus the number of $r$-bit blocks in the output messages of $\mathcal A$ is bounded by $q$, then $$\text{CR}^{ic}\text{adv}[\mathcal A, H] \leq \frac{q(q - 1)}{2^v} + \frac{q(q + 1)}{2^c}$$
-
-## UHF Construction
-
-### Using Polynomials
-
-> [!algorithm] Polynomial UHF
-> Let $\ell$ be a (poly-bounded) length parameter and let $p$ be a prime. We define a hash function $H_{poly}$ that hashes a message $m \in \mathbb Z_p^{\leq \ell}$ to a single element $t \in \mathbb Z_p$. The key space is $\mathcal K = \mathbb Z_p$.
-> Let $m$ be a message, so $m = (a_1, a_2, \dots, a_v) \in \mathbb Z_p^{\leq \ell}$ for some $0 \leq v \leq \ell$. Let $k \in \mathbb Z_p$ be a key. The hash function $H_{poly}(k, m)$ is defined as follows:
-> $$H_{poly}(k, (a_1, \dots, a_v)) = k^v + a_1 k^{v - 1} + a_2 k^{v - 2} + a_{v - 1} k + a_v \in \mathbb Z_p$$
-
-> [!lemma]
-> The function $H_{poly}$ over $(\mathbb Z_p, (\mathbb Z_p)^{\leq \ell}, \mathbb Z_p)$ is an $(\ell/p)$-UHF.
-
-> [!algorithm] Polynomial DUF
-> $H_{xpoly}(k, m) = k \cdot H_{poly}(k, m)$. 
-
-> [!lemma] 
-> The function $H_{xpoly}$ over $(\mathbb Z_p, (\mathbb Z_p)^{\leq \ell}, \mathbb Z_p)$ is an $(\ell + 1)/p$-DUF.
-
-> [!remark]
-> We can modify $H_{xpoly}$ to operate on $n$-bit blocks by doing all arithmetic in the finite field $GF(2^n)$ instead of $\mathbb Z_p$.
-
-### Using Prefix-free PRF
-
-> [!theorem]
-> Let PF be an [[Pseudorandom Function|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$ where $|\mathcal Y|$ is super-poly and $|\mathcal X| > 1$. Then PF is a computational UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y).$
-> 
-> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$ with respect to $PF$, there exists a [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{1}{|\mathcal Y|}.$$
-> Moreover, $\mathcal B$ makes only two queries to $PF$.
-
-> [!theorem]
-> Let PF be an [[Pseudorandom Function|extendable]] and prefix-free secure PRF defined over $(\mathcal K, \mathcal X^{\leq \ell + 1}, \mathcal Y)$, where $|\mathcal X|$ and $|\mathcal Y|$ are super-poly and $\ell$ is poly-bounded. Then PF is a multi-query UHF defined over $(\mathcal K, \mathcal X^{\leq \ell}, \mathcal Y)$.
-> 
-> In particular, if $|\mathcal X| > \ell Q$, then for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exists a $Q$-query [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{MUHFadv}[\mathcal A, PF] \leq \text{PRF}^{pf}\text{adv}[\mathcal B, PF] + \frac{Q^2}{2|\mathcal Y|}.$$
-
-> [!corollary]
-> Let $F$ be a [[Pseudorandom Function#Definition|secure PRF]] defined over $(\mathcal K, \mathcal X, \mathcal Y)$. Then the [[Pseudorandom Function#CBC Construction|CBC construction]] $F_{CBC}$ (assuming $\mathcal Y = \mathcal X$ is super-poly size) and the [[Pseudorandom Function#Cascade Construction|cascade construction]] $F^*$ (assuming $\mathcal Y = \mathcal K$), which take inputs in $\mathcal X^{\leq \ell}$ for poly-bounded $\ell$, are computational UHFs.
-> 
-> In particular, for every $Q$-query [[#Multi-query Universal Hash Function|secure multi-query UHF]] adversary $\mathcal A$, there exist [[Pseudorandom Function#Secure Prefix-free PRF|secure prefix-free PRF]] adversaries $\mathcal B_1, \mathcal B_2$, which are elementary wrappers around $\mathcal A$, such that $$\begin{align}\text{MUHFadv}[\mathcal A, F_{CBC}] &\leq \text{PRF}^{pf}\text{adv}[\mathcal B_1, F] + \frac{Q^2(\ell + 1)^2 + Q^2}{2|\mathcal Y|} \\ \text{MUHFadv}[\mathcal A, F^*] &\leq Q(\ell + 1) \cdot \text{PRF}^{pf}\text{adv}[\mathcal B_2, F] + \frac{Q^2}{2|\mathcal Y|}\end{align}$$
-
-### Parallel UHF from a small PRF
-
-> [!theorem]
-> Let $F$ be a [[Pseudorandom Function#Definition|secure PRF]] and assume $|\mathcal Y|$ is super-poly. Then $F^\oplus$ is a computational UHF.
-> 
-> In particular, for every [[#Secure Universal Hash Function|secure UHF]] adversary $\mathcal A$, there exists a [[Pseudorandom Function#Definition|secure PRF]] adversary $\mathcal B$, which is an elementary wrapper around $\mathcal A$, such that $$\text{UHFadv}[\mathcal A, F^\oplus] \leq \text{PRFadv}[\mathcal B, F] + \frac{1}{|\mathcal Y|}.$$
-
-## Case Study
-
-### SHA256
-
-> [!algorithm] SHA256
-> For $x, y, z$ in $\{0, 1\}^{32}$, define:
-> $$\begin{align}
-> \text{SHR}^n(x) &= (x >> n) \\
-> \text{ROTR}^n(x) &= (x >> n) \lor (x << 32 - n) \\
-> \text{Ch}(x, y, z) &= (x \land y) \oplus (\not x \land z) \\
-> \text{Maj}(x, y, z) &= (x \land y) \oplus (x \land z) \oplus (y \land z) \\
-> \Sigma_0(x) &= \text{ROTR}^2(x) \oplus \text{ROTR}^{13}(x) \oplus \text{ROTR}^{22}(x) \\
-> \Sigma_1(x) &= \text{ROTR}^6(x) \oplus \text{ROTR}^{11}(x) \oplus \text{ROTR}^{25}(x) \\
-> \sigma_0(x) &= \text{ROTR}^7(x) \oplus \text{ROTR}^{18}(x) \oplus \text{SHR}^3(x) \\
-> \sigma_1(x) &= \text{ROTR}^{17}(x) \oplus \text{ROTR}^{19}(x) \oplus \text{SHR}^{10}(x) 
-> \end{align}$$
-> 
-> ---
-> SHA256
-> **Input**: plaintext $t = t_0 || \dots || t_7 \in \{0, 1\}^{256}$ and key $k = k_0 || k_1 \dots || k_{15} \in \{0, 1\}^{512}$
-> **Output**: ciphertext in $\{0, 1\}^{256}$.
-> 1. **Key setup**: Construct 64 round keys $W_0, \dots, W_{63} \in \{0, 1\}^{32}$; $$\begin{cases}\text{for } i = 0, 1, \dots, 15 &\text{set } W_i \leftarrow k_i, \\ \text{for } i = 16, 17, \dots, 63 &\text{set } W_i \leftarrow \sigma_1(W_{i - 2}) + W_{i - 7} + \sigma_0(W_{i - 15}) + W_{i - 16}\end{cases}$$
-> 2. **64 Rounds**:
-> $(a_0, b_0, c_0, d_0, e_0, f_0, g_0, h_0) \leftarrow (t_0, t_1, t_2, t_3, t_4, t_5, t_6, t_7)$
-> For $i = 0$ to $63$ do:
-> 	- $T_1 \leftarrow h_i + \Sigma_1(e_i) + \text{Ch}(e_i, f_i, g_i) + K_i + W_i$
-> 	- $T_2 \leftarrow \Sigma_0(a_i) + \text{Maj}(a_i, b_i, c_i)$
-> 	- $(a_{i + 1}, b_{i + 1}, c_{i + 1}, d_{i + 1}, e_{i + 1}, f_{i + 1}, g_{i + 1}, h_{i + 1}) \leftarrow (T_1 + T_2, a_i, b_i, c_i, d_i, e_i, f_i, g_i)$
-> 3. **Output**: $a_{64} || b_{64} || c_{64} || d_{64} || e_{64} || f_{64} || g_{64} || h_{64} \in \{0, 1\}^{256}$.   
-
-### SHA3
-
-### MD5
-
-> [!remark]
-> MD5 suffers from a **Chosen Prefix Collision**: 
-> $$\text{MD5}(A) = \text{MD5}(B) \rightarrow \text{MD5}(A + S) = \text{MD5}(S)$$
-> Example of one collisions:
-> ```python
-> block1 = bytes.fromhex("d131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f8955ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5bd8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a70")
-block2 = bytes.fromhex("d131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f8955ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5bd8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70")
-> ```
-> Todo: [https://github.com/corkami/collisions](https://github.com/corkami/collisions)
-
+### Siblings
+- [[Universal Hash Function]] — keyed, the key kept secret, and the adversary never sees a digest: a weaker, often statistical guarantee
+- [[Pseudorandom Function]] — keyed with a secret key, and its outputs look random, not only collision-free
+- [[One-Way Functions]] — only preimages need to be hard to find
